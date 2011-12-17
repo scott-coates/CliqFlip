@@ -242,8 +242,8 @@ blockquote { color:#465363; font-size:15px; font-style:italic;  margin:20px 0px 
 /*========================*/
 #header { z-index: 999; position: absolute; top:18px;  }
 	#header .logo { float:left; }
-	#header .logo .logo_img { display:block; background:transparent url(../../img/logo.png) no-repeat; width:183px; height:61px; text-indent:-999999px; }
-	#header .nav  { background:transparent url(../../img/bg_menu.png) repeat-x; float:left; height:61px; width:757px; }
+	#header .logo .logo_img { display:block; background:transparent url(../../img/ClipFliq-LogoMoto.png) no-repeat; width:226px; height:67px; text-indent:-999999px; }
+	#header .nav  { background:transparent url(../../img/bg_menu.png) repeat-x; float:left; height:67px; width:714px; }
 	
 /*========================*/
 /*===  5.1. Navigation ===*/
