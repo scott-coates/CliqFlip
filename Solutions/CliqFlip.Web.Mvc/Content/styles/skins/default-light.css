@@ -925,7 +925,10 @@ ol li, .list li { color:#333; line-height:1.5em; }
 /*============================================*/
 /*===  8.10.3 Cycle Slider ( homepage ) ===*/
 /*==========================================*/
-#slider-container .cycleslider { display: block; position: relative; width: 340px; height: 490px; overflow:hidden; }
+#slider-container .cycleslider { display: block; position: relative; width: 340px; height: 490px; overflow:hidden;float: left;}
+#slider-container .tryout { display: block; position: relative; width: 340px; height: 490px; overflow:hidden; float: left;left: 100px;top: 40px;}
+#slider-container .tryout p { font-family: 'PT Sans Narrow', Arial, Helvetica, sans-serif; color:white;font-size: 18px; letter-spacing: 1px;}
+
 #slider-container .cycleslider_directions { /*position:absolute; top:0; left:0; */position:relative;}
 #slider-container .cycleslider_control_nav { position:absolute; top:0; left:0; }
 #slider-container .cycleslider_previous_control { float:left; position:absolute; left:-55px; top:185px }
