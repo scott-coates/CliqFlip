@@ -922,14 +922,14 @@ ol li, .list li { color:#333; line-height:1.5em; }
 /*============================================*/
 /*===  8.10.3 Cycle Slider ( homepage ) ===*/
 /*==========================================*/
-#slider-container .cycleslider { display: block; position: relative; width: 940px; height: 490px; overflow:hidden; }
+#slider-container .cycleslider { display: block; position: relative; width: 340px; height: 490px; overflow:hidden; }
 #slider-container .cycleslider_directions { /*position:absolute; top:0; left:0; */position:relative;}
 #slider-container .cycleslider_control_nav { position:absolute; top:0; left:0; }
 #slider-container .cycleslider_previous_control { float:left; position:absolute; left:-55px; top:185px }
 #slider-container .cycleslider_previous_control a { background: transparent url(../../img/anythingSlider/slider-arrows2.png) no-repeat 0 -48px;
 	width:48px;	height:48px; display:block;	text-indent:-999999px; -webkit-transition: all .2s linear;-moz-transition: all .2s linear;transition: all .2s linear; }
 #slider-container .cycleslider_previous_control a:hover { background: transparent url(../../img/anythingSlider/slider-arrows2.png) no-repeat 0 0px; }
-#slider-container .cycleslider_next_control 		{ float:right; position:absolute; right:-55px; top:185px; }
+#slider-container .cycleslider_next_control 		{ float:left; position:absolute; right:548px; top:185px; }
 #slider-container .cycleslider_next_control  a 		{	background: transparent url(../../img/anythingSlider/slider-arrows2.png) no-repeat -48px -48px; width:48px;	height:48px; display:block;	text-indent:-999999px; -webkit-transition: all .2s linear;-moz-transition: all .2s linear;transition: all .2s linear; }
 #slider-container .cycleslider_next_control  a:hover { background: transparent url(../../img/anythingSlider/slider-arrows2.png) no-repeat -48px 0px; }
 /*==========================================*/
