@@ -1,36 +1,206 @@
 ﻿@{
-    ViewBag.Title = "Home";
+	ViewBag.Title = "CliqFlip - Discover More";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-	<h2>S#arp Architecture Project</h2>
-	<h3>What next?</h3>
-	<p>
-		Your S#arp Architecture 2.0RC project is now setup and ready to go. This release is built on the RTM verion of ASP.NET MVC 3 and .NET 4. The only tasks remaining
-		are to:
-		<ol>
-			<li>
-				<span style="font-weight:bold; font-style:italic">Create your database and set the connection string
-				within SharpCookbook.Web/NHibernate.config</span>
-			</li>
-			<li>
-				Optionally, modify the Fluent NHibernate preferences within SharpCookbook.Data.NHibernateMaps.GetConventions()
-				if you don't like the default settings.  There's lots of terrific info about Fluent NHibernate
-				at <a href="http://wiki.fluentnhibernate.org/show/HomePage">http://wiki.fluentnhibernate.org/show/HomePage</a>.
-			</li>
-			<li>
-				Open SharpCookbook.Tests.dll via NUnit and make sure all the tests are turning green.
-			</li>
-			<li>
-				Add your first entity with CRUD scaffolding via /Code Generation/CrudScaffolding/ScaffoldingGeneratorCommand.tt.
-				(If you include a namespace, be sure to setup the appropriate view area within
-				SharpCookbook.Web.Controllers.RouteRegistrar.RegisterRoutesTo() after the scaffolding generator has completed.)
-			</li>
-		</ol>
-	</p>
-	<p>
-		If you need direction on what to do next, take a look at the documentation found in the
-		/docs folder of the S#arp Architecture release package which provides a solid tutorial.
-		You can also ask for assitance and guidance on the
-		<a href="http://groups.google.com/group/sharp-architecture">S#arp Architecture discussion boards</a>.
-	</p>
+	<!-- SLIDER START -->	
+	<div id="slider-container" class="bg_slider">
+		<div class="wrapper">
+			<div class="inner cycle_wrapper">
+					    <div class="cycleslider_directions">                        
+                        	<span class="cycleslider_previous_control"><a href="javascript:;">Previous</a></span>
+                            <span class="cycleslider_next_control"><a href="javascript:;">Next</a></span>                            
+                        </div>
+					<div class="cycleslider">
+						<a href="#"><img src="@Url.Content("/Content/img/photos/940_3.jpg")" alt="" /></a>
+						<a href="#"><img src="@Url.Content("/Content/img/photos/940_2.jpg")" alt="" /></a>
+						<a href="#"><img src="@Url.Content("/Content/img/photos/940_1.jpg")" alt="" /></a>
+						<a href="#"><img src="@Url.Content("/Content/img/photos/940_4.jpg")" alt="" /></a>
+					</div>
+			</div>
+		</div>
+	</div>
+<!-- SLIDER END -->
+<!-- SERVICES BOX START -->
+	<div class="wrapper">
+		<div class="inner">
+			<div class="servicebox">
+					<div class="servicebox-hover">
+						<div class="icon"><img src="@Url.Content("/Content/img/feat1.png")" alt=""></div>
+						<div class="title"><span class="white">Web Design</span></div>
+						<div class="text-content">
+							<div class="light">
+								<ul>
+									<li>Websites</li>
+									<li>Magna</li>
+									<li>Tincidunt platea</li>
+									<li>Etiam ultrices</li>
+									<li>Aenean vel mauris</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					
+				<div class="icon"><img src="@Url.Content("/Content/img/feat1.png")" alt=""></div>
+				<div class="title">Web Design</div>
+				<div class="text-content">Magna integer, et, montes tincidunt mauris sed integer, sit vut sed mattis porta amet. Arcu, vut elementum pid ut elementum, elementum porta nec proin? Dis. Montes quis scelerisque, cum nec, tincidunt, montes integer ut!</div>
+			</div>
+			
+			<div class="servicebox">
+					<div class="servicebox-hover">
+						<div class="icon"><img src="@Url.Content("/Content/img/feat2.png")" alt=""></div>
+						<div class="title"><span class="white">Graphic Design</span></div>
+						<div class="text-content">
+							<div class="light">
+								<ul>
+									<li>Graphix</li>
+									<li>Magna</li>
+									<li>Tincidunt platea</li>
+									<li>Etiam ultrices</li>
+									<li>Aenean vel mauris</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				<div class="icon"><img src="@Url.Content("/Content/img/feat2.png")" alt=""></div>
+				<div class="title">Graphic Design</div>
+				<div class="text-content">Magna integer, et, montes tincidunt mauris sed integer, sit vut sed mattis porta amet. Arcu, vut elementum pid ut elementum, elementum porta nec proin? Dis. Montes quis scelerisque, cum nec, tincidunt, montes integer ut! </div>
+			</div>
+			
+			<div class="servicebox">
+					<div class="servicebox-hover">
+						<div class="icon"><img src="@Url.Content("/Content/img/feat3.png")" alt=""></div>
+						<div class="title"><span class="white">Photography</span></div>
+						<div class="text-content">
+							<div class="light">
+								<ul>
+									<li>Photos</li>
+									<li>Magna</li>
+									<li>Tincidunt platea</li>
+									<li>Etiam ultrices</li>
+									<li>Aenean vel mauris</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				<div class="icon"><img src="@Url.Content("/Content/img/feat3.png")" alt=""></div>
+				<div class="title">Photography</div>
+				<div class="text-content">Magna integer, et, montes tincidunt mauris sed integer, sit vut sed mattis porta amet. Arcu, vut elementum pid ut elementum, elementum porta nec proin? Dis. Montes quis scelerisque, cum nec, tincidunt, montes integer ut! </div>
+			</div>
+		</div>
+	</div>
+<!-- SERVICES BOX END -->
+<!-- FEATURED PORTFOLIO START -->
+<div id="portfolio_box2">
+	<div class="wrapper">
+		<div class="inner">
+			<div class="divider"></div>	
+			<div class="heading_box">
+				<h1>Featured Cool Projects</h1>
+				<p><em>Montes quis urna dis lectus augue mus porta dis sit, ac dis nascetur cras, mid a, phasellus.</em></p>
+			</div>
+			<div class="one_fourth">
+				<div class="item-image">
+					<a href="@Url.Content("/Content/img/photos/p1.jpg")" data-lightbox="{'group':'group1'}" class="over over_zoom link_colorbox">Zoom</a>
+					<img src="@Url.Content("/Content/img/photos/p1.jpg")" alt="Image title goes here" />
+				</div>
+				<div class="item-name">
+					<p class="title"><a href="#">Work title goes here</a></p>
+				</div>
+			</div>
+			<div class="one_fourth">
+				<div class="item-image">
+					<a href="@Url.Content("/Content/img/photos/p2.jpg")" data-lightbox="{'group':'group1'}" class="over over_zoom link_colorbox">Zoom</a>
+					<img src="@Url.Content("/Content/img/photos/p2.jpg")" alt="Image title goes here" />
+				</div>
+				<div class="item-name">
+					<p class="title"><a href="#">Work title goes here</a></p>
+				</div>
+			</div>			
+			<div class="one_fourth">
+				<div class="item-image">
+					<a href="@Url.Content("/Content/img/photos/p3.jpg")" data-lightbox="{'group':'group1'}"  class="over over_zoom link_colorbox">Zoom</a>
+					<img src="@Url.Content("/Content/img/photos/p3.jpg")" alt="Image title goes here" />
+				</div>
+				<div class="item-name">
+					<p class="title"><a href="#">Work title goes here</a></p>
+				</div>
+			</div>
+			<div class="one_fourth last">
+				<div class="item-image">
+					<a href="@Url.Content("/Content/img/photos/p4.jpg")" data-lightbox="{'group':'group1'}" class="over over_zoom link_colorbox">Zoom</a>
+					<img src="@Url.Content("/Content/img/photos/p4.jpg")" alt="Image title goes here" />
+				</div>
+				<div class="item-name">
+					<p class="title"><a href="#">Work title goes here</a></p>
+				</div>				
+			</div>	
+			<div class="one_fourth">
+				<div class="item-image">
+					<a href="@Url.Content("/Content/img/photos/p5.jpg")" data-lightbox="{'group':'group1'}" class="over over_zoom link_colorbox">Zoom</a>
+					<img src="@Url.Content("/Content/img/photos/p5.jpg")" alt="Image title goes here" />
+				</div>
+				<div class="item-name">
+					<p class="title"><a href="#">Work title goes here</a></p>					
+				</div>				
+			</div>
+			<div class="one_fourth">
+				<div class="item-image">
+					<a href="@Url.Content("/Content/img/photos/p6.jpg")" data-lightbox="{'group':'group1'}" class="over over_zoom link_colorbox">Zoom</a>
+					<img src="@Url.Content("/Content/img/photos/p6.jpg")" alt="Image title goes here" />
+				</div>
+				<div class="item-name">
+					<p class="title"><a href="#">Work title goes here</a></p>					
+				</div>				
+			</div>
+			<div class="one_fourth">
+				<div class="item-image">
+					<a href="@Url.Content("/Content/img/photos/p7.jpg")" data-lightbox="{'group':'group1'}" class="over over_zoom link_colorbox">Zoom</a>
+					<img src="@Url.Content("/Content/img/photos/p7.jpg")" alt="Image title goes here" />
+				</div>
+				<div class="item-name">
+					<p class="title"><a href="#">Work title goes here</a></p>					
+				</div>				
+			</div>
+			<div class="one_fourth last">
+				<div class="item-image">
+					<a href="@Url.Content("/Content/img/photos/p8.jpg")" data-lightbox="{'group':'group1'}" class="over over_zoom link_colorbox">Zoom</a>
+					<img src="@Url.Content("/Content/img/photos/p8.jpg")" alt="Image title goes here" />
+				</div>
+				<div class="item-name">
+					<p class="title"><a href="#">Work title goes here</a></p>					
+				</div>				
+			</div>											
+			
+			<div class="divider"></div>			
+		</div>
+	</div>
+</div>
+<!-- FEATURED PORTFOLIO END -->
+
+<!-- CONNECT BOX START -->
+	<div id="connect_box" class="full-width">
+		<div class="wrapper">
+			<div class="inner">
+				<div class="one_fifth">
+					<h4>Connect</h4>
+				</div>
+				<div class="three_fifth">
+					<ul class="list">
+						<li><a href="http://twitter.com/mariuspop"><span class="twitter_icon"></span> Twitter</a></li>
+						<li><a href="http://facebook.com"><span class="facebook_icon"></span> Facebook</a></li>
+						<li><a href="javascript:;"><span class="rss_icon"></span> RSS</a></li>
+						<li><a href="#"><span class="contact_icon"></span> Contact</a></li>
+					</ul>
+				</div>
+				<div class="one_fifth last">
+					<a href="http://www.addthis.com/bookmark.html?v=250&amp;pubid=ra-4e6377ae614835f5" class="addthis_button_compact">
+						<span class="share_icon"></span> Share this page
+					</a>
+					<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e6377ae614835f5"> </script>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+<!-- CONNECT BOX END -->
