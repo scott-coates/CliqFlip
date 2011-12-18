@@ -192,6 +192,7 @@
     <Content Include="Content\img\blank.gif" />
     <Content Include="Content\img\button_icon.png" />
     <Content Include="Content\img\check.png" />
+    <Content Include="Content\img\ClipFliq-LogoMoto.png" />
     <Content Include="Content\img\close.png" />
     <Content Include="Content\img\connect_sprite.png" />
     <Content Include="Content\img\dotted_line.png" />
@@ -357,6 +358,9 @@
     <Content Include="Content\img\sprite_button.png" />
     <Content Include="Content\img\star.png" />
     <Content Include="Content\img\star_hover.png" />
+    <Content Include="Content\img\step-1.jpg" />
+    <Content Include="Content\img\step-2.jpg" />
+    <Content Include="Content\img\step-3.jpg" />
     <Content Include="Content\img\toggle.png" />
     <Content Include="Content\img\twitter_icon57.png" />
     <Content Include="Content\img\underline.png" />
