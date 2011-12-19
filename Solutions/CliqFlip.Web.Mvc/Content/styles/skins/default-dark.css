@@ -242,8 +242,11 @@ blockquote { color:#999; font-size:15px; font-style:italic;  margin:20px 0px 20p
 /*========================*/
 #header { z-index: 999; position: absolute; top:18px;  }
 	#header .logo { float:left; }
-	#header .logo .logo_img { display:block; background:transparent url(../../img/skins/dark-yellow/logo.png) no-repeat; width:183px; height:61px; text-indent:-999999px; }
-	#header .nav  { background:transparent url(../../img/skins/dark-yellow/bg_menu.png) repeat-x; float:left; height:61px; width:757px; }
+	#header .logo .logo_img { display:block; background:transparent url(../../img/ClipFliq-LogoMoto.png) no-repeat; width:216px; height:40px; text-indent:-999999px; }
+	#header .motto  { font-family: 'PT Sans Narrow', Arial, Helvetica, sans-serif; color:#3CC6FA; font-size:65px; float:left; margin-top: 8px;margin-left: 75px; height:40px; width:503px;letter-spacing: 13px;}
+	#header .motto span  { color: #EE5C4A;font-weight: 500;}
+	#header .back  { background:transparent url(../../img/bg_menu.png) repeat-x; height:40px; width:940px; }
+	#header .nav  { background:transparent url(../../img/skins/dark-yellow/bg_menu.png) repeat-x; float:left; height:40px; width:494px; }
 	
 /*========================*/
 /*===  5.1. Navigation ===*/
@@ -908,14 +911,45 @@ ol li, .list li { color:#888; line-height:1.5em; }
 /*============================================*/
 /*===  8.10.3 Cycle Slider ( homepage ) ===*/
 /*==========================================*/
-#slider-container .cycleslider { display: block; position: relative; width: 940px; height: 490px; overflow:hidden; }
+.cycle_wrapper { position: relative;}
+#slider-container .cycleslider { display: block; position: relative; width: 340px; height: 480px; overflow:hidden;float: left;}
+#slider-container .tryout { display: block; position: relative; width: 505px; height: 480px; overflow:hidden; float: left;left: 75px;top: 40px;}
+#slider-container .tryout .results { border:4px solid grey;height:220px;margin-top: 25px;}
+#slider-container .tryout .header { font-family: 'PT Sans Narrow', Arial, Helvetica, sans-serif; color:white;font-size: 28px; letter-spacing: 1px;}
+
+#slider-container #register-button 
+{
+	height: 136px;
+	background: url('../../img/GET_home-next-button.png') no-repeat;
+	background-size: 66%;
+	width: 213px;
+	cursor: pointer;
+	position: absolute;
+	z-index: 999;
+	left: 264px;
+}
+
+#slider-container #register-button span
+{
+	text-shadow: 0px 1px 1px rgba(255, 255, 255, .33), 0px -1px 1px rgba(0, 0, 0, .33);
+	text-align: center;
+	font-size: 18px;
+	text-transform: uppercase;
+	font-weight: 900;
+	color: #B47838;
+	margin-top: 51px;
+	margin-right: 71px;
+	display: block;
+
+}
+
 #slider-container .cycleslider_directions { /*position:absolute; top:0; left:0; */position:relative;}
 #slider-container .cycleslider_control_nav { position:absolute; top:0; left:0; }
 #slider-container .cycleslider_previous_control { float:left; position:absolute; left:-55px; top:185px }
 #slider-container .cycleslider_previous_control a { background: transparent url(../../img/anythingSlider/slider-arrows2.png) no-repeat 0 -48px;
 	width:48px;	height:48px; display:block;	text-indent:-999999px; -webkit-transition: all .2s linear;-moz-transition: all .2s linear;transition: all .2s linear; }
 #slider-container .cycleslider_previous_control a:hover { background: transparent url(../../img/anythingSlider/slider-arrows2.png) no-repeat 0 0px; }
-#slider-container .cycleslider_next_control 		{ float:right; position:absolute; right:-55px; top:185px; }
+#slider-container .cycleslider_next_control 		{ float:left; position:absolute; right:548px; top:185px; }
 #slider-container .cycleslider_next_control  a 		{	background: transparent url(../../img/anythingSlider/slider-arrows2.png) no-repeat -48px -48px; width:48px;	height:48px; display:block;	text-indent:-999999px; -webkit-transition: all .2s linear;-moz-transition: all .2s linear;transition: all .2s linear; }
 #slider-container .cycleslider_next_control  a:hover { background: transparent url(../../img/anythingSlider/slider-arrows2.png) no-repeat -48px 0px; }
 /*==========================================*/
