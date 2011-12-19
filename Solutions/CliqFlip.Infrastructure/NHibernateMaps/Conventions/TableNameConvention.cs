@@ -11,7 +11,7 @@
         public void Apply(FluentNHibernate.Conventions.Instances.IClassInstance instance)
         {
 			//instance.Table(Inflector.Net.Inflector.Singularize(instance.EntityType.Name));
-			instance.Table(Inflector.Net.Inflector.Pluralize(instance.EntityType.Name));
+			//instance.Table(Inflector.Net.Inflector.Pluralize(instance.EntityType.Name));
         }
     }
 }

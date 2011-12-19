@@ -1,4 +1,6 @@
-﻿namespace CliqFlip.Web.Mvc
+﻿using NHibernate.Tool.hbm2ddl;
+
+namespace CliqFlip.Web.Mvc
 {
     using System;
     using System.Reflection;
@@ -100,11 +102,13 @@
         {
             NHibernateSession.ConfigurationCache = new NHibernateConfigurationFileCache();
 
-            NHibernateSession.Init(
+            var cfg = NHibernateSession.Init(
                 this.webSessionStorage,
                 new[] { Server.MapPath("~/bin/CliqFlip.Infrastructure.dll") },
                 new AutoPersistenceModelGenerator().Generate(),
                 Server.MapPath("~/NHibernate.config"));
+
+        	new SchemaUpdate(cfg).Execute(false, true);
         }
     }
 }
