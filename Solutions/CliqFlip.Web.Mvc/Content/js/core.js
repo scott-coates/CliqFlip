@@ -38,11 +38,11 @@ $(function () {
     $('.cycleslider').before('<div class="cycleslider_control_nav">').cycle({
       fx: 'scrollVert, scrollHorz, fade',
       // name of transition effect (or comma separated names, ex: 'fade,scrollUp,shuffle') 
-      pause: 0,
+      pause: 1,
       // true to enable "pause on hover" 
       speed: 1000,
       // speed of the transition (any valid fx speed value) 
-      timeout: 3000,
+      timeout: 5000,
       // milliseconds between slide transitions (0 to disable auto advance) 
       randomizeEffects: 1,
       startingSlide: 0,
