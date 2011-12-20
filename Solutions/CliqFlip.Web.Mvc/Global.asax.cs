@@ -101,8 +101,6 @@ namespace CliqFlip.Web.Mvc
 				new[] {Server.MapPath("~/bin/CliqFlip.Infrastructure.dll")},
 				new AutoPersistenceModelGenerator().Generate(),
 				Server.MapPath("~/NHibernate.config"));
-
-			new SchemaUpdate(cfg).Execute(false, true);
 		}
 	}
 }
