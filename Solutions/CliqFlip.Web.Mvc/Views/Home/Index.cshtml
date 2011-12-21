@@ -2,11 +2,14 @@
 	ViewBag.Title = "CliqFlip - Discover More";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section  styles
+{
+	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/autoSuggest.css")" />
+}
 <!-- SLIDER START -->
 <div id="slider-container" class="bg_slider">
 	<div class="wrapper">
 		<div class="inner cycle_wrapper">
-		
 			<div class="cycleslider_directions">
 				<span class="cycleslider_previous_control"><a href="javascript:;">Previous</a></span>
 				<span class="cycleslider_next_control"><a href="javascript:;">Next</a></span>
@@ -24,8 +27,9 @@
 					Let's see who's in your area</div>
 				<div class="search">
 					<input class="search_submit" value="" type="submit" style="opacity: 1; right: 296px;" />
-					<input class="search_box" type="text" value="Enter your city or zipcode" onfocus="if (this.value == 'Enter your city or zipcode') {this.value = '';}"
+					<input  class="search_box" type="text" value="Enter your city or zipcode" onfocus="if (this.value == 'Enter your city or zipcode') {this.value = '';}"
 						   onblur="if (this.value == '') {this.value = 'Enter your city or zipcode';}" />
+						   <input type="text" id="interestSearch"/>
 				</div>
 				<div class="results">
 				</div>
@@ -40,7 +44,6 @@
 <div class="wrapper">
 	<div class="inner">
 		<div class="servicebox">
-
 			<div class="icon">
 				<img src="@Url.Content("/Content/img/feat1.png")" alt=""></div>
 			<div class="title">
@@ -51,7 +54,6 @@
 				quis scelerisque, cum nec, tincidunt, montes integer ut!</div>
 		</div>
 		<div class="servicebox">
-
 			<div class="icon">
 				<img src="@Url.Content("/Content/img/feat2.png")" alt=""></div>
 			<div class="title">
@@ -63,7 +65,6 @@
 			</div>
 		</div>
 		<div class="servicebox">
-
 			<div class="icon">
 				<img src="@Url.Content("/Content/img/feat3.png")" alt=""></div>
 			<div class="title">
@@ -212,3 +213,8 @@
 	</div>
 </div>
 <!-- CONNECT BOX END -->
+@section scripts
+{
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.autoSuggest.minified.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/home/home.js")"> </script>
+}

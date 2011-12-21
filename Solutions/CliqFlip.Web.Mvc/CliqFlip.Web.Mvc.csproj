@@ -383,6 +383,7 @@
     <Content Include="Content\js\colorbox\jquery.colorbox-min.js" />
     <Content Include="Content\js\colorbox\jquery.colorbox.js" />
     <Content Include="Content\js\core.js" />
+    <Content Include="Content\js\home\home.js" />
     <Content Include="Content\js\jflickrfeed.min.js" />
     <Content Include="Content\js\jquery-1.6.1-vsdoc.js" />
     <Content Include="Content\js\jquery-1.6.1.js" />
@@ -392,6 +393,7 @@
     <Content Include="Content\js\jquery.animate-colors-min.js" />
     <Content Include="Content\js\jquery.anythingslider.fx.min.js" />
     <Content Include="Content\js\jquery.anythingslider.min.js" />
+    <Content Include="Content\js\jquery.autoSuggest.minified.js" />
     <Content Include="Content\js\jquery.cycle.all.min.js" />
     <Content Include="Content\js\jquery.js" />
     <Content Include="Content\js\jquery.quicksand.min.js" />
@@ -400,6 +402,7 @@
     <Content Include="Content\js\modernizr-1.7.js" />
     <Content Include="Content\js\modernizr-1.7.min.js" />
     <Content Include="Content\js\twitterjs-2.0.0.min.js" />
+    <Content Include="Content\styles\autoSuggest.css" />
     <Content Include="Content\styles\Site.css" />
     <Content Include="Content\styles\anythingslider.css" />
     <Content Include="Content\styles\skins\blue-cScheme.css" />
