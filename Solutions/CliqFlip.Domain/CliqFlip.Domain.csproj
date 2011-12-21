@@ -81,8 +81,10 @@
     <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Interest.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Contracts\Tasks\IInterestTasks.cs" />
+    <Compile Include="Dtos\InterestDto.cs" />
+    <Compile Include="Entities\Interest.cs" />
+    <Compile Include="Entities\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -103,7 +105,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Contracts\Queries\" />
-    <Folder Include="Contracts\Tasks\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

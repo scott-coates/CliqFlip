@@ -1,7 +1,7 @@
-﻿namespace CliqFlip.Domain
-{
-	using SharpArch.Domain.DomainModel;
+﻿using SharpArch.Domain.DomainModel;
 
+namespace CliqFlip.Domain.Entities
+{
 	public class Interest : Entity
 	{
 		public virtual Interest ParentInterest { get; set; }

@@ -1,4 +1,6 @@
-﻿namespace CliqFlip.Infrastructure.NHibernateMaps
+﻿using CliqFlip.Domain.Entities;
+
+namespace CliqFlip.Infrastructure.NHibernateMaps
 {
     #region Using Directives
 

@@ -1,4 +1,5 @@
 ﻿using CliqFlip.Domain;
+using CliqFlip.Domain.Entities;
 using NHibernate.Tool.hbm2ddl;
 
 namespace CliqFlip.Web.Mvc
