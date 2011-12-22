@@ -5,6 +5,6 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
 {
 	public class UsersByInterestsSearchResultsViewModel
 	{
-		public IList<UserDto> UserDtos { get; set; }
+		public IList<UserSearchByInterestsDto> UserDtos { get; set; }
 	}
 }

@@ -2,20 +2,17 @@ using System.Collections.Generic;
 using CliqFlip.Domain.Contracts.Queries;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
+using NHibernate.Linq;
+using SharpArch.Domain.PersistenceSupport;
 using SharpArch.NHibernate;
 
 namespace CliqFlip.Tasks.Queries
 {
-	public class InterestJsonQuery : NHibernateQuery<Interest>, IInterestJsonQuery
+	public class InterestJsonQuery : NHibernateQuery<User>, IUsersByInterestsQuery
 	{
-		public override IList<Interest> ExecuteQuery()
+		public override IList<User> ExecuteQuery()
 		{
-			throw new System.NotImplementedException();
-		}
-
-		public string GetInterestJson()
-		{
-			throw new System.NotImplementedException();
+			return null;
 		}
 	}
 }

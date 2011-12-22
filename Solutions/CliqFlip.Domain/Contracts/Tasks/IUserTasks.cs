@@ -6,9 +6,8 @@ using CliqFlip.Domain.Entities;
 
 namespace CliqFlip.Domain.Contracts.Tasks
 {
-	public interface  IInterestTasks
+	public interface  IUserTasks
 	{
-		string GetInterestJson();
-		IList<InterestDto> GetInterestDtos();
+		IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IEnumerable<int> interestIds );
 	}
 }

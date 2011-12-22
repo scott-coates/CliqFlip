@@ -82,11 +82,13 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Common\Constants.cs" />
-    <Compile Include="Contracts\Queries\IInterestJsonQuery.cs" />
+    <Compile Include="Contracts\Queries\IUsersByInterestsQuery.cs" />
+    <Compile Include="Contracts\Tasks\IUserTasks.cs" />
     <Compile Include="Contracts\Tasks\IInterestTasks.cs" />
     <Compile Include="Dtos\InterestDto.cs" />
-    <Compile Include="Dtos\UserDto.cs" />
+    <Compile Include="Dtos\UserSearchByInterestsDto.cs" />
     <Compile Include="Entities\Interest.cs" />
+    <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Entities\User.cs" />
   </ItemGroup>
   <ItemGroup>

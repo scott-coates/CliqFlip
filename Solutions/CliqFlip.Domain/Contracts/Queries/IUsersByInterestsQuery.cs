@@ -8,8 +8,7 @@ using SharpArch.Domain.PersistenceSupport;
 
 namespace CliqFlip.Domain.Contracts.Queries
 {
-	public interface IInterestJsonQuery : IQuery<Interest>
+	public interface IUsersByInterestsQuery : IQuery<User>
 	{
-		string GetInterestJson();
 	}
 }

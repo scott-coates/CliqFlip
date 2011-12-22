@@ -1,11 +1,15 @@
-﻿using SharpArch.Domain.DomainModel;
-
-namespace CliqFlip.Domain.Dtos
+﻿namespace CliqFlip.Domain.Dtos
 {
-	public class Interest : Entity
+	public class InterestDto
 	{
-		public virtual Interest ParentInterest { get; set; }
+		public InterestDto(int id, string name)
+		{
+			Id = id;
+			Name = name;
+		}
 
-		public virtual string Name { get; set; }
+		public int Id { get; set; }
+
+		public string Name { get; set; }
 	}
 }
