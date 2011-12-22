@@ -90,7 +90,8 @@
     <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="InterestTasks.cs" />
+    <Compile Include="Queries\InterestJsonQuery.cs" />
+    <Compile Include="TaskImpl\InterestTasks.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CliqFlip.Domain\CliqFlip.Domain.csproj">

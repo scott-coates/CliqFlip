@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CliqFlip.Domain.Dtos;
 using SharpArch.Domain.DomainModel;
 
 namespace CliqFlip.Domain.Entities

@@ -1,12 +1,12 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using CliqFlip.Domain.Contracts.Tasks;
+using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 using Newtonsoft.Json;
 using SharpArch.Domain.PersistenceSupport;
 
-namespace CliqFlip.Tasks
+namespace CliqFlip.Tasks.TaskImpl
 {
 	public class InterestTasks : IInterestTasks
 	{
@@ -29,6 +29,11 @@ namespace CliqFlip.Tasks
 		public IList<InterestDto> GetInterestDtos()
 		{
 			return _repository.GetAll().Select(x => new InterestDto(x.Id, x.Name)).ToList();
+		}
+
+		public void DoSomethingWithInterest()
+		{
+			throw new System.NotImplementedException();
 		}
 	}
 }

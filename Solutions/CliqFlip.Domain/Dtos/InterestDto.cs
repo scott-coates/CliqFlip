@@ -1,6 +1,6 @@
 ﻿using SharpArch.Domain.DomainModel;
 
-namespace CliqFlip.Domain.Entities
+namespace CliqFlip.Domain.Dtos
 {
 	public class Interest : Entity
 	{
