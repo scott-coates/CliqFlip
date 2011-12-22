@@ -62,6 +62,11 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
                     .Named("nhibernateRepositoryWithTypedId")
                     .Forward(typeof(IRepositoryWithTypedId<,>)));
 
+			container.Register(
+				Component.For(typeof(ILinqRepository<>))
+					.ImplementedBy(typeof(LinqRepository<>))
+					.Named("linqRepositoryType"));
+
             container.Register(
                     Component.For(typeof(ISessionFactoryKeyProvider))
                         .ImplementedBy(typeof(DefaultSessionFactoryKeyProvider))

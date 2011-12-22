@@ -23,7 +23,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			var interestList = interestIds.ToList();
 			var query = new AdHoc<User>(x => x.Interests.Any(y => interestList.Contains(y.Id)));
 
-			var users = _repository.FindAll(query);
+			var users = _repository.FindAll(query).ToList();
 			return users.Select(user => new UserSearchByInterestsDto
 			                            	{
 			                            		MatchCount = user.Interests.Select(x => x.Id).Intersect(interestList).Count(),
