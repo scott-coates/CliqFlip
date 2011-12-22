@@ -441,8 +441,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\Queries\" />
-    <Folder Include="Controllers\ViewModels\" />
+    <Folder Include="Queries\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
