@@ -143,6 +143,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Home\IndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\img\1.jpg" />

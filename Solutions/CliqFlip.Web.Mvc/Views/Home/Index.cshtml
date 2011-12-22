@@ -1,7 +1,11 @@
-﻿@{
+﻿@using CliqFlip.Web.Mvc.ViewModels.Home
+@model IndexViewModel
+	   
+@{
 	ViewBag.Title = "CliqFlip - Discover More";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @section  styles
 {
 	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/autoSuggest.css")" />

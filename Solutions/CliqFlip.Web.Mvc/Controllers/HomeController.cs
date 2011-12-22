@@ -1,4 +1,5 @@
 ﻿using CliqFlip.Domain.Contracts.Tasks;
+using CliqFlip.Web.Mvc.ViewModels.Home;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
@@ -14,9 +15,10 @@ namespace CliqFlip.Web.Mvc.Controllers
     	}
 
     	public ActionResult Index()
-        {
-
-            return View();
+    	{
+    		var viewModel = new IndexViewModel();
+    		viewModel.InterestDtos = _interestTasks.GetInterestDtos();
+            return View(viewModel);
         }
 
     }
