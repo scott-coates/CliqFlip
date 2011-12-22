@@ -138,12 +138,14 @@
     </Compile>
     <Compile Include="CastleWindsor\AutomappingConfiguration.cs" />
     <Compile Include="CastleWindsor\ComponentRegistrar.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RouteRegistrar.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\img\1.jpg" />

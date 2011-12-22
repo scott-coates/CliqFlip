@@ -29,10 +29,13 @@
 					Why don't you give it a try?</div>
 				<div class="tip_box">
 					Let's see who's in your area</div>
-				<div class="search">
-					<input type="text" class="search_box" id="interestSearch"/>
-					<input class="search_submit" value="" type="submit" />
-				</div>
+				@using (Html.BeginForm("Index", "Search"))
+				{
+					<div class="search">
+						<input type="text" class="search_box" id="interestSearch"/>
+						<input class="search_submit" value="" type="submit" />
+					</div>
+				}
 				<div class="results">
 				</div>
 			</div>
