@@ -221,7 +221,8 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/home/home.js")"> </script>
 	<script type="text/javascript">
 		$(function() {
-			var data = {
+			debugger;
+				var data = {
 				items: [
 					{ value: "21", name: "Sports" },
 					{ value: "43", name: "Entertainment" },
@@ -231,8 +232,9 @@
 					{ value: "79", name: "Aviation" }
 				]
 			};
-
-			InitAutoSuggest(data);
+			
+			var obj = @(Html.Raw(Model.InterestsJson));
+			InitAutoSuggest(data.items);
 		});	
 	</script>
 }

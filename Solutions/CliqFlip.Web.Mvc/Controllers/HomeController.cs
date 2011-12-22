@@ -1,5 +1,6 @@
 ﻿using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Web.Mvc.ViewModels.Home;
+using SharpArch.Web.Mvc.JsonNet;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
@@ -16,9 +17,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 
     	public ActionResult Index()
     	{
-    		var viewModel = new IndexViewModel();
-    		viewModel.InterestDtos = _interestTasks.GetInterestDtos();
-            return View(viewModel);
+    		var viewModel = new IndexViewModel {InterestsJson = _interestTasks.GetInterestJson()};
+    		return View(viewModel);
         }
 
     }

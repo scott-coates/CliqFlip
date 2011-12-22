@@ -7,6 +7,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 {
 	public interface  IInterestTasks
 	{
+		string GetInterestJson();
 		IList<InterestDto> GetInterestDtos();
 	}
 }
