@@ -21,7 +21,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
 	<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet'
 		type='text/css' />
-		@RenderSection("styles")
+		@RenderSection("styles",false)
 </head>
 <body>
 	<div id="main-container">
@@ -125,6 +125,6 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/twitterjs-2.0.0.min.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.pack.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/core.js")"> </script>
-	@RenderSection("scripts")
+	@RenderSection("scripts",false)
 </body>
 </html>

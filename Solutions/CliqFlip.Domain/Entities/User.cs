@@ -6,12 +6,12 @@ namespace CliqFlip.Domain.Entities
 {
 	public class User : Entity
     {
-		public virtual ISet<Interest> Interests { get; set; }
+		public virtual IList<Interest> Interests { get; set; }
 		public virtual string Username { get; set; }
 		
 		public User()
 		{
-			 Interests = new HashSet<Interest>();
+			 Interests = new List<Interest>();
 		}
     }
 }
