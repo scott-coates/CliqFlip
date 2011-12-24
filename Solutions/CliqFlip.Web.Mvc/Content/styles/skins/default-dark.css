@@ -921,8 +921,8 @@ ol li, .list li { color:#888; line-height:1.5em; }
 {
 	height: 136px;
 	background: url('../../img/GET_home-next-button.png') no-repeat;
-	background-size: 66%;
-	width: 213px;
+	width: 136px;
+	background-size: 100%;
 	cursor: pointer;
 	position: absolute;
 	z-index: 999;
@@ -938,7 +938,6 @@ ol li, .list li { color:#888; line-height:1.5em; }
 	font-weight: 900;
 	color: #B47838;
 	margin-top: 51px;
-	margin-right: 71px;
 	display: block;
 
 }
