@@ -1,11 +1,9 @@
 ﻿@using CliqFlip.Web.Mvc.ViewModels.Home
 @model IndexViewModel
-	   
 @{
 	ViewBag.Title = "CliqFlip - Discover More";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 @section  styles
 {
 	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/autoSuggest.css")" />
@@ -27,13 +25,15 @@
 			<div class="tryout">
 				<div class="header">
 					Why don't you give it a try?</div>
-				@using (Html.BeginForm("Index", "Search"))
+				@using ( Ajax.BeginForm("Index", "Search",new AjaxOptions()))
 				{
 					<div class="search">
-						<input type="text" class="search_box" id="interestSearch"/>
+						<input type="text" class="search_box" id="interestSearch" />
 						<input class="search_submit" value="" type="submit" />
 					</div>
 				}
+			</div>
+			<div class="results" id="searchResults">
 			</div>
 			<div class="clear">
 			</div>
