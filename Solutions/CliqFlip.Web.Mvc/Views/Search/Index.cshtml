@@ -13,14 +13,14 @@
 		<div class="divider">
 		</div>
 		<section style="margin-top: 30px;">
-		@foreach (var user in Model.UserDtos)
-		{
-			<div>
-				@user.UserDto.Username
+			@foreach (var user in Model.UserDtos)
+			{
+				<div>
+					@user.UserDto.Username
+				</div>
+			}
+			<div class="divider">
 			</div>
-		}
-		<div class="divider">
-		</div>
 		</section>
 	</div>
 </div>
