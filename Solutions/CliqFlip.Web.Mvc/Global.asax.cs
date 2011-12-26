@@ -1,35 +1,28 @@
-﻿using CliqFlip.Domain;
+﻿using System;
+using System.Reflection;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
+using Castle.Windsor;
 using CliqFlip.Domain.Entities;
-using NHibernate.Tool.hbm2ddl;
+using CliqFlip.Infrastructure.NHibernateMaps;
+using CliqFlip.Web.Mvc.CastleWindsor;
+using CliqFlip.Web.Mvc.Controllers;
+using CommonServiceLocator.WindsorAdapter;
+using Microsoft.Practices.ServiceLocation;
+using NHibernate.Cfg;
+using SharpArch.NHibernate;
+using SharpArch.NHibernate.Web.Mvc;
+using SharpArch.Web.Mvc.Castle;
+using SharpArch.Web.Mvc.ModelBinder;
+using log4net.Config;
 
 namespace CliqFlip.Web.Mvc
 {
-	using System;
-	using System.Reflection;
-	using System.Web.Mvc;
-	using System.Web.Routing;
-	using Castle.Windsor;
-		// CliqFlip.Web.Mvc.CastleWindsor
-	using CastleWindsor;
-	using CommonServiceLocator.WindsorAdapter;
-	using Controllers;
-	using Infrastructure.NHibernateMaps;
-	using log4net.Config;
-	using Microsoft.Practices.ServiceLocation;
-	using SharpArch.NHibernate;
-	using SharpArch.NHibernate.Web.Mvc;
-	using SharpArch.Web.Mvc.Castle;
-	using SharpArch.Web.Mvc.ModelBinder;
+	// Note: For instructions on enabling IIS6 or IIS7 classic mode, 
+	// visit http://go.microsoft.com/?LinkId=9394801
 
-
-	/// <summary>
-	/// Represents the MVC Application
-	/// </summary>
-	/// <remarks>
-	/// For instructions on enabling IIS6 or IIS7 classic mode, 
-	/// visit http://go.microsoft.com/?LinkId=9394801
-	/// </remarks>
-	public class MvcApplication : System.Web.HttpApplication
+	public class MvcApplication : HttpApplication
 	{
 		private WebSessionStorage webSessionStorage;
 
@@ -42,23 +35,42 @@ namespace CliqFlip.Web.Mvc
 		public override void Init()
 		{
 			base.Init();
-			this.webSessionStorage = new WebSessionStorage(this);
+			webSessionStorage = new WebSessionStorage(this);
 		}
 
 		protected void Application_BeginRequest(object sender, EventArgs e)
 		{
-			NHibernateInitializer.Instance().InitializeNHibernateOnce(this.InitialiseNHibernateSessions);
+			NHibernateInitializer.Instance().InitializeNHibernateOnce(InitialiseNHibernateSessions);
 		}
 
 		protected void Application_Error(object sender, EventArgs e)
 		{
 			// Useful for debugging
-			Exception ex = this.Server.GetLastError();
+			Exception ex = Server.GetLastError();
 			var reflectionTypeLoadException = ex as ReflectionTypeLoadException;
+		}
+
+
+		public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+		{
+			filters.Add(new HandleErrorAttribute());
+		}
+
+		public static void RegisterRoutes(RouteCollection routes)
+		{
+			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+			routes.MapRoute(
+				"Default", // Route name
+				"{controller}/{action}/{id}", // URL with parameters
+				new {controller = "Home", action = "Index", id = UrlParameter.Optional} // Parameter defaults
+				);
 		}
 
 		protected void Application_Start()
 		{
+			//
+
 			XmlConfigurator.Configure();
 
 			ViewEngines.Engines.Clear();
@@ -69,13 +81,12 @@ namespace CliqFlip.Web.Mvc
 
 			ModelValidatorProviders.Providers.Add(new ClientDataTypeModelValidatorProvider());
 
-			this.InitializeServiceLocator();
+			InitializeServiceLocator();
+
 
 			AreaRegistration.RegisterAllAreas();
 			RouteRegistrar.RegisterRoutesTo(RouteTable.Routes);
-
-			HtmlHelper.UnobtrusiveJavaScriptEnabled = true;
-
+			RegisterGlobalFilters(GlobalFilters.Filters);
 		}
 
 		/// <summary>
@@ -100,7 +111,7 @@ namespace CliqFlip.Web.Mvc
 			NHibernateSession.ConfigurationCache =
 				new NHibernateConfigurationFileCache(new[] {typeof (User).Assembly.GetName().Name});
 
-			var cfg = NHibernateSession.Init(
+			Configuration cfg = NHibernateSession.Init(
 				webSessionStorage,
 				new[] {Server.MapPath("~/bin/CliqFlip.Infrastructure.dll")},
 				new AutoPersistenceModelGenerator().Generate(),

@@ -12,7 +12,7 @@
 	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/skins/blue-cScheme.css")" />
 	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/anythingslider.css")" />
 	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/skitter.styles.css")" />
-	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/js/colorbox/colorbox.css")" />
+	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("~/Scripts/colorbox/colorbox.css")" />
 	<!-- IE HTML5 Hack -->
 	<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"> </script>
@@ -111,20 +111,22 @@
 	</div>
 	<!-- end #main-container -->
 	<!-- Scripts -->
-	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/colorbox/jquery.colorbox-min.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.quicksand.min.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.skitter.min.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.animate-colors-min.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/jquery-easing.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.anythingslider.min.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.anythingslider.fx.min.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.cycle.all.min.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/jflickrfeed.min.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/jquery-ui-1.8.16.custom.min.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/twitterjs-2.0.0.min.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.pack.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/core.js")"> </script>
-	@RenderSection("scripts",false)
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.6.2.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/colorbox/jquery.colorbox-min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.quicksand.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.skitter.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.animate-colors-min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery-easing.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.anythingslider.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.anythingslider.fx.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.cycle.all.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jflickrfeed.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui-1.8.16.custom.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/twitterjs-2.0.0.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/core.js")"> </script>
+	@RenderSection("scripts", false)
 </body>
 </html>

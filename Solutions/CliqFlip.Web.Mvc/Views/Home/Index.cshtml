@@ -2,7 +2,6 @@
 @model IndexViewModel
 @{
 	ViewBag.Title = "CliqFlip - Discover More";
-	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section  styles
 {
@@ -216,13 +215,11 @@
 <!-- CONNECT BOX END -->
 @section scripts
 {
-	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.autoSuggest.minified.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/home/home.js")"> </script>
-	<script type="text/javascript">
+<script type="text/javascript">
 		$(function() {
-
-			var obj = @(Html.Raw(Model.InterestsJson)) ;
-			InitAutoSuggest(obj);
+			alert('hello');
 		});	
 	</script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.autoSuggest.minified.js")"> </script>
+
 }
