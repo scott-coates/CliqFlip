@@ -220,9 +220,9 @@
 
 <script type="text/javascript">
 	$(function () {
-//		var obj2 = @(Html.Raw(Model.InterestsJson)) ;
-		var obj3 = [{"Id":1,"Name":"Sports"},{"Id":2,"Name":"Entertainment"},{"Id":3,"Name":"Autos"},{"Id":4,"Name":"Books"}];
-//		InitAutoSuggest(obj);
+		var obj = @(Html.Raw(Model.InterestsJson)) ;
+		
+		InitAutoSuggest(obj);
 	});	
 	</script>
 }
