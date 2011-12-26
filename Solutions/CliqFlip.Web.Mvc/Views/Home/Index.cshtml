@@ -215,11 +215,13 @@
 <!-- CONNECT BOX END -->
 @section scripts
 {
-<script type="text/javascript">
-		$(function() {
-			alert('hello');
-		});	
-	</script>
-<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.autoSuggest.minified.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.autoSuggest.minified.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/home/home.js")"> </script>
 
+<script type="text/javascript">
+	$(function () {
+		var obj = [{ "Id": 1, "Name": "Sports" }, { "Id": 2, "Name": "Entertainment" }, { "Id": 3, "Name": "Autos" }, { "Id": 4, "Name": "Books" }];
+		InitAutoSuggest(obj);
+	});	
+	</script>
 }
