@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using CliqFlip.Domain.Contracts.Queries;
 using CliqFlip.Domain.Contracts.Tasks;
-using CliqFlip.Web.Mvc.Queries.Interfaces;
-using CliqFlip.Web.Mvc.ViewModels.Home;
-using CliqFlip.Web.Mvc.ViewModels.Search;
-using SharpArch.Web.Mvc.JsonNet;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
@@ -33,9 +29,9 @@ namespace CliqFlip.Web.Mvc.Controllers
 			
 			var vals = (from id in ids where int.TryParse(id, out parseint) select parseint).ToList();
 
-			var viewModel = _usersByInterestsQuery.GetGetUsersByInterests(vals);
-
-			return View(viewModel);
+			//var viewModel = _usersByInterestsQuery.GetGetUsersByInterests(vals);
+			return null;
+			//return View(viewModel);
 		}
 	}
 }

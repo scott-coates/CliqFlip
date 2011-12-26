@@ -10,8 +10,8 @@
     <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CliqFlip.Web.Mvc</RootNamespace>
-    <AssemblyName>CliqFlip.Web.Mvc</AssemblyName>
+    <RootNamespace>CliqFlip.Web.Mvc_OLD</RootNamespace>
+    <AssemblyName>CliqFlip.Web.Mvc_OLD</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <SignAssembly>false</SignAssembly>
@@ -109,11 +109,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ReferencedAssemblies\ASP.NET MVC\System.Web.Helpers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ReferencedAssemblies\ASP.NET MVC\System.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Packages\AspNetMvc.4.0.10906.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ReferencedAssemblies\ASP.NET MVC\System.Web.Razor.dll</HintPath>
@@ -441,6 +440,10 @@
     <ProjectReference Include="..\CliqFlip.Tasks\CliqFlip.Tasks.csproj">
       <Project>{C9AAC14B-E695-4508-83B7-ACB8FC5A7284}</Project>
       <Name>CliqFlip.Tasks</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CliqFlip.Web.Mvc\CliqFlip.Web.Mvc.csproj">
+      <Project>{03462E66-CD74-4595-A89A-89E505678AD0}</Project>
+      <Name>CliqFlip.Web.Mvc</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

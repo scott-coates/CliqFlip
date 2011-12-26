@@ -1,6 +1,5 @@
-﻿using CliqFlip.Domain;
-using CliqFlip.Domain.Entities;
-using NHibernate.Tool.hbm2ddl;
+﻿using CliqFlip.Domain.Entities;
+using CliqFlip.Web.Mvc.CastleWindsor;
 
 namespace CliqFlip.Web.Mvc
 {
@@ -10,7 +9,6 @@ namespace CliqFlip.Web.Mvc
 	using System.Web.Routing;
 	using Castle.Windsor;
 		// CliqFlip.Web.Mvc.CastleWindsor
-	using CastleWindsor;
 	using CommonServiceLocator.WindsorAdapter;
 	using Controllers;
 	using Infrastructure.NHibernateMaps;
@@ -29,7 +27,7 @@ namespace CliqFlip.Web.Mvc
 	/// For instructions on enabling IIS6 or IIS7 classic mode, 
 	/// visit http://go.microsoft.com/?LinkId=9394801
 	/// </remarks>
-	public class MvcApplication : System.Web.HttpApplication
+	public class MvcApplicationOld : System.Web.HttpApplication
 	{
 		private WebSessionStorage webSessionStorage;
 
