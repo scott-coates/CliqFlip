@@ -219,10 +219,11 @@
 	<script type="text/javascript" src="@Url.Content("~/Scripts/home/home.js")"> </script>
 
 <script type="text/javascript">
+	
 	$(function () {
 		var obj = @(Html.Raw(Model.InterestsJson)) ;
 		
 		InitAutoSuggest(obj);
-	});	
+	@(Html.Raw("});"))
 	</script>
 }
