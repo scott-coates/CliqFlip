@@ -24,16 +24,17 @@
 			<div class="tryout">
 				<div class="header">
 					Why don't you give it a try?</div>
-				@using ( Ajax.BeginForm("Index", "Search",new AjaxOptions()))
+				@using ( Ajax.BeginForm("Index", "Search",new AjaxOptions{UpdateTargetId = "searchResults"}))
 				{
 					<div class="search">
 						<input type="text" class="search_box" id="interestSearch" />
 						<input class="search_submit" value="" type="submit" />
 					</div>
 				}
-			</div>
 			<div class="results" id="searchResults">
 			</div>
+			</div>
+			
 			<div class="clear">
 			</div>
 		</div>

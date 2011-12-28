@@ -35,7 +35,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 			var viewModel = _usersByInterestsQuery.GetGetUsersByInterests(vals);
 
-			return View(viewModel);
+			return PartialView(viewModel);
 		}
 	}
 }

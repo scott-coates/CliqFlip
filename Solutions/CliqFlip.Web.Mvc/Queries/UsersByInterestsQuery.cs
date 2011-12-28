@@ -14,10 +14,14 @@ namespace CliqFlip.Web.Mvc.Queries
 			_userTasks = userTasks;
 		}
 
-		public UsersByInterestsSearchResultsViewModel GetGetUsersByInterests(IEnumerable<int> interestIds)
+		public UsersByInterestViewModel GetGetUsersByInterests(IEnumerable<int> interestIds)
 		{
 			var users = _userTasks.GetUsersByInterestsDtos(interestIds);
-			var retVal = new UsersByInterestsSearchResultsViewModel {UserDtos = users};
+			var retVal = new UsersByInterestViewModel();
+			foreach(var user in users)
+			{
+				retVal.Results.Add(new IndividualResultViewModel {Name = user.UserDto.Username});
+			}
 			return retVal;
 		}
 	}
