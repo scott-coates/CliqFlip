@@ -1,7 +1,9 @@
 ﻿@using CliqFlip.Web.Mvc.ViewModels.Search
 @model UsersByInterestViewModel
 <div class="innerResults">
-ASFASLJLSKJDF
-@Html.DisplayFor(x=>x.Results)
 
+@{
+	var grid = new WebGrid(Model.Results);
+	@grid.GetHtml();
+}
 </div>
