@@ -27,7 +27,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			return users.Select(user => new UserSearchByInterestsDto
 			                            	{
 			                            		MatchCount = user.Interests.Select(x => x.Id).Intersect(interestList).Count(),
-			                            		UserDto = new UserDto {Username = user.Username, InterestDtos = user.Interests.Select(x => new InterestDto(x.Id, x.Name)).ToList()}
+			                            		UserDto = new UserDto {Username = user.Username, InterestDtos = user.Interests.Select(x => new InterestDto(x.Id, x.Name)).ToList(), Bio = user.Bio}
 			                            	}).ToList();
 		}
 	}

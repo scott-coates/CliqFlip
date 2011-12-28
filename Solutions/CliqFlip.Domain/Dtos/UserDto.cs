@@ -11,6 +11,8 @@ namespace CliqFlip.Domain.Dtos
 		public IList<InterestDto> InterestDtos { get; set; }
 		public string Username { get; set; }
 
+		public string Bio { get; set; }
+
 		public UserDto()
 		{
 			InterestDtos = new List<InterestDto>();

@@ -267,6 +267,11 @@
     <Content Include="Content\img\ideea_hover.png" />
     <Content Include="Content\img\loading.gif" />
     <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\lower-1.png" />
+    <Content Include="Content\img\lower-2.jpg" />
+    <Content Include="Content\img\lower-2.png" />
+    <Content Include="Content\img\lower-3.jpg" />
+    <Content Include="Content\img\lower-3.png" />
     <Content Include="Content\img\magic.png" />
     <Content Include="Content\img\magic_hover.png" />
     <Content Include="Content\img\menu_arrow.png" />
