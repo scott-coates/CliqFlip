@@ -405,7 +405,14 @@
     <Content Include="Content\js\jquery.js" />
     <Content Include="Content\js\jquery.quicksand.min.js" />
     <Content Include="Content\js\jquery.skitter.min.js" />
+    <Content Include="Content\js\jquery.unobtrusive-ajax.js" />
+    <Content Include="Content\js\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Content\js\jquery.validate-vsdoc.js" />
+    <Content Include="Content\js\jquery.validate.js" />
+    <Content Include="Content\js\jquery.validate.min.js" />
     <Content Include="Content\js\jquery.validate.pack.js" />
+    <Content Include="Content\js\jquery.validate.unobtrusive.js" />
+    <Content Include="Content\js\jquery.validate.unobtrusive.min.js" />
     <Content Include="Content\js\modernizr-1.7.js" />
     <Content Include="Content\js\modernizr-1.7.min.js" />
     <Content Include="Content\js\twitterjs-2.0.0.min.js" />

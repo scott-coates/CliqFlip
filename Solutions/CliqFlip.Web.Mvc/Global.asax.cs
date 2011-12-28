@@ -73,9 +73,6 @@ namespace CliqFlip.Web.Mvc
 
 			AreaRegistration.RegisterAllAreas();
 			RouteRegistrar.RegisterRoutesTo(RouteTable.Routes);
-
-			HtmlHelper.UnobtrusiveJavaScriptEnabled = true;
-
 		}
 
 		/// <summary>
