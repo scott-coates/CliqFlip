@@ -402,7 +402,6 @@
     <Content Include="Content\js\jquery.anythingslider.min.js" />
     <Content Include="Content\js\jquery.autoSuggest.minified.js" />
     <Content Include="Content\js\jquery.cycle.all.min.js" />
-    <Content Include="Content\js\jquery.js" />
     <Content Include="Content\js\jquery.quicksand.min.js" />
     <Content Include="Content\js\jquery.skitter.min.js" />
     <Content Include="Content\js\jquery.unobtrusive-ajax.js" />
@@ -410,7 +409,6 @@
     <Content Include="Content\js\jquery.validate-vsdoc.js" />
     <Content Include="Content\js\jquery.validate.js" />
     <Content Include="Content\js\jquery.validate.min.js" />
-    <Content Include="Content\js\jquery.validate.pack.js" />
     <Content Include="Content\js\jquery.validate.unobtrusive.js" />
     <Content Include="Content\js\jquery.validate.unobtrusive.min.js" />
     <Content Include="Content\js\modernizr-1.7.js" />
