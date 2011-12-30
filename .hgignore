@@ -22,3 +22,5 @@ glob:*_ReSharper*
 glob:*_UpgradeReport_*
 glob:*UpgradeLog*
 glob:Backup
+Solutions/CliqFlip.Web.Mvc/CliqFlip.mdf
+Solutions/CliqFlip.Web.Mvc/CliqFlip_log.LDF

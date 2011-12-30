@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Web.Mvc;
+using CliqFlip.Domain.Dtos;
+using CliqFlip.Domain.Contracts.Tasks;
+
+namespace CliqFlip.Web.Mvc.Controllers
+{
+    public class InterestController : Controller
+    {
+        private Domain.Contracts.Tasks.IInterestTasks _interestTasks;
+
+        public InterestController(IInterestTasks subjectTasks)
+        {
+            this._interestTasks = subjectTasks;
+        }
+        public JsonResult Search(string keyword)
+        {
+            return Json(_interestTasks.GetInterestDtos().Where(c =>c.Name.ToLower().Contains(keyword.ToLower())).ToList() , JsonRequestBehavior.AllowGet);
+            //return Json(_interestTasks.Search(keyword), JsonRequestBehavior.AllowGet);
+        }
+
+        public String Test()
+        {
+            return Server.MapPath(".");
+            //return Json(_interestTasks.Search(keyword), JsonRequestBehavior.AllowGet);
+        }
+    }
+}

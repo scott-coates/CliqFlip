@@ -30,5 +30,11 @@ namespace CliqFlip.Tasks.TaskImpl
 			                            		UserDto = new UserDto {Username = user.Username, InterestDtos = user.Interests.Select(x => new InterestDto(x.Id, x.Name)).ToList(), Bio = user.Bio}
 			                            	}).ToList();
 		}
-	}
+
+
+        public UserDto Create(UserDto profileToCreate)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 }
