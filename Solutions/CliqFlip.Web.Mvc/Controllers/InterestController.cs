@@ -21,11 +21,5 @@ namespace CliqFlip.Web.Mvc.Controllers
             return Json(_interestTasks.GetInterestDtos().Where(c =>c.Name.ToLower().Contains(keyword.ToLower())).ToList() , JsonRequestBehavior.AllowGet);
             //return Json(_interestTasks.Search(keyword), JsonRequestBehavior.AllowGet);
         }
-
-        public String Test()
-        {
-            return Server.MapPath(".");
-            //return Json(_interestTasks.Search(keyword), JsonRequestBehavior.AllowGet);
-        }
     }
 }
