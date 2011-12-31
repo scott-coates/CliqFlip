@@ -191,10 +191,10 @@
                     divInterestCategory = $("#divInterestCategory");
                     interestsList = $("#interestsList");
                     tmplNewInterest = $("#tmplNewInterest");
-                    formProfileCreate = $("#formProfileCreate").formwizard();
+                    formProfileCreate = $("#formProfileCreate").formwizard({ disableUIStyles: true });
 
                     interestTextBox.interestpicker();
-                    
+
                     //whenever the link 'a.remove-interest' is clicked
                     //it should remove the interest from the list of added interests
                     interestsList.on("click", "a.remove-interest", function (event) {
