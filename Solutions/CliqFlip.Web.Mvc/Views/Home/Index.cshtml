@@ -7,40 +7,28 @@
 {
 	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/autoSuggest.css")" />
 }
-<!-- SLIDER START -->
-<div id="slider-container" class="bg_slider">
-	<div class="wrapper">
-		<div class="inner cycle_wrapper">
-			<div class="cycleslider_directions">
-				<span class="cycleslider_previous_control"><a href="javascript:;">Previous</a></span>
-				<span class="cycleslider_next_control"><a href="javascript:;">Next</a></span>
-			</div>
-			<a id="register-button" class="clear" href="http://google.com"><span>Register</span></a>
-			<div class="cycleslider">
-				<img src="@Url.Content("/Content/img/step-1.jpg")" alt="" />
-				<img src="@Url.Content("/Content/img/step-2.jpg")" alt="" />
-				<img src="@Url.Content("/Content/img/step-3.jpg")" alt="" />
-			</div>
-			<div class="tryout">
-				<div class="header">
-					Why don't you give it a try?</div>
-				@using ( Ajax.BeginForm("Index", "Search",new AjaxOptions{UpdateTargetId = "searchResults"}))
-				{
-					<div class="search">
-						<input type="text" class="search_box" id="interestSearch" />
-						<input class="search_submit" value="" type="submit" />
-					</div>
-				}
+<!-- TRYOUT START -->
+<div class="wrapper">
+	<div class="inner">
+		<div class="tryout">
+			<div class="tryout_top">
+			<div class="header">
+				Why don't you give it a try?</div>
+			@using (Ajax.BeginForm("Index", "Search", new AjaxOptions { UpdateTargetId = "searchResults" }))
+			{
+				<div class="search">
+					<input type="text" class="search_box" id="interestSearch" />
+					<input class="search_submit" value="" type="submit" />
+				</div>
+			}</div>
 			<div class="results" id="searchResults">
 			</div>
-			</div>
 			
-			<div class="clear">
-			</div>
 		</div>
 	</div>
 </div>
-<!-- SLIDER END -->
+<div class="clear"></div>
+<!-- TRYOUT END -->
 <!-- SERVICES BOX START -->
 <div class="wrapper">
 	<div class="inner">
@@ -49,7 +37,9 @@
 				<img src="@Url.Content("/Content/img/lower-1.png")" alt=""></div>
 			<div class="title">
 				You</div>
-			<div class="text-content">Enter in your interest and instantly start browsing other people with similar or complimentary interests.</div>
+			<div class="text-content">
+				Enter in your interest and instantly start browsing other people with similar or
+				complimentary interests.</div>
 		</div>
 		<div class="servicebox">
 			<div class="icon">
@@ -197,7 +187,7 @@
 			</div>
 			<div class="one_fifth last">
 				<a href="http://www.addthis.com/bookmark.html?v=250&amp;pubid=ra-4e6377ae614835f5"
-				   class="addthis_button_compact"><span class="share_icon"></span>Share this page
+					class="addthis_button_compact"><span class="share_icon"></span>Share this page
 				</a>
 				<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e6377ae614835f5"> </script>
 			</div>

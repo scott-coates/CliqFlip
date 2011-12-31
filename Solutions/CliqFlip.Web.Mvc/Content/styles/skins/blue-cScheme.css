@@ -2,7 +2,11 @@
 Graphix CSS Color Scheme
 */
 
-body { background-color:#0C1117; color:#888; }
+body {
+	background-color:#B1E0F2;
+	border-color:#32B2E2;
+	background-image: url(../../img/patterns/pat1.png);
+}
 
 
 a { color:#AE0C13; }
