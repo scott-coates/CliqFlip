@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace CliqFlip.Web.Mvc.ViewModels.User
 {
@@ -14,12 +15,26 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
         }
 
         [Required]
+        [Display(Name="Choose a username:")]
+        public string Username { get; set; }
+
+        [Required]
+        [Display(Name = "Whats your email?")]
         public String Email { get; set; }
 
+        [Required]
+        [Display(Name = "Set your password. Choose a strong one.")]
         [DataType(DataType.Password)]
         public String Password { get; set; }
 
+        [Required]
+        [Compare("Password")]
+        [Display(Name = "Please type your password again")]
+        [DataType(DataType.Password)]
+        public String PasswordVerify { get; set; }
+
         public List<InterestCreate> Interests { get; set; }
+
     }
 
     public class InterestCreate

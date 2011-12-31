@@ -1,18 +1,24 @@
 ﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserCreate
 @{
-    this.Layout = "~/Views/Shared/_Layout.cshtml";
+    this.Layout = "~/Views/Shared/_Layout2.cshtml";
     ViewBag.Title = "Create";
 }
 
 @section  styles
 {
     <link rel="Stylesheet" type="text/css" media="all" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/cupertino/jquery-ui.css" />
-	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/autoSuggest.css")" />
     <style>
+        #divInterestSearch
+        {
+            margin: 0 20px;
+        }
         #interestsList
         { 
             background-color: White;
             list-style: none;
+            height: 400px;
+            border: 1px dashed;
+            margin: 20px;
         }
         #interestsList li
         {
@@ -21,6 +27,27 @@
             padding: 5px;
             float: left;
             border-radius: 5px;
+            position: static;
+        }
+        
+        .ui-formwizard-content
+        {
+             background-color: White;
+        }
+        
+        #interestName
+        {
+            border-top: 1px solid #888;
+            border-bottom: 1px solid #B6B6B6;
+            border-left: 1px solid #AAA;
+            border-right: 1px solid #AAA;
+            padding: 4px 0 4px 4px;
+            margin: 0;
+            overflow: auto;
+            background: white;
+            box-shadow: inset 0 1px 2px #888;
+            width: 99.5%;
+            font-size: 25px;
         }
     </style>
 }
@@ -30,19 +57,15 @@
 <!-- PAGE CONTENT START -->
 <div class="wrapper">
     <div class="inner">
-        <div class="content content_right" style="padding-top: 90px;">
+        <div class="content">
             @using (Html.BeginForm("Create", "User", FormMethod.Post, new { id = "formProfileCreate" }))
             {
                 @Html.ValidationSummary(true)
     
                 <fieldset class="step" id="stepInterests">
-                    <legend>Interests</legend>
-                    <div>
-                        <div>
-                            <label>
-                                Name</label>
-                            <input type="text" id="interestName" />
-                        </div>
+                    <strong>Add your Interests</strong>
+                    <div id="divInterestSearch">
+                        <input type="text" id="interestName" placeholder="Type an interest..." />
                     </div>
                     <div class="box_pricing_table">
                     <ul id="interestsList">
@@ -50,7 +73,14 @@
                     </div>
                 </fieldset>
                 <fieldset class="step" id="stepLogin">
-                    <legend>Login</legend>
+                    <strong>Login</strong>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Username)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Username)
+                        @Html.ValidationMessageFor(model => model.Username)
+                    </div>
                     <div class="editor-label">
                         @Html.LabelFor(model => model.Email)
                     </div>
@@ -64,6 +94,13 @@
                     <div class="editor-field">
                         @Html.EditorFor(model => model.Password)
                         @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PasswordVerify)
+                    </div>  
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.PasswordVerify)
+                        @Html.ValidationMessageFor(model => model.PasswordVerify)
                     </div>
                 </fieldset>
                 <p>
@@ -129,7 +166,8 @@
 {
     <script type="text/javascript" src="@Url.Content("/Content/js/jquery.tmpl.js")"></script>
     <script type="text/javascript" src="@Url.Content("/Content/js/jquery.form.wizard.js")"></script>
-    <script type="text/javascript" src="@Url.Content("/Content/js/interestpicker.jquery.js")"> </script>
+    <script type="text/javascript" src="@Url.Content("/Content/js/interestpicker.jquery.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Content/js/mvcfoolproof.unobtrusive.js")"></script>
     <script type="text/javascript">
         var ProfileCreate = {
             //the textbox the user types their interest into

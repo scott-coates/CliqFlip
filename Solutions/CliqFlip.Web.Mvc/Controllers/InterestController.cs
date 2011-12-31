@@ -16,10 +16,11 @@ namespace CliqFlip.Web.Mvc.Controllers
         {
             this._interestTasks = subjectTasks;
         }
+
         public JsonResult Search(string keyword)
         {
-            return Json(_interestTasks.GetInterestDtos().Where(c =>c.Name.ToLower().Contains(keyword.ToLower())).ToList() , JsonRequestBehavior.AllowGet);
-            //return Json(_interestTasks.Search(keyword), JsonRequestBehavior.AllowGet);
+            var results = _interestTasks.GetInterestDtos().Where(c => c.Name.ToLower().Contains(keyword.ToLower())).ToList();
+            return Json(results , JsonRequestBehavior.AllowGet);
         }
     }
 }

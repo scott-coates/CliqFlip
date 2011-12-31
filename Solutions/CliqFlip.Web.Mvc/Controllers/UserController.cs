@@ -29,7 +29,12 @@ namespace CliqFlip.Web.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserDto profileToCreate = new UserDto { Email = profile.Email, Password = profile.Password };
+                UserDto profileToCreate = new UserDto { Email = profile.Email, Password = profile.Password, Username = profile.Username };
+
+                foreach (var interest in profile.Interests)
+                {
+                    profileToCreate.InterestDtos.Add(new InterestDto(0, interest.Name));
+                }
                 UserDto newProfile = _userTasks.Create(profileToCreate);
                 return RedirectToAction("Details", "Profile", new { id = newProfile.Username });
             }
