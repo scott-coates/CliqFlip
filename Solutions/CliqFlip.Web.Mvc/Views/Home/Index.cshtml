@@ -7,28 +7,41 @@
 {
 	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/autoSuggest.css")" />
 }
-<!-- TRYOUT START -->
+<!-- SLIDER START -->
 <div class="wrapper">
-	<div class="inner">
-		<div class="tryout">
-			<div class="tryout_top">
-			<div class="header">
-				Why don't you give it a try?</div>
-			@using (Ajax.BeginForm("Index", "Search", new AjaxOptions { UpdateTargetId = "searchResults" }))
-			{
-				<div class="search">
-					<input type="text" class="search_box" id="interestSearch" />
-					<input class="search_submit" value="" type="submit" />
-				</div>
-			}</div>
-			<div class="results" id="searchResults">
+	<div id="slider-container" class="bg_slider">
+		<div class="inner cycle_wrapper">
+			<div class="cycleslider_directions">
+				<span class="cycleslider_previous_control"><a href="javascript:;">Previous</a></span>
+				<span class="cycleslider_next_control"><a href="javascript:;">Next</a></span>
 			</div>
-			
+			<a id="register-button" class="clear" href="http://google.com"><span>Register</span></a>
+			<div class="cycleslider">
+				<img src="@Url.Content("/Content/img/step-1.jpg")" alt="" />
+				<img src="@Url.Content("/Content/img/step-2.jpg")" alt="" />
+				<img src="@Url.Content("/Content/img/step-3.jpg")" alt="" />
+			</div>
+			<div class="tryout">
+				<div class="tryout_top">
+					<div class="header">
+						Why don't you give it a try?</div>
+					@using (Ajax.BeginForm("Index", "Search", new AjaxOptions { UpdateTargetId = "searchResults" }))
+					{
+						<div class="search">
+							<input type="text" class="search_box" id="interestSearch" />
+							<input class="search_submit" value="" type="submit" />
+						</div>
+					}</div>
+				<div class="results" id="searchResults">
+				</div>
+			</div>
+			<div class="clear"></div>
 		</div>
 	</div>
 </div>
-<div class="clear"></div>
-<!-- TRYOUT END -->
+<!-- SLIDER END -->
+<div class="clear">
+</div>
 <!-- SERVICES BOX START -->
 <div class="wrapper">
 	<div class="inner">
