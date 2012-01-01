@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using CliqFlip.Domain;
+using CliqFlip.Domain.Contracts.Tasks;
+using CliqFlip.Domain.Dtos;
+using CliqFlip.Web.Mvc.ViewModels.User;
+
+namespace CliqFlip.Web.Mvc.Controllers
+{
+    public class UserController : Controller
+    {
+        private IUserTasks _userTasks;
+
+        public UserController(IUserTasks profileTasks)
+        {
+            this._userTasks = profileTasks;
+        }
+
+        public ViewResult Create()
+        {
+            return View(new UserCreate());
+        }
+
+        [HttpPost]
+        public ActionResult Create(UserCreate profile)
+        {
+            if (ModelState.IsValid)
+            {
+                UserDto profileToCreate = new UserDto { Email = profile.Email, Password = profile.Password, Username = profile.Username };
+
+                foreach (var interest in profile.Interests)
+                {
+                    profileToCreate.InterestDtos.Add(new InterestDto(0, interest.Name));
+                }
+                UserDto newProfile = _userTasks.Create(profileToCreate);
+                return RedirectToAction("Details", "Profile", new { id = newProfile.Username });
+            }
+            return View(profile);
+        }
+    }
+}

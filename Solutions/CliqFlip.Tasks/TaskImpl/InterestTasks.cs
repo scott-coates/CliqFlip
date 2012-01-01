@@ -5,6 +5,8 @@ using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 using Newtonsoft.Json;
 using SharpArch.Domain.PersistenceSupport;
+using System.Globalization;
+using SharpArch.Domain.Specifications;
 
 namespace CliqFlip.Tasks.TaskImpl
 {
@@ -35,5 +37,18 @@ namespace CliqFlip.Tasks.TaskImpl
 		{
 			throw new System.NotImplementedException();
 		}
-	}
+
+
+        public InterestDto GetOrCreate(string name)
+        {
+            var interest = _repository.GetAll().SingleOrDefault(x => x.Name.Equals(name, System.StringComparison.CurrentCultureIgnoreCase));
+            if (interest == null)
+            {
+                var formattedName = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(name.ToLower());
+                interest = new Interest(formattedName);
+                _repository.SaveOrUpdate(interest);
+            }
+            return new InterestDto(interest.Id, interest.Name);
+        }
+    }
 }

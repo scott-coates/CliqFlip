@@ -8,7 +8,9 @@ namespace CliqFlip.Domain.Dtos
 {
 	public class UserDto
 	{
-		public IList<InterestDto> InterestDtos { get; set; }
+        public string Email { get; set; }
+        public String Password { get; set; }
+        public IList<InterestDto> InterestDtos { get; set; }
 		public string Username { get; set; }
 
 		public string Bio { get; set; }

@@ -1,0 +1,213 @@
+﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserCreate
+@{
+    this.Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewBag.Title = "Create";
+}
+
+@section  styles
+{
+    <link rel="Stylesheet" type="text/css" media="all" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/cupertino/jquery-ui.css" />
+    <style>
+        #divInterestSearch
+        {
+            margin: 0 20px;
+        }
+        #interestsList
+        { 
+            background-color: White;
+            list-style: none;
+            height: 400px;
+            border: 1px dashed;
+            margin: 20px;
+        }
+        #interestsList li
+        {
+            background: #F0F0F0;
+            margin: 5px;
+            padding: 5px;
+            float: left;
+            border-radius: 5px;
+            position: static;
+        }
+        
+        .ui-formwizard-content
+        {
+             background-color: White;
+        }
+        
+        #interestName
+        {
+            border-top: 1px solid #888;
+            border-bottom: 1px solid #B6B6B6;
+            border-left: 1px solid #AAA;
+            border-right: 1px solid #AAA;
+            padding: 4px 0 4px 4px;
+            margin: 0;
+            overflow: auto;
+            background: white;
+            box-shadow: inset 0 1px 2px #888;
+            width: 99.5%;
+            font-size: 25px;
+        }
+    </style>
+}
+
+<div class="clear">
+</div>
+<!-- PAGE CONTENT START -->
+<div class="wrapper">
+    <div class="inner">
+        <div class="content">
+            @using (Html.BeginForm("Create", "User", FormMethod.Post, new { id = "formProfileCreate" }))
+            {
+                @Html.ValidationSummary(true)
+    
+                <fieldset class="step" id="stepInterests">
+                    <strong>Add your Interests</strong>
+                    <div id="divInterestSearch">
+                        <input type="text" id="interestName" placeholder="Type an interest..." />
+                    </div>
+                    <div class="box_pricing_table">
+                    <ul id="interestsList">
+                    </ul>
+                    </div>
+                </fieldset>
+                <fieldset class="step" id="stepLogin">
+                    <strong>Login</strong>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Username)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Username)
+                        @Html.ValidationMessageFor(model => model.Username)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Email)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Email)
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Password)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Password)
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PasswordVerify)
+                    </div>  
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.PasswordVerify)
+                        @Html.ValidationMessageFor(model => model.PasswordVerify)
+                    </div>
+                </fieldset>
+                <p>
+                    <input type="submit" value="Create" />
+                    <input type="reset" value="Start Over" />
+                </p>
+            }
+            <!-- SIDEBAR END -->
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- PAGE CONTENT END -->
+<script id="tmplNewInterest" type="text/x-jquery-tmpl">
+    
+	<li>
+		<div>
+            <input type='hidden' name='Interests[${Id}].Name' value='${Id}' />
+            <input type='hidden' name='Interests[${Index}].Name' value='${Name}' />
+            <div class="title"><p>${Name}</p></div>
+            {{if Id == 0 }}
+                <div>
+                    <label>Category</label><br />
+                    <select name="Interests[${Index}].Category">
+                        <option value="">Choose...</option>
+                        <option>Animals</option>
+                        <option>Arts and Humanities</option>
+                        <option>Automotive</option>
+                        <option>Beauty</option>
+                        <option>Business</option>
+                        <option>Computers</option>
+                        <option>Entertainment</option>
+                        <option>Local</option>
+                        <option>News</option>
+                        <option>Photo and Video</option>
+                        <option>Real Estate</option>
+                        <option>Recreation</option>
+                        <option>Reference</option>
+                        <option>Science</option>
+                        <option>Finance</option>
+                        <option>Food and Drink</option>
+                        <option>Games</option>
+                        <option>Home and Garden</option>
+                        <option>Industries</option>
+                        <option>Internet</option>
+                        <option>Lifestyles</option>
+                        <option>Shopping</option>
+                        <option>Social Networks</option>
+                        <option>Society</option>
+                        <option>Sports</option>
+                        <option>Telecommunications</option>
+                        <option>Travel</option>
+                    </select>
+                </div>
+            {{/if}}
+            
+            <a href='javscript:void(0)' class='remove-interest'>[X]Remove</a>
+        </div>
+	</li>
+</script>
+@section scripts
+{
+    <script type="text/javascript" src="@Url.Content("/Content/js/jquery.tmpl.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Content/js/jquery.form.wizard.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Content/js/interestpicker.jquery.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Content/js/mvcfoolproof.unobtrusive.js")"></script>
+    <script type="text/javascript">
+        var ProfileCreate = {
+            //the textbox the user types their interest into
+            interestTextBox: null,
+            //the div holding the category questions
+            divInterestCategory: null,
+
+            //the create form
+            formProfileCreate: null,
+
+            //the list of added interests
+            interestsList: null,
+
+            tmplNewInterest: null,
+
+
+            init: function () {
+                $(document).ready(function () {
+                    //bind all the elements we need
+                    interestTextBox = $("#interestName");
+                    divInterestCategory = $("#divInterestCategory");
+                    interestsList = $("#interestsList");
+                    tmplNewInterest = $("#tmplNewInterest");
+                    formProfileCreate = $("#formProfileCreate").formwizard({ disableUIStyles: true });
+
+                    interestTextBox.interestpicker();
+
+                    //whenever the link 'a.remove-interest' is clicked
+                    //it should remove the interest from the list of added interests
+                    interestsList.on("click", "a.remove-interest", function (event) {
+                        event.preventDefault();
+
+                        $(this)         //the anchor clicked
+                        .parents("li")  //get the closest parent li
+                        .remove();      //remove it
+                    });
+                });
+            }
+        };
+
+        ProfileCreate.init();
+    </script>
+}

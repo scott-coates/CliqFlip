@@ -8,8 +8,7 @@
 	<link rel="shortcut icon" href="@Url.Content("/Content/img/favicon.png")" type="image/png" />
 	<title>@ViewBag.Title</title>
 	<!-- Website Styles -->
-	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/skins/default-dark.css")" />
-	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/skins/blue-cScheme.css")" />
+	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/skins/default-light.css")" />
 	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/anythingslider.css")" />
 	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/skitter.styles.css")" />
 	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/js/colorbox/colorbox.css")" />
@@ -19,9 +18,23 @@
 		<![endif]-->
 	<!-- Google Font -->
 	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
-	<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet'
-		type='text/css' />
-		@RenderSection("styles",false)
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css' />
+    <style type="text/css">
+        #header
+        {
+            background:#1A1E25 url(/Content/img/anythingSlider/bgSlider.jpg) no-repeat top center;
+            position:relative;
+            padding-top: 20px;
+            height: 65px;
+            border-bottom: 5px solid royalBlue;
+            position: static;
+        }
+        .content
+        {
+            width: 100%;
+        }
+    </style>
+	@RenderSection("styles",false)
 </head>
 <body>
 	<div id="main-container">
@@ -29,70 +42,24 @@
 		<div id="header" class="wrapper">
 			<div class="inner">
 				<div class="logo">
-					<a href="/" class="logo_img">CliqFlip</a>
+					<a href="#" class="logo_img">CliqFlip</a>
 				</div>
 				<div class="motto">Discover <span>More</span>
 				</div>
-				<div class="clear"></div>
+				<div class="back">
+				</div>
 			</div>
 		</div>
 		<!-- HEADER END -->
 		@RenderBody()
 		<!-- FOOTER START -->
-		<div id="footer_box" class="full-width">
+		@*<div id="footer_box" class="full-width">
 			<div class="wrapper">
-				<div class="inner">
-					<div class="one_fourth">
-						<h4>
-							<em>Where to</em> Find US</h4>
-						<p>
-							Lorem ipsum dolor sit amet, odio conseotetur adipiscing elit.</p>
-						<p>
-							Cluj-Napoca, Romania</p>
-						<p>
-							MOB.+40 745 968275
-							<br />
-							E-mail: <a href="mailto:office@domain.com">office@domain.com</a>
-						</p>
-					</div>
-					<div class="one_fourth recent-posts">
-						<h4>
-							<em>Latest from the</em> Blog</h4>
-						<ul>
-							<li><a href="openpost.html">
-								<img src="@Url.Content("/Content/img/1_small.jpg")" alt>
-								<span><span class="title">Post title</span> <em>by Admin on Aug 5, 2011</em> </span>
-							</a></li>
-							<li><a href="openpost.html">
-								<img src="@Url.Content("/Content/img/1_small.jpg")" alt>
-								<span><span class="title">A bit longer title</span> <em>by Admin on Aug 5, 2011</em>
-								</span></a></li>
-							<li><a href="openpost.html">
-								<img src="@Url.Content("/Content/img/1_small.jpg")" alt>
-								<span><span class="title">Post title</span> <em>by Admin on Aug 5, 2011</em> </span>
-							</a></li>
-						</ul>
-					</div>
-					<div class="one_fourth">
-						<h4>
-							<em>Copyright</em> Disclaimer</h4>
-						<p>
-							<em>Important:</em> This demo is purely for demonstration purposes and all the content
-							are designed to showcase the GRAPHIX theme on a live site.</p>
-						<p>
-							<em>All images are copyrighted to their respective owners.</em></p>
-					</div>
-					<div class="one_fourth last">
-						<h4>
-							<em>Photos from</em> Flickr</h4>
-						<ul id="cbox" class="flickr_thumbs">
-						</ul>
-					</div>
-					<div class="clear">
-					</div>
-				</div>
+                <div class="inner">
+                asd
+                </div>
 			</div>
-		</div>
+		</div>*@
 		<!-- FOOTER END -->
 		<!-- COPYRIGHT START -->
 		<div id="copyright_box">

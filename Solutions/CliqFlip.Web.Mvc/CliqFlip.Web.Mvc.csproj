@@ -93,6 +93,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -141,6 +142,8 @@
     <Compile Include="CastleWindsor\ComponentRegistrar.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InterestController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Queries\Interfaces\IUsersByInterestsQuery.cs" />
     <Compile Include="Queries\UsersByInterestsQuery.cs" />
     <Compile Include="RouteRegistrar.cs" />
@@ -150,8 +153,10 @@
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
     <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
+    <Compile Include="ViewModels\User\UserCreate.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CliqFlip.mdf" />
     <Content Include="Content\img\1.jpg" />
     <Content Include="Content\img\1_small.jpg" />
     <Content Include="Content\img\2.jpg" />
@@ -396,6 +401,7 @@
     <Content Include="Content\js\colorbox\jquery.colorbox.js" />
     <Content Include="Content\js\core.js" />
     <Content Include="Content\js\home\home.js" />
+    <Content Include="Content\js\interestpicker.jquery.js" />
     <Content Include="Content\js\jflickrfeed.min.js" />
     <Content Include="Content\js\jquery-1.6.1-vsdoc.js" />
     <Content Include="Content\js\jquery-1.6.1.js" />
@@ -407,8 +413,10 @@
     <Content Include="Content\js\jquery.anythingslider.min.js" />
     <Content Include="Content\js\jquery.autoSuggest.minified.js" />
     <Content Include="Content\js\jquery.cycle.all.min.js" />
+    <Content Include="Content\js\jquery.form.wizard.js" />
     <Content Include="Content\js\jquery.quicksand.min.js" />
     <Content Include="Content\js\jquery.skitter.min.js" />
+    <Content Include="Content\js\jquery.tmpl.js" />
     <Content Include="Content\js\jquery.unobtrusive-ajax.js" />
     <Content Include="Content\js\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Content\js\jquery.validate-vsdoc.js" />
@@ -465,6 +473,8 @@
     <None Include="Content\img\patterns\Thumbs.db" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
