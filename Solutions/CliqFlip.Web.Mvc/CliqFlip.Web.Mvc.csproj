@@ -156,7 +156,6 @@
     <Compile Include="ViewModels\User\UserCreate.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CliqFlip.mdf" />
     <Content Include="Content\img\1.jpg" />
     <Content Include="Content\img\1_small.jpg" />
     <Content Include="Content\img\2.jpg" />
