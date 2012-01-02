@@ -30,25 +30,60 @@
             position: static;
         }
         
+        #interestsList li a.remove-interest
+        {
+            float: right;
+            background: url(/Content/img/close.png) no-repeat;
+            content: "asd";
+            height: 25px;
+            width: 25px;
+        }
+        
         .ui-formwizard-content
         {
              background-color: White;
         }
         
-        #interestName
+        
+        
+        
+        
+        #formProfileCreate fieldset
+        {
+            height: 500px;
+        }
+        
+        #formProfileCreate input[type='text'], #formProfileCreate input[type='password']
         {
             border-top: 1px solid #888;
             border-bottom: 1px solid #B6B6B6;
             border-left: 1px solid #AAA;
             border-right: 1px solid #AAA;
-            padding: 4px 0 4px 4px;
             margin: 0;
             overflow: auto;
             background: white;
             box-shadow: inset 0 1px 2px #888;
+        }
+        
+        #button-container
+        {
+            text-align: right;
+            padding-right: 20px;
+        }
+        
+        #interestName
+        {
             width: 99.5%;
             font-size: 25px;
+            padding: 4px 0 4px 4px;
         }
+        
+        #stepLogin input[type='text'], #stepLogin input[type='password']
+        {
+            font-size: 20px;
+            display: block;
+        }
+        
     </style>
 }
 
@@ -58,11 +93,11 @@
 <div class="wrapper">
     <div class="inner">
         <div class="content">
-            @using (Html.BeginForm("Create", "User", FormMethod.Post, new { id = "formProfileCreate" }))
+            @using (Html.BeginForm("Create", "User", FormMethod.Post, new { id = "formProfileCreate", @class = "ui-formwizard" }))
             {
                 @Html.ValidationSummary(true)
     
-                <fieldset class="step" id="stepInterests">
+                <fieldset class="step ui-formwizard-content" id="stepInterests">
                     <strong>Add your Interests</strong>
                     <div id="divInterestSearch">
                         <input type="text" id="interestName" placeholder="Type an interest..." />
@@ -72,40 +107,45 @@
                     </ul>
                     </div>
                 </fieldset>
-                <fieldset class="step" id="stepLogin">
-                    <strong>Login</strong>
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.Username)
-                    </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.Username)
-                        @Html.ValidationMessageFor(model => model.Username)
-                    </div>
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.Email)
-                    </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.Email)
-                        @Html.ValidationMessageFor(model => model.Email)
-                    </div>
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.Password)
-                    </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.Password)
-                        @Html.ValidationMessageFor(model => model.Password)
-                    </div>
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.PasswordVerify)
-                    </div>  
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.PasswordVerify)
-                        @Html.ValidationMessageFor(model => model.PasswordVerify)
+                <fieldset class="step ui-formwizard-content" style="display: none;" id="stepLogin">
+                   
+                    <strong style="display: block;margin-bottom: 50px;">Login</strong>
+                    <div class="one_half">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Username)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Username)
+                            @Html.ValidationMessageFor(model => model.Username)
+                        </div>
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Email)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Email)
+                            @Html.ValidationMessageFor(model => model.Email)
+                        </div>
+                        </div>
+                        <div class="one_half last">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Password)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Password)
+                            @Html.ValidationMessageFor(model => model.Password)
+                        </div>
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PasswordVerify)
+                        </div>  
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.PasswordVerify)
+                            @Html.ValidationMessageFor(model => model.PasswordVerify)
+                        </div>
                     </div>
                 </fieldset>
-                <p>
-                    <input type="submit" value="Create" />
-                    <input type="reset" value="Start Over" />
+                <p id="button-container">
+                    <input type="submit" value="Next" class="button red" />
+                    <input type="reset" value="Back" class="button" />
                 </p>
             }
             <!-- SIDEBAR END -->
@@ -118,8 +158,9 @@
 <script id="tmplNewInterest" type="text/x-jquery-tmpl">
     
 	<li>
+        <a href='javscript:void(0)' class='remove-interest'></a>
 		<div>
-            <input type='hidden' name='Interests[${Id}].Name' value='${Id}' />
+            <input type='hidden' name='Interests[${Index}].Id' value='${Id}' />
             <input type='hidden' name='Interests[${Index}].Name' value='${Name}' />
             <div class="title"><p>${Name}</p></div>
             {{if Id == 0 }}
@@ -157,8 +198,11 @@
                     </select>
                 </div>
             {{/if}}
-            
-            <a href='javscript:void(0)' class='remove-interest'>[X]Remove</a>
+            <div>
+                <label><input type="radio" name="Interests[${Index}].Sociality" value="0" /> Alone</label>
+                <label><input type="radio" name="Interests[${Index}].Sociality" value="50" /> Small Group</label>
+                <label><input type="radio" name="Interests[${Index}].Sociality" value="100" /> Large Group</label>
+            </div>
         </div>
 	</li>
 </script>
