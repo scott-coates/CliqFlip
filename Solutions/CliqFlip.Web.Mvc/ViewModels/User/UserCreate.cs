@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using CliqFlip.Web.Mvc.Extensions.Validation;
 
 namespace CliqFlip.Web.Mvc.ViewModels.User
 {
@@ -20,6 +21,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 
         [Required]
         [Display(Name = "Whats your email?")]
+        [Email(ErrorMessage="Please provide a valid email address.")]
         public String Email { get; set; }
 
         [Required]
