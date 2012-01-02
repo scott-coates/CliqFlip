@@ -1030,7 +1030,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa200', end
 /*===  9. Tryout
 /*========================*/
 .tryout {
-	width: 458px; height: 480px;margin-left: 92px;padding-top: 25px;float: left;
+	width: 458px;margin: 0 auto;padding-top: 25px;
 }
 	.tryout_top {
 		background-color: #C1EEF7;
@@ -1039,7 +1039,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa200', end
 	-moz-border-radius: 12px;
 		padding: 25px;
 	}
-.tryout .results { height:220px;margin-top: 25px;}
+	.tryout_top ul.as-selections li.as-original input {
+		width: inherit;
+	}
+.tryout .results { margin-top: 25px;}
 #innerResults 
 {
 	min-height: 262px;
