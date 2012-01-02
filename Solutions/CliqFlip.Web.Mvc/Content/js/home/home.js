@@ -10,5 +10,8 @@ function InitAutoSuggest(data) {
 			selectionAdded: function (elem) { elem.fadeTo("slow", 0.33); }
 
 		});
-	some.addNewItem({ Name: 'Autos', Id: '2' });
+
+		var thing = function () { some.addNewItem({ Name: 'Autos', Id: '2' });
+			$("#post").val(''); };
+//	setTimeout(thing, 5000);
 }
