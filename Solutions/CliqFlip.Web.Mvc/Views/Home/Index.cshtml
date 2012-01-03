@@ -11,28 +11,28 @@
 <div class="wrapper">
 	<div class="inner">
 		<div class="tryout">
-			<div class="tryout_top">
-				<div class="header">
-					Why don't you give it a try?</div>
-				@using (Ajax.BeginForm("Index", "Search", new AjaxOptions { UpdateTargetId = "searchResults" }))
-	{
-					<div class="search">
-						<input type="text" class="search_box" id="interestSearch" />
-						<input class="search_submit" value="" type="submit" />
-					</div>
-	}
-			</div>
-			<div class="results" id="searchResults">
-			</div>
-			<div class="tag-cloud" id="interest-tag-cloud">
-				<ul>
-					<li><a href="#" rel="20">link 1</a></li>
-					<li><a href="#" rel="20">link 2</a></li>
-					<li><a href="#" rel="20">link 3</a></li>
-					<li><a href="#" rel="20">link 4</a></li>
-					<li><a href="#" rel="20">link 5</a></li>
-				</ul>
-			</div>
+			<div class="header">
+				Why don't you give it a try?</div>
+			@using (Ajax.BeginForm("Index", "Search", new AjaxOptions { UpdateTargetId = "searchResults" }))
+			{
+				<div class="search">
+					<input type="text" class="search_box" id="interestSearch" />
+					<input class="search_submit" value="" type="submit" />
+				</div>
+			}
+		</div>
+			
+		<div class="tag-cloud" id="interest-tag-cloud">
+			<ul>
+				<li><a href="#" rel="20">link 1</a></li>
+				<li><a href="#" rel="20">link 2</a></li>
+				<li><a href="#" rel="20">link 3</a></li>
+				<li><a href="#" rel="20">link 4</a></li>
+				<li><a href="#" rel="20">link 5</a></li>
+			</ul>
+		</div>
+			<div class="clear"></div>
+		<div class="results" id="searchResults">
 		</div>
 	</div>
 </div>

@@ -1029,15 +1029,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa200', end
 /*========================*/
 /*===  9. Tryout
 /*========================*/
-.tryout {
-	width: 458px;margin: 0 auto;padding-top: 25px;
-}
-	.tryout_top {
+
+	.tryout 
+	{
+		margin: 25px auto;
 		background-color: #2D9668;
          border-radius: 12px;
 	-webkit-border-radius: 12px;
 	-moz-border-radius: 12px;
 		padding: 25px;
+		width: 50%;
 	}
 	
 .tryout .results { margin-top: 25px;}

@@ -8,8 +8,4 @@ function InitAutoSuggest(data) {
 			startText: "Type in some things you like",
 			neverSubmit: true
 		});
-
-		var thing = function () { some.addNewItem({ Name: 'Autos', Id: '2' });
-			$("#post").val(''); };
-//	setTimeout(thing, 5000);
 }
