@@ -19,9 +19,10 @@ function InitTagSphere() {
 			centrey: 85,
 			min_font_size: 10,
 			max_font_size: 16,
-			zoom: 100,
+			zoom: 120,
 			init_motion_x: 2,
 			init_motion_y: 2,
-			rotate_factor: 2
+			rotate_factor: 5,
+			fps:20
 		});
 }
