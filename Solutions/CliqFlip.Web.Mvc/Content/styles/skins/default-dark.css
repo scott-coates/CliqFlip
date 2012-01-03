@@ -1066,3 +1066,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa200', end
 	float: left;
 }
 .tryout .header {margin-bottom: 40px; font-family: 'PT Sans Narrow', Arial, Helvetica, sans-serif; color:white;font-size: 28px; letter-spacing: 1px;}
+.tag-cloud { background: #334A33;height: 500px;width: 500px;}
+
+.tag-cloud li a{
+	    text-decoration:none;
+	    color:white;
+	}
+.tag-cloud	ul {list-style-type:none;}
