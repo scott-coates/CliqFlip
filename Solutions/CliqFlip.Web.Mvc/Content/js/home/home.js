@@ -16,14 +16,14 @@ function InitTagSphere() {
 	$("#interest-tag-cloud").tagcloud(
 		{
 			centrex: 200,
-			centrey: 85,
+			centrey: 60,
 			min_font_size: 10,
 			max_font_size: 16,
 			zoom: 120,
 			init_motion_x: 2,
 			init_motion_y: 2,
-			rotate_factor: 5,
-			fps:20
+			rotate_factor: 2,
+			fps:30
 		});
 
 		$("#interest-tag-cloud a").click(function () {
