@@ -6,9 +6,7 @@ function InitAutoSuggest(data) {
 			selectedItemProp: "Name",
 			searchObjProps: "Name",
 			startText: "Type in some things you like",
-			neverSubmit: true,
-			selectionAdded: function (elem) { elem.fadeTo("slow", 0.33); }
-
+			neverSubmit: true
 		});
 
 		var thing = function () { some.addNewItem({ Name: 'Autos', Id: '2' });
