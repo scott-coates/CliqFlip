@@ -1039,9 +1039,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa200', end
 	-moz-border-radius: 12px;
 		padding: 25px;
 	}
-	.tryout_top ul.as-selections li.as-original input {
-		width: inherit;
-	}
+	
 .tryout .results { margin-top: 25px;}
 #innerResults 
 {
