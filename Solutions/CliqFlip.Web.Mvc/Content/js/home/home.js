@@ -1,5 +1,7 @@
+var subjects = null;
+
 function InitAutoSuggest(data) {
-	var some = $("#interestSearch").autoSuggest(data,
+	subjects = $("#interestSearch").autoSuggest(data,
 		{
 			asHtmlID: "post",
 			selectedValuesProp: "Id",
@@ -7,5 +9,18 @@ function InitAutoSuggest(data) {
 			searchObjProps: "Name",
 			startText: "Type in some things you like",
 			neverSubmit: true
+		});
+}
+
+function InitTagSphere() {
+	$("#interest-tag-cloud").tagcloud(
+		{
+			centrex: 200,
+			centrey: 85,
+			min_font_size: 10,
+			max_font_size: 16,
+			zoom: 90,
+			init_motion_x: 10,
+			init_motion_y: 10
 		});
 }

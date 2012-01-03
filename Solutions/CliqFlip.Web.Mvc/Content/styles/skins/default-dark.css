@@ -1038,7 +1038,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa200', end
 	-webkit-border-radius: 12px;
 	-moz-border-radius: 12px;
 		padding: 25px;
-		width: 50%;
 	}
 	
 .tryout .results { margin-top: 25px;}
@@ -1066,11 +1065,28 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa200', end
 #innerResults section {
 	float: left;
 }
-.tryout .header {margin-bottom: 40px; font-family: 'PT Sans Narrow', Arial, Helvetica, sans-serif; color:white;font-size: 28px; letter-spacing: 1px;}
-.tag-cloud { background: #334A33;height: 500px;width: 500px;}
+
+.tryout .header, .tryout .subheader {margin-bottom: 10px; 
+                 font-family: 'PT Sans Narrow', Arial, Helvetica, sans-serif; 
+                 color:white;
+                 font-size: 24px; 
+                 letter-spacing: 1px;
+	text-align: center;
+                 }
+.tryout    .subheader{ font-size: 18px;}	
+
+.tag-cloud {float: left; background: #334A33;height: 170px;width: 400px;margin-left: 25px;
+            border-radius: 12px;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	}
 
 .tag-cloud li a{
 	    text-decoration:none;
 	    color:white;
 	}
 .tag-cloud	ul {list-style-type:none;}
+
+.tryout-search{margin-top: 25px;}
+
+.tryout-search-input{ float: left;width: 420px;}
