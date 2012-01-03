@@ -66,10 +66,11 @@
 			return this.each(function (x) {
 
 				that.addNewItem = function (newItem) {
+					$(this).val('');
 					var lis = $("li", selections_holder).length;
 					add_selected_item(newItem, "00" + (lis + 1));
 				};
-				
+
 				if (!opts.asHtmlID) {
 					x = x + "" + Math.floor(Math.random() * 100); //this ensures there will be unique IDs on the page if autoSuggest() is called multiple times
 					var x_id = "as-input-" + x;

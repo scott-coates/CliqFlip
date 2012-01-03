@@ -25,4 +25,11 @@ function InitTagSphere() {
 			rotate_factor: 5,
 			fps:20
 		});
+
+		$("#interest-tag-cloud a").click(function () {
+			var tagValue = $(this).attr('value');
+			var tagName = this.innerText;
+			var tagValueToAdd = { Name: tagName, Id: tagValue };
+			subjects.addNewItem(tagValueToAdd);
+		});
 }
