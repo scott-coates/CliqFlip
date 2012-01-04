@@ -251,8 +251,9 @@ blockquote { color:#999; font-size:15px; font-style:italic;  margin:20px 0px 20p
 	-moz-box-shadow: 0px 0px 20px #000; 
 	box-shadow: 0px 0px 20px #000;
 }
-	#header .logo { float:left;margin-left: -180px; }
-	#header .motto  { font-family: 'PT Sans Narrow', Arial, Helvetica, sans-serif; color:#FFFFFF; font-size:65px; float:left; margin-top: 8px;margin-left: 180px; height:40px; width:560px;letter-spacing: 15px;text-shadow:#111 2px 0px 2px;}
+	#header .logo { float:left; }
+	#header .logo a { display: block; }
+	#header .motto  { font-family: 'PT Sans Narrow', Arial, Helvetica, sans-serif; color:#FFFFFF; font-size:65px; float:left; margin-top: 8px;margin-left: 50px; letter-spacing: 15px; text-shadow:#111 2px 0px 2px;}
 	#header .motto span  { color: #26ADE4;font-weight: 500;}
 	#header .back  { background:transparent url(../../img/bg_menu.png) repeat-x; height:40px; width:940px; }
 	#header .nav  { background:transparent url(../../img/skins/dark-yellow/bg_menu.png) repeat-x; float:left; height:40px; width:494px; }
