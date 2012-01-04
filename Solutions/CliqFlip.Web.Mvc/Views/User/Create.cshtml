@@ -16,7 +16,7 @@
         { 
             background-color: White;
             list-style: none;
-            height: 400px;
+            min-height: 350px;
             border: 1px dashed;
             margin: 20px;
         }
@@ -25,7 +25,7 @@
             background: #F0F0F0;
             margin: 5px;
             padding: 5px;
-            float: left;
+            display: inline-block;
             border-radius: 5px;
             position: static;
         }
@@ -50,7 +50,8 @@
         
         #formProfileCreate fieldset
         {
-            height: 500px;
+            display: block;
+            min-height: 450px;
         }
         
         #formProfileCreate input[type='text'], #formProfileCreate input[type='password']
@@ -84,6 +85,31 @@
             display: block;
         }
         
+        #sociality label
+        {
+            height: 60px;
+            float: left;
+            text-align: center;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        #sociality label img
+        {
+            height: 50px;
+            display: block;
+            padding: 0;
+            margin: 0 auto;
+        }
+        
+        #steps div
+        {
+            float: left;
+            text-align: center;
+            font-size: 20px;
+            margin: 10px;
+        }
+        
     </style>
 }
 
@@ -93,6 +119,10 @@
 <div class="wrapper">
     <div class="inner">
         <div class="content">
+            <div id="steps">
+            </div>
+            <div class="clear">
+            </div>
             @using (Html.BeginForm("Create", "User", FormMethod.Post, new { id = "formProfileCreate", @class = "ui-formwizard" }))
             {
                 @Html.ValidationSummary(true)
@@ -102,13 +132,10 @@
                     <div id="divInterestSearch">
                         <input type="text" id="interestName" placeholder="Type an interest..." />
                     </div>
-                    <div class="box_pricing_table">
                     <ul id="interestsList">
                     </ul>
-                    </div>
                 </fieldset>
                 <fieldset class="step ui-formwizard-content" style="display: none;" id="stepLogin">
-                   
                     <strong style="display: block;margin-bottom: 50px;">Login</strong>
                     <div class="one_half">
                         <div class="editor-label">
@@ -143,6 +170,8 @@
                         </div>
                     </div>
                 </fieldset>
+                
+                <div class="clear"></div>
                 <p id="button-container">
                     <input type="submit" value="Next" class="button red" />
                     <input type="reset" value="Back" class="button" />
@@ -157,14 +186,14 @@
 <!-- PAGE CONTENT END -->
 <script id="tmplNewInterest" type="text/x-jquery-tmpl">
     
-	<li>
+	<li style="display: none;">
         <a href='javscript:void(0)' class='remove-interest'></a>
 		<div>
             <input type='hidden' name='Interests[${Index}].Id' value='${Id}' />
             <input type='hidden' name='Interests[${Index}].Name' value='${Name}' />
             <div class="title"><p>${Name}</p></div>
             {{if Id == 0 }}
-                <div>
+                <div id="subcategory">
                     <label>Category</label><br />
                     <select name="Interests[${Index}].Category">
                         <option value="">Choose...</option>
@@ -198,14 +227,35 @@
                     </select>
                 </div>
             {{/if}}
-            <div>
-                <label><input type="radio" name="Interests[${Index}].Sociality" value="0" /> Alone</label>
-                <label><input type="radio" name="Interests[${Index}].Sociality" value="50" /> Small Group</label>
-                <label><input type="radio" name="Interests[${Index}].Sociality" value="100" /> Large Group</label>
+            <div id="sociality">
+                <label class="level1">
+                    <img src="@Url.Content("~/Content/img/social1.png")" />
+                    <input type="radio" name="Interests[${Index}].Sociality" value="0" /><br />
+                    Alone
+                </label>
+                <label class="level2">
+                    <img src="@Url.Content("~/Content/img/social2.png")" />
+                    <input type="radio" name="Interests[${Index}].Sociality" value="50" /><br />
+                    Small
+                </label>
+                <label class="level3">
+                    <img src="@Url.Content("~/Content/img/social3.png")" />
+                    <input type="radio" name="Interests[${Index}].Sociality" value="100" /><br />
+                    Large
+                </label>
             </div>
         </div>
 	</li>
 </script>
+
+<script id="tmplStepIndicator" type="text/x-jquery-tmpl">
+    <div>
+        <a href="#${StepId}" class="button">
+            <strong>${StepNumber}</strong> - ${StepTitle}
+        </a>
+    </div>
+</script>
+
 @section scripts
 {
     <script type="text/javascript" src="@Url.Content("/Content/js/jquery.tmpl.js")"></script>
@@ -226,7 +276,8 @@
             interestsList: null,
 
             tmplNewInterest: null,
-
+            tmplStepIndicator: null,
+            steps: null,
 
             init: function () {
                 $(document).ready(function () {
@@ -235,7 +286,52 @@
                     divInterestCategory = $("#divInterestCategory");
                     interestsList = $("#interestsList");
                     tmplNewInterest = $("#tmplNewInterest");
-                    formProfileCreate = $("#formProfileCreate").formwizard({ disableUIStyles: true });
+                    tmplStepIndicator = $("#tmplStepIndicator");
+                    steps = $("#steps");
+
+
+                    //find the user create form
+                    formProfileCreate = $("#formProfileCreate");
+                    
+                    //each fieldset is a step in in the wizard.
+                    //The <strong> tag will serve all the title
+                    //add an indicator for each step in the wizard
+                    formProfileCreate.find("fieldset").each(function (index, element) {
+                        var title = $(this).find("strong").text();
+                        var stepId = $(this).attr("id");
+                        var indicator = tmplStepIndicator.tmpl({ StepNumber: index + 1, StepTitle: title, StepId: stepId });
+                        if (index == 0) {
+                            indicator.find("a").addClass("blue");
+                        }
+                        indicator.appendTo(steps);
+                    });
+
+                    //create the form wizard
+                    formProfileCreate.formwizard({
+                        disableUIStyles: true,
+                        inDuration: 100,
+                        outDuration: 100,
+                    })
+                    .bind("step_shown", function (event, data) {
+                        var selectedCssClass = "blue";
+
+                        //Whenever a step is show, update the indicators to reflect the step
+                        //their looking at.
+
+                        //get all the indicators with the selectedCssClass and remove the class
+                        steps.find("a[class~='" + selectedCssClass + "']").removeClass(selectedCssClass);
+
+                        //mark the currently selected step
+                        steps.find("a[href='#" + data.currentStep + "']").addClass(selectedCssClass);
+                    });
+
+                    //bind the indicators to move to the step whenever it's clicked
+                    steps.find("a").click(function (event) {
+                        event.preventDefault();
+                        var step = $(this).attr("href").replace("#", "");
+                        formProfileCreate.formwizard("show",step);
+                    });
+
 
                     interestTextBox.interestpicker();
 
@@ -246,8 +342,12 @@
 
                         $(this)         //the anchor clicked
                         .parents("li")  //get the closest parent li
-                        .remove();      //remove it
+                        .fadeOut(function () { //fade it out
+                            $(this).remove();   //then remove it
+                        });
                     });
+
+
                 });
             }
         };
