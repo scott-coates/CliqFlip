@@ -1090,7 +1090,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa200', end
 	    text-decoration:none;
 	    color:white;
 	}
-.tag-cloud	ul {list-style-type:none;display: none;}
+.tag-cloud	ul {list-style-type:none;display: none;position: absolute;top: -106px;width: 100%;}
 
 .tryout-search{margin-top: 25px;}
 

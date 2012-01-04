@@ -16,7 +16,7 @@ function InitTagSphere() {
 	$("#interest-tag-cloud").tagcloud(
 		{
 			centrex: 200,
-			centrey: 85,
+			centrey: 170,
 			min_font_size: 10,
 			max_font_size: 16,
 			zoom: 90,
