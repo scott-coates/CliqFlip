@@ -3,7 +3,7 @@ Graphix CSS Color Scheme
 */
 
 body {
-	background-color:#3ECD8E;
+	background-color:#FFFFFF;
 	background-image: url(../../img/patterns/pat1.png);
 }
 
@@ -14,7 +14,7 @@ a { color:#AE0C13; }
 #main-container h1, #main-container h2, #main-container h3, 
 #main-container h4, #main-container h5, #main-container h6,
 #main-container .tagline h1, .tagline span, .entry-title a, 
-.title, .title a { color:#2D9668; }
+.title, .title a { color:#24282D; }
 
 .emphasis	{ color:#FFA200 !important; }
 
@@ -42,13 +42,14 @@ box-shadow: 0px 0px 10px #000;}
 #icon_container.full-width h4 { color:#111; }
 
 .servicebox-hover { background:#2D9668; }
-.servicebox .icon { background:#2D9668; }
-.servicebox .title { color:#2D9668; }
+.servicebox .icon { background:#4DBCE9; }
+.servicebox .icon img { height: 76px;width: 80px;}
+.servicebox .title { color:#26ADE4; }
 .servicebox .text-content { color:#999; }
 .servicebox-hover .icon { background:#fff; }
 .white  { color:#fff; }
 
-.heading_box { border-color:#2D9668; }
+.heading_box { border-color:#24282D; }
 
 .post-meta { color:#b0b0b0; background:#18232C;  }
 
@@ -61,9 +62,12 @@ box-shadow: 0px 0px 10px #000;}
 #services_box2 .service_item:hover { background:#000; border-color:#111; }
 #services_box2 .service_item:hover h4 { color:#fff; }
 
-#connect_box.full-width { background-color:#24282D; border-color:#2D9668; }
+#connect_box.full-width {
+	background-color:#24282D;
+	border-color:#26ADE4;
+}
 #connect_box	h4 { color:#A4ACB7; }
-#footer_box.full-width { background-color:#B1E0F2; border-color:#2D9668; color:#333; }
+#footer_box.full-width { background-color:#4DBCE9; border-color:#26ADE4; color:#333; }
 #footer_box h4 { color:#111; }
 #footer_box .title { color:#222; }
 

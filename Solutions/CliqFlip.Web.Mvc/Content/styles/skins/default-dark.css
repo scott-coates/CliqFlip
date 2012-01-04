@@ -245,15 +245,16 @@ blockquote { color:#999; font-size:15px; font-style:italic;  margin:20px 0px 20p
 	height: 76px;
 	padding-top: 25px;
 	
-	background-color: #008148;
+	background-color: #24282D;
+	border-color:#26ADE4;
 	-webkit-box-shadow: 0px 0px 20px #000; 
 	-moz-box-shadow: 0px 0px 20px #000; 
 	box-shadow: inset 0px 0px 20px #000;
 }
 	#header .logo { float:left;margin-left: -180px; }
 	#header .logo .logo_img { display:block; background:transparent url(../../img/ClipFliq-LogoMoto.png) no-repeat; width:216px; height:40px; text-indent:-999999px; }
-	#header .motto  { font-family: 'PT Sans Narrow', Arial, Helvetica, sans-serif; color:#004E2C; font-size:65px; float:left; margin-top: 8px;margin-left: 180px; height:40px; width:560px;letter-spacing: 15px;text-shadow:#111 2px 0px 2px;}
-	#header .motto span  { color: #004E2C;font-weight: 500;}
+	#header .motto  { font-family: 'PT Sans Narrow', Arial, Helvetica, sans-serif; color:#FFFFFF; font-size:65px; float:left; margin-top: 8px;margin-left: 180px; height:40px; width:560px;letter-spacing: 15px;text-shadow:#111 2px 0px 2px;}
+	#header .motto span  { color: #26ADE4;font-weight: 500;}
 	#header .back  { background:transparent url(../../img/bg_menu.png) repeat-x; height:40px; width:940px; }
 	#header .nav  { background:transparent url(../../img/skins/dark-yellow/bg_menu.png) repeat-x; float:left; height:40px; width:494px; }
 	
@@ -572,7 +573,7 @@ padding-bottom:9px;
 
 .servicebox { position: relative; width: 312px; height: 350px; margin: 40px 0px 0px 0px; float: left; }
 .servicebox-hover { position: absolute; width: 312px; height: 350px; float: left; background-color: #FFA200; }
-.servicebox .icon { width: 100px; height: 77px; text-align:center; background:#FFA200; padding-top:22px; margin: 27px auto 0px auto; -webkit-border-radius: 100px; -moz-border-radius: 100px;
+.servicebox .icon { width: 80px; height: 60px; text-align:center; background:#FFA200; padding-top:22px; margin: 27px auto 0px auto; -webkit-border-radius: 100px; -moz-border-radius: 100px;
           border-radius: 100px; }
 .servicebox-hover .icon { background:#fff; }
 .servicebox .title { width: 312px; text-align: center; font-size: 21px; color: #FFA200; letter-spacing: -1px; margin: 25px 0px 0px 0px; }
@@ -1033,7 +1034,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa200', end
 	.tryout 
 	{
 		margin: 25px auto;
-		background-color: #2D9668;
+		background-color: #4DBCE9;
          border-radius: 12px;
 	-webkit-border-radius: 12px;
 	-moz-border-radius: 12px;
@@ -1075,7 +1076,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa200', end
                  }
 .tryout    .subheader{ font-size: 18px;}	
 
-.tag-cloud {float: right; background: #334A33;height: 170px;width: 400px;
+.tag-cloud {float: right; background: #26ADE4;height: 170px;width: 400px;
             border-radius: 12px;
 	-webkit-border-radius: 12px;
 	-moz-border-radius: 12px;
