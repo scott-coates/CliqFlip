@@ -15,14 +15,12 @@ function InitAutoSuggest(data) {
 function InitTagSphere() {
 	$("#interest-tag-cloud").tagcloud(
 		{
-			centrex: 200,
-			centrey: 200,
+			centrex: 180,
+			centrey: 180,
 			min_font_size: 10,
-			max_font_size: 16,
+			max_font_size: 18,
 			zoom: 110,
-			init_motion_x: 2,
-			init_motion_y: 2,
-			rotate_factor: 0.6,
+			rotate_factor: 1,
 			fps:30
 		});
 
