@@ -45,6 +45,7 @@
                         var newItem = itemTemplate.tmpl(data);
                         newItem.data("item", ui.item)
                         newItem.appendTo(selectionsList);
+                        newItem.fadeIn();
                         this.value = "";
                         return false;
                     }
