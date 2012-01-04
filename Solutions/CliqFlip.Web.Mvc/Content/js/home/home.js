@@ -26,6 +26,8 @@ function InitTagSphere() {
 			fps:30
 		});
 
+	$("#interest-tag-cloud ul").show();
+
 		$("#interest-tag-cloud a").click(function () {
 			var tagValue = $(this).attr('value');
 			var tagName = this.innerText;
