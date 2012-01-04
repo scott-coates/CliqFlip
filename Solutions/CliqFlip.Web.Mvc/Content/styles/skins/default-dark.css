@@ -1080,8 +1080,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa200', end
             border-radius: 12px;
 	-webkit-border-radius: 12px;
 	-moz-border-radius: 12px;
+	  cursor:grab;
+  cursor:-moz-grab;
+  cursor:-webkit-grab;
+	cursor: grab;cursor: url(https://mail.google.com/mail/images/2/openhand.cur), default !important;
+ 
 	}
-
 .tag-cloud li a{
 	    text-decoration:none;
 	    color:white;
