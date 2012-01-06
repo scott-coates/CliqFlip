@@ -9,7 +9,7 @@ var tagCloudClick = function(evt) {
 	return false;
 };
 
-var hideSuggestTagCloud = function (evt) {
+var hideSuggestTagCloud = function(evt) {
 	if (evt.which == 1) {
 		$("#suggest-tag-cloud").effect('slide', { direction: 'left', mode: 'hide' }, "fast");
 		$("#interest-tag-cloud").unbind('mousedown', hideSuggestTagCloud);
@@ -21,6 +21,10 @@ var hideSuggestTagCloud = function (evt) {
 var showSuggestionIfTagCloudNotUsed = function() {
 	if (!hasDraggedCloud) {
 		$("#suggest-tag-cloud").effect('slide');
+		$("#suggest-tag-cloud").hover(
+			function() { $("#interest-tag-cloud").addClass('tag-cloud-suggest-hover'); },
+			function() { $("#interest-tag-cloud").removeClass('tag-cloud-suggest-hover'); }
+		);
 		$("#interest-tag-cloud").mousedown(hideSuggestTagCloud);
 	}
 
@@ -72,7 +76,7 @@ function InitTagCloud() {
 
 	$("#interest-tag-cloud ul").show();
 
-	$("#interest-tag-cloud a").click(function () {
+	$("#interest-tag-cloud a").click(function() {
 		var tagValue = $(this).attr('value');
 		var tagName = this.innerText;
 		var tagValueToAdd = { Name: tagName, Id: tagValue };
