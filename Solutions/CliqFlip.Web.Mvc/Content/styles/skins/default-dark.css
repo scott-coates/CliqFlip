@@ -1076,7 +1076,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa200', end
                  }
 .tryout    .subheader{ font-size: 18px;}	
 
-#suggest-tag-cloud{float: right; margin-top: 50px;display:none;}
+#suggest-tag-cloud{float: right; margin-top: 50px;display:none;position: relative;left: 70px;}
 
 .tag-cloud {float: right; background: #26ADE4;height: 170px;width: 400px;
             border-radius: 12px;
