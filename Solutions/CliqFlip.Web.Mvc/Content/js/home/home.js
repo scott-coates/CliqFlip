@@ -63,6 +63,23 @@ function InitTagSphere() {
 	});
 }
 
+function InitTagCloud() {
+	$("#interest-tag-cloud a").tagcloud(
+		{
+			size: { start: 10, end: 18, unit: 'px' },
+			color: { start: '#176787', end: '#24282D' }
+		});
+
+	$("#interest-tag-cloud ul").show();
+
+	$("#interest-tag-cloud a").click(function () {
+		var tagValue = $(this).attr('value');
+		var tagName = this.innerText;
+		var tagValueToAdd = { Name: tagName, Id: tagValue };
+		subjects.addNewItem(tagValueToAdd);
+	});
+}
+
 function InitSuggestTagCloud() {
 	$("#interest-tag-cloud").mousedown(tagCloudClick);
 	setTimeout(showSuggestionIfTagCloudNotUsed, 3000);
