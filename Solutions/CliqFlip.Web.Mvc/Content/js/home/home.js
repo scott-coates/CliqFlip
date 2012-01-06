@@ -9,12 +9,11 @@ var tagCloudClick = function(evt) {
 	return false;
 };
 
-var hideSuggestTagCloud = function(evt) {
+var hideSuggestTagCloud = function (evt) {
 	if (evt.which == 1) {
 		$("#suggest-tag-cloud").effect('slide', { direction: 'left', mode: 'hide' }, "fast");
 		$("#interest-tag-cloud").unbind('mousedown', hideSuggestTagCloud);
 	}
-
 	evt.preventDefault();
 	return false;
 };
@@ -25,6 +24,8 @@ var showSuggestionIfTagCloudNotUsed = function() {
 		$("#interest-tag-cloud").mousedown(hideSuggestTagCloud);
 	}
 
+	//unbind if they did or did not drag the tags - don't put this in the tag cloud click 
+	//function as they might not call it.
 	$("#interest-tag-cloud").unbind('mousedown', tagCloudClick);
 };
 
