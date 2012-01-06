@@ -1,4 +1,5 @@
 var subjects = null;
+var suggestTagCloudDelegate = function () { $("#suggest-tag-cloud").effect('slide'); };
 
 function InitAutoSuggest(data) {
 	subjects = $("#interestSearch").autoSuggest(data,
@@ -21,15 +22,20 @@ function InitTagSphere() {
 			max_font_size: 18,
 			zoom: 110,
 			rotate_factor: 1,
-			fps:30
+			fps: 30
 		});
 
 	$("#interest-tag-cloud ul").show();
 
-		$("#interest-tag-cloud a").click(function () {
-			var tagValue = $(this).attr('value');
-			var tagName = this.innerText;
-			var tagValueToAdd = { Name: tagName, Id: tagValue };
-			subjects.addNewItem(tagValueToAdd);
-		});
+	$("#interest-tag-cloud a").click(function () {
+		var tagValue = $(this).attr('value');
+		var tagName = this.innerText;
+		var tagValueToAdd = { Name: tagName, Id: tagValue };
+		subjects.addNewItem(tagValueToAdd);
+	});
+}
+
+function InitSuggestTagCloud() {
+	setTimeout(suggestTagCloudDelegate, 3000);
+
 }
