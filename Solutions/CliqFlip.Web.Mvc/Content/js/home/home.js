@@ -9,9 +9,20 @@ var tagCloudClick = function(evt) {
 	return false;
 };
 
+var hideSuggestTagCloud = function(evt) {
+	if (evt.which == 1) {
+		$("#suggest-tag-cloud").effect('slide', { direction: 'left', mode: 'hide' }, "fast");
+		$("#interest-tag-cloud").unbind('mousedown', hideSuggestTagCloud);
+	}
+
+	evt.preventDefault();
+	return false;
+};
+
 var showSuggestionIfTagCloudNotUsed = function() {
 	if (!hasDraggedCloud) {
 		$("#suggest-tag-cloud").effect('slide');
+		$("#interest-tag-cloud").mousedown(hideSuggestTagCloud);
 	}
 
 	$("#interest-tag-cloud").unbind('mousedown', tagCloudClick);
