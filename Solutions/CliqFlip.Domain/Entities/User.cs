@@ -6,7 +6,7 @@ namespace CliqFlip.Domain.Entities
 {
 	public class User : Entity
     {
-		public virtual IList<Interest> Interests { get; set; }
+        public virtual IList<Interest> Interests { get; set; }
 		public virtual string Username { get; set; }
         public virtual string Email { get; set; }
         public virtual string Password { get; set; }
@@ -14,7 +14,7 @@ namespace CliqFlip.Domain.Entities
 		
 		public User()
 		{
-			 Interests = new List<Interest>();
+            Interests = new List<Interest>();
 		}
 
         public User(string username, string email, string password)

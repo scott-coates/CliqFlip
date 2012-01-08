@@ -29,19 +29,35 @@ namespace CliqFlip.Tasks.TaskImpl
 			return users.Select(user => new UserSearchByInterestsDto
 			                            	{
 			                            		MatchCount = user.Interests.Select(x => x.Id).Intersect(interestList).Count(),
-			                            		UserDto = new UserDto {Username = user.Username, InterestDtos = user.Interests.Select(x => new InterestDto(x.Id, x.Name)).ToList(), Bio = user.Bio}
+			                            		UserDto = new UserDto {Username = user.Username, InterestDtos = user.Interests.Select(x => new InterestDto(x.Subject.Id, x.Subject.Name)).ToList(), Bio = user.Bio}
 			                            	}).ToList();
 		}
 
 
         public UserDto Create(UserDto userToCreate)
         {
+            var matchingNameOrEmail = new AdHoc<User>(x => x.Username == userToCreate.Username || x.Email == userToCreate.Email);
+            //Check username and email are unique
+            if (_repository.FindAll(matchingNameOrEmail).Any())
+            {
+                return null;
+            }
+            //TODO: Encrypt password
             User user = new User(userToCreate.Username, userToCreate.Email, userToCreate.Password);
 
+            //add all the interests
             foreach (var userInterest in userToCreate.InterestDtos)
             {
-                var interest = _interestTasks.GetOrCreate(userInterest.Name);
-                user.Interests.Add(new Interest(interest.Id, interest.Name));
+                //get or create the subject
+                var subject = _interestTasks.GetOrCreate(userInterest.Name);
+
+                var interest = new Interest
+                {
+                    Subject = new Subject(subject.Id, subject.Name),
+                    SocialityPoints = userInterest.Sociality
+                };
+
+                user.Interests.Add(interest);
             }
             _repository.Save(user);
             return new UserDto { Username = user.Username, Email = user.Email, Password = user.Password };

@@ -33,9 +33,19 @@ namespace CliqFlip.Web.Mvc.Controllers
 
                 foreach (var interest in profile.Interests)
                 {
-                    profileToCreate.InterestDtos.Add(new InterestDto(0, interest.Name));
+                    var userInterest = new InterestDto(0, interest.Name, interest.Category, interest.Sociality);
+                    profileToCreate.InterestDtos.Add(userInterest);
                 }
+
                 UserDto newProfile = _userTasks.Create(profileToCreate);
+
+                //There was a problem creating the account
+                //Username/Email already exists
+                if (newProfile == null)
+                {
+                    return View(profile);
+                }
+
                 return RedirectToAction("Details", "Profile", new { id = newProfile.Username });
             }
             return View(profile);

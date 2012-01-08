@@ -88,6 +88,7 @@
     <Compile Include="Dtos\InterestDto.cs" />
     <Compile Include="Dtos\UserSearchByInterestsDto.cs" />
     <Compile Include="Entities\Interest.cs" />
+    <Compile Include="Entities\Subject.cs" />
     <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Entities\User.cs" />
   </ItemGroup>

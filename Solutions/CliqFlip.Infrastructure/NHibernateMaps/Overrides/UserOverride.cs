@@ -12,7 +12,7 @@ namespace CliqFlip.Infrastructure.NHibernateMaps.Overrides
 	{
 		public void Override(AutoMapping<User> mapping)
 		{
-			mapping.HasManyToMany(x => x.Interests);
+            mapping.HasMany(x => x.Interests);
 		}
 	}
 }

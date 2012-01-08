@@ -12,9 +12,9 @@ namespace CliqFlip.Tasks.TaskImpl
 {
 	public class InterestTasks : IInterestTasks
 	{
-		private readonly IRepository<Interest> _repository;
+		private readonly IRepository<Subject> _repository;
 
-		public InterestTasks(IRepository<Interest> repository)
+		public InterestTasks(IRepository<Subject> repository)
 		{
 			_repository = repository;
 		}
@@ -41,14 +41,19 @@ namespace CliqFlip.Tasks.TaskImpl
 
         public InterestDto GetOrCreate(string name)
         {
-            var interest = _repository.GetAll().SingleOrDefault(x => x.Name.Equals(name, System.StringComparison.CurrentCultureIgnoreCase));
-            if (interest == null)
+            var subject = _repository.GetAll().SingleOrDefault(x => x.Name.Equals(name, System.StringComparison.CurrentCultureIgnoreCase));
+
+            if (subject == null)
             {
+                //Since the interest does not exist create it.
                 var formattedName = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(name.ToLower());
-                interest = new Interest(formattedName);
-                _repository.SaveOrUpdate(interest);
+                subject = new Subject(formattedName);
+
+                //TODO: relate the new subject to the know subject
+
+                _repository.SaveOrUpdate(subject);
             }
-            return new InterestDto(interest.Id, interest.Name);
+            return new InterestDto(subject.Id, subject.Name);
         }
     }
 }
