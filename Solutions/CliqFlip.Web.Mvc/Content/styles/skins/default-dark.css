@@ -1038,7 +1038,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa200', end
          border-radius: 12px;
 	-webkit-border-radius: 12px;
 	-moz-border-radius: 12px;
+		
 		padding: 25px;
+padding-bottom: 5px;
 	}
 	
 .tryout .results { margin-top: 25px;}
@@ -1076,28 +1078,24 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa200', end
                  }
 .tryout    .subheader{ font-size: 18px;}	
 
-#suggest-tag-cloud{float: right; margin-top: 50px;display:none;}
-.tag-cloud-suggest-hover {
-	-webkit-box-shadow: 0px 0px 20px #000; 
-	-moz-box-shadow: 0px 0px 20px #000; 
-	box-shadow: 0px 0px 20px #000;
-}
-.tag-cloud {float: right; background: #26ADE4;height: 170px;width: 400px;
-            border-radius: 12px;
+.tag-cloud 
+{
+	padding: 5px;
+	margin: 25px auto 0; 
+	background: #26ADE4;
+	height: 40px;
+	width: 620px;
+    border-radius: 12px;
 	-webkit-border-radius: 12px;
 	-moz-border-radius: 12px;
-	  cursor:grab;
-  cursor:-moz-grab;
-  cursor:-webkit-grab;
-	cursor: grab;cursor: url(https://mail.google.com/mail/images/2/openhand.cur), default !important;
- 
+	overflow: hidden;
+}
+
+.tag-cloud  a
+	{
+	    display: none;
 	}
-.tag-cloud li a{
-	    text-decoration:none;
-	    color:white;
-	}
-.tag-cloud	ul {list-style-type:none;display: none;position: absolute;top: -106px;left: -20px;width: 100%;}
 
 .tryout-search{margin-top: 25px;}
 
-.tryout-search-input{ float: left;width: 420px;}
+.tryout-search-input{ width: 620px;margin: 0 auto;}

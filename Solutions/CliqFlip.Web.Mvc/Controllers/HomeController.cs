@@ -20,11 +20,5 @@ namespace CliqFlip.Web.Mvc.Controllers
     		var viewModel = new IndexViewModel {InterestsJson = _interestTasks.GetInterestJson()};
     		return View(viewModel);
         }
-
-		public ActionResult Cloud2()
-		{
-			var viewModel = new IndexViewModel { InterestsJson = _interestTasks.GetInterestJson() };
-			return View(viewModel);
-		}
     }
 }
