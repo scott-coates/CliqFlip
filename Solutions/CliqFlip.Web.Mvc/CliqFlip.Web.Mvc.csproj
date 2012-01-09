@@ -273,9 +273,7 @@
     <Content Include="Content\img\loading.gif" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\lower-1.png" />
-    <Content Include="Content\img\lower-2.jpg" />
     <Content Include="Content\img\lower-2.png" />
-    <Content Include="Content\img\lower-3.jpg" />
     <Content Include="Content\img\lower-3.png" />
     <Content Include="Content\img\magic.png" />
     <Content Include="Content\img\magic_hover.png" />
@@ -414,8 +412,11 @@
     <Content Include="Content\js\jquery.autoSuggest.minified.js" />
     <Content Include="Content\js\jquery.cycle.all.min.js" />
     <Content Include="Content\js\jquery.form.wizard.js" />
+    <Content Include="Content\js\jquery.mousewheel.min.js" />
     <Content Include="Content\js\jquery.quicksand.min.js" />
     <Content Include="Content\js\jquery.skitter.min.js" />
+    <Content Include="Content\js\jquery.tagcloud.js" />
+    <Content Include="Content\js\jquery.tagsphere.min.js" />
     <Content Include="Content\js\jquery.tmpl.js" />
     <Content Include="Content\js\jquery.unobtrusive-ajax.js" />
     <Content Include="Content\js\jquery.unobtrusive-ajax.min.js" />
@@ -475,6 +476,7 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Home\Cloud2.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
