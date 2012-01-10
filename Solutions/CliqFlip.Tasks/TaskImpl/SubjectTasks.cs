@@ -10,25 +10,25 @@ using SharpArch.Domain.Specifications;
 
 namespace CliqFlip.Tasks.TaskImpl
 {
-	public class InterestTasks : IInterestTasks
+	public class SubjectTasks : ISubjectTasks
 	{
 		private readonly IRepository<Subject> _repository;
 
-		public InterestTasks(IRepository<Subject> repository)
+		public SubjectTasks(IRepository<Subject> repository)
 		{
 			_repository = repository;
 		}
 
-		public string GetInterestJson()
+		public string GetSubjectJson()
 		{
-			var dtos = GetInterestDtos();
+			var dtos = GetSubjectDtos();
 			
 			string json = JsonConvert.SerializeObject(dtos);
 			
 			return json;
 		}
 
-		public IList<InterestDto> GetInterestDtos()
+		public IList<InterestDto> GetSubjectDtos()
 		{
 			return _repository.GetAll().Select(x => new InterestDto(x.Id, x.Name)).ToList();
 		}
@@ -39,7 +39,7 @@ namespace CliqFlip.Tasks.TaskImpl
 		}
 
 
-        public InterestDto GetOrCreate(string name)
+        public InterestDto SaveOrUpdate(string name)
         {
             var subject = _repository.GetAll().SingleOrDefault(x => x.Name.Equals(name, System.StringComparison.CurrentCultureIgnoreCase));
 

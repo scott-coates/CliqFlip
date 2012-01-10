@@ -11,12 +11,12 @@ namespace CliqFlip.Tasks.TaskImpl
 	public class UserTasks : IUserTasks
 	{
 		private readonly ILinqRepository<User> _repository;
-        private readonly IInterestTasks _interestTasks;
+        private readonly ISubjectTasks _subjectTasks;
 
-        public UserTasks(ILinqRepository<User> repository, IInterestTasks interestTasks)
+        public UserTasks(ILinqRepository<User> repository, ISubjectTasks subjectTasks)
 		{
 			_repository = repository;
-            _interestTasks = interestTasks;
+            _subjectTasks = subjectTasks;
 		}
 
 
@@ -49,7 +49,7 @@ namespace CliqFlip.Tasks.TaskImpl
             foreach (var userInterest in userToCreate.InterestDtos)
             {
                 //get or create the subject
-                var subject = _interestTasks.GetOrCreate(userInterest.Name);
+                var subject = _subjectTasks.SaveOrUpdate(userInterest.Name);
 
                 var interest = new Interest
                 {

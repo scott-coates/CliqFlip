@@ -10,16 +10,16 @@ namespace CliqFlip.Web.Mvc.Controllers
 {
     public class InterestController : Controller
     {
-        private Domain.Contracts.Tasks.IInterestTasks _interestTasks;
+        private Domain.Contracts.Tasks.ISubjectTasks _subjectTasks;
 
-        public InterestController(IInterestTasks subjectTasks)
+        public InterestController(ISubjectTasks subjectTasks)
         {
-            this._interestTasks = subjectTasks;
+            this._subjectTasks = subjectTasks;
         }
 
         public JsonResult Search(string keyword)
         {
-            var results = _interestTasks.GetInterestDtos().Where(c => c.Name.ToLower().Contains(keyword.ToLower())).ToList();
+            var results = _subjectTasks.GetSubjectDtos().Where(c => c.Name.ToLower().Contains(keyword.ToLower())).ToList();
             return Json(results , JsonRequestBehavior.AllowGet);
         }
     }

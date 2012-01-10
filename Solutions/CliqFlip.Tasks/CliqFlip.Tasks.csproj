@@ -94,7 +94,7 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Queries\InterestJsonQuery.cs" />
-    <Compile Include="TaskImpl\InterestTasks.cs" />
+    <Compile Include="TaskImpl\SubjectTasks.cs" />
     <Compile Include="TaskImpl\UserTasks.cs" />
   </ItemGroup>
   <ItemGroup>

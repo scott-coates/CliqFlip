@@ -8,16 +8,16 @@ namespace CliqFlip.Web.Mvc.Controllers
 
     public class HomeController : Controller
     {
-    	private readonly IInterestTasks _interestTasks;
+    	private readonly ISubjectTasks _subjectTasks;
 
-    	public HomeController(IInterestTasks interestTasks)
+    	public HomeController(ISubjectTasks subjectTasks)
     	{
-    		_interestTasks = interestTasks;
+    		_subjectTasks = subjectTasks;
     	}
 
     	public ActionResult Index()
     	{
-    		var viewModel = new IndexViewModel {InterestsJson = _interestTasks.GetInterestJson()};
+    		var viewModel = new IndexViewModel {SubjectsJson = _subjectTasks.GetSubjectJson()};
     		return View(viewModel);
         }
     }

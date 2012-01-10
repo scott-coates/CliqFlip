@@ -10,7 +10,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.Home
 {
 	public class IndexViewModel
 	{
-		public string InterestsJson { get; set; }
+		public string SubjectsJson { get; set; }
 
 		public IndexViewModel()
 		{

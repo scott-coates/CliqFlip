@@ -101,7 +101,7 @@ namespace CliqFlip.Web.Mvc
 				webSessionStorage,
 				new[] {Server.MapPath("~/bin/CliqFlip.Infrastructure.dll")},
 				new AutoPersistenceModelGenerator().Generate(),
-				Server.MapPath("~/NHibernate.config"));
+				Server.MapPath("~/Configuration/NHibernate.config"));
 		}
 	}
 }

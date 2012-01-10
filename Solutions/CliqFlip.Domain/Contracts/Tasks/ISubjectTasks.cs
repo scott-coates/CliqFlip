@@ -6,11 +6,11 @@ using CliqFlip.Domain.Entities;
 
 namespace CliqFlip.Domain.Contracts.Tasks
 {
-	public interface IInterestTasks
+	public interface ISubjectTasks
 	{
-		string GetInterestJson();
-		IList<InterestDto> GetInterestDtos();
+		string GetSubjectJson();
+		IList<InterestDto> GetSubjectDtos();
 
-        InterestDto GetOrCreate(string name);
+        InterestDto SaveOrUpdate(string name);
     }
 }
