@@ -18,54 +18,43 @@
 				Why don't you give it a try?</div>
 			<div class="tryout-search">
 				<div class="tryout-search-input">
-					@using (Ajax.BeginForm("Index", "Search", new AjaxOptions { UpdateTargetId = "searchResults" }))
-	 {
+					@using (Ajax.BeginForm("Index", "Search", new AjaxOptions {HttpMethod = "GET", UpdateTargetId = "searchResults"}))
+					{
 						<div class="search">
 							<input type="text" class="search_box" id="interestSearch" />
 							<input class="search_submit" value="" type="submit" />
 						</div>
-	 }
+					}
 				</div>
 				<div class="tag-cloud" id="interest-tag-cloud">
-					<a href="#" style="padding:7px;" rel="7">peace</a>
-					<a href="#" style="padding:7px;" rel="3">unity</a>
-					<a href="#" style="padding:7px;" rel="10">love</a>
-					<a href="#" style="padding:7px;" rel="7">peace</a>
-					<a href="#" style="padding:7px;" rel="3">unity</a>
-					<a href="#" style="padding:7px;" rel="10">love</a>
-					<a href="#" style="padding:7px;" rel="5">having fun</a><a href="#" style="padding:7px;" rel="7">peace</a>
-					<a href="#" style="padding:7px;" rel="3">unity</a>
-					<a href="#" style="padding:7px;" rel="10">love</a>
-					<a href="#" style="padding:7px;" rel="5">having fun</a><a href="#" style="padding:7px;" rel="7">peace</a>
-					<a href="#" style="padding:7px;" rel="3">unity</a>
-					<a href="#" style="padding:7px;" rel="10">love</a>
-					<a href="#" style="padding:7px;" rel="5">having fun</a><a href="#" style="padding:7px;" rel="7">peace</a>
-					<a href="#" style="padding:7px;" rel="3">unity</a>
-					<a href="#" style="padding:7px;" rel="10">love</a>
-					<a href="#" style="padding:7px;" rel="5">having fun</a><a href="#" style="padding:7px;" rel="5">having fun</a>
-					<a href="#" style="padding:7px;" rel="7">peace</a>
-					<a href="#" style="padding:7px;" rel="3">unity</a>
-					<a href="#" style="padding:7px;" rel="10">love</a>
-					<a href="#" style="padding:7px;" rel="7">peace</a>
-					<a href="#" style="padding:7px;" rel="3">unity</a>
-					<a href="#" style="padding:7px;" rel="10">love</a>
-					<a href="#" style="padding:7px;" rel="5">having fun</a><a href="#" style="padding:7px;" rel="7">peace</a>
-					<a href="#" style="padding:7px;" rel="3">unity</a>
-					<a href="#" style="padding:7px;" rel="10">love</a>
-					<a href="#" style="padding:7px;" rel="5">having fun</a><a href="#" style="padding:7px;" rel="7">peace</a>
-					<a href="#" style="padding:7px;" rel="3">unity</a>
-					<a href="#" style="padding:7px;" rel="10">love</a>
-					<a href="#" style="padding:7px;" rel="5">having fun</a><a href="#" style="padding:7px;" rel="7">peace</a>
-					<a href="#" style="padding:7px;" rel="3">unity</a>
-					<a href="#" style="padding:7px;" rel="10">love</a>
-					<a href="#" style="padding:7px;" rel="5">having fun</a><a href="#" style="padding:7px;" rel="5">having fun</a>
-					<a href="#" style="padding:7px;" rel="7">peace</a>
-					<a href="#" style="padding:7px;" rel="3">unity</a>
-					<a href="#" style="padding:7px;" rel="10">love</a>
-					<a href="#" style="padding:7px;" rel="7">peace</a>
-					<a href="#" style="padding:7px;" rel="3">unity</a>
-					 
-
+					<a href="#" style="padding: 7px;" rel="7">peace</a> <a href="#" style="padding: 7px;"
+																		   rel="3">unity</a> <a href="#" style="padding: 7px;" rel="10">love</a> <a href="#"
+																																					style="padding: 7px;" rel="7">peace</a> <a href="#" style="padding: 7px;" rel="3">unity</a>
+					<a href="#" style="padding: 7px;" rel="10">love</a> <a href="#" style="padding: 7px;"
+																		   rel="5">having fun</a><a href="#" style="padding: 7px;" rel="7">peace</a> <a href="#"
+																																						style="padding: 7px;" rel="3">unity</a> <a href="#" style="padding: 7px;" rel="10">love</a>
+					<a href="#" style="padding: 7px;" rel="5">having fun</a><a href="#" style="padding: 7px;"
+																			   rel="7">peace</a> <a href="#" style="padding: 7px;" rel="3">unity</a> <a href="#"
+																																						style="padding: 7px;" rel="10">love</a> <a href="#" style="padding: 7px;" rel="5">having
+																																																	fun</a><a href="#" style="padding: 7px;" rel="7">peace</a> <a href="#" style="padding: 7px;"
+																																																																  rel="3">unity</a> <a href="#" style="padding: 7px;" rel="10">love</a>
+					<a href="#" style="padding: 7px;" rel="5">having fun</a><a href="#" style="padding: 7px;"
+																			   rel="5">having fun</a> <a href="#" style="padding: 7px;" rel="7">peace</a> <a href="#"
+																																							 style="padding: 7px;" rel="3">unity</a> <a href="#" style="padding: 7px;" rel="10">love</a>
+					<a href="#" style="padding: 7px;" rel="7">peace</a> <a href="#" style="padding: 7px;"
+																		   rel="3">unity</a> <a href="#" style="padding: 7px;" rel="10">love</a> <a href="#"
+																																					style="padding: 7px;" rel="5">having fun</a><a href="#" style="padding: 7px;" rel="7">peace</a>
+					<a href="#" style="padding: 7px;" rel="3">unity</a> <a href="#" style="padding: 7px;"
+																		   rel="10">love</a> <a href="#" style="padding: 7px;" rel="5">having fun</a><a href="#"
+																																						style="padding: 7px;" rel="7">peace</a> <a href="#" style="padding: 7px;" rel="3">unity</a>
+					<a href="#" style="padding: 7px;" rel="10">love</a> <a href="#" style="padding: 7px;"
+																		   rel="5">having fun</a><a href="#" style="padding: 7px;" rel="7">peace</a> <a href="#"
+																																						style="padding: 7px;" rel="3">unity</a> <a href="#" style="padding: 7px;" rel="10">love</a>
+					<a href="#" style="padding: 7px;" rel="5">having fun</a><a href="#" style="padding: 7px;"
+																			   rel="5">having fun</a> <a href="#" style="padding: 7px;" rel="7">peace</a> <a href="#"
+																																							 style="padding: 7px;" rel="3">unity</a> <a href="#" style="padding: 7px;" rel="10">love</a>
+					<a href="#" style="padding: 7px;" rel="7">peace</a> <a href="#" style="padding: 7px;"
+																		   rel="3">unity</a>
 				</div>
 				<div class="clear">
 				</div>
@@ -234,7 +223,7 @@
 			</div>
 			<div class="one_fifth last">
 				<a href="http://www.addthis.com/bookmark.html?v=250&amp;pubid=ra-4e6377ae614835f5"
-					class="addthis_button_compact"><span class="share_icon"></span>Share this page
+				   class="addthis_button_compact"><span class="share_icon"></span>Share this page
 				</a>
 				<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e6377ae614835f5"> </script>
 			</div>
@@ -251,9 +240,7 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/home/home.js")"> </script>
 	<script type="text/javascript">
 		$(function() {
-
-			var obj = @(Html.Raw(Model.SubjectsJson));
-			InitAutoSuggest(obj);
+			InitAutoSuggest(@(Html.Raw(Model.KeywordSearchUrl)));
 
 			InitTagCloud();
 		});

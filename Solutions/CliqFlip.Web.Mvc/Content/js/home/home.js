@@ -1,12 +1,13 @@
 var subjects = null;
 
-function InitAutoSuggest(data) {
-	subjects = $("#interestSearch").autoSuggest(data,
+function InitAutoSuggest(searchUrl) {
+	subjects = $("#interestSearch").autoSuggest(searchUrl,
 		{
-			asHtmlID: "post",
-			selectedValuesProp: "Id",
+			selectedValuesProp: "SystemAlias",
 			selectedItemProp: "Name",
-			searchObjProps: "Name",
+			searchObjProps: "SystemAlias",
+			queryParam: "input",
+			minChars: 2,
 			startText: "Type in some things you like",
 			neverSubmit: true
 		});

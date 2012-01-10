@@ -86,6 +86,7 @@
     <Compile Include="Contracts\Tasks\IUserTasks.cs" />
     <Compile Include="Contracts\Tasks\ISubjectTasks.cs" />
     <Compile Include="Dtos\InterestDto.cs" />
+    <Compile Include="Dtos\InterestKeywordDto.cs" />
     <Compile Include="Dtos\UserSearchByInterestsDto.cs" />
     <Compile Include="Entities\Interest.cs" />
     <Compile Include="Entities\Subject.cs" />

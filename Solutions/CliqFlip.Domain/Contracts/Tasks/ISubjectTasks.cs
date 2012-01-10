@@ -10,7 +10,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 	{
 		string GetSubjectJson();
 		IList<InterestDto> GetSubjectDtos();
-
+		IList<InterestKeywordDto> GetMatchingKeywords(string input);
         InterestDto SaveOrUpdate(string name);
     }
 }
