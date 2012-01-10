@@ -408,7 +408,7 @@
     <Content Include="Content\js\jquery.animate-colors-min.js" />
     <Content Include="Content\js\jquery.anythingslider.fx.min.js" />
     <Content Include="Content\js\jquery.anythingslider.min.js" />
-    <Content Include="Content\js\jquery.autoSuggest.minified.js" />
+    <Content Include="Content\js\jquery.autoSuggest.js" />
     <Content Include="Content\js\jquery.cycle.all.min.js" />
     <Content Include="Content\js\jquery.form.wizard.js" />
     <Content Include="Content\js\jquery.quicksand.min.js" />
