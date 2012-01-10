@@ -1,5 +1,20 @@
 var subjects = null;
 
+
+
+function FormatList(data, elem) {
+	var systemAliasPrefix = data.SystemAlias.substring(0,2);
+	$(elem).html(data.Name);
+	if (systemAliasPrefix === "-1")
+	{
+		var f = $("em", elem);
+		f.css('background', 'red');
+	}
+
+
+	return elem;
+}
+
 function InitAutoSuggest(searchUrl) {
 	subjects = $("#interestSearch").autoSuggest(searchUrl,
 		{
@@ -9,7 +24,8 @@ function InitAutoSuggest(searchUrl) {
 			queryParam: "input",
 			minChars: 2,
 			startText: "Type in some things you like",
-			neverSubmit: true
+			neverSubmit: true,
+			formatList: FormatList
 		});
 }
 

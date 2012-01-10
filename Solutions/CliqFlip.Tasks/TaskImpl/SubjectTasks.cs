@@ -50,7 +50,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			}
 			else
 			{
-				retVal.Add(new InterestKeywordDto { Name = input, SystemAlias = input.ToLower() });
+				retVal.Add(new InterestKeywordDto { Name = input, SystemAlias = "-1" + input.ToLower() });
 			}
 
 			return retVal;
