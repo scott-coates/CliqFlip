@@ -24,3 +24,4 @@ glob:*UpgradeLog*
 glob:Backup
 Solutions/CliqFlip.Web.Mvc/CliqFlip.mdf
 Solutions/CliqFlip.Web.Mvc/CliqFlip_log.LDF
+Configuration/*.config

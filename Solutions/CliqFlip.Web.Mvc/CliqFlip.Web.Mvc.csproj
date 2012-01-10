@@ -459,7 +459,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="NHibernate.config">
+    <Content Include="Configuration\NHibernate.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
@@ -469,6 +469,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Configuration\Beta\NHibernate.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Alpha\NHibernate.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Content\img\patterns\Thumbs.db" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
