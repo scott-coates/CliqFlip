@@ -1,16 +1,27 @@
 var subjects = null;
 
 
-
 function FormatList(data, elem) {
-	var systemAliasPrefix = data.SystemAlias.substring(0,2);
+	var systemAliasPrefix = data.SystemAlias.substring(0, 2);
+
 	$(elem).html(data.Name);
-	if (systemAliasPrefix === "-1")
-	{
-		var f = $("em", elem);
-		f.css('background', 'red');
+
+	if (systemAliasPrefix === "-1") {
+		var item = $("em", elem);
+		item.css('background', 'red');
 	}
 
+	return elem;
+}
+
+function SelectionAdded(elem, data) {
+
+	var systemAliasPrefix = data.SystemAlias.substring(0, 2);
+
+	if (systemAliasPrefix === "-1") {
+		var item = $(elem);
+		item.css('color', 'red');
+	}
 
 	return elem;
 }
@@ -25,7 +36,8 @@ function InitAutoSuggest(searchUrl) {
 			minChars: 2,
 			startText: "Type in some things you like",
 			neverSubmit: true,
-			formatList: FormatList
+			formatList: FormatList,
+			selectionAdded: SelectionAdded
 		});
 }
 
