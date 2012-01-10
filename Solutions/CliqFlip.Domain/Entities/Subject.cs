@@ -7,6 +7,8 @@ namespace CliqFlip.Domain.Entities
 		public virtual Subject ParentSubject { get; set; }
 
 		public virtual string Name { get; set; }
+		public virtual string Description { get; set; }
+		public virtual string SystemAlias { get; set; }
 
         public Subject()
         { 
