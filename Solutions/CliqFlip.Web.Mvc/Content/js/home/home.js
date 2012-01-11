@@ -29,6 +29,7 @@ function SelectionAdded(elem, data) {
 function InitAutoSuggest(searchUrl) {
 	subjects = $("#interestSearch").autoSuggest(searchUrl,
 		{
+			asHtmlID: "search_values",
 			selectedValuesProp: "SystemAlias",
 			selectedItemProp: "Name",
 			searchObjProps: "SystemAlias",
