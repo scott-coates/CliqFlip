@@ -15,7 +15,8 @@ function FormatList(data, elem) {
 }
 
 function SelectionAdded(elem, data) {
-
+	//TODO: use the #as-values-search_values elem to see if -1 instead of modify source code
+	
 	var systemAliasPrefix = data.SystemAlias.substring(0, 2);
 
 	if (systemAliasPrefix === "-1") {
