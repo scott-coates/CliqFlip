@@ -18,12 +18,6 @@ namespace CliqFlip.Web.Mvc.Controllers
 			_subjectTasks = subjectTasks;
 		}
 
-		public JsonResult Search(string keyword)
-		{
-			List<InterestDto> results = _subjectTasks.GetSubjectDtos().Where(c => c.Name.ToLower().Contains(keyword.ToLower())).ToList();
-			return Json(results, JsonRequestBehavior.AllowGet);
-		}
-
 		[Transaction]
 		public ActionResult KeywordSearch(string input)
 		{

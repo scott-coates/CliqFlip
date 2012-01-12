@@ -2,10 +2,11 @@
 {
 	public class InterestDto
 	{
-		public InterestDto(int id, string name)
+		public InterestDto(int id, string name,string systemAlias)
 		{
 			Id = id;
 			Name = name;
+			SystemAlias = systemAlias;
 		}
 
         public InterestDto(int id, string name, string relatedTo, int? sociality)
@@ -18,6 +19,7 @@
 
 		public int Id { get; set; }
 		public string Name { get; set; }
+		public string SystemAlias { get; set; }
         public string RelatedTo { get; set; }
         public int? Sociality { get; set; }
 	}

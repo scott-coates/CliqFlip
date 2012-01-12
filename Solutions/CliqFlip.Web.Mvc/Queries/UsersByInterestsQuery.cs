@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CliqFlip.Domain.Contracts.Tasks;
+using CliqFlip.Domain.Dtos;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Search;
 
@@ -15,16 +17,32 @@ namespace CliqFlip.Web.Mvc.Queries
 			_userTasks = userTasks;
 		}
 
-		public UsersByInterestViewModel GetGetUsersByInterests(IEnumerable<int> interestIds)
+		#region IUsersByInterestsQuery Members
+
+		public UsersByInterestViewModel GetGetUsersByInterests(string systemAliases)
 		{
-			var users = _userTasks.GetUsersByInterestsDtos(interestIds);
+			List<string> aliasCollection = systemAliases.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries)
+				.Where(x => !x.StartsWith("-1")).ToList();
+
+			IList<UserSearchByInterestsDto> users = _userTasks.GetUsersByInterestsDtos(aliasCollection);
 			var retVal = new UsersByInterestViewModel();
-			foreach (var user in users)
+			foreach (UserSearchByInterestsDto user in users)
 			{
-				string interests = string.Join(", ", user.UserDto.InterestDtos.Select(x => x.Name));
-				retVal.Results.Add(new IndividualResultViewModel {Name = user.UserDto.Username, Interests = interests, Bio = user.UserDto.Bio});
+				retVal.Results.Add(new UsersByInterestViewModel.IndividualResultViewModel
+				                   	{
+				                   		Name = user.UserDto.Username,
+				                   		Bio = user.UserDto.Bio,
+				                   		ResultInterestViewModels = user.UserDto.InterestDtos
+				                   			.Select(x => new UsersByInterestViewModel.IndividualResultInterestViewModel
+				                   			             	{
+				                   			             		InterestName = x.Name,
+				                   			             		IsMatch = aliasCollection.Contains(x.SystemAlias)
+				                   			             	}).OrderByDescending(x => x.IsMatch).Take(5).ToList()
+				                   	});
 			}
 			return retVal;
 		}
+
+		#endregion
 	}
 }

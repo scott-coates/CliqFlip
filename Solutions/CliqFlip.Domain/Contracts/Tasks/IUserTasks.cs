@@ -8,7 +8,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 {
 	public interface  IUserTasks
 	{
-		IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IEnumerable<int> interestIds );
+		IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IList<string> subjectAliases );
 
         UserDto Create(UserDto profileToCreate);
     }

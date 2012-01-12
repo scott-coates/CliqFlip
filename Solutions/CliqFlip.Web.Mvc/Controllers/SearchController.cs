@@ -28,15 +28,9 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			//TODO: Look into using something like this for posted objects - http://stackoverflow.com/questions/4316301/asp-net-mvc-2-bind-a-models-property-to-a-different-named-value
 
-			var ids = as_values_search_values.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+			var viewModel = _usersByInterestsQuery.GetGetUsersByInterests(as_values_search_values);
 
-			int parseint = 0;
-			
-			var vals = (from id in ids where int.TryParse(id, out parseint) select parseint).ToList();
-
-			var viewModel = _usersByInterestsQuery.GetGetUsersByInterests(vals);
-
-			return PartialView(viewModel);
+			return View(viewModel);
 		}
 	}
 }

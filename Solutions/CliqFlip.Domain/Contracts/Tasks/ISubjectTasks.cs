@@ -8,9 +8,8 @@ namespace CliqFlip.Domain.Contracts.Tasks
 {
 	public interface ISubjectTasks
 	{
-		string GetSubjectJson();
-		IList<InterestDto> GetSubjectDtos();
 		IList<InterestKeywordDto> GetMatchingKeywords(string input);
+		IList<string> GetSystemAliasAndParentAlias(IList<string> systemAliases);
         InterestDto SaveOrUpdate(string name);
     }
 }
