@@ -5,7 +5,7 @@
 		<div id="innerResults">
 			@foreach (UsersByInterestViewModel.IndividualResultViewModel user in Model.Results)
 			{
-				<div>
+				<div style="border-color: black;">
 					<h3>@user.Name</h3>
 					<img style="display: block; float: left;" alt="photo" src='@Url.Content("/Content/img/star.png")'/>
 					<div style="float: left; font-size: larger; font-weight: bold; margin-top: 25px;margin-left:25px;">

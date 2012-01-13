@@ -24,7 +24,9 @@ namespace CliqFlip.Tasks.TaskImpl
 		public IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IList<string> subjectAliases)
 		{
 			IList<string> subjAliasAndParent = _subjectTasks.GetSystemAliasAndParentAlias(subjectAliases);
-			var query = new AdHoc<User>(x => x.Interests.Any(y => subjAliasAndParent.Contains(y.Subject.SystemAlias)));
+			var query = new AdHoc<User>(x => x.Interests
+				.Any(y => subjAliasAndParent.Contains(y.Subject.SystemAlias) 
+					|| (y.Subject.ParentSubject != null && subjAliasAndParent.Contains(y.Subject.ParentSubject.SystemAlias))));
 
 			List<User> users = _repository.FindAll(query).ToList();
 			return users.Select(user => new UserSearchByInterestsDto
@@ -32,10 +34,10 @@ namespace CliqFlip.Tasks.TaskImpl
 			                            		MatchCount = user.Interests.Sum(x =>
 			                            		                                	{
 			                            		                                		if (subjectAliases.Contains(x.Subject.SystemAlias))
-			                            		                                			return 3;//movies -> movies (same match)
+			                            		                                			return 3; //movies -> movies (same match)
 			                            		                                		if (x.Subject.ParentSubject != null && subjAliasAndParent.Contains(x.Subject.ParentSubject.SystemAlias))
 			                            		                                			return 2; //movies -> tv shows (sibling match)
-																						if (subjAliasAndParent.Contains(x.Subject.SystemAlias))
+			                            		                                		if (subjAliasAndParent.Contains(x.Subject.SystemAlias))
 			                            		                                			return 1; //movies -> entertainment (parent match)
 			                            		                                		return 0;
 			                            		                                	}),
