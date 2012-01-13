@@ -24,31 +24,31 @@ namespace CliqFlip.Tasks.TaskImpl
 		public IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IList<string> subjectAliases)
 		{
 			IList<string> subjAliasAndParent = _subjectTasks.GetSystemAliasAndParentAlias(subjectAliases);
-			var query = new AdHoc<User>(x => x.Interests
-				.Any(y => subjAliasAndParent.Contains(y.Subject.SystemAlias) 
-					|| (y.Subject.ParentSubject != null && subjAliasAndParent.Contains(y.Subject.ParentSubject.SystemAlias))));
+			var query = new AdHoc<User>(x => x.Interests.Any(y => subjAliasAndParent.Contains(y.Subject.SystemAlias))
+											 ||
+											 x.Interests.Any(y => subjAliasAndParent.Contains(y.Subject.ParentSubject.SystemAlias)));
 
 			List<User> users = _repository.FindAll(query).ToList();
 			return users.Select(user => new UserSearchByInterestsDto
-			                            	{
-			                            		MatchCount = user.Interests.Sum(x =>
-			                            		                                	{
-			                            		                                		if (subjectAliases.Contains(x.Subject.SystemAlias))
-			                            		                                			return 3; //movies -> movies (same match)
-			                            		                                		if (x.Subject.ParentSubject != null && subjAliasAndParent.Contains(x.Subject.ParentSubject.SystemAlias))
-			                            		                                			return 2; //movies -> tv shows (sibling match)
-			                            		                                		if (subjAliasAndParent.Contains(x.Subject.SystemAlias))
-			                            		                                			return 1; //movies -> entertainment (parent match)
-			                            		                                		return 0;
-			                            		                                	}),
-			                            		UserDto = new UserDto
-			                            		          	{
-			                            		          		Username = user.Username,
-			                            		          		InterestDtos = user.Interests
-			                            		          			.Select(x => new InterestDto(x.Subject.Id, x.Subject.Name, x.Subject.SystemAlias)).ToList(),
-			                            		          		Bio = user.Bio
-			                            		          	}
-			                            	}).OrderByDescending(x => x.MatchCount).ToList();
+											{
+												MatchCount = user.Interests.Sum(x =>
+																					{
+																						if (subjectAliases.Contains(x.Subject.SystemAlias))
+																							return 3; //movies -> movies (same match)
+																						if (x.Subject.ParentSubject != null && subjAliasAndParent.Contains(x.Subject.ParentSubject.SystemAlias))
+																							return 2; //movies -> tv shows (sibling match)
+																						if (subjAliasAndParent.Contains(x.Subject.SystemAlias))
+																							return 1; //movies -> entertainment (parent match)
+																						return 0;
+																					}),
+												UserDto = new UserDto
+															{
+																Username = user.Username,
+																InterestDtos = user.Interests
+																	.Select(x => new InterestDto(x.Subject.Id, x.Subject.Name, x.Subject.SystemAlias)).ToList(),
+																Bio = user.Bio
+															}
+											}).OrderByDescending(x => x.MatchCount).ToList();
 		}
 
 		public UserDto Create(UserDto userToCreate)
@@ -69,15 +69,15 @@ namespace CliqFlip.Tasks.TaskImpl
 				InterestDto subject = _subjectTasks.SaveOrUpdate(userInterest.Name);
 
 				var interest = new Interest
-				               	{
-				               		Subject = new Subject(subject.Id, subject.Name),
-				               		SocialityPoints = userInterest.Sociality
-				               	};
+								{
+									Subject = new Subject(subject.Id, subject.Name),
+									SocialityPoints = userInterest.Sociality
+								};
 
 				user.Interests.Add(interest);
 			}
 			_repository.Save(user);
-			return new UserDto {Username = user.Username, Email = user.Email, Password = user.Password};
+			return new UserDto { Username = user.Username, Email = user.Email, Password = user.Password };
 		}
 
 		#endregion
@@ -89,10 +89,10 @@ namespace CliqFlip.Tasks.TaskImpl
 
 			List<User> users = _repository.FindAll(query).ToList();
 			return users.Select(user => new UserSearchByInterestsDto
-			                            	{
-			                            		MatchCount = user.Interests.Select(x => x.Id).Intersect(interestList).Count(),
-			                            		UserDto = new UserDto {Username = user.Username, InterestDtos = user.Interests.Select(x => new InterestDto(x.Subject.Id, x.Subject.Name, x.Subject.SystemAlias)).ToList(), Bio = user.Bio}
-			                            	}).ToList();
+											{
+												MatchCount = user.Interests.Select(x => x.Id).Intersect(interestList).Count(),
+												UserDto = new UserDto { Username = user.Username, InterestDtos = user.Interests.Select(x => new InterestDto(x.Subject.Id, x.Subject.Name, x.Subject.SystemAlias)).ToList(), Bio = user.Bio }
+											}).ToList();
 		}
 	}
 }
