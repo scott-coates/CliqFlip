@@ -7,6 +7,7 @@ using CliqFlip.Web.Mvc.ViewModels.Home;
 using CliqFlip.Web.Mvc.ViewModels.Search;
 using SharpArch.NHibernate.Web.Mvc;
 using SharpArch.Web.Mvc.JsonNet;
+using MvcContrib.Pagination;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
@@ -24,9 +25,9 @@ namespace CliqFlip.Web.Mvc.Controllers
 		}
 
 		[Transaction]
-		public ActionResult Index(string q)
+		public ActionResult Index(string q, int? page)
 		{
-			var viewModel = _usersByInterestsQuery.GetGetUsersByInterests(q);
+			var viewModel = _usersByInterestsQuery.GetGetUsersByInterests(q, page);
 
 			return View(viewModel);
 		}

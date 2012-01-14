@@ -1075,6 +1075,10 @@ display: block; float: left;
 	float: left; font-size: larger; font-weight: bold;margin-left: 25px; 
 }
 
+#userSearchPaging {
+	margin: 0 auto;
+	width: 300px;
+}
 .tryout .header, .tryout .subheader {margin-bottom: 10px; 
                  font-family: 'PT Sans Narrow', Arial, Helvetica, sans-serif; 
                  color:white;

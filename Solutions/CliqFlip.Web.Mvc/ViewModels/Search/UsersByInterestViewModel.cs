@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using MvcContrib.Pagination;
 
 namespace CliqFlip.Web.Mvc.ViewModels.Search
 {
 	public class UsersByInterestViewModel
 	{
 		public IList<IndividualResultViewModel> Results { get; set; }
+		public IPagination<IndividualResultViewModel> PagedResults { get; set; }
 
 		public UsersByInterestViewModel()
 		{

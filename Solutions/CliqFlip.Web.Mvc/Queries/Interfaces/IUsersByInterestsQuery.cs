@@ -8,6 +8,6 @@ namespace CliqFlip.Web.Mvc.Queries.Interfaces
 {
 	public interface IUsersByInterestsQuery
 	{
-		UsersByInterestViewModel GetGetUsersByInterests(string systemAliases);
+		UsersByInterestViewModel GetGetUsersByInterests(string systemAliases, int? page);
 	}
 }
