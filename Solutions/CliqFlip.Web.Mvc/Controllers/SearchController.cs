@@ -24,11 +24,9 @@ namespace CliqFlip.Web.Mvc.Controllers
 		}
 
 		[Transaction]
-		public ActionResult Index(string as_values_search_values)
+		public ActionResult Index(string q)
 		{
-			//TODO: Look into using something like this for posted objects - http://stackoverflow.com/questions/4316301/asp-net-mvc-2-bind-a-models-property-to-a-different-named-value
-
-			var viewModel = _usersByInterestsQuery.GetGetUsersByInterests(as_values_search_values);
+			var viewModel = _usersByInterestsQuery.GetGetUsersByInterests(q);
 
 			return View(viewModel);
 		}

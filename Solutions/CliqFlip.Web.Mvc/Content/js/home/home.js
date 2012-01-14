@@ -59,3 +59,9 @@ function InitTagCloud() {
 		subjects.addNewItem(tagValueToAdd);
 	});
 }
+
+function ChangeSearchQueryParamName() {
+	$('form').submit(function (parameters) {
+		$("#as-values-search_values").attr('name', 'q');
+	});
+}
