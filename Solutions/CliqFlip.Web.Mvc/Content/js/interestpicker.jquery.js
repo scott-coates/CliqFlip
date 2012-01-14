@@ -4,7 +4,7 @@
         // These options will be used as defaults
         options: {
             clear: null,
-            source: "/Subject/Search"
+            source: "/Subject/KeywordSearch"
         },
 
         // Set up the widget
@@ -27,7 +27,7 @@
                         //it should add it to the end of the list by pushing a new json object into the subject array
 
                         //Then let autocomplete do it's thing
-                        $.getJSON("/Interest/Search?keyword=" + term, function (data) {
+                        $.getJSON("/Subject/KeywordSearch?input=" + term, function (data) {
                             for (var counter = 0; counter < data.length; counter++) {
                                 if (data[counter].Name.toLowerCase() == term.toLowerCase()) {
                                     addToList = false;

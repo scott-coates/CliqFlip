@@ -145,7 +145,7 @@
     <Compile Include="CastleWindsor\ComponentRegistrar.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InterestController.cs" />
+    <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Extensions\Validation\EmailAttribute.cs" />
     <Compile Include="Queries\Interfaces\IUsersByInterestsQuery.cs" />
