@@ -10,6 +10,6 @@ namespace CliqFlip.Domain.Contracts.Tasks
 	{
 		IList<InterestKeywordDto> GetMatchingKeywords(string input);
 		IList<string> GetSystemAliasAndParentAlias(IList<string> systemAliases);
-        InterestDto SaveOrUpdate(string name);
+        InterestDto GetOrCreate(string name);
     }
 }
