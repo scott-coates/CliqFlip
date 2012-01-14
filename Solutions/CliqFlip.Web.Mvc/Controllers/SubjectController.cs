@@ -9,11 +9,11 @@ using SharpArch.Web.Mvc.JsonNet;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
-	public class InterestController : Controller
+	public class SubjectController : Controller
 	{
 		private readonly ISubjectTasks _subjectTasks;
 
-		public InterestController(ISubjectTasks subjectTasks)
+		public SubjectController(ISubjectTasks subjectTasks)
 		{
 			_subjectTasks = subjectTasks;
 		}
