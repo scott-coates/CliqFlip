@@ -1,6 +1,6 @@
 ﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserCreate
 @{
-    this.Layout = "~/Views/Shared/_Layout2.cshtml";
+    this.Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Create";
 }
 
@@ -8,6 +8,12 @@
 {
     <link rel="Stylesheet" type="text/css" media="all" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/cupertino/jquery-ui.css" />
     <style>
+        .content
+        {
+            width: 100%;
+            background-color: #4DBCE9;
+            border-radius: 12px;
+        }
         #divInterestSearch
         {
             margin: 0 20px;
@@ -34,7 +40,6 @@
         {
             float: right;
             background: url(/Content/img/close.png) no-repeat;
-            content: "asd";
             height: 25px;
             width: 25px;
         }
@@ -66,6 +71,13 @@
             box-shadow: inset 0 1px 2px #888;
         }
         
+        #stepLogin div div
+        {
+            margin: 0 auto;
+            display: block;
+            width: 304px;
+            text-align: center;
+        }
         #button-container
         {
             text-align: right;
@@ -83,6 +95,7 @@
         {
             font-size: 20px;
             display: block;
+            width: 100%;
         }
         
         #sociality label
@@ -141,7 +154,7 @@
                 </fieldset>
                 <fieldset class="step ui-formwizard-content" style="display: none;" id="stepLogin">
                     <strong style="display: block;margin-bottom: 50px;">Login</strong>
-                    <div class="one_half">
+                    <div>
                         <div class="editor-label">
                             @Html.LabelFor(model => model.Username)
                         </div>
@@ -156,8 +169,7 @@
                             @Html.EditorFor(model => model.Email)
                             @Html.ValidationMessageFor(model => model.Email)
                         </div>
-                        </div>
-                        <div class="one_half last">
+
                         <div class="editor-label">
                             @Html.LabelFor(model => model.Password)
                         </div>
@@ -186,6 +198,8 @@
             </div>
         </div>
     </div>
+</div>
+<div class="clear">
 </div>
 <!-- PAGE CONTENT END -->
 <script id="tmplNewInterest" type="text/x-jquery-tmpl">
