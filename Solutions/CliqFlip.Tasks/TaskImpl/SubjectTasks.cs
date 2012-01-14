@@ -52,8 +52,8 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public InterestDto SaveOrUpdate(string name)
 		{
-			//TODO: Make the db responsible for the matching, not C# code.
-			Subject subject = _repository.FindAll().SingleOrDefault(x => x.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase));
+            AdHoc<Subject> withMatchingName = new AdHoc<Subject>(x => x.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase));
+			Subject subject = _repository.FindOne(withMatchingName);
 
 			if (subject == null)
 			{
