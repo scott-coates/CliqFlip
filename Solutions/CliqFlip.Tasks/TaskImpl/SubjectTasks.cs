@@ -31,13 +31,12 @@ namespace CliqFlip.Tasks.TaskImpl
 
 			if (subjs.Any())
 			{
-				retVal.AddRange(subjs.Select(subj => new InterestKeywordDto {SystemAlias = subj.SystemAlias, Name = subj.Name}));
+				retVal.AddRange(subjs.Select(subj => new InterestKeywordDto { Id = subj.Id, SystemAlias = subj.SystemAlias, Name = subj.Name}));
 			}
 			else
 			{
 				retVal.Add(new InterestKeywordDto {Name = input, SystemAlias = "-1" + input.ToLower()});
 			}
-
 			return retVal;
 		}
 

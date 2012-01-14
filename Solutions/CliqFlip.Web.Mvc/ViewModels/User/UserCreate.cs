@@ -15,22 +15,22 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
             Interests = new List<InterestCreate>();
         }
 
-        [Required]
-        [Display(Name="Choose a username:")]
+        [Required(ErrorMessage = "Please choose a username")]
+        [Display(Name = "Choose a username:")]
         public string Username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please provide an email address.")]
         [Display(Name = "Whats your email?")]
         [Email(ErrorMessage="Please provide a valid email address.")]
         public String Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please provide a password.")]
         [Display(Name = "Set your password. Choose a strong one.")]
         [DataType(DataType.Password)]
         public String Password { get; set; }
 
-        [Required]
-        [Compare("Password")]
+        [Required(ErrorMessage = "Please type your password again.")]
+        [Compare("Password", ErrorMessage="Password do not match")]
         [Display(Name = "Please type your password again")]
         [DataType(DataType.Password)]
         public String PasswordVerify { get; set; }

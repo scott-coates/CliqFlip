@@ -8,10 +8,18 @@
 {
     <link rel="Stylesheet" type="text/css" media="all" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/cupertino/jquery-ui.css" />
     <style>
+        .field-validation-error
+        {
+            color: Red;
+        }
+        .button.dark-blue
+        {
+            background-color: #24282D;
+        }
+        
         .content
         {
             width: 100%;
-            background-color: #4DBCE9;
             border-radius: 12px;
         }
         #divInterestSearch
@@ -22,7 +30,7 @@
         { 
             background-color: White;
             list-style: none;
-            min-height: 350px;
+            min-height: 250px;
             border: 1px dashed;
             margin: 20px;
         }
@@ -34,6 +42,8 @@
             display: inline-block;
             border-radius: 5px;
             position: static;
+            vertical-align: top;
+            height: 175px;
         }
         
         #interestsList li a.remove-interest
@@ -44,19 +54,18 @@
             width: 25px;
         }
         
-        .ui-formwizard-content
-        {
-             background-color: White;
-        }
-        
-        
-        
         
         
         #formProfileCreate fieldset
         {
             display: block;
-            min-height: 450px;
+            min-height: 350px;
+            background-color: transparent;
+        }
+        
+        #formProfileCreate fieldset strong
+        {
+            display: none;
         }
         
         #formProfileCreate input[type='text'], #formProfileCreate input[type='password']
@@ -78,6 +87,13 @@
             width: 304px;
             text-align: center;
         }
+        
+        #stepLogin div div.editor-label
+        {
+            font-size: larger;
+            padding: 10px 0;
+        }
+        
         #button-container
         {
             text-align: right;
@@ -94,8 +110,10 @@
         #stepLogin input[type='text'], #stepLogin input[type='password']
         {
             font-size: 20px;
+            height: 30px;
             display: block;
             width: 100%;
+            text-align: center;
         }
         
         #sociality label
@@ -117,6 +135,11 @@
             display: block;
             padding: 0;
             margin: 0 auto;
+        }
+        
+        #steps
+        {
+            height: 60px;
         }
         
         #steps div
@@ -153,7 +176,7 @@
                     </ul>
                 </fieldset>
                 <fieldset class="step ui-formwizard-content" style="display: none;" id="stepLogin">
-                    <strong style="display: block;margin-bottom: 50px;">Login</strong>
+                    <strong>Login</strong>
                     <div>
                         <div class="editor-label">
                             @Html.LabelFor(model => model.Username)
@@ -189,8 +212,8 @@
                 
                 <div class="clear"></div>
                 <p id="button-container">
-                    <input type="submit" value="Next" class="button red" />
-                    <input type="reset" value="Back" class="button" />
+                    <input type="submit" value="Next" class="button dark-blue" />
+                    <input type="reset" value="Back" class="button blue" />
                 </p>
             }
             <!-- SIDEBAR END -->
@@ -210,8 +233,8 @@
             <input type='hidden' name='Interests[${Index}].Id' value='${Id}' />
             <input type='hidden' name='Interests[${Index}].Name' value='${Name}' />
             <div class="title"><p>${Name}</p></div>
-            {{if Id == 0 }}
-                <div id="subcategory">
+            
+                <div id="subcategory" style='${generateVisibility($item.data)}' >
                     <label>Category</label><br />
                     <select name="Interests[${Index}].Category">
                         <option value="">Choose...</option>
@@ -244,6 +267,7 @@
                         <option>Travel</option>
                     </select>
                 </div>
+            {{if Id == 0 }}
             {{/if}}
             <div id="sociality">
                 <label class="level1">
@@ -268,7 +292,7 @@
 
 <script id="tmplStepIndicator" type="text/x-jquery-tmpl">
     <div>
-        <a href="#${StepId}" class="button">
+        <a href="#${StepId}" class="button blue">
             <strong>${StepNumber}</strong> - ${StepTitle}
         </a>
     </div>
@@ -281,6 +305,14 @@
     <script type="text/javascript" src="@Url.Content("/Content/js/interestpicker.jquery.js")"></script>
     <script type="text/javascript" src="@Url.Content("/Content/js/mvcfoolproof.unobtrusive.js")"></script>
     <script type="text/javascript">
+        
+        function generateVisibility(subject) {
+            if(subject.Id != 0 )
+            {
+                return "visibility: hidden;";
+            }
+        }
+        
         var ProfileCreate = {
             //the textbox the user types their interest into
             interestTextBox: null,
@@ -319,7 +351,7 @@
                         var stepId = $(this).attr("id");
                         var indicator = tmplStepIndicator.tmpl({ StepNumber: index + 1, StepTitle: title, StepId: stepId });
                         if (index == 0) {
-                            indicator.find("a").addClass("blue");
+                            indicator.find("a").addClass("dark-blue").removeClass("blue");
                         }
                         indicator.appendTo(steps);
                     });
@@ -331,23 +363,23 @@
                         outDuration: 100,
                     })
                     .bind("step_shown", function (event, data) {
-                        var selectedCssClass = "blue";
-
+                        var selectedCssClass = "dark-blue";
+                        var unselectedCssClass = "blue";
                         //Whenever a step is show, update the indicators to reflect the step
                         //their looking at.
 
                         //get all the indicators with the selectedCssClass and remove the class
-                        steps.find("a[class~='" + selectedCssClass + "']").removeClass(selectedCssClass);
+                        steps.find("a[class~='" + selectedCssClass + "']").removeClass(selectedCssClass).addClass(unselectedCssClass);
 
                         //mark the currently selected step
-                        steps.find("a[href='#" + data.currentStep + "']").addClass(selectedCssClass);
+                        steps.find("a[href='#" + data.currentStep + "']").addClass(selectedCssClass).removeClass(unselectedCssClass);
                     });
 
                     //bind the indicators to move to the step whenever it's clicked
                     steps.find("a").click(function (event) {
                         event.preventDefault();
                         var step = $(this).attr("href").replace("#", "");
-                        formProfileCreate.formwizard("show",step);
+                        formProfileCreate.formwizard("show", step);
                     });
 
 
