@@ -1,31 +1,29 @@
 ﻿@using CliqFlip.Web.Mvc.ViewModels.Search
-@model CliqFlip.Web.Mvc.ViewModels.Search.UsersByInterestViewModel
+@model UsersByInterestViewModel
 <div class="wrapper">
 	<div class="inner">
-		<div id="innerResults">
+		<div id="userSearchResults">
 			@foreach (UsersByInterestViewModel.IndividualResultViewModel user in Model.Results)
 			{
-				<div style="border-color: black;">
+				<div id="innerUserSearchResults">
 					<h3>@user.Name</h3>
-					<img style="display: block; float: left;" alt="photo" src='@Url.Content("/Content/img/star.png")'/>
-					<div style="float: left; font-size: larger; font-weight: bold; margin-top: 25px;margin-left:25px;">
-						<ul>
-							@foreach (UsersByInterestViewModel.IndividualResultInterestViewModel interest in user.ResultInterestViewModels)
+					<img class="innerResultPhoto" alt="photo" src='@Url.Content("/Content/img/star.png")'/>
+					<ul class="userSearchInterest">
+						@foreach (UsersByInterestViewModel.IndividualResultInterestViewModel interest in user.ResultInterestViewModels)
+						{
+							if (interest.IsMatch)
 							{
-								if (interest.IsMatch)
-								{
-									<li><span style="color:black;">@interest.InterestName</span></li>
-								}
-								else
-								{
-									<li>@interest.InterestName</li>
-								}
+								<li><span class="interestSearchExactMatch">@interest.InterestName</span></li>
 							}
-						</ul>
-					</div>
+							else
+							{
+								<li>@interest.InterestName</li>
+							}
+						}
+					</ul>
+					<div class="userSearchBio">@user.Bio</div>
 					<div class="clear">
 					</div>
-					<div style="font-size: smaller; font-weight: bold; margin-left: 68px;">@user.Bio</div>
 				</div>
 			}
 		</div>
