@@ -302,8 +302,7 @@
 {
     <script type="text/javascript" src="@Url.Content("/Content/js/jquery.tmpl.js")"></script>
     <script type="text/javascript" src="@Url.Content("/Content/js/jquery.form.wizard.js")"></script>
-    <script type="text/javascript" src="@Url.Content("/Content/js/interestpicker.jquery.js")"></script>
-    <script type="text/javascript" src="@Url.Content("/Content/js/mvcfoolproof.unobtrusive.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Content/js/user/create.js")"></script>
     <script type="text/javascript">
         
         function generateVisibility(subject) {
@@ -312,96 +311,7 @@
                 return "visibility: hidden;";
             }
         }
-        
-        var ProfileCreate = {
-            //the textbox the user types their interest into
-            interestTextBox: null,
-            //the div holding the category questions
-            divInterestCategory: null,
 
-            //the create form
-            formProfileCreate: null,
-
-            //the list of added interests
-            interestsList: null,
-
-            tmplNewInterest: null,
-            tmplStepIndicator: null,
-            steps: null,
-
-            init: function () {
-                $(document).ready(function () {
-                    //bind all the elements we need
-                    interestTextBox = $("#interestName");
-                    divInterestCategory = $("#divInterestCategory");
-                    interestsList = $("#interestsList");
-                    tmplNewInterest = $("#tmplNewInterest");
-                    tmplStepIndicator = $("#tmplStepIndicator");
-                    steps = $("#steps");
-
-
-                    //find the user create form
-                    formProfileCreate = $("#formProfileCreate");
-                    
-                    //each fieldset is a step in in the wizard.
-                    //The <strong> tag will serve all the title
-                    //add an indicator for each step in the wizard
-                    formProfileCreate.find("fieldset").each(function (index, element) {
-                        var title = $(this).find("strong").text();
-                        var stepId = $(this).attr("id");
-                        var indicator = tmplStepIndicator.tmpl({ StepNumber: index + 1, StepTitle: title, StepId: stepId });
-                        if (index == 0) {
-                            indicator.find("a").addClass("dark-blue").removeClass("blue");
-                        }
-                        indicator.appendTo(steps);
-                    });
-
-                    //create the form wizard
-                    formProfileCreate.formwizard({
-                        disableUIStyles: true,
-                        inDuration: 100,
-                        outDuration: 100,
-                    })
-                    .bind("step_shown", function (event, data) {
-                        var selectedCssClass = "dark-blue";
-                        var unselectedCssClass = "blue";
-                        //Whenever a step is show, update the indicators to reflect the step
-                        //their looking at.
-
-                        //get all the indicators with the selectedCssClass and remove the class
-                        steps.find("a[class~='" + selectedCssClass + "']").removeClass(selectedCssClass).addClass(unselectedCssClass);
-
-                        //mark the currently selected step
-                        steps.find("a[href='#" + data.currentStep + "']").addClass(selectedCssClass).removeClass(unselectedCssClass);
-                    });
-
-                    //bind the indicators to move to the step whenever it's clicked
-                    steps.find("a").click(function (event) {
-                        event.preventDefault();
-                        var step = $(this).attr("href").replace("#", "");
-                        formProfileCreate.formwizard("show", step);
-                    });
-
-
-                    interestTextBox.interestpicker();
-
-                    //whenever the link 'a.remove-interest' is clicked
-                    //it should remove the interest from the list of added interests
-                    interestsList.on("click", "a.remove-interest", function (event) {
-                        event.preventDefault();
-
-                        $(this)         //the anchor clicked
-                        .parents("li")  //get the closest parent li
-                        .fadeOut(function () { //fade it out
-                            $(this).remove();   //then remove it
-                        });
-                    });
-
-
-                });
-            }
-        };
-
-        ProfileCreate.init();
+        initUserCreate();
     </script>
 }

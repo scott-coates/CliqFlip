@@ -51,7 +51,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public InterestDto GetOrCreate(string name)
 		{
-            AdHoc<Subject> withMatchingName = new AdHoc<Subject>(x => x.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase));
+            AdHoc<Subject> withMatchingName = new AdHoc<Subject>(x => x.Name == name);
 			Subject subject = _repository.FindOne(withMatchingName);
 
 			if (subject == null)
