@@ -35,7 +35,8 @@ namespace CliqFlip.Tasks.TaskImpl
 			}
 			else
 			{
-				retVal.Add(new InterestKeywordDto {Name = input, SystemAlias = "-1" + input.ToLower()});
+                string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(input.ToLower());
+				retVal.Add(new InterestKeywordDto {Name = formattedName, SystemAlias = "-1" + input.ToLower()});
 			}
 			return retVal;
 		}
@@ -60,6 +61,7 @@ namespace CliqFlip.Tasks.TaskImpl
 				string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(name.ToLower());
 				subject = new Subject(formattedName);
 
+                //TODO: Turn the formatted name into the SystemAlias format
 				//TODO: relate the new subject to the know subject
 
 				_repository.Save(subject);

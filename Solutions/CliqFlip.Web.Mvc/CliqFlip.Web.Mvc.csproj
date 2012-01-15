@@ -404,7 +404,7 @@
     <Content Include="Content\js\colorbox\jquery.colorbox.js" />
     <Content Include="Content\js\core.js" />
     <Content Include="Content\js\home\home.js" />
-    <Content Include="Content\js\interestpicker.jquery.js" />
+    <Content Include="Content\js\user\create.js" />
     <Content Include="Content\js\jflickrfeed.min.js" />
     <Content Include="Content\js\jquery-1.6.1-vsdoc.js" />
     <Content Include="Content\js\jquery-1.6.1.js" />

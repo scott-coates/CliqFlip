@@ -1,4 +1,5 @@
 ﻿using SharpArch.Domain.DomainModel;
+using CliqFlip.Domain.Common;
 
 namespace CliqFlip.Domain.Entities
 {
@@ -16,12 +17,14 @@ namespace CliqFlip.Domain.Entities
         public Subject(string name)
         {
             this.Name = name;
+            this.SystemAlias = name.Slugify();
         }
 
         public Subject(int id, string name)
         {
             this.Id = id;
             this.Name = name;
+            this.SystemAlias = name.Slugify();
         }
     }
 }
