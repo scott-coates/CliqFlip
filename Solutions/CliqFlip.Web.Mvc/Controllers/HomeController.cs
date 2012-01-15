@@ -17,7 +17,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			var viewModel = new IndexViewModel
 			                	{
-			                		KeywordSearchUrl = "\"" + Url.Action("KeywordSearch", "Interest") + "\""
+			                		KeywordSearchUrl = "\"" + Url.Action("KeywordSearch", "Subject") + "\""
 			                	};
 			return View(viewModel);
 		}

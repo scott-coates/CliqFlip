@@ -31,13 +31,12 @@ namespace CliqFlip.Tasks.TaskImpl
 
 			if (subjs.Any())
 			{
-				retVal.AddRange(subjs.Select(subj => new InterestKeywordDto {SystemAlias = subj.SystemAlias, Name = subj.Name}));
+				retVal.AddRange(subjs.Select(subj => new InterestKeywordDto { Id = subj.Id, SystemAlias = subj.SystemAlias, Name = subj.Name}));
 			}
 			else
 			{
 				retVal.Add(new InterestKeywordDto {Name = input, SystemAlias = "-1" + input.ToLower()});
 			}
-
 			return retVal;
 		}
 
@@ -50,10 +49,10 @@ namespace CliqFlip.Tasks.TaskImpl
 		}
 
 
-		public InterestDto SaveOrUpdate(string name)
+		public InterestDto GetOrCreate(string name)
 		{
-			//TODO: Make the db responsible for the matching, not C# code.
-			Subject subject = _repository.FindAll().SingleOrDefault(x => x.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase));
+            AdHoc<Subject> withMatchingName = new AdHoc<Subject>(x => x.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase));
+			Subject subject = _repository.FindOne(withMatchingName);
 
 			if (subject == null)
 			{

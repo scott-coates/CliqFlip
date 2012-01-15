@@ -53,12 +53,14 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public UserDto Create(UserDto userToCreate)
 		{
-			var matchingNameOrEmail = new AdHoc<User>(x => x.Username == userToCreate.Username || x.Email == userToCreate.Email);
-			//Check username and email are unique
-			if (_repository.FindAll(matchingNameOrEmail).Any())
+			var withMatchingNameOrEmail = new AdHoc<User>(x => x.Username == userToCreate.Username || x.Email == userToCreate.Email);
+			
+            //Check username and email are unique
+			if (_repository.FindAll(withMatchingNameOrEmail).Any())
 			{
 				return null;
 			}
+
 			//TODO: Encrypt password
 			var user = new User(userToCreate.Username, userToCreate.Email, userToCreate.Password);
 
@@ -66,7 +68,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			foreach (InterestDto userInterest in userToCreate.InterestDtos)
 			{
 				//get or create the subject
-				InterestDto subject = _subjectTasks.SaveOrUpdate(userInterest.Name);
+				InterestDto subject = _subjectTasks.GetOrCreate(userInterest.Name);
 
 				var interest = new Interest
 								{
