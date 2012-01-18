@@ -75,11 +75,11 @@ function initUserCreate() {
 
                 var addToList = true;
 
-                //make a call to the subject search
+                //make a call to the Interest search
                 //If the item the user has typed does not have an exact match
-                //it should add it to the end of the list by pushing a new json object into the subject array
+                //it should add it to the end of the list by pushing a new json object into the Interest array
                 //Then let autocomplete do it's thing
-                $.getJSON("/Subject/KeywordSearch?input=" + term, function (data) {
+                $.getJSON("/Interest/KeywordSearch?input=" + term, function (data) {
 
                     //if the item the user is searching for is in the list
                     //it should not be added at the end
@@ -125,7 +125,7 @@ function initUserCreate() {
 
     function onInterestAdded(interest) {
 
-        //if an interest with the same subject has been added
+        //if an interest with the same Interest has been added
         if ($.inArray(interest.Name.toLowerCase(), interestNames) >= 0) {
             return;
         }

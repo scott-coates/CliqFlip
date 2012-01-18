@@ -6,7 +6,7 @@ using CliqFlip.Domain.Entities;
 
 namespace CliqFlip.Domain.Contracts.Tasks
 {
-	public interface ISubjectTasks
+	public interface IInterestTasks
 	{
 		IList<InterestKeywordDto> GetMatchingKeywords(string input);
 		IList<string> GetSystemAliasAndParentAlias(IList<string> systemAliases);

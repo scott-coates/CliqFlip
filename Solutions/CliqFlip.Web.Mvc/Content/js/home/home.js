@@ -1,4 +1,4 @@
-var subjects = null;
+var interests = null;
 
 
 function FormatList(data, elem) {
@@ -28,7 +28,7 @@ function SelectionAdded(elem, data) {
 }
 
 function InitAutoSuggest(searchUrl) {
-	subjects = $("#interestSearch").autoSuggest(searchUrl,
+	interests = $("#interestSearch").autoSuggest(searchUrl,
 		{
 			asHtmlID: "search_values",
 			selectedValuesProp: "SystemAlias",
@@ -56,7 +56,7 @@ function InitTagCloud() {
 		var tagValue = $(this).attr('value');
 		var tagName = this.innerText;
 		var tagValueToAdd = { Name: tagName, Id: tagValue };
-		subjects.addNewItem(tagValueToAdd);
+		interests.addNewItem(tagValueToAdd);
 	});
 }
 

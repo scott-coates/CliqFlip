@@ -10,24 +10,24 @@ using SharpArch.Domain.Specifications;
 
 namespace CliqFlip.Tasks.TaskImpl
 {
-	public class SubjectTasks : ISubjectTasks
+	public class InterestTasks : IInterestTasks
 	{
-		private readonly ILinqRepository<Subject> _repository;
+		private readonly ILinqRepository<Interest> _repository;
 
-		public SubjectTasks(ILinqRepository<Subject> repository)
+		public InterestTasks(ILinqRepository<Interest> repository)
 		{
 			_repository = repository;
 		}
 
-		#region ISubjectTasks Members
+		#region IInterestTasks Members
 
 		public IList<InterestKeywordDto> GetMatchingKeywords(string input)
 		{
 			var retVal = new List<InterestKeywordDto>();
 
-			var adHoc = new AdHoc<Subject>(s => s.Name.Contains(input));
+			var adHoc = new AdHoc<Interest>(s => s.Name.Contains(input));
 
-			IQueryable<Subject> subjs = _repository.FindAll(adHoc);
+			IQueryable<Interest> subjs = _repository.FindAll(adHoc);
 
 			if (subjs.Any())
 			{
@@ -43,30 +43,30 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public IList<string> GetSystemAliasAndParentAlias(IList<string> systemAliases)
 		{
-			var subjectsAndParentsQuery = new AdHoc<Subject>(x => systemAliases.Contains(x.SystemAlias) && x.ParentSubject != null);
-			List<string> subjectsAndParents = _repository.FindAll(subjectsAndParentsQuery).Select(x => x.ParentSubject.SystemAlias).ToList();
-			subjectsAndParents.AddRange(systemAliases);
-			return subjectsAndParents.Distinct().ToList();
+			var interestsAndParentQuery = new AdHoc<Interest>(x => systemAliases.Contains(x.SystemAlias) && x.ParentInterest != null);
+			List<string> interestandParents = _repository.FindAll(interestsAndParentQuery).Select(x => x.ParentInterest.SystemAlias).ToList();
+			interestandParents.AddRange(systemAliases);
+			return interestandParents.Distinct().ToList();
 		}
 
 
 		public InterestDto GetOrCreate(string name)
 		{
-            AdHoc<Subject> withMatchingName = new AdHoc<Subject>(x => x.Name == name);
-			Subject subject = _repository.FindOne(withMatchingName);
+            AdHoc<Interest> withMatchingName = new AdHoc<Interest>(x => x.Name == name);
+			Interest interest = _repository.FindOne(withMatchingName);
 
-			if (subject == null)
+			if (interest == null)
 			{
 				//Since the interest does not exist create it.
 				string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(name.ToLower());
-				subject = new Subject(formattedName);
+				interest = new Interest(formattedName);
 
                 //TODO: Turn the formatted name into the SystemAlias format
-				//TODO: relate the new subject to the know subject
+				//TODO: relate the new Interest to the know Interest
 
-				_repository.Save(subject);
+				_repository.Save(interest);
 			}
-			return new InterestDto(subject.Id, subject.Name, subject.SystemAlias);
+			return new InterestDto(interest.Id, interest.Name, interest.SystemAlias);
 		}
 
 		#endregion

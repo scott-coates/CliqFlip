@@ -15,12 +15,12 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 	public class SearchController : Controller
 	{
-		private readonly ISubjectTasks _subjectTasks;
+		private readonly IInterestTasks _interestTasks;
 		private readonly IUsersByInterestsQuery _usersByInterestsQuery;
 
-		public SearchController(ISubjectTasks subjectTasks, IUsersByInterestsQuery usersByInterestsQuery)
+		public SearchController(IInterestTasks interestTasks, IUsersByInterestsQuery usersByInterestsQuery)
 		{
-			_subjectTasks = subjectTasks;
+			_interestTasks = interestTasks;
 			_usersByInterestsQuery = usersByInterestsQuery;
 		}
 

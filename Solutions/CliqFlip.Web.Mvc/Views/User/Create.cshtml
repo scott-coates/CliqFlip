@@ -168,7 +168,7 @@
                 @Html.ValidationSummary(true)
     
                 <fieldset class="step ui-formwizard-content" id="stepInterests">
-                    <strong>Add your Interests</strong>
+                    <strong>Add your UserInterests</strong>
                     <div id="divInterestSearch">
                         <input type="text" id="interestName" placeholder="Type an interest..." />
                     </div>
@@ -230,13 +230,13 @@
 	<li style="display: none;">
         <a href='javscript:void(0)' class='remove-interest'></a>
 		<div>
-            <input type='hidden' name='Interests[${Index}].Id' value='${Id}' />
-            <input type='hidden' name='Interests[${Index}].Name' value='${Name}' />
+            <input type='hidden' name='UserInterests[${Index}].Id' value='${Id}' />
+            <input type='hidden' name='UserInterests[${Index}].Name' value='${Name}' />
             <div class="title"><p>${Name}</p></div>
             
                 <div id="subcategory" style='${generateVisibility($item.data)}' >
                     <label>Category</label><br />
-                    <select name="Interests[${Index}].Category">
+                    <select name="UserInterests[${Index}].Category">
                         <option value="">Choose...</option>
                         <option>Animals</option>
                         <option>Arts and Humanities</option>
@@ -272,17 +272,17 @@
             <div id="sociality">
                 <label class="level1">
                     <img src="@Url.Content("~/Content/img/social1.png")" />
-                    <input type="radio" name="Interests[${Index}].Sociality" value="0" /><br />
+                    <input type="radio" name="UserInterests[${Index}].Sociality" value="0" /><br />
                     Alone
                 </label>
                 <label class="level2">
                     <img src="@Url.Content("~/Content/img/social2.png")" />
-                    <input type="radio" name="Interests[${Index}].Sociality" value="50" /><br />
+                    <input type="radio" name="UserInterests[${Index}].Sociality" value="50" /><br />
                     Small
                 </label>
                 <label class="level3">
                     <img src="@Url.Content("~/Content/img/social3.png")" />
-                    <input type="radio" name="Interests[${Index}].Sociality" value="100" /><br />
+                    <input type="radio" name="UserInterests[${Index}].Sociality" value="100" /><br />
                     Large
                 </label>
             </div>
@@ -305,8 +305,8 @@
     <script type="text/javascript" src="@Url.Content("/Content/js/user/create.js")"></script>
     <script type="text/javascript">
         
-        function generateVisibility(subject) {
-            if(subject.Id != 0 )
+        function generateVisibility(interest) {
+            if(interest.Id != 0 )
             {
                 return "visibility: hidden;";
             }

@@ -6,18 +6,18 @@ namespace CliqFlip.Web.Mvc.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly ISubjectTasks _subjectTasks;
+		private readonly IInterestTasks _interestTasks;
 
-		public HomeController(ISubjectTasks subjectTasks)
+		public HomeController(IInterestTasks interestTasks)
 		{
-			_subjectTasks = subjectTasks;
+			_interestTasks = interestTasks;
 		}
 
 		public ActionResult Index()
 		{
 			var viewModel = new IndexViewModel
 			                	{
-			                		KeywordSearchUrl = "\"" + Url.Action("KeywordSearch", "Subject") + "\""
+			                		KeywordSearchUrl = "\"" + Url.Action("KeywordSearch", "Interest") + "\""
 			                	};
 			return View(viewModel);
 		}
