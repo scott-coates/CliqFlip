@@ -82,7 +82,7 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Common\Constants.cs" />
-    <Compile Include="Common\StringExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Contracts\Queries\IUsersByInterestsQuery.cs" />
     <Compile Include="Contracts\Tasks\IUserTasks.cs" />
     <Compile Include="Contracts\Tasks\IInterestTasks.cs" />
@@ -93,6 +93,7 @@
     <Compile Include="Entities\Interest.cs" />
     <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Search\FuzzySearch.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

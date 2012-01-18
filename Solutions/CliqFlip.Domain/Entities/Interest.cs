@@ -1,4 +1,5 @@
 ﻿using CliqFlip.Domain.Common;
+using CliqFlip.Domain.Extensions;
 using SharpArch.Domain.DomainModel;
 
 namespace CliqFlip.Domain.Entities

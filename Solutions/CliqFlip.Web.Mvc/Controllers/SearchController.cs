@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Home;
 using CliqFlip.Web.Mvc.ViewModels.Search;
@@ -15,12 +14,10 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 	public class SearchController : Controller
 	{
-		private readonly IInterestTasks _interestTasks;
 		private readonly IUsersByInterestsQuery _usersByInterestsQuery;
 
-		public SearchController(IInterestTasks interestTasks, IUsersByInterestsQuery usersByInterestsQuery)
+		public SearchController(IUsersByInterestsQuery usersByInterestsQuery)
 		{
-			_interestTasks = interestTasks;
 			_usersByInterestsQuery = usersByInterestsQuery;
 		}
 
