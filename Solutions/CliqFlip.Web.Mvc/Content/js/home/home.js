@@ -4,11 +4,19 @@ var interests = null;
 function FormatList(data, elem) {
 	var systemAliasPrefix = data.SystemAlias.substring(0, 2);
 
-	$(elem).html(data.Name);
 
 	if (systemAliasPrefix === "-1") {
-		var item = $("em", elem);
-		item.css('background', 'red');
+		$(elem).html(data.Name + " does not exist. Register to add it or explore another interest.");
+		$(elem).unbind('click');
+		$(elem).css('background-image', 'none');//active class is applied and puts a small, awkward blob
+		$(elem).click(function (event) {
+			event.stopPropagation();
+			return false;
+		});
+		elem.removeClass('as-result-item');
+		elem.addClass('invalidKeywordSearch');
+	} else {
+		$(elem).html(data.Name);
 	}
 
 	return elem;
@@ -16,7 +24,7 @@ function FormatList(data, elem) {
 
 function SelectionAdded(elem, data) {
 	//TODO: use the #as-values-search_values elem to see if -1 instead of modify source code
-	
+
 	var systemAliasPrefix = data.SystemAlias.substring(0, 2);
 
 	if (systemAliasPrefix === "-1") {
@@ -24,17 +32,21 @@ function SelectionAdded(elem, data) {
 		item.css('color', 'red');
 	}
 
+	$(elem).click(function (event) {
+		event.preventDefault();
+	});
+
 	return elem;
 }
 
 function InitAutoSuggest(searchUrl) {
 	interests = $("#interestSearch").autoSuggest(searchUrl,
 		{
-			keyDelay: 2000,
+			keyDelay: 600,
 			asHtmlID: "search_values",
 			selectedValuesProp: "SystemAlias",
 			selectedItemProp: "Name",
-			searchObjProps: "SystemAlias",
+			searchObjProps: "Name,OriginalInput",
 			queryParam: "input",
 			minChars: 2,
 			startText: "Type in some things you like",
@@ -53,7 +65,7 @@ function InitTagCloud() {
 
 	$("#interest-tag-cloud a").show();
 
-	$("#interest-tag-cloud a").click(function() {
+	$("#interest-tag-cloud a").click(function () {
 		var tagValue = $(this).attr('value');
 		var tagName = this.innerText;
 		var tagValueToAdd = { Name: tagName, Id: tagValue };

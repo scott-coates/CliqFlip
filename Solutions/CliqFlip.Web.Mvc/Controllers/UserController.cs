@@ -12,7 +12,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 {
     public class UserController : Controller
     {
-        private IUserTasks _userTasks;
+        private readonly IUserTasks _userTasks;
 
         public UserController(IUserTasks profileTasks)
         {

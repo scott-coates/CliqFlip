@@ -60,7 +60,7 @@ function initUserCreate() {
         var formWizardOptions = {
             disableUIStyles: true,
             inDuration: 100,
-            outDuration: 100,
+            outDuration: 100
         };
 
         formProfileCreate.formwizard(formWizardOptions).bind("step_shown", onStepShown);
@@ -79,7 +79,7 @@ function initUserCreate() {
                 //If the item the user has typed does not have an exact match
                 //it should add it to the end of the list by pushing a new json object into the Interest array
                 //Then let autocomplete do it's thing
-                $.getJSON("/Interest/KeywordSearch?input=" + term, function (data) {
+                $.getJSON("/Search/Interest?input=" + term, function (data) {
 
                     //if the item the user is searching for is in the list
                     //it should not be added at the end

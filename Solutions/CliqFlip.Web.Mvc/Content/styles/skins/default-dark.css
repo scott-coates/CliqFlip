@@ -1042,7 +1042,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa200', end
 		padding: 25px;
 
 	}
-	
+.invalidKeywordSearch {
+	padding: 5px 10px;
+	background-color: #EDEDED;
+}	
 .tryout .results { margin-top: 25px;}
 #userSearchResults 
 {

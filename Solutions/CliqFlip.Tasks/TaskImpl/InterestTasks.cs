@@ -34,11 +34,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			{
 				retVal.AddRange(subjs.OrderBy(subj => FuzzySearch.LevenshteinDistance(input, subj.Name)).Take(10).Select(subj => new InterestKeywordDto { Id = subj.Id, SystemAlias = subj.SystemAlias, Name = subj.Name, OriginalInput = input }));
 			}
-			else
-			{
-				string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(input.ToLower());
-				retVal.Add(new InterestKeywordDto { Name = formattedName, SystemAlias = "-1" + input.ToLower() });
-			}
+
 			return retVal;
 		}
 
