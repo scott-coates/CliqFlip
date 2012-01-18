@@ -5,6 +5,7 @@ using System.Threading;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.Search;
 using SharpArch.Domain.PersistenceSupport;
 using SharpArch.Domain.Specifications;
 
@@ -25,18 +26,18 @@ namespace CliqFlip.Tasks.TaskImpl
 		{
 			var retVal = new List<InterestKeywordDto>();
 
-			var adHoc = new AdHoc<Interest>(s => s.Name.Contains(input));
+			var adHoc = new AdHoc<Interest>(s => s.Name.Contains(input) || input.Contains(s.Name));
 
-			IQueryable<Interest> subjs = _repository.FindAll(adHoc);
+			IList<Interest> subjs = _repository.FindAll(adHoc).ToList();
 
 			if (subjs.Any())
 			{
-				retVal.AddRange(subjs.Select(subj => new InterestKeywordDto { Id = subj.Id, SystemAlias = subj.SystemAlias, Name = subj.Name}));
+				retVal.AddRange(subjs.OrderBy(subj => FuzzySearch.LevenshteinDistance(input, subj.Name)).Take(10).Select(subj => new InterestKeywordDto { Id = subj.Id, SystemAlias = subj.SystemAlias, Name = subj.Name, OriginalInput = input }));
 			}
 			else
 			{
-                string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(input.ToLower());
-				retVal.Add(new InterestKeywordDto {Name = formattedName, SystemAlias = "-1" + input.ToLower()});
+				string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(input.ToLower());
+				retVal.Add(new InterestKeywordDto { Name = formattedName, SystemAlias = "-1" + input.ToLower() });
 			}
 			return retVal;
 		}
@@ -52,7 +53,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public InterestDto GetOrCreate(string name)
 		{
-            AdHoc<Interest> withMatchingName = new AdHoc<Interest>(x => x.Name == name);
+			var withMatchingName = new AdHoc<Interest>(x => x.Name == name);
 			Interest interest = _repository.FindOne(withMatchingName);
 
 			if (interest == null)
@@ -61,7 +62,7 @@ namespace CliqFlip.Tasks.TaskImpl
 				string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(name.ToLower());
 				interest = new Interest(formattedName);
 
-                //TODO: Turn the formatted name into the SystemAlias format
+				//TODO: Turn the formatted name into the SystemAlias format
 				//TODO: relate the new Interest to the know Interest
 
 				_repository.Save(interest);
