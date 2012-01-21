@@ -1,12 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<MigratorTasksPath>..\..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib</MigratorTasksPath>
+	</PropertyGroup>
 
-	<Import Project="..\..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib\Migrator.Targets" />
+	<Import Project="$(MigratorTasksPath)\Migrator.Targets" />
 
-	<Target Name="Migrate" DependsOnTargets="Build">
+	<Target Name="Migrate">
+
+		<CreateProperty Value="-1"  Condition="'$(SchemaVersion)'==''">
+			<Output TaskParameter="Value" PropertyName="SchemaVersion"/>
+		</CreateProperty>
+
+		<CreateProperty Value="Data Source=.;Initial Catalog=Migrator;Integrated Security=true;"  Condition="'$(ConnectionString)'==''">
+			<Output TaskParameter="Value" PropertyName="ConnectionString"/>
+		</CreateProperty>
 
 		<Migrate Provider="SqlServer"
-				Connectionstring="Data Source=.;Initial Catalog=Migrator;Integrated Security=true;"
-				Migrations="../bin/$(Configuration)/CliqFlip.Infrastructure.dll"/>
+				Connectionstring="$(ConnectionString)"
+						 Migrations="../bin/debug/CliqFlip.Infrastructure.dll"
+						 To="$(SchemaVersion)"/>
 	</Target>
 </Project>
