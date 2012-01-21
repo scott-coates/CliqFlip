@@ -10,6 +10,7 @@ namespace CliqFlip.Domain.Entities
 		public virtual string Username { get; set; }
         public virtual string Email { get; set; }
         public virtual string Password { get; set; }
+        public virtual string Salt { get; set; }
 		public virtual string Bio { get; set; }
 		
 		public User()
@@ -17,11 +18,12 @@ namespace CliqFlip.Domain.Entities
             Interests = new List<UserInterest>();
 		}
 
-        public User(string username, string email, string password)
+        public User(string username, string email, string password, string salt)
         {
             this.Username = username;
             this.Email = email;
             this.Password = password;
+            this.Salt = salt;
             Interests = new List<UserInterest>();
         }
     }

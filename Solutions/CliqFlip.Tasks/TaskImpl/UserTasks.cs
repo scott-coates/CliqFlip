@@ -5,6 +5,7 @@ using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 using SharpArch.Domain.PersistenceSupport;
 using SharpArch.Domain.Specifications;
+using CliqFlip.Infrastructure;
 
 namespace CliqFlip.Tasks.TaskImpl
 {
@@ -61,8 +62,11 @@ namespace CliqFlip.Tasks.TaskImpl
 				return null;
 			}
 
-			//TODO: Encrypt password
-			var user = new User(userToCreate.Username, userToCreate.Email, userToCreate.Password);
+
+            var salt = PasswordHelper.GenerateSalt(8);
+            var pHash = PasswordHelper.GetPasswordHash(userToCreate.Password, salt);
+
+			var user = new User(userToCreate.Username, userToCreate.Email, pHash, salt);
 
 			//add all the interests
 			foreach (InterestDto userInterest in userToCreate.InterestDtos)
