@@ -114,9 +114,7 @@
     <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Migrator\Migrations\Copy of Copy of Migration20120121103924.cs" />
-    <Compile Include="Migrator\Migrations\Copy of Migration20120121103924.cs" />
-    <Compile Include="Migrator\Migrations\Migration20120121103924.cs" />
+    <Compile Include="Migrator\Migrations\AddUser.cs" />
     <Compile Include="NHibernateMaps\AutomappingConfiguration.cs" />
     <Compile Include="NHibernateMaps\Conventions\CustomForeignKeyConvention.cs" />
     <Compile Include="NHibernateMaps\Conventions\HasManyConvention.cs" />
