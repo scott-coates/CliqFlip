@@ -4,7 +4,7 @@
 	<Import Project="..\..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib\Migrator.Targets" />
 
 	<Target Name="Migrate" DependsOnTargets="Build">
-
+		<MakeDir Directories="Test"></MakeDir>
 		<Migrate Provider="SqlServer"
 				Connectionstring="Data Source=.;Initial Catalog=Migrator;Integrated Security=true;"
 				Migrations="../bin/$(Configuration)/CliqFlip.Infrastructure.dll"/>
