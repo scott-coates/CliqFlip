@@ -2,16 +2,17 @@
 
 namespace CliqFlip.Infrastructure.Migrator.Migrations
 {
-	[Migration(20120121105512)]
-	public class AddUser : Migration
+	[Migration(2012012321105512)]
+	public class AddUser : ConditionalMigration
 	{
-		public override void Up()
+		protected override void ConditionalUp()
 		{
 			
 		}
 
-		public override void Down()
+		protected override void ConditionalDown()
 		{
+			
 		}
 	}
 }
