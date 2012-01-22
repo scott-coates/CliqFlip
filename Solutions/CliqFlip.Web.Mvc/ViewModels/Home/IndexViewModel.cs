@@ -10,13 +10,19 @@ namespace CliqFlip.Web.Mvc.ViewModels.Home
 {
 	public class IndexViewModel
 	{
+		public IndexViewModel()
+		{
+			TagCloudInterests = new List<TagCloudInterestsViewModel>();
+		}
+
 		public string KeywordSearchUrl { get; set; }
+		public IList<TagCloudInterestsViewModel> TagCloudInterests { get; set; }
 
 		public class TagCloudInterestsViewModel
 		{
-			public string Name { get; set; }	
-			public string Slug { get; set; }	
-			public int Weight { get; set; }	
+			public string Name { get; set; }
+			public string Slug { get; set; }
+			public int Weight { get; set; }
 		}
 	}
 }

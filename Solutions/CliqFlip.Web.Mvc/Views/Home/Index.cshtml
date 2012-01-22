@@ -1,4 +1,5 @@
-﻿@model CliqFlip.Web.Mvc.ViewModels.Home.IndexViewModel
+﻿@using CliqFlip.Web.Mvc.ViewModels.Home
+@model CliqFlip.Web.Mvc.ViewModels.Home.IndexViewModel
 @{
 	ViewBag.Title = "CliqFlip - Discover More";
 }
@@ -27,7 +28,10 @@
 					}
 				</div>
 				<div class="tag-cloud" id="interest-tag-cloud">
-					<a href="#" style="padding: 7px;" value="1" rel="7">peace</a>
+					@foreach (IndexViewModel.TagCloudInterestsViewModel tag in Model.TagCloudInterests)
+					{
+						<a href="javascript:void(0)" value="@tag.Slug" rel="@tag.Weight">@tag.Name</a>
+					}
 				</div>
 			</div>
 		</div>

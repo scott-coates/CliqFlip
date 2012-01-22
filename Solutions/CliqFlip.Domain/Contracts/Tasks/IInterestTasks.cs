@@ -9,7 +9,8 @@ namespace CliqFlip.Domain.Contracts.Tasks
 	public interface IInterestTasks
 	{
 		IList<InterestKeywordDto> GetMatchingKeywords(string input);
-		IList<string> GetSlugAndSlug(IList<string> slugs);
+		IList<string> GetSlugAndParentSlug(IList<string> slugs);
+		IList<RankedInterestDto> GetMostPopularInterests();
         InterestDto GetOrCreate(string name);
     }
 }
