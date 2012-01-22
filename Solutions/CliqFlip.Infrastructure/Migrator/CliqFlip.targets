@@ -12,7 +12,7 @@
 			<Output TaskParameter="Value" PropertyName="SchemaVersion"/>
 		</CreateProperty>
 
-		<CreateProperty Value="Data Source=.;Initial Catalog=Migrator;Integrated Security=true;"  Condition="'$(ConnectionString)'==''">
+		<CreateProperty Value="Data Source=.;Initial Catalog=CliqFlip;Integrated Security=true;"  Condition="'$(ConnectionString)'==''">
 			<Output TaskParameter="Value" PropertyName="ConnectionString"/>
 		</CreateProperty>
 
