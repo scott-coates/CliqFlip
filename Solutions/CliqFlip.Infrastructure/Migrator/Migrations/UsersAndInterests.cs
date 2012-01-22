@@ -61,7 +61,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 		{
 			Database.RemoveTable("UserInterest");
 			Database.RemoveTable("Interest");
-			Database.RemoveTable("User");
+			Database.ExecuteNonQuery("DROP TABLE [USER]"); //user is a reserved keyword and makes this fail
 		}
 	}
 }
