@@ -117,6 +117,7 @@
     </Compile>
     <Compile Include="Common\PathHelper.cs" />
     <Compile Include="Migrator\ConditionalMigration.cs" />
+    <Compile Include="Migrator\Migrations\UsersAndInterests.cs" />
     <Compile Include="NHibernateMaps\AutomappingConfiguration.cs" />
     <Compile Include="NHibernateMaps\Conventions\CustomForeignKeyConvention.cs" />
     <Compile Include="NHibernateMaps\Conventions\HasManyConvention.cs" />
@@ -152,7 +153,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Migrator\Migrations\" />
     <Folder Include="NHibernateMaps\Overrides\" />
   </ItemGroup>
   <ItemGroup>
