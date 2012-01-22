@@ -59,9 +59,9 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 
 		public override void Down()
 		{
-			Database.RemoveTable("[UserInterest]");
-			Database.RemoveTable("[Interest]");
-			Database.RemoveTable("[User]");
+			Database.RemoveTable("UserInterest");
+			Database.RemoveTable("Interest");
+			Database.RemoveTable("User");
 		}
 	}
 }
