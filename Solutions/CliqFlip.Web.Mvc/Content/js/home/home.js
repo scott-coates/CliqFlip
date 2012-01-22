@@ -44,7 +44,7 @@ function InitAutoSuggest(searchUrl) {
 		{
 			keyDelay: 600,
 			asHtmlID: "search_values",
-			selectedValuesProp: "SystemAlias",
+			selectedValuesProp: "Slug",
 			selectedItemProp: "Name",
 			searchObjProps: "Name,OriginalInput",
 			queryParam: "input",

@@ -24,20 +24,20 @@ namespace CliqFlip.Tasks.TaskImpl
 		public IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IList<string> interestAliases)
 		{
 			IList<string> subjAliasAndParent = _interestTasks.GetSystemAliasAndParentAlias(interestAliases);
-			var query = new AdHoc<User>(x => x.Interests.Any(y => subjAliasAndParent.Contains(y.Interest.SystemAlias))
+			var query = new AdHoc<User>(x => x.Interests.Any(y => subjAliasAndParent.Contains(y.Interest.Slug))
 											 ||
-											 x.Interests.Any(y => subjAliasAndParent.Contains(y.Interest.ParentInterest.SystemAlias)));
+											 x.Interests.Any(y => subjAliasAndParent.Contains(y.Interest.ParentInterest.Slug)));
 
 			List<User> users = _repository.FindAll(query).ToList();
 			return users.Select(user => new UserSearchByInterestsDto
 											{
 												MatchCount = user.Interests.Sum(x =>
 																					{
-																						if (interestAliases.Contains(x.Interest.SystemAlias))
+																						if (interestAliases.Contains(x.Interest.Slug))
 																							return 3; //movies -> movies (same match)
-																						if (x.Interest.ParentInterest != null && subjAliasAndParent.Contains(x.Interest.ParentInterest.SystemAlias))
+																						if (x.Interest.ParentInterest != null && subjAliasAndParent.Contains(x.Interest.ParentInterest.Slug))
 																							return 2; //movies -> tv shows (sibling match)
-																						if (subjAliasAndParent.Contains(x.Interest.SystemAlias))
+																						if (subjAliasAndParent.Contains(x.Interest.Slug))
 																							return 1; //movies -> entertainment (parent match)
 																						return 0;
 																					}),
@@ -45,7 +45,7 @@ namespace CliqFlip.Tasks.TaskImpl
 															{
 																Username = user.Username,
 																InterestDtos = user.Interests
-																	.Select(x => new InterestDto(x.Interest.Id, x.Interest.Name, x.Interest.SystemAlias)).ToList(),
+																	.Select(x => new InterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(),
 																Bio = user.Bio
 															}
 											}).OrderByDescending(x => x.MatchCount).ToList();
@@ -93,7 +93,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			return users.Select(user => new UserSearchByInterestsDto
 											{
 												MatchCount = user.Interests.Select(x => x.Id).Intersect(interestList).Count(),
-												UserDto = new UserDto { Username = user.Username, InterestDtos = user.Interests.Select(x => new InterestDto(x.Interest.Id, x.Interest.Name, x.Interest.SystemAlias)).ToList(), Bio = user.Bio }
+												UserDto = new UserDto { Username = user.Username, InterestDtos = user.Interests.Select(x => new InterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(), Bio = user.Bio }
 											}).ToList();
 		}
 	}

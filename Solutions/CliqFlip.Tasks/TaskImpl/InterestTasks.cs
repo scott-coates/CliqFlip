@@ -32,7 +32,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 			if (subjs.Any())
 			{
-				retVal.AddRange(subjs.OrderBy(subj => FuzzySearch.LevenshteinDistance(input, subj.Name)).Take(10).Select(subj => new InterestKeywordDto { Id = subj.Id, SystemAlias = subj.SystemAlias, Name = subj.Name, OriginalInput = input }));
+				retVal.AddRange(subjs.OrderBy(subj => FuzzySearch.LevenshteinDistance(input, subj.Name)).Take(10).Select(subj => new InterestKeywordDto { Id = subj.Id, SystemAlias = subj.Slug, Name = subj.Name, OriginalInput = input }));
 			}
 
 			return retVal;
@@ -40,8 +40,8 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public IList<string> GetSystemAliasAndParentAlias(IList<string> systemAliases)
 		{
-			var interestsAndParentQuery = new AdHoc<Interest>(x => systemAliases.Contains(x.SystemAlias) && x.ParentInterest != null);
-			List<string> interestandParents = _repository.FindAll(interestsAndParentQuery).Select(x => x.ParentInterest.SystemAlias).ToList();
+			var interestsAndParentQuery = new AdHoc<Interest>(x => systemAliases.Contains(x.Slug) && x.ParentInterest != null);
+			List<string> interestandParents = _repository.FindAll(interestsAndParentQuery).Select(x => x.ParentInterest.Slug).ToList();
 			interestandParents.AddRange(systemAliases);
 			return interestandParents.Distinct().ToList();
 		}
@@ -58,12 +58,12 @@ namespace CliqFlip.Tasks.TaskImpl
 				string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(name.ToLower());
 				interest = new Interest(formattedName);
 
-				//TODO: Turn the formatted name into the SystemAlias format
+				//TODO: Turn the formatted name into the Slug format
 				//TODO: relate the new Interest to the know Interest
 
 				_repository.Save(interest);
 			}
-			return new InterestDto(interest.Id, interest.Name, interest.SystemAlias);
+			return new InterestDto(interest.Id, interest.Name, interest.Slug);
 		}
 
 		#endregion
