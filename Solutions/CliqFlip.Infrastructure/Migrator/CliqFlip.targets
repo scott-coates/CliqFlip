@@ -6,6 +6,11 @@
 
 	<Import Project="$(MigratorTasksPath)\Migrator.Targets" />
 
+	<ItemGroup>
+		<MigrationFiles Include="Migrations\**\*.*" />
+		<MigrationFiles Include="ConditionalMigration.cs" />
+	</ItemGroup>
+
 	<Target Name="Migrate">
 
 		<CreateProperty Value="-1"  Condition="'$(SchemaVersion)'==''">
@@ -16,9 +21,11 @@
 			<Output TaskParameter="Value" PropertyName="ConnectionString"/>
 		</CreateProperty>
 
+		<Copy SourceFiles="@(MigrationFiles)" DestinationFolder="..\bin\Debug\" />
+		
 		<Migrate Provider="SqlServer2005"
 				Connectionstring="$(ConnectionString)"
-						 Migrations="../bin/debug/CliqFlip.Infrastructure.dll"
+						 Directory="..\bin\Debug"
 						 To="$(SchemaVersion)"/>
 	</Target>
 </Project>
