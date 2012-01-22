@@ -12,7 +12,7 @@ using SharpArch.Domain.Specifications;
 namespace CliqFlip.Tasks.TaskImpl
 {
 	public class InterestTasks : IInterestTasks
-	{ 
+	{
 		private readonly ILinqRepository<Interest> _repository;
 
 		public InterestTasks(ILinqRepository<Interest> repository)
