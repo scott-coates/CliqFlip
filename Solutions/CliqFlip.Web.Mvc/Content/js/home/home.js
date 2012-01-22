@@ -68,7 +68,7 @@ function InitTagCloud() {
 	$("#interest-tag-cloud a").click(function () {
 		var tagValue = $(this).attr('value');
 		var tagName = this.innerText;
-		var tagValueToAdd = { Name: tagName, Id: tagValue };
+		var tagValueToAdd = { Name: tagName, Slug: tagValue };
 		interests.addNewItem(tagValueToAdd);
 	});
 }
