@@ -1,3 +1,5 @@
 ﻿ALTER DATABASE [$(DatabaseName)]
-    ADD FILE (NAME = [Test], FILENAME = '$(DefaultDataPath)$(DatabaseName).mdf', FILEGROWTH = 1024 KB) TO FILEGROUP [PRIMARY];
+    ADD FILE (NAME = [Test], FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL10_50.MSSQLSERVER\MSSQL\DATA\Test.mdf', SIZE = 2048 KB, FILEGROWTH = 1024 KB) TO FILEGROUP [PRIMARY];
+
+
 
