@@ -29,24 +29,6 @@
 					<Element Type="ISqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[Interest].[Id]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[Interest]" />
-				</Entry>
-			</Relationship>
-		</Element>
-		<Element Type="ISql100PrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="ISqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
 								<References Name="[dbo].[SchemaInfo].[Version]" />
 							</Entry>
 						</Relationship>
@@ -139,13 +121,33 @@
 				</Entry>
 			</Relationship>
 		</Element>
+		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[FK798382342BA6EEA7]">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[Interest].[ParentInterestId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Interest]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[Interest].[Id]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[Interest]" />
+				</Entry>
+			</Relationship>
+		</Element>
 		<Element Type="ISql100Table" Name="[dbo].[Interest]">
-			<Property Name="IsQuotedIdentifierOn" Value="False" />
+			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
 				<Entry>
 					<Element Type="ISql100SimpleColumn" Name="[dbo].[Interest].[Id]">
-						<Property Name="IsNullable" Value="False" />
-						<Property Name="IsIdentity" Value="True" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
@@ -158,8 +160,13 @@
 							</Entry>
 						</Relationship>
 						<Annotation Type="ColumnConfigAnnotation">
-							<Property Name="Selected" Value="True" />
 							<Property Name="Seed" Value="5" />
+							<Property Name="GeneratorExtensionHandleXml" Value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&#xD;&#xA;&lt;ExtensionHandle AssemblyName=&quot;Microsoft.Data.Schema.Generators.Sql, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&quot; TypeName=&quot;Microsoft.Data.Schema.Generators.Sql.Int&quot; /&gt;" />
+							<Property Name="OutputKey" Value="Result" />
+						</Annotation>
+						<Annotation Type="InputDescriptorAnnotation">
+							<Property Name="Value" Value="101" />
+							<Property Name="InputName" Value="Min" />
 						</Annotation>
 					</Element>
 				</Entry>
@@ -285,7 +292,7 @@
 			</Annotation>
 		</Element>
 		<Element Type="ISql100Table" Name="[dbo].[SchemaInfo]">
-			<Property Name="IsQuotedIdentifierOn" Value="False" />
+			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
 				<Entry>
 					<Element Type="ISql100SimpleColumn" Name="[dbo].[SchemaInfo].[Version]">
@@ -438,7 +445,7 @@
 			</Annotation>
 		</Element>
 		<Element Type="ISql100Table" Name="[dbo].[UserInterest]">
-			<Property Name="IsQuotedIdentifierOn" Value="False" />
+			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
 				<Entry>
 					<Element Type="ISql100SimpleColumn" Name="[dbo].[UserInterest].[Id]">
