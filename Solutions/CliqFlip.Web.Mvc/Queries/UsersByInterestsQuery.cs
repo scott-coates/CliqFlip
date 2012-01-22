@@ -20,9 +20,9 @@ namespace CliqFlip.Web.Mvc.Queries
 
 		#region IUsersByInterestsQuery Members
 
-		public UsersByInterestViewModel GetGetUsersByInterests(string systemAliases, int? page)
+		public UsersByInterestViewModel GetGetUsersByInterests(string slugs, int? page)
 		{
-			List<string> aliasCollection = systemAliases.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+			List<string> aliasCollection = slugs.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
 				.Where(x => !x.StartsWith("-1")).ToList();
 
 			IList<UserSearchByInterestsDto> users = _userTasks.GetUsersByInterestsDtos(aliasCollection);
@@ -37,7 +37,7 @@ namespace CliqFlip.Web.Mvc.Queries
 											.Select(x => new UsersByInterestViewModel.IndividualResultInterestViewModel
 															{
 																InterestName = x.Name,
-																IsMatch = aliasCollection.Contains(x.SystemAlias)
+																IsMatch = aliasCollection.Contains(x.Slug)
 															}).OrderByDescending(x => x.IsMatch).Take(5).ToList()
 									});
 			}

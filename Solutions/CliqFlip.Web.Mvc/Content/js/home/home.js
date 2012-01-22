@@ -2,10 +2,10 @@ var interests = null;
 
 
 function FormatList(data, elem) {
-	var systemAliasPrefix = data.SystemAlias.substring(0, 2);
+	var slugPrefix = data.Slug.substring(0, 2);
 
 
-	if (systemAliasPrefix === "-1") {
+	if (slugPrefix === "-1") {
 		$(elem).html(data.Name + " does not exist. Register to add it or explore another interest.");
 		$(elem).unbind('click');
 		$(elem).css('background-image', 'none');//active class is applied and puts a small, awkward blob
@@ -25,9 +25,9 @@ function FormatList(data, elem) {
 function SelectionAdded(elem, data) {
 	//TODO: use the #as-values-search_values elem to see if -1 instead of modify source code
 
-	var systemAliasPrefix = data.SystemAlias.substring(0, 2);
+	var slugPrefix = data.Slug.substring(0, 2);
 
-	if (systemAliasPrefix === "-1") {
+	if (slugPrefix === "-1") {
 		var item = $(elem);
 		item.css('color', 'red');
 	}

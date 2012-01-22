@@ -9,7 +9,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 	public interface IInterestTasks
 	{
 		IList<InterestKeywordDto> GetMatchingKeywords(string input);
-		IList<string> GetSystemAliasAndParentAlias(IList<string> systemAliases);
+		IList<string> GetSlugAndSlug(IList<string> slugs);
         InterestDto GetOrCreate(string name);
     }
 }

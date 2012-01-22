@@ -32,17 +32,17 @@ namespace CliqFlip.Tasks.TaskImpl
 
 			if (subjs.Any())
 			{
-				retVal.AddRange(subjs.OrderBy(subj => FuzzySearch.LevenshteinDistance(input, subj.Name)).Take(10).Select(subj => new InterestKeywordDto { Id = subj.Id, SystemAlias = subj.Slug, Name = subj.Name, OriginalInput = input }));
+				retVal.AddRange(subjs.OrderBy(subj => FuzzySearch.LevenshteinDistance(input, subj.Name)).Take(10).Select(subj => new InterestKeywordDto { Id = subj.Id, Slug = subj.Slug, Name = subj.Name, OriginalInput = input }));
 			}
 
 			return retVal;
 		}
 
-		public IList<string> GetSystemAliasAndParentAlias(IList<string> systemAliases)
+		public IList<string> GetSlugAndSlug(IList<string> slugs)
 		{
-			var interestsAndParentQuery = new AdHoc<Interest>(x => systemAliases.Contains(x.Slug) && x.ParentInterest != null);
+			var interestsAndParentQuery = new AdHoc<Interest>(x => slugs.Contains(x.Slug) && x.ParentInterest != null);
 			List<string> interestandParents = _repository.FindAll(interestsAndParentQuery).Select(x => x.ParentInterest.Slug).ToList();
-			interestandParents.AddRange(systemAliases);
+			interestandParents.AddRange(slugs);
 			return interestandParents.Distinct().ToList();
 		}
 
