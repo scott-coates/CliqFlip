@@ -4,7 +4,7 @@ using Migrator.Framework.SchemaBuilder;
 namespace CliqFlip.Infrastructure.Migrator.Migrations
 {
 	[Migration(20120121161640)]
-	public class CreateUserAndInterestTables : Migration
+	public class CreateUserAndInterestTables001 : Migration
 	{
 		public override void Up()
 		{
