@@ -12,5 +12,11 @@ namespace CliqFlip.Web.Mvc.ViewModels.Home
 	{
 		public string KeywordSearchUrl { get; set; }
 
+		public class TagCloudInterestsViewModel
+		{
+			public string Name { get; set; }	
+			public string Slug { get; set; }	
+			public int Weight { get; set; }	
+		}
 	}
 }
