@@ -25,7 +25,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
        Username NVARCHAR(255) null,
        Email NVARCHAR(255) null,
        Password NVARCHAR(255) null,
-       Bio NVARCHAR(255) null,
+       Bio NVARCHAR(max) null,
        primary key (Id)
     )
 

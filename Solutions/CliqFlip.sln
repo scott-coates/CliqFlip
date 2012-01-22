@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliqFlip.Infrastructure", "CliqFlip.Infrastructure\CliqFlip.Infrastructure.csproj", "{9544D94B-9B6E-4B61-8A09-88382205BF86}"
 EndProject
+Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "CliqFlip.SqlServerData", "CliqFlip.SqlServerData\CliqFlip.SqlServerData.dbproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,12 @@ Global
 		{9544D94B-9B6E-4B61-8A09-88382205BF86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9544D94B-9B6E-4B61-8A09-88382205BF86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9544D94B-9B6E-4B61-8A09-88382205BF86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,5 +72,6 @@ Global
 		{CC4A233E-BE8A-47CC-A87C-8352BFD557B7} = {2322D330-1A60-4F79-B553-53DED803A098}
 		{8DEF56CD-601E-443C-9DCE-C4EC54C0B6A6} = {CAA74FBE-11EE-4B3E-8953-22DCFB6078BA}
 		{9544D94B-9B6E-4B61-8A09-88382205BF86} = {322C2632-17A0-4B1E-AD0C-BF6B44B1FECD}
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3} = {322C2632-17A0-4B1E-AD0C-BF6B44B1FECD}
 	EndGlobalSection
 EndGlobal
