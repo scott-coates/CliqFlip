@@ -75,6 +75,18 @@
     <Reference Include="Inflector.Net">
       <HintPath>..\..\ReferencedAssemblies\NHibernate\Inflector.Net.dll</HintPath>
     </Reference>
+    <Reference Include="Migrator">
+      <HintPath>..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib\Migrator.dll</HintPath>
+    </Reference>
+    <Reference Include="Migrator.Framework">
+      <HintPath>..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib\Migrator.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Migrator.MSBuild">
+      <HintPath>..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib\Migrator.MSBuild.dll</HintPath>
+    </Reference>
+    <Reference Include="Migrator.Providers">
+      <HintPath>..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib\Migrator.Providers.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\Packages\NHibernate.3.1.0.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
@@ -88,6 +100,7 @@
       <HintPath>..\..\ReferencedAssemblies\SharpArchitecture\SharpArch.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -102,13 +115,18 @@
     <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Common\PathHelper.cs" />
+    <Compile Include="Migrator\ConditionalMigration.cs" />
+    <Compile Include="Migrator\Migrations\CreateUserAndInterestTables001.cs" />
+    <Compile Include="Migrator\Migrations\TestData\CreateUserInterests004.cs" />
+    <Compile Include="Migrator\Migrations\TestData\CreateInterests003.cs" />
+    <Compile Include="Migrator\Migrations\TestData\CreateUsers002.cs" />
     <Compile Include="NHibernateMaps\AutomappingConfiguration.cs" />
     <Compile Include="NHibernateMaps\Conventions\CustomForeignKeyConvention.cs" />
     <Compile Include="NHibernateMaps\Conventions\HasManyConvention.cs" />
     <Compile Include="NHibernateMaps\Conventions\PrimaryKeyConvention.cs" />
     <Compile Include="NHibernateMaps\Conventions\TableNameConvention.cs" />
     <Compile Include="NHibernateMaps\AutoPersistenceModelGenerator.cs" />
-    <Compile Include="NHibernateMaps\Overrides\UserOverride.cs" />
     <Compile Include="PasswordHelper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -138,16 +156,23 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Folder Include="NHibernateMaps\Overrides\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Migrator\CliqFlip.targets" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Migrator\ExternalTools.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
+	<Target Name="AfterBuild">
+	</Target>
   -->
 </Project>

@@ -43,7 +43,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			if (!matchingKeywords.Any(x => x.Name.ToLower() == input.ToLower()))
 			{
 				string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(input.ToLower());
-				matchingKeywords.Insert(0, new InterestKeywordDto { Name = formattedName, SystemAlias = "-1" + input.ToLower() });
+				matchingKeywords.Insert(0, new InterestKeywordDto { Name = formattedName, Slug = "-1" + input.ToLower() });
 			}
 
 			var retVal = new JsonNetResult(matchingKeywords)

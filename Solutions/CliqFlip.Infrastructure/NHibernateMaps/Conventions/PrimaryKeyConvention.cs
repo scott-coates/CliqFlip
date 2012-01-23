@@ -12,8 +12,7 @@
         {
             instance.Column("Id");
 			instance.UnsavedValue("0");
-			instance.GeneratedBy.HiLo("1000");
-
+			instance.GeneratedBy.Identity();
         }
     }
 }
