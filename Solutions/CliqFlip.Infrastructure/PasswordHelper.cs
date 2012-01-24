@@ -8,6 +8,8 @@ namespace CliqFlip.Infrastructure
 {
     public static class PasswordHelper
     {
+		//TODO: these should be disposed. we can do it with a using() stmt
+		//QUESTION: Isn't a salt and password created at the same time? isn't salt an output of rfc2898...?
         public static String GenerateSalt(int bytes)
         {
             byte[] salt = new byte[8];
