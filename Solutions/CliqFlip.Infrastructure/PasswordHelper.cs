@@ -8,23 +8,46 @@ namespace CliqFlip.Infrastructure
 {
     public static class PasswordHelper
     {
-		//TODO: these should be disposed. we can do it with a using() stmt
-		//QUESTION: Isn't a salt and password created at the same time? isn't salt an output of rfc2898...?
-		//http://code.google.com/p/stackid/source/browse/OpenIdProvider/Current.cs#1236
+        private static const int ITERATIONS = 5000;
+        private static const int HASH_SIZE = 32;
+
+        // QUESTION: Isn't a salt and password created at the same time? isn't salt an output of rfc2898...?
+        // http://code.google.com/p/stackid/source/browse/OpenIdProvider/Current.cs#1236
+        // A salt is not the output of rfc2898. 
+        // A salt value is used to make the password's hash unique even if two password are the same.
+        // EXAMPLE: 
+        // PASSWORD: 12345      SALT: k_fan@-a      OUTPUT: _fn3qq
+        // PASSWORD: 12345      SALT: &gd%asf2      OUTPUT: @bd#ka_
+        //
+        // Using a salt protects us from a rainbow table attack
+        // http://stackoverflow.com/a/421081/358007
+        // Basically, it makes it more time consuming for someone trying to figure out our password
+        // because each one is uniques
+
+
+
+        /// <summary>
+        /// Generates a random salt value
+        /// </summary>
+        /// <param name="bytes">The size of the salt value</param>
+        /// <returns>A unique salt value</returns>
         public static String GenerateSalt(int bytes)
         {
-            byte[] salt = new byte[8];
-            new RNGCryptoServiceProvider().GetBytes(salt);           
-            return Convert.ToBase64String(salt);
+            using (var provider = new RNGCryptoServiceProvider())
+            {
+                byte[] salt = new byte[bytes];
+                provider.GetBytes(salt);
+                return Convert.ToBase64String(salt);
+            }
         }
 
         public static String GetPasswordHash(String password, String salt)
         {
-            int iteration = 5000;
-            int bytes = 32;
-            var byteSalt = Encoding.UTF8.GetBytes(salt);
-            var rfc2898 = new Rfc2898DeriveBytes(password, byteSalt, iteration);
-            return Convert.ToBase64String(rfc2898.GetBytes(bytes));
+            var saltBytes = Encoding.UTF8.GetBytes(salt);
+            using (var rfc2898 = new Rfc2898DeriveBytes(password, saltBytes, ITERATIONS))
+            {
+                return Convert.ToBase64String(rfc2898.GetBytes(HASH_SIZE));
+            }
         }
     }
 }
