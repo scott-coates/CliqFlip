@@ -8,6 +8,7 @@ namespace CliqFlip.Domain.Entities
 {
     public class UserInterest : Entity
     {
+        public virtual User User { get; set; }
         public virtual Interest Interest { get; set; }
         public virtual int? SocialityPoints { get; set; }
     }

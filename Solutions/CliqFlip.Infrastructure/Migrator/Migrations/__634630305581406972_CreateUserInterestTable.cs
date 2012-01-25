@@ -15,8 +15,8 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
         {
             Database.AddTable("UserInterests", new Column[] { 
                 new Column("Id", System.Data.DbType.Int32, ColumnProperty.PrimaryKeyWithIdentity),
-                new Column("InterestId", System.Data.DbType.Int32, ColumnProperty.ForeignKey),
-                new Column("UserId", System.Data.DbType.Int32, ColumnProperty.ForeignKey),
+                new Column("InterestId", System.Data.DbType.Int32, ColumnProperty.NotNull),
+                new Column("UserId", System.Data.DbType.Int32, ColumnProperty.NotNull),
                 new Column("SocialityPoints", System.Data.DbType.Int32, ColumnProperty.Null),
                 new Column("Passion", System.Data.DbType.Int32, ColumnProperty.Null) //TODO: Check with team
             });
