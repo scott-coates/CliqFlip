@@ -8,8 +8,8 @@ namespace CliqFlip.Infrastructure
 {
     public static class PasswordHelper
     {
-        private static const int ITERATIONS = 5000;
-        private static const int HASH_SIZE = 32;
+        private const int ITERATIONS = 5000;
+        private const int HASH_SIZE = 32;
 
         // QUESTION: Isn't a salt and password created at the same time? isn't salt an output of rfc2898...?
         // http://code.google.com/p/stackid/source/browse/OpenIdProvider/Current.cs#1236

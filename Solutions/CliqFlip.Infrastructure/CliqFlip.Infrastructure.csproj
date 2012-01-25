@@ -118,6 +118,7 @@
     <Compile Include="Common\PathHelper.cs" />
     <Compile Include="Migrator\ConditionalMigration.cs" />
     <Compile Include="Migrator\Migrations\CreateUserAndInterestTables001.cs" />
+    <Compile Include="Migrator\Migrations\CreateUserTable.cs" />
     <Compile Include="Migrator\Migrations\TestData\CreateUserInterests004.cs" />
     <Compile Include="Migrator\Migrations\TestData\CreateInterests003.cs" />
     <Compile Include="Migrator\Migrations\TestData\CreateUsers002.cs" />
