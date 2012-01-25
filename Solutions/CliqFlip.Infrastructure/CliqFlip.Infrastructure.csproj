@@ -117,11 +117,9 @@
     </Compile>
     <Compile Include="Common\PathHelper.cs" />
     <Compile Include="Migrator\ConditionalMigration.cs" />
-    <Compile Include="Migrator\Migrations\CreateUserAndInterestTables001.cs" />
-    <Compile Include="Migrator\Migrations\CreateUserTable.cs" />
-    <Compile Include="Migrator\Migrations\TestData\CreateUserInterests004.cs" />
-    <Compile Include="Migrator\Migrations\TestData\CreateInterests003.cs" />
-    <Compile Include="Migrator\Migrations\TestData\CreateUsers002.cs" />
+    <Compile Include="Migrator\Migrations\__634630300299264851_CreateUserTable.cs" />
+    <Compile Include="Migrator\Migrations\__634630303075533644_CreateInterestTable.cs" />
+    <Compile Include="Migrator\Migrations\__634630305581406972_CreateUserInterestTable.cs" />
     <Compile Include="NHibernateMaps\AutomappingConfiguration.cs" />
     <Compile Include="NHibernateMaps\Conventions\CustomForeignKeyConvention.cs" />
     <Compile Include="NHibernateMaps\Conventions\HasManyConvention.cs" />

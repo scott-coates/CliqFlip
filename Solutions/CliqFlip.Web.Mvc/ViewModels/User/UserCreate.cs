@@ -12,7 +12,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
     {
         public UserCreate()
         {
-            Interests = new List<InterestCreate>();
+            UserInterests = new List<InterestCreate>();
         }
 
         [Required(ErrorMessage = "Please choose a username")]
@@ -35,7 +35,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
         [DataType(DataType.Password)]
         public String PasswordVerify { get; set; }
 
-        public List<InterestCreate> Interests { get; set; }
+        public List<InterestCreate> UserInterests { get; set; }
 
     }
 

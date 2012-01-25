@@ -31,7 +31,7 @@ namespace CliqFlip.Web.Mvc.Controllers
             {
                 UserDto profileToCreate = new UserDto { Email = profile.Email, Password = profile.Password, Username = profile.Username };
 
-                foreach (var interest in profile.Interests)
+                foreach (var interest in profile.UserInterests)
                 {
                     var userInterest = new InterestDto(0, interest.Name, interest.Category, interest.Sociality);
                     profileToCreate.InterestDtos.Add(userInterest);
