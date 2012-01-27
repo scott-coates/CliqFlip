@@ -15,7 +15,8 @@
 
         public override bool ShouldMap(Member member)
         {
-            return base.ShouldMap(member) && member.CanWrite;
+        	Member backingField;
+			return base.ShouldMap(member) &&  (member.CanWrite || member.TryGetBackingField(out backingField));
         }
 
         public override bool AbstractClassIsLayerSupertype(System.Type type)
