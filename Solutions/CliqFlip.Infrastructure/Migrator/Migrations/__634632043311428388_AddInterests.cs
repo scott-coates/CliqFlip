@@ -34,7 +34,7 @@ INSERT INTO [Interests] ([Name],[Description],[Slug],[ParentInterestId])VALUES('
 
         protected override void ConditionalDown()
         {
-            Database.ExecuteNonQuery("DELETE FROM [Interest]");
+            Database.ExecuteNonQuery("DELETE FROM [Interests]");
         }
     }
 }
