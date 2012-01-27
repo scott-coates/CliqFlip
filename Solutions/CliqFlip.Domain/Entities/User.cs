@@ -7,7 +7,7 @@ namespace CliqFlip.Domain.Entities
 {
 	public class User : Entity
 	{
-		private readonly Iesi.Collections.Generic.ISet<UserInterest> _interests;
+		private readonly nh.ISet<UserInterest> _interests;
 
 		public virtual IEnumerable<UserInterest> Interests
 		{
