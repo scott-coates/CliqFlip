@@ -63,7 +63,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			}
 
 
-            var salt = PasswordHelper.GenerateSalt(8);
+            var salt = PasswordHelper.GenerateSalt(16);
             var pHash = PasswordHelper.GetPasswordHash(userToCreate.Password, salt);
 
 			var user = new User(userToCreate.Username, userToCreate.Email, pHash, salt);
@@ -73,15 +73,8 @@ namespace CliqFlip.Tasks.TaskImpl
 			{
 				//get or create the Interest
 				InterestDto interestDto = _interestTasks.GetOrCreate(userInterest.Name);
-
-				var interest = new UserInterest
-								{
-									Interest = new Interest(interestDto.Id, interestDto.Name),
-									SocialityPoints = userInterest.Sociality
-								};
-
-				user.Interests.Add(interest);
-			}
+                user.AddInterest(new Interest(interestDto.Id, interestDto.Name), userInterest.Sociality);
+            }
 			_repository.Save(user);
 			return new UserDto { Username = user.Username, Email = user.Email, Password = user.Password };
 		}

@@ -26,5 +26,17 @@ namespace CliqFlip.Domain.Entities
             this.Salt = salt;
             Interests = new List<UserInterest>();
         }
+
+        public virtual void AddInterest(Interest interest, int? socialityPoints)
+        {
+            var userInterest = new UserInterest
+            {
+                User = this,
+                Interest = interest,
+                SocialityPoints = socialityPoints
+            };
+
+            this.Interests.Add(userInterest);
+        }
     }
 }

@@ -11,7 +11,8 @@ namespace CliqFlip.Infrastructure.NHibernateMaps.Overrides
     {
         public void Override(FluentNHibernate.Automapping.AutoMapping<User> mapping)
         {
-            mapping.HasMany(c => c.Interests).Table("UserInterests").KeyColumn("UserId").Cascade.All().AsBag().Inverse();
+            //mapping.Id(x => x.Id).GeneratedBy.Identity();
+            mapping.HasMany(c => c.Interests).Table("UserInterests").KeyColumn("UserId").Cascade.All().AsBag();//.Inverse();
         }
     }
 }
