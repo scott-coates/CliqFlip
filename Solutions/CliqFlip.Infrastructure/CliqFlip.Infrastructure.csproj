@@ -127,7 +127,6 @@
     <Compile Include="NHibernateMaps\Conventions\PrimaryKeyConvention.cs" />
     <Compile Include="NHibernateMaps\Conventions\TableNameConvention.cs" />
     <Compile Include="NHibernateMaps\AutoPersistenceModelGenerator.cs" />
-    <Compile Include="NHibernateMaps\Overrides\UserOverrides.cs" />
     <Compile Include="PasswordHelper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -157,7 +156,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="NHibernateMaps\Overrides\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Migrator\CliqFlip.targets" />
