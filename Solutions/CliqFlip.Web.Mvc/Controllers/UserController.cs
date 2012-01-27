@@ -7,6 +7,7 @@ using CliqFlip.Domain;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Web.Mvc.ViewModels.User;
+using SharpArch.NHibernate.Web.Mvc;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
@@ -25,6 +26,7 @@ namespace CliqFlip.Web.Mvc.Controllers
         }
 
         [HttpPost]
+		[Transaction]
         public ActionResult Create(UserCreate profile)
         {
             if (ModelState.IsValid)
