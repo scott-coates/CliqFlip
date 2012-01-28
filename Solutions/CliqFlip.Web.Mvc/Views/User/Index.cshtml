@@ -3,8 +3,22 @@
 }
 <div class="wrapper">
 	<div class="inner">
-		<h2>Index</h2>
-	<div style="margin: 0 auto;height:300px;background-color:white;-webkit-box-shadow: inset 0px 0px 20px #000;
-"></div>
+		
+		<div id="profileHeadline" style="-webkit-box-shadow: inset 0px 0px 20px #000; background-color: white; height: 50px; margin: 0 auto 25px;">
+<h2 style="text-align: center;"> Foo Bar</h2>			
+
+		</div>
+		<div id="mindMap" style="-webkit-box-shadow: inset 0px 0px 20px #000; background-color: white; height: 300px; margin: 0 auto;"></div>
 	</div>
 </div>
+
+@section scripts
+{
+	<script type="text/javascript" src="@Url.Content("/Content/js/raphael.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/user/profile.js")"> </script>
+	<script type="text/javascript">
+		$(function() {
+			InitMindMap();
+		});
+	</script>
+}
