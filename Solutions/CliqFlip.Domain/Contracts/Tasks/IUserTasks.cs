@@ -11,5 +11,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IList<string> interestAliases );
 
         UserDto Create(UserDto profileToCreate);
+
+        bool ValidateUser(string username, string password);
     }
 }

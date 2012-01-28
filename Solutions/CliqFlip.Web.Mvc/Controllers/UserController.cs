@@ -8,6 +8,8 @@ using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Web.Mvc.ViewModels.User;
 using SharpArch.NHibernate.Web.Mvc;
+using System.ComponentModel.DataAnnotations;
+using System.Web.Security;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
@@ -51,6 +53,20 @@ namespace CliqFlip.Web.Mvc.Controllers
                 return RedirectToAction("Details", "Profile", new { id = newProfile.Username });
             }
             return View(profile);
+        }
+
+
+        [HttpPost]
+        public ActionResult Login([Required]string username, [Required]string password, bool stayLoggedIn)
+        {
+            if (ModelState.IsValid)
+            {
+                if (_userTasks.ValidateUser(username, password))
+                {
+                    FormsAuthentication.SetAuthCookie(username, stayLoggedIn);
+                }
+            }
+            return View();
         }
     }
 }
