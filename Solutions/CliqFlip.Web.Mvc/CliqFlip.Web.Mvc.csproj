@@ -403,6 +403,7 @@
     <Content Include="Content\js\colorbox\jquery.colorbox.js" />
     <Content Include="Content\js\core.js" />
     <Content Include="Content\js\home\home.js" />
+    <Content Include="Content\js\user\profile.js" />
     <Content Include="Content\js\user\create.js" />
     <Content Include="Content\js\jflickrfeed.min.js" />
     <Content Include="Content\js\jquery-1.6.1-vsdoc.js" />
@@ -440,6 +441,8 @@
     <Content Include="Content\styles\skins\red-cScheme.css" />
     <Content Include="Content\styles\skitter.styles.css" />
     <Content Include="Global.asax" />
+    <Content Include="Content\js\raphael-min.js" />
+    <Content Include="Content\js\raphael.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
