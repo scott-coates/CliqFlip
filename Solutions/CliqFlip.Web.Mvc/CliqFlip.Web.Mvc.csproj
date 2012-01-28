@@ -483,7 +483,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
-    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

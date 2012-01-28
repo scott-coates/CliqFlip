@@ -52,5 +52,11 @@ namespace CliqFlip.Web.Mvc.Controllers
             }
             return View(profile);
         }
+
+		[Transaction]
+		public ActionResult Index()
+		{
+			return View();
+		}
     }
 }
