@@ -1,9 +1,9 @@
 ﻿//http: //raphaeljs.com/ball.html
 //http://raphaeljs.com/reference.html#Raphael.fn
 Raphael.fn.cliqFlip = {
-	mindMapBubble: function () {
+	mindMapBubble: function (fill,text) {
 	var c = this.circle(100, 100, 50).attr({
-	    	fill: "hsb(.8, 1, 1)",
+	    	fill: fill,
 	    	stroke: "none",
 	    	opacity: .5
 	    }),
@@ -12,7 +12,7 @@ Raphael.fn.cliqFlip = {
 	    	stroke: "none",
 	    	opacity: .5
 	    }),
-	    t = this.text(100, 100, "this is text").attr({
+	    t = this.text(100, 100, text).attr({
 	    	fill: "hsb(.2, .2, .2)",
 	    	stroke: "none",
 	    	opacity: .5,
