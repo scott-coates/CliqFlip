@@ -61,7 +61,7 @@ Raphael.fn.cliqFlip = {
 	    	this.sizer.attr({
 	    		opacity: .5
 	    	});
-	    	this.animate({ r: this.or2, opacity: .5 }, 500, ">");
+	    	this.animate({ r: this.or2, opacity: .5 }, 500, ">", moveCallBack);
 	    },
 	    rstart = function () {
 	    	// storing original coordinates
