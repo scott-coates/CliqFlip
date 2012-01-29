@@ -47,6 +47,7 @@ namespace CliqFlip.Web.Mvc.Controllers
                 //Username/Email already exists
                 if (newProfile == null)
                 {
+					//TODO: don't return null - throw exception 
                     return View(profile);
                 }
 

@@ -59,6 +59,7 @@ namespace CliqFlip.Tasks.TaskImpl
             //Check username and email are unique
 			if (_repository.FindAll(withMatchingNameOrEmail).Any())
 			{
+				//TODO: this is a race condition - just let the db throw if unique violation
 				return null;
 			}
 
