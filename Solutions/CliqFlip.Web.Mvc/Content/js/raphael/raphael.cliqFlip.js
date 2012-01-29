@@ -96,6 +96,6 @@ Raphael.fn.cliqFlip = {
 	    s.big = c;
 	    s.text = t;
 
-		return this;
+		return {big:c,small:s,text:t,paper:this};
 	}
 };
