@@ -19,6 +19,7 @@ function InitMindMap() {
 	connections.push(r.connection(i3.big, i4.big));
 	connections.push(r.connection(i4.big, i5.big));
 	connections.push(r.connection(i5.big, i6.big));
+	connections.push(r.connection(i1.big, i6.big));
 }
 
 function AdjustCollections(r, connections) {
