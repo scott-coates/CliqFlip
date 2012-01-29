@@ -91,7 +91,7 @@ Raphael.fn.cliqFlip = {
 	    c.sizer = s;
 	    c.text = t;
 	    c.or2 = c.attr('r'); //or2 keeps track of the original raidus when
-	    //the user clicks the bubble and it 'pulses'
+	    //the user clicks the bubble and it 'pulses' - prevents the 'fast' double click problem
 	    s.drag(rmove, rstart);
 	    s.big = c;
 	    s.text = t;
