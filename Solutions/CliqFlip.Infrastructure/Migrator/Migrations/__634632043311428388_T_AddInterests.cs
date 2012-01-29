@@ -7,7 +7,7 @@ using Migrator.Framework;
 namespace CliqFlip.Infrastructure.Migrator.Migrations
 {
     [Migration(634632043311428388)]
-    public class __634632043311428388_AddInterests : ConditionalMigration
+    public class __634632043311428388_T_AddInterests : ConditionalMigration
     {
         protected override void ConditionalUp()
         {
