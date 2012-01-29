@@ -1,7 +1,7 @@
 ﻿//http: //raphaeljs.com/ball.html
 //http://raphaeljs.com/reference.html#Raphael.fn
 Raphael.fn.cliqFlip = {
-	mindMapBubble: function (x, y, fill, text, moveCallBack) {
+	mindMapBubble: function (x, y, fill, text, dragCallBack) {
 		var c = this.circle(x, y, 70).attr({
 			fill: fill,
 			stroke: "none",
@@ -49,8 +49,8 @@ Raphael.fn.cliqFlip = {
 	    		x: this.text.ox + dx,
 	    		y: this.text.oy + dy
 	    	});
-	    	if (moveCallBack) {
-	    		moveCallBack();
+	    	if (dragCallBack) {
+	    		dragCallBack();
 	    	}
 	    },
 	    up = function () {
@@ -61,7 +61,7 @@ Raphael.fn.cliqFlip = {
 	    	this.sizer.attr({
 	    		opacity: .5
 	    	});
-	    	this.animate({ r: this.or2, opacity: .5 }, 500, ">", moveCallBack);
+	    	this.animate({ r: this.or2, opacity: .5 }, 500, ">", dragCallBack);
 	    },
 	    rstart = function () {
 	    	// storing original coordinates
@@ -87,7 +87,9 @@ Raphael.fn.cliqFlip = {
 	    		});
 	    		this.big.or2 = newR;
 	    		this.text.attr({ 'font-size': newFs });
-
+	    		if (dragCallBack) {
+	    			dragCallBack();
+	    		}
 	    	}
 	    };
 		c.drag(move, start, up);
