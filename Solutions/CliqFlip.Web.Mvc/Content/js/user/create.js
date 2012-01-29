@@ -147,6 +147,8 @@ function initUserCreate() {
     }
 
     $(document).ready(function () {
+    	//TODO:we should pick out a naming conventions for js functions - camel case or pascal case
+    	//TODO: we should determine if doc ready function should be called in js files or in aspx files
         //bind all the elements we need
         interestTextBox = $("#interestName");
         divInterestCategory = $("#divInterestCategory");
