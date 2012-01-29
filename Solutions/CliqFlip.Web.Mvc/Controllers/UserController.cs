@@ -50,13 +50,14 @@ namespace CliqFlip.Web.Mvc.Controllers
                     return View(profile);
                 }
 
-                return RedirectToAction("Details", "Profile", new { id = newProfile.Username });
+                FormsAuthentication.SetAuthCookie(newProfile.Username, false);
+                return RedirectToAction("Details", "User", new { id = "me" });
             }
             return View(profile);
         }
 
 
-        [HttpPost]
+        //[HttpPost]
         public ActionResult Login([Required]string username, [Required]string password, bool stayLoggedIn)
         {
             if (ModelState.IsValid)
@@ -64,8 +65,13 @@ namespace CliqFlip.Web.Mvc.Controllers
                 if (_userTasks.ValidateUser(username, password))
                 {
                     FormsAuthentication.SetAuthCookie(username, stayLoggedIn);
+                    //TODO:  Redirect to users profile
+                    return RedirectToAction("Details", "User", new { id = "me" });
                 }
             }
+            ViewData["username"] = username;
+            ViewData["password"] = password;
+            ViewData["stayLoggedIn"] = stayLoggedIn;
             return View();
         }
     }
