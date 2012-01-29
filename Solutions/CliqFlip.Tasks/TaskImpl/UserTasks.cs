@@ -79,6 +79,21 @@ namespace CliqFlip.Tasks.TaskImpl
 			return new UserDto { Username = user.Username, Email = user.Email, Password = user.Password };
 		}
 
+
+        public bool ValidateUser(string username, string password)
+        {
+            var withMatchingNameOrEmail = new AdHoc<User>(x => x.Username == username || x.Email == username);
+            var user = _repository.FindOne(withMatchingNameOrEmail);
+
+            if (user != null)
+            {
+                //use the users salt and provided password to see if the password match
+                var expetectedPassword = PasswordHelper.GetPasswordHash(password, user.Salt);
+                return user.Password == expetectedPassword;
+            }
+            return false;
+        }
+
 		#endregion
 
 		public IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IEnumerable<int> interestIds)
