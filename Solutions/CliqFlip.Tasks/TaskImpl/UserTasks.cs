@@ -3,6 +3,7 @@ using System.Linq;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
+using CliqFlip.Infrastructure.Common;
 using SharpArch.Domain.PersistenceSupport;
 using SharpArch.Domain.Specifications;
 using CliqFlip.Infrastructure;

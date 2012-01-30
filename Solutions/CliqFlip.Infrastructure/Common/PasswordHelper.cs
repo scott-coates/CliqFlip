@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
 
-namespace CliqFlip.Infrastructure
+namespace CliqFlip.Infrastructure.Common
 {
     public static class PasswordHelper
     {
@@ -33,6 +31,7 @@ namespace CliqFlip.Infrastructure
         /// <returns>A unique salt value</returns>
         public static String GenerateSalt(int bytes)
         {
+			//TODO:make this a const of 32 bytes
             using (var provider = new RNGCryptoServiceProvider())
             {
                 byte[] salt = new byte[bytes];
