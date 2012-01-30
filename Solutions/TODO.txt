@@ -1,0 +1,4 @@
+Implement code styling
+	StyleCop
+	FxCop
+	JSLint
