@@ -9,9 +9,3 @@ function InitMindMap() {
 	r.cliqFlip.mindMapBubble(620, 100, "hsb(.75, 1, 1)", "some\nstuff");
 	r.cliqFlip.mindMapBubble(750, 100, "hsb(.07, 1, 1)", "my\ninterest");
 }
-
-function AdjustCollections(r, connections) {
-	for (var i = connections.length; i--;) {
-		r.connection(connections[i]);
-	}
-}
