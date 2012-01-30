@@ -54,6 +54,8 @@ namespace CliqFlip.Web.Mvc.Controllers
                 }
 
 				//TODO: delegate this responsibiliy to userTask - unit test will fail this static method
+				//TODO: Set HTTPOnly  = true;
+				//TODO: Set Secure = true when we use ssl;
                 FormsAuthentication.SetAuthCookie(newProfile.Username, false);
                 return RedirectToAction("Details", "User", new { id = "me" });
             }
