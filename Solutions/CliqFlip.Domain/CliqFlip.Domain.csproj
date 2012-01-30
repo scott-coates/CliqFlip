@@ -98,6 +98,7 @@
     <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Search\FuzzySearch.cs" />
+    <Compile Include="ValueObjects\UserInterestOption.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

@@ -18,7 +18,9 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
                 new Column("InterestId", System.Data.DbType.Int32, ColumnProperty.NotNull),
                 new Column("UserId", System.Data.DbType.Int32, ColumnProperty.NotNull),
                 new Column("SocialityPoints", System.Data.DbType.Int32, ColumnProperty.Null),
-                new Column("Passion", System.Data.DbType.Int32, ColumnProperty.Null) //TODO: Check with team
+                new Column("XAxis", System.Data.DbType.Single, ColumnProperty.Null),
+                new Column("YAxis", System.Data.DbType.Single, ColumnProperty.Null),
+                new Column("Passion", System.Data.DbType.Single, ColumnProperty.Null) //TODO: Check with team
             });
 
             //add the foreign key constraints

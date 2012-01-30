@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CliqFlip.Domain.ValueObjects;
 using SharpArch.Domain.DomainModel;
 
 namespace CliqFlip.Domain.Entities
@@ -11,5 +12,6 @@ namespace CliqFlip.Domain.Entities
         public virtual User User { get; set; }
         public virtual Interest Interest { get; set; }
         public virtual int? SocialityPoints { get; set; }
+		public virtual UserInterestOption Options { get; set; }
     }
 }
