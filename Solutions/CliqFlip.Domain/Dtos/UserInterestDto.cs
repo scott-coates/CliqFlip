@@ -1,15 +1,15 @@
 ﻿namespace CliqFlip.Domain.Dtos
 {
-	public class InterestDto
+	public class UserInterestDto
 	{
-		public InterestDto(int id, string name,string slug)
+		public UserInterestDto(int id, string name,string slug)
 		{
 			Id = id;
 			Name = name;
 			Slug = slug;
 		}
 
-        public InterestDto(int id, string name, string relatedTo, int? sociality)
+        public UserInterestDto(int id, string name, string relatedTo, int? sociality)
         {
             Id = id;
             Name = name;

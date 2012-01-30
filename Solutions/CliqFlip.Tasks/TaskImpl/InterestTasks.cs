@@ -64,7 +64,7 @@ namespace CliqFlip.Tasks.TaskImpl
 		}
 
 
-		public InterestDto GetOrCreate(string name)
+		public UserInterestDto GetOrCreate(string name)
 		{
 			var withMatchingName = new AdHoc<Interest>(x => x.Name == name);
 			Interest interest = _interestRepository.FindOne(withMatchingName);
@@ -80,7 +80,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 				_interestRepository.Save(interest);
 			}
-			return new InterestDto(interest.Id, interest.Name, interest.Slug);
+			return new UserInterestDto(interest.Id, interest.Name, interest.Slug);
 		}
 
 		#endregion

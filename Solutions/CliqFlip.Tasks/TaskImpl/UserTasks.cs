@@ -48,7 +48,7 @@ namespace CliqFlip.Tasks.TaskImpl
 															{
 																Username = user.Username,
 																InterestDtos = user.Interests
-																	.Select(x => new InterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(),
+																	.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(),
 																Bio = user.Bio
 															}
 											}).OrderByDescending(x => x.MatchCount).ToList();
@@ -72,11 +72,11 @@ namespace CliqFlip.Tasks.TaskImpl
 			var user = new User(userToCreate.Username, userToCreate.Email, pHash, salt);
 
 			//add all the interests
-			foreach (InterestDto userInterest in userToCreate.InterestDtos)
+			foreach (UserInterestDto userInterest in userToCreate.InterestDtos)
 			{
 				//get or create the Interest
-				InterestDto interestDto = _interestTasks.GetOrCreate(userInterest.Name);
-                user.AddInterest(new Interest(interestDto.Id, interestDto.Name), userInterest.Sociality);
+				UserInterestDto userInterestDto = _interestTasks.GetOrCreate(userInterest.Name);
+                user.AddInterest(new Interest(userInterestDto.Id, userInterestDto.Name), userInterest.Sociality);
             }
 			_repository.Save(user);
 			return new UserDto { Username = user.Username, Email = user.Email, Password = user.Password };
@@ -108,7 +108,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			return users.Select(user => new UserSearchByInterestsDto
 											{
 												MatchCount = user.Interests.Select(x => x.Id).Intersect(interestList).Count(),
-												UserDto = new UserDto { Username = user.Username, InterestDtos = user.Interests.Select(x => new InterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(), Bio = user.Bio }
+												UserDto = new UserDto { Username = user.Username, InterestDtos = user.Interests.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(), Bio = user.Bio }
 											}).ToList();
 		}
 	}

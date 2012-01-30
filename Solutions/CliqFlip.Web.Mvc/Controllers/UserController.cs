@@ -39,7 +39,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
                 foreach (var interest in profile.UserInterests)
                 {
-                    var userInterest = new InterestDto(0, interest.Name, interest.Category, interest.Sociality);
+                    var userInterest = new UserInterestDto(0, interest.Name, interest.Category, interest.Sociality);
                     profileToCreate.InterestDtos.Add(userInterest);
                 }
 
