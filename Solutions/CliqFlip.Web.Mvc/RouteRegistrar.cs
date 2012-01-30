@@ -11,6 +11,11 @@ namespace CliqFlip.Web.Mvc
 			routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
 
 			routes.MapRoute(
+			 "Users",
+			  "Users/{username}",
+			  new { controller = "User", action = "Index"});
+
+			routes.MapRoute(
 				"Default",                                              // Route name
 				"{controller}/{action}/{id}",                           // URL with parameters
 				new { controller = "Home", action = "Index", id = UrlParameter.Optional }); // Parameter defaults

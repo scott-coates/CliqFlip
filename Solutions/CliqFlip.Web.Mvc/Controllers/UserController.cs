@@ -77,8 +77,9 @@ namespace CliqFlip.Web.Mvc.Controllers
         }
 
 		[Transaction]
-		public ActionResult Index()
+		public ActionResult Index(string username)
 		{
+			Response.Write(username);
 			return View();
 		}
     }
