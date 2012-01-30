@@ -25,6 +25,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IList<string> interestAliases)
 		{
+			//TODO: Move this data access to our infra project
 			IList<string> subjAliasAndParent = _interestTasks.GetSlugAndParentSlug(interestAliases);
 			var query = new AdHoc<User>(x => x.Interests.Any(y => subjAliasAndParent.Contains(y.Interest.Slug))
 											 ||
