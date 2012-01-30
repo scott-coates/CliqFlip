@@ -1,12 +1,13 @@
-﻿@{
+﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserProfileViewModel
+@{
 	ViewBag.Title = "Index";
 }
+
 <div class="wrapper">
 	<div class="inner">
 		
 		<div id="profileHeadline" style="-webkit-box-shadow: inset 0px 0px 20px #000; background-color: white; height: 50px; margin: 0 auto 25px;">
-<h2 style="text-align: center;"> Foo Bar</h2>			
-
+			<h2 style="text-align: center;"> @Model.Username</h2>			
 		</div>
 		<div id="mindMap" style="-webkit-box-shadow: inset 0px 0px 20px #000; background-color: white; height: 300px; margin: 0 auto;"></div>
 	</div>
@@ -20,7 +21,7 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/profile.js")"> </script>
 	<script type="text/javascript">
 		$(function() {
-			InitMindMap();
+			InitMindMap(@(Html.Raw(Model.InterestsJson)));
 		});
 	</script>
 }

@@ -83,7 +83,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		public ActionResult Index(string username)
 		{
 			var user = _userProfileQuery.GetUser(username);
-			return View();
+			return View(user);
 		}
     }
 }
