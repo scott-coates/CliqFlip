@@ -51,6 +51,7 @@ namespace CliqFlip.Web.Mvc.Controllers
                     return View(profile);
                 }
 
+				//TODO: delegate this responsibiliy to userTask - unit test will fail this static method
                 FormsAuthentication.SetAuthCookie(newProfile.Username, false);
                 return RedirectToAction("Details", "User", new { id = "me" });
             }
