@@ -122,6 +122,7 @@
     <Compile Include="Migrator\Migrations\__634630305581406972_CreateUserInterestTable.cs" />
     <Compile Include="Migrator\Migrations\__634632043311428388_T_AddInterests.cs" />
     <Compile Include="NHibernateMaps\AutomappingConfiguration.cs" />
+    <Compile Include="NHibernateMaps\Conventions\ComponentConvention.cs" />
     <Compile Include="NHibernateMaps\Conventions\PropertyConvention.cs" />
     <Compile Include="NHibernateMaps\Conventions\CustomForeignKeyConvention.cs" />
     <Compile Include="NHibernateMaps\Conventions\HasManyConvention.cs" />

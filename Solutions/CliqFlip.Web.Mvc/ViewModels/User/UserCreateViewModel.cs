@@ -8,9 +8,9 @@ using CliqFlip.Web.Mvc.Extensions.Validation;
 
 namespace CliqFlip.Web.Mvc.ViewModels.User
 {
-    public class UserCreate
+    public class UserCreateViewModel
     {
-        public UserCreate()
+        public UserCreateViewModel()
         {
             UserInterests = new List<InterestCreate>();
         }

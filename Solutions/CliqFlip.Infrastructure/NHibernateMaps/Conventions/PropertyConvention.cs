@@ -15,6 +15,7 @@ namespace CliqFlip.Infrastructure.NHibernateMaps.Conventions
     {
     	public void Apply(IPropertyInstance instance)
     	{
+			//Components have stupid default names
     		instance.Column(instance.Property.Name);
     	}
     }

@@ -149,7 +149,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Extensions\Validation\EmailAttribute.cs" />
+    <Compile Include="Queries\Interfaces\IUserProfileQuery.cs" />
     <Compile Include="Queries\Interfaces\IUsersByInterestsQuery.cs" />
+    <Compile Include="Queries\UserProfileQuery.cs" />
     <Compile Include="Queries\UsersByInterestsQuery.cs" />
     <Compile Include="RouteRegistrar.cs" />
     <Compile Include="Global.asax.cs">
@@ -158,7 +160,8 @@
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
     <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
-    <Compile Include="ViewModels\User\UserCreate.cs" />
+    <Compile Include="ViewModels\User\UserProfileViewModel.cs" />
+    <Compile Include="ViewModels\User\UserCreateViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\img\1.jpg" />

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using CliqFlip.Domain;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
+using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.User;
 using SharpArch.NHibernate.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
@@ -16,20 +17,21 @@ namespace CliqFlip.Web.Mvc.Controllers
     public class UserController : Controller
     {
         private readonly IUserTasks _userTasks;
-
-        public UserController(IUserTasks profileTasks)
+    	private readonly IUserProfileQuery _userProfileQuery;
+        public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery)
         {
-            this._userTasks = profileTasks;
+        	this._userTasks = profileTasks;
+        	_userProfileQuery = userProfileQuery;
         }
 
-        public ViewResult Create()
+    	public ViewResult Create()
         {
-            return View(new UserCreate());
+            return View(new UserCreateViewModel());
         }
 
         [HttpPost]
 		[Transaction]
-        public ActionResult Create(UserCreate profile)
+        public ActionResult Create(UserCreateViewModel profile)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +82,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult Index(string username)
 		{
-			Response.Write(username);
+			var user = _userProfileQuery.GetUser(username);
 			return View();
 		}
     }
