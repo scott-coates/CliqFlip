@@ -18,7 +18,7 @@ function InitMindMap(interests) {
 					space = 100;
 				}
 
-				bubbles.push(r.cliqFlip.mindMapBubble(2.5,
+				bubbles.push(r.cliqFlip.createMindMapBubble(2.5,
 					space,
 					rowAxis,
 					cliqFlip.Utils.RandomHexColor(), 
@@ -42,7 +42,7 @@ function SaveMindMap() {
 		var mindMapSave = [];
 		for (var bubble in bubbles) {
 			var bubbleObj = bubbles[bubble];
-			mindMapSave.push({ userInterestId: bubbleObj.userInterestId });
+			mindMapSave.push({ userInterestId: bubbleObj.userInterestId,passion:bubbleObj.GetPassion() });
 		}
 	}
 }

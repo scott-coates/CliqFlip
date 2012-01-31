@@ -2,7 +2,7 @@
 //http://raphaeljs.com/reference.html#Raphael.fn
 //http://stackoverflow.com/questions/3675519/raphaeljs-drag-n-drop
 Raphael.fn.cliqFlip = {
-	mindMapBubble: function (passion, x, y, fill, text, userInterestId) {
+	createMindMapBubble: function (passion, x, y, fill, text, userInterestId) {
 		
 		var c = this.circle(x, y, passion * 16).attr({
 			fill: fill,
@@ -103,6 +103,18 @@ Raphael.fn.cliqFlip = {
 		s.big = c;
 		s.text = t;
 
-		return { big: c, small: s, text: t, paper: this, userInterestId: userInterestId };
+		return new MindMapBubble(c, s, t, this, userInterestId);
 	}
+};
+
+function MindMapBubble(big, small, text, paper, userInterestId) {
+	this.big = big;
+	this.small = small;
+	this.text = text;
+	this.paper = paper;
+	this.userInterestId = userInterestId;
+}
+
+MindMapBubble.prototype.GetPassion = function() {
+	return this.big.attr('r') / 16;
 };
