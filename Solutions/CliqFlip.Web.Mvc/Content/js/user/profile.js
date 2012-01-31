@@ -1,7 +1,8 @@
-﻿function InitMindMap(interests) {
+﻿var bubbles = [];
+
+function InitMindMap(interests) {
 
 	var r = Raphael("mindMap", 940, 300);
-	var bubbles = [];
 
 	if (interests && interests.length > 0) {
 
@@ -17,7 +18,13 @@
 					space = 100;
 				}
 
-				bubbles.push(r.cliqFlip.mindMapBubble(space, rowAxis, cliqFlip.Utils.RandomHexColor(), interests[interest].Name));
+				bubbles.push(r.cliqFlip.mindMapBubble(
+					space,
+					rowAxis,
+					cliqFlip.Utils.RandomHexColor(), 
+					interests[interest].Name,
+					interests[interest].Id));
+
 				space += width;
 			}
 		}
@@ -25,5 +32,17 @@
 }
 
 function InitMindMapSave() {
+	$("#saveMindMap").click(function() {
+		SaveMindMap();
+	});
+}
 
+function SaveMindMap() {
+	if (bubbles.length > 0) {
+		var mindMapSave = [];
+		for (var bubble in bubbles) {
+			var bubbleObj = bubbles[bubble];
+			mindMapSave.push({ userInterestId: bubbleObj.userInterestId });
+		}
+	}
 }
