@@ -1,6 +1,7 @@
 ﻿function InitMindMap(interests) {
 
 	var r = Raphael("mindMap", 940, 300);
+	var bubbles = [];
 
 	if (interests && interests.length > 0) {
 
@@ -16,7 +17,7 @@
 					space = 100;
 				}
 
-				r.cliqFlip.mindMapBubble(space, rowAxis, cliqFlip.Utils.RandomHexColor(), interests[interest].Name);
+				bubbles.push(r.cliqFlip.mindMapBubble(space, rowAxis, cliqFlip.Utils.RandomHexColor(), interests[interest].Name));
 				space += width;
 			}
 		}
@@ -24,5 +25,5 @@
 }
 
 function InitMindMapSave() {
-	
+
 }
