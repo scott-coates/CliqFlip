@@ -388,6 +388,7 @@
     <Content Include="Content\img\twitter_icon57.png" />
     <Content Include="Content\img\underline.png" />
     <Content Include="Content\img\zoom.png" />
+    <Content Include="Content\js\cliqFlip\utils.js" />
     <Content Include="Content\js\colorbox\colorbox.css" />
     <Content Include="Content\js\colorbox\images\border.png" />
     <Content Include="Content\js\colorbox\images\controls.png" />

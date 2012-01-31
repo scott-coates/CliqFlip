@@ -1,7 +1,7 @@
 ﻿//http://stackoverflow.com/questions/3675519/raphaeljs-drag-n-drop
 function InitMindMap(interests) {
 	var r = Raphael("mindMap", 940, 300);
-
+	cliqFlip.my.moduleMethod();
 	var initialLayout = interests[0].Passion == null;
 	if (initialLayout) {
 		var rowAxis = 80;
