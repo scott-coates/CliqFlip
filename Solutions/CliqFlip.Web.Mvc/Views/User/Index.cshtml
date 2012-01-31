@@ -9,6 +9,10 @@
 		<div id="profileHeadline" style="-webkit-box-shadow: inset 0px 0px 20px #000; background-color: white; height: 50px; margin: 0 auto 25px;">
 			<h2 style="text-align: center;"> @Model.Username</h2>			
 		</div>
+		<div>
+			
+			<input type="button" value="save" id="saveMindMap"/>
+		</div>
 		<div id="mindMap" style="-webkit-box-shadow: inset 0px 0px 20px #000; background-color: white; height: 300px; margin: 0 auto;"></div>
 	</div>
 </div>
@@ -23,6 +27,7 @@
 	<script type="text/javascript">
 		$(function() {
 			InitMindMap(@(Html.Raw(Model.InterestsJson)));
+			InitSaveMindMap();
 		});
 	</script>
 }

@@ -1,5 +1,4 @@
-﻿//http://stackoverflow.com/questions/3675519/raphaeljs-drag-n-drop
-function InitMindMap(interests) {
+﻿function InitMindMap(interests) {
 
 	var r = Raphael("mindMap", 940, 300);
 
@@ -22,4 +21,8 @@ function InitMindMap(interests) {
 			}
 		}
 	}
+}
+
+function InitMindMapSave() {
+	
 }
