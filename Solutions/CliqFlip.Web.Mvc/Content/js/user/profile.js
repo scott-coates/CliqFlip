@@ -18,7 +18,7 @@ function InitMindMap(interests) {
 					space = 100;
 				}
 
-				bubbles.push(r.cliqFlip.mindMapBubble(
+				bubbles.push(r.cliqFlip.mindMapBubble(2.5,
 					space,
 					rowAxis,
 					cliqFlip.Utils.RandomHexColor(), 

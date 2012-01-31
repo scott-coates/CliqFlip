@@ -2,13 +2,14 @@
 //http://raphaeljs.com/reference.html#Raphael.fn
 //http://stackoverflow.com/questions/3675519/raphaeljs-drag-n-drop
 Raphael.fn.cliqFlip = {
-	mindMapBubble: function (x, y, fill, text, userInterestId) {
-		var c = this.circle(x, y, 70).attr({
+	mindMapBubble: function (passion, x, y, fill, text, userInterestId) {
+		
+		var c = this.circle(x, y, passion * 16).attr({
 			fill: fill,
 			stroke: "none",
 			opacity: .5
 		}),
-		    s = this.circle(x + 38, y + 38, 15).attr({
+		    s = this.circle(x + (passion * 7), y + passion * 7, 15).attr({
 		    	fill: "hsb(.8, .5, .5)",
 		    	stroke: "none",
 		    	opacity: .5
@@ -17,7 +18,7 @@ Raphael.fn.cliqFlip = {
 		    	fill: "hsb(.2, .2, .2)",
 		    	stroke: "none",
 		    	opacity: .5,
-		    	"font-size": "21"
+		    	"font-size": "15"
 		    }).toBack();
 		var start = function () {
 			// storing original coordinates
@@ -77,9 +78,9 @@ Raphael.fn.cliqFlip = {
 		    },
 		    rmove = function (dx, dy) {
 		    	var newR = this.big.or + (dy < 0 ? -1 : 1) * Math.sqrt(2 * dy * dy);
-		    	var newFs = this.text.ofs + (dy < 0 ? -1 : 1) * Math.sqrt(2 * (dy / 2.2) * (dy / 2.2));
+		    	var newFs = this.text.ofs + (dy < 0 ? -1 : 1) * Math.sqrt(2 * (dy / 3) * (dy / 3));
 
-		    	if (newR <= 130 && newR >= 50) {
+		    	if (newR <= 80 && newR >= 16) {
 		    		// move will be called with dx and dy
 		    		this.attr({
 		    			cx: this.ox + dy,
