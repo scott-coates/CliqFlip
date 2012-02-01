@@ -84,7 +84,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 		[HttpPost]
 		[Transaction]
-		public ActionResult SaveMindMap(UserSaveMindMapViewModel userInterests)
+		public ActionResult SaveMindMap(UserSaveMindMapViewModel userSaveMindMapViewModel)
 		{
 			return new EmptyResult();
 		}

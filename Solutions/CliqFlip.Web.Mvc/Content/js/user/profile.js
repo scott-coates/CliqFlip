@@ -43,7 +43,7 @@ function SaveMindMap(saveUrl, userId) {
 		
 		var mindMapInterests = [];
 		
-		mindMapData.MindMaps = mindMapInterests;
+		mindMapData.Interests = mindMapInterests;
 		
 		for (var bubble in bubbles) {
 			var bubbleObj = bubbles[bubble];
