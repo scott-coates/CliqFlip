@@ -31,18 +31,23 @@ function InitMindMap(interests) {
 	}
 }
 
-function InitMindMapSave(saveUrl) {
+function InitMindMapSave(saveUrl,userId) {
 	$("#saveMindMap").click(function() {
-		SaveMindMap(saveUrl);
+		SaveMindMap(saveUrl,userId);
 	});
 }
 
-function SaveMindMap(saveUrl) {
+function SaveMindMap(saveUrl, userId) {
 	if (bubbles.length > 0) {
-		var mindMapSave = [];
+		var mindMapData = {userId:userId };
+		
+		var mindMapInterests = [];
+		
+		mindMapData.MindMaps = mindMapInterests;
+		
 		for (var bubble in bubbles) {
 			var bubbleObj = bubbles[bubble];
-			mindMapSave.push({
+			mindMapInterests.push({
 				id: bubbleObj.userInterestId,
 				xaxis: bubbleObj.big.attr('cx'),
 				yaxis: bubbleObj.big.attr('cy'),
@@ -51,16 +56,18 @@ function SaveMindMap(saveUrl) {
 		}
 
 		//http://stackoverflow.com/questions/2845459/jquery-how-to-make-post-use-contenttype-application-json		
+		var mindMapDataJson = $.toJSON(mindMapData);
 		$.ajax(
 			{
 				url: saveUrl,
 				type: 'POST',
-				data: $.toJSON(mindMapSave),
+				data: mindMapDataJson ,
 				contentType: 'application/json; charset=utf-8',
-				success: function(data, textStatus, jqXHR) {
+				dataType: 'json',
+				success: function (data, textStatus, jqXHR) {
 					console.log(textStatus);
 				},
-				error: function(objAJAXRequest, strError) {
+				error: function (objAJAXRequest, strError) {
 					console.log(strError);
 				}
 			}

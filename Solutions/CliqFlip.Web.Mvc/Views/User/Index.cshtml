@@ -23,11 +23,10 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/raphael/raphael.cliqFlip.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/profile.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/cliqFlip/utils.js")"> </script>
-	
 	<script type="text/javascript">
 		$(function() {
 			InitMindMap(@(Html.Raw(Model.InterestsJson)));
-			InitMindMapSave(@(Html.Raw(Model.SaveMindMapUrl)));
+			InitMindMapSave(@(Html.Raw(Model.SaveMindMapUrl)), @(Model.Id));
 		});
 	</script>
 }
