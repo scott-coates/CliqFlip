@@ -21,7 +21,7 @@ function InitMindMap(interests) {
 				bubbles.push(r.cliqFlip.createMindMapBubble(2.5,
 					space,
 					rowAxis,
-					cliqFlip.Utils.RandomHexColor(), 
+					cliqFlip.Utils.RandomHexColor(),
 					interests[interest].Name,
 					interests[interest].Id));
 
@@ -31,18 +31,28 @@ function InitMindMap(interests) {
 	}
 }
 
-function InitMindMapSave() {
-	$("#saveMindMap").click(function() {
-		SaveMindMap();
+function InitMindMapSave(saveUrl) {
+	$("#saveMindMap").click(function () {
+		SaveMindMap(saveUrl);
 	});
 }
 
-function SaveMindMap() {
+function SaveMindMap(saveUrl) {
 	if (bubbles.length > 0) {
 		var mindMapSave = [];
 		for (var bubble in bubbles) {
 			var bubbleObj = bubbles[bubble];
-			mindMapSave.push({ userInterestId: bubbleObj.userInterestId,passion:bubbleObj.GetPassion() });
+			mindMapSave.push({
+				id: bubbleObj.userInterestId,
+				xaxis: bubbleObj.big.attr('cx'),
+				yaxis: bubbleObj.big.attr('cx'),
+				passion: bubbleObj.GetPassion()
+			});
 		}
+
+		$.post(saveUrl, mindMapSave, function (data) {
+			console.log('data ' + data);
+		}
+		,"json");
 	}
 }

@@ -13,5 +13,6 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 	{
 		public string Username { get; set; } 
 		public string InterestsJson { get; set; } 
+		public string SaveMindMapUrl { get; set; } 
 	}
 }

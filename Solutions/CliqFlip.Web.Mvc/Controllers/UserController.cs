@@ -81,10 +81,19 @@ namespace CliqFlip.Web.Mvc.Controllers
             return View();
         }
 
+
+		[HttpPost]
+		[Transaction]
+		public ActionResult SaveMindMap(IEnumerable<UserInterestDto> userInterests )
+		{
+			return new EmptyResult();
+		}
+
 		[Transaction]
 		public ActionResult Index(string username)
 		{
 			var user = _userProfileQuery.GetUser(username);
+			user.SaveMindMapUrl = "\"" + Url.Action("SaveMindMap", "User") + "\"";
 			return View(user);
 		}
     }
