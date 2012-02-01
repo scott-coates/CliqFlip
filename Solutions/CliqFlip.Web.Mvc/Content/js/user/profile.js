@@ -50,9 +50,25 @@ function SaveMindMap(saveUrl) {
 			});
 		}
 		
-		$.post(saveUrl, {'userInterests': $.toJSON(mindMapSave)}, function (data) {
-			console.log('data ' + data);
-		}
-		,"json");
+//		$.post(saveUrl, $.toJSON(mindMapSave), function (data) {
+//			console.log('data ' + data);
+//		}
+		//		,"json");
+//		console.log($.toJSON())
+		   $.ajax(
+        {
+        	url: saveUrl,
+            type: 'POST',
+            data: $.toJSON(mindMapSave),
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data, textStatus, jqXHR) {
+            	console.log(textStatus);
+            },
+            error: function (objAJAXRequest, strError) {
+            	console.log(strError);
+            }
+        }
+     );   //ajax
 	}
 }
