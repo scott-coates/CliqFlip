@@ -27,24 +27,33 @@ function InitMindMap(interests) {
 
 				space += width;
 			}
+		} else {
+			for (interest in interests) {
+				bubbles.push(r.cliqFlip.createMindMapBubble(interests[interest].Passion,
+					interests[interest].XAxis,
+					interests[interest].YAxis,
+					cliqFlip.Utils.RandomHexColor(),
+					interests[interest].Name,
+					interests[interest].Id));
+			}
 		}
 	}
 }
 
-function InitMindMapSave(saveUrl,userId) {
+function InitMindMapSave(saveUrl, userId) {
 	$("#saveMindMap").click(function() {
-		SaveMindMap(saveUrl,userId);
+		SaveMindMap(saveUrl, userId);
 	});
 }
 
 function SaveMindMap(saveUrl, userId) {
 	if (bubbles.length > 0) {
-		var mindMapData = {userId:userId };
-		
+		var mindMapData = { userId: userId };
+
 		var mindMapInterests = [];
-		
+
 		mindMapData.Interests = mindMapInterests;
-		
+
 		for (var bubble in bubbles) {
 			var bubbleObj = bubbles[bubble];
 			mindMapInterests.push({
@@ -61,16 +70,16 @@ function SaveMindMap(saveUrl, userId) {
 			{
 				url: saveUrl,
 				type: 'POST',
-				data: mindMapDataJson ,
+				data: mindMapDataJson,
 				contentType: 'application/json; charset=utf-8',
 				dataType: 'json',
-				success: function (data, textStatus, jqXHR) {
+				success: function(data, textStatus, jqXHR) {
 					console.log(textStatus);
 				},
-				error: function (objAJAXRequest, strError) {
+				error: function(objAJAXRequest, strError) {
 					console.log(strError);
 				}
 			}
-		); 
+		);
 	}
 }

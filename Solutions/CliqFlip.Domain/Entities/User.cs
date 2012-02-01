@@ -1,4 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using CliqFlip.Domain.Dtos;
+using CliqFlip.Domain.ValueObjects;
 using Iesi.Collections.Generic;
 using SharpArch.Domain.DomainModel;
 using nh = Iesi.Collections.Generic;
@@ -37,13 +40,22 @@ namespace CliqFlip.Domain.Entities
 		public virtual void AddInterest(Interest interest, int? socialityPoints)
 		{
 			var userInterest = new UserInterest
-			                   	{
-			                   		User = this,
-			                   		Interest = interest,
-			                   		SocialityPoints = socialityPoints
-			                   	};
+								{
+									User = this,
+									Interest = interest,
+									SocialityPoints = socialityPoints
+								};
 
 			_interests.Add(userInterest);
+		}
+
+		public virtual void UpdateInterests(IEnumerable<UserInterestDto> userInterests)
+		{
+			foreach (var userInterestDto in userInterests)
+			{
+				var userInterest = _interests.First(x => x.Id == userInterestDto.Id);
+				userInterest.Options = new UserInterestOption(userInterestDto.Passion, userInterestDto.XAxis, userInterestDto.YAxis);
+			}
 		}
 	}
 }

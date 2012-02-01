@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CliqFlip.Domain.Contracts.Tasks;
@@ -96,6 +97,13 @@ namespace CliqFlip.Tasks.TaskImpl
             }
             return false;
         }
+
+		public void UpdateMindMap(int userId, IEnumerable<UserInterestDto> userInterests)
+		{
+			var user = _repository.FindOne(userId);
+			if (user == null) throw new ArgumentNullException("user");
+			user.UpdateInterests(userInterests);
+		}
 
 		#endregion
 
