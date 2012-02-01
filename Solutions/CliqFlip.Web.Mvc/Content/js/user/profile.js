@@ -41,7 +41,7 @@ function InitMindMap(interests) {
 }
 
 function InitMindMapSave(saveUrl, userId) {
-	$("#saveMindMap").click(function() {
+	$("#saveMindMap").click(function () {
 		SaveMindMap(saveUrl, userId);
 	});
 }
@@ -73,10 +73,11 @@ function SaveMindMap(saveUrl, userId) {
 				data: mindMapDataJson,
 				contentType: 'application/json; charset=utf-8',
 				dataType: 'json',
-				success: function(data, textStatus, jqXHR) {
+				success: function (data, textStatus, jqXHR) {
+					//TODO:use console.debug 
 					console.log(textStatus);
 				},
-				error: function(objAJAXRequest, strError) {
+				error: function (objAJAXRequest, strError) {
 					console.log(strError);
 				}
 			}
