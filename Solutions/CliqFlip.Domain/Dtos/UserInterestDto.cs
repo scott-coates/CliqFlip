@@ -11,11 +11,6 @@
 		public float? XAxis { get; set; }
 		public float? YAxis { get; set; }
 
-		public UserInterestDto()
-		{
-			
-		}
-
 		public UserInterestDto(int id, string name, string slug)
 		{
 			Id = id;
