@@ -45,12 +45,12 @@ function SaveMindMap(saveUrl) {
 			mindMapSave.push({
 				id: bubbleObj.userInterestId,
 				xaxis: bubbleObj.big.attr('cx'),
-				yaxis: bubbleObj.big.attr('cx'),
+				yaxis: bubbleObj.big.attr('cy'),
 				passion: bubbleObj.GetPassion()
 			});
 		}
-
-		$.post(saveUrl, mindMapSave, function (data) {
+		
+		$.post(saveUrl, {'userInterests': $.toJSON(mindMapSave)}, function (data) {
 			console.log('data ' + data);
 		}
 		,"json");

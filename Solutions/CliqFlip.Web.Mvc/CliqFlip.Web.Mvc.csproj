@@ -407,6 +407,7 @@
     <Content Include="Content\js\colorbox\jquery.colorbox.js" />
     <Content Include="Content\js\core.js" />
     <Content Include="Content\js\home\home.js" />
+    <Content Include="Content\js\jquery.json.js" />
     <Content Include="Content\js\raphael\graffle.js" />
     <Content Include="Content\js\raphael\raphael.cliqFlip.js" />
     <Content Include="Content\js\user\profile.js" />
