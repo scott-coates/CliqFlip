@@ -1130,3 +1130,10 @@ display: block; float: left;
 	position: relative;
 	bottom: 45px;
 }
+
+.bio {
+	-webkit-box-shadow: inset 0px 0px 20px #000; 
+	background-color: white; height: 150px; 
+	margin: 25px auto 0;
+	text-align: center;
+}
