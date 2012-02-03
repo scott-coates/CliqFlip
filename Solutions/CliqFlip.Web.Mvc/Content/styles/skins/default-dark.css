@@ -1124,4 +1124,9 @@ display: block; float: left;
 	background-color: white; height: 50px; 
 	margin: 0 auto 25px;
 	text-align: center;
+	position: relative;
+}
+.headline h2 {
+	position: relative;
+	bottom: 45px;
 }

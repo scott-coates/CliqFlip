@@ -25,6 +25,7 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/cliqFlip/utils.js")"> </script>
 	<script type="text/javascript">
 		$(function() {
+			InitHeadline();
 			InitMindMap(@(Html.Raw(Model.InterestsJson)));
 			InitMindMapSave(@(Html.Raw(Model.SaveMindMapUrl)), @(Model.Id));
 		});
