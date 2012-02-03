@@ -13,6 +13,8 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 	{
 		public int Id { get; set; } 
 		public string Username { get; set; } 
+		public string Bio { get; set; } 
+		public string Headline { get; set; } 
 		public string InterestsJson { get; set; } 
 		public string SaveMindMapUrl { get; set; } 
 	}
