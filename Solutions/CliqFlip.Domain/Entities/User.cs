@@ -22,6 +22,7 @@ namespace CliqFlip.Domain.Entities
 		public virtual string Password { get; set; }
 		public virtual string Salt { get; set; }
 		public virtual string Bio { get; set; }
+		public virtual string Headline { get; set; }
 
 		public User()
 		{
