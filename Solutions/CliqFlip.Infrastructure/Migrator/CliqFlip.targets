@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<PropertyGroup>
 		<MigratorTasksPath>..\..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib</MigratorTasksPath>
 	</PropertyGroup>
@@ -16,9 +16,16 @@
 			<Output TaskParameter="Value" PropertyName="Configuration"/>
 		</CreateProperty>
 
-		<CreateProperty Value="Data Source=.;Initial Catalog=CliqFlip;Integrated Security=true;"  Condition="'$(ConnectionString)'==''">
-			<Output TaskParameter="Value" PropertyName="ConnectionString"/>
-		</CreateProperty>
+		<!--THANK YOU
+			http://stackoverflow.com/questions/2605933/change-nhibernate-config-with-nant-xmlpoke
+			http://stackoverflow.com/questions/2688239/how-to-use-xmlpeek-task
+		-->
+		
+		<XmlPeek XmlInputPath="../../CliqFlip.Web.Mvc/Configuration/NHibernate.config"
+						 Namespaces="&lt;Namespace Prefix='nhc' Uri='urn:nhibernate-configuration-2.2'/&gt;"
+             Query="/nhc:hibernate-configuration/nhc:session-factory/nhc:property[@name='connection.connection_string']">
+			<Output TaskParameter="Result" ItemName="Peeked" />
+		</XmlPeek>
 
 		<Migrate Provider="SqlServer2005"
 				Connectionstring="$(ConnectionString)"
