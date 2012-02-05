@@ -12,13 +12,17 @@
 			<Output TaskParameter="Value" PropertyName="SchemaVersion"/>
 		</CreateProperty>
 
+		<CreateProperty Value="Debug"  Condition="'$(Configuration)'==''">
+			<Output TaskParameter="Value" PropertyName="Configuration"/>
+		</CreateProperty>
+
 		<CreateProperty Value="Data Source=.;Initial Catalog=CliqFlip;Integrated Security=true;"  Condition="'$(ConnectionString)'==''">
 			<Output TaskParameter="Value" PropertyName="ConnectionString"/>
 		</CreateProperty>
 
 		<Migrate Provider="SqlServer2005"
 				Connectionstring="$(ConnectionString)"
-						 Migrations="../bin/debug/CliqFlip.Infrastructure.dll"
+						 Migrations="../bin/$(Configuration)/CliqFlip.Infrastructure.dll"
 						 To="$(SchemaVersion)"/>
 	</Target>
 </Project>
