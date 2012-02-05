@@ -40,7 +40,7 @@ Raphael.fn.cliqFlip = {
 		    move = function (dx, dy) {
 		    	var newX = this.ox + dx;
 		    	var newY = this.oy + dy;
-		    	if (newX >= 0 && newX <= this.node.parentElement.width.baseVal.value && newY >= 0 && newY <= this.node.parentElement.height.baseVal.value) {
+		    	if (newX >= 0 && newX <= this.node.parentNode.width.baseVal.value && newY >= 0 && newY <= this.node.parentNode.height.baseVal.value) {
 
 		    		// move will be called with dx and dy
 		    		this.attr({

@@ -1081,6 +1081,7 @@ display: block; float: left;
 #userSearchPaging {
 	margin: 0 auto;
 	width: 300px;
+	text-align: center;
 }
 .tryout .header, .tryout .subheader {margin-bottom: 10px; 
                  font-family: 'PT Sans Narrow', Arial, Helvetica, sans-serif; 
@@ -1113,3 +1114,37 @@ display: block; float: left;
 .tryout-search{margin-top: 25px;}
 
 .tryout-search-input{ width: 620px;margin: 0 auto;}
+
+/*========================*/
+/*===  10. Profile
+/*========================*/
+
+
+.headline {
+	-webkit-box-shadow: inset 0px 0px 20px #000; 
+	-moz-box-shadow: inset 0px 0px 20px #000; 
+	box-shadow: inset 0px 0px 20px #000;
+	background-color: white; height: 50px; 
+	margin: 0 auto 25px;
+	text-align: center;
+	position: relative;
+}
+.headline h2 {
+	position: relative;
+	bottom: 45px;
+}
+.profileMindMap {
+	-webkit-box-shadow: inset 0px 0px 20px #000;
+	-moz-box-shadow: inset 0px 0px 20px #000; 
+	box-shadow: inset 0px 0px 20px #000;
+	background-color: white; height: 300px; margin: 0 auto;
+}
+
+.bio {
+	-webkit-box-shadow: inset 0px 0px 20px #000; 
+	-moz-box-shadow: inset 0px 0px 20px #000; 
+	box-shadow: inset 0px 0px 20px #000;
+	background-color: white; height: 150px; 
+	margin: 25px auto 0;
+	text-align: center;
+}

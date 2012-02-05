@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<PropertyGroup>
 		<MigratorTasksPath>..\..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib</MigratorTasksPath>
 	</PropertyGroup>
@@ -12,13 +12,24 @@
 			<Output TaskParameter="Value" PropertyName="SchemaVersion"/>
 		</CreateProperty>
 
-		<CreateProperty Value="Data Source=.;Initial Catalog=CliqFlip;Integrated Security=true;"  Condition="'$(ConnectionString)'==''">
-			<Output TaskParameter="Value" PropertyName="ConnectionString"/>
+		<CreateProperty Value="Debug"  Condition="'$(Configuration)'==''">
+			<Output TaskParameter="Value" PropertyName="Configuration"/>
 		</CreateProperty>
 
+		<!--THANK YOU
+			http://stackoverflow.com/questions/2605933/change-nhibernate-config-with-nant-xmlpoke
+			http://stackoverflow.com/questions/2688239/how-to-use-xmlpeek-task
+			http://www.pabich.eu/blog/archive/2011/03/28/Automated-database-deployments-to-AppHarbor.aspx
+		-->
+
+		<XmlPeek XmlInputPath="../../CliqFlip.Web.Mvc/Configuration/ConnectionStrings.config"
+           Query="/connectionStrings/add[@name='default']/@connectionString">
+			<Output TaskParameter="Result" ItemName="ConnectionString" />
+		</XmlPeek>
+
 		<Migrate Provider="SqlServer2005"
-				Connectionstring="$(ConnectionString)"
-						 Migrations="../bin/debug/CliqFlip.Infrastructure.dll"
+				Connectionstring="@(ConnectionString)"
+						 Migrations="../bin/$(Configuration)/CliqFlip.Infrastructure.dll"
 						 To="$(SchemaVersion)"/>
 	</Target>
 </Project>

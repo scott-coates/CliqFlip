@@ -26,7 +26,9 @@ namespace CliqFlip.Web.Mvc.Queries
 				retVal = new UserProfileViewModel
 							{
 								Username = user.Username,
-								Id = user.Id
+								Id = user.Id,
+								Bio = user.Bio,
+								Headline = user.Headline
 							};
 
 				var interests = user.Interests.Select(interest => new UserInterestDto(interest.Id, interest.Interest.Name.Replace(' ', '\n'), interest.Interest.Slug, null, null, interest.Options.Passion, interest.Options.XAxis, interest.Options.YAxis)).ToList();

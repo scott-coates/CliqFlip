@@ -4,15 +4,16 @@
 }
 <div class="wrapper">
 	<div class="inner">
-		<div id="profileHeadline" style="-webkit-box-shadow: inset 0px 0px 20px #000; background-color: white; height: 50px; margin: 0 auto 25px;">
-			<h2 style="text-align: center;">
-				@Model.Username</h2>
+		<div class="headline" id="profileHeadline" >
+			<h2>
+				@Model.Headline</h2>
 		</div>
 		<div>
 			<input type="button" value="save" id="saveMindMap" />
 		</div>
-		<div id="mindMap" style="-webkit-box-shadow: inset 0px 0px 20px #000; background-color: white; height: 300px; margin: 0 auto;">
+		<div id="mindMap" class="profileMindMap">
 		</div>
+		<div id="profileBio" class="bio"><p>@Model.Bio</p></div>
 	</div>
 </div>
 @section scripts
@@ -25,6 +26,7 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/cliqFlip/utils.js")"> </script>
 	<script type="text/javascript">
 		$(function() {
+			InitHeadline();
 			InitMindMap(@(Html.Raw(Model.InterestsJson)));
 			InitMindMapSave(@(Html.Raw(Model.SaveMindMapUrl)), @(Model.Id));
 		});
