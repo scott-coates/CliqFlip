@@ -4,16 +4,123 @@
 }
 <div class="wrapper">
 	<div class="inner">
-		<div class="headline" id="profileHeadline" >
-			<h2>
-				@Model.Headline</h2>
+		<div class="content">
+			<!-- Blog Post -->
+			<div class="blog-post">
+				<div class="post-info">
+					<div class="blogdate">
+						<div class="month">
+							Jun</div>
+						<div class="day">
+							29</div>
+						<div class="year">
+							2011</div>
+					</div>
+					<div class="category">
+						<ul>
+							<li><a href="blog_right.html">Blog</a></li>
+							<li><a href="blog_right.html">Tutorials</a></li>
+						</ul>
+					</div>
+					<p class="post_author">
+						by Marius Pop</p>
+				</div>
+				<div class="post-entry">
+					<div class="headline" id="profileHeadline">
+						<h2>
+							@Model.Headline</h2>
+					</div>
+					<div>
+						<input type="button" value="save" id="saveMindMap" />
+					</div>
+					<div id="mindMap" class="profileMindMap">
+					</div>
+					<div id="profileBio" class="bio">
+						<p>@Model.Bio</p>
+					</div>
+				</div>
+				<div class="clear">
+				</div>
+			</div>
+			<!-- END Blog Post -->
 		</div>
-		<div>
-			<input type="button" value="save" id="saveMindMap" />
+		<!-- SIDEBAR START -->
+		<div class="sidebar">
+			<!-- SIDEBAR SEARCH START -->
+			<div class="sidebar_item">
+				<div class="search">
+					<input class="search_submit" value="" type="submit">
+					<input class="search_box" type="text" value="Search..." onfocus="if (this.value == 'Search...') {this.value = '';}"
+						   onblur="if (this.value == '') {this.value = 'Search...';}">
+				</div>
+			</div>
+			<!-- SIDEBAR SEARCH END -->
+			<!-- SIDEBAR RECENT POSTS START -->
+			<div class="sidebar_item recent-posts">
+				<h5>
+					Recent Posts</h5>
+				<ul>
+					<li><a href="openpost.html">
+							<img src="images/1_small.jpg" alt>
+							<span><span class="title">Post title</span> <em>by Admin on Aug 5, 2011</em> </span>
+						</a></li>
+					<li><a href="openpost.html">
+							<img src="images/2_small.jpg" alt>
+							<span><span class="title">A bit longer title</span> <em>by Admin on Aug 5, 2011</em>
+							</span></a></li>
+					<li><a href="openpost.html">
+							<img src="images/3_small.jpg" alt>
+							<span><span class="title">Post title</span> <em>by Admin on Aug 5, 2011</em> </span>
+						</a></li>
+				</ul>
+			</div>
+			<!-- SIDEBAR RECENT POSTS END -->
+			<!-- SIDEBAR CATEGORIES START -->
+			<div class="sidebar_item categories">
+				<h5>
+					Categories</h5>
+				<ul>
+					<li><a href="#">Articles</a></li>
+					<li><a href="#">Tutorials</a></li>
+					<li><a href="#">Tips</a></li>
+					<li><a href="#">HTML & CSS</a></li>
+					<li><a href="#">Inspiration</a></li>
+				</ul>
+			</div>
+			<!-- SIDEBAR CATEGORIES END -->
+			<!-- SIDEBAR CATEGORIES START -->
+			<div class="sidebar_item archives">
+				<h5>
+					Archives</h5>
+				<ul>
+					<li><a href="#">August 2011</a></li>
+					<li><a href="#">July 2011</a></li>
+					<li><a href="#">June 2011</a></li>
+					<li><a href="#">May 2011</a></li>
+					<li><a href="#">April 2011</a></li>
+				</ul>
+			</div>
+			<!-- SIDEBAR CATEGORIES END -->
+			<!-- CUSTOM TEXT STERT -->
+			<div class="sidebar_item">
+				<h5>
+					Custom text box</h5>
+				<p>
+					Placerat turpis egestas mid facilisis dictumst! Porttitor pulvinar tristique augue.
+					Natoque arcu pellentesque cursus, lundium mattis ac cum auctor integer, porttitor
+					vut, pulvinar!</p>
+			</div>
+			<!-- CUSTOM TEXT END -->
+			<div class="sidebar_tweets">
+				<h5>
+					Twitter</h5>
+				<div id="tweet">
+					<p>
+						Please wait while tweets load..</p>
+				</div>
+			</div>
 		</div>
-		<div id="mindMap" class="profileMindMap">
-		</div>
-		<div id="profileBio" class="bio"><p>@Model.Bio</p></div>
+		<!-- SIDEBAR END -->
 	</div>
 </div>
 @section scripts
@@ -24,11 +131,9 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/raphael/raphael.cliqFlip.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/profile.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/cliqFlip/utils.js")"> </script>
-	<script type="text/javascript">
-		$(function() {
-			InitHeadline();
-			InitMindMap(@(Html.Raw(Model.InterestsJson)));
-			InitMindMapSave(@(Html.Raw(Model.SaveMindMapUrl)), @(Model.Id));
-		});
-	</script>
+	<script type="text/javascript"> $(function() {
+	InitHeadline();
+	InitMindMap(@(Html.Raw(Model.InterestsJson)));
+	InitMindMapSave(@(Html.Raw(Model.SaveMindMapUrl)), @(Model.Id));
+}); </script>
 }
