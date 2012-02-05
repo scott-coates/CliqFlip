@@ -490,6 +490,15 @@
     <Content Include="Configuration\Alpha\NHibernate.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Configuration\Compilation.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Beta\Compilation.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Alpha\Compilation.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Content\img\patterns\Thumbs.db" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
