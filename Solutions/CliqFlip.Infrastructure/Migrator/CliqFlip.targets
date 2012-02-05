@@ -23,10 +23,11 @@
 		
 		<XmlPeek XmlInputPath="../../CliqFlip.Web.Mvc/Configuration/NHibernate.config"
 						 Namespaces="&lt;Namespace Prefix='nhc' Uri='urn:nhibernate-configuration-2.2'/&gt;"
-             Query="/nhc:hibernate-configuration/nhc:session-factory/nhc:property[@name='connection.connection_string']">
-			<Output TaskParameter="Result" ItemName="Peeked" />
+             Query="/nhc:hibernate-configuration/nhc:session-factory/nhc:property[@name='connection.connection_string']/@value">
+			<Output TaskParameter="Result" ItemName="ConnectionString" />
 		</XmlPeek>
-
+		
+		<Message Text="$(ConnectionString)"></Message>
 		<Migrate Provider="SqlServer2005"
 				Connectionstring="$(ConnectionString)"
 						 Migrations="../bin/$(Configuration)/CliqFlip.Infrastructure.dll"
