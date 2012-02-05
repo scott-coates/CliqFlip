@@ -6,7 +6,8 @@
 			@foreach (UsersByInterestViewModel.IndividualResultViewModel user in Model.PagedResults)
 			{
 				<div id="innerUserSearchResults">
-					<h3>@user.Name</h3>
+					<h3>
+						<a>@Html.ActionLink(user.Name, "Index", "User", new {username = @user.Name}, null)</a></h3>
 					<img class="innerResultPhoto" alt="photo" src='@Url.Content("/Content/img/star.png")'/>
 					<ul class="userSearchInterest">
 						@foreach (UsersByInterestViewModel.IndividualResultInterestViewModel interest in user.ResultInterestViewModels)
