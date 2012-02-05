@@ -1081,6 +1081,7 @@ display: block; float: left;
 #userSearchPaging {
 	margin: 0 auto;
 	width: 300px;
+	text-align: center;
 }
 .tryout .header, .tryout .subheader {margin-bottom: 10px; 
                  font-family: 'PT Sans Narrow', Arial, Helvetica, sans-serif; 
