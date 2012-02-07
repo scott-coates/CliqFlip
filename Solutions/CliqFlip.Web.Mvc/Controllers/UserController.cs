@@ -104,6 +104,16 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 		}
 
+		[HttpPost]
+		[Transaction]
+		public ActionResult SaveBio(JeipSaveTextViewModel saveTextViewModel)
+		{
+			//get user and save it
+			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
+			return new JsonNetResult(retVal);
+
+		}
+
 		[Transaction]
 		public ActionResult Index(string username)
 		{

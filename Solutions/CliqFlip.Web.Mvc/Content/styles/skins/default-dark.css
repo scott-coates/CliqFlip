@@ -1180,3 +1180,7 @@ color: white;
 .headline .jeip-editor input[type="text"] {
 	width: 420px;
 }
+
+.bio .jeip-editor textarea {
+	width: 537px;
+}

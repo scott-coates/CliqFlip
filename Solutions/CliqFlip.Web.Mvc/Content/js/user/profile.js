@@ -41,7 +41,7 @@ function InitMindMap(interests) {
 }
 
 function InitMindMapSave(saveUrl, userId) {
-	$("#saveMindMap").click(function () {
+	$("#saveMindMap").click(function() {
 		SaveMindMap(saveUrl, userId);
 	});
 }
@@ -73,11 +73,11 @@ function SaveMindMap(saveUrl, userId) {
 				data: mindMapDataJson,
 				contentType: 'application/json; charset=utf-8',
 				dataType: 'json',
-				success: function (data, textStatus, jqXHR) {
+				success: function(data, textStatus, jqXHR) {
 					//TODO:use console.debug 
 					console.log(textStatus);
 				},
-				error: function (objAJAXRequest, strError) {
+				error: function(objAJAXRequest, strError) {
 					console.log(strError);
 				}
 			}
@@ -94,4 +94,8 @@ function InitHeadline(saveUrl) {
 
 	var textTemplate = '<input type="text" id="edit-#{id}" class="#{editfield_class}" value="#{value}" maxlength="5	0" /> <br />';
 	$("#headlineText").eip(saveUrl, { select_text: false, text_form: textTemplate });
+}
+
+function InitBio(saveUrl) {
+	$("#bioText").eip(saveUrl, { select_text: false, form_type: "textarea" });
 }
