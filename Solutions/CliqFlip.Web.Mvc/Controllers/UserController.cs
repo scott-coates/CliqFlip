@@ -59,25 +59,30 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return View(profile);
 		}
 
+        public ActionResult Login()
+        {
+            return PartialView();
+        }
 
-		//[HttpPost]
-		public ActionResult Login([Required] string username, [Required] string password, bool stayLoggedIn)
+		[HttpPost]
+		public ActionResult Login(UserLoginViewModel model)
 		{
 			if (ModelState.IsValid)
 			{
-				if (_userTasks.ValidateUser(username, password))
+                if (_userTasks.ValidateUser(model.Username, model.Password))
 				{
-					FormsAuthentication.SetAuthCookie(username, stayLoggedIn);
-					//TODO:  Redirect to users profile
-					return RedirectToAction("Details", "User", new {id = "me"});
+                    FormsAuthentication.SetAuthCookie(model.Username, model.LogMeIn);
+                    return Content("Awesome! You are now logged in.");
 				}
 			}
-			ViewData["username"] = username;
-			ViewData["password"] = password;
-			ViewData["stayLoggedIn"] = stayLoggedIn;
-			return View();
+            return Content("<strong>Login failed!</strong><br/> Please verify your username and password.");
 		}
 
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return Redirect("~");
+        }
 
 		[HttpPost]
 		[Transaction]

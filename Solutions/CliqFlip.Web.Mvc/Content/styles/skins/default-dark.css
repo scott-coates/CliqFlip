@@ -1148,3 +1148,65 @@ display: block; float: left;
 	margin: 25px auto 0;
 	text-align: center;
 }
+
+
+
+/*========================*/
+/*===  11.1 Layout file - navigation
+/*========================*/
+
+#header-nav
+        {
+            margin: 0 auto;
+            margin-top: 7px;
+            width: 980px;
+            text-align: right;
+        }
+        #header-nav li
+        {
+            display: inline;
+        }
+        #header-nav a
+        {
+            color: White;
+            font-weight: bold;
+            padding: 6px 8px;
+        }
+        
+        #header-nav a:hover, #header-nav a.selected
+        {
+            background-color: #4DBCE9;
+            color: #24282D;
+        }
+        
+        #user-login-container
+        {
+            display: none;
+            background-color: #4DBCE9;
+            padding: 5px;
+            /*float: right;*/
+            width: 200px;
+            margin-left: 770px;
+            border-radius: 4px;
+            border-radius: 4px 0px 4px 4px;
+            margin-top: 4px;
+        }
+        
+        #user-login-container *
+        {
+            z-index: 99999;
+        }
+        
+        #user-login-container form
+        {
+            background-color: White;
+            border-radius: 4px;
+            text-align: left;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #login-progress
+        {
+            display: none;
+        }
