@@ -73,10 +73,12 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
                 if (_userTasks.ValidateUser(model.Username, model.Password))
 				{
+					//TODO: Use a service for setting the cookie - unit tests will fail
                     FormsAuthentication.SetAuthCookie(model.Username, model.LogMeIn);
                     return Content("Awesome! You are now logged in.");
 				}
 			}
+			//TODO: Return a partial view instead of inline html
             return Content("<strong>Login failed!</strong><br/> Please verify your username and password.");
 		}
 
