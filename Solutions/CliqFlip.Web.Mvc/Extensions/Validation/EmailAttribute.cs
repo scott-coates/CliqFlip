@@ -16,6 +16,7 @@ namespace CliqFlip.Web.Mvc.Extensions.Validation
             {
                 try
                 {
+					//TODO: MVC3 Futures already has this - we should probably just use that
                     new MailAddress(value.ToString());
                     return true;
                 }
