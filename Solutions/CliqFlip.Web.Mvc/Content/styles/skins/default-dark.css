@@ -1121,9 +1121,7 @@ display: block; float: left;
 
 
 .headline {
-	-webkit-box-shadow: inset 0px 0px 20px #000; 
-	-moz-box-shadow: inset 0px 0px 20px #000; 
-	box-shadow: inset 0px 0px 20px #000;
+	border-style: solid;
 	background-color: white; height: 50px; 
 	margin: 0 auto 25px;
 	text-align: center;
@@ -1134,16 +1132,12 @@ display: block; float: left;
 	bottom: 45px;
 }
 .profileMindMap {
-	-webkit-box-shadow: inset 0px 0px 20px #000;
-	-moz-box-shadow: inset 0px 0px 20px #000; 
-	box-shadow: inset 0px 0px 20px #000;
+	border-style: solid;
 	background-color: white; height: 300px; margin: 0 auto;
 }
 
 .bio {
-	-webkit-box-shadow: inset 0px 0px 20px #000; 
-	-moz-box-shadow: inset 0px 0px 20px #000; 
-	box-shadow: inset 0px 0px 20px #000;
+	border-style: solid;
 	background-color: white; height: 150px; 
 	margin: 25px auto 0;
 	text-align: center;

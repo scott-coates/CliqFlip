@@ -1,8 +1,18 @@
 ﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserProfileViewModel
+@section styles
+{
+	<style type="text/css">
+		body
+		{
+			background-color: #D1E1E7;
+		}
+	</style>
+}
 @{
 	ViewBag.Title = "Index";
 }
-<div class="divider"></div>
+<div class="divider">
+</div>
 <div class="wrapper">
 	<div class="inner">
 		<div class="content">
@@ -39,8 +49,7 @@
 					<div id="profileBio" class="bio">
 						<p>@Model.Bio</p>
 					</div>
-			</div>
-	
+				</div>
 			</div>
 			<!-- END Blog Post -->
 		</div>
@@ -51,7 +60,7 @@
 				<div class="search">
 					<input class="search_submit" value="" type="submit">
 					<input class="search_box" type="text" value="Search..." onfocus="if (this.value == 'Search...') {this.value = '';}"
-						   onblur="if (this.value == '') {this.value = 'Search...';}">
+						onblur="if (this.value == '') {this.value = 'Search...';}">
 				</div>
 			</div>
 			<!-- SIDEBAR SEARCH END -->
@@ -61,17 +70,17 @@
 					Recent Posts</h5>
 				<ul>
 					<li><a href="openpost.html">
-							<img src="images/1_small.jpg" alt>
-							<span><span class="title">Post title</span> <em>by Admin on Aug 5, 2011</em> </span>
-						</a></li>
+						<img src="images/1_small.jpg" alt>
+						<span><span class="title">Post title</span> <em>by Admin on Aug 5, 2011</em> </span>
+					</a></li>
 					<li><a href="openpost.html">
-							<img src="images/2_small.jpg" alt>
-							<span><span class="title">A bit longer title</span> <em>by Admin on Aug 5, 2011</em>
-							</span></a></li>
+						<img src="images/2_small.jpg" alt>
+						<span><span class="title">A bit longer title</span> <em>by Admin on Aug 5, 2011</em>
+						</span></a></li>
 					<li><a href="openpost.html">
-							<img src="images/3_small.jpg" alt>
-							<span><span class="title">Post title</span> <em>by Admin on Aug 5, 2011</em> </span>
-						</a></li>
+						<img src="images/3_small.jpg" alt>
+						<span><span class="title">Post title</span> <em>by Admin on Aug 5, 2011</em> </span>
+					</a></li>
 				</ul>
 			</div>
 			<!-- SIDEBAR RECENT POSTS END -->
@@ -122,9 +131,9 @@
 		</div>
 		<!-- SIDEBAR END -->
 	</div>
-<div class="clear"></div>
+	<div class="clear">
+	</div>
 </div>
-
 @section scripts
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.json.js")"> </script>
