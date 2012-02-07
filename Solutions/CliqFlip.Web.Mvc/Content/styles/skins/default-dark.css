@@ -1219,6 +1219,8 @@ color: white;
         
         #user-login-container
         {
+        	position: relative;
+        	z-index: 100;
             display: none;
             background-color: #4DBCE9;
             padding: 5px;
@@ -1228,11 +1230,7 @@ color: white;
             border-radius: 4px;
             border-radius: 4px 0px 4px 4px;
             margin-top: 4px;
-        }
-        
-        #user-login-container *
-        {
-            z-index: 99999;
+            /*TODO:border radius is duplicated  and doesn't account for webkit or mozilla'*/
         }
         
         #user-login-container form
