@@ -474,11 +474,6 @@ $("#contact_form").validate();
     });
 
 
-    function formLogin_OnSuccess(result, response) {
-        //if the result does not contain the word failed
-        if (result.indexOf("failed") == -1) {
-            window.location.reload();
-        }
-    }
+    
 	
 });
