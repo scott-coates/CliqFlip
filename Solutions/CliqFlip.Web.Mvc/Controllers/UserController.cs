@@ -123,5 +123,17 @@ namespace CliqFlip.Web.Mvc.Controllers
 			user.SaveBioUrl = "\"" + Url.Action("SaveBio", "User") + "\"";
 			return View(user);
 		}
+
+		[Transaction]
+		public ActionResult Interests(string username)
+		{
+			return Index(username);
+		}
+
+		[Transaction]
+		public ActionResult SocialMedia(string username)
+		{
+			return Index(username);
+		}
 	}
 }
