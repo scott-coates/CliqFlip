@@ -77,21 +77,24 @@ Raphael.fn.cliqFlip = {
 
 		    },
 		    rmove = function (dx, dy) {
-		    	var newR = this.big.or + (dy < 0 ? -1 : 1) * Math.sqrt(2 * dy * dy);
-		    	var newFs = this.text.ofs + (dy < 0 ? -1 : 1) * Math.sqrt(2 * (dy / 3) * (dy / 3));
+				if(this.big.attr('r') == this.big.or2) //make sure they're not double clicking really quickly, then moving the sizer
+				{
+					var newR = this.big.or + (dy < 0 ? -1 : 1) * Math.sqrt(2 * dy * dy);
+					var newFs = this.text.ofs + (dy < 0 ? -1 : 1) * Math.sqrt(2 * (dy / 3) * (dy / 3));
 
-		    	if (newR <= 80 && newR >= 16) {
-		    		// move will be called with dx and dy
-		    		this.attr({
-		    			cx: this.ox + dy,
-		    			cy: this.oy + dy
-		    		});
-		    		this.big.attr({
-		    			r: newR
-		    		});
-		    		this.big.or2 = newR;
-		    		this.text.attr({ 'font-size': newFs });
-		    	}
+					if (newR <= 80 && newR >= 16) {
+						// move will be called with dx and dy
+						this.attr({
+							cx: this.ox + dy,
+							cy: this.oy + dy
+						});
+						this.big.attr({
+							r: newR
+						});
+						this.big.or2 = newR;
+						this.text.attr({ 'font-size': newFs });
+					}
+				}
 		    };
 		c.drag(move, start, up);
 		c.sizer = s;
