@@ -30,13 +30,15 @@
 			<div class="inner">
 				<div class="logo">
 					<a href="/">
-						<img src="@Url.Content("/Content/img/ClipFliq-LogoMoto.png")" alt="CliqFlip logo"/></a>
+						<img src="@Url.Content("/Content/img/ClipFliq-LogoMoto.png")" alt="CliqFlip logo"/>
+                    </a>
 				</div>
 				<div class="motto">Discover <span>More</span>
 				</div>
 				<div class="clear">
 				</div>
 			</div>
+            @Html.Partial("_HeaderNavigation")
 		</div>
 		<!-- HEADER END -->
 		@RenderBody()
@@ -128,6 +130,6 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.min.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.unobtrusive.min.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/core.js")"> </script>
-	@RenderSection("scripts", false)
+    @RenderSection("scripts", false)
 </body>
 </html>
