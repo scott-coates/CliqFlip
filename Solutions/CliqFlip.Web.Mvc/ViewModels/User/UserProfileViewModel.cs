@@ -16,6 +16,8 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 		public string Bio { get; set; } 
 		public string Headline { get; set; } 
 		public string InterestsJson { get; set; } 
+		public string SaveHeadlineUrl { get; set; } 
+		public string SaveBioUrl { get; set; } 
 		public string SaveMindMapUrl { get; set; } 
 	}
 }

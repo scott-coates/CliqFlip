@@ -143,7 +143,7 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/cliqFlip/utils.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.jeip.js")"> </script>
 	<script type="text/javascript"> $(function() {
-	InitHeadline();
+	InitHeadline(@(Html.Raw(Model.SaveHeadlineUrl)));
 	InitMindMap(@(Html.Raw(Model.InterestsJson)));
 	InitMindMapSave(@(Html.Raw(Model.SaveMindMapUrl)), @(Model.Id));
 }); </script>

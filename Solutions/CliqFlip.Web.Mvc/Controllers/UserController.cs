@@ -5,8 +5,10 @@ using System.Web.Security;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
+using CliqFlip.Web.Mvc.ViewModels.Jeip;
 using CliqFlip.Web.Mvc.ViewModels.User;
 using SharpArch.NHibernate.Web.Mvc;
+using SharpArch.Web.Mvc.JsonNet;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
@@ -91,11 +93,24 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return new EmptyResult();
 		}
 
+
+		[HttpPost]
+		[Transaction]
+		public ActionResult SaveHeadline(JeipSaveTextViewModel saveTextViewModel)
+		{
+			//get user and save it
+			var retVal = new JeipSaveResponseViewModel { Html = saveTextViewModel.NewValue, IsError = false};
+			return new JsonNetResult(retVal);
+
+		}
+
 		[Transaction]
 		public ActionResult Index(string username)
 		{
 			UserProfileViewModel user = _userProfileQuery.GetUser(username);
+			user.SaveHeadlineUrl = "\"" + Url.Action("SaveHeadline", "User") + "\"";
 			user.SaveMindMapUrl = "\"" + Url.Action("SaveMindMap", "User") + "\"";
+			user.SaveBioUrl = "\"" + Url.Action("SaveBio", "User") + "\"";
 			return View(user);
 		}
 	}
