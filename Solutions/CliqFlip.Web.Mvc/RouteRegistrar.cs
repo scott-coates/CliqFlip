@@ -12,8 +12,8 @@ namespace CliqFlip.Web.Mvc
 
 			routes.MapRoute(
 			 "Users",
-			  "Users/{username}",
-			  new { controller = "User", action = "Index"});
+			  "Users/{username}/{action}",
+			  new { controller = "User", action = "Index" });
 
 			routes.MapRoute(
 				"Default",                                              // Route name
