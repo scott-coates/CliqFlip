@@ -13,10 +13,10 @@
 		 */
 
 		public string Url { get; set; }
-		public string FormType { get; set; }
+		public string Form_Type { get; set; }
 		public string Id { get; set; }
-		public string OrigValue { get; set; }
-		public string NewValue { get; set; }
+		public string Orig_Value { get; set; }
+		public string New_Value { get; set; }
 		public string Data { get; set; }
 	}
 }

@@ -99,7 +99,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		public ActionResult SaveHeadline(JeipSaveTextViewModel saveTextViewModel)
 		{
 			//get user and save it
-			var retVal = new JeipSaveResponseViewModel { Html = saveTextViewModel.NewValue, IsError = false};
+			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false};
 			return new JsonNetResult(retVal);
 
 		}

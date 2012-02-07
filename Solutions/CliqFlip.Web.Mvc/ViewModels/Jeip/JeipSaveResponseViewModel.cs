@@ -9,8 +9,8 @@
 			html – (string) This string is used to replace the old value of the edited DOM element.
 		 */
 
-		public bool IsError { get; set; }
-		public string ErrorText { get; set; }
-		public string Html { get; set; }
+		public bool is_error { get; set; }
+		public string error_text { get; set; }
+		public string html { get; set; }
 	}
 }
