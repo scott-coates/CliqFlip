@@ -459,21 +459,6 @@ getTwitters('tweet', {
 
 $("#contact_form").validate();
 
-
-
-/*
-* ---------------------------------------------------------------- 
-*  Login form
-* ----------------------------------------------------------------  
-*/
-    var userLoginContainer = $("#user-login-container");
-    $("#user-login").click(function (event) {
-        event.preventDefault();
-        $(this).toggleClass("selected");
-        userLoginContainer.toggle();
-    });
-
-
     
 	
 });

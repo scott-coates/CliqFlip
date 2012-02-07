@@ -130,14 +130,12 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.min.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.unobtrusive.min.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/core.js")"> </script>
-    @RenderSection("scripts", false)
+    <script type="text/javascript" src="@Url.Content("/Content/js/global.js")"> </script>
     <script type="text/javascript">
-        function formLogin_OnSuccess(result, response) {
-            //if the result does not contain the word failed
-            if (result.indexOf("failed") == -1) {
-                window.location.reload();
-            }
-        }
+        $(document).ready(function () {
+            InitLogin();
+        });
     </script>
+    @RenderSection("scripts", false)
 </body>
 </html>
