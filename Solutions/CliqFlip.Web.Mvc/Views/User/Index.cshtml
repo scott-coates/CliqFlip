@@ -38,8 +38,7 @@
 				</div>
 				<div class="post-entry">
 					<div class="headline" id="profileHeadline">
-						<h2>
-							@Model.Headline</h2>
+						<h2 id="headlineText">@Model.Headline</h2>
 					</div>
 					<div>
 						<input type="button" value="save" id="saveMindMap" />
@@ -142,6 +141,7 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/raphael/raphael.cliqFlip.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/profile.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/cliqFlip/utils.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.jeip.js")"> </script>
 	<script type="text/javascript"> $(function() {
 	InitHeadline();
 	InitMindMap(@(Html.Raw(Model.InterestsJson)));

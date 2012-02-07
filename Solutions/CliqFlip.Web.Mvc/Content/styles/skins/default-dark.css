@@ -1142,3 +1142,30 @@ display: block; float: left;
 	margin: 25px auto 0;
 	text-align: center;
 }
+.jeip-mouseover, .jeip-editfield {
+	background-color: #FF9;
+	padding: 5px;
+}
+
+.jeip-cancelbutton {
+	background-color: #CCC;
+	color: white;
+}
+
+.jeip-savebutton {
+background-color: #4DBCE9;
+color: white;
+}
+
+.headline .jeip-editor {
+	position: relative;
+	bottom: 55px;
+}
+
+.headline .jeip-editor span {
+	position: relative;
+	top: 25px;
+}
+.headline .jeip-editor input[type="text"] {
+	width: 420px;
+}
