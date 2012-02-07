@@ -18,30 +18,30 @@ a { color:#AE0C13; }
 
 .emphasis	{ color:#FFA200 !important; }
 
-.tagline span { border-color:#2D9668; }
+.tagline span { border-color:#4DBCE9; }
 
-.post-info .blogdate, .post-info .category ul li a, .post-image .post_meta_comments a, .button { background:#2D9668; color:#fff; }
+.post-info .blogdate, .post-info .category ul li a, .post-image .post_meta_comments a, .button { background:#4DBCE9; color:#fff; }
 
-.bg_slider { border-color:#2D9668; }
+.bg_slider { border-color:#4DBCE9; }
 
-.item-image { border-color:#2D9668; }
+.item-image { border-color:#4DBCE9; }
 .item-image:hover { border-color:#fff; }
 
 .line, .tagline, .post-image, .sidebar_item, .top, .pullleft, 
 .pullright, .imageleft, .imageright, .border, .blockleft, 
-.blockright, blockquote, .block_contact_info .detail { border-color:#2D9668; }
+.blockright, blockquote, .block_contact_info .detail { border-color:#4DBCE9; }
 
-.top a { color:#2D9668; }
+.top a { color:#4DBCE9; }
 .top a:hover { color:#fff; }
 
-.toggle-view h4 { border-color:#2D9668; }
+.toggle-view h4 { border-color:#4DBCE9; }
 
 #icon_container.full-width { background-color:#B1E0F2; border-bottom:1px solid #74C4E3; color:#333;  -webkit-box-shadow: 0px 0px 10px #000;
 -moz-box-shadow: 0px 0px 10px #000;
 box-shadow: 0px 0px 10px #000;}
 #icon_container.full-width h4 { color:#111; }
 
-.servicebox-hover { background:#2D9668; }
+.servicebox-hover { background:#4DBCE9; }
 .servicebox .icon { background:#4DBCE9; }
 .servicebox .icon img { height: 76px;width: 80px;}
 .servicebox .title { color:#26ADE4; }
@@ -57,7 +57,7 @@ box-shadow: 0px 0px 10px #000;}
 .filter a:hover { color:#fff; border:1px solid #452D04;  }
 .filter a.active { background:#FFA200; color:#222; border:1px solid #452D04;  }
 
-#services_box2 .service_item { background:#2D9668; color:#fff; border-color:#222; }
+#services_box2 .service_item { background:#4DBCE9; color:#fff; border-color:#222; }
 #services_box2 .service_item h4 { color:#fff; }
 #services_box2 .service_item:hover { background:#000; border-color:#111; }
 #services_box2 .service_item:hover h4 { color:#fff; }
