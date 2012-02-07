@@ -1146,11 +1146,13 @@ display: block; float: left;
 	font-size: 1.3em;
 	line-height: 30px;
 	text-align: left;
-	font-family: 'Oswald', Helvetica, Arial, sans-serif;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, "Myriad Pro", Myriad, Geneva, Arial, "Lucida Grande", "sans-serif";
+	background-color: #EEE;
 }
 .bio p:first-letter {
 	text-transform:uppercase; 
 	font-weight:bolder;
+	font-family: 'Oswald', Helvetica, Arial, sans-serif;
 	font-size: xx-large;
 }
 .jeip-mouseover, .jeip-editfield {
