@@ -1138,9 +1138,20 @@ display: block; float: left;
 
 .bio {
 	border-style: solid;
-	background-color: white; height: 150px; 
+	background-color: white;
+	min-height: 150px; 
 	margin: 25px auto 0;
 	text-align: center;
+	padding: 5px;
+	font-size: 1.3em;
+	line-height: 30px;
+	text-align: left;
+	font-family: 'Oswald', Helvetica, Arial, sans-serif;
+}
+.bio p:first-letter {
+	text-transform:uppercase; 
+	font-weight:bolder;
+	font-size: xx-large;
 }
 .jeip-mouseover, .jeip-editfield {
 	background-color: #FF9;
