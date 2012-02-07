@@ -21,7 +21,8 @@ a { color:#AE0C13; }
 .tagline span { border-color:#4DBCE9; }
 
 .post-info .blogdate, .post-info .category ul li a, .post-image .post_meta_comments a, .button { background:#4DBCE9; color:#fff; }
-
+.post-info .category ul li a:hover { background:#24282D; }
+.post-info .category ul li.selected a { background:#24282D; }
 .bg_slider { border-color:#4DBCE9; }
 
 .item-image { border-color:#4DBCE9; }
