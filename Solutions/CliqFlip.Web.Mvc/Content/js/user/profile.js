@@ -23,7 +23,8 @@ function InitMindMap(interests) {
 					rowAxis,
 					cliqFlip.Utils.RandomHexColor(),
 					interests[interest].Name,
-					interests[interest].Id));
+					interests[interest].Id,
+					MindMapBlinkSave));
 
 				space += width;
 			}
@@ -34,10 +35,15 @@ function InitMindMap(interests) {
 					interests[interest].YAxis,
 					cliqFlip.Utils.RandomHexColor(),
 					interests[interest].Name,
-					interests[interest].Id));
+					interests[interest].Id,
+					MindMapBlinkSave));
 			}
 		}
 	}
+}
+
+function MindMapBlinkSave() {
+	cliqFlip.Utils.Blink($("#saveMindMapText"));
 }
 
 function InitMindMapSave(saveUrl, userId) {
@@ -87,10 +93,10 @@ function SaveMindMap(saveUrl, userId) {
 
 function InitHeadline(saveUrl) {
 	var r = Raphael("profileHeadline", 559, 50);
-	
+
 	r.cliqFlip.quotationMarks(14);
 	r.cliqFlip.quotationMarks(534);
-	
+
 	var textTemplate = '<input type="text" id="edit-#{id}" class="#{editfield_class}" value="#{value}" maxlength="50" /> <br />';
 	$("#headlineText").eip(saveUrl, { select_text: false, text_form: textTemplate });
 }

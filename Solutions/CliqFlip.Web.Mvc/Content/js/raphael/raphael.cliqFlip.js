@@ -2,7 +2,7 @@
 //http://raphaeljs.com/reference.html#Raphael.fn
 //http://stackoverflow.com/questions/3675519/raphaeljs-drag-n-drop
 Raphael.fn.cliqFlip = {
-	createMindMapBubble: function(passion, x, y, fill, text, userInterestId) {
+	createMindMapBubble: function(passion, x, y, fill, text, userInterestId, cb) {
 
 		var c = this.circle(x, y, passion * 16).attr({
 			fill: fill,
@@ -66,6 +66,9 @@ Raphael.fn.cliqFlip = {
 		    		opacity: .5
 		    	});
 		    	this.animate({ r: this.or2, opacity: .5 }, 500, ">");
+		    	if (cb) {
+		    		cb();
+		    	}
 		    },
 		    rstart = function() {
 		    	// storing original coordinates
@@ -95,6 +98,12 @@ Raphael.fn.cliqFlip = {
 		    			this.text.attr({ 'font-size': newFs });
 		    		}
 		    	}
+
+		    },
+		    rup = function() {
+		    	if (cb) {
+		    		cb();
+		    	}
 		    };
 		c.drag(move, start, up);
 		c.sizer = s;
@@ -102,7 +111,7 @@ Raphael.fn.cliqFlip = {
 		//or2 keeps track of the original raidus when
 		//the user clicks the bubble and it 'pulses' - prevents the 'fast' double click problem
 		c.or2 = c.attr('r');
-		s.drag(rmove, rstart);
+		s.drag(rmove, rstart, rup);
 		s.big = c;
 		s.text = t;
 
