@@ -4,4 +4,3 @@ Implement code styling
 	JSLint
 
 Set ASPNET.MVC Views to compile to show us errors at debug time not just runtime
-..
