@@ -23,6 +23,8 @@ namespace CliqFlip.Tasks.TaskImpl
 		{
 			_repository = repository;
 			_interestTasks = interestTasks;
+			//TODO:replace with User - can't always rely on current principal. auth mode != windows
+			//http://stackoverflow.com/a/3057979/173957
             _principal = Thread.CurrentPrincipal;
 		}
 
