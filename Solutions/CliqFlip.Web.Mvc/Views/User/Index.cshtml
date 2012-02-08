@@ -2,7 +2,10 @@
 @section styles
 {
 	<style type="text/css">
-		body { background-color: #D1E1E7; }
+		body
+		{
+			background-color: #D1E1E7;
+		}
 	</style>
 }
 @{
@@ -26,9 +29,9 @@
 					</div>
 					<div class="category">
 						<ul>
-							@Html.ActionMenuItem("Home","Index","User")
-							@Html.ActionMenuItem("Social Media","SocialMedia","User")
-							@Html.ActionMenuItem("Interests","Interests","User")
+							@Html.ActionMenuItem("Home", "Index", "User")
+							@Html.ActionMenuItem("Social Media", "SocialMedia", "User")
+							@Html.ActionMenuItem("Interests", "Interests", "User")
 						</ul>
 					</div>
 					<p class="post_author">
@@ -38,9 +41,8 @@
 					<div class="headline" id="profileHeadline">
 						<h2 id="headlineText">@Model.Headline</h2>
 					</div>
-					<div>
-						<input type="button" value="save" id="saveMindMap" />
-					</div>
+					<p id="saveMindMapText">
+						Mind map saved</p>
 					<div id="mindMap" class="profileMindMap">
 					</div>
 					<div id="profileBio" class="bio">
@@ -57,7 +59,7 @@
 				<div class="search">
 					<input class="search_submit" value="" type="submit">
 					<input class="search_box" type="text" value="Search..." onfocus="if (this.value == 'Search...') {this.value = '';}"
-						   onblur="if (this.value == '') {this.value = 'Search...';}">
+						onblur="if (this.value == '') {this.value = 'Search...';}">
 				</div>
 			</div>
 			<!-- SIDEBAR SEARCH END -->
@@ -67,17 +69,17 @@
 					Recent Posts</h5>
 				<ul>
 					<li><a href="openpost.html">
-							<img src="images/1_small.jpg" alt>
-							<span><span class="title">Post title</span> <em>by Admin on Aug 5, 2011</em> </span>
-						</a></li>
+						<img src="images/1_small.jpg" alt>
+						<span><span class="title">Post title</span> <em>by Admin on Aug 5, 2011</em> </span>
+					</a></li>
 					<li><a href="openpost.html">
-							<img src="images/2_small.jpg" alt>
-							<span><span class="title">A bit longer title</span> <em>by Admin on Aug 5, 2011</em>
-							</span></a></li>
+						<img src="images/2_small.jpg" alt>
+						<span><span class="title">A bit longer title</span> <em>by Admin on Aug 5, 2011</em>
+						</span></a></li>
 					<li><a href="openpost.html">
-							<img src="images/3_small.jpg" alt>
-							<span><span class="title">Post title</span> <em>by Admin on Aug 5, 2011</em> </span>
-						</a></li>
+						<img src="images/3_small.jpg" alt>
+						<span><span class="title">Post title</span> <em>by Admin on Aug 5, 2011</em> </span>
+					</a></li>
 				</ul>
 			</div>
 			<!-- SIDEBAR RECENT POSTS END -->
