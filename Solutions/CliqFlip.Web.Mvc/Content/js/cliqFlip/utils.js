@@ -11,5 +11,13 @@ var cliqFlip = (function(cliqFlip) {
 		var color = '#' + z1 + x;
 		return color;
 	};
+
+	cliqFlip.Utils.Blink = function (jqObj) {
+		for (var i = 0; i < 2; i++) {
+			jqObj.animate({ opacity: 0 }, 'fast');
+			jqObj.animate({ opacity: 1 }, 'fast');
+			jqObj.animate({ opacity: 0 }, 'fast');
+		}
+	};
 	return cliqFlip;
 }(cliqFlip || { }));
