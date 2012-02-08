@@ -17,7 +17,7 @@ ul.as-selections {
 }
 
 ul.as-selections.loading {
-	background-color: #eee;
+	/*background-color: #eee;*/
 }
 
 ul.as-selections li {

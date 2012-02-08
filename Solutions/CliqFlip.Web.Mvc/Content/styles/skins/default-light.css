@@ -471,7 +471,7 @@ blockquote { color:#465363; font-size:15px; font-style:italic;  margin:20px 0px 
 .big_form .one_half { margin:0; margin-right:4%; }
 .form-success { display:none; }
 .form-success h2 { color:#7ac747; }
-.loading { display:none; background:url(../../img/ajax-loader.gif) no-repeat 1px; height:28px; width:28px; position:absolute; margin-top:-51px; margin-left:250px; }
+.loading-spin { display:none; background:url(../../img/ajax-loader.gif) no-repeat 1px; height:28px; width:28px; position:absolute; margin-top:-51px; margin-left:250px; }
 .block_contact_info .detail { margin:0; padding:0; margin-bottom:8px; padding-bottom:5px; border-bottom:1px solid #E0E0E0; }
 .block_contact_info .detail:last-child { border:none; }
 

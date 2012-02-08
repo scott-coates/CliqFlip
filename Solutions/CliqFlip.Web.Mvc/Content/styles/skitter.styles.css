@@ -34,7 +34,7 @@
 .label_skitter p {padding:10px;margin:0;font:normal 22px arial,tahoma;letter-spacing:-1px;}
 .info_slide * {font-family:Consolas,arial,tahoma !important;}
 
-.loading {position:absolute; top:50%; right:50%; z-index:10000; margin:-16px -16px;color:#fff;text-indent:-9999em;overflow:hidden;background:url(../img/ajax-loader.gif) no-repeat left top;width:32px;height:32px;}
+.loading-spin {position:absolute; top:50%; right:50%; z-index:10000; margin:-16px -16px;color:#fff;text-indent:-9999em;overflow:hidden;background:url(../img/ajax-loader.gif) no-repeat left top;width:32px;height:32px;}
 
 /**
  * Example for dimenions:
