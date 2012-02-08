@@ -11,14 +11,9 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 {
 	public class UserSaveMindMapViewModel
 	{
-		public List<InterestViewModel> Interests { get; set; }
-
-		public class InterestViewModel
-		{
-			public int Id { get; set; }
-			public float Passion { get; set; }
-			public float XAxis { get; set; }
-			public float YAxis { get; set; }	 
-		}
+		public int Id { get; set; }
+		public float Passion { get; set; }
+		public float XAxis { get; set; }
+		public float YAxis { get; set; }
 	}
 }

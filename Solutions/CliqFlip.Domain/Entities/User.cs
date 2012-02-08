@@ -50,13 +50,10 @@ namespace CliqFlip.Domain.Entities
 			_interests.Add(userInterest);
 		}
 
-		public virtual void UpdateInterests(IEnumerable<UserInterestDto> userInterests)
+		public virtual void UpdateInterest(UserInterest userInterestToSave)
 		{
-			foreach (var userInterestDto in userInterests)
-			{
-				var userInterest = _interests.First(x => x.Id == userInterestDto.Id);
-				userInterest.Options = new UserInterestOption(userInterestDto.Passion, userInterestDto.XAxis, userInterestDto.YAxis);
-			}
+				var userInterest = _interests.First(x => x.Id ==  userInterestToSave.Id);
+				userInterest.Options = new UserInterestOption(userInterestToSave.Options.Passion, userInterestToSave.Options.XAxis, userInterestToSave.Options.YAxis);
 		}
 
         public virtual void UpdateHeadline(string headline)

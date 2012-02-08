@@ -1,10 +1,10 @@
-﻿using System.Linq;
-using System.Security.Principal;
+﻿using System.Security.Principal;
 using System.Web.Mvc;
 using System.Web.Security;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ValueObjects;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Jeip;
 using CliqFlip.Web.Mvc.ViewModels.User;
@@ -96,10 +96,11 @@ namespace CliqFlip.Web.Mvc.Controllers
 		public ActionResult SaveMindMap(UserSaveMindMapViewModel userSaveMindMapViewModel)
 		{
 			User user = _userTasks.GetUser(_principal.Identity.Name);
-			user.UpdateInterests(userSaveMindMapViewModel.Interests
-			                     	.Select(x =>
-			                     	        new UserInterestDto(x.Id, null, null, null, null, x.Passion, x.XAxis, x.YAxis))
-			                     	.ToList());
+			user.UpdateInterest(
+				new UserInterest(
+					userSaveMindMapViewModel.Id,
+					new UserInterestOption(userSaveMindMapViewModel.Passion, userSaveMindMapViewModel.XAxis, userSaveMindMapViewModel.YAxis), null, null, null));
+
 			return new EmptyResult();
 		}
 

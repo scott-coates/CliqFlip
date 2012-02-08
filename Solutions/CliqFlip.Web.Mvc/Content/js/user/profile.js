@@ -1,6 +1,8 @@
 ﻿var bubbles = [];
+var mindMapSaveUrl;
 
 function InitMindMap(interests, saveUrl) {
+	mindMapSaveUrl = saveUrl;
 
 	var r = Raphael("mindMap", 559, 300);
 
@@ -42,31 +44,18 @@ function InitMindMap(interests, saveUrl) {
 	}
 }
 
-function MindMapSave() {
-	var jqObj = $("#saveMindMapText");
-	cliqFlip.Utils.Blink(jqObj);
-}
+function MindMapSave(mindMapObj) {
+	var interest = {
+		id: mindMapObj.userInterestId,
+		xaxis: mindMapObj.big.attr('cx'),
+		yaxis: mindMapObj.big.attr('cy'),
+		passion: mindMapObj.GetPassion()
+	};
 
-function SaveMindMap(saveUrl) {
-	if (bubbles.length > 0) {
-
-		var interests = [];
-
-		for (var bubble in bubbles) {
-			var bubbleObj = bubbles[bubble];
-			interests.push({
-				id: bubbleObj.userInterestId,
-				xaxis: bubbleObj.big.attr('cx'),
-				yaxis: bubbleObj.big.attr('cy'),
-				passion: bubbleObj.GetPassion()
-			});
-		}
-
-		$.post(saveUrl, interests, function (data) {
-			console.log('data ' + data);
-		}
-		, "json");
-	}
+	$.post(mindMapSaveUrl, interest, function(data) {
+		var jqObj = $("#saveMindMapText");
+		cliqFlip.Utils.Blink(jqObj);
+	}, "json");
 }
 
 function InitHeadline(saveUrl) {
