@@ -1227,7 +1227,8 @@ color: white;
             /*float: right;*/
             width: 200px;
             margin-left: 770px;
-            border-radius: 4px;
+            -webkit-border-radius: 4px 0px 4px 4px;
+            -moz-border-radius: 4px 0px 4px 4px;
             border-radius: 4px 0px 4px 4px;
             margin-top: 4px;
             /*TODO:border radius is duplicated  and doesn't account for webkit or mozilla'*/
