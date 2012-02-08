@@ -1,5 +1,4 @@
-﻿@using System.Globalization
-@model CliqFlip.Web.Mvc.ViewModels.User.UserProfileViewModel
+﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserProfileViewModel
 @section styles
 {
 	<style type="text/css">
@@ -7,7 +6,7 @@
 	</style>
 }
 @{
-	ViewBag.Title = "Index";
+	ViewBag.Title = Model.Username + " - " + Model.Headline;
 }
 <div class="divider">
 </div>
