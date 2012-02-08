@@ -1,6 +1,6 @@
 ﻿var bubbles = [];
 
-function InitMindMap(interests) {
+function InitMindMap(interests, saveUrl) {
 
 	var r = Raphael("mindMap", 559, 300);
 
@@ -24,7 +24,7 @@ function InitMindMap(interests) {
 					cliqFlip.Utils.RandomHexColor(),
 					interests[interest].Name,
 					interests[interest].Id,
-					MindMapBlinkSave));
+					MindMapSave));
 
 				space += width;
 			}
@@ -36,34 +36,25 @@ function InitMindMap(interests) {
 					cliqFlip.Utils.RandomHexColor(),
 					interests[interest].Name,
 					interests[interest].Id,
-					MindMapBlinkSave));
+					MindMapSave));
 			}
 		}
 	}
 }
 
-function MindMapBlinkSave() {
+function MindMapSave() {
 	var jqObj = $("#saveMindMapText");
 	cliqFlip.Utils.Blink(jqObj);
 }
 
-function InitMindMapSave(saveUrl, userId) {
-	$("#saveMindMap").click(function() {
-		SaveMindMap(saveUrl, userId);
-	});
-}
-
-function SaveMindMap(saveUrl, userId) {
+function SaveMindMap(saveUrl) {
 	if (bubbles.length > 0) {
-		var mindMapData = { userId: userId };
 
-		var mindMapInterests = [];
-
-		mindMapData.Interests = mindMapInterests;
+		var interests = [];
 
 		for (var bubble in bubbles) {
 			var bubbleObj = bubbles[bubble];
-			mindMapInterests.push({
+			interests.push({
 				id: bubbleObj.userInterestId,
 				xaxis: bubbleObj.big.attr('cx'),
 				yaxis: bubbleObj.big.attr('cy'),
@@ -71,24 +62,10 @@ function SaveMindMap(saveUrl, userId) {
 			});
 		}
 
-		//http://stackoverflow.com/questions/2845459/jquery-how-to-make-post-use-contenttype-application-json		
-		var mindMapDataJson = $.toJSON(mindMapData);
-		$.ajax(
-			{
-				url: saveUrl,
-				type: 'POST',
-				data: mindMapDataJson,
-				contentType: 'application/json; charset=utf-8',
-				dataType: 'json',
-				success: function(data, textStatus, jqXHR) {
-					//TODO:use console.debug 
-					console.log(textStatus);
-				},
-				error: function(objAJAXRequest, strError) {
-					console.log(strError);
-				}
-			}
-		);
+		$.post(saveUrl, interests, function (data) {
+			console.log('data ' + data);
+		}
+		, "json");
 	}
 }
 

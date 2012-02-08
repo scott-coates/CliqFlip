@@ -1,98 +1,114 @@
-﻿using SharpArch.Web.Mvc.Castle;
+﻿using System.Security.Principal;
+using System.Web;
+using Castle.Facilities.FactorySupport;
+using Castle.MicroKernel.Registration;
+using Castle.Windsor;
+using SharpArch.Domain.Commands;
+using SharpArch.Domain.PersistenceSupport;
+using SharpArch.NHibernate;
+using SharpArch.NHibernate.Contracts.Repositories;
+using SharpArch.Web.Mvc.Castle;
 
 namespace CliqFlip.Web.Mvc.CastleWindsor
 {
-    using Castle.MicroKernel.Registration;
-    using Castle.Windsor;
+	public class ComponentRegistrar
+	{
+		public static void AddComponentsTo(IWindsorContainer container)
+		{
+			AddFacilitiesTo(container);
+			AddGenericRepositoriesTo(container);
+			AddCustomRepositoriesTo(container);
+			AddQueryObjectsTo(container);
+			AddTasksTo(container);
+			AddCommandsTo(container);
+			AddUserTo(container);
+		}
 
-    using SharpArch.Domain.PersistenceSupport;
-    using SharpArch.NHibernate;
-    using SharpArch.NHibernate.Contracts.Repositories;
+		private static void AddFacilitiesTo(IWindsorContainer container)
+		{
+			container.AddFacility<FactorySupportFacility>();
+		}
 
-    public class ComponentRegistrar
-    {
-        public static void AddComponentsTo(IWindsorContainer container) 
-        {
-            AddGenericRepositoriesTo(container);
-            AddCustomRepositoriesTo(container);
-            AddQueryObjectsTo(container);
-            AddTasksTo(container);
-            AddCommandsTo(container);
-        }
+		private static void AddUserTo(IWindsorContainer container)
+		{
+			//http://stackoverflow.com/a/1081803/173957
+			container.Register(Component.For<IPrincipal>()
+			                   	.LifeStyle.PerWebRequest
+			                   	.UsingFactoryMethod(() => HttpContext.Current.User));
+		}
 
-        private static void AddTasksTo(IWindsorContainer container)
-        {
-            container.Register(
-                AllTypes
-                    .FromAssemblyNamed("CliqFlip.Tasks")
-                    .Pick()
-                    .WithService.FirstNonGenericCoreInterface("CliqFlip.Domain"));
-        }
+		private static void AddTasksTo(IWindsorContainer container)
+		{
+			container.Register(
+				AllTypes
+					.FromAssemblyNamed("CliqFlip.Tasks")
+					.Pick()
+					.WithService.FirstNonGenericCoreInterface("CliqFlip.Domain"));
+		}
 
-        private static void AddCustomRepositoriesTo(IWindsorContainer container) 
-        {
-            container.Register(
-                AllTypes
-                    .FromAssemblyNamed("CliqFlip.Infrastructure")
-                    .Pick()
-                    .WithService.FirstNonGenericCoreInterface("CliqFlip.Domain"));
-        }
+		private static void AddCustomRepositoriesTo(IWindsorContainer container)
+		{
+			container.Register(
+				AllTypes
+					.FromAssemblyNamed("CliqFlip.Infrastructure")
+					.Pick()
+					.WithService.FirstNonGenericCoreInterface("CliqFlip.Domain"));
+		}
 
-        private static void AddGenericRepositoriesTo(IWindsorContainer container)
-        {
-            container.Register(
-                Component.For(typeof(IQuery<>))
-                    .ImplementedBy(typeof(NHibernateQuery<>))
-                    .Named("NHibernateQuery"));
-
-            container.Register(
-                Component.For(typeof(IEntityDuplicateChecker))
-                    .ImplementedBy(typeof(EntityDuplicateChecker))
-                    .Named("entityDuplicateChecker"));
-
-            container.Register(
-                Component.For(typeof(INHibernateRepository<>))
-                    .ImplementedBy(typeof(NHibernateRepository<>))
-                    .Named("nhibernateRepositoryType")
-                    .Forward(typeof(IRepository<>)));
-
-            container.Register(
-                Component.For(typeof(INHibernateRepositoryWithTypedId<,>))
-                    .ImplementedBy(typeof(NHibernateRepositoryWithTypedId<,>))
-                    .Named("nhibernateRepositoryWithTypedId")
-                    .Forward(typeof(IRepositoryWithTypedId<,>)));
+		private static void AddGenericRepositoriesTo(IWindsorContainer container)
+		{
+			container.Register(
+				Component.For(typeof (IQuery<>))
+					.ImplementedBy(typeof (NHibernateQuery<>))
+					.Named("NHibernateQuery"));
 
 			container.Register(
-				Component.For(typeof(ILinqRepository<>))
-					.ImplementedBy(typeof(LinqRepository<>))
+				Component.For(typeof (IEntityDuplicateChecker))
+					.ImplementedBy(typeof (EntityDuplicateChecker))
+					.Named("entityDuplicateChecker"));
+
+			container.Register(
+				Component.For(typeof (INHibernateRepository<>))
+					.ImplementedBy(typeof (NHibernateRepository<>))
+					.Named("nhibernateRepositoryType")
+					.Forward(typeof (IRepository<>)));
+
+			container.Register(
+				Component.For(typeof (INHibernateRepositoryWithTypedId<,>))
+					.ImplementedBy(typeof (NHibernateRepositoryWithTypedId<,>))
+					.Named("nhibernateRepositoryWithTypedId")
+					.Forward(typeof (IRepositoryWithTypedId<,>)));
+
+			container.Register(
+				Component.For(typeof (ILinqRepository<>))
+					.ImplementedBy(typeof (LinqRepository<>))
 					.Named("linqRepositoryType"));
 
-            container.Register(
-                    Component.For(typeof(ISessionFactoryKeyProvider))
-                        .ImplementedBy(typeof(DefaultSessionFactoryKeyProvider))
-                        .Named("sessionFactoryKeyProvider"));
+			container.Register(
+				Component.For(typeof (ISessionFactoryKeyProvider))
+					.ImplementedBy(typeof (DefaultSessionFactoryKeyProvider))
+					.Named("sessionFactoryKeyProvider"));
 
-            container.Register(
-                    Component.For(typeof(SharpArch.Domain.Commands.ICommandProcessor))
-                        .ImplementedBy(typeof(SharpArch.Domain.Commands.CommandProcessor))
-                        .Named("commandProcessor"));
-                
-        }
+			container.Register(
+				Component.For(typeof (ICommandProcessor))
+					.ImplementedBy(typeof (CommandProcessor))
+					.Named("commandProcessor"));
+		}
 
-        private static void AddQueryObjectsTo(IWindsorContainer container) 
-        {
-            container.Register(
-                AllTypes.FromAssemblyNamed("CliqFlip.Web.Mvc")
-                    .Pick()
-                    .WithService.FirstInterface());
-        }
+		private static void AddQueryObjectsTo(IWindsorContainer container)
+		{
+			container.Register(
+				AllTypes.FromAssemblyNamed("CliqFlip.Web.Mvc")
+					.Pick()
+					.WithService.FirstInterface());
+		}
 
-        private static void AddCommandsTo(IWindsorContainer container)
-        {
-            container.Register(
-                AllTypes.FromAssemblyNamed("CliqFlip.Tasks")
-                    .Pick()
-                    .WithService.FirstInterface());
-        }
-    }
+		private static void AddCommandsTo(IWindsorContainer container)
+		{
+			container.Register(
+				AllTypes.FromAssemblyNamed("CliqFlip.Tasks")
+					.Pick()
+					.WithService.FirstInterface());
+		}
+	}
 }

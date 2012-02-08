@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.Linq;
+using System.Security.Principal;
 using System.Web.Mvc;
 using System.Web.Security;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
+using CliqFlip.Domain.Entities;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Jeip;
 using CliqFlip.Web.Mvc.ViewModels.User;
@@ -14,13 +15,15 @@ namespace CliqFlip.Web.Mvc.Controllers
 {
 	public class UserController : Controller
 	{
+		private readonly IPrincipal _principal;
 		private readonly IUserProfileQuery _userProfileQuery;
 		private readonly IUserTasks _userTasks;
 
-		public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery)
+		public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal)
 		{
 			_userTasks = profileTasks;
 			_userProfileQuery = userProfileQuery;
+			_principal = principal;
 		}
 
 		public ViewResult Create()
@@ -61,68 +64,66 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return View(profile);
 		}
 
-        public ActionResult Login()
-        {
-            return PartialView();
-        }
+		public ActionResult Login()
+		{
+			return PartialView();
+		}
 
 		[HttpPost]
 		public ActionResult Login(UserLoginViewModel model)
 		{
 			if (ModelState.IsValid)
 			{
-                if (_userTasks.ValidateUser(model.Username, model.Password))
+				if (_userTasks.ValidateUser(model.Username, model.Password))
 				{
 					//TODO: Use a service for setting the cookie - unit tests will fail
-                    FormsAuthentication.SetAuthCookie(model.Username, model.LogMeIn);
-                    return Content("Awesome! You are now logged in.");
+					FormsAuthentication.SetAuthCookie(model.Username, model.LogMeIn);
+					return Content("Awesome! You are now logged in.");
 				}
 			}
 			//TODO: Return a partial view instead of inline html
-            return Content("<strong>Login failed!</strong><br/> Please verify your username and password.");
+			return Content("<strong>Login failed!</strong><br/> Please verify your username and password.");
 		}
 
-        public ActionResult Logout()
-        {
-            FormsAuthentication.SignOut();
-            return Redirect("~");
-        }
+		public ActionResult Logout()
+		{
+			FormsAuthentication.SignOut();
+			return Redirect("~");
+		}
 
 		[HttpPost]
 		[Transaction]
 		public ActionResult SaveMindMap(UserSaveMindMapViewModel userSaveMindMapViewModel)
 		{
-			_userTasks.UpdateMindMap(userSaveMindMapViewModel.UserId,
-			                         userSaveMindMapViewModel.Interests
-			                         	.Select(x =>
-			                         	        new UserInterestDto(x.Id, null, null, null, null, x.Passion, x.XAxis, x.YAxis))
-			                         	.ToList());
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+			user.UpdateInterests(userSaveMindMapViewModel.Interests
+			                     	.Select(x =>
+			                     	        new UserInterestDto(x.Id, null, null, null, null, x.Passion, x.XAxis, x.YAxis))
+			                     	.ToList());
 			return new EmptyResult();
 		}
 
-        [Authorize]
+		[Authorize]
 		[HttpPost]
 		[Transaction]
 		public ActionResult SaveHeadline(JeipSaveTextViewModel saveTextViewModel)
 		{
-            //get user and save it
-			//TODO: this can probably just be done without the task method.
-			_userTasks.UpdateHeadline(saveTextViewModel.New_Value);
-			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false};
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+			user.UpdateHeadline(saveTextViewModel.New_Value);
+			var retVal = new JeipSaveResponseViewModel {html = saveTextViewModel.New_Value, is_error = false};
 			return new JsonNetResult(retVal);
-
 		}
 
-        [Authorize]
+		[Authorize]
 		[HttpPost]
 		[Transaction]
 		public ActionResult SaveBio(JeipSaveTextViewModel saveTextViewModel)
 		{
-            //get user and save it
-            _userTasks.UpdateBio(saveTextViewModel.New_Value);
-			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
+			//get user and save it
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+			user.UpdateBio(saveTextViewModel.New_Value);
+			var retVal = new JeipSaveResponseViewModel {html = saveTextViewModel.New_Value, is_error = false};
 			return new JsonNetResult(retVal);
-
 		}
 
 		[Transaction]

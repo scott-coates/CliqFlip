@@ -13,8 +13,6 @@ namespace CliqFlip.Domain.Contracts.Tasks
         UserDto Create(UserDto profileToCreate);
 
         bool ValidateUser(string username, string password);
-		void UpdateMindMap(int userId, IEnumerable<UserInterestDto> userInterests);
-        void UpdateHeadline(string headline);
-        void UpdateBio(string bio);
+		User GetUser(string username);
 	}
 }
