@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
@@ -27,8 +27,8 @@ namespace CliqFlip.Web.Mvc.Queries
 							{
 								Username = user.Username,
 								Id = user.Id,
-								Bio = user.Bio,
-								Headline = user.Headline
+								Bio = string.IsNullOrWhiteSpace(user.Bio) ? "I ♥ " + string.Join(", "  ,user.Interests.Select(x=>x.Interest.Name)) : user.Bio,
+								Headline = string.IsNullOrWhiteSpace(user.Headline) ? "I am " + username + ", hear me roar!" : user.Headline
 							};
 
 				var interests = user.Interests.Select(interest => new UserInterestDto(interest.Id, interest.Interest.Name.Replace(' ', '\n'), interest.Interest.Slug, null, null, interest.Options.Passion, interest.Options.XAxis, interest.Options.YAxis)).ToList();
