@@ -1213,8 +1213,7 @@ color: white;
         
         #header-nav a:hover, #header-nav a.selected
         {
-            background-color: #4DBCE9;
-            color: #24282D;
+            background-color: #176787;
         }
         
         #user-login-container
@@ -1222,7 +1221,7 @@ color: white;
         	position: relative;
         	z-index: 100;
             display: none;
-            background-color: #4DBCE9;
+            background-color: #176787;
             padding: 5px;
             /*float: right;*/
             width: 200px;
@@ -1231,7 +1230,6 @@ color: white;
             -moz-border-radius: 4px 0px 4px 4px;
             border-radius: 4px 0px 4px 4px;
             margin-top: 4px;
-            /*TODO:border radius is duplicated  and doesn't account for webkit or mozilla'*/
         }
         
         #user-login-container form
