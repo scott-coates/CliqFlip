@@ -8,11 +8,6 @@ Raphael.fn.cliqFlip = {
 			stroke: "none",
 			opacity: .5
 		}),
-		    s = this.circle(x + (passion * 7), y + passion * 7, 15).attr({
-		    	fill: "hsb(.8, .5, .5)",
-		    	stroke: "none",
-		    	opacity: .5
-		    }),
 		    t = this.text(x, y, text).attr({
 		    	fill: "hsb(.2, .2, .2)",
 		    	stroke: "none",
@@ -25,8 +20,12 @@ Raphael.fn.cliqFlip = {
 			var afterMoveCb;
 			var afterResizeCb;
 			var retVal;
-
-			var start = function() {
+			var s = this.circle(x + (passion * 7), y + passion * 7, 15).attr({
+				fill: "hsb(.8, .5, .5)",
+				stroke: "none",
+				opacity: .5
+			}), 
+			    start = function() {
 				// storing original coordinates
 				this.ox = this.attr("cx");
 				this.oy = this.attr("cy");
