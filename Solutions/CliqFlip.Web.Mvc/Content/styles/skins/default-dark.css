@@ -1181,8 +1181,9 @@ color: white;
 }
 
 .headline .jeip-editor span {
+	z-index: 100;
 	position: relative;
-	top: 25px;
+	top: 20px;
 }
 .headline .jeip-editor input[type="text"] {
 	width: 420px;
