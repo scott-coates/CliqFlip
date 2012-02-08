@@ -129,6 +129,9 @@ namespace CliqFlip.Tasks.TaskImpl
 
         public void UpdateHeadline(string headline)
         {
+			//TODO: this class probably shouldn't care how to get a user - maybe it should just be passed in
+			//unit testing this is not possible with GetCurrentUser().
+			//Either pass in user or a new class called UserProvider
             var user = GetCurrentUser();
             user.UpdateHeadline(headline);
         }

@@ -106,7 +106,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 		public ActionResult SaveHeadline(JeipSaveTextViewModel saveTextViewModel)
 		{
             //get user and save it
-            _userTasks.UpdateHeadline(saveTextViewModel.New_Value);
+			//TODO: this can probably just be done without the task method.
+			_userTasks.UpdateHeadline(saveTextViewModel.New_Value);
 			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false};
 			return new JsonNetResult(retVal);
 
