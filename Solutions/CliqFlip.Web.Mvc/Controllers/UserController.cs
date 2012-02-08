@@ -100,7 +100,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return new EmptyResult();
 		}
 
-
+        [Authorize]
 		[HttpPost]
 		[Transaction]
 		public ActionResult SaveHeadline(JeipSaveTextViewModel saveTextViewModel)
@@ -112,6 +112,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 		}
 
+        [Authorize]
 		[HttpPost]
 		[Transaction]
 		public ActionResult SaveBio(JeipSaveTextViewModel saveTextViewModel)
