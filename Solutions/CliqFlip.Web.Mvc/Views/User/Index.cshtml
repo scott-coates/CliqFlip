@@ -1,4 +1,5 @@
-﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserProfileViewModel
+﻿@using System.Globalization
+@model CliqFlip.Web.Mvc.ViewModels.User.UserProfileViewModel
 @section styles
 {
 	<style type="text/css">
@@ -141,14 +142,10 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.jeip.js")"> </script>
 	<script type="text/javascript">
 		$(function() {
-			@if (Model.CanEdit)
-			{
-			<text>
-				InitHeadline(@(Html.Raw(Model.SaveHeadlineUrl)));
-				InitBio(@(Html.Raw(Model.SaveBioUrl)));
-				InitMindMap(@(Html.Raw(Model.InterestsJson)), @(Html.Raw(Model.SaveMindMapUrl)));	
-			</text>
-			};
+			InitUser(@Model.CanEdit.ToString().ToLower());
+			InitHeadline(@(Html.Raw(Model.SaveHeadlineUrl)));
+			InitBio(@(Html.Raw(Model.SaveBioUrl)));
+			InitMindMap(@(Html.Raw(Model.InterestsJson)), @(Html.Raw(Model.SaveMindMapUrl)));
 		});
 	</script>
 }

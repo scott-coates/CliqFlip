@@ -1,13 +1,17 @@
-﻿var bubbles = [];
-var mindMapSaveUrl;
+﻿var _bubbles = [];
+var _mindMapSaveUrl;
+var _canEdit = false;
+
+function InitUser(canEdit) {
+	_canEdit = canEdit;
+}
 
 function InitMindMap(interests, saveUrl) {
-	mindMapSaveUrl = saveUrl;
+	_mindMapSaveUrl = saveUrl;
 
 	var r = Raphael("mindMap", 559, 300);
 
 	if (interests && interests.length > 0) {
-
 
 		var initialLayout = !interests[0].Passion;
 		if (initialLayout) {
@@ -20,24 +24,27 @@ function InitMindMap(interests, saveUrl) {
 					space = 100;
 				}
 
-				bubbles.push(r.cliqFlip.createMindMapBubble(2.5,
+				_bubbles.push(r.cliqFlip.createMindMapBubble(2.5,
 					space,
 					rowAxis,
 					cliqFlip.Utils.RandomHexColor(),
 					interests[interest].Name,
 					interests[interest].Id,
+					_canEdit,
 					MindMapSave));
 
 				space += width;
+
 			}
 		} else {
 			for (interest in interests) {
-				bubbles.push(r.cliqFlip.createMindMapBubble(interests[interest].Passion,
+				_bubbles.push(r.cliqFlip.createMindMapBubble(interests[interest].Passion,
 					interests[interest].XAxis,
 					interests[interest].YAxis,
 					cliqFlip.Utils.RandomHexColor(),
 					interests[interest].Name,
 					interests[interest].Id,
+					_canEdit,
 					MindMapSave));
 			}
 		}
@@ -52,7 +59,7 @@ function MindMapSave(mindMapObj) {
 		passion: mindMapObj.GetPassion()
 	};
 
-	$.post(mindMapSaveUrl, interest, function(data) {
+	$.post(_mindMapSaveUrl, interest, function(data) {
 		var jqObj = $("#saveMindMapText");
 		cliqFlip.Utils.Blink(jqObj);
 	}, "json");
@@ -63,11 +70,14 @@ function InitHeadline(saveUrl) {
 
 	r.cliqFlip.quotationMarks(14);
 	r.cliqFlip.quotationMarks(534);
-
-	var textTemplate = '<input type="text" id="edit-#{id}" class="#{editfield_class}" value="#{value}" maxlength="50" /> <br />';
-	$("#headlineText").eip(saveUrl, { select_text: false, text_form: textTemplate });
+	if (_canEdit) {
+		var textTemplate = '<input type="text" id="edit-#{id}" class="#{editfield_class}" value="#{value}" maxlength="50" /> <br />';
+		$("#headlineText").eip(saveUrl, { select_text: false, text_form: textTemplate });
+	}
 }
 
 function InitBio(saveUrl) {
-	$("#bioText").eip(saveUrl, { select_text: false, form_type: "textarea" });
+	if (_canEdit) {
+		$("#bioText").eip(saveUrl, { select_text: false, form_type: "textarea" });
+	}
 }
