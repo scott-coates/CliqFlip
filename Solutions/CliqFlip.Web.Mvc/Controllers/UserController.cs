@@ -37,7 +37,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var profileToCreate = new UserDto {Email = profile.Email, Password = profile.Password, Username = profile.Username};
+				var profileToCreate = new UserDto { Email = profile.Email, Password = profile.Password, Username = profile.Username };
 
 				foreach (InterestCreate interest in profile.UserInterests)
 				{
@@ -59,7 +59,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 				//TODO: Set HTTPOnly  = true;
 				//TODO: Set Secure = true when we use ssl;
 				FormsAuthentication.SetAuthCookie(newProfile.Username, false);
-				return RedirectToAction("Details", "User", new {id = "me"});
+				return RedirectToAction("Details", "User", new { id = "me" });
 			}
 			return View(profile);
 		}
@@ -91,6 +91,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return Redirect("~");
 		}
 
+		[Authorize]
 		[HttpPost]
 		[Transaction]
 		public ActionResult SaveMindMap(UserSaveMindMapViewModel userSaveMindMapViewModel)
@@ -111,7 +112,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			user.UpdateHeadline(saveTextViewModel.New_Value);
-			var retVal = new JeipSaveResponseViewModel {html = saveTextViewModel.New_Value, is_error = false};
+			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
 			return new JsonNetResult(retVal);
 		}
 
@@ -123,7 +124,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			//get user and save it
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			user.UpdateBio(saveTextViewModel.New_Value);
-			var retVal = new JeipSaveResponseViewModel {html = saveTextViewModel.New_Value, is_error = false};
+			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
 			return new JsonNetResult(retVal);
 		}
 
@@ -134,6 +135,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 			user.SaveHeadlineUrl = "\"" + Url.Action("SaveHeadline", "User") + "\"";
 			user.SaveMindMapUrl = "\"" + Url.Action("SaveMindMap", "User") + "\"";
 			user.SaveBioUrl = "\"" + Url.Action("SaveBio", "User") + "\"";
+			user.CanEdit = _principal.Identity.Name.ToLower() == username.ToLower();
+
 			return View(user);
 		}
 

@@ -1,21 +1,23 @@
 ﻿<ul id="header-nav">
-    @if (!Request.IsAuthenticated)
-    {
-        <li>
-            @Html.ActionLink("Register Now!", "Create", "User")
-        </li>
-        <li>
-            @Html.ActionLink("Login", "Login", "User", null, new { id = "user-login" })
-            <div id="user-login-container">
-                @Html.Action("Login", "User")
-            </div>
-        </li>
-    }
-    else
-    {
-        <li><strong>Hello @User.Identity.Name</strong> </li>
-        <li>
-            @Html.ActionLink("Logout", "Logout", "User")
-        </li>
-    }
+	@if (!Request.IsAuthenticated)
+	{
+		<li>
+			@Html.ActionLink("Register Now!", "Create", "User")
+		</li>
+		<li>
+			@Html.ActionLink("Login", "Login", "User", null, new {id = "user-login"})
+			<div id="user-login-container">
+				@Html.Action("Login", "User")
+			</div>
+		</li>
+	}
+	else
+	{
+		<li>
+			@Html.ActionLink("Hello " + User.Identity.Name, "Index", "User")
+		</li>
+		<li>
+			@Html.ActionLink("Logout", "Logout", "User")
+		</li>
+	}
 </ul>
