@@ -58,5 +58,15 @@ namespace CliqFlip.Domain.Entities
 				userInterest.Options = new UserInterestOption(userInterestDto.Passion, userInterestDto.XAxis, userInterestDto.YAxis);
 			}
 		}
-	}
+
+        public virtual void UpdateHeadline(string headline)
+        {
+            this.Headline = headline;
+        }
+
+        public virtual void UpdateBio(string bio)
+        {
+            this.Bio = bio;
+        }
+    }
 }

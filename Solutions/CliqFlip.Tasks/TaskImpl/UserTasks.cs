@@ -8,6 +8,8 @@ using CliqFlip.Infrastructure.Common;
 using SharpArch.Domain.PersistenceSupport;
 using SharpArch.Domain.Specifications;
 using CliqFlip.Infrastructure;
+using System.Security.Principal;
+using System.Threading;
 
 namespace CliqFlip.Tasks.TaskImpl
 {
@@ -15,11 +17,13 @@ namespace CliqFlip.Tasks.TaskImpl
 	{
 		private readonly ILinqRepository<User> _repository;
 		private readonly IInterestTasks _interestTasks;
+        private IPrincipal _principal;
 
 		public UserTasks(ILinqRepository<User> repository, IInterestTasks interestTasks)
 		{
 			_repository = repository;
 			_interestTasks = interestTasks;
+            _principal = Thread.CurrentPrincipal;
 		}
 
 		#region IUserTasks Members
@@ -119,5 +123,24 @@ namespace CliqFlip.Tasks.TaskImpl
 												UserDto = new UserDto { Username = user.Username, InterestDtos = user.Interests.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(), Bio = user.Bio }
 											}).ToList();
 		}
-	}
+
+
+        public void UpdateHeadline(string headline)
+        {
+            var user = GetCurrentUser();
+            user.UpdateHeadline(headline);
+        }
+
+        public void UpdateBio(string bio)
+        {
+            var user = GetCurrentUser();
+            user.UpdateBio(bio);
+        }
+
+        private User GetCurrentUser()
+        {
+            var adhoc = new AdHoc<User>(x => x.Username == _principal.Identity.Name);
+            return _repository.FindOne(adhoc);
+        }
+    }
 }

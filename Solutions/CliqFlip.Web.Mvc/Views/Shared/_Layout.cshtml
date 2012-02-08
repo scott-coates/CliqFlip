@@ -130,6 +130,12 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.min.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.unobtrusive.min.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/core.js")"> </script>
+    <script type="text/javascript" src="@Url.Content("/Content/js/global.js")"> </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            InitLogin();
+        });
+    </script>
     @RenderSection("scripts", false)
 </body>
 </html>

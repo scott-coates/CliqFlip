@@ -412,6 +412,7 @@
     <Content Include="Content\js\colorbox\jquery.colorbox-min.js" />
     <Content Include="Content\js\colorbox\jquery.colorbox.js" />
     <Content Include="Content\js\core.js" />
+    <Content Include="Content\js\global.js" />
     <Content Include="Content\js\home\home.js" />
     <Content Include="Content\js\jquery.jeip.js" />
     <Content Include="Content\js\jquery.json.js" />

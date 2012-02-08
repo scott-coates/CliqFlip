@@ -14,5 +14,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 
         bool ValidateUser(string username, string password);
 		void UpdateMindMap(int userId, IEnumerable<UserInterestDto> userInterests);
+        void UpdateHeadline(string headline);
+        void UpdateBio(string bio);
 	}
 }
