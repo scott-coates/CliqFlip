@@ -14,8 +14,9 @@ var cliqFlip = (function(cliqFlip) {
 
 	cliqFlip.Utils.Blink = function (jqObj) {
 		for (var i = 0; i < 2; i++) {
-			jqObj.fadeOut("fast");
-			jqObj.fadeIn("fast");
+			jqObj.animate({ opacity: 0 }, 'fast');
+			jqObj.animate({ opacity: 1 }, 'fast');
+			jqObj.animate({ opacity: 0 }, 'fast');
 		}
 	};
 	return cliqFlip;

@@ -43,7 +43,8 @@ function InitMindMap(interests) {
 }
 
 function MindMapBlinkSave() {
-	cliqFlip.Utils.Blink($("#saveMindMapText"));
+	var jqObj = $("#saveMindMapText");
+	cliqFlip.Utils.Blink(jqObj);
 }
 
 function InitMindMapSave(saveUrl, userId) {

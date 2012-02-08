@@ -1138,7 +1138,7 @@ display: block; float: left;
 #saveMindMapText {
 	text-align: center;
 	margin-bottom: 5px;
-	visibility: hidden;
+	opacity: 0;
 }
 
 .bio {
