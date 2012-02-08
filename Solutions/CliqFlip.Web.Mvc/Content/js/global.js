@@ -13,8 +13,9 @@ function formLogin_OnSuccess(result, response) {
 function InitLogin() {
     var userLoginContainer = $("#user-login-container");
     $("#user-login").click(function (event) {
-        event.preventDefault();
-        $(this).toggleClass("selected");
-        userLoginContainer.toggle();
+    	event.preventDefault();
+    	$(this).toggleClass("selected");
+    	userLoginContainer.toggle();
+    	$("#Username").focus();
     });
 }
