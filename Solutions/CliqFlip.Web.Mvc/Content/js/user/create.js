@@ -50,7 +50,8 @@ function initUserCreate() {
                 
                 //Whenever a step is show, update the indicators to reflect the step
                 //their looking at.
-                //get all the indicators with the selectedCssClass and remove the class
+        	//get all the indicators with the selectedCssClass and remove the class
+        	//TODO: remove the contains selector
                 steps.find("a[class~='" + selectedCssClass + "']").removeClass(selectedCssClass).addClass(unselectedCssClass);
 
                 //mark the currently selected step
@@ -135,7 +136,7 @@ function initUserCreate() {
             Index: interestsList.find("li").length
         }, interest);
         var newItem = tmplNewInterest.tmpl(data);
-        newItem.data("item", interest)
+    	newItem.data("item", interest);
         newItem.appendTo(interestsList);
         newItem.fadeIn();
     }
