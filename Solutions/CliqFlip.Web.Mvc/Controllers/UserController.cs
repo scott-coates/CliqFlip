@@ -59,7 +59,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 				//TODO: Set HTTPOnly  = true;
 				//TODO: Set Secure = true when we use ssl;
 				FormsAuthentication.SetAuthCookie(newProfile.Username, false);
-				return RedirectToAction("Details", "User", new { id = "me" });
+				return RedirectToAction("Index", "User", new { username = profile.Username });
 			}
 			return View(profile);
 		}
