@@ -7,7 +7,7 @@
 		<li>
 			@Html.ActionLink("Login", "Login", "User", null, new { id = "user-login" })
 			<div id="user-login-container">
-				@Html.Action("Login", "User")
+				@Html.Action("Login", "User") //TODO: make this just a partial - render action is extra work, right?
 			</div>
 		</li>
  }
