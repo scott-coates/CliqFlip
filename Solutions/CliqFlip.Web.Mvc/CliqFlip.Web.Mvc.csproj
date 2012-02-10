@@ -394,7 +394,8 @@
     <Content Include="Content\img\twitter_icon57.png" />
     <Content Include="Content\img\underline.png" />
     <Content Include="Content\img\zoom.png" />
-    <Content Include="Content\js\cliqFlip\utils.js" />
+    <Content Include="Content\js\cliqFlip\ui.js" />
+    <Content Include="Content\js\cliqFlip\validate.js" />
     <Content Include="Content\js\colorbox\colorbox.css" />
     <Content Include="Content\js\colorbox\images\border.png" />
     <Content Include="Content\js\colorbox\images\controls.png" />
@@ -522,6 +523,7 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Shared\_HeaderNavigation.cshtml" />
+    <Content Include="Content\js\validation\jquery.validate.atLeastOne.js" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

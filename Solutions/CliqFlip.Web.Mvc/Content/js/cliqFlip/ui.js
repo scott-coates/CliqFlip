@@ -1,9 +1,9 @@
 ﻿//http://stackoverflow.com/questions/2504568/javascript-namespace-declaration
 var cliqFlip = (function(cliqFlip) {
-	cliqFlip.Utils = { };
+	cliqFlip.Ui = { };
 
-	cliqFlip.Utils.RandomHexColor = function() {
-//		http: //css-tricks.com/snippets/javascript/random-hex-color/#comment-83815
+	cliqFlip.Ui.RandomHexColor = function() {
+		//http: //css-tricks.com/snippets/javascript/random-hex-color/#comment-83815
 		var x = Math.round(0xffffff * Math.random()).toString(16);
 		var y = (6 - x.length);
 		var z = '000000';
@@ -12,7 +12,7 @@ var cliqFlip = (function(cliqFlip) {
 		return color;
 	};
 
-	cliqFlip.Utils.Blink = function (jqObj) {
+	cliqFlip.Ui.Blink = function(jqObj) {
 		for (var i = 0; i < 2; i++) {
 			jqObj.animate({ opacity: 0 }, 'fast');
 			jqObj.animate({ opacity: 1 }, 'fast');

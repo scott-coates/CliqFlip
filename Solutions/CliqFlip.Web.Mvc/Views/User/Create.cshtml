@@ -1,156 +1,129 @@
 ﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserCreateViewModel
 @{
-    ViewBag.Title = "Create";
+	ViewBag.Title = "Create";
 }
 
 @section  styles
 {
 	@*TODO: Move to CSS file*@
-    <link rel="Stylesheet" type="text/css" media="all" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/cupertino/jquery-ui.css" />
-    <style>
-        .field-validation-error
-        {
-            color: Red;
-        }
-        .button.dark-blue
-        {
-            background-color: #24282D;
-        }
-        
-        .content /*TODO: Do not name this content in main css - we already have something called content*/
-        {
-            width: 100%;
-            border-radius: 12px;
-        }
-        #divInterestSearch
-        {
-            margin: 0 20px;
-        }
-        #interestsList
-        { 
-            background-color: White;
-            list-style: none;
-            min-height: 250px;
-            border: 1px dashed;
-            margin: 20px;
-        }
-        #interestsList li
-        {
-            background: #F0F0F0;
-            margin: 5px;
-            padding: 5px;
-            display: inline-block;
-            border-radius: 5px;
-            position: static;
-            vertical-align: top;
-            height: 175px;
-        }
-        
-        #interestsList li a.remove-interest
-        {
-            float: right;
-            background: url(/Content/img/close.png) no-repeat;
-            height: 25px;
-            width: 25px;
-        }
+	<link rel="Stylesheet" type="text/css" media="all" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/cupertino/jquery-ui.css" />
+	<style>
+		.field-validation-error { color: Red; }
+
+		.button.dark-blue { background-color: #24282D; }
+
+		.content /*TODO: Do not name this content in main css - we already have something called content*/ {
+			border-radius: 12px;
+			width: 100%;
+		}
+
+		#divInterestSearch { margin: 0 20px; }
+
+		#interestsList {
+			background-color: White;
+			border: 1px dashed;
+			list-style: none;
+			margin: 20px;
+			min-height: 250px;
+		}
+
+		#interestsList li {
+			background: #F0F0F0;
+			border-radius: 5px;
+			display: inline-block;
+			height: 175px;
+			margin: 5px;
+			padding: 5px;
+			position: static;
+			vertical-align: top;
+		}
+
+		#interestsList li a.remove-interest {
+			background: url(/Content/img/close.png) no-repeat;
+			float: right;
+			height: 25px;
+			width: 25px;
+		}
         
         
         
-        #formProfileCreate fieldset
-        {
-            display: block;
-            min-height: 350px;
-            background-color: transparent;
-        }
+		#formProfileCreate fieldset {
+			background-color: transparent;
+			display: block;
+			min-height: 350px;
+		}
+
+		#formProfileCreate fieldset strong { display: none; }
+
+		#formProfileCreate input[type='text'], #formProfileCreate input[type='password'] {
+			background: white;
+			border-bottom: 1px solid #B6B6B6;
+			border-left: 1px solid #AAA;
+			border-right: 1px solid #AAA;
+			border-top: 1px solid #888;
+			box-shadow: inset 0 1px 2px #888;
+			margin: 0;
+			overflow: auto;
+		}
+
+		#stepLogin div div {
+			display: block;
+			margin: 0 auto;
+			text-align: center;
+			width: 304px;
+		}
+
+		#stepLogin div div.editor-label {
+			font-size: larger;
+			padding: 10px 0;
+		}
+
+		#button-container {
+			padding-right: 20px;
+			text-align: right;
+		}
+
+		#interestName {
+			font-size: 25px;
+			padding: 4px 0 4px 4px;
+			width: 99.5%;
+		}
+
+		#stepLogin input[type='text'], #stepLogin input[type='password'] {
+			display: block;
+			font-size: 20px;
+			height: 30px;
+			text-align: center;
+			width: 100%;
+		}
+
+		#sociality label {
+			float: left;
+			font-size: 11px;
+			font-weight: bold;
+			height: 60px;
+			text-align: center;
+		}
+
+		#sociality { height: 90px; }
+
+		#sociality label img {
+			display: block;
+			height: 50px;
+			margin: 0 auto;
+			padding: 0;
+		}
+
+		#steps { height: 60px; }
+
+		#steps div {
+			float: left;
+			font-size: 20px;
+			margin: 10px;
+			text-align: center;
+		}
         
-        #formProfileCreate fieldset strong
-        {
-            display: none;
-        }
-        
-        #formProfileCreate input[type='text'], #formProfileCreate input[type='password']
-        {
-            border-top: 1px solid #888;
-            border-bottom: 1px solid #B6B6B6;
-            border-left: 1px solid #AAA;
-            border-right: 1px solid #AAA;
-            margin: 0;
-            overflow: auto;
-            background: white;
-            box-shadow: inset 0 1px 2px #888;
-        }
-        
-        #stepLogin div div
-        {
-            margin: 0 auto;
-            display: block;
-            width: 304px;
-            text-align: center;
-        }
-        
-        #stepLogin div div.editor-label
-        {
-            font-size: larger;
-            padding: 10px 0;
-        }
-        
-        #button-container
-        {
-            text-align: right;
-            padding-right: 20px;
-        }
-        
-        #interestName
-        {
-            width: 99.5%;
-            font-size: 25px;
-            padding: 4px 0 4px 4px;
-        }
-        
-        #stepLogin input[type='text'], #stepLogin input[type='password']
-        {
-            font-size: 20px;
-            height: 30px;
-            display: block;
-            width: 100%;
-            text-align: center;
-        }
-        
-        #sociality label
-        {
-            height: 60px;
-            float: left;
-            text-align: center;
-            font-size: 11px;
-            font-weight: bold;
-        }
-        
-        #sociality
-        {
-            height: 90px;
-        }
-        #sociality label img
-        {
-            height: 50px;
-            display: block;
-            padding: 0;
-            margin: 0 auto;
-        }
-        
-        #steps
-        {
-            height: 60px;
-        }
-        
-        #steps div
-        {
-            float: left;
-            text-align: center;
-            font-size: 20px;
-            margin: 10px;
-        }
-        
-    </style>
+	</style>
 }
 
 <div class="clear">
@@ -158,70 +131,70 @@
 </div>
 <!-- PAGE CONTENT START -->
 <div class="wrapper">
-    <div class="inner">
-        <div class="content">
-            <div id="steps">
-            </div>
-            <div class="clear">
-            </div>
-            @using (Html.BeginForm("Create", "User", FormMethod.Post, new { id = "formProfileCreate", @class = "ui-formwizard" }))
-            {
-                @Html.ValidationSummary(true)
-    
-                <fieldset class="step ui-formwizard-content" id="stepInterests">
-                    <strong>Add your UserInterests</strong>
-                    <div id="divInterestSearch">
-                        <input type="text" id="interestName" placeholder="Type an interest..." />
-                    </div>
-                    <ul id="interestsList">
-                    </ul>
-                </fieldset>
-                <fieldset class="step ui-formwizard-content" style="display: none;" id="stepLogin">
-                    <strong>Login</strong>
-                    <div>
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.Username)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.Username)
-                            @Html.ValidationMessageFor(model => model.Username)
-                        </div>
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.Email)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.Email)
-                            @Html.ValidationMessageFor(model => model.Email)
-                        </div>
+	<div class="inner">
+		<div class="content">
+			<div id="steps">
+			</div>
+			<div class="clear">
+			</div>
+			@using (Html.BeginForm("Create", "User", FormMethod.Post, new {id = "formProfileCreate", @class = "ui-formwizard"}))
+			{
+				@Html.ValidationSummary(true)
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.Password)
-                        </div>
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.Password)
-                            @Html.ValidationMessageFor(model => model.Password)
-                        </div>
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.PasswordVerify)
-                        </div>  
-                        <div class="editor-field">
-                            @Html.EditorFor(model => model.PasswordVerify)
-                            @Html.ValidationMessageFor(model => model.PasswordVerify)
-                        </div>
-                    </div>
-                </fieldset>
-                
-                <div class="clear"></div>
-                <p id="button-container">
-                    <input type="submit" value="Next" class="button dark-blue" />
-                    <input type="reset" value="Back" class="button blue" />
-                </p>
-            }
-            <!-- SIDEBAR END -->
-            <div class="clear">
-            </div>
-        </div>
-    </div>
+				<fieldset class="step ui-formwizard-content" id="stepInterests">
+					<strong>Add your UserInterests</strong>
+					<div id="divInterestSearch">
+						<input type="text" id="interestName" placeholder="Type an interest..." />
+					</div>
+					<ul id="interestsList">
+					</ul>
+				</fieldset>
+				<fieldset class="step ui-formwizard-content" style="display: none;" id="stepLogin">
+					<strong>Login</strong>
+					<div>
+						<div class="editor-label">
+							@Html.LabelFor(model => model.Username)
+						</div>
+						<div class="editor-field">
+							@Html.EditorFor(model => model.Username)
+							@Html.ValidationMessageFor(model => model.Username)
+						</div>
+						<div class="editor-label">
+							@Html.LabelFor(model => model.Email)
+						</div>
+						<div class="editor-field">
+							@Html.EditorFor(model => model.Email)
+							@Html.ValidationMessageFor(model => model.Email)
+						</div>
+
+						<div class="editor-label">
+							@Html.LabelFor(model => model.Password)
+						</div>
+						<div class="editor-field">
+							@Html.EditorFor(model => model.Password)
+							@Html.ValidationMessageFor(model => model.Password)
+						</div>
+						<div class="editor-label">
+							@Html.LabelFor(model => model.PasswordVerify)
+						</div>  
+						<div class="editor-field">
+							@Html.EditorFor(model => model.PasswordVerify)
+							@Html.ValidationMessageFor(model => model.PasswordVerify)
+						</div>
+					</div>
+				</fieldset>
+
+				<div class="clear"></div>
+				<p id="button-container">
+					<input type="submit" value="Next" class="button dark-blue" />
+					<input type="reset" value="Back" class="button blue" />
+				</p>
+			}
+			<!-- SIDEBAR END -->
+			<div class="clear">
+			</div>
+		</div>
+	</div>
 </div>
 <div class="clear">
 </div>
@@ -229,91 +202,94 @@
 <script id="tmplNewInterest" type="text/x-jquery-tmpl">
     
 	<li style="display: none;">
-        <a href='javscript:void(0)' class='remove-interest'></a>
+		<a href='javscript:void(0)' class='remove-interest'></a>
 		<div>
-            <input type='hidden' name='UserInterests[${Index}].Id' value='${Id}' />
-            <input type='hidden' name='UserInterests[${Index}].Name' value='${Name}' />
-            <div class="title"><p>${Name}</p></div>
+			<input type='hidden' name='UserInterests[${Index}].Id' value='${Id}' />
+			<input type='hidden' name='UserInterests[${Index}].Name' value='${Name}' />
+			<div class="title"><p>${Name}</p></div>
             
-                <div id="subcategory" style='${generateVisibility($item.data)}' >
-                    <label>Category</label><br />
-                    <select name="UserInterests[${Index}].Category">
-                        <option value="">Choose...</option>
-                        <option>Animals</option>
-                        <option>Arts and Humanities</option>
-                        <option>Automotive</option>
-                        <option>Beauty</option>
-                        <option>Business</option>
-                        <option>Computers</option>
-                        <option>Entertainment</option>
-                        <option>Local</option>
-                        <option>News</option>
-                        <option>Photo and Video</option>
-                        <option>Real Estate</option>
-                        <option>Recreation</option>
-                        <option>Reference</option>
-                        <option>Science</option>
-                        <option>Finance</option>
-                        <option>Food and Drink</option>
-                        <option>Games</option>
-                        <option>Home and Garden</option>
-                        <option>Industries</option>
-                        <option>Internet</option>
-                        <option>Lifestyles</option>
-                        <option>Shopping</option>
-                        <option>Social Networks</option>
-                        <option>Society</option>
-                        <option>Sports</option>
-                        <option>Telecommunications</option>
-                        <option>Travel</option>
-                    </select>
-                </div>
-            {{if Id == 0 }}
-            {{/if}}
-            <div id="sociality">
-                <label class="level1">
-                    <img src="@Url.Content("~/Content/img/social1.png")" />
-                    <input type="radio" name="UserInterests[${Index}].Sociality" value="0" /><br />
-                    Alone
-                </label>
-                <label class="level2">
-                    <img src="@Url.Content("~/Content/img/social2.png")" />
-                    <input type="radio" name="UserInterests[${Index}].Sociality" value="50" /><br />
-                    Small
-                </label>
-                <label class="level3">
-                    <img src="@Url.Content("~/Content/img/social3.png")" />
-                    <input type="radio" name="UserInterests[${Index}].Sociality" value="100" /><br />
-                    Large
-                </label>
-            </div>
-        </div>
+			<div id="subcategory" style='${
+
+	                                                                                       generateVisibility ($item.data)}' >
+				<label>Category</label><br />
+				<select name="UserInterests[${Index}].Category">
+					<option value="">Choose...</option>
+					<option>Animals</option>
+					<option>Arts and Humanities</option>
+					<option>Automotive</option>
+					<option>Beauty</option>
+					<option>Business</option>
+					<option>Computers</option>
+					<option>Entertainment</option>
+					<option>Local</option>
+					<option>News</option>
+					<option>Photo and Video</option>
+					<option>Real Estate</option>
+					<option>Recreation</option>
+					<option>Reference</option>
+					<option>Science</option>
+					<option>Finance</option>
+					<option>Food and Drink</option>
+					<option>Games</option>
+					<option>Home and Garden</option>
+					<option>Industries</option>
+					<option>Internet</option>
+					<option>Lifestyles</option>
+					<option>Shopping</option>
+					<option>Social Networks</option>
+					<option>Society</option>
+					<option>Sports</option>
+					<option>Telecommunications</option>
+					<option>Travel</option>
+				</select>
+			</div>
+			{{if Id == 0 }}
+			{{/if}}
+			<div id="sociality">
+				<label class="level1">
+					<img src="@Url.Content("~/Content/img/social1.png")" />
+					<input type="radio" name="UserInterests[${Index}].Sociality" value="0" /><br />
+					Alone
+				</label>
+				<label class="level2">
+					<img src="@Url.Content("~/Content/img/social2.png")" />
+					<input type="radio" name="UserInterests[${Index}].Sociality" value="50" /><br />
+					Small
+				</label>
+				<label class="level3">
+					<img src="@Url.Content("~/Content/img/social3.png")" />
+					<input type="radio" name="UserInterests[${Index}].Sociality" value="100" /><br />
+					Large
+				</label>
+			</div>
+		</div>
 	</li>
 </script>
 
 <script id="tmplStepIndicator" type="text/x-jquery-tmpl">
-    <div>
-        <a href="#${StepId}" class="button blue">
-            <strong>${StepNumber}</strong> - ${StepTitle}
-        </a>
-    </div>
+	<div>
+		<a href="#${StepId}" class="button blue">
+			<strong>${StepNumber}</strong> - ${StepTitle}
+		</a>
+	</div>
 </script>
 
 @section scripts
 {
-    <script type="text/javascript" src="@Url.Content("/Content/js/jquery.tmpl.js")"></script>
-    <script type="text/javascript" src="@Url.Content("/Content/js/jquery.form.wizard.js")"></script>
-    <script type="text/javascript" src="@Url.Content("/Content/js/user/create.js")"></script>
-    <script type="text/javascript">
-        
-        function generateVisibility(interest) {
-            if(interest.Id != 0 )
-            {
-                return "visibility: hidden;";
-               }
-        	return '';
-        }
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.tmpl.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.form.wizard.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/user/create.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/validation/jquery.validate.atLeastOne.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/cliqflip/validate.js")"> </script>
+	<script type="text/javascript">
 
-        initUserCreate();
-    </script>
+		function generateVisibility(interest) {
+			if (interest.Id != 0) {
+				return "visibility: hidden;";
+			}
+			return '';
+		}
+
+		initUserCreate();
+	</script>
 }
