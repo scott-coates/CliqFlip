@@ -146,7 +146,14 @@
 					<div id="divInterestSearch">
 						<input type="text" id="interestName" placeholder="Type an interest..." />
 					</div>
-					<ul id="interestsList" class="fillone">
+					<div class="editor-label">
+							@Html.LabelFor(model => model.UserInterests)
+						</div>
+						<div class="editor-field">
+							@Html.EditorFor(model => model.UserInterests)
+							@Html.ValidationMessageFor(model => model.UserInterests)
+						</div>
+					<ul id="interestsList">
 					</ul>
 				</fieldset>
 				<fieldset class="step ui-formwizard-content" style="display: none;" id="stepLogin">
@@ -280,7 +287,6 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.form.wizard.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/create.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/validation/jquery.validate.collection-not-empty.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/cliqflip/validate.js")"> </script>
 	<script type="text/javascript">
 
 		function generateVisibility(interest) {

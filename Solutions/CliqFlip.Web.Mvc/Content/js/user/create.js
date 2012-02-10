@@ -65,10 +65,6 @@ function initUserCreate() {
         };
 
         formProfileCreate.formwizard(formWizardOptions).bind("step_shown", onStepShown);
-
-    	cliqFlip.Validate.AddClassRules("fillone", {
-    		require_from_group: [1, ".fillone"]
-    	});
     }
 
     function createAutoComplete() {
