@@ -59,13 +59,16 @@ function initUserCreate() {
             };
 
         var formWizardOptions = {
-            disableUIStyles: true,
+        	disableUIStyles: true,
             inDuration: 100,
             outDuration: 100
         };
 
         formProfileCreate.formwizard(formWizardOptions).bind("step_shown", onStepShown);
 
+    	cliqFlip.Validate.AddClassRules("fillone", {
+    		require_from_group: [1, ".fillone"]
+    	});
     }
 
     function createAutoComplete() {
