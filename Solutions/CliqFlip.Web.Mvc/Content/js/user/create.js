@@ -13,7 +13,7 @@ var tmplNewInterest = null;
 var tmplStepIndicator = null;
 var steps = null;
 
-var interestNames = new Array();
+var interestNames = new Array();//TODO: use [] instead of array obj
 
 function initUserCreate() {
     var selectedCssClass = "dark-blue";
