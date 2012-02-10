@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Net.Mail;
 using System.Web.Mvc;
 
-namespace CliqFlip.Web.Mvc.Extensions.Validation
+namespace CliqFlip.Web.Mvc.Validation
 {
     public class EmailAttribute : ValidationAttribute, IClientValidatable
     {
