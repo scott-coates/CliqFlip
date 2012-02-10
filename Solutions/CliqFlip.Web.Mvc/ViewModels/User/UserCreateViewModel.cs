@@ -15,10 +15,12 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 			UserInterests = new List<InterestCreate>();
 		}
 
+		//TODO:RemoteveValidation on username
 		[Required(ErrorMessage = "Please choose a username")]
 		[Display(Name = "Choose a username:")]
 		public string Username { get; set; }
 
+		//TODO:RemoteveValidation on email
 		[Required(ErrorMessage = "Please provide an email address.")]
 		[Display(Name = "Whats your email?")]
 		[Email(ErrorMessage="Please provide a valid email address.")]
