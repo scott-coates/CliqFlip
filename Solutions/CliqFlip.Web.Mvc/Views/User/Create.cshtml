@@ -65,6 +65,9 @@
 			margin: 0;
 			overflow: auto;
 		}
+		#userInterestEmptyError {
+			display: none;
+		}
 
 		#stepLogin div div {
 			display: block;
@@ -143,6 +146,7 @@
 
 				<fieldset class="step ui-formwizard-content" id="stepInterests">
 					@Html.ValidationMessageFor(model=>model.UserInterests)
+					<span class="field-validation-error" id="userInterestEmptyError">Okay, we get it, you're not very interesting. But please, for our sake, just provide us with an interest that tells us about yourself.</span>
 					<strong>Add your UserInterests</strong>
 					<div id="divInterestSearch">
 						<input type="text" id="interestName" placeholder="Type an interest..." />
@@ -205,7 +209,7 @@
 	<li style="display: none;">
 		<a href='javscript:void(0)' class='remove-interest'></a>
 		<div>
-			<input type='hidden' name='UserInterests[${Index}].Id' value='${Id}' />
+			<input type='hidden' class="userInterestValue" name='UserInterests[${Index}].Id' value='${Id}' />
 			<input type='hidden' name='UserInterests[${Index}].Name' value='${Name}' />
 			<div class="title"><p>${Name}</p></div>
             
@@ -278,8 +282,6 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.tmpl.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.form.wizard.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/create.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/validation/jquery.validate.collection-not-empty.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("~/Content/js/cliqFlip/validate.js")"> </script>
 	<script type="text/javascript">
 
 		function generateVisibility(interest) {
@@ -289,6 +291,8 @@
 			return '';
 		}
 
+		
 		initUserCreate();
+	
 	</script>
 }

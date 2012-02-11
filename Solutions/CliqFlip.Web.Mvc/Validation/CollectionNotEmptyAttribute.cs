@@ -24,6 +24,7 @@ namespace CliqFlip.Web.Mvc.Validation
 			
 			return retVal;
 		} 
+
 		public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
 		{
 			yield return new ModelClientValidationRule

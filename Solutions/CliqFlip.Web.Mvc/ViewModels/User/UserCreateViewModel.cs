@@ -37,7 +37,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 		[DataType(DataType.Password)]
 		public String PasswordVerify { get; set; }
 
-		[CollectionNotEmptyAttribute(ErrorMessage = "Okay, we get it, you're not very interesting. But please, for our sake, just provide us with interest that tells us about yourself.")]
+		[CollectionNotEmptyAttribute(ErrorMessage = "Okay, we get it, you're not very interesting. But please, for our sake, just provide us with an interest that tells us about yourself.")]
 		public List<InterestCreate> UserInterests { get; set; }
 
 	}
