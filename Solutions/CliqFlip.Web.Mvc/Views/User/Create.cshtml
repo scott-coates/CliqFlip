@@ -146,13 +146,6 @@
 					<div id="divInterestSearch">
 						<input type="text" id="interestName" placeholder="Type an interest..." />
 					</div>
-					<div class="editor-label">
-							@Html.LabelFor(model => model.UserInterests)
-						</div>
-						<div class="editor-field">
-							@Html.EditorFor(model => model.UserInterests)
-							@Html.ValidationMessageFor(model => model.UserInterests)
-						</div>
 					<ul id="interestsList">
 					</ul>
 				</fieldset>
@@ -287,6 +280,7 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.form.wizard.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/create.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/validation/jquery.validate.collection-not-empty.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Content/js/cliqFlip/validate.js")"> </script>
 	<script type="text/javascript">
 
 		function generateVisibility(interest) {
@@ -296,6 +290,7 @@
 			return '';
 		}
 
+		cliqFlip.Validate.AddClassRules('fillone', { collection_not_empty: [1, ".fillone"] });
 		initUserCreate();
 	</script>
 }

@@ -1,6 +1,6 @@
 ﻿//http://stackoverflow.com/questions/1300994/jquery-validate-require-at-least-one-field-in-a-group-to-be-filled
 
-jQuery.validator.addMethod("collection-not-empty", function (value, element, options) {
+jQuery.validator.addMethod("collection_not_empty", function (value, element, options) {
 	var numberRequired = options[0];
 	var selector = options[1];
 	//Look for our selector within the parent form
