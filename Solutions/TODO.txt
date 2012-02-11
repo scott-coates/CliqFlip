@@ -6,3 +6,4 @@ Implement code styling
 Set ASPNET.MVC Views to compile to show us errors at debug time not just runtime
 
 Memcache for session state
+Return 404 page for users who don't exist.
