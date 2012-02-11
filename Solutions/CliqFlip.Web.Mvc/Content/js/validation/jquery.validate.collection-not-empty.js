@@ -38,4 +38,4 @@ jQuery.validator.addMethod("collection_not_empty", function (value, element, opt
 	// {0} below is the 0th item in the options field
 }, jQuery.format("Please fill out at least {0} of these fields."));
 
-$.validator.unobtrusive.adapters.addBool("collectionNotEmpty", "collection-not-empty"); 
+$.validator.unobtrusive.adapters.addBool("collectionNotEmpty", "collection_not_empty"); 
