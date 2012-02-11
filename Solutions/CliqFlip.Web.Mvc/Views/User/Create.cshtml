@@ -208,9 +208,7 @@
 			<input type='hidden' name='UserInterests[${Index}].Name' value='${Name}' />
 			<div class="title"><p>${Name}</p></div>
             
-			<div id="subcategory" style='${
-
-	                                                                                       generateVisibility ($item.data)}' >
+			<div id="subcategory" style='${generateVisibility ($item.data)}' >
 				<label>Category</label><br />
 				<select name="UserInterests[${Index}].Category">
 					<option value="">Choose...</option>
@@ -290,7 +288,6 @@
 			return '';
 		}
 
-		cliqFlip.Validate.AddClassRules('fillone', { collection_not_empty: [1, ".fillone"] });
 		initUserCreate();
 	</script>
 }
