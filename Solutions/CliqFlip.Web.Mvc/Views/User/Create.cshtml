@@ -142,6 +142,7 @@
 				@Html.ValidationSummary(true)
 
 				<fieldset class="step ui-formwizard-content" id="stepInterests">
+					@Html.ValidationMessageFor(model=>model.UserInterests)
 					<strong>Add your UserInterests</strong>
 					<div id="divInterestSearch">
 						<input type="text" id="interestName" placeholder="Type an interest..." />
