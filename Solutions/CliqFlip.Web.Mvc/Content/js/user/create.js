@@ -165,9 +165,5 @@ function initUserCreate() {
     	generateIndicators();
     	createAutoComplete();
 
-//    	cliqFlip.Validate.AddClassRules("fillone", {collection_not_empty:[1,".fillone"] });
-    	jQuery.validator.addClassRules("fillone", {
-    		collection_not_empty: [1, ".fillone"]
-    	});
     });
 }
