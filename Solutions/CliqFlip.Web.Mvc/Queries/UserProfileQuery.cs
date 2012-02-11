@@ -24,14 +24,16 @@ namespace CliqFlip.Web.Mvc.Queries
 			if (user != null)
 			{
 				retVal = new UserProfileViewModel
-							{
-								Username = user.Username,
-								Id = user.Id,
-								Bio = string.IsNullOrWhiteSpace(user.Bio) ? "I ♥ " + string.Join(", "  ,user.Interests.Select(x=>x.Interest.Name)) : user.Bio,
-								Headline = string.IsNullOrWhiteSpace(user.Headline) ? "I am " + username + ", hear me roar!" : user.Headline
-							};
+				         	{
+				         		Username = user.Username,
+				         		Id = user.Id,
+				         		Bio = user.Bio,
+				         		Headline = user.Headline
+				         	};
 
-				var interests = user.Interests.Select(interest => new UserInterestDto(interest.Id, interest.Interest.Name.Replace(' ', '\n'), interest.Interest.Slug, null, null, interest.Options.Passion, interest.Options.XAxis, interest.Options.YAxis)).ToList();
+				List<UserInterestDto> interests =
+					user.Interests.Select(interest => new UserInterestDto(interest.Id, interest.Interest.Name.Replace(' ', '\n'), interest.Interest.Slug, null, null, interest.Options.Passion, interest.Options.XAxis, interest.Options.YAxis)).
+						ToList();
 				retVal.InterestsJson = JsonConvert.SerializeObject(interests);
 			}
 
