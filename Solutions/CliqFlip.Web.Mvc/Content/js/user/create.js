@@ -164,5 +164,7 @@ function initUserCreate() {
         createFormWizard();
         generateIndicators();
         createAutoComplete();
+
+        $("#interestsList").rules("add", { collection_not_empty: true });
     });
 }
