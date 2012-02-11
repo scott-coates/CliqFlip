@@ -149,22 +149,25 @@ function initUserCreate() {
     $(document).ready(function () {
     	//TODO:we should pick out a naming conventions for js functions - camel case or pascal case
     	//TODO: we should determine if doc ready function should be called in js files or in aspx files
-        //bind all the elements we need
-        interestTextBox = $("#interestName");
-        divInterestCategory = $("#divInterestCategory");
-        interestsList = $("#interestsList");
-        tmplNewInterest = $("#tmplNewInterest");
-        tmplStepIndicator = $("#tmplStepIndicator");
-        steps = $("#steps");
+    	//bind all the elements we need
+    	interestTextBox = $("#interestName");
+    	divInterestCategory = $("#divInterestCategory");
+    	interestsList = $("#interestsList");
+    	tmplNewInterest = $("#tmplNewInterest");
+    	tmplStepIndicator = $("#tmplStepIndicator");
+    	steps = $("#steps");
 
 
-        //find the user create form
-        formProfileCreate = $("#formProfileCreate");
+    	//find the user create form
+    	formProfileCreate = $("#formProfileCreate");
 
-        createFormWizard();
-        generateIndicators();
-        createAutoComplete();
+    	createFormWizard();
+    	generateIndicators();
+    	createAutoComplete();
 
-        $("#interestsList").rules("add", { collection_not_empty: true });
+//    	cliqFlip.Validate.AddClassRules("fillone", {collection_not_empty:[1,".fillone"] });
+    	jQuery.validator.addClassRules("fillone", {
+    		collection_not_empty: [1, ".fillone"]
+    	});
     });
 }
