@@ -16,7 +16,7 @@
   <Target Name="All" DependsOnTargets="Build" />
 
 	<Target Name="Build">
-		<MSBuild.ExtensionPack.Web.HttpWebRequest TaskAction="GetResponse" Url="http://snoopmyip.com/">
+		<MSBuild.ExtensionPack.Web.HttpWebRequest TaskAction="GetResponse" Url="http://www.displaymyhostname.com/">
 			<Output TaskParameter="Response" ItemName="ResponseDetail"/>
 			<Output TaskParameter="Status" PropertyName="ResponseStatus"/>
 		</MSBuild.ExtensionPack.Web.HttpWebRequest>
