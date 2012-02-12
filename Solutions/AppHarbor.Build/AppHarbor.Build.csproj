@@ -80,7 +80,6 @@
     <None Include="Build.proj" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Migrated rules for AppHarbor.Build.ruleset" />
     <None Include="Properties\Build.properties" />
   </ItemGroup>
   <PropertyGroup>

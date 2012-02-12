@@ -6,7 +6,7 @@
 
   <PropertyGroup>
     <BuildPath Condition="'$(BuildPath)'==''">$(MSBuildProjectDirectory)</BuildPath>
-    <TasksPath Condition="'$(TasksPath)'==''">$(BuildPath)\bin\Debug</TasksPath>
+    <TasksPath Condition="'$(TasksPath)'==''">$(BuildPath)\bin\Release</TasksPath>
   </PropertyGroup>
 
   <UsingTask AssemblyFile="$(TasksPath)\AppHarbor.Build.dll" TaskName="HelloWorld" />
