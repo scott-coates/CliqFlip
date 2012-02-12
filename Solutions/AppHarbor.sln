@@ -9,10 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliqFlip.Tasks", "CliqFlip.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliqFlip.Web.Mvc", "CliqFlip.Web.Mvc\CliqFlip.Web.Mvc.csproj", "{39613BA0-1206-4A4B-A16A-C1F2A22D1267}"
 	ProjectSection(ProjectDependencies) = postProject
-		{84DA6271-958E-4A2C-8D3E-5316BAF732AB} = {84DA6271-958E-4A2C-8D3E-5316BAF732AB}
+		{8B4117C9-4C7B-4EF8-9AAD-6099AB485E63} = {8B4117C9-4C7B-4EF8-9AAD-6099AB485E63}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHarbor.Build", "AppHarbor.Build\AppHarbor.Build.csproj", "{84DA6271-958E-4A2C-8D3E-5316BAF732AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHarbor.Build", "AppHarbor.Build\AppHarbor.Build.csproj", "{8B4117C9-4C7B-4EF8-9AAD-6099AB485E63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,16 +64,16 @@ Global
 		{39613BA0-1206-4A4B-A16A-C1F2A22D1267}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{39613BA0-1206-4A4B-A16A-C1F2A22D1267}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{39613BA0-1206-4A4B-A16A-C1F2A22D1267}.Release|x86.ActiveCfg = Release|Any CPU
-		{84DA6271-958E-4A2C-8D3E-5316BAF732AB}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{84DA6271-958E-4A2C-8D3E-5316BAF732AB}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{84DA6271-958E-4A2C-8D3E-5316BAF732AB}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{84DA6271-958E-4A2C-8D3E-5316BAF732AB}.Debug|x86.ActiveCfg = Debug|x86
-		{84DA6271-958E-4A2C-8D3E-5316BAF732AB}.Debug|x86.Build.0 = Debug|x86
-		{84DA6271-958E-4A2C-8D3E-5316BAF732AB}.Release|Any CPU.ActiveCfg = Release|x86
-		{84DA6271-958E-4A2C-8D3E-5316BAF732AB}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{84DA6271-958E-4A2C-8D3E-5316BAF732AB}.Release|Mixed Platforms.Build.0 = Release|x86
-		{84DA6271-958E-4A2C-8D3E-5316BAF732AB}.Release|x86.ActiveCfg = Release|x86
-		{84DA6271-958E-4A2C-8D3E-5316BAF732AB}.Release|x86.Build.0 = Release|x86
+		{8B4117C9-4C7B-4EF8-9AAD-6099AB485E63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B4117C9-4C7B-4EF8-9AAD-6099AB485E63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B4117C9-4C7B-4EF8-9AAD-6099AB485E63}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8B4117C9-4C7B-4EF8-9AAD-6099AB485E63}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8B4117C9-4C7B-4EF8-9AAD-6099AB485E63}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8B4117C9-4C7B-4EF8-9AAD-6099AB485E63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B4117C9-4C7B-4EF8-9AAD-6099AB485E63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B4117C9-4C7B-4EF8-9AAD-6099AB485E63}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{8B4117C9-4C7B-4EF8-9AAD-6099AB485E63}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{8B4117C9-4C7B-4EF8-9AAD-6099AB485E63}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

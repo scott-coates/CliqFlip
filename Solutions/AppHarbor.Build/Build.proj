@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="All">
+
+	<Import Project="$(MSBuildProjectDirectory)\properties\build.properties" />
+
+  <PropertyGroup>
+    <BuildPath Condition="'$(BuildPath)'==''">$(MSBuildProjectDirectory)</BuildPath>
+    <TasksPath Condition="'$(TasksPath)'==''">$(BuildPath)\bin\Debug</TasksPath>
+  </PropertyGroup>
+
+  <UsingTask AssemblyFile="$(TasksPath)\AppHarbor.Build.dll" TaskName="HelloWorld" />
+
+  <Target Name="All" DependsOnTargets="Build" />
+
+	<!-- add custom targets below -->
+	
+	<Target Name="Build">
+     <!-- Example usage accessing a custom task with a single output parameter -->
+    <HelloWorld>
+      <Output TaskParameter="Test" PropertyName="TaskResult" />
+    </HelloWorld>
+    
+    <!-- Display the output from the custom task -->
+		<Message Text="$(TaskResult)"  Importance="high" />
+	</Target>
+
+</Project>
