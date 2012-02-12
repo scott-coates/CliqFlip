@@ -6,10 +6,10 @@
 
   <PropertyGroup>
     <BuildPath Condition="'$(BuildPath)'==''">$(MSBuildProjectDirectory)</BuildPath>
-    <TasksPath Condition="'$(TasksPath)'==''">$(BuildPath)\bin\Release</TasksPath>
+    <TasksPath Condition="'$(TasksPath)'==''">$(BuildPath)\bin\$(Configuration)</TasksPath>
   </PropertyGroup>
 
-  <UsingTask AssemblyFile="$(TasksPath)\AppHarbor.Build.dll" TaskName="HelloWorld" />
+  <UsingTask AssemblyFile="$(OutDir)\AppHarbor.Build.dll" TaskName="HelloWorld" />
 
   <Target Name="All" DependsOnTargets="Build" />
 
@@ -20,7 +20,7 @@
     <HelloWorld>
       <Output TaskParameter="Test" PropertyName="TaskResult" />
     </HelloWorld>
-    
+
     <!-- Display the output from the custom task -->
 		<Message Text="$(TaskResult)"  Importance="high" />
 	</Target>
