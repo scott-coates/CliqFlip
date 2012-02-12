@@ -164,6 +164,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Configuration\Alpha\AppSettings.config" />
+    <None Include="Configuration\AppSettings.config" />
+    <None Include="Configuration\Beta\AppSettings.config" />
     <None Include="Migrator\CliqFlip.targets">
       <SubType>Designer</SubType>
     </None>
