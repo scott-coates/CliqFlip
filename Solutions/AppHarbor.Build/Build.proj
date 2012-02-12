@@ -7,22 +7,27 @@
   <PropertyGroup>
     <BuildPath Condition="'$(BuildPath)'==''">$(MSBuildProjectDirectory)</BuildPath>
     <TasksPath Condition="'$(TasksPath)'==''">$(BuildPath)\bin\$(Configuration)</TasksPath>
+		<MSBuildExtensionPack>..\..\ReferencedAssemblies\MSBuild\MSBuild.ExtensionPack.tasks</MSBuildExtensionPack>
+		<ExtensionTasksPath>..\..\ReferencedAssemblies\MSBuild\</ExtensionTasksPath>
   </PropertyGroup>
 
-  <UsingTask AssemblyFile="$(OutDir)\AppHarbor.Build.dll" TaskName="HelloWorld" />
+	<Import Project="$(MSBuildExtensionPack)"/>
 
   <Target Name="All" DependsOnTargets="Build" />
 
-	<!-- add custom targets below -->
-	
 	<Target Name="Build">
-     <!-- Example usage accessing a custom task with a single output parameter -->
-    <HelloWorld>
-      <Output TaskParameter="Test" PropertyName="TaskResult" />
-    </HelloWorld>
-
-    <!-- Display the output from the custom task -->
-		<Message Text="$(TaskResult)"  Importance="high" />
+		<MSBuild.ExtensionPack.Web.HttpWebRequest TaskAction="GetResponse" Url="http://www.freetodev.com">
+			<Output TaskParameter="Response" ItemName="ResponseDetail"/>
+			<Output TaskParameter="Status" PropertyName="ResponseStatus"/>
+		</MSBuild.ExtensionPack.Web.HttpWebRequest>
+		<Message Text="Status: $(ResponseStatus)"/>
+		<Message Text="StatusDescription: %(ResponseDetail.StatusDescription)"/>
+		<Message Text="StatusCode: %(ResponseDetail.StatusCode)"/>
+		<Message Text="CharacterSet: %(ResponseDetail.CharacterSet)"/>
+		<Message Text="ProtocolVersion: %(ResponseDetail.ProtocolVersion)"/>
+		<Message Text="ResponseUri: %(ResponseDetail.ResponseUri)"/>
+		<Message Text="Server: %(ResponseDetail.Server)"/>
+		<Message Text="ResponseText: %(ResponseDetail.ResponseText)"/>
 	</Target>
 
 </Project>
