@@ -537,11 +537,23 @@
   </Target>
   
   <Target Name="AfterBuild" >   
-		<Message Text="!!!!!!!!!!!!!!!!!!!1"/>
+		<Message Text="	$$$$$$$$$$$$$$$$$$$$$"/>
+		<Message Text="$(OutDir)"/>
+				<XmlPeek XmlInputPath="Web.config"
+           Query="//configuration/appSettings/add[@key='appharbor.commit_id']/@value">
+			<Output TaskParameter="Result" ItemName="CommitId" />
+		</XmlPeek>
+		<Message Text="@(CommitId)"/>
   </Target>
    <Target Name="BeforeBuild" >   
-		<Message Text="$$$$$$$$$$$$$$$$$$$$$"/>
+		<Message Text="	$$$$$$$$$$$$$$$$$$$$$"/>
 		<Message Text="$(OutDir)"/>
+				<XmlPeek XmlInputPath="Web.config"
+           Query="//configuration/appSettings/add[@key='appharbor.commit_id']/@value">
+			<Output TaskParameter="Result" ItemName="CommitId" />
+		</XmlPeek>
+		<Message Text="@(CommitId)"/>
+
   </Target>
   <ProjectExtensions>
     <VisualStudio>
