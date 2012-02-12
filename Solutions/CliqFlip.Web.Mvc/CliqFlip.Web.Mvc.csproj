@@ -539,7 +539,7 @@
   <Target Name="AfterBuild" >   
 		<Message Text="!!!!!!!!!!!!!!!!!!!1"/>
   </Target>
-   <Target Name="AfterBuild" >   
+   <Target Name="BeforeBuild" >   
 		<Message Text="$$$$$$$$$$$$$$$$$$$$$"/>
 		<Message Text="$(OutDir)"/>
   </Target>
