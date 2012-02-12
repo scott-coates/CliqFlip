@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliqFlip.Tasks", "CliqFlip.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliqFlip.Web.Mvc", "CliqFlip.Web.Mvc\CliqFlip.Web.Mvc.csproj", "{39613BA0-1206-4A4B-A16A-C1F2A22D1267}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C147F47B-9A6F-4A82-9F15-042483EEE763}"
+	ProjectSection(SolutionItems) = preProject
+		AppHarbor.targets = AppHarbor.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

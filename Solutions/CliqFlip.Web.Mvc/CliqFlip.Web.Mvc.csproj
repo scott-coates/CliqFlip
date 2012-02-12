@@ -535,6 +535,14 @@
   <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
     <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)" />
   </Target>
+  
+  <Target Name="AfterBuild" >   
+		<Message Text="!!!!!!!!!!!!!!!!!!!1"/>
+  </Target>
+   <Target Name="AfterBuild" >   
+		<Message Text="$$$$$$$$$$$$$$$$$$$$$"/>
+		<Message Text="$(OutDir)"/>
+  </Target>
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
