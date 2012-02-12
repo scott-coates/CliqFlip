@@ -3,6 +3,6 @@
 <Target Name="AppHarborBuild" 
 				AfterTargets="MvcBuildViews">
 
-	<Message Text="#@$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"/>
+	<Message Text="#@$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$!!$"/>
 </Target>
 </Project>
