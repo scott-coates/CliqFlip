@@ -10,6 +10,7 @@ using CliqFlip.Web.Mvc.ViewModels.Jeip;
 using CliqFlip.Web.Mvc.ViewModels.User;
 using SharpArch.NHibernate.Web.Mvc;
 using SharpArch.Web.Mvc.JsonNet;
+using CliqFlip.Web.Mvc.Extensions.Authentication;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
@@ -18,12 +19,14 @@ namespace CliqFlip.Web.Mvc.Controllers
 		private readonly IPrincipal _principal;
 		private readonly IUserProfileQuery _userProfileQuery;
 		private readonly IUserTasks _userTasks;
+        private readonly IUserAuthentication _userAuth;
 
-		public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal)
+        public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IUserAuthentication userAuth)
 		{
 			_userTasks = profileTasks;
 			_userProfileQuery = userProfileQuery;
 			_principal = principal;
+            _userAuth = userAuth;
 		}
 
 		public ViewResult Create()
@@ -55,10 +58,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 					return View(profile);
 				}
 
-				//TODO: delegate this responsibiliy to userTask - unit test will fail this static method
-				//TODO: Set HTTPOnly  = true;
-				//TODO: Set Secure = true when we use ssl;
-				FormsAuthentication.SetAuthCookie(newProfile.Username, false);
+                _userAuth.Login(newProfile.Username, false);
 				return RedirectToAction("Index", "User", new { username = profile.Username });
 			}
 			return View(profile);
@@ -76,8 +76,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				if (_userTasks.ValidateUser(model.Username, model.Password))
 				{
-					//TODO: Use a service for setting the cookie - unit tests will fail
-					FormsAuthentication.SetAuthCookie(model.Username, model.LogMeIn);
+                    _userAuth.Login(model.Username, model.LogMeIn);
 					return Content("Awesome! You are now logged in.");
 				}
 			}
@@ -87,7 +86,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 		public ActionResult Logout()
 		{
-			FormsAuthentication.SignOut();
+            _userAuth.Logout();
 			return Redirect("~");
 		}
 
