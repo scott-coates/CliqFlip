@@ -77,7 +77,9 @@
   -->
   <Import Project="Build.proj" />
   <ItemGroup>
-    <None Include="Build.proj" />
+    <None Include="Build.proj">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Build.properties" />

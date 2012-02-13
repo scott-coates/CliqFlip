@@ -5,8 +5,6 @@
 	<Import Project="$(MSBuildProjectDirectory)\properties\build.properties" />
 
   <PropertyGroup>
-    <BuildPath Condition="'$(BuildPath)'==''">$(MSBuildProjectDirectory)</BuildPath>
-    <TasksPath Condition="'$(TasksPath)'==''">$(BuildPath)\bin\$(Configuration)</TasksPath>
 		<MSBuildExtensionPack>..\..\ReferencedAssemblies\MSBuild\MSBuild.ExtensionPack.tasks</MSBuildExtensionPack>
 		<ExtensionTasksPath>..\..\ReferencedAssemblies\MSBuild\</ExtensionTasksPath>
   </PropertyGroup>
@@ -16,18 +14,26 @@
   <Target Name="All" DependsOnTargets="Build" />
 
 	<Target Name="Build">
-		<MSBuild.ExtensionPack.Web.HttpWebRequest TaskAction="GetResponse" Url="http://www.displaymyhostname.com/">
-			<Output TaskParameter="Response" ItemName="ResponseDetail"/>
-			<Output TaskParameter="Status" PropertyName="ResponseStatus"/>
-		</MSBuild.ExtensionPack.Web.HttpWebRequest>
-		<Message Text="Status: $(ResponseStatus)"/>
-		<Message Text="StatusDescription: %(ResponseDetail.StatusDescription)"/>
-		<Message Text="StatusCode: %(ResponseDetail.StatusCode)"/>
-		<Message Text="CharacterSet: %(ResponseDetail.CharacterSet)"/>
-		<Message Text="ProtocolVersion: %(ResponseDetail.ProtocolVersion)"/>
-		<Message Text="ResponseUri: %(ResponseDetail.ResponseUri)"/>
-		<Message Text="Server: %(ResponseDetail.Server)"/>
-		<Message Text="ResponseText: %(ResponseDetail.ResponseText)"/>
+		<!-- Get the Machine IP Addresses -->
+		<MSBuild.ExtensionPack.Computer.Network TaskAction="GetInternalIP">
+			<Output TaskParameter="IP" ItemName="TheIP"/>
+		</MSBuild.ExtensionPack.Computer.Network>
+		<Message Text="The IP: %(TheIP.Identity)"/>
+		<!-- Get Remote IP Addresses -->
+		<MSBuild.ExtensionPack.Computer.Network TaskAction="GetRemoteIP" HostName="cliqflip-alpha.apphb.com">
+			<Output TaskParameter="IP" ItemName="TheRemoteIP"/>
+		</MSBuild.ExtensionPack.Computer.Network>
+		<Message Text="The Remote IP: %(TheRemoteIP.Identity)"/>
+		<!-- Ping a host -->
+		<MSBuild.ExtensionPack.Computer.Network TaskAction="Ping" HostName="cliqflip-alpha.apphb.com">
+			<Output TaskParameter="Exists" PropertyName="DoesExist"/>
+		</MSBuild.ExtensionPack.Computer.Network>
+		<Message Text="Exists: $(DoesExist)"/>
+		<!-- Gets the fully-qualified domain name for a hostname. -->
+		<MSBuild.ExtensionPack.Computer.Network TaskAction="GetDnsHostName" HostName="127.0.0.1">
+			<Output TaskParameter="DnsHostName" PropertyName="HostEntryName" />
+		</MSBuild.ExtensionPack.Computer.Network>
+		<Message Text="Host Entry name: $(HostEntryName)" />
 	</Target>
 
 </Project>
