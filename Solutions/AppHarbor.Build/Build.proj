@@ -14,26 +14,6 @@
   <Target Name="All" DependsOnTargets="Build" />
 
 	<Target Name="Build">
-		<!-- Get the Machine IP Addresses -->
-		<MSBuild.ExtensionPack.Computer.Network TaskAction="GetInternalIP">
-			<Output TaskParameter="IP" ItemName="TheIP"/>
-		</MSBuild.ExtensionPack.Computer.Network>
-		<Message Text="The IP: %(TheIP.Identity)"/>
-		<!-- Get Remote IP Addresses -->
-		<MSBuild.ExtensionPack.Computer.Network TaskAction="GetRemoteIP" HostName="cliqflip-alpha.apphb.com">
-			<Output TaskParameter="IP" ItemName="TheRemoteIP"/>
-		</MSBuild.ExtensionPack.Computer.Network>
-		<Message Text="The Remote IP: %(TheRemoteIP.Identity)"/>
-		<!-- Ping a host -->
-		<MSBuild.ExtensionPack.Computer.Network TaskAction="Ping" HostName="cliqflip-alpha.apphb.com">
-			<Output TaskParameter="Exists" PropertyName="DoesExist"/>
-		</MSBuild.ExtensionPack.Computer.Network>
-		<Message Text="Exists: $(DoesExist)"/>
-		<!-- Gets the fully-qualified domain name for a hostname. -->
-		<MSBuild.ExtensionPack.Computer.Network TaskAction="GetDnsHostName" HostName="127.0.0.1">
-			<Output TaskParameter="DnsHostName" PropertyName="HostEntryName" />
-		</MSBuild.ExtensionPack.Computer.Network>
-		<Message Text="Host Entry name: $(HostEntryName)" />
 	</Target>
 
 </Project>
