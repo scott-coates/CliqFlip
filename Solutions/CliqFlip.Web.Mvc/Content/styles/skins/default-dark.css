@@ -1251,3 +1251,41 @@ color: white;
         {
             display: none;
         }
+        
+        
+        /*========================*/
+        /*===  11.1 Layout file - navigation
+        /*========================*/
+		#social-media {
+            width: 100%;
+            float: left;
+            margin-right: 0%;
+        }
+		.social-media
+		{
+		    border-style: solid;
+            background-color: white;
+            height: 50px;
+            margin: 5px;
+            text-align: center;
+            position: relative;
+            width: 48%;
+            float: left;
+            height: 220px;
+		}
+		
+		.social-media strong
+		{
+		    color: black;
+            border-bottom: 1px solid #999;
+            width: 100%;
+            display: block;
+            height: 25px;
+            line-height: 24px;
+		}
+		
+		.social-media-content
+		{
+		    overflow-y: scroll;
+            height: 194px;
+		}
