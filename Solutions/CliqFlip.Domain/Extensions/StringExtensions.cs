@@ -2,6 +2,7 @@
 
 namespace CliqFlip.Domain.Extensions
 {
+	//TODO: move this somewhere else..not really domain-specific
 	public static class StringExtensions
 	{
 		private const string _alphaNumeric = "[^a-zA-Z0-9]";
