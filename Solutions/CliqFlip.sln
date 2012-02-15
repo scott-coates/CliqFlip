@@ -22,7 +22,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{738FB754-B7A4-47D0-931B-7F20BA31557C}"
 	ProjectSection(SolutionItems) = preProject
 		..\README = ..\README
-		TODO.txt = TODO.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tasks", "Tasks", "{0B359D18-9636-48D8-89F8-93061463E1E3}"
