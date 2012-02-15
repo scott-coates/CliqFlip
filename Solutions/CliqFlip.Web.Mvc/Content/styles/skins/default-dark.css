@@ -1287,5 +1287,6 @@ color: white;
 		.social-media-content
 		{
 		    overflow-y: scroll;
+		    overflow-x: hidden;
             height: 194px;
 		}

@@ -1,12 +1,19 @@
-﻿@section styles
+﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserSocialMediaViewModel
+@section styles
 {
 	<style type="text/css">
 		body { background-color: #D1E1E7; }
+		
+		#youtube a span
+		{
+		    color: Black;
+		}
+		#youtube a:hover
+		{
+		    background-color: #CBDBE1;
+		}
 	</style>
     @*<link href="http://tweet.seaofclouds.com/jquery.tweet.css" type="text/css" rel="Stylesheet" />*@
-}
-@{
-	ViewBag.Title = Model.Username + " - " + Model.Headline;
 }
 <div class="divider">
 </div>
@@ -41,7 +48,7 @@
                             Facebook
                         </strong>
                         <div id="facebook" class="social-media-content">
-                        
+                            @*@Facebook.ActivityFeed("http://www.facebook.com/pepsi")*@
                         </div>
 					</div>
                     <div class="social-media">
@@ -49,14 +56,60 @@
                             Twitter
                         </strong>
                         <div id="twitter" class="social-media-content">
+                            @if (!String.IsNullOrWhiteSpace(Model.TwitterUsername))
+                            {
+                                @Twitter.Profile(Model.TwitterUsername, width: 372,
+                                backgroundShellColor: "white",
+                                tweetsColor: "black",
+                                tweetsBackgroundColor: "white",
+                                tweetsLinksColor: "#008FAE",
+                                shellColor: "black")
+                                <style type="text/css">
+                                    /*The css rules need to be placed here or the framework generated css will override our css.*/
+                                    .twtr-hd h3
+		                            {
+		                                font-size: 12px !important;
+		                                line-height: 15px !important;
+		                            }
+                                    .twtr-ft
+		                            {
+		                                display: none;
+		                            }
+                                </style>
+                            }
+                            else
+                            {
+                                <strong style="border: medium none;padding-top: 80px;">
+                                    This user is not sharing their twitter updates.
+                                </strong>
+                            }
                         </div>
 					</div>
                     <div class="social-media">
 						<strong>
                             YouTube
+                            @*<iframe src="http://www.youtube.com/subscribe_widget?p=Humansare2011"
+                               style="overflow: hidden; height: 105px; width: 300px; border: 0;"
+                               scrolling="no" frameBorder="0">
+                            </iframe>*@
                         </strong>
                         <div id="youtube" class="social-media-content">
+                            @if (!String.IsNullOrWhiteSpace(Model.YouTubeUsername))
+                            {
+                                <div data-youtube="@Model.YouTubeUsername">
+                                
+                                </div>
+                                <ul id="youtube" class="social-media-content" data-youtube="@Model.YouTubeUsername">
+                                </ul>
+                            }
+                            else
+                            {
+                                <strong style="border: medium none;padding-top: 80px;">
+                                    This user is not sharing their youtube videos.
+                                </strong>
+                            }
                         </div>
+                        
 					</div>
                     <div class="social-media">
                         <strong>
@@ -73,27 +126,90 @@
 	<div class="clear">
 	</div>
 </div>
-@*section scripts
+@section scripts
 {
-    <script type="text/javascript" src="http://tweet.seaofclouds.com/jquery.tweet.js"></script>
-    <script type="text/javascript" src="http://www.zazar.net/developers/jquery/zrssfeed/jquery.zrssfeed.min.js"></script>
     <script type='text/javascript'>
         jQuery(function ($) {
-            $("#twitter-feed").tweet({
-                username: "craigkerstiens",
-                join_text: "auto",
-                avatar_size: 32,
-                count: 3,
-                auto_join_text_default: "we said,",
-                auto_join_text_ed: "we",
-                auto_join_text_ing: "we were",
-                auto_join_text_reply: "we replied to",
-                auto_join_text_url: "we were checking out",
-                loading_text: "loading tweets..."
+
+
+
+            $("[data-youtube]").each(function (elemt, index) {
+                var reqOptions = "&alt=json&callback=?";
+                //the element 
+                var container = $(this);
+
+                var accountInfoContainer = $("<ul class=''></ul>");
+                var playlistInfoContainer = $("<ul></ul>");
+
+                //get the youtube username
+                var username = container.data("youtube");
+
+                //get the playlist of their uploaded videos
+                var playListURL = 'https://gdata.youtube.com/feeds/api/users/' + username + '/uploads?v=2'; //&alt=json&callback=?',
+                favoritesFeed = 'https://gdata.youtube.com/feeds/api/users/' + username + '/favorites?v=2'; //&alt=json&callback=?',
+                playlists = [{ title: "Favorites", url: favoritesFeed, summary: "" }, { title: "Uploaded", url: playListURL, summary: ""}];
+
+                //get the users other playlist
+                var playlistFeed = "https://gdata.youtube.com/feeds/api/users/" + username + "/playlists?v=2&alt=json&callback=?";
+
+
+                $.getJSON(playlistFeed, function (data) {
+                    var list_data = "";
+                    $.each(data.feed.entry, function (index, item) {
+                        var title = item.title.$t;
+                        var summary = item.summary.$t;
+                        var playlisturl = item.content.src;
+                        var playlist = { title: title, summary: summary, url: playlisturl };
+                        playlists.push(playlist);
+
+
+
+                        //                        $(list_data).click(function (event) {
+                        //                            event.preventDefault();
+                        //                            var href = $(this).find(a)[0].href + reqOptions;
+
+                        //                        });
+                    });
+                    $.each(playlists, function (index, playlist) {
+                        list_data += '<li style="display: block;">' +
+                                            '<a href="' + playlist.url + '" style="display: block; height: 70px;padding: 7px 4px;">' +
+                                                playlist.title +
+                                            '</a>' +
+                                        '</li>';
+                    });
+                    $(list_data).appendTo(container);
+                });
+
+                $.getJSON(playListURL, function (data) {
+                    var list_data = "";
+                    //iterate through each of the videos found in the feed
+                    $.each(data.feed.entry, function (i, item) {
+
+                        //get the title of the video
+                        var title = item.title.$t;
+
+                        //get the url of the video
+                        var links = jQuery.grep(item.link, function (element, index) {
+                            return element.rel === 'alternate';
+                        });
+
+                        var url = links[0].href;
+
+                        //get the thumbnail url
+                        var thumb = item.media$group.media$thumbnail[0].url;
+
+                        list_data += '<li style="display: block;">' +
+                                    '<a href="' + url + '" title="' + title + '" target="_blank" style="display: block; height: 70px;padding: 7px 4px;">' +
+                                        '<img style="width: 25%; float: left;" alt="' + title + '" src="' + thumb + '"/>' +
+                                        '<span style="display: inline-block; margin-left: 10px; text-align: left; width: 70%;">' + title + '</span><br/>' +
+                                        '<span style="display: inline-block; margin-left: 10px; text-align: left; width: 70%;">9 views</span>' +
+                                    '</a>' +
+                                '</li>';
+                    });
+                    //.appendTo(container);
+                    //$(list_data).appendTo(container);
+                });
             });
         });
-        $('#blog').rssfeed('http://feeds.encosia.com/Encosia', {
-            limit: 5
-        });
-</script>
-}*@
+    </script>
+}

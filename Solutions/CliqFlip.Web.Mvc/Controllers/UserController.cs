@@ -148,7 +148,10 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult SocialMedia(string username)
 		{
-			return Index(username);
+            var model = new UserSocialMediaViewModel();
+            model.TwitterUsername = "craigkerstiens";
+            model.YouTubeUsername = "brodiesmith21";
+            return View(model);
 		}
 	}
 }
