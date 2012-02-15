@@ -1,8 +1,9 @@
-﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserSocialMediaViewModel
+﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserProfileViewModel
 @section styles
 {
 	<style type="text/css">
 		body { background-color: #D1E1E7; }
+		
 		
 		#youtube a span
 		{
@@ -11,6 +12,26 @@
 		#youtube a:hover
 		{
 		    background-color: #CBDBE1;
+		}
+		
+		.youtube-playlist-item
+		{
+		     display: block;
+		}
+		
+		.youtube-playlist-item a, .youtube-user-item a
+		{
+		    display: block;
+		    height: 70px;
+		    padding: 7px 4px;
+		}
+		.youtube-playlist-item a img
+		{
+		    width: 25%; float: left;
+		}
+		.youtube-playlist-item a span
+		{
+		    display: inline-block; margin-left: 10px; text-align: left; width: 70%;
 		}
 	</style>
     @*<link href="http://tweet.seaofclouds.com/jquery.tweet.css" type="text/css" rel="Stylesheet" />*@
@@ -59,9 +80,9 @@
                             @if (!String.IsNullOrWhiteSpace(Model.TwitterUsername))
                             {
                                 @Twitter.Profile(Model.TwitterUsername, width: 372,
-                                backgroundShellColor: "white",
+                                backgroundShellColor: "transparent",
                                 tweetsColor: "black",
-                                tweetsBackgroundColor: "white",
+                                tweetsBackgroundColor: "transparent",
                                 tweetsLinksColor: "#008FAE",
                                 shellColor: "black")
                                 <style type="text/css">
@@ -99,8 +120,6 @@
                                 <div data-youtube="@Model.YouTubeUsername">
                                 
                                 </div>
-                                <ul id="youtube" class="social-media-content" data-youtube="@Model.YouTubeUsername">
-                                </ul>
                             }
                             else
                             {
@@ -135,79 +154,124 @@
 
             $("[data-youtube]").each(function (elemt, index) {
                 var reqOptions = "&alt=json&callback=?";
-                //the element 
+                //the element that will contain everything
                 var container = $(this);
-
-                var accountInfoContainer = $("<ul class=''></ul>");
-                var playlistInfoContainer = $("<ul></ul>");
 
                 //get the youtube username
                 var username = container.data("youtube");
 
+                //create the required list containers and append them to the main container
+                //accountInfoContainer - contains the user's youtube information. Subscribe button and playlists
+                //playlistInfoContainer - when a playlist is clicked, this container will contain the videos in the playlist just clicked
+
+                var accountInfoContainer = $("<ul class='youtube-user-info'>" +
+                //add an li for the users suscribe button
+                                                "<li>" +
+                                                    "<iframe src='http://www.youtube.com/subscribe_widget?p=" + username + "'" +
+                                                        "style='overflow: hidden; height: 105px; width: 300px; border: 0;'" +
+                                                        "scrolling='no' frameBorder='0'>" +
+                                                    "</iframe>" +
+                                                "</li>" +
+                                            "</ul>");
+
+                accountInfoContainer.appendTo(container);
+
+                var playlistInfoContainer = $("<ul class='youtube-playlist-info' style='display: none;'>" +
+                                                "<li>" +
+                                                    "<a class='back'>Back</a>" +
+                                                "</li>" +
+                                            "</ul>");
+                playlistInfoContainer.appendTo(container);
+
+
+
                 //get the playlist of their uploaded videos
-                var playListURL = 'https://gdata.youtube.com/feeds/api/users/' + username + '/uploads?v=2'; //&alt=json&callback=?',
+                var playlistFeed = "https://gdata.youtube.com/feeds/api/users/" + username + "/playlists?v=2&alt=json&callback=?",
+                uploadsFeed = 'https://gdata.youtube.com/feeds/api/users/' + username + '/uploads?v=2'; //&alt=json&callback=?',
                 favoritesFeed = 'https://gdata.youtube.com/feeds/api/users/' + username + '/favorites?v=2'; //&alt=json&callback=?',
-                playlists = [{ title: "Favorites", url: favoritesFeed, summary: "" }, { title: "Uploaded", url: playListURL, summary: ""}];
+                playlists = [{ title: "Favorites", url: favoritesFeed, summary: "" },
+                             { title: "Uploaded", url: uploadsFeed, summary: ""}];
 
                 //get the users other playlist
-                var playlistFeed = "https://gdata.youtube.com/feeds/api/users/" + username + "/playlists?v=2&alt=json&callback=?";
+                //var playlistFeed = "https://gdata.youtube.com/feeds/api/users/" + username + "/playlists?v=2&alt=json&callback=?";
 
-
+                //make a call to youtube and retrieve the users playlist.
+                //load the playlists into the accountInfoContainer
                 $.getJSON(playlistFeed, function (data) {
                     var list_data = "";
-                    $.each(data.feed.entry, function (index, item) {
-                        var title = item.title.$t;
-                        var summary = item.summary.$t;
-                        var playlisturl = item.content.src;
-                        var playlist = { title: title, summary: summary, url: playlisturl };
-                        playlists.push(playlist);
 
+                    if (data.feed.entry) {
+                        //iterate through all the entries returned from youtube and
+                        //add the playlists found to our list
+                        $.each(data.feed.entry, function (index, item) {
+                            var playlist = {
+                                title: item.title.$t,
+                                summary: item.summary.$t,
+                                url: item.content.src
+                            };
+                            playlists.push(playlist);
+                        });
+                    }
 
-
-                        //                        $(list_data).click(function (event) {
-                        //                            event.preventDefault();
-                        //                            var href = $(this).find(a)[0].href + reqOptions;
-
-                        //                        });
-                    });
+                    //iterate through all the playlist and create the html list
                     $.each(playlists, function (index, playlist) {
-                        list_data += '<li style="display: block;">' +
-                                            '<a href="' + playlist.url + '" style="display: block; height: 70px;padding: 7px 4px;">' +
+                        list_data += '<li class="youtube-user-item" style="display: block;">' +
+                                            '<a href="' + playlist.url + '">' +
                                                 playlist.title +
                                             '</a>' +
                                         '</li>';
                     });
-                    $(list_data).appendTo(container);
+                    $(list_data).appendTo(accountInfoContainer);
                 });
 
-                $.getJSON(playListURL, function (data) {
-                    var list_data = "";
-                    //iterate through each of the videos found in the feed
-                    $.each(data.feed.entry, function (i, item) {
 
-                        //get the title of the video
-                        var title = item.title.$t;
+                container.on("click", ".youtube-user-info a", function (event) {
+                    event.preventDefault();
+                    var href = this.href + "&alt=json&callback=?";
+                    $.getJSON(href, function (data) {
+                        var list_data = "";
+                        if (data.feed.entry) {
+                            //iterate through each of the videos found in the feed
+                            $.each(data.feed.entry, function (i, item) {
 
-                        //get the url of the video
-                        var links = jQuery.grep(item.link, function (element, index) {
-                            return element.rel === 'alternate';
-                        });
+                                //get the title of the video
+                                var title = item.title.$t;
 
-                        var url = links[0].href;
+                                //get the url of the video
+                                var links = jQuery.grep(item.link, function (element, index) {
+                                    return element.rel === 'alternate';
+                                });
 
-                        //get the thumbnail url
-                        var thumb = item.media$group.media$thumbnail[0].url;
+                                var url = links[0].href;
 
-                        list_data += '<li style="display: block;">' +
-                                    '<a href="' + url + '" title="' + title + '" target="_blank" style="display: block; height: 70px;padding: 7px 4px;">' +
-                                        '<img style="width: 25%; float: left;" alt="' + title + '" src="' + thumb + '"/>' +
-                                        '<span style="display: inline-block; margin-left: 10px; text-align: left; width: 70%;">' + title + '</span><br/>' +
-                                        '<span style="display: inline-block; margin-left: 10px; text-align: left; width: 70%;">9 views</span>' +
+                                //get the thumbnail url
+                                var thumb = item.media$group.media$thumbnail[0].url;
+
+                                list_data += '<li class="youtube-playlist-item">' +
+                                    '<a href="' + url + '" title="' + title + '" target="_blank">' +
+                                        '<img alt="' + title + '" src="' + thumb + '"/>' +
+                                        '<span>' + title + '</span>' +
+                                        '<span>9 views</span>' +
                                     '</a>' +
                                 '</li>';
+                            });
+
+                            $(list_data).appendTo(playlistInfoContainer);
+                        }
+                        accountInfoContainer.hide();
+                        playlistInfoContainer.show();
                     });
-                    //.appendTo(container);
-                    //$(list_data).appendTo(container);
+                });
+
+                //when the back button in the playlistInfoContainer is clicked
+                //it should take the user back to the user info screen
+                playlistInfoContainer.on("click", "a.back", function (event) {
+                    
+                    //remove all the items in case a list was previously loaded
+                    var items = playlistInfoContainer.find("li.youtube-playlist-item");
+                    items.empty();
+                    playlistInfoContainer.hide();
+                    accountInfoContainer.show();
                 });
             });
         });

@@ -23,6 +23,8 @@ namespace CliqFlip.Domain.Entities
 		public virtual string Salt { get; set; }
 		public virtual string Bio { get; set; }
 		public virtual string Headline { get; set; }
+        public virtual string TwitterUsername { get; set; }
+        public virtual string YouTubeUsername { get; set; }
 
 		public User()
 		{
@@ -65,5 +67,6 @@ namespace CliqFlip.Domain.Entities
         {
             Bio = bio;
         }
+
     }
 }

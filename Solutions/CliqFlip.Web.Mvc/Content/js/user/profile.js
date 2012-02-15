@@ -81,3 +81,15 @@ function InitBio(saveUrl) {
 		$("#bioText").eip(saveUrl, { select_text: false, form_type: "textarea" });
 	}
 }
+
+function InitTwitterUsername(saveUrl) {
+    if (_canEdit) {
+        $("#twitterUsernameText").eip(saveUrl, { select_text: false, form_type: "text" });
+    }
+}
+
+function InitYouTubeUsername(saveUrl) {
+    if (_canEdit) {
+        $("#youTubeUsernameText").eip(saveUrl, { select_text: false, form_type: "text" });
+    }
+}

@@ -56,9 +56,6 @@
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\Packages\FluentNHibernate.1.2.0.712\lib\FluentNHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="Google.GData.YouTube">
-      <HintPath>..\..\Packages\Google.GData.YouTube.1.9.0.0\lib\Google.GData.YouTube.dll</HintPath>
-    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\..\Packages\Iesi.Collections.3.1.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>

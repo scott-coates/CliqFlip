@@ -134,6 +134,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 			user.SaveHeadlineUrl = "\"" + Url.Action("SaveHeadline", "User") + "\"";
 			user.SaveMindMapUrl = "\"" + Url.Action("SaveMindMap", "User") + "\"";
 			user.SaveBioUrl = "\"" + Url.Action("SaveBio", "User") + "\"";
+            user.SaveTwitterUsernameUrl = "\"" + Url.Action("SaveTwitterUsername", "User") + "\"";
+            user.SaveYouTubeUsernameUrl = "\"" + Url.Action("SaveYouTubeUsername", "User") + "\"";
 			user.CanEdit = _principal.Identity.Name.ToLower() == username.ToLower();
 
 			return View(user);
@@ -148,10 +150,14 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult SocialMedia(string username)
 		{
-            var model = new UserSocialMediaViewModel();
-            model.TwitterUsername = "craigkerstiens";
-            model.YouTubeUsername = "brodiesmith21";
-            return View(model);
+            UserProfileViewModel user = _userProfileQuery.GetUser(username);
+            //user.CanEdit = _principal.Identity.Name.ToLower() == username.ToLower();
+
+            //return View(user);
+            //var model = new UserSocialMediaViewModel();
+            //model.TwitterUsername = "cruzmjorge";
+            //model.YouTubeUsername = "ChrisArchieProds";
+            return View(user);
 		}
 	}
 }

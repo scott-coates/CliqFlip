@@ -28,7 +28,9 @@ namespace CliqFlip.Web.Mvc.Queries
 				         		Username = user.Username,
 				         		Id = user.Id,
 				         		Bio = user.Bio,
-				         		Headline = user.Headline
+				         		Headline = user.Headline,
+                                TwitterUsername = user.TwitterUsername,
+                                YouTubeUsername = user.YouTubeUsername
 				         	};
 
 				List<UserInterestDto> interests =

@@ -62,21 +62,20 @@
 			<!-- SIDEBAR SEARCH END -->
 			<!-- SIDEBAR RECENT POSTS START -->
 			<div class="sidebar_item recent-posts">
-				<h5>
-					Recent Posts</h5>
+				<h5>Social Media</h5>
 				<ul>
-					<li><a href="openpost.html">
-							<img src="images/1_small.jpg" alt>
-							<span><span class="title">Post title</span> <em>by Admin on Aug 5, 2011</em> </span>
-						</a></li>
-					<li><a href="openpost.html">
-							<img src="images/2_small.jpg" alt>
-							<span><span class="title">A bit longer title</span> <em>by Admin on Aug 5, 2011</em>
-							</span></a></li>
-					<li><a href="openpost.html">
-							<img src="images/3_small.jpg" alt>
-							<span><span class="title">Post title</span> <em>by Admin on Aug 5, 2011</em> </span>
-						</a></li>
+                    <li>
+                        <div id="twitterUsername">
+                            <img src="http://i602.photobucket.com/albums/tt102/XDDiego/twitter-icon.png" alt="Twitter" />
+						    <p id="twitterUsernameText">@Model.TwitterUsername</p>
+					    </div>
+                    </li>
+                    <li>
+                        <div id="youTubeUsername">
+                            <img src="http://www.mediaintegration.biz/images/site-images/youtube_icon.gif" alt="Twitter" />
+						    <p id="youTubeUsernameText">@Model.YouTubeUsername</p>
+					    </div>
+                    </li>
 				</ul>
 			</div>
 			<!-- SIDEBAR RECENT POSTS END -->
@@ -145,6 +144,8 @@
 			InitHeadline(@(Html.Raw(Model.SaveHeadlineUrl)));
 			InitBio(@(Html.Raw(Model.SaveBioUrl)));
 			InitMindMap(@(Html.Raw(Model.InterestsJson)), @(Html.Raw(Model.SaveMindMapUrl)));
+            InitTwitterUsername(@(Html.Raw(Model.SaveTwitterUsernameUrl)));
+            InitYouTubeUsername(@(Html.Raw(Model.SaveYouTubeUsernameUrl)));
 		});
 	</script>
 }
