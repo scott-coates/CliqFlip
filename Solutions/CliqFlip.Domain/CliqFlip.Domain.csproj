@@ -86,6 +86,8 @@
     </Compile>
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Dtos\RankedInterestDto.cs" />
+    <Compile Include="Exceptions\ErrorInfo.cs" />
+    <Compile Include="Exceptions\RulesException.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Contracts\Queries\IUsersByInterestsQuery.cs" />
     <Compile Include="Contracts\Tasks\IUserTasks.cs" />

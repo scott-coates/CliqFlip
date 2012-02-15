@@ -1,4 +1,6 @@
 ﻿using System.Security.Principal;
+using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Security;
 using CliqFlip.Domain.Contracts.Tasks;
@@ -88,6 +90,17 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
             _userAuth.Logout();
 			return Redirect("~");
+		}
+
+		[Authorize]
+		[HttpPost]
+		[Transaction]
+		public ActionResult SaveProfileImage(HttpPostedFileBase profileImage)
+		{
+			//http://haacked.com/archive/2010/07/16/uploading-files-with-aspnetmvc.aspx
+			//model bound
+			
+			return new EmptyResult();
 		}
 
 		[Authorize]

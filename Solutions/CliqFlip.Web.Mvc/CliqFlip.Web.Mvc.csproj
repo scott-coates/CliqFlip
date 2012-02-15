@@ -151,6 +151,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Extensions\Authentication\IUserAuthentication.cs" />
     <Compile Include="Extensions\Authentication\UserAuthentication.cs" />
+    <Compile Include="Extensions\Exceptions\RulesExceptionExtensions.cs" />
     <Compile Include="Extensions\Html\HtmlExtensions.cs" />
     <Compile Include="Extensions\Request\ReuqestExtensions.cs" />
     <Compile Include="Extensions\Url\UrlExtensions.cs" />
