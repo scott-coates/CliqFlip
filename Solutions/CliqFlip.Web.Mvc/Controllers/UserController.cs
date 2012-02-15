@@ -127,6 +127,30 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return new JsonNetResult(retVal);
 		}
 
+        [Authorize]
+        [HttpPost]
+        [Transaction]
+        public ActionResult SaveTwitterUsername(JeipSaveTextViewModel saveTextViewModel)
+        {
+            //get user and save it
+            User user = _userTasks.GetUser(_principal.Identity.Name);
+            user.UpdateTwitterUsername(saveTextViewModel.New_Value);
+            var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
+            return new JsonNetResult(retVal);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Transaction]
+        public ActionResult SaveYouTubeUsername(JeipSaveTextViewModel saveTextViewModel)
+        {
+            //get user and save it
+            User user = _userTasks.GetUser(_principal.Identity.Name);
+            user.UpdateYouTubeUsername(saveTextViewModel.New_Value);
+            var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
+            return new JsonNetResult(retVal);
+        }
+
 		[Transaction]
 		public ActionResult Index(string username)
 		{

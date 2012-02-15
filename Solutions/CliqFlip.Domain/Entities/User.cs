@@ -68,5 +68,14 @@ namespace CliqFlip.Domain.Entities
             Bio = bio;
         }
 
+        public virtual void UpdateTwitterUsername(string twitterUsername)
+        {
+            TwitterUsername = twitterUsername;
+        }
+
+        public virtual void UpdateYouTubeUsername(string youTubeUsername)
+        {
+            YouTubeUsername = youTubeUsername;
+        }
     }
 }
