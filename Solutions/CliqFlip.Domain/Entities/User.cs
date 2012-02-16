@@ -70,12 +70,16 @@ namespace CliqFlip.Domain.Entities
 
         public virtual void UpdateTwitterUsername(string twitterUsername)
         {
-            TwitterUsername = twitterUsername;
+            if (twitterUsername != null)
+                TwitterUsername = twitterUsername.Trim();
+            
         }
 
         public virtual void UpdateYouTubeUsername(string youTubeUsername)
         {
-            YouTubeUsername = youTubeUsername;
+            //white space causes problems when making a request to the youtube api
+            if(youTubeUsername != null)
+                YouTubeUsername = youTubeUsername.Trim();
         }
     }
 }
