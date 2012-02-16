@@ -175,12 +175,6 @@ namespace CliqFlip.Web.Mvc.Controllers
 		public ActionResult SocialMedia(string username)
 		{
             UserProfileViewModel user = _userProfileQuery.GetUser(username);
-            //user.CanEdit = _principal.Identity.Name.ToLower() == username.ToLower();
-
-            //return View(user);
-            //var model = new UserSocialMediaViewModel();
-            //model.TwitterUsername = "cruzmjorge";
-            //model.YouTubeUsername = "ChrisArchieProds";
             return View(user);
 		}
 	}

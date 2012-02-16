@@ -27,9 +27,10 @@
 					</div>
 					<div class="category">
 						<ul>
-							@Html.ActionMenuItem("Home", "Index", "User", new { username = Model.Username })
-							@Html.ActionMenuItem("Social Media", "SocialMedia", "User", new { username = Model.Username })
-							@Html.ActionMenuItem("Interests", "Interests", "User", new { username = Model.Username })
+							@*TODO: Create a shared layout for the user *@
+							@Html.ActionMenuItem("Home", "Index", "User")
+							@Html.ActionMenuItem("Social Media", "SocialMedia", "User")
+							@Html.ActionMenuItem("Interests", "Interests", "User")
 						</ul>
 					</div>
 					<p class="post_author">

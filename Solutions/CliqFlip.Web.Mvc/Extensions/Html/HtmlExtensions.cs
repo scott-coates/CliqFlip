@@ -12,7 +12,7 @@ namespace CliqFlip.Web.Mvc.Extensions.Html
 {
 	public static class HtmlExtensions
 	{
-		public static MvcHtmlString ActionMenuItem(this HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, object routeValues = null)
+		public static MvcHtmlString ActionMenuItem(this HtmlHelper htmlHelper, String linkText, String actionName, String controllerName)
 		{
 			var tag = new TagBuilder("li");
 
@@ -21,7 +21,7 @@ namespace CliqFlip.Web.Mvc.Extensions.Html
 				tag.AddCssClass("selected");
 			}
 
-			tag.InnerHtml = htmlHelper.ActionLink(linkText, actionName, controllerName, routeValues, null).ToString();
+			tag.InnerHtml = htmlHelper.ActionLink(linkText, actionName, controllerName).ToString();
 
 			return MvcHtmlString.Create(tag.ToString());
 		}
@@ -47,6 +47,8 @@ namespace CliqFlip.Web.Mvc.Extensions.Html
 
         public static MvcHtmlString DisplayTwitter(this HtmlHelper<UserProfileViewModel> htmlHelper)
         {
+			//TODO: Do we need microsoft.web.helpers.dll anymore?
+
             var html = string.Empty;
             var username = htmlHelper.ViewData.Model.TwitterUsername;
             if (!String.IsNullOrWhiteSpace(username))
