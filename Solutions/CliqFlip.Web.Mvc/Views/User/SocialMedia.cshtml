@@ -14,7 +14,12 @@
 		    background-color: #CBDBE1;
 		}
 		
-		.youtube-playlist-item
+		.youtube-playlist-info
+		{
+		     display: none;
+		}
+		
+		.youtube-playlist-info li, .youtube-user-info li
 		{
 		     display: block;
 		}
@@ -27,11 +32,20 @@
 		}
 		.youtube-playlist-item a img
 		{
-		    width: 25%; float: left;
+		    width: 25%; 
+		    float: left;
 		}
 		.youtube-playlist-item a span
 		{
-		    display: inline-block; margin-left: 10px; text-align: left; width: 70%;
+		    display: inline-block; 
+		    margin-left: 10px; 
+		    text-align: left; 
+		    width: 70%;
+		}
+		.not-shared
+		{
+		    border: medium none !important;
+		    padding-top: 80px;
 		}
 	</style>
     @*<link href="http://tweet.seaofclouds.com/jquery.tweet.css" type="text/css" rel="Stylesheet" />*@
@@ -77,58 +91,16 @@
                             Twitter
                         </strong>
                         <div id="twitter" class="social-media-content">
-                            @if (!String.IsNullOrWhiteSpace(Model.TwitterUsername))
-                            {
-                                @Twitter.Profile(Model.TwitterUsername, width: 372,
-                                backgroundShellColor: "transparent",
-                                tweetsColor: "black",
-                                tweetsBackgroundColor: "transparent",
-                                tweetsLinksColor: "#008FAE",
-                                shellColor: "black")
-                                <style type="text/css">
-                                    /*The css rules need to be placed here or the framework generated css will override our css.*/
-                                    .twtr-hd h3
-		                            {
-		                                font-size: 12px !important;
-		                                line-height: 15px !important;
-		                            }
-                                    .twtr-ft
-		                            {
-		                                display: none;
-		                            }
-                                </style>
-                            }
-                            else
-                            {
-                                <strong style="border: medium none;padding-top: 80px;">
-                                    This user is not sharing their twitter updates.
-                                </strong>
-                            }
+                            @Html.DisplayTwitter()
                         </div>
 					</div>
                     <div class="social-media">
 						<strong>
                             YouTube
-                            @*<iframe src="http://www.youtube.com/subscribe_widget?p=Humansare2011"
-                               style="overflow: hidden; height: 105px; width: 300px; border: 0;"
-                               scrolling="no" frameBorder="0">
-                            </iframe>*@
                         </strong>
                         <div id="youtube" class="social-media-content">
-                            @if (!String.IsNullOrWhiteSpace(Model.YouTubeUsername))
-                            {
-                                <div data-youtube="@Model.YouTubeUsername">
-                                
-                                </div>
-                            }
-                            else
-                            {
-                                <strong style="border: medium none;padding-top: 80px;">
-                                    This user is not sharing their youtube videos.
-                                </strong>
-                            }
+                            @Html.DisplayYouTube()
                         </div>
-                        
 					</div>
                     <div class="social-media">
                         <strong>
@@ -145,135 +117,58 @@
 	<div class="clear">
 	</div>
 </div>
+
+<script id="template-youtube-user-info" type="text/x-jquery-tmpl">
+	<ul class='youtube-user-info'>
+         <li>
+            <iframe src='http://www.youtube.com/subscribe_widget?p=@Model.YouTubeUsername' 
+                    style='overflow: hidden; height: 105px; width: 300px; border: 0;' 
+                    scrolling='no' 
+                    frameBorder='0'>
+            </iframe>
+        </li>
+    </ul>
+</script>
+<script id="template-youtube-user-item" type="text/x-jquery-tmpl">
+    <li class="youtube-user-item">
+        <a href="${url}">${title}</a>
+    </li>
+</script>
+<script id="template-youtube-playlist-info" type="text/x-jquery-tmpl">
+	<ul class='youtube-playlist-info'>
+         <li>
+            <a class='back'>Back</a>
+        </li>
+    </ul>
+</script>
+<script id="template-youtube-user-item" type="text/x-jquery-tmpl">
+    <li class="youtube-playlist-item">
+        <a href="${url}" title="${title}" target="_blank">
+            <img alt="${title}" src="${thumb}"/>
+            <span>${title}</span>
+            <span>9 views</span>
+        </a>
+    </li>
+</script>
+
 @section scripts
 {
+    <script type="text/javascript" src="@Url.Content("/Content/js/user/socialmedia.js")"> </script>
     <script type='text/javascript'>
         jQuery(function ($) {
-
-
-
-            $("[data-youtube]").each(function (elemt, index) {
-                var reqOptions = "&alt=json&callback=?";
-                //the element that will contain everything
-                var container = $(this);
-
-                //get the youtube username
-                var username = container.data("youtube");
-
-                //create the required list containers and append them to the main container
-                //accountInfoContainer - contains the user's youtube information. Subscribe button and playlists
-                //playlistInfoContainer - when a playlist is clicked, this container will contain the videos in the playlist just clicked
-
-                var accountInfoContainer = $("<ul class='youtube-user-info'>" +
-                //add an li for the users suscribe button
-                                                "<li>" +
-                                                    "<iframe src='http://www.youtube.com/subscribe_widget?p=" + username + "'" +
-                                                        "style='overflow: hidden; height: 105px; width: 300px; border: 0;'" +
-                                                        "scrolling='no' frameBorder='0'>" +
-                                                    "</iframe>" +
-                                                "</li>" +
-                                            "</ul>");
-
-                accountInfoContainer.appendTo(container);
-
-                var playlistInfoContainer = $("<ul class='youtube-playlist-info' style='display: none;'>" +
-                                                "<li>" +
-                                                    "<a class='back'>Back</a>" +
-                                                "</li>" +
-                                            "</ul>");
-                playlistInfoContainer.appendTo(container);
-
-
-
-                //get the playlist of their uploaded videos
-                var playlistFeed = "https://gdata.youtube.com/feeds/api/users/" + username + "/playlists?v=2&alt=json&callback=?",
-                uploadsFeed = 'https://gdata.youtube.com/feeds/api/users/' + username + '/uploads?v=2'; //&alt=json&callback=?',
-                favoritesFeed = 'https://gdata.youtube.com/feeds/api/users/' + username + '/favorites?v=2'; //&alt=json&callback=?',
-                playlists = [{ title: "Favorites", url: favoritesFeed, summary: "" },
-                             { title: "Uploaded", url: uploadsFeed, summary: ""}];
-
-                //get the users other playlist
-                //var playlistFeed = "https://gdata.youtube.com/feeds/api/users/" + username + "/playlists?v=2&alt=json&callback=?";
-
-                //make a call to youtube and retrieve the users playlist.
-                //load the playlists into the accountInfoContainer
-                $.getJSON(playlistFeed, function (data) {
-                    var list_data = "";
-
-                    if (data.feed.entry) {
-                        //iterate through all the entries returned from youtube and
-                        //add the playlists found to our list
-                        $.each(data.feed.entry, function (index, item) {
-                            var playlist = {
-                                title: item.title.$t,
-                                summary: item.summary.$t,
-                                url: item.content.src
-                            };
-                            playlists.push(playlist);
-                        });
-                    }
-
-                    //iterate through all the playlist and create the html list
-                    $.each(playlists, function (index, playlist) {
-                        list_data += '<li class="youtube-user-item" style="display: block;">' +
-                                            '<a href="' + playlist.url + '">' +
-                                                playlist.title +
-                                            '</a>' +
-                                        '</li>';
-                    });
-                    $(list_data).appendTo(accountInfoContainer);
-                });
-
-
-                container.on("click", ".youtube-user-info a", function (event) {
-                    event.preventDefault();
-                    var href = this.href + "&alt=json&callback=?";
-                    $.getJSON(href, function (data) {
-                        var list_data = "";
-                        if (data.feed.entry) {
-                            //iterate through each of the videos found in the feed
-                            $.each(data.feed.entry, function (i, item) {
-
-                                //get the title of the video
-                                var title = item.title.$t;
-
-                                //get the url of the video
-                                var links = jQuery.grep(item.link, function (element, index) {
-                                    return element.rel === 'alternate';
-                                });
-
-                                var url = links[0].href;
-
-                                //get the thumbnail url
-                                var thumb = item.media$group.media$thumbnail[0].url;
-
-                                list_data += '<li class="youtube-playlist-item">' +
-                                    '<a href="' + url + '" title="' + title + '" target="_blank">' +
-                                        '<img alt="' + title + '" src="' + thumb + '"/>' +
-                                        '<span>' + title + '</span>' +
-                                        '<span>9 views</span>' +
-                                    '</a>' +
-                                '</li>';
-                            });
-
-                            $(list_data).appendTo(playlistInfoContainer);
-                        }
-                        accountInfoContainer.hide();
-                        playlistInfoContainer.show();
-                    });
-                });
-
-                //when the back button in the playlistInfoContainer is clicked
-                //it should take the user back to the user info screen
-                playlistInfoContainer.on("click", "a.back", function (event) {
-                    
-                    //remove all the items in case a list was previously loaded
-                    var items = playlistInfoContainer.find("li.youtube-playlist-item");
-                    items.empty();
-                    playlistInfoContainer.hide();
-                    accountInfoContainer.show();
-                });
-            });
+            initYouTube("@Model.YouTubeUsername");
         });
     </script>
+    <style type="text/css">
+        /*The css rules need to be placed here or the framework generated css will override our css.*/
+        .twtr-hd h3
+		{
+		    font-size: 12px !important;
+		    line-height: 15px !important;
+		}
+        .twtr-ft
+		{
+		    display: none;
+		}
+    </style>
 }

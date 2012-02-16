@@ -1160,10 +1160,36 @@ display: block; float: left;
 	font-family: 'Oswald', Helvetica, Arial, sans-serif;
 	font-size: xx-large;
 }
+
+.twitterUsernameText, .youTubeUsernameText
+{
+	background-color: white;
+    border-style: solid;
+    height: 40px;
+    line-height: 39px;
+    margin: 0 auto;
+    padding: 0 !important;
+}
+
+#twitterUsername .jeip-editor span, #youTubeUsername .jeip-editor span
+{
+    padding-top: 10px;
+    width: 155px;
+}
+
+#youTubeUsername img
+{
+    height: 30px;
+    padding-left: 8px;
+    padding-top: 9px;
+    width: 30px;
+}
+
 .jeip-mouseover, .jeip-editfield {
 	background-color: #FF9;
 	padding: 5px;
 }
+
 
 .jeip-cancelbutton {
 	background-color: #CCC;

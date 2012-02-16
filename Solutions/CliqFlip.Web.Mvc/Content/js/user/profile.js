@@ -84,12 +84,12 @@ function InitBio(saveUrl) {
 
 function InitTwitterUsername(saveUrl) {
     if (_canEdit) {
-        $("#twitterUsernameText").eip(saveUrl, { select_text: false, form_type: "text" });
+        $("#twitterUsernameText").eip(saveUrl, { select_text: true, form_type: "text" });
     }
 }
 
 function InitYouTubeUsername(saveUrl) {
     if (_canEdit) {
-        $("#youTubeUsernameText").eip(saveUrl, { select_text: false, form_type: "text" });
+        $("#youTubeUsernameText").eip(saveUrl, { select_text: true, form_type: "text" });
     }
 }
