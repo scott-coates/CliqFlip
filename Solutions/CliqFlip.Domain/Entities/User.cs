@@ -77,7 +77,7 @@ namespace CliqFlip.Domain.Entities
 
         public virtual void UpdateYouTubeUsername(string youTubeUsername)
         {
-            //white space causes problems when making a request to the youtube api
+            //white space before/after in the username causes problems when making a request to the youtube api
             if(youTubeUsername != null)
                 YouTubeUsername = youTubeUsername.Trim();
         }
