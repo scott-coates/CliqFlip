@@ -8,12 +8,12 @@ namespace CliqFlip.Infrastructure.Images
 {
 	public class ImageProcessor : IImageProcessor
 	{
-		private const int MIN_RESOLUTION = 180;
+		private const int MIN_RESOLUTION = 100;
 		private const int MAX_RESOLUTION = 2048;
 		private const int THUMBNAIL_RESOLUTION = 50;
 		private const int MEDIUM_RESOLUTION = 200;
 		private const int FULL_RESOLUTION = 800;
-		private const string MIN_RESOLUTION_MESSAGE = "The minimum resolution is 180 pixels. Please upload a larger file";
+		private const string MIN_RESOLUTION_MESSAGE = "The minimum resolution is 100 pixels. Please upload a larger file";
 		private const string MAX_RESOLUTION_MESSAGE = "The maximum resolution is 2048 pixels. Please upload a smaller file";
 
 		#region IImageProcessor Members
