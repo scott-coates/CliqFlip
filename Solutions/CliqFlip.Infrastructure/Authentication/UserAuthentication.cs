@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 
-namespace CliqFlip.Web.Mvc.Extensions.Authentication
+namespace CliqFlip.Infrastructure.Authentication
 {
     public class UserAuthentication : IUserAuthentication
     {

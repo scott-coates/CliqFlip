@@ -8,6 +8,7 @@ using SharpArch.Domain.PersistenceSupport;
 using SharpArch.NHibernate;
 using SharpArch.NHibernate.Contracts.Repositories;
 using SharpArch.Web.Mvc.Castle;
+using CliqFlip.Infrastructure.Authentication;
 
 namespace CliqFlip.Web.Mvc.CastleWindsor
 {
@@ -22,6 +23,7 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
 			AddTasksTo(container);
 			AddCommandsTo(container);
 			AddUserTo(container);
+            AddInfrastructureServices(container);
 		}
 
 		private static void AddFacilitiesTo(IWindsorContainer container)
@@ -110,5 +112,13 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
 					.Pick()
 					.WithService.FirstInterface());
 		}
+
+        private static void AddInfrastructureServices(IWindsorContainer container)
+        {
+            container.Register(
+                Component.For(typeof(IUserAuthentication))
+                        .ImplementedBy(typeof(UserAuthentication))
+                        .Named("userAuthentication"));
+        }
 	}
 }

@@ -10,7 +10,7 @@ using CliqFlip.Web.Mvc.ViewModels.Jeip;
 using CliqFlip.Web.Mvc.ViewModels.User;
 using SharpArch.NHibernate.Web.Mvc;
 using SharpArch.Web.Mvc.JsonNet;
-using CliqFlip.Web.Mvc.Extensions.Authentication;
+using CliqFlip.Infrastructure.Authentication;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {

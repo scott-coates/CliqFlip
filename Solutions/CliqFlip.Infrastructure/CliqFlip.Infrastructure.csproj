@@ -115,6 +115,8 @@
     <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Authentication\IUserAuthentication.cs" />
+    <Compile Include="Authentication\UserAuthentication.cs" />
     <Compile Include="Common\PathHelper.cs" />
     <Compile Include="Migrator\ConditionalMigration.cs" />
     <Compile Include="Migrator\MigrationConstants.cs" />
