@@ -27,23 +27,24 @@ namespace CliqFlip.Infrastructure.Images
 			ValidateImageSize(image);
 
 			//We know the image input will always be bigger than thumbnail
-			WebImage thumbnailImage = image.Resize(50, 50);
+			WebImage thumbnailImage = image.Clone().Resize(50, 50);
 			retVal.ThumbnailImage = thumbnailImage.GetBytes();
 
-			int mediumWidth = image.Width > MEDIUM_RESOLUTION ? image.Width : MEDIUM_RESOLUTION;
+			int mediumWidth = image.Width > MEDIUM_RESOLUTION ? MEDIUM_RESOLUTION : image.Width;
 
-			WebImage mediumImage = image.Resize(MEDIUM_RESOLUTION, GetHeightAspectRatio(mediumWidth, image));
+
+			WebImage mediumImage = image.Clone().Resize(MEDIUM_RESOLUTION, GetHeightAspectRatio(mediumWidth, image));
 			retVal.MediumImage = mediumImage.GetBytes();
 
-			if (mediumWidth > (MEDIUM_RESOLUTION + 50))
+			int fullWidth = image.Width > FULL_RESOLUTION ? FULL_RESOLUTION : image.Width;
+			if (fullWidth >= (MEDIUM_RESOLUTION + 50))
 			{
 				//the + 50 means don't create a full size image if it's barely bigger than a medium sized one
 
 				//the image res is bigger than our medium res by at least 50px, so 
 				//resize it 
-
-				int fullWidth = image.Width > FULL_RESOLUTION ? image.Width : FULL_RESOLUTION;
-				WebImage fullImage = image.Resize(FULL_RESOLUTION, GetHeightAspectRatio(fullWidth, image));
+				
+				WebImage fullImage = image.Clone().Resize(FULL_RESOLUTION, GetHeightAspectRatio(fullWidth, image));
 				retVal.FullImage = fullImage.GetBytes();
 			}
 
@@ -61,11 +62,11 @@ namespace CliqFlip.Infrastructure.Images
 		{
 			if (image == null) throw new ArgumentNullException("image");
 
-			if (image.Width < MIN_RESOLUTION && image.Height < MIN_RESOLUTION)
+			if (image.Width < MIN_RESOLUTION || image.Height < MIN_RESOLUTION)
 			{
 				throw new RulesException("image", MIN_RESOLUTION_MESSAGE);
 			}
-			if (image.Width > MAX_RESOLUTION && image.Height > MAX_RESOLUTION)
+			if (image.Width > MAX_RESOLUTION || image.Height > MAX_RESOLUTION)
 			{
 				throw new RulesException("image", MAX_RESOLUTION_MESSAGE);
 			}
