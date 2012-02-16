@@ -1317,6 +1317,16 @@ color: white;
             height: 194px;
 		}
 		
+		 #twitter .twtr-hd h3
+		{
+		    font-size: 12px;
+		    line-height: 15px;
+		}
+       #twitter .twtr-ft
+		{
+		    display: none;
+		}
+		
 		#youtube a span
 		{
 		    color: Black;
