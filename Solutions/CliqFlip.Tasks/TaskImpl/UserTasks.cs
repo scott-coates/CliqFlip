@@ -116,7 +116,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			return _repository.FindOne(adhoc);
 		}
 
-		public void SaveProfileImage(HttpPostedFileBase profileImage)
+		public void SaveProfileImage(User image, HttpPostedFileBase profileImage)
 		{
 			ImageUploadResult result = _imageUploadService.UploadImage(profileImage);
 			

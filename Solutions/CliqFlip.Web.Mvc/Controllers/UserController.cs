@@ -99,10 +99,11 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			//http://haacked.com/archive/2010/07/16/uploading-files-with-aspnetmvc.aspx
 			//model bound
+			User user = _userTasks.GetUser(_principal.Identity.Name);
 
 			try
 			{
-				_userTasks.SaveProfileImage(profileImage);
+				_userTasks.SaveProfileImage(user, profileImage);
 			}
 			catch (RulesException rex)
 			{
