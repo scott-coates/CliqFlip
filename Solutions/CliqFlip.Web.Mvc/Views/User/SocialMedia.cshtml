@@ -118,39 +118,6 @@
 	</div>
 </div>
 
-<script id="template-youtube-user-info" type="text/x-jquery-tmpl">
-	<ul class='youtube-user-info'>
-         <li>
-            <iframe src='http://www.youtube.com/subscribe_widget?p=@Model.YouTubeUsername' 
-                    style='overflow: hidden; height: 105px; width: 300px; border: 0;' 
-                    scrolling='no' 
-                    frameBorder='0'>
-            </iframe>
-        </li>
-    </ul>
-</script>
-<script id="template-youtube-user-item" type="text/x-jquery-tmpl">
-    <li class="youtube-user-item">
-        <a href="${url}">${title}</a>
-    </li>
-</script>
-<script id="template-youtube-playlist-info" type="text/x-jquery-tmpl">
-	<ul class='youtube-playlist-info'>
-         <li>
-            <a class='back'>Back</a>
-        </li>
-    </ul>
-</script>
-<script id="template-youtube-user-item" type="text/x-jquery-tmpl">
-    <li class="youtube-playlist-item">
-        <a href="${url}" title="${title}" target="_blank">
-            <img alt="${title}" src="${thumb}"/>
-            <span>${title}</span>
-            <span>9 views</span>
-        </a>
-    </li>
-</script>
-
 @section scripts
 {
     <script type="text/javascript" src="@Url.Content("/Content/js/user/socialmedia.js")"> </script>
