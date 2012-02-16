@@ -12,7 +12,7 @@ namespace CliqFlip.Web.Mvc.Extensions.Html
 {
 	public static class HtmlExtensions
 	{
-		public static MvcHtmlString ActionMenuItem(this HtmlHelper htmlHelper, String linkText, String actionName, String controllerName)
+		public static MvcHtmlString ActionMenuItem(this HtmlHelper htmlHelper, String linkText, String actionName, String controllerName, object routeValues = null)
 		{
 			var tag = new TagBuilder("li");
 
@@ -21,7 +21,7 @@ namespace CliqFlip.Web.Mvc.Extensions.Html
 				tag.AddCssClass("selected");
 			}
 
-			tag.InnerHtml = htmlHelper.ActionLink(linkText, actionName, controllerName).ToString();
+			tag.InnerHtml = htmlHelper.ActionLink(linkText, actionName, controllerName, routeValues, null).ToString();
 
 			return MvcHtmlString.Create(tag.ToString());
 		}
