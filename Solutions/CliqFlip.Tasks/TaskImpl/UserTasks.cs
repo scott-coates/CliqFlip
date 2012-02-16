@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
@@ -105,6 +106,11 @@ namespace CliqFlip.Tasks.TaskImpl
 		{
 			var adhoc = new AdHoc<User>(x => x.Username == username);
 			return _repository.FindOne(adhoc);
+		}
+
+		public void SaveProfileImage(HttpPostedFileBase profileImage)
+		{
+			
 		}
 
 		#endregion

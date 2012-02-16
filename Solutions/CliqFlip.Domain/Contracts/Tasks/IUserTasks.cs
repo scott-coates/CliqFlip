@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 
@@ -13,6 +14,9 @@ namespace CliqFlip.Domain.Contracts.Tasks
         UserDto Create(UserDto profileToCreate);
 
         bool ValidateUser(string username, string password);
+
 		User GetUser(string username);
+
+		void SaveProfileImage(HttpPostedFileBase profileImage);
 	}
 }

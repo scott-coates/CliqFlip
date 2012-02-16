@@ -16,7 +16,7 @@
 			<!-- Blog Post -->
 			<div class="blog-post">
 				<div class="uploadProfileImage">
-					@using (Html.BeginForm("UploadProfileImage", "User", FormMethod.Post, new {@encType = "multipart/form-data"}))
+					@using (Html.BeginForm("SaveProfileImage", "User", FormMethod.Post, new { @encType = "multipart/form-data" }))
 					{
 						@FileUpload.GetHtml("profileImage", initialNumberOfFiles: 1, allowMoreFilesToBeAdded: false, uploadText: "Upload Photo")
 					}
