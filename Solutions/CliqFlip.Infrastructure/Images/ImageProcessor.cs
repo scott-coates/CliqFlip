@@ -22,7 +22,7 @@ namespace CliqFlip.Infrastructure.Images
 		{
 			var retVal = new ImageProcessResult();
 
-			WebImage image = WebImage.GetImageFromRequest(profileImage.FileName);
+			WebImage image = WebImage.GetImageFromRequest();
 
 			ValidateImageSize(image);
 
@@ -30,7 +30,7 @@ namespace CliqFlip.Infrastructure.Images
 			WebImage thumbnailImage = image.Resize(50, 50);
 			retVal.ThumbnailImage = thumbnailImage.GetBytes();
 
-			int mediumWidth = image.Width > MEDIUM_RESOLUTION ? MEDIUM_RESOLUTION : image.Width;
+			int mediumWidth = image.Width > MEDIUM_RESOLUTION ? image.Width : MEDIUM_RESOLUTION;
 
 			WebImage mediumImage = image.Resize(MEDIUM_RESOLUTION, GetHeightAspectRatio(mediumWidth, image));
 			retVal.MediumImage = mediumImage.GetBytes();
@@ -42,7 +42,7 @@ namespace CliqFlip.Infrastructure.Images
 				//the image res is bigger than our medium res by at least 50px, so 
 				//resize it 
 
-				int fullWidth = image.Width > FULL_RESOLUTION ? FULL_RESOLUTION : image.Width;
+				int fullWidth = image.Width > FULL_RESOLUTION ? image.Width : FULL_RESOLUTION;
 				WebImage fullImage = image.Resize(FULL_RESOLUTION, GetHeightAspectRatio(fullWidth, image));
 				retVal.FullImage = fullImage.GetBytes();
 			}
@@ -61,11 +61,11 @@ namespace CliqFlip.Infrastructure.Images
 		{
 			if (image == null) throw new ArgumentNullException("image");
 
-			if (image.Width < MIN_RESOLUTION || image.Height < MIN_RESOLUTION)
+			if (image.Width < MIN_RESOLUTION && image.Height < MIN_RESOLUTION)
 			{
 				throw new RulesException("image", MIN_RESOLUTION_MESSAGE);
 			}
-			if (image.Width > MAX_RESOLUTION || image.Height > MAX_RESOLUTION)
+			if (image.Width > MAX_RESOLUTION && image.Height > MAX_RESOLUTION)
 			{
 				throw new RulesException("image", MAX_RESOLUTION_MESSAGE);
 			}

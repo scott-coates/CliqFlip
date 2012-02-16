@@ -16,8 +16,9 @@
 			<!-- Blog Post -->
 			<div class="blog-post">
 				<div class="uploadProfileImage">
-					@using (Html.BeginForm("SaveProfileImage", "User", FormMethod.Post, new { @encType = "multipart/form-data" }))
+					@using (Html.BeginForm("SaveProfileImage", "User", FormMethod.Post, new {@encType = "multipart/form-data"}))
 					{
+						@Html.ValidationSummary()
 						@FileUpload.GetHtml("profileImage", initialNumberOfFiles: 1, allowMoreFilesToBeAdded: false, uploadText: "Upload Photo")
 					}
 				</div>
@@ -40,7 +41,6 @@
 					<p class="post_author">
 						by Marius Pop</p>
 				</div>
-				
 				<div class="post-entry">
 					<div class="headline" id="profileHeadline">
 						<h2 id="headlineText">@Model.Headline</h2>

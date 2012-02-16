@@ -108,7 +108,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 			catch (RulesException rex)
 			{
 				rex.AddModelStateErrors(ModelState);
-				return View("Index");
+				RouteData.Values["action"] = "Index";
+				return Index(_principal.Identity.Name);
 			}
 
 			return RedirectToAction("Index");
