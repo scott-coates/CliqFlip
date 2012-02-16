@@ -5,8 +5,8 @@ using System.Web;
 
 namespace CliqFlip.Infrastructure.Images.Interfaces
 {
-	public interface IImageUploadService
+	public interface IImageProcessor
 	{
-		ImageUploadResult UploadImage(HttpPostedFileBase profileImage);
+		ImageProcessResult ProcessImage(HttpPostedFileBase profileImage);
 	}
 }

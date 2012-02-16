@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
-using System.Web.Helpers;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
-using CliqFlip.Domain.Exceptions;
 using CliqFlip.Infrastructure.Common;
 using CliqFlip.Infrastructure.Images;
 using CliqFlip.Infrastructure.Images.Interfaces;
@@ -17,16 +15,16 @@ namespace CliqFlip.Tasks.TaskImpl
 {
 	public class UserTasks : IUserTasks
 	{
-		private readonly IImageUploadService _imageUploadService;
+		private readonly IImageProcessor _imageProcessor;
 		private readonly IInterestTasks _interestTasks;
 		private readonly ILinqRepository<User> _repository;
-		
 
-		public UserTasks(ILinqRepository<User> repository, IInterestTasks interestTasks, IImageUploadService imageUploadService)
+
+		public UserTasks(ILinqRepository<User> repository, IInterestTasks interestTasks, IImageProcessor imageProcessor)
 		{
 			_repository = repository;
 			_interestTasks = interestTasks;
-			_imageUploadService = imageUploadService;
+			_imageProcessor = imageProcessor;
 		}
 
 		#region IUserTasks Members
@@ -118,13 +116,13 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public void SaveProfileImage(User image, HttpPostedFileBase profileImage)
 		{
-			ImageUploadResult result = _imageUploadService.UploadImage(profileImage);
-			
+			ImageProcessResult result = _imageProcessor.ProcessImage(profileImage);
+			File.WriteAllBytes("C:\\Test\\thumb_" + profileImage.FileName, result.ThumbnailImage);
+			File.WriteAllBytes("C:\\Test\\med_" + profileImage.FileName, result.MediumImage);
+			File.WriteAllBytes("C:\\Test\\full_" + profileImage.FileName, result.FullImage);
 		}
 
 		#endregion
-
-		
 
 		public IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IEnumerable<int> interestIds)
 		{
