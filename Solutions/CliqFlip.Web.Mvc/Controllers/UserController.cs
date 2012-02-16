@@ -1,34 +1,34 @@
 ﻿using System.Security.Principal;
 using System.Web;
-using System.Web.Helpers;
 using System.Web.Mvc;
-using System.Web.Security;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.Exceptions;
 using CliqFlip.Domain.ValueObjects;
+using CliqFlip.Web.Mvc.Extensions.Authentication;
+using CliqFlip.Web.Mvc.Extensions.Exceptions;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Jeip;
 using CliqFlip.Web.Mvc.ViewModels.User;
 using SharpArch.NHibernate.Web.Mvc;
 using SharpArch.Web.Mvc.JsonNet;
-using CliqFlip.Web.Mvc.Extensions.Authentication;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
 	public class UserController : Controller
 	{
 		private readonly IPrincipal _principal;
+		private readonly IUserAuthentication _userAuth;
 		private readonly IUserProfileQuery _userProfileQuery;
 		private readonly IUserTasks _userTasks;
-        private readonly IUserAuthentication _userAuth;
 
-        public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IUserAuthentication userAuth)
+		public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IUserAuthentication userAuth)
 		{
 			_userTasks = profileTasks;
 			_userProfileQuery = userProfileQuery;
 			_principal = principal;
-            _userAuth = userAuth;
+			_userAuth = userAuth;
 		}
 
 		public ViewResult Create()
@@ -42,7 +42,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var profileToCreate = new UserDto { Email = profile.Email, Password = profile.Password, Username = profile.Username };
+				var profileToCreate = new UserDto {Email = profile.Email, Password = profile.Password, Username = profile.Username};
 
 				foreach (InterestCreate interest in profile.UserInterests)
 				{
@@ -60,8 +60,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 					return View(profile);
 				}
 
-                _userAuth.Login(newProfile.Username, false);
-				return RedirectToAction("Index", "User", new { username = profile.Username });
+				_userAuth.Login(newProfile.Username, false);
+				return RedirectToAction("Index", "User", new {username = profile.Username});
 			}
 			return View(profile);
 		}
@@ -78,7 +78,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				if (_userTasks.ValidateUser(model.Username, model.Password))
 				{
-                    _userAuth.Login(model.Username, model.LogMeIn);
+					_userAuth.Login(model.Username, model.LogMeIn);
 					return Content("Awesome! You are now logged in.");
 				}
 			}
@@ -88,7 +88,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 		public ActionResult Logout()
 		{
-            _userAuth.Logout();
+			_userAuth.Logout();
 			return Redirect("~");
 		}
 
@@ -99,8 +99,18 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			//http://haacked.com/archive/2010/07/16/uploading-files-with-aspnetmvc.aspx
 			//model bound
-			
-			return new EmptyResult();
+
+			try
+			{
+				_userTasks.SaveProfileImage(profileImage);
+			}
+			catch (RulesException rex)
+			{
+				rex.AddModelStateErrors(ModelState);
+				return View("Index");
+			}
+
+			return RedirectToAction("Index");
 		}
 
 		[Authorize]
@@ -124,7 +134,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			user.UpdateHeadline(saveTextViewModel.New_Value);
-			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
+			var retVal = new JeipSaveResponseViewModel {html = saveTextViewModel.New_Value, is_error = false};
 			return new JsonNetResult(retVal);
 		}
 
@@ -136,7 +146,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			//get user and save it
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			user.UpdateBio(saveTextViewModel.New_Value);
-			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
+			var retVal = new JeipSaveResponseViewModel {html = saveTextViewModel.New_Value, is_error = false};
 			return new JsonNetResult(retVal);
 		}
 

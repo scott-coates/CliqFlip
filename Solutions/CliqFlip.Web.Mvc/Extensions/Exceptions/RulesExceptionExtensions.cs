@@ -7,12 +7,12 @@ namespace CliqFlip.Web.Mvc.Extensions.Exceptions
 {
 	public static class RulesExceptionExtensions
 	{
-		public static void AddModelStateErrors(this RulesException ex, ModelStateDictionary modelState, string prefix)
+		public static void AddModelStateErrors(this RulesException ex, ModelStateDictionary modelState, string prefix = null)
 		{
-			AddModelStateErrors(ex, modelState, prefix, x => true);
+			AddModelStateErrors(ex, modelState, x => true, prefix);
 		}
 
-		public static void AddModelStateErrors(this RulesException ex, ModelStateDictionary modelState, string prefix, Func<ErrorInfo, bool> errorFilter)
+		public static void AddModelStateErrors(this RulesException ex, ModelStateDictionary modelState, Func<ErrorInfo, bool> errorFilter, string prefix = null)
 		{
 			if (errorFilter == null) throw new ArgumentNullException("errorFilter");
 			prefix = prefix == null ? "" : prefix + ".";
