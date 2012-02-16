@@ -23,7 +23,7 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
 			AddTasksTo(container);
 			AddCommandsTo(container);
 			AddUserTo(container);
-            AddInfrastructureServices(container);
+            AddInfrastructureServicesTo(container);
 		}
 
 		private static void AddFacilitiesTo(IWindsorContainer container)
@@ -113,7 +113,7 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
 					.WithService.FirstInterface());
 		}
 
-        private static void AddInfrastructureServices(IWindsorContainer container)
+        private static void AddInfrastructureServicesTo(IWindsorContainer container)
         {
             container.Register(
                 Component.For(typeof(IUserAuthentication))
