@@ -23,6 +23,10 @@ namespace CliqFlip.Infrastructure.Images
 
 			ValidateImageSize(image);
 
+			//thumb -	50
+			//med	-	250
+			//large -	60
+
 			return retVal;
 		}
 
