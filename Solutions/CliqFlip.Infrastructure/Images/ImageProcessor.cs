@@ -17,7 +17,7 @@ namespace CliqFlip.Infrastructure.Images
 		private const int MEDIUM_RESOLUTION_WIDTH = 240;
 		private const int MEDIUM_RESOLUTION_HEIGHT = 160;
 		private const int FULL_RESOLUTION_WIDTH = 640;
-		private const int FULL_RESOLUTION = 428;
+		private const int FULL_RESOLUTION_HEIGHT = 428;
 		private const string MIN_RESOLUTION_MESSAGE = "The minimum resolution is 100 pixels. Please upload a larger file";
 		private const string MAX_RESOLUTION_MESSAGE = "The maximum resolution is 2048 pixels. Please upload a smaller file";
 		private static readonly ImageCodecInfo[] _imageCodecs = ImageCodecInfo.GetImageEncoders();
@@ -34,35 +34,25 @@ namespace CliqFlip.Infrastructure.Images
 
 				//We know the image input will always be bigger than thumbnail
 				retVal.ThumbnailImage = GetResizedImage(image, THUMBNAIL_RESOLUTION, THUMBNAIL_RESOLUTION);
+				retVal.MediumImage = GetResizedImage(image, MEDIUM_RESOLUTION_WIDTH, MEDIUM_RESOLUTION_HEIGHT);
+
+				if (image.Width >= FULL_RESOLUTION_WIDTH + 50 || image.Height >= FULL_RESOLUTION_HEIGHT + 50)
+				{
+					//the + 50 means don't create a full size image if it's barely bigger than a medium sized one
+
+					retVal.MediumImage = GetResizedImage(image, FULL_RESOLUTION_WIDTH, FULL_RESOLUTION_HEIGHT);
+				}
 			}
 
-
-			//int mediumWidth = image.Width > MEDIUM_RESOLUTION ? MEDIUM_RESOLUTION : image.Width;
-
-
-			//WebImage mediumImage = image.Clone().Resize(MEDIUM_RESOLUTION, GetHeightAspectRatio(mediumWidth, image));
-			//retVal.MediumImage = mediumImage.GetBytes();
-
-			//int fullWidth = image.Width > FULL_RESOLUTION ? FULL_RESOLUTION : image.Width;
-			//if (fullWidth >= (MEDIUM_RESOLUTION + 50))
-			//{
-			//    //the + 50 means don't create a full size image if it's barely bigger than a medium sized one
-
-			//    //the image res is bigger than our medium res by at least 50px, so 
-			//    //resize it 
-
-			//    WebImage fullImage = image.Clone().Resize(FULL_RESOLUTION, GetHeightAspectRatio(fullWidth, image));
-			//    retVal.FullImage = fullImage.GetBytes();
-			//}
 
 			return retVal;
 		}
 
 		#endregion
 
-		private byte[] GetResizedImage(Image image, int proposedWidth, int proposedHeight)
+		private Stream GetResizedImage(Image image, int proposedWidth, int proposedHeight)
 		{
-			byte[] retVal = null;
+			Stream retVal;
 
 			int newWidth;
 			int newHeight;
@@ -98,27 +88,25 @@ namespace CliqFlip.Infrastructure.Images
 			{
 				using (Graphics newGraphic = Graphics.FromImage(resizedBitmap))
 				{
-					using (var resultStream = new MemoryStream())
+					retVal = new MemoryStream();
+					using (var encoderParameters = new EncoderParameters(1))
 					{
-						using (var encoderParameters = new EncoderParameters(1))
-						{
-							encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 100L);
+						encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 100L);
 
-							newGraphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
-							newGraphic.SmoothingMode = SmoothingMode.HighQuality;
-							newGraphic.CompositingQuality = CompositingQuality.HighQuality;
-							newGraphic.PixelOffsetMode = PixelOffsetMode.HighQuality;
-							newGraphic.FillRectangle(Brushes.White, 0, 0, newWidth, newHeight);
-							
-							newGraphic.DrawImage(image, 0, 0, newWidth, newHeight);
-							
-							resizedBitmap.Save(resultStream, _imageCodecs[1], encoderParameters);
-							retVal = resultStream.ToArray();
-						}
+						newGraphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
+						newGraphic.SmoothingMode = SmoothingMode.HighQuality;
+						newGraphic.CompositingQuality = CompositingQuality.HighQuality;
+						newGraphic.PixelOffsetMode = PixelOffsetMode.HighQuality;
+						newGraphic.FillRectangle(Brushes.White, 0, 0, newWidth, newHeight);
+
+						newGraphic.DrawImage(image, 0, 0, newWidth, newHeight);
+
+						resizedBitmap.Save(retVal, _imageCodecs[1], encoderParameters);
+						//Stream is NOT disposed here - it is sent back as an open stream
 					}
 				}
 			}
-			
+
 
 			return retVal;
 		}

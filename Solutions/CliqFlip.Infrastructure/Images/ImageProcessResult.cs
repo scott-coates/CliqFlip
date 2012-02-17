@@ -1,10 +1,13 @@
-﻿namespace CliqFlip.Infrastructure.Images
+﻿using System.IO;
+
+namespace CliqFlip.Infrastructure.Images
 {
 	public class ImageProcessResult
 	{
-		public byte[] ThumbnailImage { get; set; }
-		public byte[] MediumImage { get; set; }
-		public byte[] FullImage { get; set; }
+		//TODO: Not sure if we should send back byte[] instead of stream - could be risky
+		public Stream ThumbnailImage { get; set; }
+		public Stream MediumImage { get; set; }
+		public Stream FullImage { get; set; }
 		//we might want to store the original too someday
 	}
 }

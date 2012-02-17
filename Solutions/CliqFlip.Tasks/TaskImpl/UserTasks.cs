@@ -117,9 +117,21 @@ namespace CliqFlip.Tasks.TaskImpl
 		public void SaveProfileImage(User image, HttpPostedFileBase profileImage)
 		{
 			ImageProcessResult result = _imageProcessor.ProcessImage(profileImage);
-			File.WriteAllBytes("C:\\Test\\thumb_" + profileImage.FileName, result.ThumbnailImage);
-			File.WriteAllBytes("C:\\Test\\med_" + profileImage.FileName, result.MediumImage);
-			File.WriteAllBytes("C:\\Test\\full_" + profileImage.FileName, result.FullImage);
+
+			using (FileStream fileStream = File.Create("C:\\Test\\thumb_" + profileImage.FileName))
+			{
+				result.ThumbnailImage.CopyTo(fileStream);
+			}
+
+			using (FileStream fileStream = File.Create("C:\\Test\\thumb_" + profileImage.FileName))
+			{
+				result.ThumbnailImage.CopyTo(fileStream);
+			}
+
+			using (FileStream fileStream = File.Create("C:\\Test\\thumb_" + profileImage.FileName))
+			{
+				result.ThumbnailImage.CopyTo(fileStream);
+			}
 		}
 
 		#endregion
