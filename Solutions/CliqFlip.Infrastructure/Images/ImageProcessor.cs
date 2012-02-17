@@ -34,14 +34,14 @@ namespace CliqFlip.Infrastructure.Images
 				ValidateImageSize(image);
 
 				//We know the image input will always be bigger than thumbnail
-				retVal.ThumbnailImage = GetResizedImage(image, THUMBNAIL_RESOLUTION, THUMBNAIL_RESOLUTION);
-				retVal.MediumImage = GetResizedImage(image, MEDIUM_RESOLUTION_WIDTH, MEDIUM_RESOLUTION_HEIGHT);
+				retVal.ThumbnailImage = GetResizedImage(image, profileImage.InputStream, THUMBNAIL_RESOLUTION, THUMBNAIL_RESOLUTION);
+				retVal.MediumImage = GetResizedImage(image, profileImage.InputStream, MEDIUM_RESOLUTION_WIDTH, MEDIUM_RESOLUTION_HEIGHT);
 
 				if (image.Width >= MEDIUM_RESOLUTION_WIDTH + 50 || image.Height >= MEDIUM_RESOLUTION_HEIGHT + 50)
 				{
 					//the + 50 means don't create a full size image if it's barely bigger than a medium sized one
 
-					retVal.FullImage = GetResizedImage(image, FULL_RESOLUTION_WIDTH, FULL_RESOLUTION_HEIGHT);
+					retVal.FullImage = GetResizedImage(image, profileImage.InputStream, FULL_RESOLUTION_WIDTH, FULL_RESOLUTION_HEIGHT);
 				}
 			}
 
@@ -51,22 +51,21 @@ namespace CliqFlip.Infrastructure.Images
 
 		#endregion
 
-		private Stream GetResizedImage(Image image, int proposedWidth, int proposedHeight)
+		private Stream GetResizedImage(Image image, Stream originalStream, int proposedWidth, int proposedHeight)
 		{
-			Stream retVal;
-
-			int newWidth;
-			int newHeight;
+			Stream retVal = new MemoryStream();
 
 			if (image.Width < proposedWidth || image.Height < proposedHeight)
 			{
-				//image was smaller than proposed dimensions
-				newWidth = image.Width;
-				newHeight = image.Height;
+				//image was smaller than proposed dimensions - use original
+				originalStream.CopyTo(retVal);
 			}
 			else
 			{
-				//image was larger than proposed dimensions
+				//image was larger than proposed dimensions - resize it
+
+				int newWidth;
+				int newHeight;
 
 				decimal diffRatio;
 				if (image.Width > image.Height)
@@ -83,32 +82,32 @@ namespace CliqFlip.Infrastructure.Images
 					decimal tempWidth = image.Width * diffRatio;
 					newWidth = (int)tempWidth;
 				}
-			}
 
-			using (var resizedBitmap = new Bitmap(newWidth, newHeight))
-			{
-				using (Graphics newGraphic = Graphics.FromImage(resizedBitmap))
+				using (var resizedBitmap = new Bitmap(newWidth, newHeight))
 				{
-					retVal = new MemoryStream();
-					using (var encoderParameters = new EncoderParameters(1))
+					using (Graphics newGraphic = Graphics.FromImage(resizedBitmap))
 					{
-						encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 100L);
+						retVal = new MemoryStream();
+						using (var encoderParameters = new EncoderParameters(1))
+						{
+							encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 95L);
 
-						newGraphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
-						newGraphic.SmoothingMode = SmoothingMode.HighQuality;
-						newGraphic.CompositingQuality = CompositingQuality.HighQuality;
-						newGraphic.PixelOffsetMode = PixelOffsetMode.HighQuality;
-						newGraphic.FillRectangle(Brushes.White, 0, 0, newWidth, newHeight);
+							newGraphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
+							newGraphic.SmoothingMode = SmoothingMode.HighQuality;
+							newGraphic.CompositingQuality = CompositingQuality.HighQuality;
+							newGraphic.PixelOffsetMode = PixelOffsetMode.HighQuality;
+							newGraphic.FillRectangle(Brushes.White, 0, 0, newWidth, newHeight);
 
-						newGraphic.DrawImage(image, 0, 0, newWidth, newHeight);
+							newGraphic.DrawImage(image, 0, 0, newWidth, newHeight);
 
-						resizedBitmap.Save(retVal, GetImageCodec(image.RawFormat), encoderParameters);
-						retVal.Position = 0;
-						//Stream is NOT disposed here - it is sent back as an open stream
+							resizedBitmap.Save(retVal, GetImageCodec(image.RawFormat), encoderParameters);
+						}
 					}
 				}
 			}
 
+			//Stream is NOT disposed here - it is sent back as an open stream
+			retVal.Position = 0;
 
 			return retVal;
 		}
