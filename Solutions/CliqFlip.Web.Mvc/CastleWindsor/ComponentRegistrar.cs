@@ -23,7 +23,6 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
 			AddTasksTo(container);
 			AddCommandsTo(container);
 			AddUserTo(container);
-            AddInfrastructureServicesTo(container);
 		}
 
 		private static void AddFacilitiesTo(IWindsorContainer container)
@@ -54,7 +53,8 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
 				AllTypes
 					.FromAssemblyNamed("CliqFlip.Infrastructure")
 					.Pick()
-					.WithService.FirstNonGenericCoreInterface("CliqFlip.Domain"));
+					.WithService.FirstNonGenericCoreInterface("CliqFlip.Domain")
+                    .WithService.FirstNonGenericCoreInterface("CliqFlip.Infrastructure"));
 		}
 
 		private static void AddGenericRepositoriesTo(IWindsorContainer container)
@@ -112,13 +112,5 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
 					.Pick()
 					.WithService.FirstInterface());
 		}
-
-        private static void AddInfrastructureServicesTo(IWindsorContainer container)
-        {
-            container.Register(
-                Component.For(typeof(IUserAuthentication))
-                        .ImplementedBy(typeof(UserAuthentication))
-                        .Named("userAuthentication"));
-        }
 	}
 }
