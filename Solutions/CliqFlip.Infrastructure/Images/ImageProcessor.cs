@@ -58,6 +58,7 @@ namespace CliqFlip.Infrastructure.Images
 			if (image.Width < proposedWidth || image.Height < proposedHeight)
 			{
 				//image was smaller than proposed dimensions - use original
+				originalStream.Position = 0;
 				originalStream.CopyTo(retVal);
 			}
 			else
