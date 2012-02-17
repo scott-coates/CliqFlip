@@ -91,7 +91,7 @@ namespace CliqFlip.Infrastructure.Images
 					retVal = new MemoryStream();
 					using (var encoderParameters = new EncoderParameters(1))
 					{
-						encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 90L);
+						encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 100L);
 
 						newGraphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
 						newGraphic.SmoothingMode = SmoothingMode.HighQuality;
@@ -102,6 +102,7 @@ namespace CliqFlip.Infrastructure.Images
 						newGraphic.DrawImage(image, 0, 0, newWidth, newHeight);
 
 						resizedBitmap.Save(retVal, _imageCodecs[1], encoderParameters);
+						retVal.Position = 0;
 						//Stream is NOT disposed here - it is sent back as an open stream
 					}
 				}

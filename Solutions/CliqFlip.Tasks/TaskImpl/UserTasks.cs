@@ -128,14 +128,12 @@ namespace CliqFlip.Tasks.TaskImpl
 				
 				using (FileStream fileStream = File.Create("C:\\Test\\thumb_" + profileImage.FileName))
 				{
-					result.ThumbnailImage.Position = 0;
 					result.ThumbnailImage.CopyTo(fileStream);
 					fileStream.Close();
 				}
 
 				using (FileStream fileStream = File.Create("C:\\Test\\med_" + profileImage.FileName))
 				{
-					result.MediumImage.Position = 0;
 					result.MediumImage.CopyTo(fileStream);
 					fileStream.Close();
 				}
@@ -144,7 +142,6 @@ namespace CliqFlip.Tasks.TaskImpl
 				{
 					using (FileStream fileStream = File.Create("C:\\Test\\full_" + profileImage.FileName))
 					{
-						result.FullImage.Position = 0;
 						result.FullImage.CopyTo(fileStream);
 						fileStream.Close();
 					}
