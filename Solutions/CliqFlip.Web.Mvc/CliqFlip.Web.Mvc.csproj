@@ -101,7 +101,6 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -150,6 +149,7 @@
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Extensions\Exceptions\RulesExceptionExtensions.cs" />
     <Compile Include="Extensions\Html\HtmlExtensions.cs" />
     <Compile Include="Extensions\Request\ReuqestExtensions.cs" />
     <Compile Include="Extensions\Url\UrlExtensions.cs" />

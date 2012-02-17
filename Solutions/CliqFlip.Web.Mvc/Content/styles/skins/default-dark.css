@@ -1154,6 +1154,9 @@ display: block; float: left;
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, "Myriad Pro", Myriad, Geneva, Arial, "Lucida Grande", "sans-serif";
 	background-color: #EEE;
 }
+
+#bioText{ height: 150px;}
+
 .bio p:first-letter {
 	text-transform:uppercase; 
 	font-weight:bolder;
@@ -1214,7 +1217,7 @@ color: white;
 .headline .jeip-editor input[type="text"] {
 	width: 420px;
 }
-
+#headlineText{ height: 40px;}
 .bio .jeip-editor textarea {
 	width: 537px;
 }

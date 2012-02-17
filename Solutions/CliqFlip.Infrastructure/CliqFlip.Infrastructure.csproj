@@ -105,7 +105,9 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +120,9 @@
     <Compile Include="Authentication\IUserAuthentication.cs" />
     <Compile Include="Authentication\UserAuthentication.cs" />
     <Compile Include="Common\PathHelper.cs" />
+    <Compile Include="Images\ImageProcessResult.cs" />
+    <Compile Include="Images\Interfaces\IImageProcessor.cs" />
+    <Compile Include="Images\ImageProcessor.cs" />
     <Compile Include="Migrator\ConditionalMigration.cs" />
     <Compile Include="Migrator\MigrationConstants.cs" />
     <Compile Include="Migrator\Migrations\__634630300299264851_CreateUserTable.cs" />

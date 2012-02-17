@@ -54,7 +54,7 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
 					.FromAssemblyNamed("CliqFlip.Infrastructure")
 					.Pick()
 					.WithService.FirstNonGenericCoreInterface("CliqFlip.Domain")
-                    .WithService.FirstNonGenericCoreInterface("CliqFlip.Infrastructure"));
+					.WithService.FirstNonGenericCoreInterface("CliqFlip.Infrastructure"));
 		}
 
 		private static void AddGenericRepositoriesTo(IWindsorContainer container)

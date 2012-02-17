@@ -8,6 +8,7 @@ namespace CliqFlip.Domain.Search
 {
 	public static class FuzzySearch
 	{
+		//TODO: move this to infra - not business logic
 		public static int LevenshteinDistance(string src, string dest, bool scrub = true)
 		{
 			if (scrub)

@@ -9,6 +9,8 @@ namespace CliqFlip.Infrastructure.Common
         private const int ITERATIONS = 5000;
         private const int HASH_SIZE = 32;
 
+		//TODO: look into the crypto class - http://msdn.microsoft.com/en-us/library/system.web.helpers.crypto(v=vs.99).aspx
+
         // QUESTION: Isn't a salt and password created at the same time? isn't salt an output of rfc2898...?
         // http://code.google.com/p/stackid/source/browse/OpenIdProvider/Current.cs#1236
         // A salt is not the output of rfc2898. 
