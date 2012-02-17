@@ -60,12 +60,12 @@ namespace CliqFlip.Domain.Entities
 
         public virtual void UpdateHeadline(string headline)
         {
-			Headline = headline.Trim();
+			Headline = !string.IsNullOrWhiteSpace(headline) ? headline.Trim() : null;
         }
 
         public virtual void UpdateBio(string bio)
         {
-            Bio = bio.Trim();
+			Bio = !string.IsNullOrWhiteSpace(bio) ? bio.Trim() : null;
         }
 
         public virtual void UpdateTwitterUsername(string twitterUsername)

@@ -1,10 +1,13 @@
 ﻿using System.Security.Principal;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.Exceptions;
 using CliqFlip.Domain.ValueObjects;
+using CliqFlip.Web.Mvc.Extensions.Exceptions;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Jeip;
 using CliqFlip.Web.Mvc.ViewModels.User;
@@ -89,6 +92,31 @@ namespace CliqFlip.Web.Mvc.Controllers
             _userAuth.Logout();
 			return Redirect("~");
 		}
+
+
+		[Authorize]
+		[HttpPost]
+		[Transaction]
+		public ActionResult SaveProfileImage(HttpPostedFileBase profileImage)
+		{
+			//http://haacked.com/archive/2010/07/16/uploading-files-with-aspnetmvc.aspx
+			//model bound
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+
+			try
+			{
+				_userTasks.SaveProfileImage(user, profileImage);
+			}
+			catch (RulesException rex)
+			{
+				rex.AddModelStateErrors(ModelState);
+				RouteData.Values["action"] = "Index";
+				return Index(_principal.Identity.Name);
+			}
+
+			return RedirectToAction("Index");
+		}
+
 
 		[Authorize]
 		[HttpPost]
