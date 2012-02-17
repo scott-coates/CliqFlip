@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -116,25 +117,55 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public void SaveProfileImage(User image, HttpPostedFileBase profileImage)
 		{
-			ImageProcessResult result = _imageProcessor.ProcessImage(profileImage);
+			//be very safe with image streams
+			var exceptions = new List<Exception>();
 
-			using (FileStream fileStream = File.Create("C:\\Test\\thumb_" + profileImage.FileName))
+			ImageProcessResult result = null;
+			try
 			{
-				result.ThumbnailImage.CopyTo(fileStream);
+				result = _imageProcessor.ProcessImage(profileImage);
+
+				using (FileStream fileStream = File.Create("C:\\Test\\thumb_" + profileImage.FileName))
+				{
+					result.ThumbnailImage.CopyTo(fileStream);
+				}
+			}
+			catch (Exception ex)
+			{
+				exceptions.Add(ex);
+			}
+			finally
+			{
+				if (result != null)
+				{
+					DisposeImageIfNotEmpty(result.ThumbnailImage, exceptions);
+					DisposeImageIfNotEmpty(result.MediumImage, exceptions);
+					DisposeImageIfNotEmpty(result.FullImage, exceptions);
+				}
 			}
 
-			using (FileStream fileStream = File.Create("C:\\Test\\thumb_" + profileImage.FileName))
+			if (exceptions.Any())
 			{
-				result.ThumbnailImage.CopyTo(fileStream);
-			}
-
-			using (FileStream fileStream = File.Create("C:\\Test\\thumb_" + profileImage.FileName))
-			{
-				result.ThumbnailImage.CopyTo(fileStream);
+				throw new AggregateException("Error processing image", exceptions);
 			}
 		}
 
 		#endregion
+
+		private void DisposeImageIfNotEmpty(Stream streamToDispose, IList<Exception> exceptions)
+		{
+			if (streamToDispose != null)
+			{
+				try
+				{
+					streamToDispose.Dispose();
+				}
+				catch (Exception ex)
+				{
+					exceptions.Add(ex);
+				}
+			}
+		}
 
 		public IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IEnumerable<int> interestIds)
 		{

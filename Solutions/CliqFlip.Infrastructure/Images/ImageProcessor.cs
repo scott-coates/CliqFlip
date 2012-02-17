@@ -57,11 +57,11 @@ namespace CliqFlip.Infrastructure.Images
 			int newWidth;
 			int newHeight;
 
-			if (image.Width >= proposedWidth || image.Height >= proposedHeight)
+			if (image.Width < proposedWidth && image.Height < proposedHeight)
 			{
+				//image was smaller than proposed dimensions
 				newWidth = image.Width;
 				newHeight = image.Height;
-				//image was smaller than proposed dimensions
 			}
 			else
 			{
