@@ -36,11 +36,11 @@ namespace CliqFlip.Infrastructure.Images
 				retVal.ThumbnailImage = GetResizedImage(image, THUMBNAIL_RESOLUTION, THUMBNAIL_RESOLUTION);
 				retVal.MediumImage = GetResizedImage(image, MEDIUM_RESOLUTION_WIDTH, MEDIUM_RESOLUTION_HEIGHT);
 
-				if (image.Width >= FULL_RESOLUTION_WIDTH + 50 || image.Height >= FULL_RESOLUTION_HEIGHT + 50)
+				if (image.Width >= MEDIUM_RESOLUTION_WIDTH + 50 || image.Height >= MEDIUM_RESOLUTION_HEIGHT + 50)
 				{
 					//the + 50 means don't create a full size image if it's barely bigger than a medium sized one
 
-					retVal.MediumImage = GetResizedImage(image, FULL_RESOLUTION_WIDTH, FULL_RESOLUTION_HEIGHT);
+					retVal.FullImage = GetResizedImage(image, FULL_RESOLUTION_WIDTH, FULL_RESOLUTION_HEIGHT);
 				}
 			}
 
@@ -91,7 +91,7 @@ namespace CliqFlip.Infrastructure.Images
 					retVal = new MemoryStream();
 					using (var encoderParameters = new EncoderParameters(1))
 					{
-						encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 100L);
+						encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 90L);
 
 						newGraphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
 						newGraphic.SmoothingMode = SmoothingMode.HighQuality;
