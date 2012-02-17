@@ -58,12 +58,12 @@ namespace CliqFlip.Domain.Entities
 
         public virtual void UpdateHeadline(string headline)
         {
-            Headline = headline;
+			Headline = headline.Trim();
         }
 
         public virtual void UpdateBio(string bio)
         {
-            Bio = bio;
+            Bio = bio.Trim();
         }
     }
 }
