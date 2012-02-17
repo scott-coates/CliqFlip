@@ -113,6 +113,10 @@ namespace CliqFlip.Web.Mvc.Controllers
 				RouteData.Values["action"] = "Index";
 				return Index(_principal.Identity.Name);
 			}
+			finally
+			{
+				profileImage.InputStream.Dispose();
+			}
 
 			return RedirectToAction("Index");
 		}

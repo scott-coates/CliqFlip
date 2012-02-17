@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Web;
 using CliqFlip.Domain.Exceptions;
 using CliqFlip.Infrastructure.Images.Interfaces;
@@ -70,17 +71,17 @@ namespace CliqFlip.Infrastructure.Images
 				decimal diffRatio;
 				if (image.Width > image.Height)
 				{
-					diffRatio = (decimal) proposedWidth/image.Width;
+					diffRatio = (decimal)proposedWidth / image.Width;
 					newWidth = proposedWidth;
-					decimal tempHeight = image.Height*diffRatio;
-					newHeight = (int) tempHeight;
+					decimal tempHeight = image.Height * diffRatio;
+					newHeight = (int)tempHeight;
 				}
 				else
 				{
-					diffRatio = (decimal) proposedHeight/image.Height;
+					diffRatio = (decimal)proposedHeight / image.Height;
 					newHeight = proposedHeight;
-					decimal tempWidth = image.Width*diffRatio;
-					newWidth = (int) tempWidth;
+					decimal tempWidth = image.Width * diffRatio;
+					newWidth = (int)tempWidth;
 				}
 			}
 
@@ -101,7 +102,7 @@ namespace CliqFlip.Infrastructure.Images
 
 						newGraphic.DrawImage(image, 0, 0, newWidth, newHeight);
 
-						resizedBitmap.Save(retVal, _imageCodecs[1], encoderParameters);
+						resizedBitmap.Save(retVal, GetImageCodec(image.RawFormat), encoderParameters);
 						retVal.Position = 0;
 						//Stream is NOT disposed here - it is sent back as an open stream
 					}
@@ -124,6 +125,11 @@ namespace CliqFlip.Infrastructure.Images
 			{
 				throw new RulesException("image", MAX_RESOLUTION_MESSAGE);
 			}
+		}
+
+		private static ImageCodecInfo GetImageCodec(ImageFormat format)
+		{
+			return _imageCodecs.Single(x => x.FormatID == format.Guid);
 		}
 	}
 }
