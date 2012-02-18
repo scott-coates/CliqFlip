@@ -22,7 +22,7 @@ namespace CliqFlip.Infrastructure.Images
 		private const string MIN_RESOLUTION_MESSAGE = "The minimum resolution is 100 pixels. Please upload a larger file";
 		private const string MAX_RESOLUTION_MESSAGE = "The maximum resolution is 2048 pixels. Please upload a smaller file";
 		private static readonly ImageCodecInfo[] _imageCodecs = ImageCodecInfo.GetImageEncoders();
-		private static readonly string[] _acceptedExtensions = new[] { "jpg", "jpeg", "tif", "tiff", "png", "bmp", "gif" };
+		private static readonly string[] _acceptedExtensions = new[] {"jpg", "jpeg", "tif", "tiff", "png", "bmp", "gif"};
 
 		#region IImageProcessor Members
 
@@ -73,17 +73,17 @@ namespace CliqFlip.Infrastructure.Images
 
 				if (image.Width > image.Height)
 				{
-					diffRatio = (decimal)proposedWidth / image.Width;
+					diffRatio = (decimal) proposedWidth/image.Width;
 					newWidth = proposedWidth;
-					decimal tempHeight = image.Height * diffRatio;
-					newHeight = (int)tempHeight;
+					decimal tempHeight = image.Height*diffRatio;
+					newHeight = (int) tempHeight;
 				}
 				else
 				{
-					diffRatio = (decimal)proposedHeight / image.Height;
+					diffRatio = (decimal) proposedHeight/image.Height;
 					newHeight = proposedHeight;
-					decimal tempWidth = image.Width * diffRatio;
-					newWidth = (int)tempWidth;
+					decimal tempWidth = image.Width*diffRatio;
+					newWidth = (int) tempWidth;
 				}
 			}
 
@@ -118,9 +118,9 @@ namespace CliqFlip.Infrastructure.Images
 		private static void ValidateImageSize(Image image, string fileName)
 		{
 			if (image == null) throw new ArgumentNullException("image");
-			if (string.IsNullOrWhiteSpace( fileName)) throw new ArgumentNullException("fileName");
+			if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("fileName");
 
-			var extension = Path.GetExtension(fileName);
+			string extension = Path.GetExtension(fileName);
 
 			if (extension == null) throw new InvalidOperationException("extension");
 
@@ -143,7 +143,14 @@ namespace CliqFlip.Infrastructure.Images
 
 		private static ImageCodecInfo GetImageCodec(ImageFormat format)
 		{
-			return _imageCodecs.Single(x => x.FormatID == format.Guid);
+			ImageCodecInfo codec = _imageCodecs.Single(x => x.FormatID == format.Guid);
+
+			if (codec == null)
+			{
+				throw new ArgumentException("Invalid format value " + format.Guid, "format");
+			}
+
+			return codec;
 		}
 	}
 }

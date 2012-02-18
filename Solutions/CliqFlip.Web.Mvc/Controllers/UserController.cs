@@ -111,11 +111,12 @@ namespace CliqFlip.Web.Mvc.Controllers
 			catch (RulesException rex)
 			{
 				//TODO: Implement PRG pattern for post forms
+				//TODO: Log These exceptions in elmah
 				rex.AddModelStateErrors(ModelState);
 				RouteData.Values["action"] = "Index";
 				return Index(_principal.Identity.Name);
 			}
-			catch (AggregateException)
+			catch (Exception)
 			{
 				//TODO: Implement PRG pattern for post forms
 				ModelState.AddModelError("image", "Error uploading photo");
