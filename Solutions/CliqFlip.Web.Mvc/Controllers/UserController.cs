@@ -1,4 +1,5 @@
-﻿using System.Security.Principal;
+﻿using System;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -110,6 +111,12 @@ namespace CliqFlip.Web.Mvc.Controllers
 			catch (RulesException rex)
 			{
 				rex.AddModelStateErrors(ModelState);
+				RouteData.Values["action"] = "Index";
+				return Index(_principal.Identity.Name);
+			}
+			catch (AggregateException)
+			{
+				ModelState.AddModelError("image","Error uploading photo");
 				RouteData.Values["action"] = "Index";
 				return Index(_principal.Identity.Name);
 			}
