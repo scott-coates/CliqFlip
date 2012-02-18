@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Mime;
 using System.Web;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.Exceptions;
 using CliqFlip.Infrastructure.Common;
 using CliqFlip.Infrastructure.Images;
 using CliqFlip.Infrastructure.Images.Interfaces;
@@ -125,7 +125,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			try
 			{
 				result = _imageProcessor.ProcessImage(profileImage);
-				
+
 				using (FileStream fileStream = File.Create("C:\\Test\\thumb_" + profileImage.FileName))
 				{
 					result.ThumbnailImage.CopyTo(fileStream);
@@ -138,7 +138,7 @@ namespace CliqFlip.Tasks.TaskImpl
 					fileStream.Close();
 				}
 
-				if(result.FullImage != null)
+				if (result.FullImage != null)
 				{
 					using (FileStream fileStream = File.Create("C:\\Test\\full_" + profileImage.FileName))
 					{
@@ -146,6 +146,10 @@ namespace CliqFlip.Tasks.TaskImpl
 						fileStream.Close();
 					}
 				}
+			}
+			catch (RulesException)
+			{
+				throw;
 			}
 			catch (Exception ex)
 			{
