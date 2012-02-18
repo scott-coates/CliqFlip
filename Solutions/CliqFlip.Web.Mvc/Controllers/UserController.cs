@@ -2,35 +2,34 @@
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Exceptions;
 using CliqFlip.Domain.ValueObjects;
+using CliqFlip.Infrastructure.Authentication;
 using CliqFlip.Web.Mvc.Extensions.Exceptions;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Jeip;
 using CliqFlip.Web.Mvc.ViewModels.User;
 using SharpArch.NHibernate.Web.Mvc;
 using SharpArch.Web.Mvc.JsonNet;
-using CliqFlip.Infrastructure.Authentication;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
 	public class UserController : Controller
 	{
 		private readonly IPrincipal _principal;
+		private readonly IUserAuthentication _userAuth;
 		private readonly IUserProfileQuery _userProfileQuery;
 		private readonly IUserTasks _userTasks;
-        private readonly IUserAuthentication _userAuth;
 
-        public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IUserAuthentication userAuth)
+		public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IUserAuthentication userAuth)
 		{
 			_userTasks = profileTasks;
 			_userProfileQuery = userProfileQuery;
 			_principal = principal;
-            _userAuth = userAuth;
+			_userAuth = userAuth;
 		}
 
 		public ViewResult Create()
@@ -62,9 +61,10 @@ namespace CliqFlip.Web.Mvc.Controllers
 					return View(profile);
 				}
 
-                _userAuth.Login(newProfile.Username, false);
+				_userAuth.Login(newProfile.Username, false);
 				return RedirectToAction("Index", "User", new { username = profile.Username });
 			}
+			//TODO: Implement PRG pattern for post forms
 			return View(profile);
 		}
 
@@ -80,7 +80,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				if (_userTasks.ValidateUser(model.Username, model.Password))
 				{
-                    _userAuth.Login(model.Username, model.LogMeIn);
+					_userAuth.Login(model.Username, model.LogMeIn);
 					return Content("Awesome! You are now logged in.");
 				}
 			}
@@ -90,7 +90,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 		public ActionResult Logout()
 		{
-            _userAuth.Logout();
+			_userAuth.Logout();
 			return Redirect("~");
 		}
 
@@ -110,13 +110,15 @@ namespace CliqFlip.Web.Mvc.Controllers
 			}
 			catch (RulesException rex)
 			{
+				//TODO: Implement PRG pattern for post forms
 				rex.AddModelStateErrors(ModelState);
 				RouteData.Values["action"] = "Index";
 				return Index(_principal.Identity.Name);
 			}
 			catch (AggregateException)
 			{
-				ModelState.AddModelError("image","Error uploading photo");
+				//TODO: Implement PRG pattern for post forms
+				ModelState.AddModelError("image", "Error uploading photo");
 				RouteData.Values["action"] = "Index";
 				return Index(_principal.Identity.Name);
 			}
@@ -168,29 +170,29 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return new JsonNetResult(retVal);
 		}
 
-        [Authorize]
-        [HttpPost]
-        [Transaction]
-        public ActionResult SaveTwitterUsername(JeipSaveTextViewModel saveTextViewModel)
-        {
-            //get user and save it
-            User user = _userTasks.GetUser(_principal.Identity.Name);
-            user.UpdateTwitterUsername(saveTextViewModel.New_Value);
-            var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
-            return new JsonNetResult(retVal);
-        }
+		[Authorize]
+		[HttpPost]
+		[Transaction]
+		public ActionResult SaveTwitterUsername(JeipSaveTextViewModel saveTextViewModel)
+		{
+			//get user and save it
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+			user.UpdateTwitterUsername(saveTextViewModel.New_Value);
+			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
+			return new JsonNetResult(retVal);
+		}
 
-        [Authorize]
-        [HttpPost]
-        [Transaction]
-        public ActionResult SaveYouTubeUsername(JeipSaveTextViewModel saveTextViewModel)
-        {
-            //get user and save it
-            User user = _userTasks.GetUser(_principal.Identity.Name);
-            user.UpdateYouTubeUsername(saveTextViewModel.New_Value);
-            var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
-            return new JsonNetResult(retVal);
-        }
+		[Authorize]
+		[HttpPost]
+		[Transaction]
+		public ActionResult SaveYouTubeUsername(JeipSaveTextViewModel saveTextViewModel)
+		{
+			//get user and save it
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+			user.UpdateYouTubeUsername(saveTextViewModel.New_Value);
+			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
+			return new JsonNetResult(retVal);
+		}
 
 		[Transaction]
 		public ActionResult Index(string username)
@@ -199,8 +201,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 			user.SaveHeadlineUrl = "\"" + Url.Action("SaveHeadline", "User") + "\"";
 			user.SaveMindMapUrl = "\"" + Url.Action("SaveMindMap", "User") + "\"";
 			user.SaveBioUrl = "\"" + Url.Action("SaveBio", "User") + "\"";
-            user.SaveTwitterUsernameUrl = "\"" + Url.Action("SaveTwitterUsername", "User") + "\"";
-            user.SaveYouTubeUsernameUrl = "\"" + Url.Action("SaveYouTubeUsername", "User") + "\"";
+			user.SaveTwitterUsernameUrl = "\"" + Url.Action("SaveTwitterUsername", "User") + "\"";
+			user.SaveYouTubeUsernameUrl = "\"" + Url.Action("SaveYouTubeUsername", "User") + "\"";
 			user.CanEdit = _principal.Identity.Name.ToLower() == username.ToLower();
 
 			return View(user);
@@ -215,8 +217,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult SocialMedia(string username)
 		{
-            UserProfileViewModel user = _userProfileQuery.GetUser(username);
-            return View(user);
+			UserProfileViewModel user = _userProfileQuery.GetUser(username);
+			return View(user);
 		}
 	}
 }
