@@ -101,6 +101,7 @@
     <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Search\FuzzySearch.cs" />
+    <Compile Include="ValueObjects\UserImage.cs" />
     <Compile Include="ValueObjects\UserInterestOption.cs" />
   </ItemGroup>
   <ItemGroup>

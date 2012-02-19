@@ -11,10 +11,18 @@ namespace CliqFlip.Domain.Entities
 	public class User : Entity
 	{
 		private readonly nh.ISet<UserInterest> _interests;
+		private UserImage _userImage;
 
 		public virtual IEnumerable<UserInterest> Interests
 		{
 			get { return new List<UserInterest>(_interests).AsReadOnly(); }
+		}
+
+		public virtual UserImage ProfileImage
+		{
+			//http://stackoverflow.com/a/685026/173957
+			get { return _userImage ?? new UserImage(null, null, null, null); }
+			set { _userImage = value; }
 		}
 
 		public virtual string Username { get; set; }
@@ -23,8 +31,8 @@ namespace CliqFlip.Domain.Entities
 		public virtual string Salt { get; set; }
 		public virtual string Bio { get; set; }
 		public virtual string Headline { get; set; }
-        public virtual string TwitterUsername { get; set; }
-        public virtual string YouTubeUsername { get; set; }
+		public virtual string TwitterUsername { get; set; }
+		public virtual string YouTubeUsername { get; set; }
 
 		public User()
 		{
@@ -54,30 +62,30 @@ namespace CliqFlip.Domain.Entities
 
 		public virtual void UpdateInterest(UserInterest userInterestToSave)
 		{
-				var userInterest = _interests.First(x => x.Id ==  userInterestToSave.Id);
-				userInterest.Options = new UserInterestOption(userInterestToSave.Options.Passion, userInterestToSave.Options.XAxis, userInterestToSave.Options.YAxis);
+			var userInterest = _interests.First(x => x.Id == userInterestToSave.Id);
+			userInterest.Options = new UserInterestOption(userInterestToSave.Options.Passion, userInterestToSave.Options.XAxis, userInterestToSave.Options.YAxis);
 		}
 
-        public virtual void UpdateHeadline(string headline)
-        {
+		public virtual void UpdateHeadline(string headline)
+		{
 			Headline = !string.IsNullOrWhiteSpace(headline) ? headline.Trim() : null;
-        }
+		}
 
-        public virtual void UpdateBio(string bio)
-        {
+		public virtual void UpdateBio(string bio)
+		{
 			Bio = !string.IsNullOrWhiteSpace(bio) ? bio.Trim() : null;
-        }
+		}
 
-        public virtual void UpdateTwitterUsername(string twitterUsername)
-        {
-            TwitterUsername = !string.IsNullOrWhiteSpace(twitterUsername) ? twitterUsername.Trim() : null;
-            
-        }
+		public virtual void UpdateTwitterUsername(string twitterUsername)
+		{
+			TwitterUsername = !string.IsNullOrWhiteSpace(twitterUsername) ? twitterUsername.Trim() : null;
 
-        public virtual void UpdateYouTubeUsername(string youTubeUsername)
-        {
-            //white space before/after in the username causes problems when making a request to the youtube api
-            YouTubeUsername = !string.IsNullOrWhiteSpace(youTubeUsername) ? youTubeUsername.Trim() : null;
-        }
-    }
+		}
+
+		public virtual void UpdateYouTubeUsername(string youTubeUsername)
+		{
+			//white space before/after in the username causes problems when making a request to the youtube api
+			YouTubeUsername = !string.IsNullOrWhiteSpace(youTubeUsername) ? youTubeUsername.Trim() : null;
+		}
+	}
 }
