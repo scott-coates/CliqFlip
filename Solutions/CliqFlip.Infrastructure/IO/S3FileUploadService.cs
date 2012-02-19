@@ -16,18 +16,25 @@ namespace CliqFlip.Infrastructure.IO
 
 		public IList<string> UploadFiles(string path, IList<FileToUpload> files)
 		{
+			if (!string.IsNullOrWhiteSpace(path) && !path.EndsWith("/"))
+				throw new ArgumentException("Invalid path. Path must end in a forward slash: " + path);
+
 			var retVal = new List<string>(files.Count);
 
-			using (AmazonS3 client = AWSClientFactory.CreateAmazonS3Client())
+			using (AmazonS3 client = AWSClientFactory.CreateAmazonS3Client(new AmazonS3Config().WithServiceURL("s3-us-west-1.amazonaws.com")))
 			{
+				var bucketName = ConfigurationManager.AppSettings[Constants.S3_BUCKET];
+
 				foreach (FileToUpload file in files)
 				{
 					var fileUploadRequest = new PutObjectRequest();
 
+					var key = path + Guid.NewGuid() + Path.GetExtension(file.Filename);
+
 					fileUploadRequest
-						.WithKey(path + Guid.NewGuid() + Path.GetExtension(file.Filename))
+						.WithKey(key)
 						.WithCannedACL(S3CannedACL.PublicRead)
-						.WithBucketName(ConfigurationManager.AppSettings[Constants.S3_BUCKET])
+						.WithBucketName(bucketName)
 						.WithInputStream(file.Stream);
 
 					fileUploadRequest.StorageClass = S3StorageClass.ReducedRedundancy;
@@ -41,7 +48,7 @@ namespace CliqFlip.Infrastructure.IO
 						responseWithMetadata.ToString();
 					}
 
-					retVal.Add("Filename.jpg");
+					retVal.Add(string.Format("http://{0}/{1}", bucketName, key));
 				}
 			}
 
