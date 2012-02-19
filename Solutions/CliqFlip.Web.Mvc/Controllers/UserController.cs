@@ -32,8 +32,13 @@ namespace CliqFlip.Web.Mvc.Controllers
 			_userAuth = userAuth;
 		}
 
-		public ViewResult Create()
+		public ActionResult Create()
 		{
+			if (_principal.Identity.IsAuthenticated)
+			{
+				return RedirectToAction("Index", "User", new { username = _principal.Identity.Name });
+			}
+
 			return View(new UserCreateViewModel());
 		}
 
