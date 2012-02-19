@@ -1222,6 +1222,10 @@ color: white;
 	width: 537px;
 }
 
+.profile-image {
+	max-width: 95px;
+	height: 92px;
+}
 
 
 /*========================*/

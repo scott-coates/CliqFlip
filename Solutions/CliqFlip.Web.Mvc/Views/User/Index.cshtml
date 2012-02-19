@@ -26,12 +26,15 @@
 				</div>
 				<div class="post-info">
 					<div class="blogdate">
-						<div class="month">
-							Jun</div>
-						<div class="day">
-							29</div>
-						<div class="year">
-							2011</div>
+						
+						@{
+							string imagePath = string.IsNullOrWhiteSpace(Model.ProfileImageUrl)
+							                   	? @Url.Content("/Content/img/empty-avatar.jpg")
+							                   	: Model.ProfileImageUrl;
+						}
+
+						<img class="profile-image" alt="@Model.Username profile image" src="@imagePath"/>
+						
 					</div>
 					<div class="category">
 						<ul>
@@ -74,18 +77,18 @@
 			<div class="sidebar_item recent-posts">
 				<strong>Link CliqFlip to your other social networks</strong>
 				<ul>
-                    <li>
-                        <div id="twitterUsername">
-                            <img src="https://si0.twimg.com/a/1329332580/images/logos/twitter_newbird_blue.png" alt="Twitter" />
-						    <p id="twitterUsernameText" class="twitterUsernameText">@Model.TwitterUsername</p>
-					    </div>
-                    </li>
-                    <li>
-                        <div id="youTubeUsername">
-                            <img src="http://s.ytimg.com/yt/img/creators_corner/YouTube/40x40_yt_white.png" alt="Twitter" />
-						    <p id="youTubeUsernameText" class="youTubeUsernameText">@Model.YouTubeUsername</p>
-					    </div>
-                    </li>
+					<li>
+						<div id="twitterUsername">
+							<img src="https://si0.twimg.com/a/1329332580/images/logos/twitter_newbird_blue.png" alt="Twitter" />
+							<p id="twitterUsernameText" class="twitterUsernameText">@Model.TwitterUsername</p>
+						</div>
+					</li>
+					<li>
+						<div id="youTubeUsername">
+							<img src="http://s.ytimg.com/yt/img/creators_corner/YouTube/40x40_yt_white.png" alt="Twitter" />
+							<p id="youTubeUsernameText" class="youTubeUsernameText">@Model.YouTubeUsername</p>
+						</div>
+					</li>
 				</ul>
 			</div>
 			<!-- SIDEBAR RECENT POSTS END -->
@@ -154,8 +157,8 @@
 			InitHeadline(@(Html.Raw(Model.SaveHeadlineUrl)));
 			InitBio(@(Html.Raw(Model.SaveBioUrl)));
 			InitMindMap(@(Html.Raw(Model.InterestsJson)), @(Html.Raw(Model.SaveMindMapUrl)));
-            InitTwitterUsername(@(Html.Raw(Model.SaveTwitterUsernameUrl)));
-            InitYouTubeUsername(@(Html.Raw(Model.SaveYouTubeUsernameUrl)));
+			InitTwitterUsername(@(Html.Raw(Model.SaveTwitterUsernameUrl)));
+			InitYouTubeUsername(@(Html.Raw(Model.SaveYouTubeUsernameUrl)));
 		});
 	</script>
 }

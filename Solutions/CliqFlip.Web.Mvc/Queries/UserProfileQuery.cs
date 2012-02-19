@@ -30,7 +30,8 @@ namespace CliqFlip.Web.Mvc.Queries
 				         		Bio = user.Bio,
 				         		Headline = user.Headline,
                                 TwitterUsername = user.TwitterUsername,
-                                YouTubeUsername = user.YouTubeUsername
+                                YouTubeUsername = user.YouTubeUsername,
+								ProfileImageUrl = user.ProfileImage.MediumFileName
 				         	};
 
 				List<UserInterestDto> interests =
