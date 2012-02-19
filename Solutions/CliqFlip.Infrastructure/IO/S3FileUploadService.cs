@@ -34,6 +34,7 @@ namespace CliqFlip.Infrastructure.IO
 
 					//"R" - RFC1123 - http://msdn.microsoft.com/en-us/library/az4se3k1.aspx#RFC1123
 					fileUploadRequest.AddHeader("Expires", DateTime.UtcNow.AddYears(10).ToString("R"));
+					fileUploadRequest.AddHeader("Cache-Control", "public, max-age=31536000");
 
 					using (S3Response responseWithMetadata = client.PutObject(fileUploadRequest))
 					{
