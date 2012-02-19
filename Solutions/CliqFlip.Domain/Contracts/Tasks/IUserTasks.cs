@@ -17,6 +17,6 @@ namespace CliqFlip.Domain.Contracts.Tasks
 
 		User GetUser(string username);
 
-		void SaveProfileImage(User image, HttpPostedFileBase profileImage);
+		void SaveProfileImage(User user, HttpPostedFileBase profileImage);
 	}
 }

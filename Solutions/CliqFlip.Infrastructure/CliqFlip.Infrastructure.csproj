@@ -123,6 +123,8 @@
     <Compile Include="Images\ImageProcessResult.cs" />
     <Compile Include="Images\Interfaces\IImageProcessor.cs" />
     <Compile Include="Images\ImageProcessor.cs" />
+    <Compile Include="IO\S3FileUploadService.cs" />
+    <Compile Include="IO\Interfaces\IFileUploadService.cs" />
     <Compile Include="Migrator\ConditionalMigration.cs" />
     <Compile Include="Migrator\MigrationConstants.cs" />
     <Compile Include="Migrator\Migrations\__634630300299264851_CreateUserTable.cs" />

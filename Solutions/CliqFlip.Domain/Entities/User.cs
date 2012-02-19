@@ -60,7 +60,7 @@ namespace CliqFlip.Domain.Entities
 			_interests.Add(userInterest);
 		}
 
-		public virtual void UpdateInterest(int userInterestId, UserInterestOption userInterestOption )
+		public virtual void UpdateInterest(int userInterestId, UserInterestOption userInterestOption)
 		{
 			var userInterest = _interests.First(x => x.Id == userInterestId);
 			userInterest.Options = userInterestOption;
@@ -86,6 +86,11 @@ namespace CliqFlip.Domain.Entities
 		{
 			//white space before/after in the username causes problems when making a request to the youtube api
 			YouTubeUsername = !string.IsNullOrWhiteSpace(youTubeUsername) ? youTubeUsername.Trim() : null;
+		}
+
+		public virtual void UpdateProfileImage(string originalFilename, string thumbFilename, string mediumFilename, string fullFilename)
+		{
+			_userImage = new UserImage(originalFilename, thumbFilename, mediumFilename, fullFilename);
 		}
 	}
 }
