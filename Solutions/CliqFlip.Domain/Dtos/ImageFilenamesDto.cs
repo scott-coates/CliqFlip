@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CliqFlip.Domain.Dtos
 {
-	public class ImageFilenamesDto
+	public class ImageFileNamesDto
 	{
         public string ThumbFilename { get; set; }
         public string MediumFilename { get; set; }
