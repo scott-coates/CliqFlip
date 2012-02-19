@@ -30,7 +30,7 @@ namespace CliqFlip.Infrastructure.IO
 						.WithBucketName(ConfigurationManager.AppSettings[Constants.S3_BUCKET])
 						.WithInputStream(file.Stream);
 
-					fileUploadRequest.AddHeader("Content-Disposition", "attachment; filename = " + file.Filename);
+					fileUploadRequest.StorageClass = S3StorageClass.ReducedRedundancy;
 
 					//"R" - RFC1123 - http://msdn.microsoft.com/en-us/library/az4se3k1.aspx#RFC1123
 					fileUploadRequest.AddHeader("Expires", DateTime.UtcNow.AddYears(10).ToString("R"));
@@ -39,6 +39,8 @@ namespace CliqFlip.Infrastructure.IO
 					{
 						responseWithMetadata.ToString();
 					}
+
+					retVal.Add("Filename.jpg");
 				}
 			}
 
