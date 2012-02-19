@@ -8,6 +8,7 @@ using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Exceptions;
 using CliqFlip.Infrastructure.Common;
+using CliqFlip.Infrastructure.IO;
 using CliqFlip.Infrastructure.IO.Interfaces;
 using CliqFlip.Infrastructure.Images;
 using CliqFlip.Infrastructure.Images.Interfaces;
@@ -130,24 +131,26 @@ namespace CliqFlip.Tasks.TaskImpl
 				var savedFiles = new ImageFilenamesDto();
 
 				result = _imageProcessor.ProcessImage(profileImage);
+				bool fullFileExists = result.FullImage != null;
 
-				if (result.FullImage == null)
+				var files = new List<FileToUpload>
+				            	{
+				            		new FileToUpload(result.ThumbnailImage, "thumb_" + profileImage.FileName),
+				            		new FileToUpload(result.MediumImage, "med_" + profileImage.FileName)
+				            	};
+
+				if (fullFileExists)
 				{
-					var fileNames = _fileUploadService.UploadFiles(result.ThumbnailImage, result.MediumImage);
-					savedFiles.ThumbFilename = fileNames[0];
-					savedFiles.MediumFilename = fileNames[1];
-					savedFiles.FullFilename = fileNames[1];
-				}
-				else
-				{
-					var fileNames = _fileUploadService.UploadFiles(result.ThumbnailImage, result.MediumImage, result.FullImage);
-					savedFiles.ThumbFilename = fileNames[0];
-					savedFiles.MediumFilename = fileNames[1];
-					savedFiles.FullFilename = fileNames[2];
+					files.Add(new FileToUpload(result.FullImage, "full_" + profileImage.FileName));
 				}
 
-				user.UpdateProfileImage(profileImage.FileName, savedFiles.ThumbFilename,savedFiles.MediumFilename,savedFiles.FullFilename);
-				
+				IList<string> filePaths = _fileUploadService.UploadFiles("Images/", files);
+
+				savedFiles.ThumbFilename = filePaths[0];
+				savedFiles.MediumFilename = filePaths[1];
+				savedFiles.FullFilename = filePaths[fullFileExists ? 2 : 1];
+
+				user.UpdateProfileImage(profileImage.FileName, savedFiles.ThumbFilename, savedFiles.MediumFilename, savedFiles.FullFilename);
 			}
 			catch (RulesException)
 			{

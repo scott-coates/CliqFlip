@@ -8,6 +8,6 @@ namespace CliqFlip.Infrastructure.IO.Interfaces
 {
 	public interface IFileUploadService
 	{
-		string[] UploadFiles(params Stream[] files);
+		IList<string> UploadFiles(string path, IList<FileToUpload> files);
 	}
 }
