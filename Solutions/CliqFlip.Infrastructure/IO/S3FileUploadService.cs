@@ -18,8 +18,6 @@ namespace CliqFlip.Infrastructure.IO
 		{
 			var retVal = new List<string>(files.Count);
 
-			path = Path.GetFullPath(path);
-
 			using (AmazonS3 client = AWSClientFactory.CreateAmazonS3Client())
 			{
 				foreach (FileToUpload file in files)
@@ -29,7 +27,8 @@ namespace CliqFlip.Infrastructure.IO
 					fileUploadRequest
 						.WithKey(path + Guid.NewGuid() + Path.GetExtension(file.Filename))
 						.WithCannedACL(S3CannedACL.PublicRead)
-						.WithBucketName(ConfigurationManager.AppSettings[Constants.S3_BUCKET]);
+						.WithBucketName(ConfigurationManager.AppSettings[Constants.S3_BUCKET])
+						.WithInputStream(file.Stream);
 
 					fileUploadRequest.AddHeader("Content-Disposition", "attachment; filename = " + file.Filename);
 
