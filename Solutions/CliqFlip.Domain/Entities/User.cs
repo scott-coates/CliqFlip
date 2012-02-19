@@ -60,10 +60,10 @@ namespace CliqFlip.Domain.Entities
 			_interests.Add(userInterest);
 		}
 
-		public virtual void UpdateInterest(UserInterest userInterestToSave)
+		public virtual void UpdateInterest(int userInterestId, UserInterestOption userInterestOption )
 		{
-			var userInterest = _interests.First(x => x.Id == userInterestToSave.Id);
-			userInterest.Options = new UserInterestOption(userInterestToSave.Options.Passion, userInterestToSave.Options.XAxis, userInterestToSave.Options.YAxis);
+			var userInterest = _interests.First(x => x.Id == userInterestId);
+			userInterest.Options = userInterestOption;
 		}
 
 		public virtual void UpdateHeadline(string headline)

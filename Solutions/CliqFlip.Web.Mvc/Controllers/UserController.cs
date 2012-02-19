@@ -138,10 +138,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		public ActionResult SaveMindMap(UserSaveMindMapViewModel userSaveMindMapViewModel)
 		{
 			User user = _userTasks.GetUser(_principal.Identity.Name);
-			user.UpdateInterest(
-				new UserInterest(
-					userSaveMindMapViewModel.Id,
-					new UserInterestOption(userSaveMindMapViewModel.Passion, userSaveMindMapViewModel.XAxis, userSaveMindMapViewModel.YAxis), null, null, null));
+			user.UpdateInterest(userSaveMindMapViewModel.Id, new UserInterestOption(userSaveMindMapViewModel.Passion, userSaveMindMapViewModel.XAxis, userSaveMindMapViewModel.YAxis));
 
 			return new EmptyResult();
 		}

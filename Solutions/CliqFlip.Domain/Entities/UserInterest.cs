@@ -11,25 +11,11 @@ namespace CliqFlip.Domain.Entities
 		public virtual Interest Interest { get; set; }
 		public virtual int? SocialityPoints { get; set; }
 
-
 		public virtual UserInterestOption Options
 		{
 			//http://stackoverflow.com/a/685026/173957
 			get { return _options ?? new UserInterestOption(null, null, null); }
 			set { _options = value; }
-		}
-
-		public UserInterest(int id, UserInterestOption options, User user, Interest interest, int? socialityPoints)
-		{
-			Id = id;
-			_options = options;
-			User = user;
-			Interest = interest;
-			SocialityPoints = socialityPoints;
-		}
-
-		public UserInterest()
-		{
 		}
 	}
 }
