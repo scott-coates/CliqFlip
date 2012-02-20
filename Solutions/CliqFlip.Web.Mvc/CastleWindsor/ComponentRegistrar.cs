@@ -16,6 +16,7 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
 	{
 		public static void AddComponentsTo(IWindsorContainer container)
 		{
+			//TODO:use xml config for environment-specific
 			AddFacilitiesTo(container);
 			AddGenericRepositoriesTo(container);
 			AddCustomRepositoriesTo(container);
