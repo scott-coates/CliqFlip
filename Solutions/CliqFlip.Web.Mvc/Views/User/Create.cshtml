@@ -187,6 +187,9 @@
 							@Html.EditorFor(model => model.PasswordVerify)
 							@Html.ValidationMessageFor(model => model.PasswordVerify)
 						</div>
+						<div class="editor-label">
+							@Html.LabelFor(model => model.AcceptTermsAndConditions)
+						</div>  
 						<div class="editor-field">
 							@Html.EditorFor(model => model.AcceptTermsAndConditions)
 							@Html.ValidationMessageFor(model => model.AcceptTermsAndConditions)
