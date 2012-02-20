@@ -121,13 +121,13 @@ namespace CliqFlip.Web.Mvc.Controllers
 				RouteData.Values["action"] = "Index";
 				return Index(_principal.Identity.Name);
 			}
-			catch (Exception)
-			{
-				//TODO: Implement PRG pattern for post forms
-				ModelState.AddModelError("image", "Error uploading photo");
-				RouteData.Values["action"] = "Index";
-				return Index(_principal.Identity.Name);
-			}
+			//catch (Exception)
+			//{
+			//    //TODO: Implement PRG pattern for post forms
+			//    ModelState.AddModelError("image", "Error uploading photo");
+			//    RouteData.Values["action"] = "Index";
+			//    return Index(_principal.Identity.Name);
+			//}
 			finally
 			{
 				profileImage.InputStream.Dispose();
