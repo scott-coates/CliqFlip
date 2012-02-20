@@ -13,7 +13,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
         {
 			Database.AddColumn("Users", new Column("OriginalFileName", System.Data.DbType.String, 1024, ColumnProperty.Null));
 			Database.AddColumn("Users", new Column("ThumbFileName", System.Data.DbType.String, 1024, ColumnProperty.Null));
-			Database.AddColumn("Users", new Column("MediumFimcleName", System.Data.DbType.String, 1024, ColumnProperty.Null));
+			Database.AddColumn("Users", new Column("MediumFileName", System.Data.DbType.String, 1024, ColumnProperty.Null));
 			Database.AddColumn("Users", new Column("FullFileName", System.Data.DbType.String, 1024, ColumnProperty.Null));
         }
 
