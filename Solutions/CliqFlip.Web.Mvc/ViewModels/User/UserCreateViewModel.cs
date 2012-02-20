@@ -23,7 +23,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 		//TODO:RemoteveValidation on email
 		[Required(ErrorMessage = "Please provide an email address.")]
 		[Display(Name = "Whats your email?")]
-		[Email(ErrorMessage="Please provide a valid email address.")]
+		[Email(ErrorMessage = "Please provide a valid email address.")]
 		public String Email { get; set; }
 
 		[Required(ErrorMessage = "Please provide a password.")]
@@ -32,10 +32,14 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 		public String Password { get; set; }
 
 		[Required(ErrorMessage = "Please type your password again.")]
-		[Compare("Password", ErrorMessage="Password do not match")]
+		[Compare("Password", ErrorMessage = "Password do not match")]
 		[Display(Name = "Please type your password again")]
 		[DataType(DataType.Password)]
 		public String PasswordVerify { get; set; }
+
+		[MustBeTrue(ErrorMessage = "You must accept the terms and conditions")]
+		[Display(Name = "Accept terms and conditions")]
+		public bool AcceptTermsAndConditions { get; set; }
 
 		[CollectionNotEmptyAttribute(ErrorMessage = "Okay, we get it, you're not very interesting. But please, for our sake, just provide us with an interest that tells us about yourself.")]
 		public List<InterestCreate> UserInterests { get; set; }

@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Net.Mail;
 using System.Web.Mvc;
 
 namespace CliqFlip.Web.Mvc.Validation
 {
-    public class EmailAttribute : ValidationAttribute, IClientValidatable
+	[AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
+    public sealed class EmailAttribute : ValidationAttribute, IClientValidatable
     {
         public override bool IsValid(object value)
         {

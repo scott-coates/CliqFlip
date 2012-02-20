@@ -9,7 +9,8 @@ using System.Web.Mvc;
 namespace CliqFlip.Web.Mvc.Validation
 {
 	//http://stackoverflow.com/questions/4747184/perform-client-side-validation-for-custom-attribute/4782235#4782235
-	public class CollectionNotEmptyAttribute : ValidationAttribute, IClientValidatable
+	[AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
+	public sealed class CollectionNotEmptyAttribute : ValidationAttribute, IClientValidatable
 	{
 		public override bool IsValid(object value)
 		{

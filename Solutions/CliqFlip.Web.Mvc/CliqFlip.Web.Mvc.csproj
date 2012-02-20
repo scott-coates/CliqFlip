@@ -153,6 +153,7 @@
     <Compile Include="Extensions\Html\HtmlExtensions.cs" />
     <Compile Include="Extensions\Request\ReuqestExtensions.cs" />
     <Compile Include="Extensions\Url\UrlExtensions.cs" />
+    <Compile Include="Validation\MustBeTrueAttribute.cs" />
     <Compile Include="Validation\CollectionNotEmptyAttribute.cs" />
     <Compile Include="Validation\EmailAttribute.cs" />
     <Compile Include="Queries\Interfaces\IUserProfileQuery.cs" />
@@ -547,9 +548,9 @@
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target> -->
-	<Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
-		<AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
-	</Target>
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
