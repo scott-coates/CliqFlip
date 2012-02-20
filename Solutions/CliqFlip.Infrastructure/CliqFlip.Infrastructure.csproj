@@ -79,6 +79,9 @@
     <Reference Include="Inflector.Net">
       <HintPath>..\..\ReferencedAssemblies\NHibernate\Inflector.Net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Mvc">
+      <HintPath>..\..\Packages\Mvc3Futures.3.0.20105.0\lib\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Migrator">
       <HintPath>..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib\Migrator.dll</HintPath>
     </Reference>
@@ -104,6 +107,7 @@
       <HintPath>..\..\ReferencedAssemblies\SharpArchitecture\SharpArch.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -112,6 +116,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +153,8 @@
     <Compile Include="NHibernateMaps\Conventions\TableNameConvention.cs" />
     <Compile Include="NHibernateMaps\AutoPersistenceModelGenerator.cs" />
     <Compile Include="Common\PasswordHelper.cs" />
+    <Compile Include="Syndication\Interfaces\IFeedFinder.cs" />
+    <Compile Include="Validation\UrlValidation.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CliqFlip.Domain\CliqFlip.Domain.csproj">

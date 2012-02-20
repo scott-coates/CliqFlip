@@ -155,7 +155,6 @@
     <Compile Include="Extensions\Url\UrlExtensions.cs" />
     <Compile Include="Validation\MustBeTrueAttribute.cs" />
     <Compile Include="Validation\CollectionNotEmptyAttribute.cs" />
-    <Compile Include="Validation\EmailAttribute.cs" />
     <Compile Include="Queries\Interfaces\IUserProfileQuery.cs" />
     <Compile Include="Queries\Interfaces\IUsersByInterestsQuery.cs" />
     <Compile Include="Queries\UserProfileQuery.cs" />

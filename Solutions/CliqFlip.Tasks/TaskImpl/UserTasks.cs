@@ -12,6 +12,7 @@ using CliqFlip.Infrastructure.IO;
 using CliqFlip.Infrastructure.IO.Interfaces;
 using CliqFlip.Infrastructure.Images;
 using CliqFlip.Infrastructure.Images.Interfaces;
+using CliqFlip.Infrastructure.Validation;
 using SharpArch.Domain.PersistenceSupport;
 using SharpArch.Domain.Specifications;
 
@@ -119,6 +120,13 @@ namespace CliqFlip.Tasks.TaskImpl
 			return _repository.FindOne(adhoc);
 		}
 
+		public void SaveWebsiteUrl(User user, string siteUrl)
+		{
+			if (string.IsNullOrWhiteSpace(siteUrl)) throw new ArgumentNullException("siteUrl");
+			if (!UrlValidation.IsValidUrl(siteUrl)) throw new RulesException("SiteUrl", "Invalid URL");
+
+		}
+
 		public void SaveProfileImage(User user, HttpPostedFileBase profileImage)
 		{
 			//be very safe with image streams
@@ -165,7 +173,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			{
 				throw;
 			}
-			catch(ArgumentException arx)
+			catch (ArgumentException arx)
 			{
 				throw new RulesException("Image", "Invalid file type");
 				//TODO:alert the dev team somehow? could be malicious activity

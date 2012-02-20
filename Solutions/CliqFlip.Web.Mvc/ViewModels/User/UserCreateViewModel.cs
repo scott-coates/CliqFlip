@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using CliqFlip.Web.Mvc.Validation;
+using Microsoft.Web.Mvc;
 
 namespace CliqFlip.Web.Mvc.ViewModels.User
 {
@@ -23,7 +24,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 		//TODO:RemoteveValidation on email
 		[Required(ErrorMessage = "Please provide an email address.")]
 		[Display(Name = "Whats your email?")]
-		[Email(ErrorMessage = "Please provide a valid email address.")]
+		[EmailAddress(ErrorMessage = "Please provide a valid email address.")]
 		public String Email { get; set; }
 
 		[Required(ErrorMessage = "Please provide a password.")]
