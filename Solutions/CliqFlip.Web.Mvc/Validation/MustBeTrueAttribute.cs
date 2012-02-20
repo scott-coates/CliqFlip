@@ -12,12 +12,17 @@ namespace CliqFlip.Web.Mvc.Validation
 	/// Validation attribute that demands that a boolean value must be true.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
-	public sealed class MustBeTrueAttribute : ValidationAttribute
+	public sealed class MustBeTrueAttribute : ValidationAttribute, IClientValidatable
 	{
 		//http://stackoverflow.com/questions/2245185/how-to-handle-booleans-checkboxes-in-asp-net-mvc-2-with-dataannotations
 		public override bool IsValid(object value)
 		{
 			return value != null && value is bool && (bool)value;
+		}
+
+		public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
+		{
+			yield return new ModelClientValidationRule { ValidationType = "mustbetrue", ErrorMessage = FormatErrorMessage(metadata.DisplayName) };
 		}
 	}
 }

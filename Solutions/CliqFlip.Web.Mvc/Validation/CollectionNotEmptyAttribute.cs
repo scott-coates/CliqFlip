@@ -31,7 +31,7 @@ namespace CliqFlip.Web.Mvc.Validation
 			yield return new ModelClientValidationRule
 			{
 				ErrorMessage = ErrorMessage,
-				ValidationType = "collectionNotEmpty"
+				ValidationType = "collectionnotempty"
 			};
 		}
 	}

@@ -454,6 +454,7 @@
     <Content Include="Content\js\modernizr-1.7.min.js" />
     <Content Include="Content\js\twitterjs-2.0.0.min.js" />
     <Content Include="Content\js\user\socialmedia.js" />
+    <Content Include="Content\js\validation\jquery.validate.must-be-true.js" />
     <Content Include="Content\styles\autoSuggest.css" />
     <Content Include="Content\styles\Site.css" />
     <Content Include="Content\styles\anythingslider.css" />
