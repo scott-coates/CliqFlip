@@ -120,11 +120,11 @@ namespace CliqFlip.Tasks.TaskImpl
 			return _repository.FindOne(adhoc);
 		}
 
-		public void SaveWebsiteUrl(User user, string siteUrl)
+		public void SaveWebsite(User user, string siteUrl)
 		{
 			if (string.IsNullOrWhiteSpace(siteUrl)) throw new ArgumentNullException("siteUrl");
 			if (!UrlValidation.IsValidUrl(siteUrl)) throw new RulesException("SiteUrl", "Invalid URL");
-
+			
 		}
 
 		public void SaveProfileImage(User user, HttpPostedFileBase profileImage)

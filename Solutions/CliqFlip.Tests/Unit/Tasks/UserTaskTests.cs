@@ -28,7 +28,7 @@ namespace CliqFlip.Tests.Unit.Tasks
 		[TestCase("", ExpectedException = typeof(ArgumentNullException))]
 		public void InvalidUrlNotAccepted(string url)
 		{
-			_userTasks.SaveWebsiteUrl(null, url);
+			_userTasks.SaveWebsite(null, url);
 			Assert.Pass("Website Url");
 		}
 
