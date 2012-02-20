@@ -128,7 +128,7 @@
     <Compile Include="Images\Interfaces\IImageProcessor.cs" />
     <Compile Include="Images\ImageProcessor.cs" />
     <Compile Include="IO\FileToUpload.cs" />
-    <Compile Include="IO\FileUploadService.cs" />
+    <Compile Include="IO\TestFileUpload.cs" />
     <Compile Include="IO\S3FileUploadService.cs" />
     <Compile Include="IO\Interfaces\IFileUploadService.cs" />
     <Compile Include="Migrator\ConditionalMigration.cs" />
