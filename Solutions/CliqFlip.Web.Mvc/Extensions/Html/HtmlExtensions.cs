@@ -71,6 +71,25 @@ namespace CliqFlip.Web.Mvc.Extensions.Html
             return MvcHtmlString.Create(html);
         }
 
+        public static MvcHtmlString DisplayBlogFeed(this HtmlHelper<UserProfileViewModel> htmlHelper)
+        {
+            var html = string.Empty;
+            if (!String.IsNullOrWhiteSpace(htmlHelper.ViewData.Model.WebsiteFeedUrl))
+            {
+                var div = new TagBuilder("div");
+                div.Attributes.Add("id", "blog-container");
+                html = div.ToString();
+            }
+            else
+            {
+                var strong = new TagBuilder("strong");
+                strong.SetInnerText("This user is not sharing their blog feed.");
+                strong.AddCssClass("not-shared");
+                html = strong.ToString();
+            }
+            return MvcHtmlString.Create(html);
+        }
+
 	}
 
 }

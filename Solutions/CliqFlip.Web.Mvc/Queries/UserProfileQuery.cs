@@ -32,6 +32,7 @@ namespace CliqFlip.Web.Mvc.Queries
 								TwitterUsername = user.TwitterUsername,
 								YouTubeUsername = user.YouTubeUsername,
 								WebsiteUrl = user.UserWebsite.SiteUrl,
+                                WebsiteFeedUrl = user.UserWebsite.FeedUrl,
 								ProfileImageUrl = user.ProfileImage.MediumFileName
 							};
 
