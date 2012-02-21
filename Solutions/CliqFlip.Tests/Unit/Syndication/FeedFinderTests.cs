@@ -475,10 +475,170 @@ addLoadEvent(function(){linktracker_init('19665306',0);});
 </html>";
 
 			#endregion
+
+			#region noFeed
+
+			_htmlExamples["noFeed"] =
+				@"<!DOCTYPE html>
+<html dir='ltr' lang='en-US'>
+<head>
+<meta charset='UTF-8' />
+<title>HiScotty - Top of the line .NET developer out of Newport Coast, CA.Hi Scotty | &#8230;Scott Who?</title>
+<link rel='profile' href='http://gmpg.org/xfn/11' />
+<link rel='stylesheet' type='text/css' media='all' href='http://hiscotty.com/wordpress/wp-content/themes/twentyten/style.css' />
+<link rel='pingback' href='http://hiscotty.com/wordpress/xmlrpc.php' />
+
+<!-- This site is optimized with the Yoast WordPress SEO plugin v1.0.3 - http://yoast.com/wordpress/seo/ -->
+<meta name='description' content='Professionally personal website for Scott Coates, a .NET programmer from Newport Coast, CA.'/>
+<link rel='canonical' href='http://hiscotty.com/' />
+<meta name='google-site-verification' content='JqzmUHE1HRLt7BRTGHxR09xY5nHiEi7l7OS_ar6MJX0' />
+<!-- / Yoast WordPress SEO plugin. -->
+	<script type='text/javascript'>//<![CDATA[
+	// Google Analytics for WordPress by Yoast v4.1.3 | http://yoast.com/wordpress/google-analytics/
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount','UA-20810961-1']);
+	_gaq.push(['_trackPageview'],['_trackPageLoadTime']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	//]]></script>
+<script type='text/javascript' src='http://hiscotty.com/wordpress/wp-includes/js/l10n.js?ver=20101110'></script>
+<script type='text/javascript' src='http://hiscotty.com/wordpress/wp-includes/js/comment-reply.js?ver=20090102'></script>
+<script type='text/javascript' src='http://hiscotty.com/wordpress/wp-includes/js/jquery/jquery.js?ver=1.6.1'></script>
+<link rel='EditURI' type='application/rsd+xml' title='RSD' href='http://hiscotty.com/wordpress/xmlrpc.php?rsd' />
+<link rel='wlwmanifest' type='application/wlwmanifest+xml' href='http://hiscotty.com/wordpress/wp-includes/wlwmanifest.xml' /> 
+<meta name='generator' content='WordPress 3.2.1' />
+<script type='text/javascript'>AC_FL_RunContent = 0;</script><script type='text/javascript' src='http://hiscotty.com/wordpress/wp-content/plugins/dynamic-headers/AC_RunActiveContent.js'></script><link rel='stylesheet' type='text/css' href='http://hiscotty.com/wordpress/wp-content/plugins/social-media-widget/social_widget.css' />
+<!-- BEGIN Hackadelic Sliding Notes 1.6.5 -->
+<style type='text/css'>
+.concealed { display: none }
+.block { display: block }
+</style>
+<!-- END Hackadelic Sliding Notes 1.6.5 -->
+</head>
+
+<body class='home page page-id-2 page-template-default'>
+<div id='wrapper' class='hfeed'>
+	<div id='header'>
+		<div id='masthead'>
+			<div id='branding' role='banner'>
+								<h1 id='site-title'>
+					<span>
+						<a href='http://hiscotty.com/' title='Hi Scotty' rel='home'>Hi Scotty</a>
+					</span>
+				</h1>
+				<div id='site-description'>&#8230;Scott Who?</div>
+
+										<img src='http://hiscotty.com/wordpress/wp-content/uploads/2011/01/Header.png' width='940' height='198' alt='' />
+								</div><!-- #branding -->
+
+			<div id='access' role='navigation'>
+			  				<div class='skip-link screen-reader-text'><a href='#content' title='Skip to content'>Skip to content</a></div>
+								<div class='menu-header'><ul id='menu-home' class='menu'><li id='menu-item-40' class='menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2 current_page_item menu-item-40'><a href='http://hiscotty.com/'>I&#8217;m Scott</a></li>
+<li id='menu-item-108' class='menu-item menu-item-type-custom menu-item-object-custom menu-item-108'><a title='LinkedIn Résumé' href='/resume'>Résumé</a></li>
+<li id='menu-item-42' class='menu-item menu-item-type-custom menu-item-object-custom menu-item-42'><a title='Need a smart programmer who gets things done?' href='/CV'>StackOverflow CV</a></li>
+<li id='menu-item-51' class='menu-item menu-item-type-post_type menu-item-object-page menu-item-51'><a href='http://hiscotty.com/what-i-look-for-in-a-great-company/'>What I Look for in a Great Company</a></li>
+<li id='menu-item-90' class='menu-item menu-item-type-post_type menu-item-object-page menu-item-90'><a href='http://hiscotty.com/contact/'>Contact</a></li>
+</ul></div>			</div><!-- #access -->
+		</div><!-- #masthead -->
+	</div><!-- #header -->
+
+	<div id='main'>
+
+		<div id='container'>
+			<div id='content' role='main'>
+
+			
+
+				<div id='post-2' class='post-2 page type-page status-publish hentry'>
+											<h2 class='entry-title'>I&#8217;m Scott</h2>
+					
+					<div class='entry-content'>
+						<p>I am a geek.</p>
+<p>A self-motivated geek.</p>
+<p>A self-motivated geek who lives by the old adage of &#8216;Work Smart. Not Hard&#8217;&#8230;</p>
+<p>&#8230;And some other clichés.</p>
+<hr />
+<p>I am a .NET developer from Newport Coast, CA.  I like working with companies which are forward-thinking and challenging.  The following lists some examples of technologies I enjoy using:</p>
+<ul>
+<li><a href='http://www.asp.net/mvc' onclick='javascript:_gaq.push(['_trackEvent','outbound-article','http://www.asp.net']);' target='_blank'>ASP.NET MVC</a></li>
+<li><a href='http://www.nunit.org/' onclick='javascript:_gaq.push(['_trackEvent','outbound-article','http://www.nunit.org']);' target='_blank'>NUnit</a></li>
+<li><a href='https://www.packtpub.com/nhibernate-3-0-cookbook/book' onclick='javascript:_gaq.push(['_trackEvent','outbound-article','http://www.packtpub.com']);' target='_blank'>NHibernate</a></li>
+<li><a href='http://www.fogcreek.com/' onclick='javascript:_gaq.push(['_trackEvent','outbound-article','http://www.fogcreek.com']);' target='_blank'>FogBugz/Kiln</a></li>
+</ul>
+<p>You can check out my qualifications by referring to my <a href='http://hiscotty.com/resume' >résumé</a> or my <a href='http://hiscotty.com/CV' >CV</a> for an extended introduction.</p>
+																	</div><!-- .entry-content -->
+				</div><!-- #post-## -->
+
+				
+			<div id='comments'>
+
+
+	<p class='nocomments'>Comments are closed.</p>
+
+
+								
+</div><!-- #comments -->
+
+
+			</div><!-- #content -->
+		</div><!-- #container -->
+
+
+		<div id='primary' class='widget-area' role='complementary'>
+			<ul class='xoxo'>
+
+<li id='social-widget-3' class='widget-container Social_Widget'><h3 class='widget-title'>Swing by and say hi</h3><div class='socialmedia-buttons smw_left'><p>If you don't, there's a good chance I might develop a stutter. Puh-puh-puh-please don't do this to me.</p>
+<a href='/resume'  ><img  src='http://hiscotty.com/wordpress/wp-content/plugins/social-media-widget/images/default/64/linkedin.png' alt='Follow me on LinkedIn' title='Follow me on LinkedIn'  style='opacity: 0.8; -moz-opacity: 0.8;' class='fade' /></a></div></li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+
+		<div id='secondary' class='widget-area' role='complementary'>
+			<ul class='xoxo'>
+				<li id='text-3' class='widget-container widget_text'>			<div class='textwidget'><a href='http://hiscotty.com/CV'>
+<img src='http://careers.stackoverflow.com/Content/Img/logo-careers-2-so.png?31e238' width='208' height='58' alt='Need a smart programmer who gets things done?' title='Need a smart programmer who gets things done?'>
+</a>
+<a href='http://stackoverflow.com/users/173957/scoarescoare'>
+<img src='http://stackoverflow.com/users/flair/173957.png?theme=dark' width='208' height='58' alt='Stack Overflow profile for scoarescoare at Stack Overflow, Q&amp;A for professional and enthusiast programmers' title='Stack Overflow profile for scoarescoare at Stack Overflow, Q&amp;A for professional and enthusiast programmers'>
+</a>
+</div>
+		</li>			</ul>
+		</div><!-- #secondary .widget-area -->
+
+	</div><!-- #main -->
+
+	<div id='footer' role='contentinfo'>
+		<div id='colophon'>
+
+
+
+			<div id='site-info'>
+				<a href='http://hiscotty.com/' title='Hi Scotty' rel='home'>
+					Hi Scotty				</a>
+			</div><!-- #site-info -->
+
+			<div id='site-generator'>
+								<a href='http://wordpress.org/' title='Semantic Personal Publishing Platform' rel='generator'>Proudly powered by WordPress.</a>
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+</body>
+</html>
+";
+
+			#endregion
+
 		}
 
 		[TestCase("rssOnly", "http://olivewildly.wordpress.com/feed/")]
-		public void FeedFinderGetsFeedWhenOnlyRSSPresent(string html, string expectedFeedUrl)
+		[TestCase("noFeed", null)]
+		public void FeedFinderFindsFeed(string html, string expectedFeedUrl)
 		{
 			var actualFeedLink = _feedFinder.GetFeedUrl(_htmlExamples[html]);
 			Assert.That(actualFeedLink, Is.EqualTo(expectedFeedUrl));

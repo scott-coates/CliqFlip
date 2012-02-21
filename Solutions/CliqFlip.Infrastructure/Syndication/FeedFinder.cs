@@ -22,14 +22,17 @@ namespace CliqFlip.Infrastructure.Syndication
 
 			HtmlAttribute feedUrl = typeAttributes
 				.FirstOrDefault(x =>
-				                	{
-				                		string value = x.Value.ToLower();
-				                		if (value.Contains("rss") || value.Contains("atom"))
-				                		{
-				                			return true;
-				                		}
-				                		return false;
-				                	});
+									{
+										if (x.Value != null)
+										{
+											string value = x.Value.ToLower();
+											if (value.Contains("rss") || value.Contains("atom"))
+											{
+												return true;
+											}
+										}
+										return false;
+									});
 
 			if (feedUrl != null)
 			{
