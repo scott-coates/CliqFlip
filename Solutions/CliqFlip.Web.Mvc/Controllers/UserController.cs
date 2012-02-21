@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
@@ -215,7 +216,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			catch (RulesException rex)
 			{
 				retVal.is_error = true;
-				retVal.error_text = rex.Message;
+				retVal.error_text = rex.Errors.First().ErrorMessage;
 			}
 
 			return new JsonNetResult(retVal);

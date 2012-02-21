@@ -141,6 +141,7 @@
     <Compile Include="IO\Interfaces\IFileUploadService.cs" />
     <Compile Include="Migrator\ConditionalMigration.cs" />
     <Compile Include="Migrator\MigrationConstants.cs" />
+    <Compile Include="Migrator\Migrations\__634653560469431604_AddProfileImage.cs" />
     <Compile Include="Migrator\Migrations\__634652064167379291_AddProfileImage.cs" />
     <Compile Include="Migrator\Migrations\__634630300299264851_CreateUserTable.cs" />
     <Compile Include="Migrator\Migrations\__634630303075533644_CreateInterestTable.cs" />

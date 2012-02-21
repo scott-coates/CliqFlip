@@ -96,6 +96,6 @@ function InitYouTubeUsername(saveUrl) {
 
 function InitWebsiteUrl(saveUrl) {
 	if (_canEdit) {
-		$("#websiteText").eip(saveUrl, { select_text: true, form_type: "text" });
+		$("#websiteUrlText").eip(saveUrl, { select_text: true, form_type: "text" });
 	}
 }

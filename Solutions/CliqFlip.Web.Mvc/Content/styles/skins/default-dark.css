@@ -1164,7 +1164,7 @@ display: block; float: left;
 	font-size: xx-large;
 }
 
-.twitterUsernameText, .youTubeUsernameText
+.twitterUsernameText, .youTubeUsernameText, .websiteUrlText
 {
 	background-color: white;
     border-style: solid;
@@ -1174,13 +1174,21 @@ display: block; float: left;
     padding: 0 !important;
 }
 
-#twitterUsername .jeip-editor span, #youTubeUsername .jeip-editor span
+#twitterUsername .jeip-editor span, #youTubeUsername .jeip-editor span, #websiteUrl .jeip-editor span
 {
     padding-top: 10px;
     width: 155px;
 }
 
 #youTubeUsername img
+{
+    height: 30px;
+    padding-left: 8px;
+    padding-top: 9px;
+    width: 30px;
+}
+
+#websiteUrl img
 {
     height: 30px;
     padding-left: 8px;
