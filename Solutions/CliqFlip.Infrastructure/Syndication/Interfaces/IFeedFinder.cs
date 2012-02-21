@@ -7,6 +7,6 @@ namespace CliqFlip.Infrastructure.Syndication.Interfaces
 {
 	public interface IFeedFinder
 	{
-		string GetFeedUrl(string siteUrl);
+		string GetFeedUrl(string html);
 	}
 }
