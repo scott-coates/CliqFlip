@@ -11,13 +11,15 @@ namespace CliqFlip.Domain.Contracts.Tasks
 	{
 		IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IList<string> interestAliases );
 
-        UserDto Create(UserDto profileToCreate);
+        User Create(UserDto profileToCreate);
 
-        bool ValidateUser(string username, string password);
+		void Login(User user, bool stayLoggedIn);
+		bool Login(string username, string password, bool stayLoggedIn);
 
 		User GetUser(string username);
 
 		void SaveProfileImage(User user, HttpPostedFileBase profileImage);
 		void SaveWebsite(User user, string siteUrl);
+		void Logout(string name);
 	}
 }

@@ -22,16 +22,14 @@ namespace CliqFlip.Web.Mvc.Controllers
 	public class UserController : Controller
 	{
 		private readonly IPrincipal _principal;
-		private readonly IUserAuthentication _userAuth;
 		private readonly IUserProfileQuery _userProfileQuery;
 		private readonly IUserTasks _userTasks;
 
-		public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IUserAuthentication userAuth)
+		public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal)
 		{
 			_userTasks = profileTasks;
 			_userProfileQuery = userProfileQuery;
 			_principal = principal;
-			_userAuth = userAuth;
 		}
 
 		public ActionResult Create()
@@ -58,19 +56,21 @@ namespace CliqFlip.Web.Mvc.Controllers
 					profileToCreate.InterestDtos.Add(userInterest);
 				}
 
-				UserDto newProfile = _userTasks.Create(profileToCreate);
+				User user = _userTasks.Create(profileToCreate);
 
 				//There was a problem creating the account
 				//Username/Email already exists
-				if (newProfile == null)
+				if (user == null)
 				{
 					//TODO: don't return null - throw exception 
 					return View(profile);
 				}
 
-				_userAuth.Login(newProfile.Username, false);
+				_userTasks.Login(user, false);
+
 				return RedirectToAction("Index", "User", new { username = profile.Username });
 			}
+
 			//TODO: Implement PRG pattern for post forms
 			return View(profile);
 		}
@@ -85,9 +85,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				if (_userTasks.ValidateUser(model.Username, model.Password))
+				if (_userTasks.Login(model.Username, model.Password, model.LogMeIn))
 				{
-					_userAuth.Login(model.Username, model.LogMeIn);
 					return Content("Awesome! You are now logged in.");
 				}
 			}
@@ -97,10 +96,9 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 		public ActionResult Logout()
 		{
-			_userAuth.Logout();
+			_userTasks.Logout(_principal.Identity.Name);
 			return Redirect("~");
 		}
-
 
 		[Authorize]
 		[HttpPost]

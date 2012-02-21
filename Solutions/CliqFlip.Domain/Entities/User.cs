@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CliqFlip.Domain.ValueObjects;
 using Iesi.Collections.Generic;
@@ -40,6 +41,8 @@ namespace CliqFlip.Domain.Entities
 		public virtual string Headline { get; set; }
 		public virtual string TwitterUsername { get; set; }
 		public virtual string YouTubeUsername { get; set; }
+		public virtual DateTime CreateDate { get; set; }
+		public virtual DateTime LastActivity { get; set; }
 
 		public User()
 		{
@@ -102,6 +105,16 @@ namespace CliqFlip.Domain.Entities
 		public virtual void UpdateWebsite(string siteUrl, string feedUrl)
 		{
 			_userWebsite = new UserWebsite(siteUrl, feedUrl);
+		}
+
+		public virtual void UpdateLastActivity()
+		{
+			LastActivity = DateTime.UtcNow;
+		}
+
+		public virtual void UpdateCreateDate()
+		{
+			CreateDate = DateTime.UtcNow;
 		}
 	}
 }

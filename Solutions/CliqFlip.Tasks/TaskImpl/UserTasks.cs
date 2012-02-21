@@ -7,6 +7,7 @@ using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Exceptions;
+using CliqFlip.Infrastructure.Authentication.Interfaces;
 using CliqFlip.Infrastructure.Common;
 using CliqFlip.Infrastructure.IO;
 using CliqFlip.Infrastructure.IO.Interfaces;
@@ -28,8 +29,9 @@ namespace CliqFlip.Tasks.TaskImpl
 		private readonly IFileUploadService _fileUploadService;
 		private readonly IHtmlService _htmlService;
 		private readonly IFeedFinder _feedFinder;
+		private readonly IUserAuthentication _userAuthentication;
 
-		public UserTasks(ILinqRepository<User> repository, IInterestTasks interestTasks, IImageProcessor imageProcessor, IFileUploadService fileUploadService, IHtmlService htmlService, IFeedFinder feedFinder)
+		public UserTasks(ILinqRepository<User> repository, IInterestTasks interestTasks, IImageProcessor imageProcessor, IFileUploadService fileUploadService, IHtmlService htmlService, IFeedFinder feedFinder, IUserAuthentication userAuthentication)
 		{
 			_repository = repository;
 			_interestTasks = interestTasks;
@@ -37,6 +39,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			_fileUploadService = fileUploadService;
 			_htmlService = htmlService;
 			_feedFinder = feedFinder;
+			_userAuthentication = userAuthentication;
 		}
 
 		#region IUserTasks Members
@@ -72,7 +75,7 @@ namespace CliqFlip.Tasks.TaskImpl
 											}).OrderByDescending(x => x.MatchCount).ToList();
 		}
 
-		public UserDto Create(UserDto userToCreate)
+		public User Create(UserDto userToCreate)
 		{
 			var withMatchingNameOrEmail = new AdHoc<User>(x => x.Username == userToCreate.Username || x.Email == userToCreate.Email);
 
@@ -100,22 +103,34 @@ namespace CliqFlip.Tasks.TaskImpl
 			user.Bio = "I ♥ " + string.Join(", ", user.Interests.Select(x => x.Interest.Name));
 			user.Headline = "I am " + user.Username + ", hear me roar!";
 
+			user.UpdateCreateDate();
+
 			_repository.Save(user);
-			return new UserDto { Username = user.Username, Email = user.Email, Password = user.Password };
+			return user;
+		}
+
+		public void Login(User user, bool stayLoggedIn)
+		{
+			user.UpdateLastActivity();
+			_userAuthentication.Login(user.Username, stayLoggedIn);
 		}
 
 
-		public bool ValidateUser(string username, string password)
+		public bool Login(string username, string password, bool stayLoggedIn)
 		{
 			var withMatchingNameOrEmail = new AdHoc<User>(x => x.Username == username || x.Email == username);
-			User user = _repository.FindOne(withMatchingNameOrEmail);
+			var user = _repository.FindOne(withMatchingNameOrEmail);
 
 			if (user != null)
 			{
 				//use the users salt and provided password to see if the password match
 				string expetectedPassword = PasswordHelper.GetPasswordHash(password, user.Salt);
-				return user.Password == expetectedPassword;
+				if (user.Password == expetectedPassword)
+				{
+					Login(user, stayLoggedIn);
+				}
 			}
+
 			return false;
 		}
 
@@ -133,12 +148,24 @@ namespace CliqFlip.Tasks.TaskImpl
 			string html = _htmlService.GetHtmlFromUrl(siteUrl);
 			string feedUrl = _feedFinder.GetFeedUrl(html);
 
-			if(string.IsNullOrWhiteSpace(feedUrl))
+			if (string.IsNullOrWhiteSpace(feedUrl))
 			{
 				feedUrl = null;
 			}
 
-			user.UpdateWebsite(siteUrl,feedUrl);
+			user.UpdateWebsite(siteUrl, feedUrl);
+		}
+
+		public void Logout(string name)
+		{
+			var user = GetUser(name);
+			
+			if(user != null)
+			{
+				user.UpdateLastActivity();
+			}
+
+			_userAuthentication.Logout();
 		}
 
 		public void SaveProfileImage(User user, HttpPostedFileBase profileImage)
