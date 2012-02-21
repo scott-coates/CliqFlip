@@ -94,7 +94,7 @@ namespace CliqFlip.Infrastructure.Images
 					retVal = new MemoryStream();
 					using (var encoderParameters = new EncoderParameters(1))
 					{
-						encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 95L);
+						encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 90L);
 
 						newGraphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
 						newGraphic.SmoothingMode = SmoothingMode.HighQuality;
