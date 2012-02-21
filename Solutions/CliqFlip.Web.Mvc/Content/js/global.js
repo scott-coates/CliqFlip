@@ -18,4 +18,9 @@ function InitLogin() {
     	userLoginContainer.toggle();
     	$("#Username").focus();
     });
+
+    $("#close-login").click(function (event) {
+    	event.preventDefault();
+    	userLoginContainer.hide();
+    });
 }

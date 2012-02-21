@@ -1293,6 +1293,11 @@ color: white;
             display: none;
         }
         
+        .login-close {
+        	height: 15px;
+        	display: block;
+        	float: right;
+        }
         
         /*========================*/
         /*===  11.1 Layout file - navigation
