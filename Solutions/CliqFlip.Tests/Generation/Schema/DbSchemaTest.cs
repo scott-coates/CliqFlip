@@ -17,6 +17,7 @@ namespace CliqFlip.Tests.Generation.Schema
 				new[] { "CliqFlip.Infrastructure.dll" },
 				new AutoPersistenceModelGenerator().Generate(),
 				"Configuration\\NHibernate.config");
+
 			new SchemaExport(cfg).Create(true, false);
 		}
 	}
