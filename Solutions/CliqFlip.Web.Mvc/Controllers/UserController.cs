@@ -9,6 +9,7 @@ using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Exceptions;
 using CliqFlip.Domain.ValueObjects;
 using CliqFlip.Infrastructure.Authentication;
+using CliqFlip.Infrastructure.Authentication.Interfaces;
 using CliqFlip.Web.Mvc.Extensions.Exceptions;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Jeip;

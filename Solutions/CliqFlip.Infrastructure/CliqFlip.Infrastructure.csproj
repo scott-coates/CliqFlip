@@ -129,7 +129,7 @@
     <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Authentication\IUserAuthentication.cs" />
+    <Compile Include="Authentication\Interfaces\IUserAuthentication.cs" />
     <Compile Include="Authentication\UserAuthentication.cs" />
     <Compile Include="Common\PathHelper.cs" />
     <Compile Include="Images\ImageProcessResult.cs" />
