@@ -118,6 +118,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public bool Login(string username, string password, bool stayLoggedIn)
 		{
+			bool retVal = false;
 			var withMatchingNameOrEmail = new AdHoc<User>(x => x.Username == username || x.Email == username);
 			var user = _repository.FindOne(withMatchingNameOrEmail);
 
@@ -128,10 +129,11 @@ namespace CliqFlip.Tasks.TaskImpl
 				if (user.Password == expetectedPassword)
 				{
 					Login(user, stayLoggedIn);
+					retVal = true;
 				}
 			}
 
-			return false;
+			return retVal;
 		}
 
 
@@ -159,8 +161,8 @@ namespace CliqFlip.Tasks.TaskImpl
 		public void Logout(string name)
 		{
 			var user = GetUser(name);
-			
-			if(user != null)
+
+			if (user != null)
 			{
 				user.UpdateLastActivity();
 			}
