@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Migrator.Framework;
@@ -13,7 +14,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 		{
 			Database.AddColumn("Users", new Column("CreateDate", System.Data.DbType.DateTime, ColumnProperty.Null));
 			Database.AddColumn("Users", new Column("LastActivity", System.Data.DbType.DateTime, ColumnProperty.Null));
-
+			Database.Update("Users", new[] { "CreateDate", "LastActivity" }, new[] { DateTime.UtcNow.ToString(CultureInfo.InvariantCulture), DateTime.UtcNow.ToString(CultureInfo.InvariantCulture) });
 		}
 
 		public override void Down()
