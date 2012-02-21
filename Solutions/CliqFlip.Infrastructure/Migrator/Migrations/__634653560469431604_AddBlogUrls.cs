@@ -7,7 +7,7 @@ using Migrator.Framework;
 namespace CliqFlip.Infrastructure.Migrator.Migrations
 {
 	[Migration(634653560469431604)]
-	public class __634653560469431604_AddBlog : Migration
+	public class __634653560469431604_AddBlogUrls : Migration
     {
         public override void Up()
         {
