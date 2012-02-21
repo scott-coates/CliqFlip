@@ -15,7 +15,7 @@ function InitLogin() {
 
 		// ESCAPE key pressed
 		if (event.keyCode == 27) {
-			userLoginContainer.toggle();
+			$("#user-login").click();
 		}
 	});
 
@@ -26,8 +26,7 @@ function InitLogin() {
 		$("#Username").focus();
 	});
 
-	$("#close-login").click(function(event) {
-		event.preventDefault();
-		userLoginContainer.hide();
+	$("#close-login").click(function (event) {
+		$("#user-login").click();
 	});
 }
