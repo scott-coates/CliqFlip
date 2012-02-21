@@ -16,11 +16,13 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 		public string Headline { get; set; }
         public string TwitterUsername { get; set; }
         public string YouTubeUsername { get; set; }
+        public string WebsiteUrl { get; set; }
 		public string InterestsJson { get; set; }
 		public string SaveHeadlineUrl { get; set; }
 		public string SaveBioUrl { get; set; }
 		public string SaveMindMapUrl { get; set; }
         public string SaveYouTubeUsernameUrl { get; set; }
+        public string SaveWebsiteUrl { get; set; }
         public string SaveTwitterUsernameUrl { get; set; }
         public string ProfileImageUrl { get; set; }
 		public bool CanEdit { get; set; }

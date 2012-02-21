@@ -12,7 +12,9 @@ using CliqFlip.Infrastructure.IO;
 using CliqFlip.Infrastructure.IO.Interfaces;
 using CliqFlip.Infrastructure.Images;
 using CliqFlip.Infrastructure.Images.Interfaces;
+using CliqFlip.Infrastructure.Syndication.Interfaces;
 using CliqFlip.Infrastructure.Validation;
+using CliqFlip.Infrastructure.Web.Interfaces;
 using SharpArch.Domain.PersistenceSupport;
 using SharpArch.Domain.Specifications;
 
@@ -24,13 +26,17 @@ namespace CliqFlip.Tasks.TaskImpl
 		private readonly IInterestTasks _interestTasks;
 		private readonly ILinqRepository<User> _repository;
 		private readonly IFileUploadService _fileUploadService;
+		private readonly IHtmlService _htmlService;
+		private readonly IFeedFinder _feedFinder;
 
-		public UserTasks(ILinqRepository<User> repository, IInterestTasks interestTasks, IImageProcessor imageProcessor, IFileUploadService fileUploadService)
+		public UserTasks(ILinqRepository<User> repository, IInterestTasks interestTasks, IImageProcessor imageProcessor, IFileUploadService fileUploadService, IHtmlService htmlService, IFeedFinder feedFinder)
 		{
 			_repository = repository;
 			_interestTasks = interestTasks;
 			_imageProcessor = imageProcessor;
 			_fileUploadService = fileUploadService;
+			_htmlService = htmlService;
+			_feedFinder = feedFinder;
 		}
 
 		#region IUserTasks Members
@@ -124,7 +130,15 @@ namespace CliqFlip.Tasks.TaskImpl
 		{
 			if (string.IsNullOrWhiteSpace(siteUrl)) throw new ArgumentNullException("siteUrl");
 			if (!UrlValidation.IsValidUrl(siteUrl)) throw new RulesException("SiteUrl", "Invalid URL");
-			
+			string html = _htmlService.GetHtmlFromUrl(siteUrl);
+			string feedUrl = _feedFinder.GetFeedUrl(html);
+
+			if(string.IsNullOrWhiteSpace(feedUrl))
+			{
+				feedUrl = null;
+			}
+
+			user.UpdateWebsite(siteUrl,feedUrl);
 		}
 
 		public void SaveProfileImage(User user, HttpPostedFileBase profileImage)

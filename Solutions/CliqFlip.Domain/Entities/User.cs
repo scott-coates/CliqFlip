@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.ValueObjects;
 using Iesi.Collections.Generic;
 using SharpArch.Domain.DomainModel;
@@ -10,8 +9,9 @@ namespace CliqFlip.Domain.Entities
 {
 	public class User : Entity
 	{
-		private readonly nh.ISet<UserInterest> _interests;
+		private readonly Iesi.Collections.Generic.ISet<UserInterest> _interests;
 		private UserImage _profileImage;
+		private UserWebsite _userWebsite;
 
 		public virtual IEnumerable<UserInterest> Interests
 		{
@@ -23,6 +23,13 @@ namespace CliqFlip.Domain.Entities
 			//http://stackoverflow.com/a/685026/173957
 			get { return _profileImage ?? new UserImage(null, null, null, null); }
 			set { _profileImage = value; }
+		}
+
+		public virtual UserWebsite UserWebsite
+		{
+			//http://stackoverflow.com/a/685026/173957
+			get { return _userWebsite ?? new UserWebsite(null, null); }
+			set { _userWebsite = value; }
 		}
 
 		public virtual string Username { get; set; }
@@ -62,7 +69,7 @@ namespace CliqFlip.Domain.Entities
 
 		public virtual void UpdateInterest(int userInterestId, UserInterestOption userInterestOption)
 		{
-			var userInterest = _interests.First(x => x.Id == userInterestId);
+			UserInterest userInterest = _interests.First(x => x.Id == userInterestId);
 			userInterest.Options = userInterestOption;
 		}
 
@@ -79,7 +86,6 @@ namespace CliqFlip.Domain.Entities
 		public virtual void UpdateTwitterUsername(string twitterUsername)
 		{
 			TwitterUsername = !string.IsNullOrWhiteSpace(twitterUsername) ? twitterUsername.Trim() : null;
-
 		}
 
 		public virtual void UpdateYouTubeUsername(string youTubeUsername)
@@ -91,6 +97,11 @@ namespace CliqFlip.Domain.Entities
 		public virtual void UpdateProfileImage(string originalFilename, string thumbFilename, string mediumFilename, string fullFilename)
 		{
 			_profileImage = new UserImage(originalFilename, thumbFilename, mediumFilename, fullFilename);
+		}
+
+		public virtual void UpdateWebsite(string siteUrl, string feedUrl)
+		{
+			_userWebsite = new UserWebsite(siteUrl, feedUrl);
 		}
 	}
 }

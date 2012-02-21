@@ -59,7 +59,7 @@ function MindMapSave(mindMapObj) {
 		passion: mindMapObj.GetPassion()
 	};
 
-	$.post(_mindMapSaveUrl, interest, function(data) {
+	$.post(_mindMapSaveUrl, interest, function (data) {
 		var jqObj = $("#saveMindMapText");
 		cliqFlip.Ui.Blink(jqObj);
 	}, "json");
@@ -83,13 +83,19 @@ function InitBio(saveUrl) {
 }
 
 function InitTwitterUsername(saveUrl) {
-    if (_canEdit) {
-        $("#twitterUsernameText").eip(saveUrl, { select_text: true, form_type: "text" });
-    }
+	if (_canEdit) {
+		$("#twitterUsernameText").eip(saveUrl, { select_text: true, form_type: "text" });
+	}
 }
 
 function InitYouTubeUsername(saveUrl) {
-    if (_canEdit) {
-        $("#youTubeUsernameText").eip(saveUrl, { select_text: true, form_type: "text" });
-    }
+	if (_canEdit) {
+		$("#youTubeUsernameText").eip(saveUrl, { select_text: true, form_type: "text" });
+	}
+}
+
+function InitWebsiteUrl(saveUrl) {
+	if (_canEdit) {
+		$("#websiteText").eip(saveUrl, { select_text: true, form_type: "text" });
+	}
 }

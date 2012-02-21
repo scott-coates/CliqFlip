@@ -197,6 +197,30 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return new JsonNetResult(retVal);
 		}
 
+		[Authorize]
+		[HttpPost]
+		[Transaction]
+		public ActionResult SaveWebiste(JeipSaveTextViewModel saveTextViewModel)
+		{
+			//get user and save it
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+			var retVal = new JeipSaveResponseViewModel();
+
+			try
+			{
+				_userTasks.SaveWebsite(user, saveTextViewModel.New_Value);
+				retVal.is_error = false;
+				retVal.html = saveTextViewModel.New_Value;
+			}
+			catch (RulesException rex)
+			{
+				retVal.is_error = true;
+				retVal.error_text = rex.Message;
+			}
+
+			return new JsonNetResult(retVal);
+		}
+
 		[Transaction]
 		public ActionResult Index(string username)
 		{
@@ -206,6 +230,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			user.SaveBioUrl = "\"" + Url.Action("SaveBio", "User") + "\"";
 			user.SaveTwitterUsernameUrl = "\"" + Url.Action("SaveTwitterUsername", "User") + "\"";
 			user.SaveYouTubeUsernameUrl = "\"" + Url.Action("SaveYouTubeUsername", "User") + "\"";
+			user.SaveWebsiteUrl = "\"" + Url.Action("SaveWebiste", "User") + "\"";
 			user.CanEdit = _principal.Identity.Name.ToLower() == username.ToLower();
 
 			return View(user);
