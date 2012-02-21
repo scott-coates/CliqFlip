@@ -76,6 +76,17 @@
 			<div class="sidebar_item recent-posts">
 				<strong>Link CliqFlip to your other social networks</strong>
 				<ul>
+                    @*<li>
+                        <fb:login-button scope="email, offline_access, user_website, user_status, read_stream">
+                          Link
+                        </fb:login-button>
+                    </li>*@
+                    <li>
+						<div id="facebook">
+							<img src="https://si0.twimg.com/a/1329332580/images/logos/twitter_newbird_blue.png" alt="Facebook" />
+                            <a id="facebook-connect" href="#">Link Facebook</a>
+						</div>
+					</li>
 					<li>
 						<div id="twitterUsername">
 							<img src="https://si0.twimg.com/a/1329332580/images/logos/twitter_newbird_blue.png"
@@ -89,7 +100,7 @@
 							<p id="youTubeUsernameText" class="youTubeUsernameText">@Model.YouTubeUsername</p>
 						</div>
 					</li>
-						<li>
+					<li>
 						<div id="websiteUrl">
 							<img src="http://blog.zobristinc.com/wp-content/themes/dfblog/images/icons/RSS_Logo.png" alt="Website" />
 							<p id="websiteUrlText" class="websiteUrlText">@Model.WebsiteUrl</p>
@@ -148,6 +159,7 @@
 	<div class="clear">
 	</div>
 </div>
+<div id="fb-root"></div>
 @section scripts
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.json.js")"> </script>
@@ -166,6 +178,45 @@
 			InitTwitterUsername(@(Html.Raw(Model.SaveTwitterUsernameUrl)));
 			InitYouTubeUsername(@(Html.Raw(Model.SaveYouTubeUsernameUrl)));
 			InitWebsiteUrl(@(Html.Raw(Model.SaveWebsiteUrl)));
+
+            $("#facebook-connect").click(function (event) {
+                // Additional initialization code here
+                FB.login(function (response) {
+                    if (response.authResponse) {
+                        console.log('Welcome!  Fetching your information.... ');
+                        FB.api('/me', function (response) {
+                            console.log('Good to see you, ' + response.name + '.');
+                            FB.logout(function (response) {
+                                console.log('Logged out.');
+                            });
+                        });
+                    } else {
+                        console.log('User cancelled login or did not fully authorize.');
+                    }
+                }, { scope: 'email, offline_access, user_website, user_status, read_stream' });
+            });
 		});
-	</script>
+    </script>
+    <script type="text/javascript">
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '195112700588724', // App ID
+                //channelUrl: '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
+                status: true, // check login status
+                cookie: true, // enable cookies to allow the server to access the session
+                xfbml: true  // parse XFBML
+            });
+
+            
+        };
+
+        // Load the SDK Asynchronously
+        (function (d) {
+            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement('script'); js.id = id; js.async = true;
+            js.src = "//connect.facebook.net/en_US/all.js";
+            ref.parentNode.insertBefore(js, ref);
+        } (document));
+    </script>
 }

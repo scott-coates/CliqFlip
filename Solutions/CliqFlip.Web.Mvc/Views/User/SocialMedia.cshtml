@@ -5,6 +5,7 @@
 		body { background-color: #D1E1E7; }
 	</style>
     @*<link href="http://tweet.seaofclouds.com/jquery.tweet.css" type="text/css" rel="Stylesheet" />*@
+    <link href="http://www.zazar.net/developers/jquery/zrssfeed/jquery.zrssfeed.css" rel="stylesheet" type="text/css" />
 }
 <div class="divider">
 </div>
@@ -63,6 +64,7 @@
                             Blog Title
                         </strong>
                         <div id="blog" class="social-media-content">
+                            @Html.DisplayBlogFeed()
                         </div>
 					</div>
                 </div>
@@ -73,13 +75,17 @@
 	<div class="clear">
 	</div>
 </div>
+<div id="fb-root"></div>
 
 @section scripts
 {
+    <script type="text/javascript" src="http://www.zazar.net/developers/jquery/zrssfeed/jquery.zrssfeed.min.js"></script>
     <script type="text/javascript" src="@Url.Content("/Content/js/user/socialmedia.js")"> </script>
     <script type='text/javascript'>
         jQuery(function ($) {
             initYouTube("@Model.YouTubeUsername");
+            $("#blog-container").rssfeed('@Model.WebsiteFeedUrl', {                limit: 5
+        	});
         });
     </script>
 }
