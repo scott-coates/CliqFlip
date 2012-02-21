@@ -24,15 +24,16 @@ namespace CliqFlip.Web.Mvc.Queries
 			if (user != null)
 			{
 				retVal = new UserProfileViewModel
-				         	{
-				         		Username = user.Username,
-				         		Id = user.Id,
-				         		Bio = user.Bio,
-				         		Headline = user.Headline,
-                                TwitterUsername = user.TwitterUsername,
-                                YouTubeUsername = user.YouTubeUsername,
+							{
+								Username = user.Username,
+								Id = user.Id,
+								Bio = user.Bio,
+								Headline = user.Headline,
+								TwitterUsername = user.TwitterUsername,
+								YouTubeUsername = user.YouTubeUsername,
+								WebsiteUrl = user.UserWebsite.SiteUrl,
 								ProfileImageUrl = user.ProfileImage.MediumFileName
-				         	};
+							};
 
 				List<UserInterestDto> interests =
 					user.Interests.Select(interest => new UserInterestDto(interest.Id, interest.Interest.Name.Replace(' ', '\n'), interest.Interest.Slug, null, null, interest.Options.Passion, interest.Options.XAxis, interest.Options.YAxis)).
