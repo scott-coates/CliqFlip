@@ -132,6 +132,7 @@
     <Compile Include="Authentication\Interfaces\IUserAuthentication.cs" />
     <Compile Include="Authentication\UserAuthentication.cs" />
     <Compile Include="Common\PathHelper.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Images\ImageProcessResult.cs" />
     <Compile Include="Images\Interfaces\IImageProcessor.cs" />
     <Compile Include="Images\ImageProcessor.cs" />
