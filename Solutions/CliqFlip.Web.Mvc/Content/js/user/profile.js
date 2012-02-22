@@ -99,3 +99,19 @@ function InitWebsiteUrl(saveUrl) {
 		$("#websiteUrlText").eip(saveUrl, { select_text: true, form_type: "text" });
 	}
 }
+
+function InitFacebook() {
+    $("#facebook-connect.editable").click(function (event) {
+        var p = $(this).find("p");
+        FB.login(function (response) {
+            if (response.authResponse) {
+                //send the user id to our app
+                $.post("/User/SaveFacebook", { fbid: response.authResponse.userID }, function () {
+                    p.html("Linked...");
+                });
+            } else {
+                //TODO: tell the user something wen't wrong
+            }
+        });
+    });
+}

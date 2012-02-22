@@ -113,6 +113,19 @@ function createYouTubeAccountInfoContainer(username) {
             "</ul>");
 }
 
+function initBlogFeed(url) {
+    $("#blog-container").rssfeed(url, {
+        limit: 5,
+        linktarget: "_blank"
+    },
+    function (content) {
+        //appends the link to blog on the header
+        //instead of along with the content
+        var link = content.find("div.rssHeader a")[0];
+        content.closest(".social-media").find("strong").append(link);
+    });
+}
+
 function createYouTubePlaylistInfoContainer() {
 
     return $("<ul class='youtube-playlist-info'>" +

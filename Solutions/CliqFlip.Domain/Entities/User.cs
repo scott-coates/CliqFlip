@@ -41,9 +41,9 @@ namespace CliqFlip.Domain.Entities
 		public virtual string Headline { get; set; }
 		public virtual string TwitterUsername { get; set; }
 		public virtual string YouTubeUsername { get; set; }
+        public virtual string FacebookUsername { get; set; }
 		public virtual DateTime CreateDate { get; set; }
 		public virtual DateTime LastActivity { get; set; }
-
 		public User()
 		{
 			_interests = new HashedSet<UserInterest>();
@@ -116,5 +116,10 @@ namespace CliqFlip.Domain.Entities
 		{
 			CreateDate = DateTime.UtcNow;
 		}
-	}
+
+        public virtual void UpdateFacebookUsername(string fbid)
+        {
+            FacebookUsername = !string.IsNullOrWhiteSpace(fbid) ? fbid.Trim() : null;
+        }
+    }
 }

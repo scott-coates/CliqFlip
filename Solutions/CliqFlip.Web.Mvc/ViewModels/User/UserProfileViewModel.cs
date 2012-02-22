@@ -27,7 +27,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
         public string SaveTwitterUsernameUrl { get; set; }
         public string ProfileImageUrl { get; set; }
 		public bool CanEdit { get; set; }
-
+        public string FacebookUsername { get; set; }
 
     }
 }

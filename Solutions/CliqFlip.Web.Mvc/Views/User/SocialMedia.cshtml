@@ -4,8 +4,6 @@
 	<style type="text/css">
 		body { background-color: #D1E1E7; }
 	</style>
-    @*<link href="http://tweet.seaofclouds.com/jquery.tweet.css" type="text/css" rel="Stylesheet" />*@
-    <link href="http://www.zazar.net/developers/jquery/zrssfeed/jquery.zrssfeed.css" rel="stylesheet" type="text/css" />
 }
 <div class="divider">
 </div>
@@ -40,7 +38,7 @@
                             Facebook
                         </strong>
                         <div id="facebook" class="social-media-content">
-                            @*@Facebook.ActivityFeed("http://www.facebook.com/pepsi")*@
+                            @Html.DisplayFacebook()
                         </div>
 					</div>
                     <div class="social-media">
@@ -61,7 +59,7 @@
 					</div>
                     <div class="social-media">
                         <strong>
-                            Blog Title
+                            Blog:
                         </strong>
                         <div id="blog" class="social-media-content">
                             @Html.DisplayBlogFeed()
@@ -84,8 +82,7 @@
     <script type='text/javascript'>
         jQuery(function ($) {
             initYouTube("@Model.YouTubeUsername");
-            $("#blog-container").rssfeed('@Model.WebsiteFeedUrl', {                limit: 5
-        	});
+            initBlogFeed('@Model.WebsiteFeedUrl');
         });
     </script>
 }

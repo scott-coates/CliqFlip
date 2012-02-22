@@ -121,6 +121,7 @@
     </Content>
     <None Include="Configuration\Test\NHibernate.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

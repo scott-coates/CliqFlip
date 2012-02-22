@@ -28,68 +28,52 @@ namespace CliqFlip.Web.Mvc.Extensions.Html
 
         public static MvcHtmlString DisplayYouTube(this HtmlHelper<UserProfileViewModel> htmlHelper)
         {
-            var html = string.Empty;
             if (!String.IsNullOrWhiteSpace(htmlHelper.ViewData.Model.YouTubeUsername))
             {
                 var div = new TagBuilder("div");
                 div.Attributes.Add("id", "youtube-container");
-                html = div.ToString();
+                return new MvcHtmlString(div.ToString());
             }
-            else
-            {
-                var strong = new TagBuilder("strong");
-                strong.SetInnerText("This user is not sharing their youtube videos.");
-                strong.AddCssClass("not-shared");
-                html = strong.ToString();
-            }
-            return MvcHtmlString.Create(html);
+            return htmlHelper.Partial("_NotShared", "This user is not sharing their YouTube videos.");
         }
 
         public static MvcHtmlString DisplayTwitter(this HtmlHelper<UserProfileViewModel> htmlHelper)
         {
 			//TODO: Do we need microsoft.web.helpers.dll anymore?
 
-            var html = string.Empty;
             var username = htmlHelper.ViewData.Model.TwitterUsername;
             if (!String.IsNullOrWhiteSpace(username))
             {
-                html = Twitter.Profile(username,
+                var html = Twitter.Profile(username,
                                 width: 372,
                                 backgroundShellColor: "transparent",
                                 tweetsColor: "black",
                                 tweetsBackgroundColor: "transparent",
                                 tweetsLinksColor: "#008FAE",
                                 shellColor: "black").ToHtmlString();
+                return new MvcHtmlString(html);
             }
-            else
-            {
-                var strong = new TagBuilder("strong");
-                strong.SetInnerText("This user is not sharing their Twitter feed.");
-                strong.AddCssClass("not-shared");
-                html = strong.ToString();
-            }
-            return MvcHtmlString.Create(html);
+            return htmlHelper.Partial("_NotShared", "This user is not sharing their twitter feed.");
         }
 
         public static MvcHtmlString DisplayBlogFeed(this HtmlHelper<UserProfileViewModel> htmlHelper)
         {
-            var html = string.Empty;
             if (!String.IsNullOrWhiteSpace(htmlHelper.ViewData.Model.WebsiteFeedUrl))
             {
                 var div = new TagBuilder("div");
                 div.Attributes.Add("id", "blog-container");
-                html = div.ToString();
+                return MvcHtmlString.Create(div.ToString());
             }
-            else
-            {
-                var strong = new TagBuilder("strong");
-                strong.SetInnerText("This user is not sharing their blog feed.");
-                strong.AddCssClass("not-shared");
-                html = strong.ToString();
-            }
-            return MvcHtmlString.Create(html);
+            return htmlHelper.Partial("_NotShared", "This user is not sharing their blog feed.");
         }
 
+        public static MvcHtmlString DisplayFacebook(this HtmlHelper<UserProfileViewModel> htmlHelper)
+        {
+            if (!String.IsNullOrWhiteSpace(htmlHelper.ViewData.Model.FacebookUsername))
+            {
+                return htmlHelper.Partial("_FacebookLink", htmlHelper.ViewData.Model.FacebookUsername);
+            }
+            return htmlHelper.Partial("_NotShared", "This user is not sharing their facebook page.");
+        }
 	}
-
 }

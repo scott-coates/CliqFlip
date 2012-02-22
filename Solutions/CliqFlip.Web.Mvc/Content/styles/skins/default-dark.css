@@ -1164,7 +1164,7 @@ display: block; float: left;
 	font-size: xx-large;
 }
 
-.twitterUsernameText, .youTubeUsernameText, .websiteUrlText
+.twitterUsernameText, .youTubeUsernameText, .websiteUrlText, .facebookText
 {
 	background-color: white;
     border-style: solid;
@@ -1172,6 +1172,18 @@ display: block; float: left;
     line-height: 39px;
     margin: 0 auto;
     padding: 0 !important;
+}
+
+#facebook-connect img
+{
+     width: 30px;
+     height: 30px;
+     padding-left: 8px;
+     padding-top: 8px;
+}
+#facebook-connect.editable p:hover
+{
+    background-color: #FF9;
 }
 
 #twitterUsername .jeip-editor span, #youTubeUsername .jeip-editor span, #websiteUrl .jeip-editor span
@@ -1195,6 +1207,7 @@ display: block; float: left;
     padding-top: 9px;
     width: 30px;
 }
+
 
 .jeip-mouseover, .jeip-editfield {
 	background-color: #FF9;
@@ -1293,6 +1306,11 @@ color: white;
             display: none;
         }
         
+        .login-close {
+        	height: 15px;
+        	display: block;
+        	float: right;
+        }
         
         /*========================*/
         /*===  11.1 Layout file - navigation
@@ -1379,6 +1397,53 @@ color: white;
 		    text-align: left; 
 		    width: 70%;
 		}
+		
+		#facebook
+{
+     padding: 50px;
+}
+
+.rssFeed {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 90%;
+}
+.rssFeed a {
+	color: #444;
+	text-decoration: none;
+}
+.rssFeed a:hover {
+	color: #000;
+	text-decoration: underline;
+}
+
+.rssHeader  
+{
+    padding: 0.2em 0; 
+    display: none; 
+}
+
+.rssBody ul { list-style: none; }
+.rssBody ul, .rssRow, .rssRow h4, .rssRow p {
+	margin: 0;
+	padding: 0;
+}
+
+.rssRow { padding: 0.8em; }
+.rssRow h4 { font-size: 1.1em; }
+.rssRow div {
+	font-size: 90%;
+	color: #666;
+	margin: 0.2em 0 0.4em 0;
+}
+
+.odd { background-color: #e8e8fc; }
+.even { background-color: #CBDBE1; }
+
+.rssRow .rssMedia {
+	padding: 0.5em;
+	font-size: 1em;
+}
+
 		.not-shared
 		{
 		    border: medium none !important;

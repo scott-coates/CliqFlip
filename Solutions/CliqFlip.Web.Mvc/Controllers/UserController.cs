@@ -221,6 +221,18 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return new JsonNetResult(retVal);
 		}
 
+        [Authorize]
+        [HttpPost]
+        [Transaction]
+        public ActionResult SaveFacebook(string fbid)
+        {
+            User user = _userTasks.GetUser(_principal.Identity.Name);
+            user.UpdateFacebookUsername(fbid);
+            return new JsonNetResult();
+        }
+
+
+
 		[Transaction]
 		public ActionResult Index(string username)
 		{

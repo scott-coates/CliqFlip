@@ -234,6 +234,7 @@
     <Content Include="Content\img\feat5.png" />
     <Content Include="Content\img\feat6.png" />
     <Content Include="Content\img\free-quote.png" />
+    <Content Include="Content\img\f_logo.png" />
     <Content Include="Content\img\GET_home-next-button.png" />
     <Content Include="Content\img\icons\alert.png" />
     <Content Include="Content\img\icons\alert2.png" />
@@ -541,6 +542,8 @@
     <Content Include="Views\Shared\_HeaderNavigation.cshtml" />
     <Content Include="Content\js\validation\jquery.validate.collection-not-empty.js" />
     <Content Include="Views\User\SocialMedia.cshtml" />
+    <Content Include="Views\Shared\_FacebookLink.cshtml" />
+    <Content Include="Views\Shared\_NotShared.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
