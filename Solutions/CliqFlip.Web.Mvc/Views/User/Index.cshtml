@@ -178,6 +178,7 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/cliqFlip/ui.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.jeip.js")"> </script>
 	<script type="text/javascript">
+		//TODO: Only load FB if user can edit
         InitFacebookSdk('@ConfigurationManager.AppSettings[Constants.FACEBOOK_APPID]');
         $(function() {
 			InitUser(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
