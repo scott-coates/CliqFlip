@@ -18,6 +18,7 @@ using CliqFlip.Infrastructure.Validation;
 using CliqFlip.Infrastructure.Web.Interfaces;
 using SharpArch.Domain.PersistenceSupport;
 using SharpArch.Domain.Specifications;
+using CliqFlip.Infrastructure.Extensions;
 
 namespace CliqFlip.Tasks.TaskImpl
 {
@@ -146,8 +147,13 @@ namespace CliqFlip.Tasks.TaskImpl
 		public void SaveWebsite(User user, string siteUrl)
 		{
 			if (string.IsNullOrWhiteSpace(siteUrl)) throw new ArgumentNullException("siteUrl");
+			
+			siteUrl = siteUrl.FormatWebAddress();
+
 			if (!UrlValidation.IsValidUrl(siteUrl)) throw new RulesException("SiteUrl", "Invalid URL");
+			
 			string html = _htmlService.GetHtmlFromUrl(siteUrl);
+			
 			string feedUrl = _feedFinder.GetFeedUrl(html);
 
 			if (string.IsNullOrWhiteSpace(feedUrl))
