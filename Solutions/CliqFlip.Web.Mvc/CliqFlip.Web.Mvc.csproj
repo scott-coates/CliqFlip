@@ -542,8 +542,8 @@
     <Content Include="Views\Shared\_HeaderNavigation.cshtml" />
     <Content Include="Content\js\validation\jquery.validate.collection-not-empty.js" />
     <Content Include="Views\User\SocialMedia.cshtml" />
-    <Content Include="Views\Shared\_FacebookLink.cshtml" />
-    <Content Include="Views\Shared\_NotShared.cshtml" />
+    <Content Include="Views\User\_FacebookLink.cshtml" />
+    <Content Include="Views\User\_NotShared.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
