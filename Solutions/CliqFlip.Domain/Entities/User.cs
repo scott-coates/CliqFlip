@@ -115,6 +115,7 @@ namespace CliqFlip.Domain.Entities
 		public virtual void UpdateCreateDate()
 		{
 			CreateDate = DateTime.UtcNow;
+			UpdateLastActivity();
 		}
 	}
 }
