@@ -210,7 +210,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				_userTasks.SaveWebsite(user, saveTextViewModel.New_Value);
 				retVal.is_error = false;
-				retVal.html = saveTextViewModel.New_Value;
+				retVal.html = user.UserWebsite.SiteUrl;
 			}
 			catch (RulesException rex)
 			{
