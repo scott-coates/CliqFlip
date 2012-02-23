@@ -1,35 +1,32 @@
 ﻿@using CliqFlip.Web.Mvc.ViewModels.Search
 @model CliqFlip.Web.Mvc.ViewModels.Search.UsersByInterestViewModel
-<div class="wrapper">
-	<div class="inner">
-		<div id="userSearchResults">
-			@foreach (UsersByInterestViewModel.IndividualResultViewModel user in Model.PagedResults)
-			{
-				<div id="innerUserSearchResults">
-					<h3>
-						<a>@Html.ActionLink(user.Name, "Index", "User", new {username = @user.Name}, null)</a></h3>
-					<img class="innerResultPhoto" alt="photo" src='@Url.Content("/Content/img/star.png")'/>
-					<ul class="userSearchInterest">
-						@foreach (UsersByInterestViewModel.IndividualResultInterestViewModel interest in user.ResultInterestViewModels)
-						{
-							if (interest.IsMatch)
-							{
-								<li><span class="interestSearchExactMatch">@interest.InterestName</span></li>
-							}
-							else
-							{
-								<li>@interest.InterestName</li>
-							}
-						}
-					</ul>
-					<div class="userSearchBio">@user.Bio</div>
-					<div class="clear">
-					</div>
-				</div>
-			}
-			<div id="userSearchPaging">
-				@Html.Raw(Html.Pager(Model.PagedResults).ToString())
+
+<div id="userSearchResults">
+	@foreach (UsersByInterestViewModel.IndividualResultViewModel user in Model.PagedResults)
+	{
+		<div id="innerUserSearchResults">
+			<h3>
+				<a>@Html.ActionLink(user.Name, "Index", "User", new {username = @user.Name}, null)</a></h3>
+			<img class="innerResultPhoto" alt="photo" src='@Url.Content("/Content/img/star.png")'/>
+			<ul class="userSearchInterest">
+				@foreach (UsersByInterestViewModel.IndividualResultInterestViewModel interest in user.ResultInterestViewModels)
+				{
+					if (interest.IsMatch)
+					{
+						<li><span class="interestSearchExactMatch">@interest.InterestName</span></li>
+					}
+					else
+					{
+						<li>@interest.InterestName</li>
+					}
+				}
+			</ul>
+			<div class="userSearchBio">@user.Bio</div>
+			<div class="clear">
 			</div>
 		</div>
+	}
+	<div id="userSearchPaging">
+		@Html.Raw(Html.Pager(Model.PagedResults).ToString())
 	</div>
 </div>

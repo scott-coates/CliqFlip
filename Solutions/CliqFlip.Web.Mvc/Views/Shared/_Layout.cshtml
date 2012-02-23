@@ -41,7 +41,15 @@
             @Html.Partial("_HeaderNavigation")
 		</div>
 		<!-- HEADER END -->
-		@RenderBody()
+        
+        <div class="wrapper">
+	        <div class="inner">
+		        @RenderBody()
+            </div>
+	        <div class="clear">
+	        </div>
+        </div>
+
 		<!-- FOOTER START -->
 		<div id="footer_box" class="full-width">
 			<div class="wrapper">

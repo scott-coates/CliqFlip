@@ -134,88 +134,73 @@
 	</style>
 }
 
-<div class="clear">
-	@*TODO: can this be removed?*@
+<div id="steps">
 </div>
+<div class="clear">
+</div>
+@using (Html.BeginForm("Create", "User", FormMethod.Post, new {id = "formProfileCreate", @class = "ui-formwizard"}))
+{
+	@Html.ValidationSummary(true)
 
-<!-- PAGE CONTENT START -->
-<div class="wrapper">
-	<div class="inner">
-		<div class="content">
-			<div id="steps">
+	<fieldset class="step ui-formwizard-content" id="stepInterests">
+		@Html.ValidationMessageFor(model=>model.UserInterests)
+		<span class="field-validation-error" id="userInterestEmptyError">Okay, we get it, you're not very interesting. But please, for our sake, just provide us with an interest that tells us about yourself.</span>
+		<strong>Add your Interests</strong>
+		<div id="divInterestSearch">
+			<input type="text" id="interestName" placeholder="Type an interest..." />
+		</div>
+		<ul id="interestsList">
+		</ul>
+	</fieldset>
+	<fieldset class="step ui-formwizard-content" style="display: none;" id="stepLogin">
+		<strong>Login</strong>
+		<div>
+			<div class="editor-label">
+				@Html.LabelFor(model => model.Username)
 			</div>
-			<div class="clear">
+			<div class="editor-field">
+				@Html.EditorFor(model => model.Username)
+				@Html.ValidationMessageFor(model => model.Username)
 			</div>
-			@using (Html.BeginForm("Create", "User", FormMethod.Post, new {id = "formProfileCreate", @class = "ui-formwizard"}))
-			{
-				@Html.ValidationSummary(true)
+			<div class="editor-label">
+				@Html.LabelFor(model => model.Email)
+			</div>
+			<div class="editor-field">
+				@Html.EditorFor(model => model.Email)
+				@Html.ValidationMessageFor(model => model.Email)
+			</div>
 
-				<fieldset class="step ui-formwizard-content" id="stepInterests">
-					@Html.ValidationMessageFor(model=>model.UserInterests)
-					<span class="field-validation-error" id="userInterestEmptyError">Okay, we get it, you're not very interesting. But please, for our sake, just provide us with an interest that tells us about yourself.</span>
-					<strong>Add your Interests</strong>
-					<div id="divInterestSearch">
-						<input type="text" id="interestName" placeholder="Type an interest..." />
-					</div>
-					<ul id="interestsList">
-					</ul>
-				</fieldset>
-				<fieldset class="step ui-formwizard-content" style="display: none;" id="stepLogin">
-					<strong>Login</strong>
-					<div>
-						<div class="editor-label">
-							@Html.LabelFor(model => model.Username)
-						</div>
-						<div class="editor-field">
-							@Html.EditorFor(model => model.Username)
-							@Html.ValidationMessageFor(model => model.Username)
-						</div>
-						<div class="editor-label">
-							@Html.LabelFor(model => model.Email)
-						</div>
-						<div class="editor-field">
-							@Html.EditorFor(model => model.Email)
-							@Html.ValidationMessageFor(model => model.Email)
-						</div>
-
-						<div class="editor-label">
-							@Html.LabelFor(model => model.Password)
-						</div>
-						<div class="editor-field">
-							@Html.EditorFor(model => model.Password)
-							@Html.ValidationMessageFor(model => model.Password)
-						</div>
-						<div class="editor-label">
-							@Html.LabelFor(model => model.PasswordVerify)
-						</div>  
-						<div class="editor-field">
-							@Html.EditorFor(model => model.PasswordVerify)
-							@Html.ValidationMessageFor(model => model.PasswordVerify)
-						</div>
-						<div class="editor-label">
-							@Html.LabelFor(model => model.AcceptTermsAndConditions)
-						</div>  
-						<div class="editor-field">
-							@Html.EditorFor(model => model.AcceptTermsAndConditions)
-							@Html.ValidationMessageFor(model => model.AcceptTermsAndConditions)
-						</div>
-					</div>
-				</fieldset>
-
-				<div class="clear"></div>
-				<p id="button-container">
-					<input type="submit" value="Next" class="button dark-blue" />
-					<input type="reset" value="Back" class="button blue" />
-				</p>
-			}
-			<!-- SIDEBAR END -->
-			<div class="clear">
+			<div class="editor-label">
+				@Html.LabelFor(model => model.Password)
+			</div>
+			<div class="editor-field">
+				@Html.EditorFor(model => model.Password)
+				@Html.ValidationMessageFor(model => model.Password)
+			</div>
+			<div class="editor-label">
+				@Html.LabelFor(model => model.PasswordVerify)
+			</div>  
+			<div class="editor-field">
+				@Html.EditorFor(model => model.PasswordVerify)
+				@Html.ValidationMessageFor(model => model.PasswordVerify)
+			</div>
+			<div class="editor-label">
+				@Html.LabelFor(model => model.AcceptTermsAndConditions)
+			</div>  
+			<div class="editor-field">
+				@Html.EditorFor(model => model.AcceptTermsAndConditions)
+				@Html.ValidationMessageFor(model => model.AcceptTermsAndConditions)
 			</div>
 		</div>
-	</div>
-</div>
-<div class="clear">
-</div>
+	</fieldset>
+
+	<div class="clear"></div>
+	<p id="button-container">
+		<input type="submit" value="Next" class="button dark-blue" />
+		<input type="reset" value="Back" class="button blue" />
+	</p>
+}
+
 <!-- PAGE CONTENT END -->
 <script id="tmplNewInterest" type="text/x-jquery-tmpl">
     

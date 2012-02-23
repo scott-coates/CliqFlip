@@ -1,79 +1,46 @@
 ﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserProfileViewModel
-@section styles
-{
-	<style type="text/css">
-		body { background-color: #D1E1E7; }
-	</style>
+
+@{
+    this.Layout = "~/Views/Shared/_Profile.cshtml";
+    ViewBag.Title = Model.Username + " - " + Model.Headline;
 }
-<div class="divider">
-</div>
-<div class="wrapper">
-	<div class="inner">
-		<div id="social-media" class="content">
-			<!-- Blog Post -->
-			<div class="blog-post">
-				<div class="post-info">
-					<div class="blogdate">
-						<div class="month">
-							Jun</div>
-						<div class="day">
-							29</div>
-						<div class="year">
-							2011</div>
-					</div>
-					<div class="category">
-						<ul>
-							@Html.ActionMenuItem("Home", "Index", "User")
-							@Html.ActionMenuItem("Social Media", "SocialMedia", "User")
-							@Html.ActionMenuItem("Interests", "Interests", "User")
-						</ul>
-					</div>
-					<p class="post_author">
-						by Marius Pop
-                    </p>
-				</div>
-                <div id="social-media-container" style="margin-left: 130px;">
-                    <div class="social-media">
-                        <strong>
-                            Facebook
-                        </strong>
-                        <div id="facebook" class="social-media-content">
-                            @Html.DisplayFacebook()
-                        </div>
-					</div>
-                    <div class="social-media">
-						<strong>
-                            Twitter
-                        </strong>
-                        <div id="twitter" class="social-media-content">
-                            @Html.DisplayTwitter()
-                        </div>
-					</div>
-                    <div class="social-media">
-						<strong>
-                            YouTube
-                        </strong>
-                        <div id="youtube" class="social-media-content">
-                            @Html.DisplayYouTube()
-                        </div>
-					</div>
-                    <div class="social-media">
-                        <strong>
-                            Blog:
-                        </strong>
-                        <div id="blog" class="social-media-content">
-                            @Html.DisplayBlogFeed()
-                        </div>
-					</div>
-                </div>
-			</div>
-			<!-- END Blog Post -->
-		</div>
+           @*<div id="social-media" class="content">*@
+
+<div id="social-media-container" style="margin-left: 130px;">
+    <div class="social-media">
+        <strong>
+            Facebook
+        </strong>
+        <div id="facebook" class="social-media-content">
+            @Html.DisplayFacebook()
+        </div>
 	</div>
-	<div class="clear">
+    <div class="social-media">
+		<strong>
+            Twitter
+        </strong>
+        <div id="twitter" class="social-media-content">
+            @Html.DisplayTwitter()
+        </div>
+	</div>
+    <div class="social-media">
+		<strong>
+            YouTube
+        </strong>
+        <div id="youtube" class="social-media-content">
+            @Html.DisplayYouTube()
+        </div>
+	</div>
+    <div class="social-media">
+        <strong>
+            Blog:
+        </strong>
+        <div id="blog" class="social-media-content">
+            @Html.DisplayBlogFeed()
+        </div>
 	</div>
 </div>
-<div id="fb-root"></div>
+    
 
 @section scripts
 {

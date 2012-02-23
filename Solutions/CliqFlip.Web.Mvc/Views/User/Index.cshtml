@@ -2,172 +2,90 @@
 @using CliqFlip.Domain.Common
 @using System.Configuration
 @model CliqFlip.Web.Mvc.ViewModels.User.UserProfileViewModel
-@section styles
-{
-	<style type="text/css">
-		body
-		{
-			background-color: #D1E1E7;
-		}
-	</style>
-}
+
+
 @{
-	ViewBag.Title = Model.Username + " - " + Model.Headline;
+    this.Layout = "~/Views/Shared/_Profile.cshtml";
+    ViewBag.Title = Model.Username + " - " + Model.Headline;
 }
-<div class="divider">
-</div>
-<div class="wrapper">
-	<div class="inner">
-		<div class="content">
-			<!-- Blog Post -->
-			<div class="blog-post">
-				<div class="uploadProfileImage">
-					@using (Html.BeginForm("SaveProfileImage", "User", FormMethod.Post, new { @encType = "multipart/form-data" }))
-	 {
-						@Html.ValidationSummary()
-						@FileUpload.GetHtml("profileImage", initialNumberOfFiles: 1, allowMoreFilesToBeAdded: false, uploadText: "Upload Photo")
-	 }
-				</div>
-				<div class="post-info">
-					<div class="blogdate">
-						@{
-							string imagePath = string.IsNullOrWhiteSpace(Model.ProfileImageUrl)
-												? @Url.Content("/Content/img/empty-avatar.jpg")
-												: Model.ProfileImageUrl;
-						}
-						<img class="profile-image" alt="@Model.Username profile image" src="@imagePath"/>
-					</div>
-					<div class="category">
-						<ul>
-							@*TODO: Create a shared layout for the user *@
-							@Html.ActionMenuItem("Home", "Index", "User")
-							@Html.ActionMenuItem("Social Media", "SocialMedia", "User")
-							@Html.ActionMenuItem("Interests", "Interests", "User")
-						</ul>
-					</div>
-					<p class="post_author">
-						by Marius Pop</p>
-				</div>
-				<div class="post-entry">
-					<div class="headline" id="profileHeadline">
-						<h2 id="headlineText">@Model.Headline</h2>
-					</div>
-					<p id="saveMindMapText">
-						Mind map saved</p>
-					<div id="mindMap" class="profileMindMap">
-					</div>
-					<div id="profileBio" class="bio">
-						<p id="bioText">@Model.Bio</p>
-					</div>
-				</div>
-			</div>
-			<!-- END Blog Post -->
+
+
+<!-- Blog Post -->
+<div class="blog-post">
+	<div class="post-entry">
+		<div class="headline" id="profileHeadline">
+			<h2 id="headlineText">@Model.Headline</h2>
 		</div>
-		<!-- SIDEBAR START -->
-		<div class="sidebar">
-			<!-- SIDEBAR SEARCH START -->
-			<div class="sidebar_item">
-				<div class="search">
-					<input class="search_submit" value="" type="submit">
-					<input class="search_box" type="text" value="Search..." onfocus="if (this.value == 'Search...') {this.value = '';}"
-						onblur="if (this.value == '') {this.value = 'Search...';}">
+		<p id="saveMindMapText">
+			Mind map saved</p>
+		<div id="mindMap" class="profileMindMap">
+		</div>
+		<div id="profileBio" class="bio">
+			<p id="bioText">@Model.Bio</p>
+		</div>
+	</div>
+</div>
+<!-- END Blog Post -->
+
+<!-- SIDEBAR START -->
+<div class="sidebar">
+	<!-- SIDEBAR SEARCH START -->
+	<div class="sidebar_item">
+		<div class="search">
+			<input class="search_submit" value="" type="submit">
+			<input class="search_box" type="text" value="Search..." onfocus="if (this.value == 'Search...') {this.value = '';}"
+				onblur="if (this.value == '') {this.value = 'Search...';}">
+		</div>
+	</div>
+	<!-- SIDEBAR SEARCH END -->
+	<!-- SIDEBAR RECENT POSTS START -->
+	<div class="sidebar_item recent-posts">
+		<strong>Link CliqFlip to your other social networks</strong>
+		<ul>
+            <li>
+                @{ var attr = Model.CanEdit ? "class='editable'" : ""; }
+				<div id="facebook-connect" @Html.Raw(attr) >
+					<img src="@Url.Content("~/Content/img/f_logo.png")" alt="Facebook" />
+                    <p class="facebookText">
+                        @if (String.IsNullOrWhiteSpace(Model.FacebookUsername))
+                        {
+                            <a id="facebook-connect" href="javascript:void(0)">Link to Facebook</a>
+                        }
+                        else
+                        {
+                            <text>Linked...</text>
+                        }
+                    </p>
 				</div>
-			</div>
-			<!-- SIDEBAR SEARCH END -->
-			<!-- SIDEBAR RECENT POSTS START -->
-			<div class="sidebar_item recent-posts">
-				<strong>Link CliqFlip to your other social networks</strong>
-				<ul>
-                    <li>
-                        @{ var attr = Model.CanEdit ? "class='editable'" : ""; }
-						<div id="facebook-connect" @Html.Raw(attr) >
-							<img src="@Url.Content("~/Content/img/f_logo.png")" alt="Facebook" />
-                            <p class="facebookText">
-                                @if (String.IsNullOrWhiteSpace(Model.FacebookUsername))
-                                {
-                                    <a id="facebook-connect" href="javascript:void(0)">Link to Facebook</a>
-                                }
-                                else
-                                {
-                                    <text>Linked...</text>
-                                }
-                            </p>
-						</div>
                         
-					</li>
-					<li>
-						<div id="twitterUsername">
-							<img src="https://si0.twimg.com/a/1329332580/images/logos/twitter_newbird_blue.png"
-								alt="Twitter" />
-							<p id="twitterUsernameText" class="twitterUsernameText">@Model.TwitterUsername</p>
-						</div>
-					</li>
-					<li>
-						<div id="youTubeUsername">
-							<img src="http://s.ytimg.com/yt/img/creators_corner/YouTube/40x40_yt_white.png" alt="Twitter" />
-							<p id="youTubeUsernameText" class="youTubeUsernameText">@Model.YouTubeUsername</p>
-						</div>
-					</li>
-					<li>
-						<div id="websiteUrl">
-							<img src="http://blog.zobristinc.com/wp-content/themes/dfblog/images/icons/RSS_Logo.png" alt="Website" />
-							<p id="websiteUrlText" class="websiteUrlText">@Model.WebsiteUrl</p>
-						</div>
-					</li>
-				</ul>
-			</div>
-			<!-- SIDEBAR RECENT POSTS END -->
-			<!-- SIDEBAR CATEGORIES START -->
-			<div class="sidebar_item categories">
-				<h5>
-					Categories</h5>
-				<ul>
-					<li><a href="#">Articles</a></li>
-					<li><a href="#">Tutorials</a></li>
-					<li><a href="#">Tips</a></li>
-					<li><a href="#">HTML & CSS</a></li>
-					<li><a href="#">Inspiration</a></li>
-				</ul>
-			</div>
-			<!-- SIDEBAR CATEGORIES END -->
-			<!-- SIDEBAR CATEGORIES START -->
-			<div class="sidebar_item archives">
-				<h5>
-					Archives</h5>
-				<ul>
-					<li><a href="#">August 2011</a></li>
-					<li><a href="#">July 2011</a></li>
-					<li><a href="#">June 2011</a></li>
-					<li><a href="#">May 2011</a></li>
-					<li><a href="#">April 2011</a></li>
-				</ul>
-			</div>
-			<!-- SIDEBAR CATEGORIES END -->
-			<!-- CUSTOM TEXT STERT -->
-			<div class="sidebar_item">
-				<h5>
-					Custom text box</h5>
-				<p>
-					Placerat turpis egestas mid facilisis dictumst! Porttitor pulvinar tristique augue.
-					Natoque arcu pellentesque cursus, lundium mattis ac cum auctor integer, porttitor
-					vut, pulvinar!</p>
-			</div>
-			<!-- CUSTOM TEXT END -->
-			<div class="sidebar_tweets">
-				<h5>
-					Twitter</h5>
-				<div id="tweet">
-					<p>
-						Please wait while tweets load..</p>
+			</li>
+			<li>
+				<div id="twitterUsername">
+					<img src="https://si0.twimg.com/a/1329332580/images/logos/twitter_newbird_blue.png"
+						alt="Twitter" />
+					<p id="twitterUsernameText" class="twitterUsernameText">@Model.TwitterUsername</p>
 				</div>
-			</div>
-		</div>
-		<!-- SIDEBAR END -->
+			</li>
+			<li>
+				<div id="youTubeUsername">
+					<img src="http://s.ytimg.com/yt/img/creators_corner/YouTube/40x40_yt_white.png" alt="Twitter" />
+					<p id="youTubeUsernameText" class="youTubeUsernameText">@Model.YouTubeUsername</p>
+				</div>
+			</li>
+			<li>
+				<div id="websiteUrl">
+					<img src="http://blog.zobristinc.com/wp-content/themes/dfblog/images/icons/RSS_Logo.png" alt="Website" />
+					<p id="websiteUrlText" class="websiteUrlText">@Model.WebsiteUrl</p>
+				</div>
+			</li>
+		</ul>
 	</div>
-	<div class="clear">
-	</div>
+	<!-- SIDEBAR RECENT POSTS END -->
 </div>
+<!-- SIDEBAR END -->
+	
 <div id="fb-root"></div>
+
 @section scripts
 {
     <script type="text/javascript" src="@Url.Content("/Content/js/jquery.json.js")"> </script>
