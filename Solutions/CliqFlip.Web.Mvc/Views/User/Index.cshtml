@@ -44,10 +44,9 @@
 		<strong>Link CliqFlip to your other social networks</strong>
 		<ul>
 			<li>
-				@{ string attr = Model.CanEdit ? "class='editable'" : ""; }
-				<div id="facebook-connect" @Html.Raw(attr) >
+				<div id="facebook-connect" class="social-media-container">
 					<img src="@Url.Content("~/Content/img/f_logo.png")" alt="Facebook" />
-					<p class="facebookText">
+					<p class="facebookText social-media-text @Html.Raw(Model.CanEdit ? "editable" : "")" >
 						@if (String.IsNullOrWhiteSpace(Model.FacebookUsername))
 						{
 							if (Model.CanEdit)

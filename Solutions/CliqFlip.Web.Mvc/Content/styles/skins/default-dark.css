@@ -1164,6 +1164,7 @@ display: block; float: left;
 	font-size: xx-large;
 }
 
+/*TODO: A lot of this social stuff css can be all rolled into one css class*/
 .social-media-text
 {
 	background-color: white;
@@ -1174,14 +1175,7 @@ display: block; float: left;
 	padding-left: 52px;
 }
 
-#facebook-connect img
-{
-     width: 30px;
-     height: 30px;
-     padding-left: 8px;
-     padding-top: 8px;
-}
-#facebook-connect.editable p:hover
+#facebook-connect p.editable:hover
 {
     background-color: #FF9;
 }
@@ -1220,6 +1214,11 @@ display: block; float: left;
 #websiteUrl.social-media-container img{
 	left: 3px;
 }
+
+#facebook-connect.social-media-container img{
+	left: 3px;
+}
+
 
 .jeip-mouseover, .jeip-editfield {
 	background-color: #FF9;
