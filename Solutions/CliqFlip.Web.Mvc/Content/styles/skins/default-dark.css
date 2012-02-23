@@ -1188,6 +1188,7 @@ display: block; float: left;
 
 .social-media-container {
 	position: relative;
+	height: 46px;
 }
 
 .social-media-container img
@@ -1199,10 +1200,10 @@ display: block; float: left;
 	left:-2px;
 	margin: 0;
 	float: none;
+	z-index: 100;
 }
 
 .social-media-container span.jeip-editor  {
-	z-index: 100;
 	position: relative;
 	left: 50px;
 }
@@ -1219,6 +1220,9 @@ display: block; float: left;
 	left: 3px;
 }
 
+.social-media-container .jeip-saving {
+	margin-left: 55px;
+}
 
 .jeip-mouseover, .jeip-editfield {
 	background-color: #FF9;
