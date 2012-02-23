@@ -1,0 +1,79 @@
+@model CliqFlip.Web.Mvc.ViewModels.User.UserProfileViewModel
+
+@{
+    this.Layout = "~/Views/Shared/_Layout.cshtml";
+}           
+
+@section styles
+{
+	<style type="text/css">
+		body
+		{
+			background-color: #D1E1E7;
+		}
+		.content
+		{
+            width: 100%;
+            float: left;
+            margin-right: 0%;
+		}
+		
+		.blog-post
+		{
+		    margin: 0;
+            overflow: hidden;
+            float: left;
+            width: auto;
+		}
+		
+		.sidebar
+		{
+		    margin: 0;
+            width: 22%;
+            float: right;
+		}
+	</style>
+    @RenderSection("styles", false)
+}
+
+@*The common content between the profile pages*@
+
+<div class="divider">
+</div>
+<div class="uploadProfileImage">
+	@using (Html.BeginForm("SaveProfileImage", "User", FormMethod.Post, new { @encType = "multipart/form-data" }))
+    {
+				@Html.ValidationSummary()
+				@FileUpload.GetHtml("profileImage", initialNumberOfFiles: 1, allowMoreFilesToBeAdded: false, uploadText: "Upload Photo")
+    }
+</div>
+
+
+<div class="post-info">
+	<div class="blogdate">
+		@{
+            string imagePath = string.IsNullOrWhiteSpace(Model.ProfileImageUrl)
+                                ? @Url.Content("/Content/img/empty-avatar.jpg")
+                                : Model.ProfileImageUrl;
+		}
+		<img class="profile-image" alt="@Model.Username profile image" src="@imagePath"/>
+	</div>
+	<div class="category">
+		<ul>
+			@*TODO: Create a shared layout for the user *@
+			@Html.ActionMenuItem("Home", "Index", "User")
+			@Html.ActionMenuItem("Social Media", "SocialMedia", "User")
+			@Html.ActionMenuItem("Interests", "Interests", "User")
+		</ul>
+	</div>
+	<p class="post_author">by Marius Pop</p>
+</div>
+
+
+@RenderBody()
+
+
+@section scripts
+{
+    @RenderSection("scripts", false)
+}

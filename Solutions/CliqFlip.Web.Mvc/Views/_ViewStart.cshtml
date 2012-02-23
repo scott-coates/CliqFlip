@@ -1,3 +1,14 @@
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    var userProfilePages = new []{ "index", "socialmedia" };
+    var routeValues = this.ViewContext.RouteData.Values;
+    
+    
+    if ("User" == routeValues["controller"].ToString() && userProfilePages.Contains(routeValues["action"].ToString().ToLower()))
+    {
+        Layout = "~/Views/Shared/_Profile.cshtml";
+    }
+    else
+    {
+       Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 }

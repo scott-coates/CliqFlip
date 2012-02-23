@@ -244,7 +244,6 @@ namespace CliqFlip.Web.Mvc.Controllers
 			user.SaveYouTubeUsernameUrl = "\"" + Url.Action("SaveYouTubeUsername", "User") + "\"";
 			user.SaveWebsiteUrl = "\"" + Url.Action("SaveWebiste", "User") + "\"";
 			user.CanEdit = _principal.Identity.Name.ToLower() == username.ToLower();
-
 			return View(user);
 		}
 
