@@ -71,6 +71,7 @@ namespace CliqFlip.Web.Mvc.Extensions.Html
         {
             if (!String.IsNullOrWhiteSpace(htmlHelper.ViewData.Model.FacebookUsername))
             {
+				//TODO:Make a specific viewmodel for facebook
                 return htmlHelper.Partial("_FacebookLink", htmlHelper.ViewData.Model.FacebookUsername);
             }
             return htmlHelper.Partial("_NotShared", "This user is not sharing their facebook page.");

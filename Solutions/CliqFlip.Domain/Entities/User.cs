@@ -41,7 +41,7 @@ namespace CliqFlip.Domain.Entities
 		public virtual string Headline { get; set; }
 		public virtual string TwitterUsername { get; set; }
 		public virtual string YouTubeUsername { get; set; }
-        public virtual string FacebookUsername { get; set; }
+        public virtual string FacebookUsername { get; set; } //TODO:rename to facebook access code
 		public virtual DateTime CreateDate { get; set; }
 		public virtual DateTime LastActivity { get; set; }
 		public User()
