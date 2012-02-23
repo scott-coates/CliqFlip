@@ -236,7 +236,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult Index(string username)
 		{
-			UserProfileViewModel user = _userProfileQuery.GetUser(username);
+			UserProfileIndexViewModel user = _userProfileQuery.GetUserProfileIndex(username);
 			user.SaveHeadlineUrl = "\"" + Url.Action("SaveHeadline", "User") + "\"";
 			user.SaveMindMapUrl = "\"" + Url.Action("SaveMindMap", "User") + "\"";
 			user.SaveBioUrl = "\"" + Url.Action("SaveBio", "User") + "\"";
@@ -256,7 +256,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult SocialMedia(string username)
 		{
-			UserProfileViewModel user = _userProfileQuery.GetUser(username);
+			UserSocialMediaViewModel user = _userProfileQuery.GetUserSocialMedia(username);
 			return View(user);
 		}
 	}

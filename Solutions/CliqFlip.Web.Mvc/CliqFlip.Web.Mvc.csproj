@@ -168,6 +168,7 @@
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
     <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
+    <Compile Include="ViewModels\User\UserProfileIndexViewModel.cs" />
     <Compile Include="ViewModels\User\UserLoginViewModel.cs" />
     <Compile Include="ViewModels\User\UserSaveMindMapViewModel.cs" />
     <Compile Include="ViewModels\User\UserProfileViewModel.cs" />
@@ -544,6 +545,7 @@
     <Content Include="Views\User\SocialMedia.cshtml" />
     <Content Include="Views\User\_FacebookLink.cshtml" />
     <Content Include="Views\User\_NotShared.cshtml" />
+    <Content Include="Views\User\_Profile.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

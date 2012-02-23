@@ -26,7 +26,7 @@ namespace CliqFlip.Web.Mvc.Extensions.Html
 			return MvcHtmlString.Create(tag.ToString());
 		}
 
-        public static MvcHtmlString DisplayYouTube(this HtmlHelper<UserProfileViewModel> htmlHelper)
+		public static MvcHtmlString DisplayYouTube(this HtmlHelper<UserSocialMediaViewModel> htmlHelper)
         {
             if (!String.IsNullOrWhiteSpace(htmlHelper.ViewData.Model.YouTubeUsername))
             {
@@ -37,7 +37,7 @@ namespace CliqFlip.Web.Mvc.Extensions.Html
             return htmlHelper.Partial("_NotShared", "This user is not sharing their YouTube videos.");
         }
 
-        public static MvcHtmlString DisplayTwitter(this HtmlHelper<UserProfileViewModel> htmlHelper)
+		public static MvcHtmlString DisplayTwitter(this HtmlHelper<UserSocialMediaViewModel> htmlHelper)
         {
 			//TODO: Do we need microsoft.web.helpers.dll anymore?
 
@@ -56,7 +56,7 @@ namespace CliqFlip.Web.Mvc.Extensions.Html
             return htmlHelper.Partial("_NotShared", "This user is not sharing their twitter feed.");
         }
 
-        public static MvcHtmlString DisplayBlogFeed(this HtmlHelper<UserProfileViewModel> htmlHelper)
+		public static MvcHtmlString DisplayBlogFeed(this HtmlHelper<UserSocialMediaViewModel> htmlHelper)
         {
             if (!String.IsNullOrWhiteSpace(htmlHelper.ViewData.Model.WebsiteFeedUrl))
             {
@@ -67,7 +67,7 @@ namespace CliqFlip.Web.Mvc.Extensions.Html
             return htmlHelper.Partial("_NotShared", "This user is not sharing their blog feed.");
         }
 
-        public static MvcHtmlString DisplayFacebook(this HtmlHelper<UserProfileViewModel> htmlHelper)
+		public static MvcHtmlString DisplayFacebook(this HtmlHelper<UserSocialMediaViewModel> htmlHelper)
         {
             if (!String.IsNullOrWhiteSpace(htmlHelper.ViewData.Model.FacebookUsername))
             {

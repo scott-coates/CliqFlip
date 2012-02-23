@@ -1,7 +1,8 @@
 @model CliqFlip.Web.Mvc.ViewModels.User.UserProfileViewModel
 
 @{
-    this.Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = Model.Username + " - " + Model.Headline;
 }           
 
 @section styles

@@ -14,38 +14,67 @@ namespace CliqFlip.Web.Mvc.Queries
 	{
 		#region IUserProfileQuery Members
 
-		public UserProfileViewModel GetUser(string username)
+		public UserProfileIndexViewModel GetUserProfileIndex(string username)
 		{
-			UserProfileViewModel retVal = null;
+			UserProfileIndexViewModel retVal = null;
 
 			User user = Session.Query<User>().FirstOrDefault(x => x.Username == username);
 
 
 			if (user != null)
 			{
-				retVal = new UserProfileViewModel
-							{
-								Username = user.Username,
-								Id = user.Id,
-								Bio = user.Bio,
-								Headline = user.Headline,
-								TwitterUsername = user.TwitterUsername,
-								YouTubeUsername = user.YouTubeUsername,
-								WebsiteUrl = user.UserWebsite.SiteUrl,
-                                WebsiteFeedUrl = user.UserWebsite.FeedUrl,
-								ProfileImageUrl = user.ProfileImage.MediumFileName,
-                                FacebookUsername = user.FacebookUsername
-							};
+				retVal = new UserProfileIndexViewModel
+				{
+					Bio = user.Bio,
+					TwitterUsername = user.TwitterUsername,
+					YouTubeUsername = user.YouTubeUsername,
+					WebsiteUrl = user.UserWebsite.SiteUrl,
+					FacebookUsername = user.FacebookUsername
+				};
+
+				FillBaseProperties(retVal, user);
 
 				List<UserInterestDto> interests =
 					user.Interests.Select(interest => new UserInterestDto(interest.Id, interest.Interest.Name.Replace(' ', '\n'), interest.Interest.Slug, null, null, interest.Options.Passion, interest.Options.XAxis, interest.Options.YAxis)).
 						ToList();
+
 				retVal.InterestsJson = JsonConvert.SerializeObject(interests);
 			}
 
 			return retVal;
 		}
 
+		public UserSocialMediaViewModel GetUserSocialMedia(string username)
+		{
+			UserSocialMediaViewModel retVal = null;
+
+			User user = Session.Query<User>().FirstOrDefault(x => x.Username == username);
+
+
+			if (user != null)
+			{
+				retVal = new UserSocialMediaViewModel
+				{
+					TwitterUsername = user.TwitterUsername,
+					YouTubeUsername = user.YouTubeUsername,
+					FacebookUsername = user.FacebookUsername,
+					WebsiteFeedUrl = user.UserWebsite.FeedUrl
+				};
+
+				FillBaseProperties(retVal, user);
+			}
+
+			return retVal;
+		}
+
 		#endregion
+
+		private void FillBaseProperties(UserProfileViewModel retVal, User user)
+		{
+			retVal.Id = user.Id;
+			retVal.Headline = user.Headline;
+			retVal.Username = user.Username;
+			retVal.ProfileImageUrl = user.ProfileImage.MediumFileName;
+		}
 	}
 }

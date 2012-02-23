@@ -9,6 +9,7 @@ namespace CliqFlip.Web.Mvc.Queries.Interfaces
 {
 	public interface IUserProfileQuery
 	{
-		UserProfileViewModel GetUser(string username);
+		UserProfileIndexViewModel GetUserProfileIndex(string username);
+		UserSocialMediaViewModel GetUserSocialMedia(string username);
 	}
 }
