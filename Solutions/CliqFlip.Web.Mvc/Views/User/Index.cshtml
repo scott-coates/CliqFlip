@@ -3,6 +3,13 @@
 @using System.Configuration
 @model CliqFlip.Web.Mvc.ViewModels.User.UserProfileIndexViewModel
 
+<div class="uploadProfileImage">
+	@using (Html.BeginForm("SaveProfileImage", "User", FormMethod.Post, new { @encType = "multipart/form-data" }))
+    {
+				@Html.ValidationSummary()
+				@FileUpload.GetHtml("profileImage", initialNumberOfFiles: 1, allowMoreFilesToBeAdded: false, uploadText: "Upload Photo")
+    }
+</div>
 <!-- Blog Post -->
 <div class="blog-post">
 	<div class="post-entry">

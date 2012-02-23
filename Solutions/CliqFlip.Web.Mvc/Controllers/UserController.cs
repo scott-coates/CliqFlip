@@ -108,29 +108,37 @@ namespace CliqFlip.Web.Mvc.Controllers
 			//http://haacked.com/archive/2010/07/16/uploading-files-with-aspnetmvc.aspx
 			//model bound
 			User user = _userTasks.GetUser(_principal.Identity.Name);
-
-			try
+			if (profileImage == null)
 			{
-				_userTasks.SaveProfileImage(user, profileImage);
-			}
-			catch (RulesException rex)
-			{
-				//TODO: Implement PRG pattern for post forms
-				//TODO: Log These exceptions in elmah
-				rex.AddModelStateErrors(ModelState);
+				ViewData.ModelState.AddModelError("Image", "You need to provide a file first... or don't. Have it your way.");
 				RouteData.Values["action"] = "Index";
 				return Index(_principal.Identity.Name);
 			}
-			//catch (Exception)
-			//{
-			//    //TODO: Implement PRG pattern for post forms
-			//    ModelState.AddModelError("image", "Error uploading photo");
-			//    RouteData.Values["action"] = "Index";
-			//    return Index(_principal.Identity.Name);
-			//}
-			finally
+			else
 			{
-				profileImage.InputStream.Dispose();
+				try
+				{
+					_userTasks.SaveProfileImage(user, profileImage);
+				}
+				catch (RulesException rex)
+				{
+					//TODO: Implement PRG pattern for post forms
+					//TODO: Log These exceptions in elmah
+					rex.AddModelStateErrors(ModelState);
+					RouteData.Values["action"] = "Index";
+					return Index(_principal.Identity.Name);
+				}
+				catch (Exception)
+				{
+					//TODO: Implement PRG pattern for post forms
+					ModelState.AddModelError("image", "Error uploading photo");
+					RouteData.Values["action"] = "Index";
+					return Index(_principal.Identity.Name);
+				}
+				finally
+				{
+					profileImage.InputStream.Dispose();
+				}
 			}
 
 			return RedirectToAction("Index");
@@ -221,15 +229,15 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return new JsonNetResult(retVal);
 		}
 
-        [Authorize]
-        [HttpPost]
-        [Transaction]
-        public ActionResult SaveFacebook(string fbid)
-        {
-            User user = _userTasks.GetUser(_principal.Identity.Name);
-            user.UpdateFacebookUsername(fbid);
-            return new JsonNetResult();
-        }
+		[Authorize]
+		[HttpPost]
+		[Transaction]
+		public ActionResult SaveFacebook(string fbid)
+		{
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+			user.UpdateFacebookUsername(fbid);
+			return new JsonNetResult();
+		}
 
 
 
