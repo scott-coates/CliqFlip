@@ -1,8 +1,7 @@
-﻿@using System.Globalization
+﻿@using System.Configuration
+@using System.Globalization
 @using CliqFlip.Domain.Common
-@using System.Configuration
 @model CliqFlip.Web.Mvc.ViewModels.User.UserProfileIndexViewModel
-
 @if (Model.CanEdit)
 {
 	<div class="uploadProfileImage">
@@ -29,7 +28,6 @@
 	</div>
 </div>
 <!-- END Blog Post -->
-
 <!-- SIDEBAR START -->
 <div class="sidebar">
 	<!-- SIDEBAR SEARCH START -->
@@ -37,7 +35,7 @@
 		<div class="search">
 			<input class="search_submit" value="" type="submit">
 			<input class="search_box" type="text" value="Search..." onfocus="if (this.value == 'Search...') {this.value = '';}"
-				onblur="if (this.value == '') {this.value = 'Search...';}">
+				   onblur="if (this.value == '') {this.value = 'Search...';}">
 		</div>
 	</div>
 	<!-- SIDEBAR SEARCH END -->
@@ -45,27 +43,29 @@
 	<div class="sidebar_item recent-posts">
 		<strong>Link CliqFlip to your other social networks</strong>
 		<ul>
-            <li>
-                @{ var attr = Model.CanEdit ? "class='editable'" : ""; }
+			<li>
+				@{ string attr = Model.CanEdit ? "class='editable'" : ""; }
 				<div id="facebook-connect" @Html.Raw(attr) >
 					<img src="@Url.Content("~/Content/img/f_logo.png")" alt="Facebook" />
-                    <p class="facebookText">
-                        @if (String.IsNullOrWhiteSpace(Model.FacebookUsername))
-                        {
-                            <a id="facebook-connect" href="javascript:void(0)">Link to Facebook</a>
-                        }
-                        else
-                        {
-                            <text>Linked...</text>
-                        }
-                    </p>
+					<p class="facebookText">
+						@if (String.IsNullOrWhiteSpace(Model.FacebookUsername))
+						{
+							if (Model.CanEdit)
+							{
+								<a id="facebook-connect" href="javascript:void(0)">Link to Facebook</a>
+							}
+						}
+						else
+						{
+							<text>Linked...</text>
+						}
+					</p>
 				</div>
-                        
 			</li>
 			<li>
 				<div id="twitterUsername">
 					<img src="https://si0.twimg.com/a/1329332580/images/logos/twitter_newbird_blue.png"
-						alt="Twitter" />
+						 alt="Twitter" />
 					<p id="twitterUsernameText" class="twitterUsernameText">@Model.TwitterUsername</p>
 				</div>
 			</li>
@@ -77,7 +77,8 @@
 			</li>
 			<li>
 				<div id="websiteUrl">
-					<img src="http://blog.zobristinc.com/wp-content/themes/dfblog/images/icons/RSS_Logo.png" alt="Website" />
+					<img src="http://blog.zobristinc.com/wp-content/themes/dfblog/images/icons/RSS_Logo.png"
+						 alt="Website" />
 					<p id="websiteUrlText" class="websiteUrlText">@Model.WebsiteUrl</p>
 				</div>
 			</li>
@@ -86,12 +87,11 @@
 	<!-- SIDEBAR RECENT POSTS END -->
 </div>
 <!-- SIDEBAR END -->
-	
-<div id="fb-root"></div>
-
+<div id="fb-root">
+</div>
 @section scripts
 {
-    <script type="text/javascript" src="@Url.Content("/Content/js/jquery.json.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.json.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/raphael/raphael.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/raphael/graffle.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/raphael/raphael.cliqFlip.js")"> </script>
@@ -100,8 +100,8 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.jeip.js")"> </script>
 	<script type="text/javascript">
 		//TODO: Only load FB if user can edit
-        InitFacebookSdk('@ConfigurationManager.AppSettings[Constants.FACEBOOK_APPID]');
-        $(function() {
+		InitFacebookSdk('@ConfigurationManager.AppSettings[Constants.FACEBOOK_APPID]');
+		$(function() {
 			InitUser(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
 			InitHeadline(@(Html.Raw(Model.SaveHeadlineUrl)));
 			InitBio(@(Html.Raw(Model.SaveBioUrl)));
@@ -109,7 +109,7 @@
 			InitTwitterUsername(@(Html.Raw(Model.SaveTwitterUsernameUrl)));
 			InitYouTubeUsername(@(Html.Raw(Model.SaveYouTubeUsernameUrl)));
 			InitWebsiteUrl(@(Html.Raw(Model.SaveWebsiteUrl)));
-            InitFacebook();
+			InitFacebook();
 		});
-    </script>
+	</script>
 }
