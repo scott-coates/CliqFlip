@@ -10,7 +10,6 @@ namespace CliqFlip.Tests.Generation.Schema
 	public class DbSchemaTest
 	{
 		[Test]
-		[Ignore]
 		public void GenerateSchema()
 		{
 			var cfg = NHibernateSession.Init(
