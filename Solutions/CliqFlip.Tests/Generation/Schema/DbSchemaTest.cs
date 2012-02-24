@@ -10,6 +10,7 @@ namespace CliqFlip.Tests.Generation.Schema
 	public class DbSchemaTest
 	{
 		[Test]
+		[Ignore]
 		public void GenerateSchema()
 		{
 			var cfg = NHibernateSession.Init(
@@ -18,7 +19,8 @@ namespace CliqFlip.Tests.Generation.Schema
 				new AutoPersistenceModelGenerator().Generate(),
 				"Configuration\\NHibernate.config");
 
-			NHibernateSession.Current.Close();
+			new SchemaExport(cfg).Create(true, false);
+
 			NHibernateSession.Current.Dispose();
 		}
 	}
