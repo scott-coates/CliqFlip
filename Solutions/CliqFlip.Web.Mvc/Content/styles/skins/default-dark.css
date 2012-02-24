@@ -1342,7 +1342,7 @@ color: white;
 		
 		.social-media-content
 		{
-		    overflow-y: scroll;
+		    overflow-y: auto;
 		    overflow-x: hidden;
             height: 194px;
 		}
