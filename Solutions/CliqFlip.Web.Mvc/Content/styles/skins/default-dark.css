@@ -1193,11 +1193,11 @@ display: block; float: left;
 
 .social-media-container img
 {
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
 	position: absolute;
-	top: 3px;
-	left:-2px;
+	top: 8px;
+	left:8px;
 	margin: 0;
 	float: none;
 	z-index: 100;
@@ -1206,18 +1206,6 @@ display: block; float: left;
 .social-media-container span.jeip-editor  {
 	position: relative;
 	left: 50px;
-}
-
-#youTubeUsername.social-media-container img{
-	left: 3px;
-}
-
-#websiteUrl.social-media-container img{
-	left: 3px;
-}
-
-#facebook-connect.social-media-container img{
-	left: 3px;
 }
 
 .social-media-container .jeip-saving {
