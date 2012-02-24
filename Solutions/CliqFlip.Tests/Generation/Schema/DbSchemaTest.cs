@@ -18,7 +18,8 @@ namespace CliqFlip.Tests.Generation.Schema
 				new AutoPersistenceModelGenerator().Generate(),
 				"Configuration\\NHibernate.config");
 
-			new SchemaExport(cfg).Create(true, false);
+			NHibernateSession.Current.Close();
+			NHibernateSession.Current.Dispose();
 		}
 	}
 }
