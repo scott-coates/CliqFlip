@@ -101,7 +101,7 @@ function InitWebsiteUrl(saveUrl) {
 }
 
 function InitFacebook() {
-    $("#facebook-connect.editable").click(function (event) {
+    $("#facebook-connect").click(function (event) {
         var p = $(this).find("p");
         FB.login(function (response) {
             if (response.authResponse) {
