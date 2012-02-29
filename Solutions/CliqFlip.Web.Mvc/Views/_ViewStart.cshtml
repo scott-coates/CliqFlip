@@ -1,6 +1,6 @@
 @{
     var userProfilePages = new []{ "index", "socialmedia" };
-    var routeValues = this.ViewContext.RouteData.Values;
+    RouteValueDictionary routeValues = ViewContext.RouteData.Values;
     
     
     if ("User" == routeValues["controller"].ToString() && userProfilePages.Contains(routeValues["action"].ToString().ToLower()))
