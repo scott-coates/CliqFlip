@@ -73,6 +73,12 @@ namespace CliqFlip.Web.Mvc
 
 			AreaRegistration.RegisterAllAreas();
 			RouteRegistrar.RegisterRoutesTo(RouteTable.Routes);
+			RegisterGlobalFilters(GlobalFilters.Filters);
+		}
+
+		private void RegisterGlobalFilters(GlobalFilterCollection filters)
+		{
+			filters.Add(new HandleErrorAttribute(){View = "_Error"});
 		}
 
 		/// <summary>

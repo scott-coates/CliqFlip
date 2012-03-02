@@ -4,6 +4,7 @@
 function formLogin_OnSuccess(result, response) {
 	//if the result does not contain the word failed
 	if (result.indexOf("failed") == -1) {
+		//TODO: Check for the redirect query string param and if exists redirect there
 		window.location.reload();
 	}
 }
