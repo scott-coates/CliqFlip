@@ -5,20 +5,32 @@ namespace CliqFlip.Web.Mvc
 {
 	public class RouteRegistrar
 	{
-		public static void RegisterRoutesTo(RouteCollection routes) 
+		public static void RegisterRoutesTo(RouteCollection routes)
 		{
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-			routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
+			routes.IgnoreRoute("{*favicon}", new {favicon = @"(.*/)?favicon.ico(/.*)?"});
 
 			routes.MapRoute(
-			 "Users",
-			  "Users/{username}/{action}",
-			  new { controller = "User", action = "Index" });
+				"Error - 404",
+				"NotFound",
+				new {controller = "Error", action = "NotFound"}
+				);
 
 			routes.MapRoute(
-				"Default",                                              // Route name
-				"{controller}/{action}/{id}",                           // URL with parameters
-				new { controller = "Home", action = "Index", id = UrlParameter.Optional }); // Parameter defaults
+				"Error - 500",
+				"ServerError",
+				new {controller = "Error", action = "ServerError"}
+				);
+
+			routes.MapRoute(
+				"Users",
+				"Users/{username}/{action}",
+				new {controller = "User", action = "Index"});
+
+			routes.MapRoute(
+				"Default", // Route name
+				"{controller}/{action}/{id}", // URL with parameters
+				new {controller = "Home", action = "Index", id = UrlParameter.Optional}); // Parameter defaults
 		}
 	}
 }
