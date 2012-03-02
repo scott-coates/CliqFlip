@@ -245,14 +245,20 @@ namespace CliqFlip.Web.Mvc.Controllers
 		public ActionResult Index(string username)
 		{
 			UserProfileIndexViewModel user = _userProfileQuery.GetUserProfileIndex(username);
-			user.SaveHeadlineUrl = "\"" + Url.Action("SaveHeadline", "User") + "\"";
-			user.SaveMindMapUrl = "\"" + Url.Action("SaveMindMap", "User") + "\"";
-			user.SaveBioUrl = "\"" + Url.Action("SaveBio", "User") + "\"";
-			user.SaveTwitterUsernameUrl = "\"" + Url.Action("SaveTwitterUsername", "User") + "\"";
-			user.SaveYouTubeUsernameUrl = "\"" + Url.Action("SaveYouTubeUsername", "User") + "\"";
-			user.SaveWebsiteUrl = "\"" + Url.Action("SaveWebiste", "User") + "\"";
-			user.CanEdit = _principal.Identity.Name.ToLower() == username.ToLower();
-			return View(user);
+			if (user != null)
+			{
+				user.SaveHeadlineUrl = "\"" + Url.Action("SaveHeadline", "User") + "\"";
+				user.SaveMindMapUrl = "\"" + Url.Action("SaveMindMap", "User") + "\"";
+				user.SaveBioUrl = "\"" + Url.Action("SaveBio", "User") + "\"";
+				user.SaveTwitterUsernameUrl = "\"" + Url.Action("SaveTwitterUsername", "User") + "\"";
+				user.SaveYouTubeUsernameUrl = "\"" + Url.Action("SaveYouTubeUsername", "User") + "\"";
+				user.SaveWebsiteUrl = "\"" + Url.Action("SaveWebiste", "User") + "\"";
+				user.CanEdit = _principal.Identity.Name.ToLower() == username.ToLower();
+				return View(user);
+			}
+		
+			//http://stackoverflow.com/a/4985562/173957
+			throw new HttpException(404, "Not found");
 		}
 
 		[Transaction]
