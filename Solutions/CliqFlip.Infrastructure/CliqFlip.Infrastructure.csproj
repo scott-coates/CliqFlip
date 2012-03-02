@@ -151,6 +151,7 @@
     <Compile Include="Migrator\Migrations\__634648573656461674_AddTwitterAndYouTubeUsernames.cs" />
     <Compile Include="Migrator\Migrations\__634653560469431604_AddBlogUrls.cs" />
     <Compile Include="Migrator\Migrations\__634653694060482576_AddActivity.cs" />
+    <Compile Include="Migrator\Migrations\__634662457651019146_AddElmahDDL.cs" />
     <Compile Include="NHibernateMaps\AutomappingConfiguration.cs" />
     <Compile Include="NHibernateMaps\Conventions\ComponentConvention.cs" />
     <Compile Include="NHibernateMaps\Conventions\PropertyConvention.cs" />
