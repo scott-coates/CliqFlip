@@ -5,7 +5,7 @@ using Elmah;
 
 namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers 
 {
-    //[Authorize(Roles = "Admin")]
+	[Authorize(Users = "scott")]
     public class ElmahController : Controller
     {
         public ActionResult Index()
