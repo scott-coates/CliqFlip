@@ -23,6 +23,8 @@
 #endregion
 
 using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Elmah;
 using Elmah.Assertions;
@@ -33,9 +35,7 @@ namespace CliqFlip.Infrastructure.Logging.Elmah.Assertions
 	{
 		private readonly TimeSpan _throttleDelay;
 		private readonly bool _traceThrottledExceptions;
-
-		private Exception _previousException;
-		private DateTime _timeOfLastUnfilteredException;
+		private readonly Dictionary<string, DateTime> _previousExceptions = new Dictionary<string, DateTime>(); 
 
 		public ThrottleAssertion()
 			: this(new TimeSpan(), false)
@@ -54,34 +54,33 @@ namespace CliqFlip.Infrastructure.Logging.Elmah.Assertions
 		{
 			if (context == null) throw new ArgumentNullException("context");
 
-			Exception currentException = ((ErrorFilterModule.AssertionHelperContext) context).BaseException;
+			var assertionHelperContext = (ErrorFilterModule.AssertionHelperContext) context;
 
-			bool testResult = false;
+			Exception currentException = assertionHelperContext.BaseException;
 
-			if (_previousException != null)
+			string key = string.Format("{0}-{1}", assertionHelperContext.FilterSourceType.Name, currentException);
+
+			//TODO: this is not thread safe - use concurrect dictionary or memcahed
+
+			bool match = _previousExceptions.ContainsKey(key);
+
+			bool throttled = false; //throttle means skip
+
+			if (match)
 			{
-				bool match = TestExceptionMatch(currentException);
+				// If the throttle delay is not specified, this will throttle all repeated exceptions.
+				// Otherwise, check to see if the elapsed time exceeds the throttle delay to determine
+				// if the exception should be filtered.
 
-				bool throttled = false; //throttle means skip
-
-				if (match)
-				{
-					// If the throttle delay is not specified, this will throttle all repeated exceptions.
-					// Otherwise, check to see if the elapsed time exceeds the throttle delay to determine
-					// if the exception should be filtered.
-
-					throttled = _throttleDelay.TotalMilliseconds <= 0 || DateTime.UtcNow.Subtract(_timeOfLastUnfilteredException) <= _throttleDelay;
-				}
-
-				testResult = match && throttled;
+				throttled = _throttleDelay.TotalMilliseconds <= 0 || DateTime.UtcNow.Subtract(_previousExceptions[key]) <= _throttleDelay;
 			}
 
-			_previousException = currentException;
+			bool testResult = match && throttled;
 
 			// reset throttle delay timer
 			if (!testResult)
 			{
-				_timeOfLastUnfilteredException = DateTime.UtcNow;
+				_previousExceptions[key] = DateTime.UtcNow;
 			}
 
 			Trace.WriteIf(_traceThrottledExceptions && testResult, currentException);
@@ -91,13 +90,5 @@ namespace CliqFlip.Infrastructure.Logging.Elmah.Assertions
 
 		#endregion
 
-		protected virtual bool TestExceptionMatch(Exception currentException)
-		{
-			return (
-			       	currentException.Message == _previousException.Message &&
-			       	currentException.Source == _previousException.Source &&
-			       	currentException.TargetSite == _previousException.TargetSite
-			       );
-		}
 	}
 }
