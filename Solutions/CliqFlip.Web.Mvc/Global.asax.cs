@@ -60,6 +60,7 @@ namespace CliqFlip.Web.Mvc
 
 		protected void ErrorMail_Filtering(object sender, ExceptionFilterEventArgs args)
 		{
+			//TODO: Consider using filter configs
 			if (!args.Exception.ToString().Contains("Amazon.S3"))
 				args.Dismiss();
 		}
