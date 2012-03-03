@@ -1,5 +1,6 @@
 ﻿using CliqFlip.Domain;
 using CliqFlip.Domain.Entities;
+using Elmah;
 using NHibernate.Tool.hbm2ddl;
 
 namespace CliqFlip.Web.Mvc
@@ -55,6 +56,12 @@ namespace CliqFlip.Web.Mvc
 			// Useful for debugging
 			Exception ex = this.Server.GetLastError();
 			var reflectionTypeLoadException = ex as ReflectionTypeLoadException;
+		}
+
+		protected void ErrorMail_Filtering(object sender, ExceptionFilterEventArgs args)
+		{
+			if (!args.Exception.ToString().Contains("Amazon.S3"))
+				args.Dismiss();
 		}
 
 		protected void Application_Start()
