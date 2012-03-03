@@ -30,9 +30,11 @@ namespace CliqFlip.Infrastructure.Images
 		{
 			var retVal = new ImageProcessResult();
 
+			ValidateExtension(profileImage.FileName);
+
 			using (Image image = Image.FromStream(profileImage.InputStream))
 			{
-				ValidateImageSize(image, profileImage.FileName);
+				ValidateImageSize(image);
 
 				//We know the image input will always be bigger than thumbnail
 				retVal.ThumbnailImage = GetResizedImage(image, THUMBNAIL_RESOLUTION, THUMBNAIL_RESOLUTION);
@@ -115,9 +117,8 @@ namespace CliqFlip.Infrastructure.Images
 			return retVal;
 		}
 
-		private static void ValidateImageSize(Image image, string fileName)
+		private static void ValidateExtension(string fileName)
 		{
-			if (image == null) throw new ArgumentNullException("image");
 			if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("fileName");
 
 			string extension = Path.GetExtension(fileName);
@@ -130,6 +131,11 @@ namespace CliqFlip.Infrastructure.Images
 			{
 				throw new RulesException("image", "this is not a valid image type");
 			}
+		}
+
+		private static void ValidateImageSize(Image image)
+		{
+			if (image == null) throw new ArgumentNullException("image");
 
 			if (image.Width < MIN_RESOLUTION || image.Height < MIN_RESOLUTION)
 			{

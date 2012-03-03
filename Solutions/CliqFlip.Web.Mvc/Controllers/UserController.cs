@@ -117,7 +117,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			else
 			{
 				try
-				{
+				{Request.Files
 					_userTasks.SaveProfileImage(user, profileImage);
 				}
 				catch (RulesException rex)
@@ -125,13 +125,6 @@ namespace CliqFlip.Web.Mvc.Controllers
 					//TODO: Implement PRG pattern for post forms
 					//TODO: Log These exceptions in elmah
 					rex.AddModelStateErrors(ModelState);
-					RouteData.Values["action"] = "Index";
-					return Index(_principal.Identity.Name);
-				}
-				catch (Exception)
-				{
-					//TODO: Implement PRG pattern for post forms
-					ModelState.AddModelError("image", "Error uploading photo");
 					RouteData.Values["action"] = "Index";
 					return Index(_principal.Identity.Name);
 				}

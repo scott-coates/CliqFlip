@@ -222,11 +222,6 @@ namespace CliqFlip.Tasks.TaskImpl
 			{
 				throw;
 			}
-			catch (ArgumentException arx)
-			{
-				throw new RulesException("Image", "Invalid file type");
-				//TODO:alert the dev team somehow? could be malicious activity
-			}
 			catch (Exception ex)
 			{
 				exceptions.Add(ex);
