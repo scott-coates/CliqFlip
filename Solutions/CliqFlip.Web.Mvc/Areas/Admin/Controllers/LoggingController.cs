@@ -6,7 +6,7 @@ using Elmah;
 namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers 
 {
 	[Authorize(Users = "scott")]
-    public class ElmahController : Controller
+    public class LoggingController : Controller
     {
         public ActionResult Index()
         {
