@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -546,6 +547,42 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Configuration\Alpha\AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\ElmahSecurity.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\ElmahErrorLog.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\ElmahErrorFilter.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\ElmahErrorMail.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Beta\ElmahErrorFilter.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Beta\ElmahSecurity.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Beta\ElmahErrorLog.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Beta\ElmahErrorMail.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Alpha\ElmahErrorFilter.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Alpha\ElmahSecurity.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Alpha\ElmahErrorLog.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Alpha\ElmahErrorMail.config">
       <SubType>Designer</SubType>
     </Content>
     <None Include="Content\img\patterns\Thumbs.db" />
