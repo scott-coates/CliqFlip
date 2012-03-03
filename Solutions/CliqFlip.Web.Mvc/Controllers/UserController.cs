@@ -117,7 +117,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			else
 			{
 				try
-				{Request.Files
+				{
 					_userTasks.SaveProfileImage(user, profileImage);
 				}
 				catch (RulesException rex)
