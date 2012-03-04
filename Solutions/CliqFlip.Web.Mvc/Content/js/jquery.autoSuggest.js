@@ -296,9 +296,11 @@
 									opts.resultClick.call(this, raw_data);
 									//remove this class or enter won't work:
 									/*
+									var active = $("li.active:first", results_holder);
+
 									if (opts.neverSubmit || active.length > 0) {
-											e.preventDefault();
-										}
+									e.preventDefault();
+									}
 									*/
 									$(this).removeClass('active');
 									results_holder.hide();
