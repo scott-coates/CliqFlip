@@ -54,6 +54,7 @@ namespace CliqFlip.Web.Mvc
 		protected void Application_Error(object sender, EventArgs e)
 		{
 			// Useful for debugging
+			//TODO: put some UID here so we can track this with what user's generate as bugs from our error page
 			Exception ex = this.Server.GetLastError();
 			var reflectionTypeLoadException = ex as ReflectionTypeLoadException;
 		}
