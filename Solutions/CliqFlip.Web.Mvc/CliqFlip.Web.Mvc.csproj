@@ -238,6 +238,7 @@
     <Content Include="Content\img\button_icon.png" />
     <Content Include="Content\img\check.png" />
     <Content Include="Content\img\ClipFliq-LogoMoto.png" />
+    <Content Include="Content\js\cliqFlip\error-handler.js" />
     <Content Include="favicon.ico" />
     <Content Include="Content\img\close.png" />
     <Content Include="Content\img\connect_sprite.png" />
@@ -585,6 +586,8 @@
     <Content Include="Configuration\Alpha\ElmahErrorMail.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Areas\Admin\Views\Test\ClientSideError.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="Content\img\patterns\Thumbs.db" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />

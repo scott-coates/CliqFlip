@@ -22,6 +22,10 @@
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet'
 			  type='text/css' />
 		@RenderSection("styles", false)
+		<script type="text/javascript">
+			window.logErrorUrl = '@Url.Action("LogJavaScriptError", "Error", new{area = ""})';
+		</script>
+		<script type="text/javascript" src="@Url.Content("/Content/js/cliqflip/error-handler.js")"> </script>
 	</head>
 	<body>
 		<div id="main-container">

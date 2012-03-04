@@ -35,5 +35,10 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 			_logger.LogException(new Exception("Raised Execpton"));
 			return new EmptyResult();
 		}
+
+		public ActionResult ClientSideError()
+		{
+			return View();
+		}
 	}
 }
