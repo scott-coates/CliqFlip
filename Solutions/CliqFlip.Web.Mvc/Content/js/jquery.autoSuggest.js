@@ -360,7 +360,7 @@
 
 				function moveSelection(direction) {
 					if ($(":visible", results_holder).length > 0) {
-						var lis = $("li", results_holder);
+						var lis = $("li:not(.invalidKeywordSearch)", results_holder);
 						if (direction == "down") {
 							var start = lis.eq(0);
 						} else {
