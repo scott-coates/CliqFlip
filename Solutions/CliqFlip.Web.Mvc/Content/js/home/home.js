@@ -50,7 +50,6 @@ function InitAutoSuggest(searchUrl) {
 			queryParam: "input",
 			minChars: 2,
 			startText: "Type in some things you like",
-			neverSubmit: true,
 			formatList: FormatList,
 			selectionAdded: SelectionAdded
 		});
