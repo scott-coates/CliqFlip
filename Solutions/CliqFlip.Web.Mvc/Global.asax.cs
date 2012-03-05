@@ -1,26 +1,28 @@
-﻿using CliqFlip.Domain;
+﻿using System;
+using System.Reflection;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
+using Amazon.S3;
+using Amazon.SimpleEmail;
+using Castle.Windsor;
 using CliqFlip.Domain.Entities;
+using CliqFlip.Infrastructure.NHibernateMaps;
+using CliqFlip.Web.Mvc.CastleWindsor;
+using CliqFlip.Web.Mvc.Controllers;
+using CommonServiceLocator.WindsorAdapter;
 using Elmah;
-using NHibernate.Tool.hbm2ddl;
+using Microsoft.Practices.ServiceLocation;
+using NHibernate.Cfg;
+using SharpArch.NHibernate;
+using SharpArch.NHibernate.Web.Mvc;
+using SharpArch.Web.Mvc.Castle;
+using SharpArch.Web.Mvc.ModelBinder;
+using log4net.Config;
 
 namespace CliqFlip.Web.Mvc
 {
-	using System;
-	using System.Reflection;
-	using System.Web.Mvc;
-	using System.Web.Routing;
-	using Castle.Windsor;
-		// CliqFlip.Web.Mvc.CastleWindsor
-	using CastleWindsor;
-	using CommonServiceLocator.WindsorAdapter;
-	using Controllers;
-	using Infrastructure.NHibernateMaps;
-	using log4net.Config;
-	using Microsoft.Practices.ServiceLocation;
-	using SharpArch.NHibernate;
-	using SharpArch.NHibernate.Web.Mvc;
-	using SharpArch.Web.Mvc.Castle;
-	using SharpArch.Web.Mvc.ModelBinder;
+	// CliqFlip.Web.Mvc.CastleWindsor
 
 
 	/// <summary>
@@ -30,7 +32,7 @@ namespace CliqFlip.Web.Mvc
 	/// For instructions on enabling IIS6 or IIS7 classic mode, 
 	/// visit http://go.microsoft.com/?LinkId=9394801
 	/// </remarks>
-	public class MvcApplication : System.Web.HttpApplication
+	public class MvcApplication : HttpApplication
 	{
 		private WebSessionStorage webSessionStorage;
 
@@ -43,27 +45,40 @@ namespace CliqFlip.Web.Mvc
 		public override void Init()
 		{
 			base.Init();
-			this.webSessionStorage = new WebSessionStorage(this);
+			webSessionStorage = new WebSessionStorage(this);
 		}
 
 		protected void Application_BeginRequest(object sender, EventArgs e)
 		{
-			NHibernateInitializer.Instance().InitializeNHibernateOnce(this.InitialiseNHibernateSessions);
+			NHibernateInitializer.Instance().InitializeNHibernateOnce(InitialiseNHibernateSessions);
 		}
 
 		protected void Application_Error(object sender, EventArgs e)
 		{
 			// Useful for debugging
 			//TODO: put some UID here so we can track this with what user's generate as bugs from our error page
-			Exception ex = this.Server.GetLastError();
+			Exception ex = Server.GetLastError();
 			var reflectionTypeLoadException = ex as ReflectionTypeLoadException;
 		}
 
 		protected void ErrorMail_Filtering(object sender, ExceptionFilterEventArgs args)
 		{
 			//TODO: Consider using filter configs
-			if (!args.Exception.ToString().Contains("Amazon.S3"))
+			Exception exception = args.Exception;
+			bool include = (
+			               	exception is AmazonS3Exception ||
+			               	exception is AmazonSimpleEmailServiceException
+			               	||
+			               	(
+			               		exception is AggregateException &&
+			               		exception.ToString().Contains("Amazon")
+			               	)
+			               );
+
+			if (!include)
+			{
 				args.Dismiss();
+			}
 		}
 
 		protected void Application_Start()
@@ -78,7 +93,7 @@ namespace CliqFlip.Web.Mvc
 
 			ModelValidatorProviders.Providers.Add(new ClientDataTypeModelValidatorProvider());
 
-			this.InitializeServiceLocator();
+			InitializeServiceLocator();
 
 			AreaRegistration.RegisterAllAreas();
 			RouteRegistrar.RegisterRoutesTo(RouteTable.Routes);
@@ -106,7 +121,7 @@ namespace CliqFlip.Web.Mvc
 			NHibernateSession.ConfigurationCache =
 				new NHibernateConfigurationFileCache(new[] {typeof (User).Assembly.GetName().Name});
 
-			var cfg = NHibernateSession.Init(
+			Configuration cfg = NHibernateSession.Init(
 				webSessionStorage,
 				new[] {Server.MapPath("~/bin/CliqFlip.Infrastructure.dll")},
 				new AutoPersistenceModelGenerator().Generate(),
