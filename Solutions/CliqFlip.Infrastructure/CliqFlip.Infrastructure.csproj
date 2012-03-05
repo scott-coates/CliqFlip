@@ -135,6 +135,8 @@
     <Compile Include="Authentication\Interfaces\IUserAuthentication.cs" />
     <Compile Include="Authentication\UserAuthentication.cs" />
     <Compile Include="Common\PathHelper.cs" />
+    <Compile Include="Email\EmailService.cs" />
+    <Compile Include="Email\Interfaces\IEmailService.cs" />
     <Compile Include="Exceptions\JavaScriptException.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Images\ImageProcessResult.cs" />
