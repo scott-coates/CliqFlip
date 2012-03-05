@@ -7,6 +7,6 @@ namespace CliqFlip.Infrastructure.Email.Interfaces
 {
 	public interface IEmailService
 	{
-		void SendMail(string to, string from, string subject);
+		void SendMail(string to, string subject, string body);
 	}
 }
