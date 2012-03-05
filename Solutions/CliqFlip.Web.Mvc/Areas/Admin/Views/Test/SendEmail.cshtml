@@ -1,0 +1,41 @@
+﻿@model CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Test.SendEmailViewModel
+
+@{
+	ViewBag.Title = "Send Email";
+}
+<h2>
+	Send Email</h2>
+
+	
+	
+@using (Html.BeginForm("SendEmail", "Test", FormMethod.Post))
+{
+	@Html.ValidationSummary()
+
+	<div class="editor-label">
+		@Html.LabelFor(model => model.ToEmailAddress)
+	</div>
+	<div class="editor-field">
+		@Html.EditorFor(model => model.ToEmailAddress)
+		@Html.ValidationMessageFor(model => model.ToEmailAddress)
+	</div>
+	<div class="editor-label">
+		@Html.LabelFor(model => model.Subject)
+	</div>
+	<div class="editor-field">
+		@Html.EditorFor(model => model.Subject)
+		@Html.ValidationMessageFor(model => model.Subject)
+	</div>
+
+	<div class="editor-label">
+		@Html.LabelFor(model => model.Body)
+	</div>
+	<div class="editor-field">
+		@Html.EditorFor(model => model.Body)
+		@Html.ValidationMessageFor(model => model.Body)
+	</div>
+
+	<p id="button-container">
+		<input type="submit" value="Send that email, baby!" class="button dark-blue" />
+	</p>
+}

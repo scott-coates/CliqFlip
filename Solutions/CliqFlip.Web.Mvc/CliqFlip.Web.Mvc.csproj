@@ -155,6 +155,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\LoggingController.cs" />
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Test\SendEmailViewModel.cs" />
     <Compile Include="CastleWindsor\AutomappingConfiguration.cs" />
     <Compile Include="CastleWindsor\ComponentRegistrar.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -588,6 +589,7 @@
     </Content>
     <Content Include="Areas\Admin\Views\Test\ClientSideError.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Test\SendEmail.cshtml" />
     <None Include="Content\img\patterns\Thumbs.db" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />

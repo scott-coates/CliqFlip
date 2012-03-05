@@ -2,6 +2,7 @@ using System;
 using System.Web;
 using System.Web.Mvc;
 using CliqFlip.Infrastructure.Logging.Interfaces;
+using CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Test;
 
 namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 {
@@ -39,6 +40,20 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 		public ActionResult ClientSideError()
 		{
 			return View();
+		}
+
+		[HttpGet]
+		public ActionResult SendEmail()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public ActionResult SendEmail(SendEmailViewModel sendEmailViewModel)
+		{
+			//send it
+
+			return RedirectToAction("SendEmail");
 		}
 	}
 }
