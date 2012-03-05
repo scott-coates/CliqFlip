@@ -15,6 +15,7 @@ namespace CliqFlip.Infrastructure.Email
 	{
 		public void SendMail(string to, string subject, string body)
 		{
+			//smtp would've been quicker but the SSL that .NET uses isn't the same as AWS
 			using(var sesClient  = AWSClientFactory.CreateAmazonSimpleEmailServiceClient() )
 			{
 				string sesFromEmail = ConfigurationManager.AppSettings[Constants.SES_FROM_EMAIL];
