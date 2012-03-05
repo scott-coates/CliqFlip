@@ -590,9 +590,6 @@
     <Content Include="Areas\Admin\Views\Test\ClientSideError.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Test\SendEmail.cshtml" />
-    <Content Include="Configuration\Smtp.config">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="Content\img\patterns\Thumbs.db" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />

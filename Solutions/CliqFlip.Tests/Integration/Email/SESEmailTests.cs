@@ -20,7 +20,7 @@ namespace CliqFlip.Tests.Integration.Email
 		[SetUp]
 		public void Setup()
 		{
-			_emailService = new SESEmailService(null);
+			_emailService = new SESEmailService();
 		}
 
 		#region Email tests
