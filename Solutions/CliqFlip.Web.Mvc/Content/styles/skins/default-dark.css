@@ -1186,7 +1186,7 @@ display: block; float: left;
     width: 155px;
 }
 
-.social-media-container {
+.social-media-username-container {
 
 	position: relative;
 	height: 46px;
@@ -1195,10 +1195,9 @@ display: block; float: left;
 #social-media-container 
 {
 	margin-left: 130px;
-	
 }
 
-.social-media-container img
+.social-media-username-container img
 {
     height: 30px;
     width: 30px;
@@ -1210,12 +1209,12 @@ display: block; float: left;
 	z-index: 100;
 }
 
-.social-media-container span.jeip-editor  {
+.social-media-username-container span.jeip-editor  {
 	position: relative;
 	left: 50px;
 }
 
-.social-media-container .jeip-saving {
+.social-media-username-container .jeip-saving {
 	margin-left: 55px;
 }
 
