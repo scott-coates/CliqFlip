@@ -1,0 +1,49 @@
+﻿@{
+	Layout = "~/Views/User/_Profile.cshtml";
+}
+
+@model CliqFlip.Web.Mvc.ViewModels.User.UserSocialMediaViewModel
+
+<div id="social-media-container" style="margin-left: 130px;">
+    <div class="social-media">
+        <strong>
+            Facebook
+        </strong>
+        <div class="social-media-content">
+        </div>
+	</div>
+    <div class="social-media">
+		<strong>
+            Twitter
+        </strong>
+        <div id="twitter" class="social-media-content">
+        </div>
+	</div>
+    <div class="social-media">
+		<strong>
+            YouTube
+        </strong>
+        <div id="youtube" class="social-media-content">
+        </div>
+	</div>
+    <div class="social-media">
+        <strong>
+            Blog:
+        </strong>
+        <div id="blog" class="social-media-content">
+        </div>
+	</div>
+</div>
+    
+
+@section scripts
+{
+    <script type="text/javascript" src="http://www.zazar.net/developers/jquery/zrssfeed/jquery.zrssfeed.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("/Content/js/user/socialmedia.js")"> </script>
+    <script type='text/javascript'>
+        jQuery(function ($) {
+            initYouTube("@Model.YouTubeUsername");
+            initBlogFeed('@Model.WebsiteFeedUrl');
+        });
+    </script>
+}

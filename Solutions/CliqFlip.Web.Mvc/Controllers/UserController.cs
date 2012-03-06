@@ -255,13 +255,14 @@ namespace CliqFlip.Web.Mvc.Controllers
 		}
 
 		[Transaction]
-		public ActionResult Interests(string username)
+		public ActionResult SocialMedia(string username)
 		{
-			return Index(username);
+			UserSocialMediaViewModel user = _userProfileQuery.GetUserSocialMedia(username);
+			return View(user);
 		}
 
 		[Transaction]
-		public ActionResult SocialMedia(string username)
+		public ActionResult Interests(string username)
 		{
 			UserSocialMediaViewModel user = _userProfileQuery.GetUserSocialMedia(username);
 			return View(user);

@@ -1,6 +1,11 @@
 ﻿@using System.Configuration
 @using System.Globalization
 @using CliqFlip.Domain.Common
+
+@{
+	Layout = "~/Views/User/_Profile.cshtml";
+}
+
 @model CliqFlip.Web.Mvc.ViewModels.User.UserProfileIndexViewModel
 @if (Model.CanEdit)
 {
