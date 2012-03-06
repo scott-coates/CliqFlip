@@ -1,4 +1,8 @@
-﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserSocialMediaViewModel
+﻿
+@{
+	Layout = "~/Views/User/_Profile.cshtml";
+}
+@model CliqFlip.Web.Mvc.ViewModels.User.UserSocialMediaViewModel
 
 <div id="social-media-container">
     <div class="social-media">
@@ -27,7 +31,7 @@
 	</div>
     <div class="social-media">
         <strong>
-            Blog:
+            Blog
         </strong>
         <div id="blog" class="social-media-content">
             @Html.DisplayBlogFeed()
