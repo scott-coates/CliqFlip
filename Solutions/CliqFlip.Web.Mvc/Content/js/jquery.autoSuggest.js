@@ -204,11 +204,14 @@
 						case 13: case 9: case 188:  //return tab or comma
 							tab_press = false;
 							var active = $("li.active:first", results_holder);
+							if (active.length < 1 && $.trim(values_input.val()).length < 1) {
+								active = $("li:first", results_holder);
+							}
 							if (active.length > 0) {
 								active.click();
 								results_holder.hide();
 							}
-							if (opts.neverSubmit || active.length > 0) {
+							if (opts.neverSubmit || active.length > 0 || $.trim(this.value).length > 0 || $.trim(values_input.val()).length < 1) {
 								e.preventDefault();
 							}
 							break;
@@ -228,7 +231,7 @@
 
 				function keyChange() {
 					// ignore if the following keys are pressed: [del] [shift] [capslock]
-					if (lastKeyPressCode == 46 || (lastKeyPressCode > 8 && lastKeyPressCode < 32)) { return results_holder.hide(); }
+					if (lastKeyPressCode == 46 || (lastKeyPressCode != 13 && lastKeyPressCode > 8 && lastKeyPressCode < 32)) { return results_holder.hide(); }
 					var string = input.val().replace(/[\\]+|[\/]+/g, "");
 					if (string == prev) return;
 					prev = string;
