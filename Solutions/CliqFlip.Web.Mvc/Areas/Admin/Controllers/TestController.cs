@@ -3,6 +3,7 @@ using System.Web;
 using System.Web.Mvc;
 using CliqFlip.Infrastructure.Email.Interfaces;
 using CliqFlip.Infrastructure.Logging.Interfaces;
+using CliqFlip.Infrastructure.Web.Interfaces;
 using CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Test;
 
 namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
@@ -12,11 +13,13 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 	{
 		private readonly ILogger _logger;
 		private readonly IEmailService _emailService;
+		private readonly IViewRenderer _viewRenderer;
 
-		public TestController(ILogger logger, IEmailService emailService)
+		public TestController(ILogger logger, IEmailService emailService, IViewRenderer viewRenderer)
 		{
 			_logger = logger;
 			_emailService = emailService;
+			_viewRenderer = viewRenderer;
 		}
 
 		public ActionResult Index()
@@ -55,7 +58,8 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 		public ActionResult SendEmail(SimpleSendEmailViewModel simpleSendEmailViewModel)
 		{
 			//send it
-			_emailService.SendMail(simpleSendEmailViewModel.ToEmailAddress, simpleSendEmailViewModel.Subject, simpleSendEmailViewModel.Body);
+			string body = _viewRenderer.RenderView(this, "~/Areas/Admin/Views/TestMailer/TestSimpleSend.cshtml", simpleSendEmailViewModel);
+			_emailService.SendMail(simpleSendEmailViewModel.ToEmailAddress, simpleSendEmailViewModel.Subject, body);
 			return RedirectToAction("SendEmail");
 		}
 	}

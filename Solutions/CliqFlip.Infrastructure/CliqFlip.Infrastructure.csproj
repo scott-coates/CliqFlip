@@ -176,6 +176,8 @@
     <Compile Include="Validation\UrlValidation.cs" />
     <Compile Include="Web\HtmlService.cs" />
     <Compile Include="Web\Interfaces\IHtmlService.cs" />
+    <Compile Include="Web\Interfaces\IViewRenderer.cs" />
+    <Compile Include="Web\StringViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CliqFlip.Domain\CliqFlip.Domain.csproj">
