@@ -4,7 +4,7 @@ using Microsoft.Web.Mvc;
 
 namespace CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Test
 {
-	public class SimpleSendEmailViewModel
+	public class SendEmailViewModel
 	{
 		[Required(ErrorMessage = "You forgot the 'to' email address, bro.")]
 		[EmailAddress(ErrorMessage = "Not a valid email address, bro. C'mon!")]
