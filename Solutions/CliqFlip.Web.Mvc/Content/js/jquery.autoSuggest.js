@@ -203,9 +203,9 @@
 						//							} 
 						case 13: case 9: case 188:  //return tab or comma
 							tab_press = false;
-							var active = $("li.active:first", results_holder);
-							if (active.length < 1 && $.trim(values_input.val()).length < 1) {
-								active = $("li:first", results_holder);
+							var active = $("li.active:not(.invalidKeywordSearch):first", results_holder);
+							if (active.length < 1 && $.trim(this.value).length > 0) {
+								active = $("li:not(.invalidKeywordSearch):first", results_holder);
 							}
 							if (active.length > 0) {
 								active.click();
