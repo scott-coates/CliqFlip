@@ -57,6 +57,7 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 		[HttpPost]
 		public ActionResult SendEmail(SimpleSendEmailViewModel simpleSendEmailViewModel)
 		{
+			//TODO - consider using nuget postal, actionmailer, mvc.mailer, or http://razorengine.codeplex.com/
 			//send it
 			string body = _viewRenderer.RenderView(this, "~/Areas/Admin/Views/TestMailer/TestSimpleSend.cshtml", simpleSendEmailViewModel);
 			_emailService.SendMail(simpleSendEmailViewModel.ToEmailAddress, simpleSendEmailViewModel.Subject, body);
