@@ -1187,8 +1187,15 @@ display: block; float: left;
 }
 
 .social-media-container {
+
 	position: relative;
 	height: 46px;
+}
+
+#social-media-container 
+{
+	margin-left: 130px;
+	
 }
 
 .social-media-container img
