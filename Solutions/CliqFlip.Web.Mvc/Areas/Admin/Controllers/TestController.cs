@@ -52,10 +52,10 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult SendEmail(SendEmailViewModel sendEmailViewModel)
+		public ActionResult SendEmail(SimpleSendEmailViewModel simpleSendEmailViewModel)
 		{
 			//send it
-			_emailService.SendMail(sendEmailViewModel.ToEmailAddress, sendEmailViewModel.Subject, sendEmailViewModel.Body);
+			_emailService.SendMail(simpleSendEmailViewModel.ToEmailAddress, simpleSendEmailViewModel.Subject, simpleSendEmailViewModel.Body);
 			return RedirectToAction("SendEmail");
 		}
 	}
