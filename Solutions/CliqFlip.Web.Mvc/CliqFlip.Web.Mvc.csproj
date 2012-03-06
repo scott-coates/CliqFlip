@@ -166,7 +166,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\LoggingController.cs" />
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Test\SendEmailViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Test\SimpleSendEmailViewModel.cs" />
     <Compile Include="CastleWindsor\AutomappingConfiguration.cs" />
     <Compile Include="CastleWindsor\ComponentRegistrar.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -177,7 +177,9 @@
     <Compile Include="Extensions\Html\HtmlExtensions.cs" />
     <Compile Include="Extensions\Request\ReuqestExtensions.cs" />
     <Compile Include="Extensions\Url\UrlExtensions.cs" />
+    <Compile Include="Mailers\ITestMailer.cs" />
     <Compile Include="Mailers\IUserMailer.cs" />
+    <Compile Include="Mailers\TestMailer.cs" />
     <Compile Include="Mailers\UserMailer.cs" />
     <Compile Include="Validation\MustBeTrueAttribute.cs" />
     <Compile Include="Validation\CollectionNotEmptyAttribute.cs" />
@@ -622,6 +624,8 @@
     <Content Include="Views\UserMailer\MessageNotification.cshtml" />
     <Content Include="Views\UserMailer\_Layout.text.cshtml" />
     <Content Include="Views\UserMailer\MessageNotification.text.cshtml" />
+    <Content Include="Views\TestMailer\_Layout.cshtml" />
+    <Content Include="Views\TestMailer\TestSimpleSend.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

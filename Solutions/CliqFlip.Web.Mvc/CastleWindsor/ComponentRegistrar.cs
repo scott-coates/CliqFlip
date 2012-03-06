@@ -103,7 +103,7 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
 			container.Register(
 				AllTypes.FromAssemblyNamed("CliqFlip.Web.Mvc")
 					.Pick()
-					.WithService.FirstInterface());
+					.WithService.FirstNonGenericCoreInterface("CliqFlip.Web.Mvc"));
 		}
 
 		private static void AddCommandsTo(IWindsorContainer container)
@@ -111,7 +111,7 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
 			container.Register(
 				AllTypes.FromAssemblyNamed("CliqFlip.Tasks")
 					.Pick()
-					.WithService.FirstInterface());
+					.WithService.FirstNonGenericCoreInterface("CliqFlip.Tasks"));
 		}
 	}
 }

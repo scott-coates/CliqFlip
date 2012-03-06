@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using CliqFlip.Infrastructure.Email.Interfaces;
 using CliqFlip.Infrastructure.Logging.Interfaces;
 using CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Test;
+using CliqFlip.Web.Mvc.Mailers;
 
 namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 {
@@ -12,11 +13,13 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 	{
 		private readonly ILogger _logger;
 		private readonly IEmailService _emailService;
+		private readonly ITestMailer _testMailer;
 
-		public TestController(ILogger logger, IEmailService emailService)
+		public TestController(ILogger logger, IEmailService emailService, ITestMailer testMailer)
 		{
 			_logger = logger;
 			_emailService = emailService;
+			_testMailer = testMailer;
 		}
 
 		public ActionResult Index()
@@ -52,10 +55,13 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult SendEmail(SendEmailViewModel sendEmailViewModel)
+		public ActionResult SendEmail(SimpleSendEmailViewModel simpleSendEmailViewModel)
 		{
-			//send it
-			_emailService.SendMail(sendEmailViewModel.ToEmailAddress, sendEmailViewModel.Subject, sendEmailViewModel.Body);
+			using(var message = _testMailer.TestSimpleSend(simpleSendEmailViewModel))
+			{
+				_emailService.SendMail(simpleSendEmailViewModel.ToEmailAddress, simpleSendEmailViewModel.Subject, message.Body);
+			}
+
 			return RedirectToAction("SendEmail");
 		}
 	}
