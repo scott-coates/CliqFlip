@@ -51,7 +51,7 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 		[HttpGet]
 		public ActionResult SendEmail()
 		{
-			return View();
+			return View(new SimpleSendEmailViewModel());
 		}
 
 		[HttpPost]
