@@ -2,7 +2,7 @@
 
 namespace CliqFlip.Domain.ValueObjects
 {
-	public class UserImage : ValueObject
+	public class ImageData : ValueObject
 	{
 		//http://davybrion.com/blog/2009/03/implementing-a-value-object-with-nhibernate/
 		private readonly string _originalFileName;
@@ -10,12 +10,12 @@ namespace CliqFlip.Domain.ValueObjects
 		private readonly string _mediumFileName;
 		private readonly string _fullFileName;
 
-		private UserImage()
+		private ImageData()
 		{
 			// the default constructor is only here for NH (private is sufficient, it doesn't need to be public)
 		}
 
-		public UserImage(string originalFileName, string thumbFileName, string mediumFileName, string fullFileName)
+		public ImageData(string originalFileName, string thumbFileName, string mediumFileName, string fullFileName)
 		{
 			_originalFileName = originalFileName;
 			_thumbFileName = thumbFileName;

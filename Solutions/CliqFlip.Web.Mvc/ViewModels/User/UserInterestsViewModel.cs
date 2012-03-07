@@ -19,7 +19,6 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 		{
 			public string Name { get; set; }
 			public int UserInterestId { get; set; }
-			public InterestImageViewModel DefaultImage { get; set; }
 			public IList<InterestImageViewModel> Images { get; set; }
 
 			public InterestViewModel()

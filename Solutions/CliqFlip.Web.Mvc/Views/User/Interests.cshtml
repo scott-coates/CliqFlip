@@ -4,7 +4,6 @@
 @using System.Globalization
 @using CliqFlip.Web.Mvc.ViewModels.User
 @model CliqFlip.Web.Mvc.ViewModels.User.UserInterestsViewModel
-
 @Html.ValidationSummary()
 <div id="interests-container">
 	@foreach (UserInterestsViewModel.InterestViewModel interest in Model.Interests)
@@ -12,23 +11,27 @@
 		<div class="user-interest">
 			<div class="user-interest-title">
 				<strong>@interest.Name</strong>
-				<a class="user-interest-title-add-photo" value="@interest.UserInterestId" href="javascript:void(0);" title="add photo"><span>add photo</span></a>
-				<div class="clear"></div>
+				<a class="user-interest-title-add-photo" value="@interest.UserInterestId" href="javascript:void(0);" title="add photo">
+					<span>add photo</span></a>
+				<div class="clear">
+				</div>
 			</div>
 			<div class="user-interest-content">
 				<div class="user-interest-content-image-container">
-					@if (interest.DefaultImage != null)
+					@foreach (UserInterestsViewModel.InterestImageViewModel image in interest.Images)
 					{
-						<img class="user-interest-content-image" src="@interest.DefaultImage.MediumImage"/>
+						<img class="user-interest-content-image" src="@image.MediumImage"/>
 					}
 				</div>
 			</div>
 		</div>
 	}
-	<div class="clear"></div>
+	<div class="clear">
+	</div>
 </div>
 <div class="" id="add-photo">
-	<h2>Add a photo</h2>
+	<h2>
+		Add a photo</h2>
 	<div class="uploadInterestImage">
 		@using (Html.BeginForm("SaveInterestImage", "User", FormMethod.Post, new {@encType = "multipart/form-data"}))
 		{
@@ -37,8 +40,6 @@
 		}
 	</div>
 </div>
-    
-
 @section scripts
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/interests.js")"> </script>

@@ -172,6 +172,7 @@
     <Compile Include="NHibernateMaps\Conventions\TableNameConvention.cs" />
     <Compile Include="NHibernateMaps\AutoPersistenceModelGenerator.cs" />
     <Compile Include="Common\PasswordHelper.cs" />
+    <Compile Include="NHibernateMaps\Overrides\UserInterestMappingOverride.cs" />
     <Compile Include="Syndication\FeedFinder.cs" />
     <Compile Include="Syndication\Interfaces\IFeedFinder.cs" />
     <Compile Include="Validation\UrlValidation.cs" />
@@ -207,9 +208,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NHibernateMaps\Overrides\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Configuration\Alpha\AppSettings.config">

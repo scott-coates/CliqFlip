@@ -11,7 +11,7 @@ namespace CliqFlip.Domain.Entities
 	public class User : Entity
 	{
 		private readonly Iesi.Collections.Generic.ISet<UserInterest> _interests;
-		private UserImage _profileImage;//TODO: user the image entities
+		private ImageData _profileImageData;//TODO: user the image entities
 		private UserWebsite _userWebsite;
 
 		public virtual IEnumerable<UserInterest> Interests
@@ -19,11 +19,11 @@ namespace CliqFlip.Domain.Entities
 			get { return new List<UserInterest>(_interests).AsReadOnly(); }
 		}
 
-		public virtual UserImage ProfileImage
+		public virtual ImageData ProfileImageData
 		{
 			//http://stackoverflow.com/a/685026/173957
-			get { return _profileImage ?? new UserImage(null, null, null, null); }
-			set { _profileImage = value; }
+			get { return _profileImageData ?? new ImageData(null, null, null, null); }
+			set { _profileImageData = value; }
 		}
 
 		public virtual UserWebsite UserWebsite
@@ -99,7 +99,7 @@ namespace CliqFlip.Domain.Entities
 
 		public virtual void UpdateProfileImage(string originalFilename, string thumbFilename, string mediumFilename, string fullFilename)
 		{
-			_profileImage = new UserImage(originalFilename, thumbFilename, mediumFilename, fullFilename);
+			_profileImageData = new ImageData(originalFilename, thumbFilename, mediumFilename, fullFilename);
 		}
 
 		public virtual void UpdateWebsite(string siteUrl, string feedUrl)

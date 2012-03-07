@@ -37,7 +37,7 @@ namespace CliqFlip.Domain.Entities
 		{
 			var image = new Image
 			{
-				Data = new UserImage(originalFilename, thumbFilename, mediumFilename, fullFilename),
+				Data = new ImageData(originalFilename, thumbFilename, mediumFilename, fullFilename),
 				UserInterest = this
 			};
 

@@ -9,7 +9,7 @@
 @model CliqFlip.Web.Mvc.ViewModels.User.UserProfileIndexViewModel
 @if (Model.CanEdit)
 {
-	<div class="uploadProfileImage">
+	<div class="uploadProfileImageData">
 		@using (Html.BeginForm("SaveProfileImage", "User", FormMethod.Post, new {@encType = "multipart/form-data"}))
 		{
 			@Html.ValidationSummary()

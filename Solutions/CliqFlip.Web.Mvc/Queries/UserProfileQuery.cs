@@ -104,7 +104,7 @@ namespace CliqFlip.Web.Mvc.Queries
 			retVal.Id = user.Id;
 			retVal.Headline = user.Headline;
 			retVal.Username = user.Username;
-			retVal.ProfileImageUrl = user.ProfileImage.MediumFileName;
+			retVal.ProfileImageUrl = user.ProfileImageData.MediumFileName;
 		}
 	}
 }

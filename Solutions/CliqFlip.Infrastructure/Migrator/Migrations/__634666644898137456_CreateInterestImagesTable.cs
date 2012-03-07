@@ -19,7 +19,8 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 				new Column("ThumbFileName", DbType.String, 1024, ColumnProperty.Null),
 				new Column("MediumFileName", DbType.String, 1024, ColumnProperty.Null),
 				new Column("FullFileName", DbType.String, 1024, ColumnProperty.Null),
-				new Column("UserInterestId", DbType.Int32, ColumnProperty.Null)
+				new Column("UserInterestId", DbType.Int32, ColumnProperty.Null),
+				new Column("InterestImageOrder", DbType.Int32, ColumnProperty.Null)
 			});
 
 			Database.AddForeignKey(FK_Images_UsersInterests, "Images", "UserInterestId", "UserInterests", "Id", ForeignKeyConstraint.Cascade);

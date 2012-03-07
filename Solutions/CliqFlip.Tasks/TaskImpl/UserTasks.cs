@@ -195,9 +195,9 @@ namespace CliqFlip.Tasks.TaskImpl
 		{
 			var originalImageNames = new ImageFileNamesDto
 			{
-				ThumbFilename = user.ProfileImage.ThumbFileName,
-				MediumFilename = user.ProfileImage.MediumFileName,
-				FullFilename = user.ProfileImage.FullFileName
+				ThumbFilename = user.ProfileImageData.ThumbFileName,
+				MediumFilename = user.ProfileImageData.MediumFileName,
+				FullFilename = user.ProfileImageData.FullFileName
 			};
 
 			SaveImageForUser(profileImage, user.Username + "-Profile-Image", imgFileNamesDto =>
