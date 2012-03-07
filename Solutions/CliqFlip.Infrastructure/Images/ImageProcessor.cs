@@ -63,7 +63,7 @@ namespace CliqFlip.Infrastructure.Images
 			int newWidth;
 			int newHeight;
 			//TODO: the max_height, max_width needs to be more flexible - write unit test around it too
-			if ((image.Width >= image.Height && image.Width < proposedWidth) || (image.Height >= image.Width && image.Height < proposedHeight))
+			if (image.Width < proposedWidth && image.Height < proposedHeight)
 			{
 				//image was smaller than proposed dimensions - use original
 
