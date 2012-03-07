@@ -73,13 +73,22 @@ namespace CliqFlip.Web.Mvc.Queries
 
 			User user = Session.Query<User>().FirstOrDefault(x => x.Username == username);
 
-
 			if (user != null)
 			{
 				retVal = new UserInterestsViewModel();
-				foreach (var interest in user.Interests)
+				foreach (UserInterest interest in user.Interests)
 				{
-					retVal.Interests.Add(new UserInterestsViewModel.InterestViewModel { Name = interest.Interest.Name, UserInterestId = interest.Id });
+					var interestViewModel = new UserInterestsViewModel.InterestViewModel
+					{
+						Name = interest.Interest.Name,
+						UserInterestId = interest.Id,
+						Images = interest
+							.Images
+							.Select(x =>
+							        new UserInterestsViewModel.InterestImageViewModel(x)).ToList()
+					};
+
+					retVal.Interests.Add(interestViewModel);
 				}
 
 				FillBaseProperties(retVal, user);

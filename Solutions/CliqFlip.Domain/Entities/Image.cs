@@ -15,6 +15,6 @@ namespace CliqFlip.Domain.Entities
 		}
 
 		public virtual UserInterest UserInterest { get; set; }
-		public virtual bool? IsDefaultInterestImage { get; set; }
+		public virtual int InterestImageOrder { get; set; }
 	}
 }

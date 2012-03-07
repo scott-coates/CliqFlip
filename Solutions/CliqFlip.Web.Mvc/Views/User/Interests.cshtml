@@ -3,7 +3,7 @@
 }
 @using System.Globalization
 @using CliqFlip.Web.Mvc.ViewModels.User
-@model UserInterestsViewModel
+@model CliqFlip.Web.Mvc.ViewModels.User.UserInterestsViewModel
 
 @Html.ValidationSummary()
 <div id="interests-container">
@@ -14,12 +14,13 @@
 				<strong>@interest.Name</strong>
 				<a class="user-interest-title-add-photo" value="@interest.UserInterestId" href="javascript:void(0);" title="add photo"><span>add photo</span></a>
 				<div class="clear"></div>
-			
 			</div>
-			
 			<div class="user-interest-content">
-				<div class="user-interest-content-default-image-container">
-					<img class="user-interest-content-default-image"/>
+				<div class="user-interest-content-image-container">
+					@if (interest.DefaultImage != null)
+					{
+						<img class="user-interest-content-image" src="@interest.DefaultImage.MediumImage"/>
+					}
 				</div>
 			</div>
 		</div>
@@ -31,7 +32,7 @@
 	<div class="uploadInterestImage">
 		@using (Html.BeginForm("SaveInterestImage", "User", FormMethod.Post, new {@encType = "multipart/form-data"}))
 		{
-			@Html.Hidden("userInterestId",null,new{@id="userInterestId"})
+			@Html.Hidden("userInterestId", null, new {@id = "userInterestId"})
 			@FileUpload.GetHtml("profileImage", initialNumberOfFiles: 1, allowMoreFilesToBeAdded: false, uploadText: "Upload Photo")
 		}
 	</div>
@@ -41,7 +42,7 @@
 @section scripts
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/interests.js")"> </script>
-		<script type="text/javascript">
+	<script type="text/javascript">
 		$(function() {
 			InitInterests(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
 			InitSaveImages();

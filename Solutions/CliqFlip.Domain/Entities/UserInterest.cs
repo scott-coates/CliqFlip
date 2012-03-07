@@ -35,7 +35,13 @@ namespace CliqFlip.Domain.Entities
 		//directly with user intersts
 		public virtual void AddImage(string originalFilename, string thumbFilename, string mediumFilename, string fullFilename)
 		{
-			_images.Add(new Image {Data = new UserImage(originalFilename, thumbFilename, mediumFilename, fullFilename), UserInterest = this});
+			var image = new Image
+			{
+				Data = new UserImage(originalFilename, thumbFilename, mediumFilename, fullFilename),
+				UserInterest = this
+			};
+
+			_images.Add(image);
 		}
 	}
 }
