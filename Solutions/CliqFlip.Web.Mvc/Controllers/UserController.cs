@@ -160,7 +160,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 					//TODO: Implement PRG pattern for post forms
 					//TODO: Log These exceptions in elmah
 					rex.AddModelStateErrors(ModelState);
-					RouteData.Values["action"] = "Index";
+					RouteData.Values["action"] = "Interests";
 					return Index(_principal.Identity.Name);
 				}
 				finally
