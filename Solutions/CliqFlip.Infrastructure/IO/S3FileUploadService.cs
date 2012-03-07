@@ -14,7 +14,7 @@ namespace CliqFlip.Infrastructure.IO
 	{
 		#region IFileUploadService Members
 
-		public IList<string> UploadFiles(string path, IList<FileToUpload> files)
+		public IList<string> UploadFiles(string images, string path, IList<FileToUpload> files)
 		{
 			ValidatePath(path);
 
@@ -34,6 +34,7 @@ namespace CliqFlip.Infrastructure.IO
 						.WithKey(key)
 						.WithCannedACL(S3CannedACL.PublicRead)
 						.WithBucketName(bucketName)
+						.WithMetaData("Image-Info",file.MetaInfo)
 						.WithInputStream(file.Stream);
 
 					fileUploadRequest.StorageClass = S3StorageClass.ReducedRedundancy;

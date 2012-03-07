@@ -9,6 +9,7 @@ using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Exceptions;
 using CliqFlip.Infrastructure.Authentication.Interfaces;
 using CliqFlip.Infrastructure.Common;
+using CliqFlip.Infrastructure.Extensions;
 using CliqFlip.Infrastructure.IO;
 using CliqFlip.Infrastructure.IO.Interfaces;
 using CliqFlip.Infrastructure.Images;
@@ -18,21 +19,26 @@ using CliqFlip.Infrastructure.Validation;
 using CliqFlip.Infrastructure.Web.Interfaces;
 using SharpArch.Domain.PersistenceSupport;
 using SharpArch.Domain.Specifications;
-using CliqFlip.Infrastructure.Extensions;
 
 namespace CliqFlip.Tasks.TaskImpl
 {
 	public class UserTasks : IUserTasks
 	{
+		private readonly IFeedFinder _feedFinder;
+		private readonly IFileUploadService _fileUploadService;
+		private readonly IHtmlService _htmlService;
 		private readonly IImageProcessor _imageProcessor;
 		private readonly IInterestTasks _interestTasks;
 		private readonly ILinqRepository<User> _repository;
-		private readonly IFileUploadService _fileUploadService;
-		private readonly IHtmlService _htmlService;
-		private readonly IFeedFinder _feedFinder;
 		private readonly IUserAuthentication _userAuthentication;
 
-		public UserTasks(ILinqRepository<User> repository, IInterestTasks interestTasks, IImageProcessor imageProcessor, IFileUploadService fileUploadService, IHtmlService htmlService, IFeedFinder feedFinder, IUserAuthentication userAuthentication)
+		public UserTasks(ILinqRepository<User> repository,
+						 IInterestTasks interestTasks,
+						 IImageProcessor imageProcessor,
+						 IFileUploadService fileUploadService,
+						 IHtmlService htmlService,
+						 IFeedFinder feedFinder,
+						 IUserAuthentication userAuthentication)
 		{
 			_repository = repository;
 			_interestTasks = interestTasks;
@@ -55,25 +61,25 @@ namespace CliqFlip.Tasks.TaskImpl
 
 			List<User> users = _repository.FindAll(query).ToList();
 			return users.Select(user => new UserSearchByInterestsDto
-											{
-												MatchCount = user.Interests.Sum(x =>
-																					{
-																						if (interestAliases.Contains(x.Interest.Slug))
-																							return 3; //movies -> movies (same match)
-																						if (x.Interest.ParentInterest != null && subjAliasAndParent.Contains(x.Interest.ParentInterest.Slug))
-																							return 2; //movies -> tv shows (sibling match)
-																						if (subjAliasAndParent.Contains(x.Interest.Slug))
-																							return 1; //movies -> entertainment (parent match)
-																						return 0;
-																					}),
-												UserDto = new UserDto
-															{
-																Username = user.Username,
-																InterestDtos = user.Interests
-																	.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(),
-																Bio = user.Bio
-															}
-											}).OrderByDescending(x => x.MatchCount).ToList();
+			{
+				MatchCount = user.Interests.Sum(x =>
+				{
+					if (interestAliases.Contains(x.Interest.Slug))
+						return 3; //movies -> movies (same match)
+					if (x.Interest.ParentInterest != null && subjAliasAndParent.Contains(x.Interest.ParentInterest.Slug))
+						return 2; //movies -> tv shows (sibling match)
+					if (subjAliasAndParent.Contains(x.Interest.Slug))
+						return 1; //movies -> entertainment (parent match)
+					return 0;
+				}),
+				UserDto = new UserDto
+				{
+					Username = user.Username,
+					InterestDtos = user.Interests
+						.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(),
+					Bio = user.Bio
+				}
+			}).OrderByDescending(x => x.MatchCount).ToList();
 		}
 
 		public User Create(UserDto userToCreate)
@@ -121,7 +127,7 @@ namespace CliqFlip.Tasks.TaskImpl
 		{
 			bool retVal = false;
 			var withMatchingNameOrEmail = new AdHoc<User>(x => x.Username == username || x.Email == username);
-			var user = _repository.FindOne(withMatchingNameOrEmail);
+			User user = _repository.FindOne(withMatchingNameOrEmail);
 
 			if (user != null)
 			{
@@ -144,21 +150,25 @@ namespace CliqFlip.Tasks.TaskImpl
 			return _repository.FindOne(adhoc);
 		}
 
-		public void SaveInterestImage(User user, HttpPostedFileBase profileImage, int userInterestId)
+		public void SaveInterestImage(User user, HttpPostedFileBase interestImage, int userInterestId)
 		{
-			throw new NotImplementedException();
+			var interest = user.Interests.First(x=> x.Id == userInterestId);
+			SaveImageForUser(interestImage, user.Username + "-Interest-Image-"+interest.Interest.Name, imgFileNamesDto =>
+			{
+				user.UpdateInterestImage(interest, interestImage.FileName, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename);
+			});
 		}
 
 		public void SaveWebsite(User user, string siteUrl)
 		{
 			if (string.IsNullOrWhiteSpace(siteUrl)) throw new ArgumentNullException("siteUrl");
-			
+
 			siteUrl = siteUrl.FormatWebAddress();
 
 			if (!UrlValidation.IsValidUrl(siteUrl)) throw new RulesException("SiteUrl", "Invalid URL");
-			
+
 			string html = _htmlService.GetHtmlFromUrl(siteUrl);
-			
+
 			string feedUrl = _feedFinder.GetFeedUrl(html);
 
 			if (string.IsNullOrWhiteSpace(feedUrl))
@@ -171,7 +181,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public void Logout(string name)
 		{
-			var user = GetUser(name);
+			User user = GetUser(name);
 
 			if (user != null)
 			{
@@ -183,6 +193,27 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public void SaveProfileImage(User user, HttpPostedFileBase profileImage)
 		{
+			var originalImageNames = new ImageFileNamesDto
+			{
+				ThumbFilename = user.ProfileImage.ThumbFileName,
+				MediumFilename = user.ProfileImage.MediumFileName,
+				FullFilename = user.ProfileImage.FullFileName
+			};
+
+			SaveImageForUser(profileImage, user.Username + "-Profile-Image", imgFileNamesDto =>
+			{
+				user.UpdateProfileImage(profileImage.FileName, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename);
+
+				DeletePreviousProfileImages(originalImageNames);
+			});
+		}
+
+		#endregion
+
+		private void SaveImageForUser(HttpPostedFileBase profileImage, string metaPrefix, Action<ImageFileNamesDto> afterProcessing)
+		{
+			if (afterProcessing == null) throw new ArgumentNullException("afterProcessing");
+
 			//be very safe with image streams
 			var exceptions = new List<Exception>();
 
@@ -190,38 +221,29 @@ namespace CliqFlip.Tasks.TaskImpl
 
 			try
 			{
-				var originalImageNames = new ImageFileNamesDto
-											{
-												ThumbFilename = user.ProfileImage.ThumbFileName,
-												MediumFilename = user.ProfileImage.MediumFileName,
-												FullFilename = user.ProfileImage.FullFileName
-											};
-
 				var newImageFileNames = new ImageFileNamesDto();
 
 				result = _imageProcessor.ProcessImage(profileImage);
 				bool fullFileExists = result.FullImage != null;
 
 				var files = new List<FileToUpload>
-				            	{
-				            		new FileToUpload(result.ThumbnailImage, "thumb_" + profileImage.FileName),
-				            		new FileToUpload(result.MediumImage, "med_" + profileImage.FileName)
-				            	};
+				{
+					new FileToUpload(result.ThumbnailImage, "thumb_" + profileImage.FileName,metaPrefix + "-" +"Thumb"),
+					new FileToUpload(result.MediumImage, "med_" + profileImage.FileName,metaPrefix + "-" +"Medium")
+				};
 
 				if (fullFileExists)
 				{
-					files.Add(new FileToUpload(result.FullImage, "full_" + profileImage.FileName));
+					files.Add(new FileToUpload(result.FullImage, "full_" + profileImage.FileName, metaPrefix + "-" + "Full"));
 				}
 
-				IList<string> filePaths = _fileUploadService.UploadFiles("Images/", files);
+				IList<string> filePaths = _fileUploadService.UploadFiles("Images/", metaPrefix, files);
 
 				newImageFileNames.ThumbFilename = filePaths[0];
 				newImageFileNames.MediumFilename = filePaths[1];
 				newImageFileNames.FullFilename = filePaths[fullFileExists ? 2 : 1];
 
-				user.UpdateProfileImage(profileImage.FileName, newImageFileNames.ThumbFilename, newImageFileNames.MediumFilename, newImageFileNames.FullFilename);
-
-				DeletePreviousProfileImages(originalImageNames);
+				afterProcessing(newImageFileNames);
 			}
 			catch (RulesException)
 			{
@@ -265,8 +287,6 @@ namespace CliqFlip.Tasks.TaskImpl
 			_fileUploadService.DeleteFiles("Images/", filesToDelete);
 		}
 
-		#endregion
-
 		private void DisposeImageIfNotEmpty(Stream streamToDispose, IList<Exception> exceptions)
 		{
 			if (streamToDispose != null)
@@ -289,10 +309,10 @@ namespace CliqFlip.Tasks.TaskImpl
 
 			List<User> users = _repository.FindAll(query).ToList();
 			return users.Select(user => new UserSearchByInterestsDto
-											{
-												MatchCount = user.Interests.Select(x => x.Id).Intersect(interestList).Count(),
-												UserDto = new UserDto { Username = user.Username, InterestDtos = user.Interests.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(), Bio = user.Bio }
-											}).ToList();
+			{
+				MatchCount = user.Interests.Select(x => x.Id).Intersect(interestList).Count(),
+				UserDto = new UserDto { Username = user.Username, InterestDtos = user.Interests.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(), Bio = user.Bio }
+			}).ToList();
 		}
 	}
 }

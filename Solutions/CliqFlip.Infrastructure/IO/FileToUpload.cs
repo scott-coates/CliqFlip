@@ -6,11 +6,13 @@ namespace CliqFlip.Infrastructure.IO
 	{
 		public Stream Stream { get; private set; }
 		public string Filename { get; private set; }
+		public string MetaInfo { get; private set; }
 
-		public FileToUpload(Stream stream, string filename)
+		public FileToUpload(Stream stream, string filename, string metaInfo)
 		{
-			Filename = filename;
 			Stream = stream;
+			Filename = filename;
+			MetaInfo = metaInfo;
 		}
 	}
 }
