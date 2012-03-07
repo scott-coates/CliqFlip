@@ -246,12 +246,17 @@ namespace CliqFlip.Web.Mvc.Controllers
 				user.SaveTwitterUsernameUrl = "\"" + Url.Action("SaveTwitterUsername", "User") + "\"";
 				user.SaveYouTubeUsernameUrl = "\"" + Url.Action("SaveYouTubeUsername", "User") + "\"";
 				user.SaveWebsiteUrl = "\"" + Url.Action("SaveWebiste", "User") + "\"";
-				user.CanEdit = _principal.Identity.Name.ToLower() == username.ToLower();
+				user.CanEdit = CanEdit(username);
 				return View(user);
 			}
 		
 			//http://stackoverflow.com/a/4985562/173957
 			throw new HttpException(404, "Not found");
+		}
+
+		private bool CanEdit(string username)
+		{
+			return _principal.Identity.Name.ToLower() == username.ToLower();
 		}
 
 		[Transaction]
@@ -265,6 +270,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 		public ActionResult Interests(string username)
 		{
 			UserInterestsViewModel user = _userProfileQuery.GetUserIntersets(username);
+			user.CanEdit = CanEdit(username);
+
 			return View(user);
 		}
 	}

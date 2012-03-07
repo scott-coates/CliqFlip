@@ -5,6 +5,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 	public class UserInterestsViewModel : UserProfileViewModel
 	{
 		public IList<InterestViewModel> Interests { get; set; }
+		public bool CanEdit { get; set; }
 
 		public UserInterestsViewModel()
 		{

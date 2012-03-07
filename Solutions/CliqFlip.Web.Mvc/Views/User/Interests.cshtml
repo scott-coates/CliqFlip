@@ -1,8 +1,9 @@
 ﻿@{
 	Layout = "~/Views/User/_Profile.cshtml";
 }
+@using System.Globalization
 @using CliqFlip.Web.Mvc.ViewModels.User
-@model CliqFlip.Web.Mvc.ViewModels.User.UserInterestsViewModel
+@model UserInterestsViewModel
 
 <div id="interests-container">
 	@foreach (UserInterestsViewModel.InterestViewModel interest in Model.Interests)
@@ -22,8 +23,18 @@
 	}
 	<div class="clear"></div>
 </div>
+<div class="user-interest-add-photo-dialog" id="add-photo">
+	<h2>Add a photo</h2>
+</div>
     
 
 @section scripts
 {
+	<script type="text/javascript" src="@Url.Content("/Content/js/user/interests.js")"> </script>
+		<script type="text/javascript">
+		$(function() {
+			InitInterests(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
+			InitSaveImages();
+		});
+	</script>
 }

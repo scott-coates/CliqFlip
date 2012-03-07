@@ -245,6 +245,7 @@
     <Content Include="Content\img\check.png" />
     <Content Include="Content\img\ClipFliq-LogoMoto.png" />
     <Content Include="Content\js\cliqFlip\error-handler.js" />
+    <Content Include="Content\js\user\interests.js" />
     <Content Include="favicon.ico" />
     <Content Include="Content\img\close.png" />
     <Content Include="Content\img\connect_sprite.png" />

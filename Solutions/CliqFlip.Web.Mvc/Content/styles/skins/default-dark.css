@@ -1306,6 +1306,9 @@ color: white;
 		    overflow-x: hidden;
             height: 194px;
 		}
+		.user-interest-add-photo-dialog {
+			display: none;
+		}
 
 /*========================*/
 /*===  11.1 Layout file - navigation
