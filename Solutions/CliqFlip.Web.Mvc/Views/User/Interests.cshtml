@@ -30,7 +30,7 @@
 		@using (Html.BeginForm("SaveInterestImage", "User", FormMethod.Post, new {@encType = "multipart/form-data"}))
 		{
 			@Html.Hidden("userInterestId",null,new{@id="userInterestId"})
-			@FileUpload.GetHtml("interestImage", initialNumberOfFiles: 1, allowMoreFilesToBeAdded: false, uploadText: "Upload Photo")
+			@FileUpload.GetHtml("profileImage", initialNumberOfFiles: 1, allowMoreFilesToBeAdded: false, uploadText: "Upload Photo")
 		}
 	</div>
 </div>

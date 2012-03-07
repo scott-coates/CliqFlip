@@ -185,6 +185,7 @@
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
     <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
+    <Compile Include="ViewModels\User\UserSaveInterestImageViewModel.cs" />
     <Compile Include="ViewModels\User\UserInterestsViewModel.cs" />
     <Compile Include="ViewModels\User\UserProfileIndexViewModel.cs" />
     <Compile Include="ViewModels\User\UserLoginViewModel.cs" />

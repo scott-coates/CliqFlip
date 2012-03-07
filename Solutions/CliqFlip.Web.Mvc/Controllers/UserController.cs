@@ -137,6 +137,40 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return RedirectToAction("Index");
 		}
 
+		[Authorize]
+		[HttpPost]
+		[Transaction]
+		public ActionResult SaveInterestImage(UserSaveInterestImageViewModel userSaveInterestImageViewModel)
+		{
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+			if (userSaveInterestImageViewModel.ProfileImage == null)
+			{
+				ViewData.ModelState.AddModelError("Image", "You need to provide a file first... or don't. Have it your way.");
+				RouteData.Values["action"] = "Index";
+				return Index(_principal.Identity.Name);
+			}
+			else
+			{
+				try
+				{
+					_userTasks.SaveProfileImage(user, userSaveInterestImageViewModel.ProfileImage);
+				}
+				catch (RulesException rex)
+				{
+					//TODO: Implement PRG pattern for post forms
+					//TODO: Log These exceptions in elmah
+					rex.AddModelStateErrors(ModelState);
+					RouteData.Values["action"] = "Index";
+					return Index(_principal.Identity.Name);
+				}
+				finally
+				{
+					userSaveInterestImageViewModel.ProfileImage.InputStream.Dispose();
+				}
+			}
+
+			return RedirectToAction("Index");
+		}
 
 		[Authorize]
 		[HttpPost]
