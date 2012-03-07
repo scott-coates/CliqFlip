@@ -9,7 +9,8 @@ function InitSaveImages() {
 	if (_canEdit) {
 		_addPhotoDialog = $("#add-photo").dialog({
 			autoOpen: false,
-			modal: true
+			modal: true,
+			width: 430
 		});
 
 		$(".user-interest-title-add-photo").click(function (parameters) {

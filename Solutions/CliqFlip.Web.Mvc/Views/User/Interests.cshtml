@@ -5,6 +5,7 @@
 @using CliqFlip.Web.Mvc.ViewModels.User
 @model UserInterestsViewModel
 
+@Html.ValidationSummary()
 <div id="interests-container">
 	@foreach (UserInterestsViewModel.InterestViewModel interest in Model.Interests)
 	{
@@ -25,6 +26,12 @@
 </div>
 <div class="" id="add-photo">
 	<h2>Add a photo</h2>
+	<div class="uploadInterestImage">
+		@using (Html.BeginForm("SaveInterestImage", "User", FormMethod.Post, new {@encType = "multipart/form-data"}))
+		{
+			@FileUpload.GetHtml("interestImage", initialNumberOfFiles: 1, allowMoreFilesToBeAdded: false, uploadText: "Upload Photo")
+		}
+	</div>
 </div>
     
 
