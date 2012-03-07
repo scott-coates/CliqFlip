@@ -1,10 +1,10 @@
-﻿using CliqFlip.Infrastructure.Common;
-using CliqFlip.Infrastructure.NHibernateMaps;
+﻿using CliqFlip.Infrastructure.NHibernateMaps;
+using NHibernate.Dialect;
 using NHibernate.Tool.hbm2ddl;
 using NUnit.Framework;
 using SharpArch.NHibernate;
 
-namespace CliqFlip.Tests.Generation.Schema
+namespace CliqFlip.Tests.NHibernate
 {
 	[TestFixture]
 	public class DbSchemaTest
@@ -17,7 +17,7 @@ namespace CliqFlip.Tests.Generation.Schema
 				new[] { "CliqFlip.Infrastructure.dll" },
 				new AutoPersistenceModelGenerator().Generate(),
 				"Configuration\\NHibernate.config");
-
+			
 			new SchemaExport(cfg).Create(true, false);
 
 			NHibernateSession.Current.Dispose();

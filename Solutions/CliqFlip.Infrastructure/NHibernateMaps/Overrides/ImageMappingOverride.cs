@@ -8,12 +8,11 @@ using FluentNHibernate.Automapping.Alterations;
 
 namespace CliqFlip.Infrastructure.NHibernateMaps.Overrides
 {
-	public class UserInterestMappingOverride: IAutoMappingOverride<UserInterest>
+	public class ImageMappingOverride: IAutoMappingOverride<Image>
 	{
-		public void Override(AutoMapping<UserInterest> mapping)
+		public void Override(AutoMapping<Image> mapping)
 		{
-			//don't need to add inverse, cascade, etc as that's taken care of in the convention
-			mapping.HasMany(x => x.Images).OrderBy("InterestImageOrder");
+			mapping.Map(x => x.InterestImageOrder).Access.ReadOnly();
 		}
 	}
 }

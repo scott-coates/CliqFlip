@@ -172,6 +172,7 @@
     <Compile Include="NHibernateMaps\Conventions\TableNameConvention.cs" />
     <Compile Include="NHibernateMaps\AutoPersistenceModelGenerator.cs" />
     <Compile Include="Common\PasswordHelper.cs" />
+    <Compile Include="NHibernateMaps\Overrides\ImageMappingOverride.cs" />
     <Compile Include="NHibernateMaps\Overrides\UserInterestMappingOverride.cs" />
     <Compile Include="Syndication\FeedFinder.cs" />
     <Compile Include="Syndication\Interfaces\IFeedFinder.cs" />
