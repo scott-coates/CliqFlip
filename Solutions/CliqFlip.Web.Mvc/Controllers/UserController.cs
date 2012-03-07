@@ -146,7 +146,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			if (userSaveInterestImageViewModel.ProfileImage == null)
 			{
 				ViewData.ModelState.AddModelError("Image", "You need to provide a file first... or don't. Have it your way.");
-				RouteData.Values["action"] = "Index";
+				RouteData.Values["action"] = "Interests";
 				return Index(_principal.Identity.Name);
 			}
 			else

@@ -144,6 +144,11 @@ namespace CliqFlip.Tasks.TaskImpl
 			return _repository.FindOne(adhoc);
 		}
 
+		public void SaveInterestImage(User user, HttpPostedFileBase profileImage, int userInterestId)
+		{
+			throw new NotImplementedException();
+		}
+
 		public void SaveWebsite(User user, string siteUrl)
 		{
 			if (string.IsNullOrWhiteSpace(siteUrl)) throw new ArgumentNullException("siteUrl");

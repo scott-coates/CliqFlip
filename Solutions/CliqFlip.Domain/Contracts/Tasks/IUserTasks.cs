@@ -19,6 +19,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		User GetUser(string username);
 
 		void SaveProfileImage(User user, HttpPostedFileBase profileImage);
+		void SaveInterestImage(User user, HttpPostedFileBase profileImage, int userInterestId);
 		void SaveWebsite(User user, string siteUrl);
 		void Logout(string name);
 	}
