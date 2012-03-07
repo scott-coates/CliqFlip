@@ -4,10 +4,10 @@ namespace CliqFlip.Infrastructure.Images
 {
 	public class ImageProcessResult
 	{
-		//TODO: Not sure if we should send back byte[] instead of stream - could be risky
-		public Stream ThumbnailImage { get; set; }
-		public Stream MediumImage { get; set; }
-		public Stream FullImage { get; set; }
-		//we might want to store the original too someday
+		//TODO: we might want to store the original too someday
+
+		public ResizedImage ThumbnailImage { get; set; }
+		public ResizedImage MediumImage { get; set; }
+		public ResizedImage FullImage { get; set; }
 	}
 }

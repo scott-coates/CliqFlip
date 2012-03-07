@@ -139,6 +139,7 @@
     <Compile Include="Email\Interfaces\IEmailService.cs" />
     <Compile Include="Exceptions\JavaScriptException.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Images\ResizedImage.cs" />
     <Compile Include="Images\ImageProcessResult.cs" />
     <Compile Include="Images\Interfaces\IImageProcessor.cs" />
     <Compile Include="Images\ImageProcessor.cs" />

@@ -22,7 +22,7 @@ namespace CliqFlip.Infrastructure.Images
 		private const string MIN_RESOLUTION_MESSAGE = "The minimum resolution is 100 pixels. Please upload a larger file";
 		private const string MAX_RESOLUTION_MESSAGE = "The maximum resolution is 2048 pixels. Please upload a smaller file";
 		private static readonly ImageCodecInfo[] _imageCodecs = ImageCodecInfo.GetImageEncoders();
-		private static readonly string[] _acceptedExtensions = new[] {"jpg", "jpeg", "tif", "tiff", "png", "bmp", "gif"};
+		private static readonly string[] _acceptedExtensions = new[] { "jpg", "jpeg", "tif", "tiff", "png", "bmp", "gif" };
 
 		#region IImageProcessor Members
 
@@ -40,7 +40,7 @@ namespace CliqFlip.Infrastructure.Images
 				retVal.ThumbnailImage = GetResizedImage(image, THUMBNAIL_RESOLUTION, THUMBNAIL_RESOLUTION);
 				retVal.MediumImage = GetResizedImage(image, MEDIUM_RESOLUTION_WIDTH, MEDIUM_RESOLUTION_HEIGHT);
 
-				if (image.Width >= MEDIUM_RESOLUTION_WIDTH + 50 || image.Height >= MEDIUM_RESOLUTION_HEIGHT + 50)
+				if (image.Width >= retVal.MediumImage.Width + 50 || image.Height >= retVal.MediumImage.Height + 50)
 				{
 					//the + 50 means don't create a full size image if it's barely bigger than a medium sized one
 
@@ -54,13 +54,13 @@ namespace CliqFlip.Infrastructure.Images
 
 		#endregion
 
-		private Stream GetResizedImage(Image image, int proposedWidth, int proposedHeight)
+		private ResizedImage GetResizedImage(Image image, int proposedWidth, int proposedHeight)
 		{
-			Stream retVal;
+			ResizedImage retVal;
 
 			int newWidth;
 			int newHeight;
-			if (image.Width < proposedWidth || image.Height < proposedHeight)
+			if (image.Width < proposedWidth && image.Height < proposedHeight)
 			{
 				//image was smaller than proposed dimensions - use original
 
@@ -75,17 +75,17 @@ namespace CliqFlip.Infrastructure.Images
 
 				if (image.Width > image.Height)
 				{
-					diffRatio = (decimal) proposedWidth/image.Width;
+					diffRatio = (decimal)proposedWidth / image.Width;
 					newWidth = proposedWidth;
-					decimal tempHeight = image.Height*diffRatio;
-					newHeight = (int) tempHeight;
+					decimal tempHeight = image.Height * diffRatio;
+					newHeight = (int)tempHeight;
 				}
 				else
 				{
-					diffRatio = (decimal) proposedHeight/image.Height;
+					diffRatio = (decimal)proposedHeight / image.Height;
 					newHeight = proposedHeight;
-					decimal tempWidth = image.Width*diffRatio;
-					newWidth = (int) tempWidth;
+					decimal tempWidth = image.Width * diffRatio;
+					newWidth = (int)tempWidth;
 				}
 			}
 
@@ -93,7 +93,7 @@ namespace CliqFlip.Infrastructure.Images
 			{
 				using (Graphics newGraphic = Graphics.FromImage(resizedBitmap))
 				{
-					retVal = new MemoryStream();
+					retVal = new ResizedImage { Image = new MemoryStream(), Width = newWidth, Height = newHeight };
 					using (var encoderParameters = new EncoderParameters(1))
 					{
 						encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 90L);
@@ -106,10 +106,10 @@ namespace CliqFlip.Infrastructure.Images
 
 						newGraphic.DrawImage(image, 0, 0, newWidth, newHeight);
 
-						resizedBitmap.Save(retVal, GetImageCodec(image.RawFormat), encoderParameters);
+						resizedBitmap.Save(retVal.Image, GetImageCodec(image.RawFormat), encoderParameters);
 
 						//Stream is NOT disposed here - it is sent back as an open stream
-						retVal.Position = 0;
+						retVal.Image.Position = 0;
 					}
 				}
 			}

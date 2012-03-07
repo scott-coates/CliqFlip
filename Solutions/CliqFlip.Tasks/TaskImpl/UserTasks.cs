@@ -227,13 +227,13 @@ namespace CliqFlip.Tasks.TaskImpl
 
 				var files = new List<FileToUpload>
 				{
-					new FileToUpload(result.ThumbnailImage, "thumb_" + profileImage.FileName, metaPrefix + "-" + "Thumb"),
-					new FileToUpload(result.MediumImage, "med_" + profileImage.FileName, metaPrefix + "-" + "Medium")
+					new FileToUpload(result.ThumbnailImage.Image, "thumb_" + profileImage.FileName, metaPrefix + "-" + "Thumb"),
+					new FileToUpload(result.MediumImage.Image, "med_" + profileImage.FileName, metaPrefix + "-" + "Medium")
 				};
 
 				if (fullFileExists)
 				{
-					files.Add(new FileToUpload(result.FullImage, "full_" + profileImage.FileName, metaPrefix + "-" + "Full"));
+					files.Add(new FileToUpload(result.FullImage.Image, "full_" + profileImage.FileName, metaPrefix + "-" + "Full"));
 				}
 
 				IList<string> filePaths = _fileUploadService.UploadFiles("Images/", files);
@@ -286,13 +286,13 @@ namespace CliqFlip.Tasks.TaskImpl
 			_fileUploadService.DeleteFiles("Images/", filesToDelete);
 		}
 
-		private void DisposeImageIfNotEmpty(Stream streamToDispose, IList<Exception> exceptions)
+		private void DisposeImageIfNotEmpty(ResizedImage resizedImage, IList<Exception> exceptions)
 		{
-			if (streamToDispose != null)
+			if (resizedImage != null)
 			{
 				try
 				{
-					streamToDispose.Dispose();
+					resizedImage.Image.Dispose();
 				}
 				catch (Exception ex)
 				{
