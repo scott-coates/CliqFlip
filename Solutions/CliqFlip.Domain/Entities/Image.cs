@@ -24,7 +24,7 @@ namespace CliqFlip.Domain.Entities
 
 				if (UserInterest != null && UserInterest.Images.Contains(this))
 				{
-					fieldOrder = UserInterest.Images.ToList().IndexOf(this);
+					fieldOrder = UserInterest.Images.ToList().IndexOf(this) + 1; //why not
 				}
 
 				return fieldOrder;
