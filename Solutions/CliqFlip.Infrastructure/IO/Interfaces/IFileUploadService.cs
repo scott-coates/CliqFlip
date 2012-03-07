@@ -8,7 +8,7 @@ namespace CliqFlip.Infrastructure.IO.Interfaces
 {
 	public interface IFileUploadService
 	{
-		IList<string> UploadFiles(string images, string path, IList<FileToUpload> files);
+		IList<string> UploadFiles(string path, IList<FileToUpload> files);
 		void DeleteFiles(string path, IList<string> fileNames);
 	}
 }

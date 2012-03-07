@@ -153,7 +153,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				try
 				{
-					_userTasks.SaveProfileImage(user, userSaveInterestImageViewModel.ProfileImage);
+					_userTasks.SaveInterestImage(user, userSaveInterestImageViewModel.ProfileImage, userSaveInterestImageViewModel.UserInterestId);
 				}
 				catch (RulesException rex)
 				{
@@ -169,7 +169,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 				}
 			}
 
-			return RedirectToAction("Index");
+			return RedirectToAction("Interests");
 		}
 
 		[Authorize]
@@ -283,7 +283,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 				user.CanEdit = CanEdit(username);
 				return View(user);
 			}
-		
+
 			//http://stackoverflow.com/a/4985562/173957
 			throw new HttpException(404, "Not found");
 		}

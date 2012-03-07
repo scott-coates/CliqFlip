@@ -11,7 +11,7 @@ namespace CliqFlip.Domain.Entities
 	public class User : Entity
 	{
 		private readonly Iesi.Collections.Generic.ISet<UserInterest> _interests;
-		private UserImage _profileImage;
+		private UserImage _profileImage;//TODO: user the image entities
 		private UserWebsite _userWebsite;
 
 		public virtual IEnumerable<UserInterest> Interests
@@ -122,10 +122,5 @@ namespace CliqFlip.Domain.Entities
         {
             FacebookUsername = !string.IsNullOrWhiteSpace(fbid) ? fbid.Trim() : null;
         }
-
-		public virtual void UpdateInterestImage(UserInterest interest, string fileName, string thumbFilename, string mediumFilename, string fullFilename)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }

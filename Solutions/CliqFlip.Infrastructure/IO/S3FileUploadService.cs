@@ -14,7 +14,7 @@ namespace CliqFlip.Infrastructure.IO
 	{
 		#region IFileUploadService Members
 
-		public IList<string> UploadFiles(string images, string path, IList<FileToUpload> files)
+		public IList<string> UploadFiles(string path, IList<FileToUpload> files)
 		{
 			ValidatePath(path);
 

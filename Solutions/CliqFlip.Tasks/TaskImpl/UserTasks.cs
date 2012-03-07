@@ -33,12 +33,12 @@ namespace CliqFlip.Tasks.TaskImpl
 		private readonly IUserAuthentication _userAuthentication;
 
 		public UserTasks(ILinqRepository<User> repository,
-						 IInterestTasks interestTasks,
-						 IImageProcessor imageProcessor,
-						 IFileUploadService fileUploadService,
-						 IHtmlService htmlService,
-						 IFeedFinder feedFinder,
-						 IUserAuthentication userAuthentication)
+		                 IInterestTasks interestTasks,
+		                 IImageProcessor imageProcessor,
+		                 IFileUploadService fileUploadService,
+		                 IHtmlService htmlService,
+		                 IFeedFinder feedFinder,
+		                 IUserAuthentication userAuthentication)
 		{
 			_repository = repository;
 			_interestTasks = interestTasks;
@@ -56,8 +56,8 @@ namespace CliqFlip.Tasks.TaskImpl
 			//TODO: Move this data access to our infra project
 			IList<string> subjAliasAndParent = _interestTasks.GetSlugAndParentSlug(interestAliases);
 			var query = new AdHoc<User>(x => x.Interests.Any(y => subjAliasAndParent.Contains(y.Interest.Slug))
-											 ||
-											 x.Interests.Any(y => subjAliasAndParent.Contains(y.Interest.ParentInterest.Slug)));
+			                                 ||
+			                                 x.Interests.Any(y => subjAliasAndParent.Contains(y.Interest.ParentInterest.Slug)));
 
 			List<User> users = _repository.FindAll(query).ToList();
 			return users.Select(user => new UserSearchByInterestsDto
@@ -152,11 +152,11 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public void SaveInterestImage(User user, HttpPostedFileBase interestImage, int userInterestId)
 		{
-			var interest = user.Interests.First(x=> x.Id == userInterestId);
-			SaveImageForUser(interestImage, user.Username + "-Interest-Image-"+interest.Interest.Name, imgFileNamesDto =>
-			{
-				user.UpdateInterestImage(interest, interestImage.FileName, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename);
-			});
+			UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
+			SaveImageForUser(interestImage,
+			                 user.Username + "-Interest-Image-" + interest.Interest.Name,
+			                 imgFileNamesDto =>
+			                 interest.AddImage(interestImage.FileName, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename));
 		}
 
 		public void SaveWebsite(User user, string siteUrl)
@@ -203,7 +203,6 @@ namespace CliqFlip.Tasks.TaskImpl
 			SaveImageForUser(profileImage, user.Username + "-Profile-Image", imgFileNamesDto =>
 			{
 				user.UpdateProfileImage(profileImage.FileName, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename);
-
 				DeletePreviousProfileImages(originalImageNames);
 			});
 		}
@@ -228,8 +227,8 @@ namespace CliqFlip.Tasks.TaskImpl
 
 				var files = new List<FileToUpload>
 				{
-					new FileToUpload(result.ThumbnailImage, "thumb_" + profileImage.FileName,metaPrefix + "-" +"Thumb"),
-					new FileToUpload(result.MediumImage, "med_" + profileImage.FileName,metaPrefix + "-" +"Medium")
+					new FileToUpload(result.ThumbnailImage, "thumb_" + profileImage.FileName, metaPrefix + "-" + "Thumb"),
+					new FileToUpload(result.MediumImage, "med_" + profileImage.FileName, metaPrefix + "-" + "Medium")
 				};
 
 				if (fullFileExists)
@@ -237,7 +236,7 @@ namespace CliqFlip.Tasks.TaskImpl
 					files.Add(new FileToUpload(result.FullImage, "full_" + profileImage.FileName, metaPrefix + "-" + "Full"));
 				}
 
-				IList<string> filePaths = _fileUploadService.UploadFiles("Images/", metaPrefix, files);
+				IList<string> filePaths = _fileUploadService.UploadFiles("Images/", files);
 
 				newImageFileNames.ThumbFilename = filePaths[0];
 				newImageFileNames.MediumFilename = filePaths[1];
@@ -311,7 +310,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			return users.Select(user => new UserSearchByInterestsDto
 			{
 				MatchCount = user.Interests.Select(x => x.Id).Intersect(interestList).Count(),
-				UserDto = new UserDto { Username = user.Username, InterestDtos = user.Interests.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(), Bio = user.Bio }
+				UserDto = new UserDto {Username = user.Username, InterestDtos = user.Interests.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(), Bio = user.Bio}
 			}).ToList();
 		}
 	}
