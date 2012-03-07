@@ -6,11 +6,6 @@ function InitInterests(canEdit) {
 
 function InitSaveImages() {
 	if (_canEdit) {
-		$("#add-photo").dialog({
-			autoOpen: true,
-			height: 300,
-			width: 350,
-			modal: true
-		});
+		$("#add-photo").dialog();
 	}
 }
