@@ -67,6 +67,27 @@ namespace CliqFlip.Web.Mvc.Queries
 			return retVal;
 		}
 
+		public UserInterestsViewModel GetUserIntersets(string username)
+		{
+			UserInterestsViewModel retVal = null;
+
+			User user = Session.Query<User>().FirstOrDefault(x => x.Username == username);
+
+
+			if (user != null)
+			{
+				retVal = new UserInterestsViewModel();
+				foreach (var interest in user.Interests)
+				{
+					retVal.Interests.Add(new UserInterestsViewModel.InterestViewModel { Name = interest.Interest.Name });
+				}
+
+				FillBaseProperties(retVal, user);
+			}
+
+			return retVal;
+		}
+
 		#endregion
 
 		private void FillBaseProperties(UserProfileViewModel retVal, User user)

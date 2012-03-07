@@ -1252,6 +1252,61 @@ color: white;
 }
 
 
+#interests-container 
+{
+	margin-left: 130px;
+	min-height: 400px;
+}
+
+
+.user-interest
+		{
+		    border-style: solid;
+            background-color: white;
+            height: 50px;
+            margin: 5px;
+            text-align: center;
+            position: relative;
+            width: 48%;
+            float: left;
+            height: 220px;
+		}
+.user-interest-title {
+	border-bottom: 1px solid #999;
+            width: 100%;
+            display: block;
+            height: 25px;
+            line-height: 24px;
+}		
+
+
+
+.user-interest-title-add-photo {
+	width: 16px;
+	height: 16px;
+	background: url('../../img/add.png') no-repeat;
+	float: right;
+	margin-top: 5px;
+	margin-right: 5px;
+}
+.user-interest-title-add-photo span {
+	visibility: hidden;}
+
+
+		.user-interest strong
+		{
+			margin-left: 16px;
+		    color: black;
+            
+		}
+		
+		.user-interest-content
+		{
+		    overflow-y: auto;
+		    overflow-x: hidden;
+            height: 194px;
+		}
+
 /*========================*/
 /*===  11.1 Layout file - navigation
 /*========================*/
@@ -1318,11 +1373,6 @@ color: white;
         /*========================*/
         /*===  11.1 Layout file - navigation
         /*========================*/
-		#social-media {
-            width: 100%;
-            float: left;
-            margin-right: 0%;
-        }
 		.social-media
 		{
 		    border-style: solid;
@@ -1450,6 +1500,6 @@ color: white;
 
 		.not-shared
 		{
-		    border: medium none !important;
+		    border: medium none;
 		    padding-top: 80px;
 		}
