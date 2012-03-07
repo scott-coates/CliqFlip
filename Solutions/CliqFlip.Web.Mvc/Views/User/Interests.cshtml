@@ -12,7 +12,7 @@
 		<div class="user-interest">
 			<div class="user-interest-title">
 				<strong>@interest.Name</strong>
-				<a class="user-interest-title-add-photo" href="javascript:void(0);" title="add photo"><span>add photo</span></a>
+				<a class="user-interest-title-add-photo" value="@interest.UserInterestId" href="javascript:void(0);" title="add photo"><span>add photo</span></a>
 				<div class="clear"></div>
 			
 			</div>
@@ -29,6 +29,7 @@
 	<div class="uploadInterestImage">
 		@using (Html.BeginForm("SaveInterestImage", "User", FormMethod.Post, new {@encType = "multipart/form-data"}))
 		{
+			@Html.Hidden("userInterestId",null,new{@id="userInterestId"})
 			@FileUpload.GetHtml("interestImage", initialNumberOfFiles: 1, allowMoreFilesToBeAdded: false, uploadText: "Upload Photo")
 		}
 	</div>

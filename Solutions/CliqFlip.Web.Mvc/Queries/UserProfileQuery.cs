@@ -79,7 +79,7 @@ namespace CliqFlip.Web.Mvc.Queries
 				retVal = new UserInterestsViewModel();
 				foreach (var interest in user.Interests)
 				{
-					retVal.Interests.Add(new UserInterestsViewModel.InterestViewModel { Name = interest.Interest.Name });
+					retVal.Interests.Add(new UserInterestsViewModel.InterestViewModel { Name = interest.Interest.Name, UserInterestId = interest.Id });
 				}
 
 				FillBaseProperties(retVal, user);

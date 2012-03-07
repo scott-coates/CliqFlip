@@ -14,6 +14,7 @@ function InitSaveImages() {
 		});
 
 		$(".user-interest-title-add-photo").click(function (parameters) {
+			$("#userInterestId").val($(this).attr('value'));
 			_addPhotoDialog.dialog("open");
 		});
 	}
