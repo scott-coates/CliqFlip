@@ -40,7 +40,9 @@ namespace CliqFlip.Infrastructure.Images
 				retVal.ThumbnailImage = GetResizedImage(image, THUMBNAIL_RESOLUTION, THUMBNAIL_RESOLUTION);
 				retVal.MediumImage = GetResizedImage(image, MEDIUM_RESOLUTION_WIDTH, MEDIUM_RESOLUTION_HEIGHT);
 
-				if (image.Width >= retVal.MediumImage.Width + 50 || image.Height >= retVal.MediumImage.Height + 50)
+				if ((image.Width >= retVal.MediumImage.Width + 50 && image.Width >= FULL_RESOLUTION_WIDTH)
+					||
+					(image.Height >= retVal.MediumImage.Height + 50 && image.Height >= FULL_RESOLUTION_HEIGHT))
 				{
 					//the + 50 means don't create a full size image if it's barely bigger than a medium sized one
 
