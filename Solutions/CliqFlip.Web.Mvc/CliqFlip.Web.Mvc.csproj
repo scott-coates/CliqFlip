@@ -264,7 +264,7 @@
     <Content Include="Content\styles\jquery-ui\images\ui-icons_f7a50d_256x240.png" />
     <Content Include="Content\styles\jquery-ui\images\ui-icons_fcd113_256x240.png" />
     <Content Include="Content\styles\jquery-ui\jquery-ui-1.8.18.custom.css" />
-    <Content Include="Content\styles\theme-default1.css" />
+    <Content Include="Content\styles\anythingslider-default1.css" />
     <Content Include="favicon.ico" />
     <Content Include="Content\img\close.png" />
     <Content Include="Content\img\connect_sprite.png" />

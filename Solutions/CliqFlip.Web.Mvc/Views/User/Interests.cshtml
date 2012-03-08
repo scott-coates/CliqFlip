@@ -35,7 +35,9 @@
 					{
 						<li>
 							<div style="height:180px;">
-							<img src="@image.MediumImage" alt="@Model.Username @interest.Name Image"/>
+								<a rel="colorbox" title="@Model.Username" href="@image.FullImage">
+								<img src="@image.MediumImage" alt="@Model.Username @interest.Name Image"/>
+								</a>
 							</div>
 						</li>
 					}
@@ -78,15 +80,17 @@
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/interests.js")"> </script>
 	<script type="text/javascript">
-		$(function() {
-//			InitInterests(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
-//			InitSaveImages();
+		$(function () {
+			//			InitInterests(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
+			//			InitSaveImages();
 			$('#slider').anythingSlider(
 				{
-					resizeContents: false, 
+					resizeContents: false,
 					theme: "default1",
 					buildStartStop: false
 				}).show();
+
+			$('#slider a').colorbox();
 		});
 	</script>
 }
