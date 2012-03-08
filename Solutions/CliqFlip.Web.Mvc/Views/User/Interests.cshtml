@@ -9,7 +9,7 @@
 {
 	<style type="text/css">
 		#slider {
-			width: 240px;
+			width: 350px;
 			height: 160px;
 		}
 		
@@ -33,7 +33,7 @@
 				<ul id="slider" style="display:none;">
 					@foreach (UserInterestsViewModel.InterestImageViewModel image in interest.Images)
 					{
-						<li><img src="@image.MediumImage" alt="@Model.Username @interest.Name Image"/></li>
+						<li style="height:180px;"><img src="@image.MediumImage" alt="@Model.Username @interest.Name Image"/></li>
 					}
 					@*<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-civil-1.jpg" alt=""></li>
 
@@ -80,7 +80,8 @@
 			$('#slider').anythingSlider(
 				{
 					resizeContents: false, 
-					theme: "default1" 
+					theme: "default1",
+					buildStartStop: false
 				}).show();
 		});
 	</script>
