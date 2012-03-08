@@ -88,7 +88,10 @@
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Dtos\ImageFilenamesDto.cs" />
     <Compile Include="Dtos\RankedInterestDto.cs" />
+    <Compile Include="Entities\Conversation.cs" />
     <Compile Include="Entities\Image.cs" />
+    <Compile Include="Entities\Message.cs" />
+    <Compile Include="Entities\Participant.cs" />
     <Compile Include="Exceptions\ErrorInfo.cs" />
     <Compile Include="Exceptions\RulesException.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />

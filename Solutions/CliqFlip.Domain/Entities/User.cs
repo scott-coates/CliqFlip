@@ -11,6 +11,7 @@ namespace CliqFlip.Domain.Entities
 	public class User : Entity
 	{
 		private readonly Iesi.Collections.Generic.ISet<UserInterest> _interests;
+        private readonly Iesi.Collections.Generic.ISet<Participant> _participants;
 		private ImageData _profileImageData;//TODO: user the image entities
 		private UserWebsite _userWebsite;
 
@@ -18,6 +19,11 @@ namespace CliqFlip.Domain.Entities
 		{
 			get { return new List<UserInterest>(_interests).AsReadOnly(); }
 		}
+
+        public virtual IEnumerable<Participant> Participant
+        {
+            get { return new List<Participant>(_participants).AsReadOnly(); }
+        }
 
 		public virtual ImageData ProfileImageData
 		{

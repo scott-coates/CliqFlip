@@ -308,5 +308,18 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 			return View(user);
 		}
+
+        [Transaction]
+        public ActionResult SendMessageTo(string username)
+        {
+            return View();
+        }
+
+        public ActionResult SendMessageTo(UserSendMessageToViewModel model)
+        {
+
+            return View();
+        }
+
 	}
 }

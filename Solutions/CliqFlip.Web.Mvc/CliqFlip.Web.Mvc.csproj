@@ -192,6 +192,7 @@
     <Compile Include="ViewModels\User\UserSaveMindMapViewModel.cs" />
     <Compile Include="ViewModels\User\UserProfileViewModel.cs" />
     <Compile Include="ViewModels\User\UserCreateViewModel.cs" />
+    <Compile Include="ViewModels\User\UserSendMessageToViewModel.cs" />
     <Compile Include="ViewModels\User\UserSocialMediaViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
