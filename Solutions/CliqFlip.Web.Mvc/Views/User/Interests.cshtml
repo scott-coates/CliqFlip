@@ -14,7 +14,7 @@
 @Html.ValidationSummary()
 
 <div id="interests-container">
-	@foreach (UserInterestsViewModel.InterestViewModel interest in Model.Interests.Take(1))
+	@foreach (UserInterestsViewModel.InterestViewModel interest in Model.Interests)
 	{
 		<div class="user-interest">
 			<div class="user-interest-title">
@@ -46,6 +46,8 @@
 		{
 			@Html.Hidden("userInterestId", null, new {@id = "userInterestId"})
 			@FileUpload.GetHtml("profileImage", initialNumberOfFiles: 1, allowMoreFilesToBeAdded: false, uploadText: "Upload Photo")
+
+			@Html.TextArea("imageDescription",new{@class="image-upload-description"})
 		}
 	</div>
 </div>

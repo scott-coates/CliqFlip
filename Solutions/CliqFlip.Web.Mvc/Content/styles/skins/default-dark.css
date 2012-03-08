@@ -1289,6 +1289,9 @@ color: white;
 	margin-top: 5px;
 	margin-right: 5px;
 }
+.image-upload-description {
+	width: 400px;
+}
 .user-interest-title-add-photo span {
 	visibility: hidden;}
 

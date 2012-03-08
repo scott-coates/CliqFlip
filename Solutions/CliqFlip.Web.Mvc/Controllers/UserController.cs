@@ -147,7 +147,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				ViewData.ModelState.AddModelError("Image", "You need to provide a file first... or don't. Have it your way.");
 				RouteData.Values["action"] = "Interests";
-				return Index(_principal.Identity.Name);
+				return Interests(_principal.Identity.Name);
 			}
 			else
 			{
@@ -161,7 +161,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 					//TODO: Log These exceptions in elmah
 					rex.AddModelStateErrors(ModelState);
 					RouteData.Values["action"] = "Interests";
-					return Index(_principal.Identity.Name);
+					return Interests(_principal.Identity.Name);
 				}
 				finally
 				{
