@@ -78,7 +78,7 @@
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/interests.js")"> </script>
 	<script type="text/javascript">
-		$(function() {
+		$(function () {
 			//			InitInterests(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
 			//			InitSaveImages();
 			$('#slider').anythingSlider(
@@ -91,7 +91,11 @@
 				.find('.panel:not(.cloned) a') // ignore the cloned panels
 				.colorbox({
 					width: '90%',
-					height: '90%'
+					height: '90%',
+					preloading:false,
+					title: function () {
+						return "To view full size, " + "click here!".link(this.href);
+					}
 				});
 		});
 	</script>
