@@ -27,15 +27,28 @@
 				<div class="clear">
 				</div>
 			</div>
+			<ul id="slider" style="display:none;">
+			@foreach (UserInterestsViewModel.InterestImageViewModel image in interest.Images)
+					{
+						<li><img class="user-interest-content-image" src="@image.MediumImage"/></li>
+					}
+		@*<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-civil-1.jpg" alt=""></li>
 
-			<div class="user-interest-content">
+		<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-env-1.jpg" alt=""></li>
+
+		<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-civil-2.jpg" alt=""></li>
+
+		<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-env-2.jpg" alt=""></li>
+*@
+	</ul>
+		@*	<div class="user-interest-content">
 				<div class="user-interest-content-image-container">
 					@foreach (UserInterestsViewModel.InterestImageViewModel image in interest.Images)
 					{
 						<img class="user-interest-content-image" src="@image.MediumImage"/>
 					}
 				</div>
-			</div>
+			</div>*@
 		</div>
 	}
 	<div class="clear">
@@ -53,18 +66,6 @@
 	</div>
 </div>
 
-
-	<ul id="slider" style="display:none;">
-
-		<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-civil-1.jpg" alt=""></li>
-
-		<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-env-1.jpg" alt=""></li>
-
-		<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-civil-2.jpg" alt=""></li>
-
-		<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-env-2.jpg" alt=""></li>
-
-	</ul>
 @section scripts
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/interests.js")"> </script>
@@ -72,7 +73,7 @@
 		$(function() {
 //			InitInterests(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
 //			InitSaveImages();
-			$('#slider').anythingSlider().show();
+			$('#slider').anythingSlider({resizeContents:false}).show();
 		});
 	</script>
 }
