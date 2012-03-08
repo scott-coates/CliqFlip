@@ -16,11 +16,11 @@ namespace CliqFlip.Domain.Entities
 		}
 
 		public virtual UserInterest UserInterest { get; set; }
-		public virtual int InterestImageOrder
+		public virtual int? InterestImageOrder
 		{
 			get
 			{
-				int fieldOrder = 0;
+				int? fieldOrder = null;
 
 				if (UserInterest != null && UserInterest.Images.Contains(this))
 				{

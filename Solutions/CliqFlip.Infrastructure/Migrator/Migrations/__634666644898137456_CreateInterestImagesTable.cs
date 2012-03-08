@@ -15,10 +15,10 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 			Database.AddTable("Images", new[]
 			{
 				new Column("Id", DbType.Int32, ColumnProperty.PrimaryKeyWithIdentity),
-				new Column("OriginalFileName", DbType.String, 1024, ColumnProperty.Null),
-				new Column("ThumbFileName", DbType.String, 1024, ColumnProperty.Null),
-				new Column("MediumFileName", DbType.String, 1024, ColumnProperty.Null),
-				new Column("FullFileName", DbType.String, 1024, ColumnProperty.Null),
+				new Column("OriginalFileName", DbType.String, 1024, ColumnProperty.NotNull),
+				new Column("ThumbFileName", DbType.String, 1024, ColumnProperty.NotNull),
+				new Column("MediumFileName", DbType.String, 1024, ColumnProperty.NotNull),
+				new Column("FullFileName", DbType.String, 1024, ColumnProperty.NotNull),
 				new Column("UserInterestId", DbType.Int32, ColumnProperty.Null),
 				new Column("InterestImageOrder", DbType.Int32, ColumnProperty.Null)
 			});
