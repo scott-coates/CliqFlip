@@ -31,11 +31,13 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 		{
 			public InterestImageViewModel(Image image)
 			{
+				Description = image.Data.Description;
 				ThumbImage = image.Data.ThumbFileName;
 				MediumImage = image.Data.MediumFileName;
 				FullImage = image.Data.FullFileName;
 			}
 
+			public string Description { get; set; }
 			public string ThumbImage { get; set; }
 			public string MediumImage { get; set; }
 			public string FullImage { get; set; }
