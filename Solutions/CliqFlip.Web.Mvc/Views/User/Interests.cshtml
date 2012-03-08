@@ -1,28 +1,22 @@
 ﻿@using System.Globalization
 @using CliqFlip.Web.Mvc.ViewModels.User
 @model CliqFlip.Web.Mvc.ViewModels.User.UserInterestsViewModel
-
 @{
 	Layout = "~/Views/User/_Profile.cshtml";
 }
-
 @section styles
 {
 }
-
-		   
 @Html.ValidationSummary()
-
 <div id="interests-container">
 	@foreach (UserInterestsViewModel.InterestViewModel interest in Model.Interests)
 	{
 		<div class="user-interest">
 			<div class="user-interest-title">
-				<strong>@interest.Name</strong>
-				<a class="user-interest-title-add-photo" value="@interest.UserInterestId" href="javascript:void(0);" title="add photo">
-					<span>add photo</span></a>
+				<strong>@interest.Name</strong> <a class="user-interest-title-add-photo" value="@interest.UserInterestId" href="javascript:void(0);" title="add photo">
+													<span>add photo</span></a>
 			</div>
-			<ul class="intereset-slider" >
+			<ul class="intereset-slider">
 				@foreach (UserInterestsViewModel.InterestImageViewModel image in interest.Images)
 				{
 					<li>
@@ -33,7 +27,6 @@
 						</div>
 					</li>
 				}
-				
 			</ul>
 		</div>
 	}
@@ -46,12 +39,14 @@
 		{
 			@Html.Hidden("userInterestId", null, new {@id = "userInterestId"})
 			@FileUpload.GetHtml("profileImage", initialNumberOfFiles: 1, allowMoreFilesToBeAdded: false, uploadText: "Upload Photo")
-
-			@Html.TextArea("imageDescription",new{@class="image-upload-description"})
+			<div class="divider">
+			</div>
+			<h2>
+				Description:</h2>
+			@Html.TextArea("imageDescription", new {@class = "image-upload-description"})
 		}
 	</div>
 </div>
-
 @section scripts
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/interests.js")"> </script>

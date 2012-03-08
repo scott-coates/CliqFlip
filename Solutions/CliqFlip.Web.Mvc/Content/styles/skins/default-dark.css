@@ -1313,6 +1313,10 @@ color: white;
 			display: none;
 		}
 
+		.user-interest-add-photo-dialog h2 {
+			color: #999;
+		}
+
 .intereset-slider {
 	display: none;
 	height: 180px;
