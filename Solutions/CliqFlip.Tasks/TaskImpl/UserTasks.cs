@@ -193,17 +193,24 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public void SaveProfileImage(User user, HttpPostedFileBase profileImage)
 		{
-			var originalImageNames = new ImageFileNamesDto
+			ImageFileNamesDto originalImageNames = null;
+			if (user.ProfileImage != null)
 			{
-				ThumbFilename = user.ProfileImage.Data.ThumbFileName,
-				MediumFilename = user.ProfileImage.Data.MediumFileName,
-				FullFilename = user.ProfileImage.Data.FullFileName
-			};
+				originalImageNames = new ImageFileNamesDto
+				{
+					ThumbFilename = user.ProfileImage.Data.ThumbFileName,
+					MediumFilename = user.ProfileImage.Data.MediumFileName,
+					FullFilename = user.ProfileImage.Data.FullFileName
+				};
+			}
 
 			SaveImageForUser(profileImage, user.Username + "-Profile-Image", imgFileNamesDto =>
 			{
 				user.UpdateProfileImage(new ImageData(profileImage.FileName, null, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename));
-				DeletePreviousProfileImages(originalImageNames);
+				if (originalImageNames != null)
+				{
+					DeletePreviousProfileImages(originalImageNames);
+				}
 			});
 		}
 
@@ -270,19 +277,20 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		private void DeletePreviousProfileImages(ImageFileNamesDto originalImageNames)
 		{
-			var filesToDelete = new List<string>(3);
-			if (!string.IsNullOrWhiteSpace(originalImageNames.ThumbFilename))
+			if (originalImageNames == null) throw new ArgumentNullException("originalImageNames");
+
+			var filesToDelete = new List<string>(3)
 			{
-				filesToDelete.Add(originalImageNames.ThumbFilename);
-			}
-			if (!string.IsNullOrWhiteSpace(originalImageNames.MediumFilename))
+				originalImageNames.ThumbFilename,
+				originalImageNames.MediumFilename
+			};
+
+			if (originalImageNames.FullFilename != originalImageNames.MediumFilename)
 			{
-				filesToDelete.Add(originalImageNames.MediumFilename);
-			}
-			if (!string.IsNullOrWhiteSpace(originalImageNames.FullFilename))
-			{
+				//only delete if there is truly a full image
 				filesToDelete.Add(originalImageNames.FullFilename);
 			}
+
 			_fileUploadService.DeleteFiles("Images/", filesToDelete);
 		}
 

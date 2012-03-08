@@ -15,9 +15,7 @@ namespace CliqFlip.Domain.Entities
 			set { _data = value; }
 		}
 
-		public virtual User User { get; set; } //only used for storing a user profile image
 		public virtual UserInterest UserInterest { get; set; }
-		public virtual string Description { get; set; }
 
 		public virtual int? InterestImageOrder
 		{

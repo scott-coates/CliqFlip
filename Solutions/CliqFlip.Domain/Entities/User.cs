@@ -18,7 +18,16 @@ namespace CliqFlip.Domain.Entities
 			get { return new List<UserInterest>(_interests).AsReadOnly(); }
 		}
 
+		/*
+			//if we ever have a collection of images (user.images), we'll need to set cascade.noaction
+			//then there would be a cycle between user and userinterests to images
+			//set this to no action otherwise a cascade error will occur
+			//http://stackoverflow.com/questions/851625/foreign-key-constraint-may-cause-cycles-or-multiple-cascade-paths
+			//we'll need to manually delete profile images before removing a user
+		 */
+
 		public virtual Image ProfileImage { get; set; }
+
 
 		public virtual UserWebsite UserWebsite
 		{
@@ -93,9 +102,9 @@ namespace CliqFlip.Domain.Entities
 
 		public virtual void UpdateProfileImage(ImageData data)
 		{
-			if(ProfileImage==null)
+			if (ProfileImage == null)
 			{
-				ProfileImage =new Image{User = this};
+				ProfileImage = new Image();
 			}
 
 			ProfileImage.Data = data;
