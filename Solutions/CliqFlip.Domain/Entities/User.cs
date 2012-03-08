@@ -11,7 +11,6 @@ namespace CliqFlip.Domain.Entities
 	public class User : Entity
 	{
 		private readonly Iesi.Collections.Generic.ISet<UserInterest> _interests;
-		private ImageData _profileImageData;//TODO: user the image entities
 		private UserWebsite _userWebsite;
 
 		public virtual IEnumerable<UserInterest> Interests
@@ -19,12 +18,7 @@ namespace CliqFlip.Domain.Entities
 			get { return new List<UserInterest>(_interests).AsReadOnly(); }
 		}
 
-		public virtual ImageData ProfileImageData
-		{
-			//http://stackoverflow.com/a/685026/173957
-			get { return _profileImageData ?? new ImageData(null, null, null, null); }
-			set { _profileImageData = value; }
-		}
+		public virtual Image ProfileImage { get; set; }
 
 		public virtual UserWebsite UserWebsite
 		{
@@ -41,7 +35,7 @@ namespace CliqFlip.Domain.Entities
 		public virtual string Headline { get; set; }
 		public virtual string TwitterUsername { get; set; }
 		public virtual string YouTubeUsername { get; set; }
-        public virtual string FacebookUsername { get; set; } //TODO:rename to facebook access code
+		public virtual string FacebookUsername { get; set; } //TODO:rename to facebook access code
 		public virtual DateTime CreateDate { get; set; }
 		public virtual DateTime LastActivity { get; set; }
 		public User()
@@ -97,9 +91,14 @@ namespace CliqFlip.Domain.Entities
 			YouTubeUsername = !string.IsNullOrWhiteSpace(youTubeUsername) ? youTubeUsername.Trim() : null;
 		}
 
-		public virtual void UpdateProfileImage(string originalFilename, string thumbFilename, string mediumFilename, string fullFilename)
+		public virtual void UpdateProfileImage(ImageData data)
 		{
-			_profileImageData = new ImageData(originalFilename, thumbFilename, mediumFilename, fullFilename);
+			if(ProfileImage==null)
+			{
+				ProfileImage =new Image{User = this};
+			}
+
+			ProfileImage.Data = data;
 		}
 
 		public virtual void UpdateWebsite(string siteUrl, string feedUrl)
@@ -118,9 +117,9 @@ namespace CliqFlip.Domain.Entities
 			UpdateLastActivity();
 		}
 
-        public virtual void UpdateFacebookUsername(string fbid)
-        {
-            FacebookUsername = !string.IsNullOrWhiteSpace(fbid) ? fbid.Trim() : null;
-        }
+		public virtual void UpdateFacebookUsername(string fbid)
+		{
+			FacebookUsername = !string.IsNullOrWhiteSpace(fbid) ? fbid.Trim() : null;
+		}
 	}
 }

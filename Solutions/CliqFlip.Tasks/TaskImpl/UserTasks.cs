@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Web;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Exceptions;
+using CliqFlip.Domain.ValueObjects;
 using CliqFlip.Infrastructure.Authentication.Interfaces;
 using CliqFlip.Infrastructure.Common;
 using CliqFlip.Infrastructure.Extensions;
@@ -150,13 +150,13 @@ namespace CliqFlip.Tasks.TaskImpl
 			return _repository.FindOne(adhoc);
 		}
 
-		public void SaveInterestImage(User user, HttpPostedFileBase interestImage, int userInterestId)
+		public void SaveInterestImage(User user, HttpPostedFileBase interestImage, int userInterestId, string description)
 		{
 			UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
 			SaveImageForUser(interestImage,
 			                 user.Username + "-Interest-Image-" + interest.Interest.Name,
 			                 imgFileNamesDto =>
-			                 interest.AddImage(interestImage.FileName, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename));
+			                 interest.AddImage(new ImageData(interestImage.FileName, description, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename)));
 		}
 
 		public void SaveWebsite(User user, string siteUrl)
@@ -195,14 +195,14 @@ namespace CliqFlip.Tasks.TaskImpl
 		{
 			var originalImageNames = new ImageFileNamesDto
 			{
-				ThumbFilename = user.ProfileImageData.ThumbFileName,
-				MediumFilename = user.ProfileImageData.MediumFileName,
-				FullFilename = user.ProfileImageData.FullFileName
+				ThumbFilename = user.ProfileImage.Data.ThumbFileName,
+				MediumFilename = user.ProfileImage.Data.MediumFileName,
+				FullFilename = user.ProfileImage.Data.FullFileName
 			};
 
 			SaveImageForUser(profileImage, user.Username + "-Profile-Image", imgFileNamesDto =>
 			{
-				user.UpdateProfileImage(profileImage.FileName, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename);
+				user.UpdateProfileImage(new ImageData(profileImage.FileName, null, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename));
 				DeletePreviousProfileImages(originalImageNames);
 			});
 		}

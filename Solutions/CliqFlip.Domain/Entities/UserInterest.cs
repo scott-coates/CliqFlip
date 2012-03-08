@@ -33,11 +33,11 @@ namespace CliqFlip.Domain.Entities
 
 		//http://msdn.microsoft.com/en-us/magazine/cc947917.aspx#id0070040 - i think we can skip the law of demeter since we're working
 		//directly with user intersts
-		public virtual void AddImage(string originalFilename, string thumbFilename, string mediumFilename, string fullFilename)
+		public virtual void AddImage(ImageData data)
 		{
 			var image = new Image
 			{
-				Data = new ImageData(originalFilename, thumbFilename, mediumFilename, fullFilename),
+				Data = data,
 				UserInterest = this
 			};
 

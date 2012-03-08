@@ -153,7 +153,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				try
 				{
-					_userTasks.SaveInterestImage(user, userSaveInterestImageViewModel.ProfileImage, userSaveInterestImageViewModel.UserInterestId);
+					_userTasks.SaveInterestImage(user, userSaveInterestImageViewModel.ProfileImage, userSaveInterestImageViewModel.UserInterestId, userSaveInterestImageViewModel.ImageDescription);
 				}
 				catch (RulesException rex)
 				{
