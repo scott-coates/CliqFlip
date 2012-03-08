@@ -33,29 +33,12 @@
 						</div>
 					</li>
 				}
-				@*<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-civil-1.jpg" alt=""></li>
-
-		<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-env-1.jpg" alt=""></li>
-
-		<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-civil-2.jpg" alt=""></li>
-
-		<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-env-2.jpg" alt=""></li>
-*@
+				
 			</ul>
-			@*	<div class="user-interest-content">
-				<div class="user-interest-content-image-container">
-					@foreach (UserInterestsViewModel.InterestImageViewModel image in interest.Images)
-					{
-						<img class="user-interest-content-image" src="@image.MediumImage"/>
-					}
-				</div>
-			</div>*@
 		</div>
 	}
-	<div class="clear">
-	</div>
 </div>
-<div class="" id="add-photo">
+<div class="user-interest-add-photo-dialog" id="add-photo">
 	<h2>
 		Add a photo</h2>
 	<div class="uploadInterestImage">
@@ -72,8 +55,8 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/interests.js")"> </script>
 	<script type="text/javascript">
 		$(function () {
-			//			InitInterests(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
-			//			InitSaveImages();
+						InitInterests(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
+						InitSaveImages();
 			$('.intereset-slider').anythingSlider(
 				{
 					resizeContents: false,
