@@ -1310,6 +1310,17 @@ color: white;
 			display: none;
 		}
 
+.intereset-slider {
+	display: none;
+	height: 180px;
+			width: 350px;
+}
+
+#interests-container .anythingSlider { margin-top: 2px; }
+
+.interest-slider-panel-container {
+	height: 180px;
+}
 /*========================*/
 /*===  11.1 Layout file - navigation
 /*========================*/

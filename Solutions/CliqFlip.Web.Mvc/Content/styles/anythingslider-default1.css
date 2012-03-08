@@ -7,7 +7,7 @@
  SET DEFAULT DIMENSIONS HERE
  ****************************/
 /* Change the ID to match your slider */
-#slider {
+#intereset-slider {
 	width: 700px;
 	height: 390px;
 	list-style: none;

@@ -1,21 +1,16 @@
 ﻿@using System.Globalization
 @using CliqFlip.Web.Mvc.ViewModels.User
-@model CliqFlip.Web.Mvc.ViewModels.User.UserInterestsViewModel
+@model UserInterestsViewModel
 
 @{
 	Layout = "~/Views/User/_Profile.cshtml";
 }
+
 @section styles
 {
-	<style type="text/css">
-		#slider {
-			height: 180px;
-			width: 350px;
-		}
+}
 
-		#interests-container .anythingSlider { margin-top: 2px; }
-	</style>
-}		   
+		   
 @Html.ValidationSummary()
 
 <div id="interests-container">
@@ -27,19 +22,18 @@
 				<a class="user-interest-title-add-photo" value="@interest.UserInterestId" href="javascript:void(0);" title="add photo">
 					<span>add photo</span></a>
 			</div>
-			<div id="">
-				<ul id="slider" style="display: none;">
-					@foreach (UserInterestsViewModel.InterestImageViewModel image in interest.Images)
-					{
-						<li>
-							<div style="height: 180px;">
-								<a rel="interest" title="@Model.Username" href="@image.FullImage">
-									<img src="@image.MediumImage" alt="@Model.Username @interest.Name Image"/>
-								</a>
-							</div>
-						</li>
-					}
-					@*<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-civil-1.jpg" alt=""></li>
+			<ul class="intereset-slider" >
+				@foreach (UserInterestsViewModel.InterestImageViewModel image in interest.Images)
+				{
+					<li>
+						<div class="interest-slider-panel-container">
+							<a rel="interest" title="@Model.Username" href="@image.FullImage">
+								<img src="@image.MediumImage" alt="@Model.Username @interest.Name Image"/>
+							</a>
+						</div>
+					</li>
+				}
+				@*<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-civil-1.jpg" alt=""></li>
 
 		<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-env-1.jpg" alt=""></li>
 
@@ -47,8 +41,7 @@
 
 		<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-env-2.jpg" alt=""></li>
 *@
-				</ul>
-			</div>
+			</ul>
 			@*	<div class="user-interest-content">
 				<div class="user-interest-content-image-container">
 					@foreach (UserInterestsViewModel.InterestImageViewModel image in interest.Images)
@@ -81,7 +74,7 @@
 		$(function () {
 			//			InitInterests(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
 			//			InitSaveImages();
-			$('#slider').anythingSlider(
+			$('.intereset-slider').anythingSlider(
 				{
 					resizeContents: false,
 					theme: "default1",
