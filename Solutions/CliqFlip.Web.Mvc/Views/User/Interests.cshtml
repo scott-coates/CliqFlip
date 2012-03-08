@@ -1,21 +1,19 @@
 ﻿@using System.Globalization
 @using CliqFlip.Web.Mvc.ViewModels.User
-@model UserInterestsViewModel
+@model CliqFlip.Web.Mvc.ViewModels.User.UserInterestsViewModel
 
-@{ 
+@{
 	Layout = "~/Views/User/_Profile.cshtml";
 }
 @section styles
 {
 	<style type="text/css">
 		#slider {
-			width: 350px;
 			height: 180px;
+			width: 350px;
 		}
-		
-		#interests-container .anythingSlider {
-			margin-top: 2px;
-		}
+
+		#interests-container .anythingSlider { margin-top: 2px; }
 	</style>
 }		   
 @Html.ValidationSummary()
@@ -30,13 +28,13 @@
 					<span>add photo</span></a>
 			</div>
 			<div id="">
-				<ul id="slider" style="display:none;">
+				<ul id="slider" style="display: none;">
 					@foreach (UserInterestsViewModel.InterestImageViewModel image in interest.Images)
 					{
 						<li>
-							<div style="height:180px;">
-								<a rel="colorbox" title="@Model.Username" href="@image.FullImage">
-								<img src="@image.MediumImage" alt="@Model.Username @interest.Name Image"/>
+							<div style="height: 180px;">
+								<a rel="interest" title="@Model.Username" href="@image.FullImage">
+									<img src="@image.MediumImage" alt="@Model.Username @interest.Name Image"/>
 								</a>
 							</div>
 						</li>
@@ -50,8 +48,8 @@
 		<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-env-2.jpg" alt=""></li>
 *@
 				</ul>
-				</div>
-		@*	<div class="user-interest-content">
+			</div>
+			@*	<div class="user-interest-content">
 				<div class="user-interest-content-image-container">
 					@foreach (UserInterestsViewModel.InterestImageViewModel image in interest.Images)
 					{
@@ -80,7 +78,7 @@
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/interests.js")"> </script>
 	<script type="text/javascript">
-		$(function () {
+		$(function() {
 			//			InitInterests(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
 			//			InitSaveImages();
 			$('#slider').anythingSlider(
@@ -88,9 +86,13 @@
 					resizeContents: false,
 					theme: "default1",
 					buildStartStop: false
-				}).show();
-
-			$('#slider a').colorbox();
+				})
+				.show()
+				.find('.panel:not(.cloned) a') // ignore the cloned panels
+				.colorbox({
+					width: '90%',
+					height: '90%'
+				});
 		});
 	</script>
 }
