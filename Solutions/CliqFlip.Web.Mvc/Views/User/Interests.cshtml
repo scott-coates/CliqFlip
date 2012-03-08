@@ -1,12 +1,23 @@
-﻿@{
+﻿@using System.Globalization
+@using CliqFlip.Web.Mvc.ViewModels.User
+@model UserInterestsViewModel
+
+@{ 
 	Layout = "~/Views/User/_Profile.cshtml";
 }
-@using System.Globalization
-@using CliqFlip.Web.Mvc.ViewModels.User
-@model CliqFlip.Web.Mvc.ViewModels.User.UserInterestsViewModel
+@section styles
+{
+	<style type="text/css">
+		#slider {
+			width: 200px;
+			height: 100px;
+		}
+	</style>
+}		   
 @Html.ValidationSummary()
+
 <div id="interests-container">
-	@foreach (UserInterestsViewModel.InterestViewModel interest in Model.Interests)
+	@foreach (UserInterestsViewModel.InterestViewModel interest in Model.Interests.Take(1))
 	{
 		<div class="user-interest">
 			<div class="user-interest-title">
@@ -16,6 +27,7 @@
 				<div class="clear">
 				</div>
 			</div>
+
 			<div class="user-interest-content">
 				<div class="user-interest-content-image-container">
 					@foreach (UserInterestsViewModel.InterestImageViewModel image in interest.Images)
@@ -40,13 +52,27 @@
 		}
 	</div>
 </div>
+
+
+	<ul id="slider" style="display:none;">
+
+		<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-civil-1.jpg" alt=""></li>
+
+		<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-env-1.jpg" alt=""></li>
+
+		<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-civil-2.jpg" alt=""></li>
+
+		<li><img src="http://proloser.github.com/AnythingSlider/demos/images/slide-env-2.jpg" alt=""></li>
+
+	</ul>
 @section scripts
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/interests.js")"> </script>
 	<script type="text/javascript">
 		$(function() {
-			InitInterests(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
-			InitSaveImages();
+//			InitInterests(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
+//			InitSaveImages();
+			$('#slider').anythingSlider().show();
 		});
 	</script>
 }
