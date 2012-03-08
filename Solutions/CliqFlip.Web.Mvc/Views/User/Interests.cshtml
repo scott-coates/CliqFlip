@@ -1,6 +1,6 @@
 ﻿@using System.Globalization
 @using CliqFlip.Web.Mvc.ViewModels.User
-@model UserInterestsViewModel
+@model CliqFlip.Web.Mvc.ViewModels.User.UserInterestsViewModel
 
 @{
 	Layout = "~/Views/User/_Profile.cshtml";
@@ -54,26 +54,11 @@
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/interests.js")"> </script>
 	<script type="text/javascript">
-		$(function () {
-						InitInterests(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
-						InitSaveImages();
-			$('.intereset-slider').anythingSlider(
-				{
-					hashTags:false,
-					resizeContents: false,
-					theme: "default1",
-					buildStartStop: false
-				})
-				.show()
-				.find('.panel:not(.cloned) a') // ignore the cloned panels
-				.colorbox({
-					width: '90%',
-					height: '90%',
-					preloading:false,
-					title: function () {
-						return "To view full size, " + "click here!".link(this.href);
-					}
-				});
+		$(function() {
+			InitInterests(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
+			InitSaveImages();
+			InitShowImages();
+
 		});
 	</script>
 }
