@@ -193,6 +193,17 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 			return RedirectToAction("Interests");
 		}
+		
+		[Authorize]
+		[Transaction]
+		public ActionResult RemoveInterest(int interestId)
+		{
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+
+			_userTasks.RemoveInterest(user, interestId);
+
+			return RedirectToAction("Interests");
+		}
 
 		[Authorize]
 		[HttpPost]
@@ -328,6 +339,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			UserInterestsViewModel user = _userProfileQuery.GetUserIntersets(username);
 			user.MakeDefaultUrl = "\"" + Url.Action("MakeInterestImageDefault", "User") + "\"";
 			user.RemoveImageUrl = "\"" + Url.Action("RemoveImage", "User") + "\"";
+			user.RemoveInterestUrl = "\"" + Url.Action("RemoveInterest", "User") + "\"";
 
 			user.CanEdit = CanEdit(username);
 

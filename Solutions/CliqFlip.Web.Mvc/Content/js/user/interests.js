@@ -13,9 +13,13 @@ function InitSaveImages() {
 			width: 430
 		});
 
-		$(".user-interest-title-add-photo").click(function(parameters) {
+		$(".user-interest-title-add-photo").click(function() {
 			$("#userInterestId").val($(this).attr('value'));
 			_addPhotoDialog.dialog("open");
+		});
+
+		$(".user-interest-remove").click(function () {
+			return RemoveInterest();
 		});
 	}
 }
@@ -50,5 +54,9 @@ function InitShowImages(makeDefaultUrl, removeImageUrl) {
 	}
 
 function RemoveImage() {
-	return confirm("Are you sure you want to remove this image?");
+	return confirm("Are you sure you want to remove this image? This cannt be undone.");
+}
+
+function RemoveInterest() {
+	return confirm("Are you sure you want to remove this interest? This cannt be undone.");
 }

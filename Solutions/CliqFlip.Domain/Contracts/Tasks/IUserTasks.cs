@@ -23,5 +23,6 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		void SaveWebsite(User user, string siteUrl);
 		void Logout(string name);
 		void RemoveImage(User user, int imageId);
+		void RemoveInterest(User user, int interestId);
 	}
 }

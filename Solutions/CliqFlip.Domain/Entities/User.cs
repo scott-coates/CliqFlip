@@ -146,5 +146,15 @@ namespace CliqFlip.Domain.Entities
 		{
 			image.UserInterest.RemoveInterestImage(image);
 		}
+
+		public virtual UserInterest GetInterest(int interestId)
+		{
+			return _interests.First(x => x.Id == interestId);
+		}
+
+		public virtual void RemoveInterest(UserInterest interest)
+		{
+			_interests.Remove(interest);
+		}
 	}
 }

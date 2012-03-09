@@ -18,7 +18,9 @@
 				{
 					<a class="user-interest-remove" value="@interest.UserInterestId" href="javascript:void(0);" title="remove interest">
 						<span>remove interest</span></a>
-					<a class="user-interest-title-add-photo" value="@interest.UserInterestId" href="javascript:void(0);" title="add photo">
+					<a class="user-interest-title-add-photo" 
+					   value="@interest.UserInterestId" 
+					   href="@(Html.Raw(Model.RemoveInterestUrl + "?interestId=" + interest.UserInterestId))" title="add photo">
 						<span>add photo</span></a>
 				}
 			</div>

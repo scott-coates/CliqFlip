@@ -8,6 +8,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 		public IList<InterestViewModel> Interests { get; set; }
 		public string MakeDefaultUrl { get; set; }
 		public string RemoveImageUrl { get; set; }
+		public string RemoveInterestUrl { get; set; }
 		public bool CanEdit { get; set; }
 
 		public UserInterestsViewModel()
