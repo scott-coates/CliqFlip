@@ -54,9 +54,9 @@ function InitShowImages(makeDefaultUrl, removeImageUrl) {
 	}
 
 function RemoveImage() {
-	return confirm("Are you sure you want to remove this image? This cannt be undone.");
+	return confirm("Are you sure you want to remove this image? This cannot be undone.");
 }
 
 function RemoveInterest() {
-	return confirm("Are you sure you want to remove this interest? This cannt be undone.");
+	return confirm("Are you sure you want to remove this interest? This cannot be undone.");
 }
