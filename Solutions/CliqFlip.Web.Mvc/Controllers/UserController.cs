@@ -172,7 +172,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return RedirectToAction("Interests");
 		}
 
-		//[Authorize]
+		[Authorize]
 		[Transaction]
 		public ActionResult MakeInterestImageDefault(int imageId)
 		{
