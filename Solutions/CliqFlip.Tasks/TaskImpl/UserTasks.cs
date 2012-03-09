@@ -93,7 +93,6 @@ namespace CliqFlip.Tasks.TaskImpl
 				return null;
 			}
 
-
 			string salt = PasswordHelper.GenerateSalt(16);
 			string pHash = PasswordHelper.GetPasswordHash(userToCreate.Password, salt);
 
@@ -103,8 +102,8 @@ namespace CliqFlip.Tasks.TaskImpl
 			foreach (UserInterestDto userInterest in userToCreate.InterestDtos)
 			{
 				//get or create the Interest
-				UserInterestDto userInterestDto = _interestTasks.GetOrCreate(userInterest.Name);
-				user.AddInterest(new Interest(userInterestDto.Id, userInterestDto.Name), userInterest.Sociality);
+				var interest = _interestTasks.GetOrCreate(userInterest.Name);
+				user.AddInterest(interest, userInterest.Sociality);
 			}
 
 			user.Bio = "I ♥ " + string.Join(", ", user.Interests.Select(x => x.Interest.Name));
