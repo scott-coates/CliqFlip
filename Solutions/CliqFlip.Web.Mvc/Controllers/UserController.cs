@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
@@ -8,8 +7,6 @@ using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Exceptions;
 using CliqFlip.Domain.ValueObjects;
-using CliqFlip.Infrastructure.Authentication;
-using CliqFlip.Infrastructure.Authentication.Interfaces;
 using CliqFlip.Web.Mvc.Extensions.Exceptions;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Jeip;
@@ -193,7 +190,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 			return RedirectToAction("Interests");
 		}
-		
+
 		[Authorize]
 		[Transaction]
 		public ActionResult RemoveInterest(int interestId)
@@ -304,7 +301,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult Index(string username)
 		{
-			UserProfileIndexViewModel user = _userProfileQuery.GetUserProfileIndex(username);
+			UserProfileIndexViewModel user = _userProfileQuery.GetUserProfileIndex(username, _principal);
 			if (user != null)
 			{
 				user.SaveHeadlineUrl = "\"" + Url.Action("SaveHeadline", "User") + "\"";
@@ -313,7 +310,6 @@ namespace CliqFlip.Web.Mvc.Controllers
 				user.SaveTwitterUsernameUrl = "\"" + Url.Action("SaveTwitterUsername", "User") + "\"";
 				user.SaveYouTubeUsernameUrl = "\"" + Url.Action("SaveYouTubeUsername", "User") + "\"";
 				user.SaveWebsiteUrl = "\"" + Url.Action("SaveWebiste", "User") + "\"";
-				user.CanEdit = CanEdit(username);
 				return View(user);
 			}
 
@@ -321,26 +317,19 @@ namespace CliqFlip.Web.Mvc.Controllers
 			throw new HttpException(404, "Not found");
 		}
 
-		private bool CanEdit(string username)
-		{
-			return _principal.Identity.Name.ToLower() == username.ToLower();
-		}
-
 		[Transaction]
 		public ActionResult SocialMedia(string username)
 		{
-			UserSocialMediaViewModel user = _userProfileQuery.GetUserSocialMedia(username);
+			UserSocialMediaViewModel user = _userProfileQuery.GetUserSocialMedia(username, _principal);
 			return View(user);
 		}
 
 		[Transaction]
 		public ActionResult Interests(string username)
 		{
-			UserInterestsViewModel user = _userProfileQuery.GetUserIntersets(username);
+			UserInterestsViewModel user = _userProfileQuery.GetUserIntersets(username, _principal);
 			user.MakeDefaultUrl = "\"" + Url.Action("MakeInterestImageDefault", "User") + "\"";
 			user.RemoveImageUrl = "\"" + Url.Action("RemoveImage", "User") + "\"";
-
-			user.CanEdit = CanEdit(username);
 
 			return View(user);
 		}

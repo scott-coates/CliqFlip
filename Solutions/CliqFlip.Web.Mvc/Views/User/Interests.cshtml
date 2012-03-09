@@ -14,7 +14,7 @@
 		<div class="user-interest">
 			<div class="user-interest-title">
 				<strong>@interest.Name</strong>
-				@if (Model.CanEdit)
+				@if (Model.AuthenticatedProfileOwner)
 				{
 					<a class="user-interest-remove" title="remove interest" href='@Url.Action("RemoveInterest",new{interestId= interest.UserInterestId})'>
 						<span>remove interest</span></a>
@@ -37,7 +37,7 @@
 		</div>
 	}
 </div>
-@if (Model.CanEdit)
+@if (Model.AuthenticatedProfileOwner)
 {
 	<div class="user-interest-add-photo-dialog" id="add-photo">
 		<div class="uploadInterestImage">
@@ -61,7 +61,7 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/interests.js")"> </script>
 	<script type="text/javascript">
 		$(function() {
-			InitInterests(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
+			InitInterests(@(Model.AuthenticatedProfileOwner.ToString(CultureInfo.InvariantCulture).ToLower()));
 			InitSaveImages();
 			InitShowImages(@(Html.Raw(Model.MakeDefaultUrl)), @(Html.Raw(Model.RemoveImageUrl)));
 		});

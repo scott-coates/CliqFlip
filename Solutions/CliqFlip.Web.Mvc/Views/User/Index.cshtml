@@ -7,7 +7,7 @@
 }
 
 @model CliqFlip.Web.Mvc.ViewModels.User.UserProfileIndexViewModel
-@if (Model.CanEdit)
+@if (Model.AuthenticatedProfileOwner)
 {
 	<div class="uploadProfileImageData">
 		@using (Html.BeginForm("SaveProfileImage", "User", FormMethod.Post, new {@encType = "multipart/form-data"}))
@@ -51,10 +51,10 @@
 			<li>
 				<div id="facebook-connect" class="social-media-username-container">
 					<img src="@Url.Content("~/Content/img/f_logo.png")" alt="Facebook" />
-					<p class="facebookText social-media-text @Html.Raw(Model.CanEdit ? "editable" : "")" >
+					<p class="facebookText social-media-text @Html.Raw(Model.AuthenticatedProfileOwner ? "editable" : "")" >
 						@if (String.IsNullOrWhiteSpace(Model.FacebookUsername))
 						{
-							if (Model.CanEdit)
+							if (Model.AuthenticatedProfileOwner)
 							{
 								<a id="facebook-connect" href="javascript:void(0)">Link to Facebook</a>
 							}
@@ -104,7 +104,7 @@
 		//TODO: Only load FB if user can edit
 		InitFacebookSdk('@ConfigurationManager.AppSettings[Constants.FACEBOOK_APPID]');
 		$(function() {
-			InitUser(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
+			InitUser(@(Model.AuthenticatedProfileOwner.ToString(CultureInfo.InvariantCulture).ToLower()));
 			InitHeadline(@(Html.Raw(Model.SaveHeadlineUrl)));
 			InitBio(@(Html.Raw(Model.SaveBioUrl)));
 			InitMindMap(@(Html.Raw(Model.InterestsJson)), @(Html.Raw(Model.SaveMindMapUrl)));
