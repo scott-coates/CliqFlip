@@ -16,10 +16,19 @@
 				<strong>@interest.Name</strong>
 				@if (Model.AuthenticatedProfileOwner)
 				{
-					<a class="user-interest-remove" title="remove interest" href='@Url.Action("RemoveInterest",new{interestId= interest.UserInterestId})'>
-						<span>remove interest</span></a>
-					<a class="user-interest-title-add-photo" value="@interest.UserInterestId" href="javascript:void(0);" title="add photo">
-						<span>add photo</span></a>
+					<a class="user-interest-remove" title="remove interest" href='@Url.Action("RemoveInterest", new {interestId = interest.UserInterestId})'></a>
+					<a class="user-interest-title-add-photo" value="@interest.UserInterestId" href="javascript:void(0);" title="add photo"></a>
+				}
+				else if (Model.AuthenticatedVisitor)
+				{
+					if (interest.VisitorSharesThisInterest)
+					{
+						<span class="shared-interest ui-icon ui-icon-heart" title="You are interested in @interest.Name too!"></span>
+					}
+					else
+					{
+						<a class="user-interest-add-single" title="add interest to your profile" href='@Url.Action("AddSingleInterest", new {interestId = interest.InterestId})'></a>
+					}
 				}
 			</div>
 			<ul class="intereset-slider">
@@ -64,6 +73,12 @@
 			InitInterests(@(Model.AuthenticatedProfileOwner.ToString(CultureInfo.InvariantCulture).ToLower()));
 			InitSaveImages();
 			InitShowImages(@(Html.Raw(Model.MakeDefaultUrl)), @(Html.Raw(Model.RemoveImageUrl)));
+			@{
+				if (Model.AuthenticatedVisitor)
+				{
+					@:AddInterestToVisitorProfile();
+				}
+			};
 		});
 	</script>
 }

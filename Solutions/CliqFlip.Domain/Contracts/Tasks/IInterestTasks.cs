@@ -12,5 +12,6 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		IList<string> GetSlugAndParentSlug(IList<string> slugs);
 		IList<RankedInterestDto> GetMostPopularInterests();
         Interest GetOrCreate(string name);
+        Interest Get(int id);
     }
 }

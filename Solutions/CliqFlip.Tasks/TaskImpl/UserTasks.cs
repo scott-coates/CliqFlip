@@ -213,6 +213,12 @@ namespace CliqFlip.Tasks.TaskImpl
 			user.RemoveInterest(interest);
 		}
 
+		public void AddInterestToUser(User user, int interestId)
+		{
+			var interest = _interestTasks.Get(interestId);
+			user.AddInterest(interest, null);
+		}
+
 		public void SaveProfileImage(User user, HttpPostedFileBase profileImage)
 		{
 			ImageFileNamesDto originalImageNames = null;

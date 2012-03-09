@@ -1281,7 +1281,7 @@ color: white;
 
 
 
-.user-interest-title-add-photo, .user-interest-remove {
+.user-interest-title-add-photo, .user-interest-remove, .user-interest-add-single {
 	width: 16px;
 	height: 16px;
 	
@@ -1290,7 +1290,7 @@ color: white;
 	margin-right: 5px;
 }
 
-.user-interest-title-add-photo
+.user-interest-title-add-photo, .user-interest-add-single
 {
 	background: url('../../img/add.png') no-repeat;
 }
@@ -1308,10 +1308,6 @@ color: white;
 .image-upload-description {
 	width: 400px;
 }
-
-.user-interest-title-add-photo span, .user-interest-remove span {
-	visibility: hidden;}
-
 
 		.user-interest strong
 		{
@@ -1346,6 +1342,10 @@ color: white;
 	height: 180px;
 }
 
+.shared-interest {
+	display: block;
+	float: right;
+}
 /*========================*/
 /*===  11.1 Layout file - navigation
 /*========================*/

@@ -24,5 +24,6 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		void Logout(string name);
 		void RemoveImage(User user, int imageId);
 		void RemoveInterest(User user, int interestId);
+		void AddInterestToUser(User user, int interestId);
 	}
 }

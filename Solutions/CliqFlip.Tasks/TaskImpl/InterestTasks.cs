@@ -83,11 +83,13 @@ namespace CliqFlip.Tasks.TaskImpl
 			return interest;
 		}
 
+		public Interest Get(int id)
+		{
+			return _interestRepository.FindOne(id);
+		}
+
 		#endregion
 
-		public void DoSomethingWithInterest()
-		{
-			throw new NotImplementedException();
-		}
+
 	}
 }

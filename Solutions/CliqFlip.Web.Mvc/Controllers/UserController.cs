@@ -203,6 +203,17 @@ namespace CliqFlip.Web.Mvc.Controllers
 		}
 
 		[Authorize]
+		[Transaction]
+		public ActionResult AddSingleInterest(int interestId)
+		{
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+			
+			_userTasks.AddInterestToUser(user, interestId);
+
+			return RedirectToAction("Interests");
+		}
+		
+		[Authorize]
 		[HttpPost]
 		[Transaction]
 		public ActionResult SaveMindMap(UserSaveMindMapViewModel userSaveMindMapViewModel)

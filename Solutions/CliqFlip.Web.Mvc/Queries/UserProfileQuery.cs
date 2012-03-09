@@ -19,7 +19,7 @@ namespace CliqFlip.Web.Mvc.Queries
 		{
 			UserProfileIndexViewModel retVal = null;
 
-			User user = Session.Query<User>().FirstOrDefault(x => x.Username == username);
+			User user = GetUser(username);
 
 
 			if (user != null)
@@ -49,7 +49,7 @@ namespace CliqFlip.Web.Mvc.Queries
 		{
 			UserSocialMediaViewModel retVal = null;
 
-			User user = Session.Query<User>().FirstOrDefault(x => x.Username == username);
+			User user = GetUser(username);
 
 
 			if (user != null)
@@ -72,7 +72,8 @@ namespace CliqFlip.Web.Mvc.Queries
 		{
 			UserInterestsViewModel retVal = null;
 
-			User user = Session.Query<User>().FirstOrDefault(x => x.Username == username);
+			User user = GetUser(username);
+
 
 			if (user != null)
 			{
@@ -80,12 +81,21 @@ namespace CliqFlip.Web.Mvc.Queries
 
 				FillBaseProperties(retVal, user, requestingUser);
 
+				User visitor = null;
+
+				if (retVal.AuthenticatedVisitor)
+				{
+					visitor = GetUser(requestingUser.Identity.Name);
+				}
+
 				foreach (UserInterest interest in user.Interests)
 				{
 					var interestViewModel = new UserInterestsViewModel.InterestViewModel
 					{
 						Name = interest.Interest.Name,
 						UserInterestId = interest.Id,
+						InterestId = interest.Interest.Id,
+						VisitorSharesThisInterest = visitor != null && visitor.Interests.Any(x => x.Interest == interest.Interest),
 						Images = interest
 							.Images
 							.Select(x =>
@@ -94,13 +104,17 @@ namespace CliqFlip.Web.Mvc.Queries
 
 					retVal.Interests.Add(interestViewModel);
 				}
-
 			}
 
 			return retVal;
 		}
 
 		#endregion
+
+		private User GetUser(string username)
+		{
+			return Session.Query<User>().FirstOrDefault(x => x.Username == username);
+		}
 
 		private void FillBaseProperties(UserProfileViewModel retVal, User user, IPrincipal requestingUser)
 		{

@@ -47,6 +47,7 @@ namespace CliqFlip.Domain.Entities
 		public virtual string FacebookUsername { get; set; } //TODO:rename to facebook access code
 		public virtual DateTime CreateDate { get; set; }
 		public virtual DateTime LastActivity { get; set; }
+
 		public User()
 		{
 			_interests = new HashedSet<UserInterest>();
@@ -63,14 +64,17 @@ namespace CliqFlip.Domain.Entities
 
 		public virtual void AddInterest(Interest interest, int? socialityPoints)
 		{
-			var userInterest = new UserInterest
-								{
-									User = this,
-									Interest = interest,
-									SocialityPoints = socialityPoints
-								};
+			if (_interests.All(x => x.Interest != interest))
+			{
+				var userInterest = new UserInterest
+				{
+					User = this,
+					Interest = interest,
+					SocialityPoints = socialityPoints
+				};
 
-			_interests.Add(userInterest);
+				_interests.Add(userInterest);
+			}
 		}
 
 		public virtual void UpdateInterest(int userInterestId, UserInterestOption userInterestOption)
@@ -133,7 +137,7 @@ namespace CliqFlip.Domain.Entities
 
 		public virtual void MakeInterestImageDefault(int imageId)
 		{
-			var image = GetImage(imageId);
+			Image image = GetImage(imageId);
 			image.UserInterest.MakeImageDefault(image);
 		}
 

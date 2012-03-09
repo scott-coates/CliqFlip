@@ -18,7 +18,7 @@ function InitSaveImages() {
 			_addPhotoDialog.dialog("open");
 		});
 
-		$(".user-interest-remove").click(function () {
+		$(".user-interest-remove").click(function() {
 			return RemoveInterest();
 		});
 	}
@@ -38,20 +38,26 @@ function InitShowImages(makeDefaultUrl, removeImageUrl) {
 			width: '90%',
 			height: '90%',
 			preloading: false,
-			title: function () {
+			title: function() {
 				var title = $(this).attr('title');
 
 				if (_canEdit) {
-					title = title 
+					title = title
 						+ " <a href=" + makeDefaultUrl + "/?imageId=" + $(this).attr('value') + " title='make default'>make default</a>"
-						+ " <a href=" + removeImageUrl + "/?imageId=" + $(this).attr('value')
-							+ " title='remove image' onclick='return RemoveImage();'>remove image</a>";
+							+ " <a href=" + removeImageUrl + "/?imageId=" + $(this).attr('value')
+								+ " title='remove image' onclick='return RemoveImage();'>remove image</a>";
 				}
 
 				return title;
 			}
 		});
-	}
+}
+
+function AddInterestToVisitorProfile() {
+	$(".user-interest-add-single").click(function () {
+		return AddInterest();
+	});
+}
 
 function RemoveImage() {
 	return confirm("Are you sure you want to remove this image? This cannot be undone.");
@@ -59,4 +65,8 @@ function RemoveImage() {
 
 function RemoveInterest() {
 	return confirm("Are you sure you want to remove this interest? This cannot be undone.");
+}
+
+function AddInterest() {
+	return confirm("Are you sure you want to add this interest to your profile?");
 }
