@@ -184,6 +184,17 @@ namespace CliqFlip.Web.Mvc.Controllers
 		}
 
 		[Authorize]
+		[Transaction]
+		public ActionResult RemoveImage(int imageId)
+		{
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+
+			_userTasks.RemoveImage(user, imageId);
+
+			return RedirectToAction("Interests");
+		}
+
+		[Authorize]
 		[HttpPost]
 		[Transaction]
 		public ActionResult SaveMindMap(UserSaveMindMapViewModel userSaveMindMapViewModel)
@@ -316,6 +327,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			UserInterestsViewModel user = _userProfileQuery.GetUserIntersets(username);
 			user.MakeDefaultUrl = "\"" + Url.Action("MakeInterestImageDefault", "User") + "\"";
+			user.RemoveImageUrl = "\"" + Url.Action("RemoveImage", "User") + "\"";
 
 			user.CanEdit = CanEdit(username);
 

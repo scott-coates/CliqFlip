@@ -191,17 +191,20 @@ namespace CliqFlip.Tasks.TaskImpl
 			_userAuthentication.Logout();
 		}
 
+		public void RemoveImage(User user, int imageId)
+		{
+			Image image = user.GetImage(imageId);
+			ImageFileNamesDto originalImageNames = GetImageFileNamesDto(image);
+			DeleteImages(originalImageNames);
+			user.RemoveInterestImage(image);
+		}
+
 		public void SaveProfileImage(User user, HttpPostedFileBase profileImage)
 		{
 			ImageFileNamesDto originalImageNames = null;
 			if (user.ProfileImage != null)
 			{
-				originalImageNames = new ImageFileNamesDto
-				{
-					ThumbFilename = user.ProfileImage.Data.ThumbFileName,
-					MediumFilename = user.ProfileImage.Data.MediumFileName,
-					FullFilename = user.ProfileImage.Data.FullFileName
-				};
+				originalImageNames = GetImageFileNamesDto(user.ProfileImage);
 			}
 
 			SaveImageForUser(profileImage, user.Username + "-Profile-Image", imgFileNamesDto =>
@@ -209,9 +212,19 @@ namespace CliqFlip.Tasks.TaskImpl
 				user.UpdateProfileImage(new ImageData(profileImage.FileName, null, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename));
 				if (originalImageNames != null)
 				{
-					DeletePreviousProfileImages(originalImageNames);
+					DeleteImages(originalImageNames);
 				}
 			});
+		}
+
+		private static ImageFileNamesDto GetImageFileNamesDto(Image image)
+		{
+			return new ImageFileNamesDto
+			{
+				ThumbFilename = image.Data.ThumbFileName,
+				MediumFilename = image.Data.MediumFileName,
+				FullFilename = image.Data.FullFileName
+			};
 		}
 
 		#endregion
@@ -275,7 +288,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			}
 		}
 
-		private void DeletePreviousProfileImages(ImageFileNamesDto originalImageNames)
+		private void DeleteImages(ImageFileNamesDto originalImageNames)
 		{
 			if (originalImageNames == null) throw new ArgumentNullException("originalImageNames");
 

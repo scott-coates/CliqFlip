@@ -53,5 +53,10 @@ namespace CliqFlip.Domain.Entities
 			temp.Remove(image);
 			_images.AddAll(temp);
 		}
+
+		public virtual void RemoveInterestImage(Image image)
+		{
+			_images.Remove(image);
+		}
 	}
 }

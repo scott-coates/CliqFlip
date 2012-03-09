@@ -133,8 +133,18 @@ namespace CliqFlip.Domain.Entities
 
 		public virtual void MakeInterestImageDefault(int imageId)
 		{
-			var image = _interests.SelectMany(x => x.Images).First(x => x.Id == imageId);
+			var image = GetImage(imageId);
 			image.UserInterest.MakeImageDefault(image);
+		}
+
+		public virtual Image GetImage(int imageId)
+		{
+			return _interests.SelectMany(x => x.Images).First(x => x.Id == imageId);
+		}
+
+		public virtual void RemoveInterestImage(Image image)
+		{
+			image.UserInterest.RemoveInterestImage(image);
 		}
 	}
 }

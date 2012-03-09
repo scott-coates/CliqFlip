@@ -22,5 +22,6 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		void SaveInterestImage(User user, HttpPostedFileBase profileImage, int userInterestId, string description);
 		void SaveWebsite(User user, string siteUrl);
 		void Logout(string name);
+		void RemoveImage(User user, int imageId);
 	}
 }

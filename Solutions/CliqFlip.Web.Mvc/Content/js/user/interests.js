@@ -20,7 +20,7 @@ function InitSaveImages() {
 	}
 }
 
-function InitShowImages(makeDefaultUrl) {
+function InitShowImages(makeDefaultUrl, removeImageUrl) {
 	$('.intereset-slider').anythingSlider(
 		{
 			hashTags: false,
@@ -38,10 +38,17 @@ function InitShowImages(makeDefaultUrl) {
 				var title = $(this).attr('title');
 
 				if (_canEdit) {
-					title = title + " <a href=" + makeDefaultUrl + "/?imageId=" + $(this).attr('value') + " title='make default'>make default</a>";
+					title = title 
+						+ " <a href=" + makeDefaultUrl + "/?imageId=" + $(this).attr('value') + " title='make default'>make default</a>"
+						+ " <a href=" + removeImageUrl + "/?imageId=" + $(this).attr('value')
+							+ " title='remove image' onclick='return RemoveImage();'>remove image</a>";
 				}
 
 				return title;
 			}
 		});
+	}
+
+function RemoveImage() {
+	return confirm("Are you sure you want to remove this image?");
 }

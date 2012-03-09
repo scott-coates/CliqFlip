@@ -61,7 +61,7 @@
 		$(function() {
 			InitInterests(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
 			InitSaveImages();
-			InitShowImages(@(Html.Raw(Model.MakeDefaultUrl)));
+			InitShowImages(@(Html.Raw(Model.MakeDefaultUrl)),@(Html.Raw(Model.RemoveImageUrl)));
 		});
 	</script>
 }
