@@ -21,7 +21,7 @@
 				{
 					<li>
 						<div class="interest-slider-panel-container">
-							<a rel="interest-@interest.UserInterestId" title="@image.Description" href="@image.FullImage">
+							<a rel="interest-@interest.UserInterestId" value="@image.ImageId" title="@image.Description" href="@image.FullImage">
 								<img src="@image.MediumImage" alt="@image.Description"/>
 							</a>
 						</div>
@@ -53,8 +53,7 @@
 		$(function() {
 			InitInterests(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
 			InitSaveImages();
-			InitShowImages();
-
+			InitShowImages(@Html.Raw(Model.MakeDefaultUrl));
 		});
 	</script>
 }

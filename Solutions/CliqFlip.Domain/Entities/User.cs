@@ -130,5 +130,11 @@ namespace CliqFlip.Domain.Entities
 		{
 			FacebookUsername = !string.IsNullOrWhiteSpace(fbid) ? fbid.Trim() : null;
 		}
+
+		public virtual void MakeInterestImageDefault(int imageId)
+		{
+			var image = _interests.SelectMany(x => x.Images).First(x => x.Id == imageId);
+			image.UserInterest.MakeImageDefault(image);
+		}
 	}
 }

@@ -20,7 +20,7 @@ function InitSaveImages() {
 	}
 }
 
-function InitShowImages() {
+function InitShowImages(makeDefaultUrl) {
 	$('.intereset-slider').anythingSlider(
 		{
 			hashTags: false,
@@ -34,8 +34,9 @@ function InitShowImages() {
 			width: '90%',
 			height: '90%',
 			preloading: false,
-			title: function() {
-				return "To view full size, " + "click here!".link(this.href);
+			title: function () {
+				return $(this).attr('title')+
+					" <a href=" + makeDefaultUrl + "/?imageId=" + $(this).attr('value') + " title='make default'>make default</a>";
 			}
 		});
 }

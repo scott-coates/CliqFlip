@@ -6,6 +6,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 	public class UserInterestsViewModel : UserProfileViewModel
 	{
 		public IList<InterestViewModel> Interests { get; set; }
+		public string MakeDefaultUrl { get; set; }
 		public bool CanEdit { get; set; }
 
 		public UserInterestsViewModel()
@@ -31,12 +32,14 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 		{
 			public InterestImageViewModel(Image image)
 			{
+				ImageId = image.Id;
 				Description = image.Data.Description;
 				ThumbImage = image.Data.ThumbFileName;
 				MediumImage = image.Data.MediumFileName;
 				FullImage = image.Data.FullFileName;
 			}
 
+			public int ImageId { get; set; }
 			public string Description { get; set; }
 			public string ThumbImage { get; set; }
 			public string MediumImage { get; set; }
