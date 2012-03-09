@@ -7,6 +7,12 @@
 @section styles
 {
 }
+
+@if (Model.AuthenticatedProfileOwner)
+{
+	<input type="button" value="Add Interest" class="button dark-blue" />
+}
+
 @Html.ValidationSummary()
 <div id="interests-container">
 	@foreach (UserInterestsViewModel.InterestViewModel interest in Model.Interests)
