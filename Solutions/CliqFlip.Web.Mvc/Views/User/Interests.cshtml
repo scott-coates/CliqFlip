@@ -13,8 +13,12 @@
 	{
 		<div class="user-interest">
 			<div class="user-interest-title">
-				<strong>@interest.Name</strong> <a class="user-interest-title-add-photo" value="@interest.UserInterestId" href="javascript:void(0);" title="add photo">
-													<span>add photo</span></a>
+				<strong>@interest.Name</strong>
+				@if (Model.CanEdit)
+				{
+					<a class="user-interest-title-add-photo" value="@interest.UserInterestId" href="javascript:void(0);" title="add photo">
+						<span>add photo</span></a>
+				}
 			</div>
 			<ul class="intereset-slider">
 				@foreach (UserInterestsViewModel.InterestImageViewModel image in interest.Images)
@@ -31,21 +35,24 @@
 		</div>
 	}
 </div>
-<div class="user-interest-add-photo-dialog" id="add-photo">
-	<div class="uploadInterestImage">
-		@using (Html.BeginForm("SaveInterestImage", "User", FormMethod.Post, new {@encType = "multipart/form-data"}))
-		{
-			<h2>
-				Description:</h2>
-			@Html.TextArea("imageDescription", new {@class = "image-upload-description"})
-			//for some reason, the form would abruptly end when using fileuplaod BEFORe description
-			<h2>
-				Add a photo</h2>
-			@Html.Hidden("userInterestId", null, new {@id = "userInterestId"})
-			@FileUpload.GetHtml("profileImage", initialNumberOfFiles: 1, allowMoreFilesToBeAdded: false, uploadText: "Upload Photo")
-		}
+@if (Model.CanEdit)
+{
+	<div class="user-interest-add-photo-dialog" id="add-photo">
+		<div class="uploadInterestImage">
+			@using (Html.BeginForm("SaveInterestImage", "User", FormMethod.Post, new {@encType = "multipart/form-data"}))
+			{
+				<h2>
+					Description:</h2>
+				@Html.TextArea("imageDescription", new {@class = "image-upload-description"})
+				//for some reason, the form would abruptly end when using fileuplaod BEFORe description
+				<h2>
+					Add a photo</h2>
+				@Html.Hidden("userInterestId", null, new {@id = "userInterestId"})
+				@FileUpload.GetHtml("profileImage", initialNumberOfFiles: 1, allowMoreFilesToBeAdded: false, uploadText: "Upload Photo")
+			}
+		</div>
 	</div>
-</div>
+}
 
 @section scripts
 {
@@ -54,7 +61,7 @@
 		$(function() {
 			InitInterests(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
 			InitSaveImages();
-			InitShowImages(@Html.Raw(Model.MakeDefaultUrl));
+			InitShowImages(@(Html.Raw(Model.MakeDefaultUrl)));
 		});
 	</script>
 }

@@ -35,8 +35,13 @@ function InitShowImages(makeDefaultUrl) {
 			height: '90%',
 			preloading: false,
 			title: function () {
-				return $(this).attr('title')+
-					" <a href=" + makeDefaultUrl + "/?imageId=" + $(this).attr('value') + " title='make default'>make default</a>";
+				var title = $(this).attr('title');
+
+				if (_canEdit) {
+					title = title + " <a href=" + makeDefaultUrl + "/?imageId=" + $(this).attr('value') + " title='make default'>make default</a>";
+				}
+
+				return title;
 			}
 		});
 }
