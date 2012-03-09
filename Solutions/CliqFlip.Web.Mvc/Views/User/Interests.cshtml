@@ -16,6 +16,8 @@
 				<strong>@interest.Name</strong>
 				@if (Model.CanEdit)
 				{
+					<a class="user-interest-remove" value="@interest.UserInterestId" href="javascript:void(0);" title="remove interest">
+						<span>remove interest</span></a>
 					<a class="user-interest-title-add-photo" value="@interest.UserInterestId" href="javascript:void(0);" title="add photo">
 						<span>add photo</span></a>
 				}
@@ -61,7 +63,7 @@
 		$(function() {
 			InitInterests(@(Model.CanEdit.ToString(CultureInfo.InvariantCulture).ToLower()));
 			InitSaveImages();
-			InitShowImages(@(Html.Raw(Model.MakeDefaultUrl)),@(Html.Raw(Model.RemoveImageUrl)));
+			InitShowImages(@(Html.Raw(Model.MakeDefaultUrl)), @(Html.Raw(Model.RemoveImageUrl)));
 		});
 	</script>
 }
