@@ -153,17 +153,6 @@ function OnInterestRemoved(interest) {
 }
 
 function CreateFormWizard() {
-	var onStepShown = function(event, data) {
-
-		//Whenever a step is show, update the indicators to reflect the step
-		//their looking at.
-		//get all the indicators with the selectedCssClass and remove the class
-		//TODO: remove the contains selector
-		_steps.find("a[class~='" + _selectedCssClass + "']").removeClass(_selectedCssClass).addClass(_unselectedCssClass);
-
-		//mark the currently selected step
-		_steps.find("a[href='#" + data.currentStep + "']").addClass(_selectedCssClass).removeClass(_unselectedCssClass);
-	};
 
 	var formWizardOptions = {
 		disableUIStyles: true,
@@ -171,7 +160,7 @@ function CreateFormWizard() {
 		outDuration: 100
 	};
 
-	_formProfileCreate.formwizard(formWizardOptions).bind("step_shown", onStepShown);
+	_formProfileCreate.formwizard(formWizardOptions).bind("step_shown", OnStepShown);
 	_formProfileCreate.data('validator').settings.submitHandler = function(form) {
 		var userInterests = $(".userInterestValue", $(form));
 		if (userInterests.length > 0) {
@@ -181,4 +170,16 @@ function CreateFormWizard() {
 			$("#userInterestEmptyError").fadeIn(1000);
 		}
 	};
+}
+
+function OnStepShown(event, data) {
+
+	//Whenever a step is show, update the indicators to reflect the step
+	//their looking at.
+	//get all the indicators with the selectedCssClass and remove the class
+	//TODO: remove the contains selector
+	_steps.find("a[class~='" + _selectedCssClass + "']").removeClass(_selectedCssClass).addClass(_unselectedCssClass);
+
+	//mark the currently selected step
+	_steps.find("a[href='#" + data.currentStep + "']").addClass(_selectedCssClass).removeClass(_unselectedCssClass);
 }
