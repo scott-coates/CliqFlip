@@ -17,7 +17,8 @@ function InitSaveImages() {
 		_addInterestDialog = $("#add-interest").dialog({
 			autoOpen: false,
 			modal: true,
-			width: 430
+			width: 600,
+			height:600
 		});
 
 		$(".user-interest-title-add-photo").click(function() {
