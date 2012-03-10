@@ -1330,6 +1330,10 @@ color: white;
 			color: #999;
 		}
 
+.user-interest-add-interest-dialog {
+	display: none;
+}
+
 .intereset-slider {
 	display: none;
 	height: 180px;

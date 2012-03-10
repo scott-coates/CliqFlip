@@ -1,4 +1,4 @@
-var interests = null;
+var _interests = null;
 
 
 function FormatList(data, elem) {
@@ -40,7 +40,7 @@ function SelectionAdded(elem, data) {
 }
 
 function InitAutoSuggest(searchUrl) {
-	interests = $("#interestSearch").autoSuggest(searchUrl,
+	_interests = $("#interestSearch").autoSuggest(searchUrl,
 		{
 			keyDelay: 600,
 			asHtmlID: "search_values",
@@ -68,7 +68,7 @@ function InitTagCloud() {
 		var tagValue = $(this).attr('value');
 		var tagName = this.innerText;
 		var tagValueToAdd = { Name: tagName, Slug: tagValue };
-		interests.addNewItem(tagValueToAdd);
+		_interests.addNewItem(tagValueToAdd);
 	});
 }
 

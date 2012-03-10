@@ -1,10 +1,73 @@
-﻿@model IEnumerable<CliqFlip.Web.Mvc.ViewModels.User.InterestCreate>
-
-@Html.ValidationMessageFor(model => model)
-<span class="field-validation-error" id="userInterestEmptyError">Okay, we get it, you're not very interesting. But please, for our sake, just provide us with an interest that tells us about yourself.</span>
+﻿<span class="field-validation-error" id="userInterestEmptyError">Okay, we get it, you're not very interesting. But please, for our sake, just provide us with an interest that tells us about yourself.</span>
 <strong>Add your Interests</strong>
 <div id="divInterestSearch">
 	<input type="text" id="interestName" placeholder="Type an interest..." />
 </div>
 <ul id="interestsList">
 </ul>
+
+<!-- PAGE CONTENT END -->
+<script id="tmplNewInterest" type="text/x-jquery-tmpl">
+    
+	<li style="display: none;">
+		<a href='javscript:void(0)' class='remove-interest'></a>
+		<div>
+			<input type='hidden' class="userInterestValue" name='UserInterests[${Index}].Id' value='${Id}' />
+			<input type='hidden' name='UserInterests[${Index}].Name' value='${Name}' />
+			<div class="title"><p>${Name}</p></div>
+            
+			<div id="subcategory" style='${GenerateInterestCategoryVisibility($item.data)}' >
+				<label>Category</label><br />
+				<select name="UserInterests[${Index}].Category">
+					<option value="">Choose...</option>
+					<option>Animals</option>
+					<option>Arts and Humanities</option>
+					<option>Automotive</option>
+					<option>Beauty</option>
+					<option>Business</option>
+					<option>Computers</option>
+					<option>Entertainment</option>
+					<option>Local</option>
+					<option>News</option>
+					<option>Photo and Video</option>
+					<option>Real Estate</option>
+					<option>Recreation</option>
+					<option>Reference</option>
+					<option>Science</option>
+					<option>Finance</option>
+					<option>Food and Drink</option>
+					<option>Games</option>
+					<option>Home and Garden</option>
+					<option>Industries</option>
+					<option>Internet</option>
+					<option>Lifestyles</option>
+					<option>Shopping</option>
+					<option>Social Networks</option>
+					<option>Society</option>
+					<option>Sports</option>
+					<option>Telecommunications</option>
+					<option>Travel</option>
+				</select>
+			</div>
+			{{if Id == 0 }}
+			{{/if}}
+			<div id="sociality">
+				<label class="level1">
+					<img src="@Url.Content("~/Content/img/social1.png")" />
+					<input type="radio" name="UserInterests[${Index}].Sociality" value="0" /><br />
+					Alone
+				</label>
+				<label class="level2">
+					<img src="@Url.Content("~/Content/img/social2.png")" />
+					<input type="radio" name="UserInterests[${Index}].Sociality" value="50" /><br />
+					Small
+				</label>
+				<label class="level3">
+					<img src="@Url.Content("~/Content/img/social3.png")" />
+					<input type="radio" name="UserInterests[${Index}].Sociality" value="100" /><br />
+					Large
+				</label>
+			</div>
+		</div>
+	</li>
+</script>

@@ -246,6 +246,7 @@
     <Content Include="Content\img\check.png" />
     <Content Include="Content\img\ClipFliq-LogoMoto.png" />
     <Content Include="Content\js\cliqFlip\error-handler.js" />
+    <Content Include="Content\js\user\add-interest.js" />
     <Content Include="Content\js\user\interests.js" />
     <Content Include="Content\styles\jquery-ui\images\ui-bg_diagonals-thick_75_4dbce9_40x40.png" />
     <Content Include="Content\styles\jquery-ui\images\ui-bg_flat_55_999999_40x100.png" />
