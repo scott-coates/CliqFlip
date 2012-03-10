@@ -1322,19 +1322,15 @@ color: white;
 		    overflow-x: hidden;
             height: 194px;
 		}
-		.user-interest-add-photo-dialog {
+		.user-interest-add-photo-dialog,.user-interest-add-interest-dialog {
 			display: none;
 		}
 
-		.user-interest-add-photo-dialog h2 {
+		.user-interest-add-photo-dialog h2, .user-interest-add-interest-dialog h2 {
 			color: #999;
 		}
 
-.user-interest-add-interest-dialog {
-	display: none;
-}
-
-.intereset-slider {
+ .intereset-slider {
 	display: none;
 	height: 180px;
 			width: 350px;

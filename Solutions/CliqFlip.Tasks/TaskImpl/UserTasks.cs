@@ -102,6 +102,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			foreach (UserInterestDto userInterest in userToCreate.InterestDtos)
 			{
 				//get or create the Interest
+				//TODO  - check if id > 0 , then don't create it - can use nhibernate.session.load for more perforamnce
 				var interest = _interestTasks.GetOrCreate(userInterest.Name);
 				user.AddInterest(interest, userInterest.Sociality);
 			}
@@ -217,6 +218,16 @@ namespace CliqFlip.Tasks.TaskImpl
 		{
 			var interest = _interestTasks.Get(interestId);
 			user.AddInterest(interest, null);
+		}
+
+		public void AddInterestsToUser(string name, IEnumerable<UserInterestDto> interestDtos)
+		{
+			var user = GetUser(name);
+			foreach(var interestDto in interestDtos)
+			{
+				var interest = _interestTasks.Get(interestDto.Id) ?? new Interest(interestDto.Name);
+				user.AddInterest(interest, null);	
+			}
 		}
 
 		public void SaveProfileImage(User user, HttpPostedFileBase profileImage)

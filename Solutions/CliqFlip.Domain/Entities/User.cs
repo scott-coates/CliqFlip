@@ -75,33 +75,41 @@ namespace CliqFlip.Domain.Entities
 
 				_interests.Add(userInterest);
 			}
+
+			UpdateLastActivity();
 		}
 
 		public virtual void UpdateInterest(int userInterestId, UserInterestOption userInterestOption)
 		{
 			UserInterest userInterest = _interests.First(x => x.Id == userInterestId);
 			userInterest.Options = userInterestOption;
+
+			UpdateLastActivity();
 		}
 
 		public virtual void UpdateHeadline(string headline)
 		{
 			Headline = !string.IsNullOrWhiteSpace(headline) ? headline.Trim() : null;
+			UpdateLastActivity();
 		}
 
 		public virtual void UpdateBio(string bio)
 		{
 			Bio = !string.IsNullOrWhiteSpace(bio) ? bio.Trim() : null;
+			UpdateLastActivity();
 		}
 
 		public virtual void UpdateTwitterUsername(string twitterUsername)
 		{
 			TwitterUsername = !string.IsNullOrWhiteSpace(twitterUsername) ? twitterUsername.Trim() : null;
+			UpdateLastActivity();
 		}
 
 		public virtual void UpdateYouTubeUsername(string youTubeUsername)
 		{
 			//white space before/after in the username causes problems when making a request to the youtube api
 			YouTubeUsername = !string.IsNullOrWhiteSpace(youTubeUsername) ? youTubeUsername.Trim() : null;
+			UpdateLastActivity();
 		}
 
 		public virtual void UpdateProfileImage(ImageData data)
@@ -112,16 +120,19 @@ namespace CliqFlip.Domain.Entities
 			}
 
 			ProfileImage.Data = data;
+			UpdateLastActivity();
 		}
 
 		public virtual void UpdateWebsite(string siteUrl, string feedUrl)
 		{
 			_userWebsite = new UserWebsite(siteUrl, feedUrl);
+			UpdateLastActivity();
 		}
 
 		public virtual void UpdateLastActivity()
 		{
 			LastActivity = DateTime.UtcNow;
+			//TODO: use interceptor
 		}
 
 		public virtual void UpdateCreateDate()
@@ -133,12 +144,14 @@ namespace CliqFlip.Domain.Entities
 		public virtual void UpdateFacebookUsername(string fbid)
 		{
 			FacebookUsername = !string.IsNullOrWhiteSpace(fbid) ? fbid.Trim() : null;
+			UpdateLastActivity();
 		}
 
 		public virtual void MakeInterestImageDefault(int imageId)
 		{
 			Image image = GetImage(imageId);
 			image.UserInterest.MakeImageDefault(image);
+			UpdateLastActivity();
 		}
 
 		public virtual Image GetImage(int imageId)
@@ -149,6 +162,7 @@ namespace CliqFlip.Domain.Entities
 		public virtual void RemoveInterestImage(Image image)
 		{
 			image.UserInterest.RemoveInterestImage(image);
+			UpdateLastActivity();
 		}
 
 		public virtual UserInterest GetInterest(int interestId)
@@ -159,6 +173,7 @@ namespace CliqFlip.Domain.Entities
 		public virtual void RemoveInterest(UserInterest interest)
 		{
 			_interests.Remove(interest);
+			UpdateLastActivity();
 		}
 	}
 }

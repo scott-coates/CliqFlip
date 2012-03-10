@@ -69,7 +69,11 @@
 	</div>
 
 	<div class="user-interest-add-interest-dialog" id="add-interest">
-		@{ Html.RenderPartial("_AddInterest"); }
+		@using (Html.BeginForm("AddInterests", "User"))
+		{
+			Html.RenderPartial("_AddInterest");
+			<input type="submit" value="OK" class="button" style="margin-left:20px;"/>
+		}
 	</div>
 }
 
@@ -88,7 +92,7 @@
 				{
 					@:AddInterestToVisitorProfile();
 				}
-				else if(Model.AuthenticatedProfileOwner)
+				else if (Model.AuthenticatedProfileOwner)
 				{
 					@:InitAddInterest();
 				}

@@ -49,6 +49,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 				foreach (InterestCreate interest in profile.UserInterests)
 				{
+					//TODO - use the id passed in
 					var userInterest = new UserInterestDto(0, interest.Name, interest.Category, interest.Sociality);
 					profileToCreate.InterestDtos.Add(userInterest);
 				}
@@ -70,6 +71,23 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 			//TODO: Implement PRG pattern for post forms
 			return View(profile);
+		}
+
+		[HttpPost]
+		[Transaction]
+		public ActionResult AddInterests(UserAddInterestsViewModel addInterestsViewModel)
+		{
+			if (ModelState.IsValid)
+			{
+				var interestDtos = addInterestsViewModel.UserInterests.Select(x => new UserInterestDto(x.Id, x.Name, x.Category, x.Sociality));
+
+				_userTasks.AddInterestsToUser(_principal.Identity.Name, interestDtos);
+				return RedirectToAction("Interests", "User");
+			}
+
+			RouteData.Values["action"] = "Interests";
+			//TODO: Implement PRG pattern for post forms
+			return Interests(_principal.Identity.Name);
 		}
 
 		public ActionResult Login()
