@@ -15,6 +15,7 @@ function logError(ex, stack) {
 	out += ": at document path '" + url + "'.";
 	if (stack != null) out += "\n  at " + stack.join("\n  at ");
 
+	//TODO: cache these erros and only post once for each error
 	// send error message
 	$.ajax({
 		type: 'POST',

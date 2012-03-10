@@ -28,7 +28,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
         public ActionResult GetMessages(int id)
         {
-            var model = _conversationQuery.GetUserProfileIndex(id, _principal.Identity.Name);
+            var model = _conversationQuery.GetMessages(id, _principal.Identity.Name);
             return PartialView(model);
         }
 
@@ -50,7 +50,7 @@ namespace CliqFlip.Web.Mvc.Controllers
                 {
                     SendDate = message.SendDate,
                     Sender = message.Sender.Username,
-                    SenderImageUrl = message.Sender.ProfileImageData.ThumbFileName,
+                    SenderImageUrl = message.Sender.ProfileImage != null ? message.Sender.ProfileImage.Data.ThumbFileName : "/Content/img/empty-avatar.jpg",
                     Text = message.Text
                 };
             }

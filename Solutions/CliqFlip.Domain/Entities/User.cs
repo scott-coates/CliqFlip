@@ -12,7 +12,6 @@ namespace CliqFlip.Domain.Entities
 	{
 		private readonly Iesi.Collections.Generic.ISet<UserInterest> _interests;
         private readonly Iesi.Collections.Generic.ISet<Participant> _participants;
-		private ImageData _profileImageData;//TODO: user the image entities
 		private UserWebsite _userWebsite;
 
 		public virtual IEnumerable<UserInterest> Interests
@@ -25,12 +24,16 @@ namespace CliqFlip.Domain.Entities
             get { return new List<Participant>(_participants).AsReadOnly(); }
         }
 
-		public virtual ImageData ProfileImageData
-		{
-			//http://stackoverflow.com/a/685026/173957
-			get { return _profileImageData ?? new ImageData(null, null, null, null); }
-			set { _profileImageData = value; }
-		}
+		/*
+			//if we ever have a collection of images (user.images), we'll need to set cascade.noaction
+			//then there would be a cycle between user and userinterests to images
+			//set this to no action otherwise a cascade error will occur
+			//http://stackoverflow.com/questions/851625/foreign-key-constraint-may-cause-cycles-or-multiple-cascade-paths
+			//we'll need to manually delete profile images before removing a user
+		 */
+
+		public virtual Image ProfileImage { get; set; }
+
 
 		public virtual UserWebsite UserWebsite
 		{
@@ -47,9 +50,10 @@ namespace CliqFlip.Domain.Entities
 		public virtual string Headline { get; set; }
 		public virtual string TwitterUsername { get; set; }
 		public virtual string YouTubeUsername { get; set; }
-        public virtual string FacebookUsername { get; set; } //TODO:rename to facebook access code
+		public virtual string FacebookUsername { get; set; } //TODO:rename to facebook access code
 		public virtual DateTime CreateDate { get; set; }
 		public virtual DateTime LastActivity { get; set; }
+
 		public User()
 		{
 			_interests = new HashedSet<UserInterest>();
@@ -67,56 +71,75 @@ namespace CliqFlip.Domain.Entities
 
 		public virtual void AddInterest(Interest interest, int? socialityPoints)
 		{
-			var userInterest = new UserInterest
-								{
-									User = this,
-									Interest = interest,
-									SocialityPoints = socialityPoints
-								};
+			if (_interests.All(x => x.Interest != interest))
+			{
+				var userInterest = new UserInterest
+				{
+					User = this,
+					Interest = interest,
+					SocialityPoints = socialityPoints
+				};
 
-			_interests.Add(userInterest);
+				_interests.Add(userInterest);
+			}
+
+			UpdateLastActivity();
 		}
 
 		public virtual void UpdateInterest(int userInterestId, UserInterestOption userInterestOption)
 		{
 			UserInterest userInterest = _interests.First(x => x.Id == userInterestId);
 			userInterest.Options = userInterestOption;
+
+			UpdateLastActivity();
 		}
 
 		public virtual void UpdateHeadline(string headline)
 		{
 			Headline = !string.IsNullOrWhiteSpace(headline) ? headline.Trim() : null;
+			UpdateLastActivity();
 		}
 
 		public virtual void UpdateBio(string bio)
 		{
 			Bio = !string.IsNullOrWhiteSpace(bio) ? bio.Trim() : null;
+			UpdateLastActivity();
 		}
 
 		public virtual void UpdateTwitterUsername(string twitterUsername)
 		{
 			TwitterUsername = !string.IsNullOrWhiteSpace(twitterUsername) ? twitterUsername.Trim() : null;
+			UpdateLastActivity();
 		}
 
 		public virtual void UpdateYouTubeUsername(string youTubeUsername)
 		{
 			//white space before/after in the username causes problems when making a request to the youtube api
 			YouTubeUsername = !string.IsNullOrWhiteSpace(youTubeUsername) ? youTubeUsername.Trim() : null;
+			UpdateLastActivity();
 		}
 
-		public virtual void UpdateProfileImage(string originalFilename, string thumbFilename, string mediumFilename, string fullFilename)
+		public virtual void UpdateProfileImage(ImageData data)
 		{
-			_profileImageData = new ImageData(originalFilename, thumbFilename, mediumFilename, fullFilename);
+			if (ProfileImage == null)
+			{
+				ProfileImage = new Image();
+			}
+
+			ProfileImage.Data = data;
+			UpdateLastActivity();
 		}
 
 		public virtual void UpdateWebsite(string siteUrl, string feedUrl)
 		{
 			_userWebsite = new UserWebsite(siteUrl, feedUrl);
+			UpdateLastActivity();
 		}
 
 		public virtual void UpdateLastActivity()
 		{
 			LastActivity = DateTime.UtcNow;
+			//TODO: use interceptor
 		}
 
 		public virtual void UpdateCreateDate()
@@ -125,9 +148,39 @@ namespace CliqFlip.Domain.Entities
 			UpdateLastActivity();
 		}
 
-        public virtual void UpdateFacebookUsername(string fbid)
-        {
-            FacebookUsername = !string.IsNullOrWhiteSpace(fbid) ? fbid.Trim() : null;
-        }
+		public virtual void UpdateFacebookUsername(string fbid)
+		{
+			FacebookUsername = !string.IsNullOrWhiteSpace(fbid) ? fbid.Trim() : null;
+			UpdateLastActivity();
+		}
+
+		public virtual void MakeInterestImageDefault(int imageId)
+		{
+			Image image = GetImage(imageId);
+			image.UserInterest.MakeImageDefault(image);
+			UpdateLastActivity();
+		}
+
+		public virtual Image GetImage(int imageId)
+		{
+			return _interests.SelectMany(x => x.Images).First(x => x.Id == imageId);
+		}
+
+		public virtual void RemoveInterestImage(Image image)
+		{
+			image.UserInterest.RemoveInterestImage(image);
+			UpdateLastActivity();
+		}
+
+		public virtual UserInterest GetInterest(int interestId)
+		{
+			return _interests.First(x => x.Id == interestId);
+		}
+
+		public virtual void RemoveInterest(UserInterest interest)
+		{
+			_interests.Remove(interest);
+			UpdateLastActivity();
+		}
 	}
 }

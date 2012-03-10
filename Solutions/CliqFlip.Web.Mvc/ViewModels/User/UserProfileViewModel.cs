@@ -14,5 +14,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 		public string Username { get; set; }
 		public string Headline { get; set; }
 		public string ProfileImageUrl { get; set; }
+		public bool AuthenticatedProfileOwner { get; set; }
+		public bool AuthenticatedVisitor { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ValueObjects;
 using CliqFlip.Infrastructure.NHibernateMaps;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
@@ -19,7 +20,7 @@ namespace CliqFlip.Tests.NHibernate
 			//just remember to turn hbm2ddl.auto off
 			Configuration cfg = NHibernateSession.Init(
 				new SimpleSessionStorage(),
-				new[] {"CliqFlip.Infrastructure.dll"},
+				new[] { "CliqFlip.Infrastructure.dll" },
 				new AutoPersistenceModelGenerator().Generate(),
 				"Configuration\\NHibernate.config");
 
@@ -39,7 +40,7 @@ namespace CliqFlip.Tests.NHibernate
 		public void TestUserInterestImage()
 		{
 			var userint = new UserInterest();
-			userint.AddImage("", "", "", "");
+			userint.AddImage(new ImageData(null, null, null, null, null));
 
 			NHibernateSession.Current.Save(userint);
 		}

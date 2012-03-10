@@ -190,7 +190,9 @@
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
     <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
+    <Compile Include="ViewModels\User\UserAddInterestsViewModel.cs" />
     <Compile Include="ViewModels\User\UserInboxViewModel.cs" />
+    <Compile Include="ViewModels\User\InterestCreate.cs" />
     <Compile Include="ViewModels\User\UserSaveInterestImageViewModel.cs" />
     <Compile Include="ViewModels\User\UserInterestsViewModel.cs" />
     <Compile Include="ViewModels\User\UserProfileIndexViewModel.cs" />
@@ -253,6 +255,7 @@
     <Content Include="Content\img\check.png" />
     <Content Include="Content\img\ClipFliq-LogoMoto.png" />
     <Content Include="Content\js\cliqFlip\error-handler.js" />
+    <Content Include="Content\js\user\add-interest.js" />
     <Content Include="Content\js\user\interests.js" />
     <Content Include="Content\styles\jquery-ui\images\ui-bg_diagonals-thick_75_4dbce9_40x40.png" />
     <Content Include="Content\styles\jquery-ui\images\ui-bg_flat_55_999999_40x100.png" />
@@ -271,6 +274,7 @@
     <Content Include="Content\styles\jquery-ui\images\ui-icons_f7a50d_256x240.png" />
     <Content Include="Content\styles\jquery-ui\images\ui-icons_fcd113_256x240.png" />
     <Content Include="Content\styles\jquery-ui\jquery-ui-1.8.18.custom.css" />
+    <Content Include="Content\styles\anythingslider-default1.css" />
     <Content Include="favicon.ico" />
     <Content Include="Content\img\close.png" />
     <Content Include="Content\img\connect_sprite.png" />
@@ -649,6 +653,7 @@
     <Content Include="Views\Error\ServerError.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\User\Interests.cshtml" />
+    <Content Include="Views\User\_AddInterest.cshtml" />
     <Content Include="Views\User\SendMessageTo.cshtml" />
     <Content Include="Views\User\Inbox.cshtml" />
     <Content Include="Views\Conversation\GetMessages.cshtml" />

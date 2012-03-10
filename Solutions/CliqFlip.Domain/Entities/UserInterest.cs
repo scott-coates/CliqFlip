@@ -31,17 +31,32 @@ namespace CliqFlip.Domain.Entities
 			_images = new HashedSet<Image>();
 		}
 
+		//TODO: consider law of demeter violation
 		//http://msdn.microsoft.com/en-us/magazine/cc947917.aspx#id0070040 - i think we can skip the law of demeter since we're working
 		//directly with user intersts
-		public virtual void AddImage(string originalFilename, string thumbFilename, string mediumFilename, string fullFilename)
+		public virtual void AddImage(ImageData data)
 		{
 			var image = new Image
 			{
-				Data = new ImageData(originalFilename, thumbFilename, mediumFilename, fullFilename),
+				Data = data,
 				UserInterest = this
 			};
 
 			_images.Add(image);
+		}
+
+		public virtual void MakeImageDefault(Image image)
+		{
+			var temp = new List<Image>(_images);
+			_images.Clear();
+			_images.Add(image);
+			temp.Remove(image);
+			_images.AddAll(temp);
+		}
+
+		public virtual void RemoveInterestImage(Image image)
+		{
+			_images.Remove(image);
 		}
 	}
 }

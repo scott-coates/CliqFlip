@@ -5,6 +5,6 @@ namespace CliqFlip.Web.Mvc.Queries.Interfaces
 {
     public interface IConversationQuery
     {
-        IEnumerable<MessageViewModel> GetUserProfileIndex(int conversationId, string username);
+        IEnumerable<MessageViewModel> GetMessages(int conversationId, string username);
     }
 }

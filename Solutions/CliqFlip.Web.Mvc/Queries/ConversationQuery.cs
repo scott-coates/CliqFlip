@@ -14,7 +14,7 @@ namespace CliqFlip.Web.Mvc.Queries
 	public class ConversationQuery : NHibernateQuery, IConversationQuery
 	{
 		
-		public IEnumerable<MessageViewModel> GetUserProfileIndex(int conversationId, string username)
+		public IEnumerable<MessageViewModel> GetMessages(int conversationId, string username)
 		{
             List<MessageViewModel> retVal = null;
             Conversation conversation = Session.Query<Conversation>()
@@ -33,7 +33,7 @@ namespace CliqFlip.Web.Mvc.Queries
                         Text = message.Text,
                         SendDate = message.SendDate,
                         Sender = message.Sender.Username,
-                        SenderImageUrl = message.Sender.ProfileImageData.ThumbFileName
+                        SenderImageUrl = message.Sender.ProfileImage != null ? message.Sender.ProfileImage.Data.ThumbFileName : "/Content/img/empty-avatar.jpg"
                     };
                     retVal.Add(mess);
                 }

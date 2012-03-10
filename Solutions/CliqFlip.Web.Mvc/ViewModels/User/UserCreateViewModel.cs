@@ -44,14 +44,5 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 
 		[CollectionNotEmptyAttribute(ErrorMessage = "Okay, we get it, you're not very interesting. But please, for our sake, just provide us with an interest that tells us about yourself.")]
 		public List<InterestCreate> UserInterests { get; set; }
-
-	}
-
-	public class InterestCreate
-	{
-		public long Id { get; set; }
-		public String Name { get; set; }
-		public String Category { get; set; }
-		public int Sociality { get; set; }
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
@@ -14,11 +15,11 @@ namespace CliqFlip.Web.Mvc.Queries
 	{
 		#region IUserProfileQuery Members
 
-		public UserProfileIndexViewModel GetUserProfileIndex(string username)
+		public UserProfileIndexViewModel GetUserProfileIndex(string username, IPrincipal requestingUser)
 		{
 			UserProfileIndexViewModel retVal = null;
 
-			User user = Session.Query<User>().FirstOrDefault(x => x.Username == username);
+			User user = GetUser(username);
 
 
 			if (user != null)
@@ -32,7 +33,7 @@ namespace CliqFlip.Web.Mvc.Queries
 					FacebookUsername = user.FacebookUsername
 				};
 
-				FillBaseProperties(retVal, user);
+				FillBaseProperties(retVal, user, requestingUser);
 
 				List<UserInterestDto> interests =
 					user.Interests.Select(interest => new UserInterestDto(interest.Id, interest.Interest.Name.Replace(' ', '\n'), interest.Interest.Slug, null, null, interest.Options.Passion, interest.Options.XAxis, interest.Options.YAxis)).
@@ -44,11 +45,11 @@ namespace CliqFlip.Web.Mvc.Queries
 			return retVal;
 		}
 
-		public UserSocialMediaViewModel GetUserSocialMedia(string username)
+		public UserSocialMediaViewModel GetUserSocialMedia(string username, IPrincipal requestingUser)
 		{
 			UserSocialMediaViewModel retVal = null;
 
-			User user = Session.Query<User>().FirstOrDefault(x => x.Username == username);
+			User user = GetUser(username);
 
 
 			if (user != null)
@@ -61,46 +62,57 @@ namespace CliqFlip.Web.Mvc.Queries
 					WebsiteFeedUrl = user.UserWebsite.FeedUrl
 				};
 
-				FillBaseProperties(retVal, user);
+				FillBaseProperties(retVal, user, requestingUser);
 			}
 
 			return retVal;
 		}
 
-		public UserInterestsViewModel GetUserIntersets(string username)
+		public UserInterestsViewModel GetUserIntersets(string username, IPrincipal requestingUser)
 		{
 			UserInterestsViewModel retVal = null;
 
-			User user = Session.Query<User>().FirstOrDefault(x => x.Username == username);
+			User user = GetUser(username);
+
 
 			if (user != null)
 			{
 				retVal = new UserInterestsViewModel();
+
+				FillBaseProperties(retVal, user, requestingUser);
+
+				User visitor = null;
+
+				if (retVal.AuthenticatedVisitor)
+				{
+					visitor = GetUser(requestingUser.Identity.Name);
+				}
+
 				foreach (UserInterest interest in user.Interests)
 				{
 					var interestViewModel = new UserInterestsViewModel.InterestViewModel
 					{
 						Name = interest.Interest.Name,
 						UserInterestId = interest.Id,
+						InterestId = interest.Interest.Id,
+						VisitorSharesThisInterest = visitor != null && visitor.Interests.Any(x => x.Interest == interest.Interest),
 						Images = interest
 							.Images
 							.Select(x =>
-							        new UserInterestsViewModel.InterestImageViewModel(x)).ToList()
+									new UserInterestsViewModel.InterestImageViewModel(x)).ToList()
 					};
 
 					retVal.Interests.Add(interestViewModel);
 				}
-
-				FillBaseProperties(retVal, user);
 			}
 
 			return retVal;
 		}
 
-        public UserInboxViewModel GetUsersInbox(string username)
+        public UserInboxViewModel GetUsersInbox(IPrincipal requestingUser)
         {
             UserInboxViewModel retVal = null;
-            User user = Session.Query<User>().FirstOrDefault(x => x.Username == username);
+            User user = Session.Query<User>().FirstOrDefault(x => x.Username == requestingUser.Identity.Name);
 
             var activeConversations = user.Participants.Where(participant => participant.IsActive).Select(participant => participant.Conversation).ToList();
 
@@ -114,13 +126,13 @@ namespace CliqFlip.Web.Mvc.Queries
                     {
                         Id = conversation.Id,
                         HasUnreadMessages = conversation.HasNewMessagesFor(user),
-                        SenderImage = sender.ProfileImageData.ThumbFileName ?? "/Content/img/empty-avatar.jpg",
+                        SenderImage = sender.ProfileImage != null ? sender.ProfileImage.Data.ThumbFileName : "/Content/img/empty-avatar.jpg",
                         Sender = sender.Username,
                         LastMessage = conversation.Messages.OrderByDescending(message => message.SendDate).First().Text
                     };
                     retVal.Conversations.Add(conv);
                 }
-                FillBaseProperties(retVal, user);
+                FillBaseProperties(retVal, user, requestingUser);
             }
             
             return retVal;
@@ -128,12 +140,28 @@ namespace CliqFlip.Web.Mvc.Queries
 
 		#endregion
 
-		private void FillBaseProperties(UserProfileViewModel retVal, User user)
+		private User GetUser(string username)
+		{
+			return Session.Query<User>().FirstOrDefault(x => x.Username == username);
+		}
+
+		private void FillBaseProperties(UserProfileViewModel retVal, User user, IPrincipal requestingUser)
 		{
 			retVal.Id = user.Id;
 			retVal.Headline = user.Headline;
 			retVal.Username = user.Username;
-			retVal.ProfileImageUrl = user.ProfileImageData.MediumFileName;
+			if (user.Username == requestingUser.Identity.Name)
+			{
+				retVal.AuthenticatedProfileOwner = true;
+			}
+			else if (requestingUser.Identity.IsAuthenticated)
+			{
+				retVal.AuthenticatedVisitor = true;
+			}
+			if (user.ProfileImage != null)
+			{
+				retVal.ProfileImageUrl = user.ProfileImage.Data.MediumFileName;
+			}
 		}
 	}
 }

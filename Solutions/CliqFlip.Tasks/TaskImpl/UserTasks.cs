@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Web;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Exceptions;
+using CliqFlip.Domain.ValueObjects;
 using CliqFlip.Infrastructure.Authentication.Interfaces;
 using CliqFlip.Infrastructure.Common;
 using CliqFlip.Infrastructure.Extensions;
@@ -33,12 +33,12 @@ namespace CliqFlip.Tasks.TaskImpl
 		private readonly IUserAuthentication _userAuthentication;
 
 		public UserTasks(ILinqRepository<User> repository,
-		                 IInterestTasks interestTasks,
-		                 IImageProcessor imageProcessor,
-		                 IFileUploadService fileUploadService,
-		                 IHtmlService htmlService,
-		                 IFeedFinder feedFinder,
-		                 IUserAuthentication userAuthentication)
+						 IInterestTasks interestTasks,
+						 IImageProcessor imageProcessor,
+						 IFileUploadService fileUploadService,
+						 IHtmlService htmlService,
+						 IFeedFinder feedFinder,
+						 IUserAuthentication userAuthentication)
 		{
 			_repository = repository;
 			_interestTasks = interestTasks;
@@ -56,8 +56,8 @@ namespace CliqFlip.Tasks.TaskImpl
 			//TODO: Move this data access to our infra project
 			IList<string> subjAliasAndParent = _interestTasks.GetSlugAndParentSlug(interestAliases);
 			var query = new AdHoc<User>(x => x.Interests.Any(y => subjAliasAndParent.Contains(y.Interest.Slug))
-			                                 ||
-			                                 x.Interests.Any(y => subjAliasAndParent.Contains(y.Interest.ParentInterest.Slug)));
+											 ||
+											 x.Interests.Any(y => subjAliasAndParent.Contains(y.Interest.ParentInterest.Slug)));
 
 			List<User> users = _repository.FindAll(query).ToList();
 			return users.Select(user => new UserSearchByInterestsDto
@@ -93,7 +93,6 @@ namespace CliqFlip.Tasks.TaskImpl
 				return null;
 			}
 
-
 			string salt = PasswordHelper.GenerateSalt(16);
 			string pHash = PasswordHelper.GetPasswordHash(userToCreate.Password, salt);
 
@@ -103,8 +102,9 @@ namespace CliqFlip.Tasks.TaskImpl
 			foreach (UserInterestDto userInterest in userToCreate.InterestDtos)
 			{
 				//get or create the Interest
-				UserInterestDto userInterestDto = _interestTasks.GetOrCreate(userInterest.Name);
-				user.AddInterest(new Interest(userInterestDto.Id, userInterestDto.Name), userInterest.Sociality);
+				//TODO  - check if id > 0 , then don't create it - can use nhibernate.session.load for more perforamnce
+				var interest = _interestTasks.GetOrCreate(userInterest.Name);
+				user.AddInterest(interest, userInterest.Sociality);
 			}
 
 			user.Bio = "I ♥ " + string.Join(", ", user.Interests.Select(x => x.Interest.Name));
@@ -150,13 +150,13 @@ namespace CliqFlip.Tasks.TaskImpl
 			return _repository.FindOne(adhoc);
 		}
 
-		public void SaveInterestImage(User user, HttpPostedFileBase interestImage, int userInterestId)
+		public void SaveInterestImage(User user, HttpPostedFileBase interestImage, int userInterestId, string description)
 		{
 			UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
 			SaveImageForUser(interestImage,
-			                 user.Username + "-Interest-Image-" + interest.Interest.Name,
-			                 imgFileNamesDto =>
-			                 interest.AddImage(interestImage.FileName, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename));
+							 user.Username + "-Interest-Image-" + interest.Interest.Name,
+							 imgFileNamesDto =>
+							 interest.AddImage(new ImageData(interestImage.FileName, description, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename)));
 		}
 
 		public void SaveWebsite(User user, string siteUrl)
@@ -191,20 +191,71 @@ namespace CliqFlip.Tasks.TaskImpl
 			_userAuthentication.Logout();
 		}
 
+		public void RemoveImage(User user, int imageId)
+		{
+			Image image = user.GetImage(imageId);
+			ImageFileNamesDto originalImageNames = GetImageFileNamesDto(image);
+			DeleteImages(originalImageNames);
+			user.RemoveInterestImage(image);
+		}
+
+		public void RemoveInterest(User user, int interestId)
+		{
+			var interest = user.GetInterest(interestId);
+
+			var images = interest.Images.ToList();
+
+			var files = new List<ImageFileNamesDto>(images.Count * 3);
+
+			files.AddRange(images.Select(GetImageFileNamesDto));
+
+			DeleteImages(files.ToArray());
+
+			user.RemoveInterest(interest);
+		}
+
+		public void AddInterestToUser(User user, int interestId)
+		{
+			var interest = _interestTasks.Get(interestId);
+			user.AddInterest(interest, null);
+		}
+
+		public void AddInterestsToUser(string name, IEnumerable<UserInterestDto> interestDtos)
+		{
+			var user = GetUser(name);
+			foreach(var interestDto in interestDtos)
+			{
+				var interest = _interestTasks.Get(interestDto.Id) ?? new Interest(interestDto.Name);
+				user.AddInterest(interest, null);	
+			}
+		}
+
 		public void SaveProfileImage(User user, HttpPostedFileBase profileImage)
 		{
-			var originalImageNames = new ImageFileNamesDto
+			ImageFileNamesDto originalImageNames = null;
+			if (user.ProfileImage != null)
 			{
-				ThumbFilename = user.ProfileImageData.ThumbFileName,
-				MediumFilename = user.ProfileImageData.MediumFileName,
-				FullFilename = user.ProfileImageData.FullFileName
-			};
+				originalImageNames = GetImageFileNamesDto(user.ProfileImage);
+			}
 
 			SaveImageForUser(profileImage, user.Username + "-Profile-Image", imgFileNamesDto =>
 			{
-				user.UpdateProfileImage(profileImage.FileName, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename);
-				DeletePreviousProfileImages(originalImageNames);
+				user.UpdateProfileImage(new ImageData(profileImage.FileName, null, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename));
+				if (originalImageNames != null)
+				{
+					DeleteImages(originalImageNames);
+				}
 			});
+		}
+
+		private static ImageFileNamesDto GetImageFileNamesDto(Image image)
+		{
+			return new ImageFileNamesDto
+			{
+				ThumbFilename = image.Data.ThumbFileName,
+				MediumFilename = image.Data.MediumFileName,
+				FullFilename = image.Data.FullFileName
+			};
 		}
 
 		#endregion
@@ -268,21 +319,24 @@ namespace CliqFlip.Tasks.TaskImpl
 			}
 		}
 
-		private void DeletePreviousProfileImages(ImageFileNamesDto originalImageNames)
+		private void DeleteImages(params ImageFileNamesDto[] imageNames)
 		{
-			var filesToDelete = new List<string>(3);
-			if (!string.IsNullOrWhiteSpace(originalImageNames.ThumbFilename))
+			if (imageNames == null) throw new ArgumentNullException("imageNames");
+
+			var filesToDelete = new List<string>(imageNames.Length * 3);
+
+			foreach (var image in imageNames)
 			{
-				filesToDelete.Add(originalImageNames.ThumbFilename);
+				filesToDelete.Add(image.ThumbFilename);
+				filesToDelete.Add(image.MediumFilename);
+
+				if (image.FullFilename != image.MediumFilename)
+				{
+					//only delete if there is truly a full image
+					filesToDelete.Add(image.FullFilename);
+				}
 			}
-			if (!string.IsNullOrWhiteSpace(originalImageNames.MediumFilename))
-			{
-				filesToDelete.Add(originalImageNames.MediumFilename);
-			}
-			if (!string.IsNullOrWhiteSpace(originalImageNames.FullFilename))
-			{
-				filesToDelete.Add(originalImageNames.FullFilename);
-			}
+
 			_fileUploadService.DeleteFiles("Images/", filesToDelete);
 		}
 
@@ -310,7 +364,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			return users.Select(user => new UserSearchByInterestsDto
 			{
 				MatchCount = user.Interests.Select(x => x.Id).Intersect(interestList).Count(),
-				UserDto = new UserDto {Username = user.Username, InterestDtos = user.Interests.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(), Bio = user.Bio}
+				UserDto = new UserDto { Username = user.Username, InterestDtos = user.Interests.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(), Bio = user.Bio }
 			}).ToList();
 		}
 	}

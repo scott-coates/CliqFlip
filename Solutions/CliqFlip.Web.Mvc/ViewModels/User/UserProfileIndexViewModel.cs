@@ -21,7 +21,6 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
         public string SaveYouTubeUsernameUrl { get; set; }
         public string SaveWebsiteUrl { get; set; }
         public string SaveTwitterUsernameUrl { get; set; }
-		public bool CanEdit { get; set; }
         public string FacebookUsername { get; set; } // TODO: make this a bool that describes if the account is active
     }
 }

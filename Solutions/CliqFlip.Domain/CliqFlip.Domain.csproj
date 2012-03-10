@@ -108,7 +108,7 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Search\FuzzySearch.cs" />
     <Compile Include="ValueObjects\UserWebsite.cs" />
-    <Compile Include="ValueObjects\UserImage.cs" />
+    <Compile Include="ValueObjects\ImageData.cs" />
     <Compile Include="ValueObjects\UserInterestOption.cs" />
   </ItemGroup>
   <ItemGroup>

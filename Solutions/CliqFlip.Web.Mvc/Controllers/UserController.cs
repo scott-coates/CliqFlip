@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
@@ -8,8 +7,6 @@ using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Exceptions;
 using CliqFlip.Domain.ValueObjects;
-using CliqFlip.Infrastructure.Authentication;
-using CliqFlip.Infrastructure.Authentication.Interfaces;
 using CliqFlip.Web.Mvc.Extensions.Exceptions;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Jeip;
@@ -54,6 +51,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 				foreach (InterestCreate interest in profile.UserInterests)
 				{
+					//TODO - use the id passed in
 					var userInterest = new UserInterestDto(0, interest.Name, interest.Category, interest.Sociality);
 					profileToCreate.InterestDtos.Add(userInterest);
 				}
@@ -75,6 +73,23 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 			//TODO: Implement PRG pattern for post forms
 			return View(profile);
+		}
+
+		[HttpPost]
+		[Transaction]
+		public ActionResult AddInterests(UserAddInterestsViewModel addInterestsViewModel)
+		{
+			if (ModelState.IsValid)
+			{
+				var interestDtos = addInterestsViewModel.UserInterests.Select(x => new UserInterestDto(x.Id, x.Name, x.Category, x.Sociality));
+
+				_userTasks.AddInterestsToUser(_principal.Identity.Name, interestDtos);
+				return RedirectToAction("Interests", "User");
+			}
+
+			RouteData.Values["action"] = "Interests";
+			//TODO: Implement PRG pattern for post forms
+			return Interests(_principal.Identity.Name);
 		}
 
 		public ActionResult Login()
@@ -149,13 +164,13 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				ViewData.ModelState.AddModelError("Image", "You need to provide a file first... or don't. Have it your way.");
 				RouteData.Values["action"] = "Interests";
-				return Index(_principal.Identity.Name);
+				return Interests(_principal.Identity.Name);
 			}
 			else
 			{
 				try
 				{
-					_userTasks.SaveInterestImage(user, userSaveInterestImageViewModel.ProfileImage, userSaveInterestImageViewModel.UserInterestId);
+					_userTasks.SaveInterestImage(user, userSaveInterestImageViewModel.ProfileImage, userSaveInterestImageViewModel.UserInterestId, userSaveInterestImageViewModel.ImageDescription);
 				}
 				catch (RulesException rex)
 				{
@@ -163,7 +178,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 					//TODO: Log These exceptions in elmah
 					rex.AddModelStateErrors(ModelState);
 					RouteData.Values["action"] = "Interests";
-					return Index(_principal.Identity.Name);
+					return Interests(_principal.Identity.Name);
 				}
 				finally
 				{
@@ -174,6 +189,50 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return RedirectToAction("Interests");
 		}
 
+		[Authorize]
+		[Transaction]
+		public ActionResult MakeInterestImageDefault(int imageId)
+		{
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+
+			user.MakeInterestImageDefault(imageId);
+
+			return RedirectToAction("Interests");
+		}
+
+		[Authorize]
+		[Transaction]
+		public ActionResult RemoveImage(int imageId)
+		{
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+
+			_userTasks.RemoveImage(user, imageId);
+
+			return RedirectToAction("Interests");
+		}
+
+		[Authorize]
+		[Transaction]
+		public ActionResult RemoveInterest(int interestId)
+		{
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+
+			_userTasks.RemoveInterest(user, interestId);
+
+			return RedirectToAction("Interests");
+		}
+
+		[Authorize]
+		[Transaction]
+		public ActionResult AddSingleInterest(int interestId)
+		{
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+			
+			_userTasks.AddInterestToUser(user, interestId);
+
+			return RedirectToAction("Interests");
+		}
+		
 		[Authorize]
 		[HttpPost]
 		[Transaction]
@@ -273,7 +332,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult Index(string username)
 		{
-			UserProfileIndexViewModel user = _userProfileQuery.GetUserProfileIndex(username);
+			UserProfileIndexViewModel user = _userProfileQuery.GetUserProfileIndex(username, _principal);
 			if (user != null)
 			{
 				user.SaveHeadlineUrl = "\"" + Url.Action("SaveHeadline", "User") + "\"";
@@ -282,7 +341,6 @@ namespace CliqFlip.Web.Mvc.Controllers
 				user.SaveTwitterUsernameUrl = "\"" + Url.Action("SaveTwitterUsername", "User") + "\"";
 				user.SaveYouTubeUsernameUrl = "\"" + Url.Action("SaveYouTubeUsername", "User") + "\"";
 				user.SaveWebsiteUrl = "\"" + Url.Action("SaveWebiste", "User") + "\"";
-				user.CanEdit = CanEdit(username);
 				return View(user);
 			}
 
@@ -290,23 +348,19 @@ namespace CliqFlip.Web.Mvc.Controllers
 			throw new HttpException(404, "Not found");
 		}
 
-		private bool CanEdit(string username)
-		{
-			return _principal.Identity.Name.ToLower() == username.ToLower();
-		}
-
 		[Transaction]
 		public ActionResult SocialMedia(string username)
 		{
-			UserSocialMediaViewModel user = _userProfileQuery.GetUserSocialMedia(username);
+			UserSocialMediaViewModel user = _userProfileQuery.GetUserSocialMedia(username, _principal);
 			return View(user);
 		}
 
 		[Transaction]
 		public ActionResult Interests(string username)
 		{
-			UserInterestsViewModel user = _userProfileQuery.GetUserIntersets(username);
-			user.CanEdit = CanEdit(username);
+			UserInterestsViewModel user = _userProfileQuery.GetUserIntersets(username, _principal);
+			user.MakeDefaultUrl = "\"" + Url.Action("MakeInterestImageDefault", "User") + "\"";
+			user.RemoveImageUrl = "\"" + Url.Action("RemoveImage", "User") + "\"";
 
 			return View(user);
 		}
@@ -322,17 +376,6 @@ namespace CliqFlip.Web.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                //_userTasks.SendMessage(model.Username, model.Text);
-                
-                //I'm having a weird issue. I'm testing with multiple browsers and in each browser i'm logged in as a different conversation.
-                //Chrome: username1
-                //Firefox: username2
-                //username1 and username2 are having a conversation
-
-                //When I send a message with firefox the controller returns get the correct IPrincipal(username2)
-                //but the conversation service gets the wrong IPrincipal(username1)!
-
-                //instead of having the IPrincipal injected into the conversation service
                 _conversationTasks.SendMessage(_principal.Identity.Name, model.Username, model.Text);
             }
             return Json(new { success = false });
@@ -341,7 +384,7 @@ namespace CliqFlip.Web.Mvc.Controllers
         [Authorize]
         public ActionResult Inbox()
         {
-            UserInboxViewModel model = _userProfileQuery.GetUsersInbox(_principal.Identity.Name);
+            UserInboxViewModel model = _userProfileQuery.GetUsersInbox(_principal);
             return View(model);
         }
 	}
