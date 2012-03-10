@@ -97,6 +97,35 @@ namespace CliqFlip.Web.Mvc.Queries
 			return retVal;
 		}
 
+        public UserInboxViewModel GetUsersInbox(string username)
+        {
+            UserInboxViewModel retVal = null;
+            User user = Session.Query<User>().FirstOrDefault(x => x.Username == username);
+
+            var activeConversations = user.Participants.Where(participant => participant.IsActive).Select(participant => participant.Conversation).ToList();
+
+            if (user != null)
+            {
+                retVal = new UserInboxViewModel();
+                foreach (var conversation in activeConversations)
+                {
+                    var sender = conversation.Participants.Where(x => x.User != user).Single().User;
+                    UserInboxViewModel.ConversationViewModel conv = new UserInboxViewModel.ConversationViewModel
+                    {
+                        Id = conversation.Id,
+                        HasUnreadMessages = conversation.HasNewMessagesFor(user),
+                        SenderImage = sender.ProfileImageData.ThumbFileName ?? "/Content/img/empty-avatar.jpg",
+                        Sender = sender.Username,
+                        LastMessage = conversation.Messages.OrderByDescending(message => message.SendDate).First().Text
+                    };
+                    retVal.Conversations.Add(conv);
+                }
+                FillBaseProperties(retVal, user);
+            }
+            
+            return retVal;
+        }
+
 		#endregion
 
 		private void FillBaseProperties(UserProfileViewModel retVal, User user)

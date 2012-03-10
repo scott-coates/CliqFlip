@@ -20,7 +20,7 @@ namespace CliqFlip.Domain.Entities
 			get { return new List<UserInterest>(_interests).AsReadOnly(); }
 		}
 
-        public virtual IEnumerable<Participant> Participant
+        public virtual IEnumerable<Participant> Participants
         {
             get { return new List<Participant>(_participants).AsReadOnly(); }
         }
@@ -53,6 +53,7 @@ namespace CliqFlip.Domain.Entities
 		public User()
 		{
 			_interests = new HashedSet<UserInterest>();
+            _participants = new HashedSet<Participant>();
 		}
 
 		public User(string username, string email, string password, string salt)

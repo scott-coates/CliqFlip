@@ -162,6 +162,7 @@
     <Compile Include="Areas\Admin\ViewModels\Test\SimpleSendEmailViewModel.cs" />
     <Compile Include="CastleWindsor\AutomappingConfiguration.cs" />
     <Compile Include="CastleWindsor\ComponentRegistrar.cs" />
+    <Compile Include="Controllers\ConversationController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -170,6 +171,8 @@
     <Compile Include="Extensions\Html\HtmlExtensions.cs" />
     <Compile Include="Extensions\Request\ReuqestExtensions.cs" />
     <Compile Include="Extensions\Url\UrlExtensions.cs" />
+    <Compile Include="Queries\ConversationQuery.cs" />
+    <Compile Include="Queries\Interfaces\IConversationQuery.cs" />
     <Compile Include="Validation\MustBeTrueAttribute.cs" />
     <Compile Include="Validation\CollectionNotEmptyAttribute.cs" />
     <Compile Include="Queries\Interfaces\IUserProfileQuery.cs" />
@@ -180,11 +183,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Conversation\ConversationReplyViewModel.cs" />
     <Compile Include="ViewModels\Jeip\JeipSaveResponseViewModel.cs" />
     <Compile Include="ViewModels\Jeip\JeipSaveTextViewModel.cs" />
+    <Compile Include="ViewModels\MessageViewModel.cs" />
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
     <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
+    <Compile Include="ViewModels\User\UserInboxViewModel.cs" />
     <Compile Include="ViewModels\User\UserSaveInterestImageViewModel.cs" />
     <Compile Include="ViewModels\User\UserInterestsViewModel.cs" />
     <Compile Include="ViewModels\User\UserProfileIndexViewModel.cs" />
@@ -537,7 +543,9 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Conversation\DisplayTemplates\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -641,6 +649,11 @@
     <Content Include="Views\Error\ServerError.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\User\Interests.cshtml" />
+    <Content Include="Views\User\SendMessageTo.cshtml" />
+    <Content Include="Views\User\Inbox.cshtml" />
+    <Content Include="Views\Conversation\GetMessages.cshtml" />
+    <Content Include="Views\Conversation\Reply.cshtml" />
+    <Content Include="Views\Conversation\MessageViewModel.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -34,6 +34,11 @@
             width: 22%;
             float: right;
 		}
+		
+		#send-message
+		{
+		     display: none;
+		}
 	</style>
     @RenderSection("styles", false)
 }
@@ -58,17 +63,32 @@
 			@Html.ActionMenuItem("Home", "Index", "User")
 			@Html.ActionMenuItem("Social Media", "SocialMedia", "User")
 			@Html.ActionMenuItem("Interests", "Interests", "User")
-            @Html.ActionMenuItem("Send Message", "SendMessageTo", "User")
+            <li id="send-message-link">
+                @Html.ActionLink("Send Message", "SendMessageTo", "User")
+            </li>
 		</ul>
 	</div>
 	<p class="post_author">by Marius Pop</p>
 </div>
 
+<div id="send-message">
+    @Html.Action("SendMessageTo")
+</div>
 
 @RenderBody()
 
 
 @section scripts
 {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var sendMessageDialog = $("#send-message").dialog({ autoOpen: false });
+
+            $("#send-message-link").click(function (e) {
+                e.preventDefault();
+                sendMessageDialog.dialog("open");
+            });
+        });
+    </script>
     @RenderSection("scripts", false)
 }

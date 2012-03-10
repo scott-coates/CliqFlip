@@ -1,0 +1,30 @@
+﻿@model CliqFlip.Web.Mvc.ViewModels.Conversation.ConversationReplyViewModel
+
+@{
+    var conversationMessages = "conversation-messages-" + Model.Id;
+    var replyFormId = "formConversationReply" + Model.Id;
+    var onSuccess = "OnSuccessfulReply($('#{0}'),$('#{1}'))";
+    var ajaxOptions = new AjaxOptions
+    {
+        InsertionMode = InsertionMode.InsertAfter,
+        UpdateTargetId = "conversation-messages-" + Model.Id,
+        OnSuccess = String.Format(onSuccess, replyFormId, conversationMessages)
+    };
+}
+@using (Ajax.BeginForm("Reply", "Conversation", ajaxOptions, new { id = replyFormId }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Text)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Text)
+            @Html.ValidationMessageFor(model => model.Text)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}

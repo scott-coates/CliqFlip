@@ -1,0 +1,11 @@
+﻿@model CliqFlip.Web.Mvc.ViewModels.MessageViewModel
+
+<div class="message">
+    <div>
+        <img src="@Model.SenderImageUrl" alt="Alternate Text" class="profile-image" />
+    </div>
+    <strong>@Model.Sender</strong>
+    <p>
+        @Model.Text
+    </p>
+</div>

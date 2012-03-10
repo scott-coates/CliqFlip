@@ -16,6 +16,7 @@ using CliqFlip.Web.Mvc.ViewModels.Jeip;
 using CliqFlip.Web.Mvc.ViewModels.User;
 using SharpArch.NHibernate.Web.Mvc;
 using SharpArch.Web.Mvc.JsonNet;
+using CliqFlip.Web.Mvc.ViewModels;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
@@ -24,12 +25,13 @@ namespace CliqFlip.Web.Mvc.Controllers
 		private readonly IPrincipal _principal;
 		private readonly IUserProfileQuery _userProfileQuery;
 		private readonly IUserTasks _userTasks;
-
-		public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal)
+        private readonly IConversationTasks _conversationTasks;
+        public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IConversationTasks conversationTasks)
 		{
 			_userTasks = profileTasks;
 			_userProfileQuery = userProfileQuery;
 			_principal = principal;
+            _conversationTasks = conversationTasks;
 		}
 
 		public ActionResult Create()
@@ -201,7 +203,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult SaveBio(JeipSaveTextViewModel saveTextViewModel)
 		{
-			//get user and save it
+			//get conversation and save it
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			user.UpdateBio(saveTextViewModel.New_Value);
 			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
@@ -213,7 +215,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult SaveTwitterUsername(JeipSaveTextViewModel saveTextViewModel)
 		{
-			//get user and save it
+			//get conversation and save it
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			user.UpdateTwitterUsername(saveTextViewModel.New_Value);
 			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
@@ -225,7 +227,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult SaveYouTubeUsername(JeipSaveTextViewModel saveTextViewModel)
 		{
-			//get user and save it
+			//get conversation and save it
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			user.UpdateYouTubeUsername(saveTextViewModel.New_Value);
 			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
@@ -237,7 +239,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult SaveWebiste(JeipSaveTextViewModel saveTextViewModel)
 		{
-			//get user and save it
+			//get conversation and save it
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			var retVal = new JeipSaveResponseViewModel();
 
@@ -312,14 +314,35 @@ namespace CliqFlip.Web.Mvc.Controllers
         [Transaction]
         public ActionResult SendMessageTo(string username)
         {
-            return View();
+            return PartialView();
         }
 
+        [HttpPost]
         public ActionResult SendMessageTo(UserSendMessageToViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                //_userTasks.SendMessage(model.Username, model.Text);
+                
+                //I'm having a weird issue. I'm testing with multiple browsers and in each browser i'm logged in as a different conversation.
+                //Chrome: username1
+                //Firefox: username2
+                //username1 and username2 are having a conversation
 
-            return View();
+                //When I send a message with firefox the controller returns get the correct IPrincipal(username2)
+                //but the conversation service gets the wrong IPrincipal(username1)!
+
+                //instead of having the IPrincipal injected into the conversation service
+                _conversationTasks.SendMessage(_principal.Identity.Name, model.Username, model.Text);
+            }
+            return Json(new { success = false });
         }
 
+        [Authorize]
+        public ActionResult Inbox()
+        {
+            UserInboxViewModel model = _userProfileQuery.GetUsersInbox(_principal.Identity.Name);
+            return View(model);
+        }
 	}
 }

@@ -1,0 +1,19 @@
+﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserSendMessageToViewModel
+
+@using (Ajax.BeginForm("SendMessageTo", "User", null)) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Say something...</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Text)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Text)
+            @Html.ValidationMessageFor(model => model.Text)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}

@@ -23,7 +23,7 @@ namespace CliqFlip.Domain.Entities
         
         public Conversation()
         {
-            var user = new User();
+
         }
 
         /// <summary>
@@ -31,37 +31,37 @@ namespace CliqFlip.Domain.Entities
         /// </summary>
         /// <param name="user1"></param>
         /// <param name="user2"></param>
-        public Conversation(User user1, User user2)
+        public Conversation(User sender, User recipient)
         {
-            //_participants.Add(user1);
-            //_participants.Add(user2);
+            _participants.Add(new Participant { IsActive =  true, User = sender, Conversation = this, HasUnreadMessages = false });
+            _participants.Add(new Participant { IsActive = true, User = recipient, Conversation = this, HasUnreadMessages = true });
         }
 
         public virtual void AddMessage(Message message)
         {
-            //var usersToNotify = _participants.ToList();
-            //usersToNotify.Remove(message.Sender); //do not notify the user that just send the message
+            var participantsToNotify = _participants.ToList();
+            //remove the sender from the participants to notify
+            participantsToNotify.RemoveAll(x => x.User == message.Sender);//Except(.Remove(message.Sender); //do not notify the user that just send the message
 
             ////get a list of all the users who already have an active alert for this conversation
             //var usersPreviouslyAlerted = _participants.Where(alert => alert.HasUnreadMessages).Select(alert => alert.User).ToList();
-
-
-            ////usersPreviouslyAlerted.Except(
-            //var usersToAlert = _participants.Except(usersPreviouslyAlerted);
-            //foreach (var user in usersToAlert)
-            //{
-            //    var alert = new Participant { Conversation = this, User = user, HasUnreadMessages = true };
-            //    _participants.Add(alert);
-
-            //}
-
-            //_messages.Add(message);
+            message.Conversation = this;
+            foreach (var participant in participantsToNotify)
+            {
+                participant.HasUnreadMessages = true;
+            }
+            _messages.Add(message);
         }
 
         public virtual bool Remove(User user)
         {
             return true;
             //return _participants.Remove(user);
+        }
+
+        public virtual bool HasNewMessagesFor(User user)
+        {
+            return _participants.Any(x => x.HasUnreadMessages && x.User == user);
         }
     }
 }
