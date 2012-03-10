@@ -1,5 +1,6 @@
 ﻿var _canEdit = false;
 var _addPhotoDialog;
+var _addInterestDialog;
 
 function InitInterests(canEdit) {
 	_canEdit = canEdit;
@@ -13,6 +14,13 @@ function InitSaveImages() {
 			width: 430
 		});
 
+		_addInterestDialog = $("#add-interest").dialog({
+			autoOpen: false,
+			modal: true,
+			width: 600,
+			height:600
+		});
+
 		$(".user-interest-title-add-photo").click(function() {
 			$("#userInterestId").val($(this).attr('value'));
 			_addPhotoDialog.dialog("open");
@@ -20,6 +28,10 @@ function InitSaveImages() {
 
 		$(".user-interest-remove").click(function() {
 			return RemoveInterest();
+		});
+
+		$("#add-interest-button").click(function () {
+			_addInterestDialog.dialog("open");
 		});
 	}
 }

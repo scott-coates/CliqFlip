@@ -3,154 +3,14 @@
 	ViewBag.Title = "Create";
 }
 
-@section  styles
-{
-	@*TODO: Move to CSS file*@
-	<link rel="Stylesheet" type="text/css" media="all" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/cupertino/jquery-ui.css" />
-	<style>
-		.field-validation-error { color: Red; }
-
-		.button.dark-blue { background-color: #24282D; }
-
-		.content /*TODO: Do not name this content in main css - we already have something called content*/ {
-			border-radius: 12px;
-			width: 100%;
-		}
-
-		#divInterestSearch { margin: 0 20px; }
-
-		#interestsList {
-			background-color: White;
-			border: 1px dashed;
-			list-style: none;
-			margin: 20px;
-			min-height: 250px;
-		}
-
-		#interestsList li {
-			background: #F0F0F0;
-			border-radius: 5px;
-			display: inline-block;
-			height: 175px;
-			margin: 5px;
-			padding: 5px;
-			position: static;
-			vertical-align: top;
-		}
-
-		#interestsList li a.remove-interest {
-			background: url(/Content/img/close.png) no-repeat;
-			float: right;
-			height: 25px;
-			width: 25px;
-		}
-        
-        
-        
-		#formProfileCreate fieldset {
-			background-color: transparent;
-			display: block;
-			min-height: 350px;
-		}
-
-		#formProfileCreate fieldset strong { display: none; }
-
-		#formProfileCreate input[type='text'], #formProfileCreate input[type='password'] {
-			background: white;
-			border-bottom: 1px solid #B6B6B6;
-			border-left: 1px solid #AAA;
-			border-right: 1px solid #AAA;
-			border-top: 1px solid #888;
-			box-shadow: inset 0 1px 2px #888;
-			margin: 0;
-			overflow: auto;
-		}
-		
-		#formProfileCreate input[type="checkbox"] {
-			display: block;
-			margin: 0 auto;
-		}
-		#userInterestEmptyError {
-			display: none;
-		}
-
-		#stepLogin div div {
-			display: block;
-			margin: 0 auto;
-			text-align: center;
-			width: 304px;
-		}
-
-		#stepLogin div div.editor-label {
-			font-size: larger;
-			padding: 10px 0;
-		}
-
-		#button-container {
-			padding-right: 20px;
-			text-align: right;
-		}
-
-		#interestName {
-			font-size: 25px;
-			padding: 4px 0 4px 4px;
-			width: 99.5%;
-		}
-
-		#stepLogin input[type='text'], #stepLogin input[type='password'] {
-			display: block;
-			font-size: 20px;
-			height: 30px;
-			text-align: center;
-			width: 100%;
-		}
-
-		#sociality label {
-			float: left;
-			font-size: 11px;
-			font-weight: bold;
-			height: 60px;
-			text-align: center;
-		}
-
-		#sociality { height: 90px; }
-
-		#sociality label img {
-			display: block;
-			height: 50px;
-			margin: 0 auto;
-			padding: 0;
-		}
-
-		#steps { height: 60px; }
-
-		#steps div {
-			float: left;
-			font-size: 20px;
-			margin: 10px;
-			text-align: center;
-		}
-        
-	</style>
-}
-
 <div id="steps">
-</div>
-<div class="clear">
 </div>
 @using (Html.BeginForm("Create", "User", FormMethod.Post, new {id = "formProfileCreate", @class = "ui-formwizard"}))
 {
 	@Html.ValidationSummary(true)
 
 	<fieldset class="step ui-formwizard-content" id="stepInterests">
-		@Html.ValidationMessageFor(model=>model.UserInterests)
-		<span class="field-validation-error" id="userInterestEmptyError">Okay, we get it, you're not very interesting. But please, for our sake, just provide us with an interest that tells us about yourself.</span>
-		<strong>Add your Interests</strong>
-		<div id="divInterestSearch">
-			<input type="text" id="interestName" placeholder="Type an interest..." />
-		</div>
-		<ul id="interestsList">
-		</ul>
+		@{ Html.RenderPartial("_AddInterest"); }
 	</fieldset>
 	<fieldset class="step ui-formwizard-content" style="display: none;" id="stepLogin">
 		<strong>Login</strong>
@@ -201,72 +61,6 @@
 	</p>
 }
 
-<!-- PAGE CONTENT END -->
-<script id="tmplNewInterest" type="text/x-jquery-tmpl">
-    
-	<li style="display: none;">
-		<a href='javscript:void(0)' class='remove-interest'></a>
-		<div>
-			<input type='hidden' class="userInterestValue" name='UserInterests[${Index}].Id' value='${Id}' />
-			<input type='hidden' name='UserInterests[${Index}].Name' value='${Name}' />
-			<div class="title"><p>${Name}</p></div>
-            
-			<div id="subcategory" style='${generateVisibility($item.data)}' >
-				<label>Category</label><br />
-				<select name="UserInterests[${Index}].Category">
-					<option value="">Choose...</option>
-					<option>Animals</option>
-					<option>Arts and Humanities</option>
-					<option>Automotive</option>
-					<option>Beauty</option>
-					<option>Business</option>
-					<option>Computers</option>
-					<option>Entertainment</option>
-					<option>Local</option>
-					<option>News</option>
-					<option>Photo and Video</option>
-					<option>Real Estate</option>
-					<option>Recreation</option>
-					<option>Reference</option>
-					<option>Science</option>
-					<option>Finance</option>
-					<option>Food and Drink</option>
-					<option>Games</option>
-					<option>Home and Garden</option>
-					<option>Industries</option>
-					<option>Internet</option>
-					<option>Lifestyles</option>
-					<option>Shopping</option>
-					<option>Social Networks</option>
-					<option>Society</option>
-					<option>Sports</option>
-					<option>Telecommunications</option>
-					<option>Travel</option>
-				</select>
-			</div>
-			{{if Id == 0 }}
-			{{/if}}
-			<div id="sociality">
-				<label class="level1">
-					<img src="@Url.Content("~/Content/img/social1.png")" />
-					<input type="radio" name="UserInterests[${Index}].Sociality" value="0" /><br />
-					Alone
-				</label>
-				<label class="level2">
-					<img src="@Url.Content("~/Content/img/social2.png")" />
-					<input type="radio" name="UserInterests[${Index}].Sociality" value="50" /><br />
-					Small
-				</label>
-				<label class="level3">
-					<img src="@Url.Content("~/Content/img/social3.png")" />
-					<input type="radio" name="UserInterests[${Index}].Sociality" value="100" /><br />
-					Large
-				</label>
-			</div>
-		</div>
-	</li>
-</script>
-
 <script id="tmplStepIndicator" type="text/x-jquery-tmpl">
 	<div>
 		<a href="#${StepId}" class="button blue">
@@ -280,19 +74,14 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.tmpl.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.form.wizard.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/create.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/user/add-interest.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/validation/jquery.validate.must-be-true.js")"> </script>
 	<script type="text/javascript">
 
-	//TODO: move this to external js file
-		function generateVisibility(interest) {
-			if (interest.Id != 0) {
-				return "visibility: hidden;";
-			}
-			return '';
-		}
+		$(document).ready(function () {
+			InitUserCreate();
+			InitAddInterest();
+		});
 
-		
-		initUserCreate();
-	
 	</script>
 }

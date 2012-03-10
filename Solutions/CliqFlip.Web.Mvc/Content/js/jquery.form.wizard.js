@@ -64,13 +64,13 @@
 				}
 			});
 
-			this.steps = this.element.find(".step").hide();
+			this._steps = this.element.find(".step").hide();
 
-			this.firstStep = this.steps.eq(0).attr("id");
+			this.firstStep = this._steps.eq(0).attr("id");
 			this.activatedSteps = new Array();
 			this.isLastStep = false;
 			this.previousStep = undefined;
-			this.currentStep = this.steps.eq(0).attr("id");
+			this.currentStep = this._steps.eq(0).attr("id");
 			this.nextButton	= this.element.find(this.options.next)
 					.click(function() {
 						return wizard._next();
@@ -103,7 +103,7 @@
 			}
 
 			if(this.options.disableInputFields == true){
-				$(this.steps).find(":input:not('.wizard-ignore')").attr("disabled","disabled");
+				$(this._steps).find(":input:not('.wizard-ignore')").attr("disabled","disabled");
 			}
 
 			if(this.options.historyEnabled){
@@ -126,14 +126,14 @@
 
 			this.element.addClass("ui-formwizard");
 			this.element.find(":input").addClass("ui-wizard-content");
-			this.steps.addClass("ui-formwizard-content");
+			this._steps.addClass("ui-formwizard-content");
 			this.backButton.addClass("ui-formwizard-button ui-wizard-content");
 			this.nextButton.addClass("ui-formwizard-button ui-wizard-content");
 
 			if(!this.options.disableUIStyles){
 				this.element.addClass("ui-helper-reset ui-widget ui-widget-content ui-helper-reset ui-corner-all");
 				this.element.find(":input").addClass("ui-helper-reset ui-state-default");
-				this.steps.addClass("ui-helper-reset ui-corner-all");
+				this._steps.addClass("ui-helper-reset ui-corner-all");
 				this.backButton.addClass("ui-helper-reset ui-state-default");
 				this.nextButton.addClass("ui-helper-reset ui-state-default");
 			}
@@ -198,7 +198,7 @@
 		_continueToNextStep : function(){
 			if(this.isLastStep){
 				for(var i = 0; i < this.activatedSteps.length; i++){
-					this.steps.filter("#" + this.activatedSteps[i]).find(":input").not(".wizard-ignore").removeAttr("disabled");
+					this._steps.filter("#" + this.activatedSteps[i]).find(":input").not(".wizard-ignore").removeAttr("disabled");
 				}
 				if(!this.options.formPluginEnabled){
 					return true;
@@ -243,7 +243,7 @@
 				this.nextButton.val(this.options.textNext);
 			}
 
-			if($.trim(this.currentStep) !== this.steps.eq(0).attr("id")){
+			if($.trim(this.currentStep) !== this._steps.eq(0).attr("id")){
 				this.backButton.removeAttr("disabled");
 				if(!this.options.disableUIStyles){
 					this.backButton.removeClass("ui-state-disabled").addClass("ui-state-active");
@@ -258,8 +258,8 @@
 
 		_animate : function(oldStep, newStep, stepShownCallback){
 			this._disableNavigation();
-			var old = this.steps.filter("#" + oldStep);
-			var current = this.steps.filter("#" + newStep);
+			var old = this._steps.filter("#" + oldStep);
+			var current = this._steps.filter("#" + newStep);
 			old.find(":input").not(".wizard-ignore").attr("disabled","disabled");
 			current.find(":input").not(".wizard-ignore").removeAttr("disabled");
 			var wizard = this;
@@ -277,14 +277,14 @@
 
 		_checkIflastStep : function(step){
 			this.isLastStep = false;
-			if($("#" + step).hasClass(this.options.submitStepClass) || this.steps.filter(":last").attr("id") == step){
+			if($("#" + step).hasClass(this.options.submitStepClass) || this._steps.filter(":last").attr("id") == step){
 				this.isLastStep = true;
 			}
 		},
 
 		_getLink : function(step){
 			var link = undefined;
-			var links = this.steps.filter("#" + step).find(this.options.linkClass);
+			var links = this._steps.filter("#" + step).find(this.options.linkClass);
 
 			if(links != undefined){
 				if(links.filter(":radio,:checkbox").size() > 0){
@@ -299,12 +299,12 @@
 		_navigate : function(step){
 			var link = this._getLink(step);
 			if(link != undefined){
-				if((link != "" && link != null && link != undefined) && this.steps.filter("#" + link).attr("id") != undefined){
+				if((link != "" && link != null && link != undefined) && this._steps.filter("#" + link).attr("id") != undefined){
 					return link;
 				}
 				return this.currentStep;
 			}else if(link == undefined && !this.isLastStep){
-				var step1 =  this.steps.filter("#" + step).next().attr("id");
+				var step1 =  this._steps.filter("#" + step).next().attr("id");
 				return step1;
 			}
 		},
@@ -340,7 +340,7 @@
 			this.element.resetForm()
 			$("label,:input,textarea",this).removeClass("error");
 			for(var i = 0; i < this.activatedSteps.length; i++){
-				this.steps.filter("#" + this.activatedSteps[i]).hide().find(":input").attr("disabled","disabled");
+				this._steps.filter("#" + this.activatedSteps[i]).hide().find(":input").attr("disabled","disabled");
 			}
 			this.activatedSteps = new Array();
 			this.previousStep = undefined;
@@ -362,7 +362,7 @@
 				"currentStep" : this.currentStep,
 				"backButton" : this.backButton,
 				"nextButton" : this.nextButton,
-				"steps" : this.steps,
+				"_steps" : this._steps,
 				"firstStep" : this.firstStep
 			}
 
@@ -413,18 +413,18 @@
 			this.backButton = undefined;
 			this.formwizard = undefined;
 			this.element = undefined;
-			this.steps = undefined;
+			this._steps = undefined;
 			this.firstStep = undefined;
 		},
 
 		update_steps : function(){
-			this.steps = this.element.find(".step").addClass("ui-formwizard-content");
-			this.steps.not("#" + this.currentStep).hide().find(":input").addClass("ui-wizard-content").attr("disabled","disabled");
+			this._steps = this.element.find(".step").addClass("ui-formwizard-content");
+			this._steps.not("#" + this.currentStep).hide().find(":input").addClass("ui-wizard-content").attr("disabled","disabled");
 			this._checkIflastStep(this.currentStep);
 			this._enableNavigation();
 			if(!this.options.disableUIStyles){
-				this.steps.addClass("ui-helper-reset ui-corner-all");
-				this.steps.find(":input").addClass("ui-helper-reset ui-state-default");
+				this._steps.addClass("ui-helper-reset ui-corner-all");
+				this._steps.find(":input").addClass("ui-helper-reset ui-state-default");
 			}
 		},
 
