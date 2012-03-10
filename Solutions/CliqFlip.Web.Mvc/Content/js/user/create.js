@@ -22,15 +22,15 @@ var _unselectedCssClass = "blue";
 function InitUserCreate() {
 	//bind all the elements we need
 	_interestTextBox = $("#interestName");
-	_divInterestCategory = $("#_divInterestCategory");
-	_interestsList = $("#_interestsList");
-	_tmplNewInterest = $("#_tmplNewInterest");
-	_tmplStepIndicator = $("#_tmplStepIndicator");
-	_steps = $("#_steps");
+	_divInterestCategory = $("#divInterestCategory");
+	_interestsList = $("#interestsList");
+	_tmplNewInterest = $("#tmplNewInterest");
+	_tmplStepIndicator = $("#tmplStepIndicator");
+	_steps = $("#steps");
 
 
 	//find the user create form
-	_formProfileCreate = $("#_formProfileCreate");
+	_formProfileCreate = $("#formProfileCreate");
 
 	CreateFormWizard();
 	GenerateIndicators();
