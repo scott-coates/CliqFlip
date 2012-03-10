@@ -65,14 +65,13 @@
 			margin: 0;
 			overflow: auto;
 		}
-		
+
 		#formProfileCreate input[type="checkbox"] {
 			display: block;
 			margin: 0 auto;
 		}
-		#userInterestEmptyError {
-			display: none;
-		}
+
+		#userInterestEmptyError { display: none; }
 
 		#stepLogin div div {
 			display: block;
@@ -138,12 +137,12 @@
 </div>
 <div class="clear">
 </div>
-@using (Html.BeginForm("Create", "User", FormMethod.Post, new {id = "formProfileCreate", @class = "ui-formwizard"}))
+@using (Html.BeginForm("Create", "User", FormMethod.Post, new {id = "_formProfileCreate", @class = "ui-formwizard"}))
 {
 	@Html.ValidationSummary(true)
 
 	<fieldset class="step ui-formwizard-content" id="stepInterests">
-		@Html.ValidationMessageFor(model=>model.UserInterests)
+		@Html.ValidationMessageFor(model => model.UserInterests)
 		<span class="field-validation-error" id="userInterestEmptyError">Okay, we get it, you're not very interesting. But please, for our sake, just provide us with an interest that tells us about yourself.</span>
 		<strong>Add your Interests</strong>
 		<div id="divInterestSearch">
@@ -211,7 +210,9 @@
 			<input type='hidden' name='UserInterests[${Index}].Name' value='${Name}' />
 			<div class="title"><p>${Name}</p></div>
             
-			<div id="subcategory" style='${generateVisibility($item.data)}' >
+			<div id="subcategory" style='${
+
+	                                                                                       GenerateVisibility ($item.data)}' >
 				<label>Category</label><br />
 				<select name="UserInterests[${Index}].Category">
 					<option value="">Choose...</option>
@@ -283,16 +284,10 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/validation/jquery.validate.must-be-true.js")"> </script>
 	<script type="text/javascript">
 
-	//TODO: move this to external js file
-		function generateVisibility(interest) {
-			if (interest.Id != 0) {
-				return "visibility: hidden;";
-			}
-			return '';
-		}
+		$(document).ready(function() {
+			InitUserCreate();
 
-		
-		initUserCreate();
-	
+		});
+
 	</script>
 }
