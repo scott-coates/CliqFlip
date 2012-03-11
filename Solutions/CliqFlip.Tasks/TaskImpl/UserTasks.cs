@@ -19,6 +19,7 @@ using CliqFlip.Infrastructure.Validation;
 using CliqFlip.Infrastructure.Web.Interfaces;
 using SharpArch.Domain.PersistenceSupport;
 using SharpArch.Domain.Specifications;
+using CliqFlip.Infrastructure.Email.Interfaces;
 
 namespace CliqFlip.Tasks.TaskImpl
 {
@@ -32,6 +33,7 @@ namespace CliqFlip.Tasks.TaskImpl
 		private readonly ILinqRepository<User> _repository;
         private readonly ILinqRepository<Conversation> _conversationRepository;
 		private readonly IUserAuthentication _userAuthentication;
+        private readonly IEmailService _emailService;
 
 		public UserTasks(ILinqRepository<User> repository,
 						 IInterestTasks interestTasks,
@@ -40,7 +42,8 @@ namespace CliqFlip.Tasks.TaskImpl
 						 IHtmlService htmlService,
 						 IFeedFinder feedFinder,
 						 IUserAuthentication userAuthentication,
-                         ILinqRepository<Conversation> conversationRepository)
+                         ILinqRepository<Conversation> conversationRepository,
+                         IEmailService emailService)
 		{
 			_repository = repository;
 			_interestTasks = interestTasks;
@@ -50,6 +53,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			_feedFinder = feedFinder;
 			_userAuthentication = userAuthentication;
             _conversationRepository = conversationRepository;
+            _emailService = emailService;
 		}
 
 		#region IUserTasks Members
@@ -398,6 +402,7 @@ namespace CliqFlip.Tasks.TaskImpl
             Message message = sender.Say(text);
             conversation.AddMessage(message);
             _conversationRepository.Save(conversation);
+            _emailService.SendMail(recipient.Email, "Some one likes you on CliqFlip.com", "Hey, <br/> Looks like someone finds you interesting. Go talk to this person at CliqFlip.com");
             return true;
         }
 
@@ -414,6 +419,14 @@ namespace CliqFlip.Tasks.TaskImpl
                 {
                     retVal = sender.Say(text);
                     conversation.AddMessage(retVal);
+                    foreach (var user in conversation.Participants.Select(x => x.User))
+                    {
+                        if (user.Email == sender.Email)
+                        {
+                            continue;
+                        }
+                        _emailService.SendMail(user.Email, "You have a new messages on CliqFlip.com", "Hey come back someone sent you a message.");
+                    }
                 }
             }
             return retVal;

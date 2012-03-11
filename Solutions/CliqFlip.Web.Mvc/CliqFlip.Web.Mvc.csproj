@@ -653,7 +653,6 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\User\Interests.cshtml" />
     <Content Include="Views\User\_AddInterest.cshtml" />
-    <Content Include="Views\User\SendMessageTo.cshtml" />
     <Content Include="Views\User\Inbox.cshtml" />
     <Content Include="Views\User\ReplyToConversation.cshtml" />
     <Content Include="Views\User\Message.cshtml" />
