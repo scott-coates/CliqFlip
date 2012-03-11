@@ -186,10 +186,13 @@
     <Compile Include="ViewModels\Conversation\ConversationReplyViewModel.cs" />
     <Compile Include="ViewModels\Jeip\JeipSaveResponseViewModel.cs" />
     <Compile Include="ViewModels\Jeip\JeipSaveTextViewModel.cs" />
-    <Compile Include="ViewModels\MessageViewModel.cs" />
+    <Compile Include="ViewModels\Conversation\MessageViewModel.cs" />
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
     <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
+    <Compile Include="ViewModels\User\MessageViewModel.cs" />
+    <Compile Include="ViewModels\User\UserReplyToConversationViewModel.cs" />
+    <Compile Include="ViewModels\User\StartConversationWithViewModel.cs" />
     <Compile Include="ViewModels\User\UserAddInterestsViewModel.cs" />
     <Compile Include="ViewModels\User\UserInboxViewModel.cs" />
     <Compile Include="ViewModels\User\InterestCreate.cs" />
@@ -659,6 +662,10 @@
     <Content Include="Views\Conversation\GetMessages.cshtml" />
     <Content Include="Views\Conversation\Reply.cshtml" />
     <Content Include="Views\Conversation\MessageViewModel.cshtml" />
+    <Content Include="Views\User\ReplyToConversation.cshtml" />
+    <Content Include="Views\User\Message.cshtml" />
+    <Content Include="Views\User\ReadConversation.cshtml" />
+    <None Include="Views\User\StartConversationWith.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

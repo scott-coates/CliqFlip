@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CliqFlip.Web.Mvc.ViewModels.User;
+﻿using System.Collections.Generic;
 
 namespace CliqFlip.Web.Mvc.ViewModels.User
 {

@@ -17,41 +17,48 @@ namespace CliqFlip.Tasks.TaskImpl
 	{
         private readonly ILinqRepository<Conversation> _conversationRepository;
 		//userInterestRepo is aggregate root - http://stackoverflow.com/a/5806356/173957
-		private readonly ILinqRepository<User> _userInterestRepository;
+		private readonly ILinqRepository<User> _userRepository;
 
         public ConversationTasks(ILinqRepository<User> userInterestRepository, ILinqRepository<Conversation> conversationRepository)
 		{
             _conversationRepository = conversationRepository;
-			_userInterestRepository = userInterestRepository;
+			_userRepository = userInterestRepository;
 		}
 
 		#region IInterestTasks Members
 
         public bool SendMessage(String from, String to, String text)
         {
-            //get the user logged in
+            //get the sender logged in
             var currentUserQuery = new AdHoc<User>(x => x.Username == from);
-            var sender = _userInterestRepository.FindOne(currentUserQuery);
+            var sender = _userRepository.FindOne(currentUserQuery);
 
+            //get the recipient
             var recipientQuery = new AdHoc<User>(x => x.Username == to);
-            var recipient = _userInterestRepository.FindOne(recipientQuery);
+            var recipient = _userRepository.FindOne(recipientQuery);
 
+            if (sender == null || recipient == null)
+            {
+                return false;
+            }
+
+            //both users exists
             //see if the recipient has any active conversations with the sender
+
 
             //get all the conversations where the recipient is an active participant
             var conversations = recipient.Participants.Where(x => x.IsActive).Select(x => x.Conversation).ToList();
 
-            //see if the recipient has any active conversations with the sender
+            //get the conversation that the recipient has with the sender
             var conversation = conversations.SingleOrDefault(x => x.Participants.Any(y => y.User == sender));
 
             if (conversation == null)
             {
+                //start a new conversation
                 conversation = new Conversation(sender, recipient);
             }
 
-            //sender.WriteMessage(text)
-            var message = new Message(sender, text);
-            message.Conversation = conversation;
+            Message message = sender.Say(text);
             conversation.AddMessage(message);
             _conversationRepository.Save(conversation);
 
@@ -62,24 +69,25 @@ namespace CliqFlip.Tasks.TaskImpl
         {
             Message retVal = null;
             var senderUserQuery = new AdHoc<User>(x => x.Username == from);
-            var user = _userInterestRepository.FindOne(senderUserQuery);
+            var sender = _userRepository.FindOne(senderUserQuery);
 
-            if (user != null)
+            if (sender != null)
             {
-                var conversation = user.Participants.SingleOrDefault(x => x.Conversation.Id == conversationId).Conversation;
+                var conversation = sender.Participants.SingleOrDefault(x => x.Conversation.Id == conversationId).Conversation;
 
                 if (conversation != null)
                 {
                     //AdHoc<Conversation> conversationQuery = new AdHoc<Conversation>(conv => conv.Id == conversationId && conv.Participants.Any(part => part.User.Username == from));
                     //var conversation = _conversationRepository.FindOne(conversationQuery);
 
-                    retVal = new Message(user, text);
-                    //retVal.Conversation = conversation;
+                    retVal = sender.Say(text);
                     conversation.AddMessage(retVal);
                 }
+                _conversationRepository.Save(conversation);
             }
             return retVal;
         }
-		#endregion
+		
+        #endregion
     }
 }

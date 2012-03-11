@@ -182,5 +182,26 @@ namespace CliqFlip.Domain.Entities
 			_interests.Remove(interest);
 			UpdateLastActivity();
 		}
-	}
+
+        public virtual void ReadConversation(int id)
+        {
+            UpdateLastActivity();
+            var participant = _participants.SingleOrDefault(x => x.Conversation.Id == id);
+            if (participant != null)
+            {
+                participant.HasUnreadMessages = false;
+            }
+        }
+
+        public virtual Message Say(string text)
+        {
+            UpdateLastActivity();
+            return new Message(this, text);
+        }
+
+        public virtual int GetNumberOfUnreadConversations()
+        {
+            return Participants.Count(x => x.IsActive && x.HasUnreadMessages);
+        }
+    }
 }

@@ -367,5 +367,52 @@ namespace CliqFlip.Tasks.TaskImpl
 				UserDto = new UserDto { Username = user.Username, InterestDtos = user.Interests.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(), Bio = user.Bio }
 			}).ToList();
 		}
+
+        public bool StartConversation(string starter, string receiver, string text)
+        {
+            //get the users involved in the conversation
+            User sender = GetUser(starter),
+                recipient = GetUser(receiver);
+
+            if (sender == null || recipient == null)
+                return false;
+            
+            //both users exists
+            //see if the recipient has any active conversations with the sender
+
+            //get all the conversations where the recipient is an active participant
+            var conversations = recipient.Participants.Where(x => x.IsActive).Select(x => x.Conversation).ToList();
+
+            //get the conversation that the recipient has with the sender, if any
+            var conversation = conversations.SingleOrDefault(x => x.Participants.Any(y => y.User == sender));
+
+            if (conversation == null)
+            {
+                //start a new conversation
+                conversation = new Conversation(sender, recipient);
+            }
+
+            Message message = sender.Say(text);
+            conversation.AddMessage(message);
+            return true;
+        }
+
+        public Message ReplyToConversation(int conversationId, string replier, string text)
+        {
+            Message retVal = null;
+            var sender = GetUser(replier);
+
+            if (sender != null)
+            {
+                var conversation = sender.Participants.SingleOrDefault(x => x.Conversation.Id == conversationId).Conversation;
+
+                if (conversation != null)
+                {
+                    retVal = sender.Say(text);
+                    conversation.AddMessage(retVal);
+                }
+            }
+            return retVal;
+        }
 	}
 }

@@ -63,16 +63,21 @@
 			@Html.ActionMenuItem("Home", "Index", "User")
 			@Html.ActionMenuItem("Social Media", "SocialMedia", "User")
 			@Html.ActionMenuItem("Interests", "Interests", "User")
-            <li id="send-message-link">
-                @Html.ActionLink("Send Message", "SendMessageTo", "User")
-            </li>
+
+            @if (Model.AuthenticatedVisitor && !Model.AuthenticatedProfileOwner)
+            {
+                //the user must be logged and the user cannot send a message to themselves
+                <li id="send-message-link">
+                    @Html.ActionLink("Send Message", "StartConversationWith", "User")
+                </li>
+            }
 		</ul>
 	</div>
 	<p class="post_author">by Marius Pop</p>
 </div>
 
 <div id="send-message">
-    @Html.Action("SendMessageTo")
+    @Html.Action("StartConversationWith")
 </div>
 
 @RenderBody()

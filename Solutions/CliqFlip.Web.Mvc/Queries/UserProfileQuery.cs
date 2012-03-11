@@ -109,15 +109,18 @@ namespace CliqFlip.Web.Mvc.Queries
 			return retVal;
 		}
 
-        public UserInboxViewModel GetUsersInbox(IPrincipal requestingUser)
+        public UserInboxViewModel GetUserInbox(IPrincipal requestingUser)
         {
             UserInboxViewModel retVal = null;
-            User user = Session.Query<User>().FirstOrDefault(x => x.Username == requestingUser.Identity.Name);
 
-            var activeConversations = user.Participants.Where(participant => participant.IsActive).Select(participant => participant.Conversation).ToList();
+            //get the requesting sender
+            User user = GetUser(requestingUser.Identity.Name);
 
             if (user != null)
             {
+                //get all their active conversations
+                var activeConversations = user.Participants.Where(participant => participant.IsActive).Select(participant => participant.Conversation).ToList();
+
                 retVal = new UserInboxViewModel();
                 foreach (var conversation in activeConversations)
                 {
@@ -128,7 +131,7 @@ namespace CliqFlip.Web.Mvc.Queries
                         HasUnreadMessages = conversation.HasNewMessagesFor(user),
                         SenderImage = sender.ProfileImage != null ? sender.ProfileImage.Data.ThumbFileName : "/Content/img/empty-avatar.jpg",
                         Sender = sender.Username,
-                        LastMessage = conversation.Messages.OrderByDescending(message => message.SendDate).First().Text
+                        LastMessage = conversation.Messages.First().Text
                     };
                     retVal.Conversations.Add(conv);
                 }

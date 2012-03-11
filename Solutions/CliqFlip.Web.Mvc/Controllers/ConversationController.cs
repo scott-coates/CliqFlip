@@ -9,6 +9,7 @@ using CliqFlip.Web.Mvc.ViewModels.Conversation;
 using CliqFlip.Domain.Contracts.Tasks;
 using SharpArch.NHibernate.Web.Mvc;
 using CliqFlip.Web.Mvc.ViewModels;
+using CliqFlip.Domain.Common;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
@@ -16,18 +17,24 @@ namespace CliqFlip.Web.Mvc.Controllers
     {
         private IConversationTasks _conversationTasks;
         private IConversationQuery _conversationQuery;
+        private IUserTasks _userTasks;
         private IPrincipal _principal;
-        public ConversationController(IConversationTasks conversationTasks, IConversationQuery conversationQuery, IPrincipal principal)
+        public ConversationController(IConversationTasks conversationTasks, IConversationQuery conversationQuery, IPrincipal principal, IUserTasks userTasks)
         {
             _conversationTasks = conversationTasks;
             _conversationQuery = conversationQuery;
             _principal = principal;
+            _userTasks = userTasks;
         }
+
         //
         // GET: /Conversation/
 
+        [Transaction]
         public ActionResult GetMessages(int id)
         {
+            var user = _userTasks.GetUser(_principal.Identity.Name);
+            user.ReadConversation(id);
             var model = _conversationQuery.GetMessages(id, _principal.Identity.Name);
             return PartialView(model);
         }
@@ -46,13 +53,7 @@ namespace CliqFlip.Web.Mvc.Controllers
             if (ModelState.IsValid)
             {
                 var message = _conversationTasks.Reply(_principal.Identity.Name, model.Id, model.Text);
-                retVal = new MessageViewModel
-                {
-                    SendDate = message.SendDate,
-                    Sender = message.Sender.Username,
-                    SenderImageUrl = message.Sender.ProfileImage != null ? message.Sender.ProfileImage.Data.ThumbFileName : "/Content/img/empty-avatar.jpg",
-                    Text = message.Text
-                };
+                retVal = new MessageViewModel(message);
             }
             return PartialView("MessageViewModel", retVal);
         }

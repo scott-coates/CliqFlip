@@ -5,70 +5,13 @@
     Layout = "~/Views/User/_Profile.cshtml";
 }
 
-@section styles
-{
-    <style type="text/css">
-        div.conversation
-        {
-            background-color: White;
-        }
-        
-        div.conversation.unread
-        {
-            background-color: Gray;
-        }
-        #conversations
-        {
-            padding-left: 130px;
-        }
-        
-        #conversations .profile-image
-        {
-            height: 35px;
-            width: 35px;
-        }
-        
-        div.header div.message
-        {
-            min-height: 35px;
-        } 
-        
-        div.message img
-        {
-            float: left;
-        }
-        div.message strong
-        {
-            padding-left: 10px;
-        }
-        div.message p
-        {
-            padding-left: 50px;
-            margin-bottom: 5px;
-        }
-        
-        div.conversation-messages
-        {
-             height: 200px;
-            overflow-y: scroll;   
-        }
-        div.conversation-content
-        {
-            height: auto;
-        }
-        div.conversation-content div.message
-        {
-            min-height: 50px;
-        }
-    </style>
-}
 
 <div id="conversations">
 @foreach (var conversation in Model.Conversations)
 {
     @*<div class="conversations unread">*@
         <div class="header">
-            <a href="@Url.Action("GetMessages", "Conversation", new { id = conversation.Id })">
+            <a href="@Url.Action("ReadConversation", "User", new { id = conversation.Id })">
                 <div class="message">
                     <div>
                         <img src="@conversation.SenderImage" alt="Alternate Text" class="profile-image" />
@@ -84,7 +27,7 @@
             <div id="conversation-messages-@conversation.Id" class="conversation-messages">
             </div>
             <div class="conversation-reply">
-                @Html.Action("Reply", "Conversation", new { id = conversation.Id })
+                @Html.Action("ReplyToConversation", "User", new { id = conversation.Id })
             </div>
         </div>
     @*</div>*@
@@ -93,41 +36,10 @@
 
 @section scripts
 {
+    <script type="text/javascript" src="@Url.Content("~/Content/js/user/inbox.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#conversations").accordion({ header: "div.header", autoHeight: false, collapsable: true, active: false })
-            .bind('accordionchange', function (event, ui) {
-                ui.newHeader.find("p").remove();
-                var href = ui.newHeader.find("a").attr("href");
-                var conversationMessages = ui.newContent.find("div.conversation-messages");
-
-                $.ajax({
-                    url: href,
-                    cache: false,
-                    dataType: "html",
-                    success: function (data) {
-                        conversationMessages.html(data);
-                        ShowLastConversationMessage(conversationMessages);
-                        //$("#content").val(data);
-                    }
-                });
-
-//                conversationMessages.load(href, function () {
-//                    ShowLastConversationMessage(conversationMessages);
-//                });
-            });
+            InitInbox();
         });
-
-        function ShowLastConversationMessage(container) {
-            var lastMessage = container.find("div.message").last().focus();
-            container.animate({ scrollTop: lastMessage.offset().top }, 'fast');
-        }
-
-        function OnSuccessfulReply(form, msgContainer) {
-            form[0].reset();
-            ShowLastConversationMessage(msgContainer);
-        }
-
-
     </script>
 }

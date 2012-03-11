@@ -22,13 +22,13 @@ namespace CliqFlip.Web.Mvc.Controllers
 		private readonly IPrincipal _principal;
 		private readonly IUserProfileQuery _userProfileQuery;
 		private readonly IUserTasks _userTasks;
-        private readonly IConversationTasks _conversationTasks;
-        public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IConversationTasks conversationTasks)
+        private readonly IConversationQuery _conversationQuery;
+        public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IConversationQuery conversationQuery)
 		{
 			_userTasks = profileTasks;
 			_userProfileQuery = userProfileQuery;
 			_principal = principal;
-            _conversationTasks = conversationTasks;
+            _conversationQuery = conversationQuery;
 		}
 
 		public ActionResult Create()
@@ -365,27 +365,97 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return View(user);
 		}
 
+        
+
         [Transaction]
-        public ActionResult SendMessageTo(string username)
+        [Authorize]
+        public ActionResult StartConversationWith(string username)
         {
             return PartialView();
         }
 
+        [Transaction]
+        [Authorize]
         [HttpPost]
-        public ActionResult SendMessageTo(UserSendMessageToViewModel model)
+        public ActionResult StartConversationWith(StartConversationWithViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _conversationTasks.SendMessage(_principal.Identity.Name, model.Username, model.Text);
+                _userTasks.StartConversation(_principal.Identity.Name, model.Username, model.Text);
+                return Json(new { success = true });
             }
             return Json(new { success = false });
+        }
+
+        [Transaction]
+        [Authorize]
+        public ActionResult ReplyToConversation(int id)
+        {
+            var model = new UserReplyToConversationViewModel { Id = id };
+            return PartialView(model);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Transaction]
+        public ActionResult ReplyToConversation(UserReplyToConversationViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var message = _userTasks.ReplyToConversation(model.Id, _principal.Identity.Name, model.Text);
+                return PartialView("Message", new MessageViewModel(message));
+            }
+            return new EmptyResult();
         }
 
         [Authorize]
         public ActionResult Inbox()
         {
-            UserInboxViewModel model = _userProfileQuery.GetUsersInbox(_principal);
+            UserInboxViewModel model = _userProfileQuery.GetUserInbox(_principal);
             return View(model);
         }
+
+        [Authorize]
+        public int NewMessageCount()
+        {
+            return _userTasks.GetUser(_principal.Identity.Name).GetNumberOfUnreadConversations();
+        }
+
+        [Authorize]
+        [Transaction]
+        public ActionResult ReadConversation(int id)
+        {
+            var user = _userTasks.GetUser(_principal.Identity.Name);
+            user.ReadConversation(id);
+            var messages = _conversationQuery.GetMessages(id, _principal.Identity.Name);
+            return PartialView(messages);
+        }
+
+        #region remove
+        [Transaction]
+        [Authorize]
+        public ActionResult SendMessageTo(string username)
+        {
+            return PartialView();
+        }
+        [HttpPost]
+        [Authorize]
+        public ActionResult SendMessageTo(UserSendMessageToViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //_conversationTasks.SendMessage(_principal.Identity.Name, model.Username, model.Text);
+
+                _userTasks.StartConversation(_principal.Identity.Name, model.Username, model.Text); 
+            }
+            return Json(new { success = false });
+        }
+        #endregion
+        
+
+        
+
+
+        
 	}
 }

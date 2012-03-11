@@ -12,9 +12,7 @@ namespace CliqFlip.Infrastructure.NHibernateMaps.Overrides
 	{
         public void Override(AutoMapping<Conversation> mapping)
 		{
-			//don't need to add inverse, cascade, etc as that's taken care of in the convention
-			//mapping.HasMany(x => x.Messages);//.ForeignKeyConstraintName("MessageId");
-            //mapping.HasMany(x => x.Messages).OrderBy("SendDate").
+            mapping.HasMany(x => x.Messages).OrderBy("SendDate desc");
 		}
 	}
 }

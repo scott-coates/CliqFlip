@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using SharpArch.Domain.DomainModel;
 using Iesi.Collections.Generic;
+using SharpArch.Domain.DomainModel;
 
 namespace CliqFlip.Domain.Entities
 {
@@ -33,8 +31,8 @@ namespace CliqFlip.Domain.Entities
         /// <param name="user2"></param>
         public Conversation(User sender, User recipient)
         {
-            _participants.Add(new Participant { IsActive =  true, User = sender, Conversation = this, HasUnreadMessages = false });
-            _participants.Add(new Participant { IsActive = true, User = recipient, Conversation = this, HasUnreadMessages = true });
+            AddUser(sender);
+            AddUser(recipient);
         }
 
         public virtual void AddMessage(Message message)
@@ -62,6 +60,17 @@ namespace CliqFlip.Domain.Entities
         public virtual bool HasNewMessagesFor(User user)
         {
             return _participants.Any(x => x.HasUnreadMessages && x.User == user);
+        }
+
+        private void AddUser(User user)
+        {
+            var participant = new Participant { 
+                IsActive =  true, 
+                User = user, 
+                Conversation = this, 
+                HasUnreadMessages = false 
+            };
+            _participants.Add(participant);
         }
     }
 }

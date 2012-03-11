@@ -1656,8 +1656,62 @@ color: white;
 	font-size: 1em;
 }
 
-		.not-shared
-		{
-		    border: medium none;
-		    padding-top: 80px;
-		}
+.not-shared
+{
+	border: medium none;
+	padding-top: 80px;
+}
+		
+		
+div.conversation
+{
+    background-color: White;
+}
+        
+div.conversation.unread
+{
+    background-color: Gray;
+}
+#conversations
+{
+    padding-left: 130px;
+}
+        
+#conversations .profile-image
+{
+    height: 35px;
+    width: 35px;
+}
+        
+div.header div.message
+{
+    min-height: 35px;
+} 
+        
+div.message img
+{
+    float: left;
+}
+div.message strong
+{
+    padding-left: 10px;
+}
+div.message p
+{
+    padding-left: 50px;
+    margin-bottom: 5px;
+}
+        
+div.conversation-messages
+{
+    height: 200px;
+    overflow-y: scroll;   
+}
+div.conversation-content
+{
+    height: auto;
+}
+div.conversation-content div.message
+{
+    min-height: 50px;
+}
