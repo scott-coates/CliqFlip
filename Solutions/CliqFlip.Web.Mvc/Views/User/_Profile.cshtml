@@ -102,20 +102,28 @@
 
 @section scripts
 {
+    @*
+        //TODO: move this to seperate js file specific for this layout
+        //theres already a file called profile.js
+        //we can rename to index.js
+        //talk to Scott before making changes
+    *@
     <script type="text/javascript">
+        var sendMessageDialog = null;
         $(document).ready(function () {
-            var sendMessageDialog = $("#send-message").dialog({ autoOpen: false });
+            sendMessageDialog = $("#send-message").dialog({ autoOpen: false });
 
             $("#send-message-link").click(function (e) {
                 e.preventDefault();
                 sendMessageDialog.dialog("open");
             });
-
-            $("#send-message form").submit(function () {
-                this.reset();
-                sendMessageDialog.dialog("close");
-            });
         });
+
+        function StartConversationSuccess(response, request) {
+            sendMessageDialog.dialog("close");
+            sendMessageDialog.find("form")[0].reset();
+        }
+
     </script>
     @RenderSection("scripts", false)
 }

@@ -1,6 +1,7 @@
 ﻿@model CliqFlip.Web.Mvc.ViewModels.User.StartConversationWithViewModel
 
-@using (Ajax.BeginForm("StartConversationWith", "User", null)) {
+@using (Ajax.BeginForm("StartConversationWith", "User", new AjaxOptions { OnSuccess = "StartConversationSuccess" }))
+{
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>Introduce yourself...</legend>
