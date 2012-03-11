@@ -30,6 +30,7 @@ namespace CliqFlip.Tasks.TaskImpl
 		private readonly IImageProcessor _imageProcessor;
 		private readonly IInterestTasks _interestTasks;
 		private readonly ILinqRepository<User> _repository;
+        private readonly ILinqRepository<Conversation> _conversationRepository;
 		private readonly IUserAuthentication _userAuthentication;
 
 		public UserTasks(ILinqRepository<User> repository,
@@ -38,7 +39,8 @@ namespace CliqFlip.Tasks.TaskImpl
 						 IFileUploadService fileUploadService,
 						 IHtmlService htmlService,
 						 IFeedFinder feedFinder,
-						 IUserAuthentication userAuthentication)
+						 IUserAuthentication userAuthentication,
+                         ILinqRepository<Conversation> conversationRepository)
 		{
 			_repository = repository;
 			_interestTasks = interestTasks;
@@ -47,6 +49,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			_htmlService = htmlService;
 			_feedFinder = feedFinder;
 			_userAuthentication = userAuthentication;
+            _conversationRepository = conversationRepository;
 		}
 
 		#region IUserTasks Members
@@ -389,11 +392,12 @@ namespace CliqFlip.Tasks.TaskImpl
             if (conversation == null)
             {
                 //start a new conversation
-                conversation = new Conversation(sender, recipient);
+                conversation =  new Conversation(sender, recipient);
             }
 
             Message message = sender.Say(text);
             conversation.AddMessage(message);
+            _conversationRepository.Save(conversation);
             return true;
         }
 

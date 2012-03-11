@@ -3,17 +3,13 @@
 @using (Ajax.BeginForm("StartConversationWith", "User", null)) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>Say something...</legend>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Text)
-        </div>
+        <legend>Introduce yourself...</legend>
         <div class="editor-field">
             @Html.EditorFor(model => model.Text)
             @Html.ValidationMessageFor(model => model.Text)
         </div>
-
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Send!" />
         </p>
     </fieldset>
 }

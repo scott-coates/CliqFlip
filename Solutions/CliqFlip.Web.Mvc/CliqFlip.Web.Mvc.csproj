@@ -162,7 +162,6 @@
     <Compile Include="Areas\Admin\ViewModels\Test\SimpleSendEmailViewModel.cs" />
     <Compile Include="CastleWindsor\AutomappingConfiguration.cs" />
     <Compile Include="CastleWindsor\ComponentRegistrar.cs" />
-    <Compile Include="Controllers\ConversationController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -183,10 +182,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Conversation\ConversationReplyViewModel.cs" />
     <Compile Include="ViewModels\Jeip\JeipSaveResponseViewModel.cs" />
     <Compile Include="ViewModels\Jeip\JeipSaveTextViewModel.cs" />
-    <Compile Include="ViewModels\Conversation\MessageViewModel.cs" />
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
     <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
@@ -259,6 +256,7 @@
     <Content Include="Content\img\ClipFliq-LogoMoto.png" />
     <Content Include="Content\js\cliqFlip\error-handler.js" />
     <Content Include="Content\js\user\add-interest.js" />
+    <Content Include="Content\js\user\inbox.js" />
     <Content Include="Content\js\user\interests.js" />
     <Content Include="Content\styles\jquery-ui\images\ui-bg_diagonals-thick_75_4dbce9_40x40.png" />
     <Content Include="Content\styles\jquery-ui\images\ui-bg_flat_55_999999_40x100.png" />
@@ -550,9 +548,7 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Conversation\DisplayTemplates\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -659,9 +655,6 @@
     <Content Include="Views\User\_AddInterest.cshtml" />
     <Content Include="Views\User\SendMessageTo.cshtml" />
     <Content Include="Views\User\Inbox.cshtml" />
-    <Content Include="Views\Conversation\GetMessages.cshtml" />
-    <Content Include="Views\Conversation\Reply.cshtml" />
-    <Content Include="Views\Conversation\MessageViewModel.cshtml" />
     <Content Include="Views\User\ReplyToConversation.cshtml" />
     <Content Include="Views\User\Message.cshtml" />
     <Content Include="Views\User\ReadConversation.cshtml" />

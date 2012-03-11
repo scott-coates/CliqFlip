@@ -1675,6 +1675,7 @@ div.conversation.unread
 #conversations
 {
     padding-left: 130px;
+    width: 650px;
 }
         
 #conversations .profile-image
@@ -1714,4 +1715,25 @@ div.conversation-content
 div.conversation-content div.message
 {
     min-height: 50px;
+}
+
+div.conversation-reply textarea
+{
+    width: 410px;
+}
+
+div.conversation-reply div.editor-field
+{
+    float: left;
+}
+
+div.conversation-reply p
+{
+    float: right;
+}
+
+div.conversation-reply input
+{
+    width: 165px;
+    height: 30px;
 }

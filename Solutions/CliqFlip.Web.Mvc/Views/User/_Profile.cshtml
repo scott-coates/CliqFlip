@@ -39,6 +39,23 @@
 		{
 		     display: none;
 		}
+		
+		#send-message p
+		{
+		    margin-top: 5px;
+            margin-bottom: 0;
+            text-align: right;
+		}
+		#send-message textarea
+		{
+		    border-color: #899BC1;
+            font-size: 14px;
+            height: 60px;
+            margin-right: 6px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 342px;
+		}
 	</style>
     @RenderSection("styles", false)
 }
@@ -68,7 +85,7 @@
             {
                 //the user must be logged and the user cannot send a message to themselves
                 <li id="send-message-link">
-                    @Html.ActionLink("Send Message", "StartConversationWith", "User")
+                    @Html.ActionLink("Start a conversation", "StartConversationWith", "User")
                 </li>
             }
 		</ul>
@@ -92,6 +109,11 @@
             $("#send-message-link").click(function (e) {
                 e.preventDefault();
                 sendMessageDialog.dialog("open");
+            });
+
+            $("#send-message form").submit(function () {
+                this.reset();
+                sendMessageDialog.dialog("close");
             });
         });
     </script>
