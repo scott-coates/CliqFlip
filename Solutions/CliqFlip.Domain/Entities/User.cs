@@ -11,12 +11,18 @@ namespace CliqFlip.Domain.Entities
 	public class User : Entity
 	{
 		private readonly Iesi.Collections.Generic.ISet<UserInterest> _interests;
+        private readonly Iesi.Collections.Generic.ISet<Participant> _participants;
 		private UserWebsite _userWebsite;
 
 		public virtual IEnumerable<UserInterest> Interests
 		{
 			get { return new List<UserInterest>(_interests).AsReadOnly(); }
 		}
+
+        public virtual IEnumerable<Participant> Participants
+        {
+            get { return new List<Participant>(_participants).AsReadOnly(); }
+        }
 
 		/*
 			//if we ever have a collection of images (user.images), we'll need to set cascade.noaction
@@ -51,6 +57,7 @@ namespace CliqFlip.Domain.Entities
 		public User()
 		{
 			_interests = new HashedSet<UserInterest>();
+            _participants = new HashedSet<Participant>();
 		}
 
 		public User(string username, string email, string password, string salt)
@@ -175,5 +182,26 @@ namespace CliqFlip.Domain.Entities
 			_interests.Remove(interest);
 			UpdateLastActivity();
 		}
-	}
+
+        public virtual void ReadConversation(int id)
+        {
+            UpdateLastActivity();
+            var participant = _participants.SingleOrDefault(x => x.Conversation.Id == id);
+            if (participant != null)
+            {
+                participant.HasUnreadMessages = false;
+            }
+        }
+
+        public virtual Message Say(string text)
+        {
+            UpdateLastActivity();
+            return new Message(this, text);
+        }
+
+        public virtual int GetNumberOfUnreadConversations()
+        {
+            return Participants.Count(x => x.IsActive && x.HasUnreadMessages);
+        }
+    }
 }

@@ -11,5 +11,6 @@ namespace CliqFlip.Domain.Common
 		public const string S3_BUCKET = "S3Bucket";
 		public const string SES_FROM_EMAIL = "SESFromEmail";
         public const string FACEBOOK_APPID = "FacebookAppId";
+        public const string DEFAULT_PROFILE_IMAGE = "/Content/img/empty-avatar.jpg";
 	}
 }

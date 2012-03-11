@@ -86,15 +86,18 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Contracts\Tasks\IInterestTasks.cs" />
     <Compile Include="Dtos\ImageFilenamesDto.cs" />
     <Compile Include="Dtos\RankedInterestDto.cs" />
+    <Compile Include="Entities\Conversation.cs" />
     <Compile Include="Entities\Image.cs" />
+    <Compile Include="Entities\Message.cs" />
+    <Compile Include="Entities\Participant.cs" />
     <Compile Include="Exceptions\ErrorInfo.cs" />
     <Compile Include="Exceptions\RulesException.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Contracts\Queries\IUsersByInterestsQuery.cs" />
     <Compile Include="Contracts\Tasks\IUserTasks.cs" />
-    <Compile Include="Contracts\Tasks\IInterestTasks.cs" />
     <Compile Include="Dtos\UserInterestDto.cs" />
     <Compile Include="Dtos\InterestKeywordDto.cs" />
     <Compile Include="Dtos\UserSearchByInterestsDto.cs" />

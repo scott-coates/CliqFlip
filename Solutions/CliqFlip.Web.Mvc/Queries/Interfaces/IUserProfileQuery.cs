@@ -14,5 +14,6 @@ namespace CliqFlip.Web.Mvc.Queries.Interfaces
 		UserProfileIndexViewModel GetUserProfileIndex(string username, IPrincipal requestingUser);
 		UserSocialMediaViewModel GetUserSocialMedia(string username, IPrincipal requestingUser);
 		UserInterestsViewModel GetUserIntersets(string username, IPrincipal requestingUser);
+        UserInboxViewModel GetUserInbox(IPrincipal requestingUser);
 	}
 }

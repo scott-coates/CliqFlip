@@ -17,6 +17,9 @@
 		<li>
 			@Html.ActionLink("Hello " + User.Identity.Name, "Index", "User", new { username = User.Identity.Name }, null)
 		</li>
+        <li>
+            @Html.ActionLink("Inbox (" + @Html.Action("NewMessageCount", "User") + ")", "Inbox", "User", new { username = User.Identity.Name }, null) 
+        </li>
 		<li>
 			@Html.ActionLink("Logout", "Logout", "User")
 		</li>

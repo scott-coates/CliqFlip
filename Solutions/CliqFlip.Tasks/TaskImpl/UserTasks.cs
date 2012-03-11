@@ -19,6 +19,7 @@ using CliqFlip.Infrastructure.Validation;
 using CliqFlip.Infrastructure.Web.Interfaces;
 using SharpArch.Domain.PersistenceSupport;
 using SharpArch.Domain.Specifications;
+using CliqFlip.Infrastructure.Email.Interfaces;
 
 namespace CliqFlip.Tasks.TaskImpl
 {
@@ -30,7 +31,9 @@ namespace CliqFlip.Tasks.TaskImpl
 		private readonly IImageProcessor _imageProcessor;
 		private readonly IInterestTasks _interestTasks;
 		private readonly ILinqRepository<User> _repository;
+        private readonly ILinqRepository<Conversation> _conversationRepository;
 		private readonly IUserAuthentication _userAuthentication;
+        private readonly IEmailService _emailService;
 
 		public UserTasks(ILinqRepository<User> repository,
 						 IInterestTasks interestTasks,
@@ -38,7 +41,9 @@ namespace CliqFlip.Tasks.TaskImpl
 						 IFileUploadService fileUploadService,
 						 IHtmlService htmlService,
 						 IFeedFinder feedFinder,
-						 IUserAuthentication userAuthentication)
+						 IUserAuthentication userAuthentication,
+                         ILinqRepository<Conversation> conversationRepository,
+                         IEmailService emailService)
 		{
 			_repository = repository;
 			_interestTasks = interestTasks;
@@ -47,6 +52,8 @@ namespace CliqFlip.Tasks.TaskImpl
 			_htmlService = htmlService;
 			_feedFinder = feedFinder;
 			_userAuthentication = userAuthentication;
+            _conversationRepository = conversationRepository;
+            _emailService = emailService;
 		}
 
 		#region IUserTasks Members
@@ -367,5 +374,62 @@ namespace CliqFlip.Tasks.TaskImpl
 				UserDto = new UserDto { Username = user.Username, InterestDtos = user.Interests.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(), Bio = user.Bio }
 			}).ToList();
 		}
+
+        public bool StartConversation(string starter, string receiver, string text)
+        {
+            //get the users involved in the conversation
+            User sender = GetUser(starter),
+                recipient = GetUser(receiver);
+
+            if (sender == null || recipient == null)
+                return false;
+            
+            //both users exists
+            //see if the recipient has any active conversations with the sender
+
+            //get all the conversations where the recipient is an active participant
+            var conversations = recipient.Participants.Where(x => x.IsActive).Select(x => x.Conversation).ToList();
+
+            //get the conversation that the recipient has with the sender, if any
+            var conversation = conversations.SingleOrDefault(x => x.Participants.Any(y => y.User == sender));
+
+            if (conversation == null)
+            {
+                //start a new conversation
+                conversation =  new Conversation(sender, recipient);
+            }
+
+            Message message = sender.Say(text);
+            conversation.AddMessage(message);
+            _conversationRepository.Save(conversation);
+            _emailService.SendMail(recipient.Email, "Some one likes you on CliqFlip.com", "Hey, <br/> Looks like someone finds you interesting. Go talk to this person at CliqFlip.com");
+            return true;
+        }
+
+        public Message ReplyToConversation(int conversationId, string replier, string text)
+        {
+            Message retVal = null;
+            var sender = GetUser(replier);
+
+            if (sender != null)
+            {
+                var conversation = sender.Participants.SingleOrDefault(x => x.Conversation.Id == conversationId).Conversation;
+
+                if (conversation != null)
+                {
+                    retVal = sender.Say(text);
+                    conversation.AddMessage(retVal);
+                    foreach (var user in conversation.Participants.Select(x => x.User))
+                    {
+                        if (user.Email == sender.Email)
+                        {
+                            continue;
+                        }
+                        _emailService.SendMail(user.Email, "You have a new messages on CliqFlip.com", "Hey come back someone sent you a message.");
+                    }
+                }
+            }
+            return retVal;
+        }
 	}
 }
