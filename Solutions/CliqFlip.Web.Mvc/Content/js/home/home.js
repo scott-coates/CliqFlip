@@ -66,7 +66,7 @@ function InitTagCloud() {
 
 	$("#interest-tag-cloud a").click(function () {
 		var tagValue = $(this).attr('value');
-		var tagName = this.innerText;
+		var tagName = this.innerHTML; //http://blog.coderlab.us/2005/09/22/using-the-innertext-property-with-firefox/ FireFox doesn't support InnerText
 		var tagValueToAdd = { Name: tagName, Slug: tagValue };
 		_interests.addNewItem(tagValueToAdd);
 	});
