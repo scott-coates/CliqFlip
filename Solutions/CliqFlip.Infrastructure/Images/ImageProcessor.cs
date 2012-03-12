@@ -22,7 +22,7 @@ namespace CliqFlip.Infrastructure.Images
 		private const string MIN_RESOLUTION_MESSAGE = "The minimum resolution is 100 pixels. Please upload a larger file";
 		private const string MAX_RESOLUTION_MESSAGE = "The maximum resolution is 2048 pixels. Please upload a smaller file";
 		private static readonly ImageCodecInfo[] _imageCodecs = ImageCodecInfo.GetImageEncoders();
-		private static readonly string[] _acceptedExtensions = new[] { "jpg", "jpeg", "tif", "tiff", "png", "bmp", "gif" };
+		private static readonly string[] _acceptedExtensions = new[] {"jpg", "jpeg", "tif", "tiff", "png", "bmp", "gif"};
 
 		#region IImageProcessor Members
 
@@ -41,8 +41,8 @@ namespace CliqFlip.Infrastructure.Images
 				retVal.MediumImage = GetResizedImage(image, MEDIUM_RESOLUTION_WIDTH, MEDIUM_RESOLUTION_HEIGHT);
 
 				if ((image.Width >= retVal.MediumImage.Width + 50 && image.Width >= FULL_RESOLUTION_WIDTH)
-					||
-					(image.Height >= retVal.MediumImage.Height + 50 && image.Height >= FULL_RESOLUTION_HEIGHT))
+				    ||
+				    (image.Height >= retVal.MediumImage.Height + 50 && image.Height >= FULL_RESOLUTION_HEIGHT))
 				{
 					//the + 50 means don't create a full size image if it's barely bigger than a medium sized one
 
@@ -78,17 +78,17 @@ namespace CliqFlip.Infrastructure.Images
 
 				if (image.Width > image.Height)
 				{
-					diffRatio = (decimal)proposedWidth / image.Width;
+					diffRatio = (decimal) proposedWidth/image.Width;
 					newWidth = proposedWidth;
-					decimal tempHeight = image.Height * diffRatio;
-					newHeight = (int)tempHeight;
+					decimal tempHeight = image.Height*diffRatio;
+					newHeight = (int) tempHeight;
 				}
 				else
 				{
-					diffRatio = (decimal)proposedHeight / image.Height;
+					diffRatio = (decimal) proposedHeight/image.Height;
 					newHeight = proposedHeight;
-					decimal tempWidth = image.Width * diffRatio;
-					newWidth = (int)tempWidth;
+					decimal tempWidth = image.Width*diffRatio;
+					newWidth = (int) tempWidth;
 				}
 			}
 
@@ -96,7 +96,7 @@ namespace CliqFlip.Infrastructure.Images
 			{
 				using (Graphics newGraphic = Graphics.FromImage(resizedBitmap))
 				{
-					retVal = new ResizedImage { Image = new MemoryStream(), Width = newWidth, Height = newHeight };
+					retVal = new ResizedImage {Image = new MemoryStream(), Width = newWidth, Height = newHeight};
 					using (var encoderParameters = new EncoderParameters(1))
 					{
 						encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 90L);
@@ -126,13 +126,15 @@ namespace CliqFlip.Infrastructure.Images
 
 			string extension = Path.GetExtension(fileName);
 
-			if (extension == null) throw new InvalidOperationException("extension");
+			if (string.IsNullOrWhiteSpace(extension))
+				throw new RulesException("image"
+				                         , "This file does not contain an extension. Uploaded images require extensions. Ex: myphoto.jpg");
 
 			extension = extension.Substring(1); //get rid of '.'
 
 			if (_acceptedExtensions.All(x => x != extension.ToLower().Trim()))
 			{
-				throw new RulesException("image", "this is not a valid image type");
+				throw new RulesException("image", "This is not a valid image type");
 			}
 		}
 
