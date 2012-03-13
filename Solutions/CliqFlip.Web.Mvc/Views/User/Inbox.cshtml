@@ -1,0 +1,45 @@
+﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserInboxViewModel
+
+@{
+    ViewBag.Title = "Inbox";
+    Layout = "~/Views/User/_Profile.cshtml";
+}
+
+
+<div id="conversations">
+@foreach (var conversation in Model.Conversations)
+{
+    @*<div class="conversations unread">*@
+        <div class="header">
+            <a href="@Url.Action("ReadConversation", "User", new { id = conversation.Id })">
+                <div class="message">
+                    <div>
+                        <img src="@conversation.SenderImage" alt="Alternate Text" class="profile-image" />
+                    </div>
+                    <strong>@conversation.Sender</strong>
+                    <p>
+                        @conversation.LastMessage
+                    </p>
+                </div>
+            </a>
+        </div>
+        <div class="conversation-content">
+            <div id="conversation-messages-@conversation.Id" class="conversation-messages">
+            </div>
+            <div class="conversation-reply">
+                @Html.Action("ReplyToConversation", "User", new { id = conversation.Id })
+            </div>
+        </div>
+    @*</div>*@
+}
+</div>
+
+@section scripts
+{
+    <script type="text/javascript" src="@Url.Content("~/Content/js/user/inbox.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            InitInbox();
+        });
+    </script>
+}

@@ -13,6 +13,7 @@ using CliqFlip.Web.Mvc.ViewModels.Jeip;
 using CliqFlip.Web.Mvc.ViewModels.User;
 using SharpArch.NHibernate.Web.Mvc;
 using SharpArch.Web.Mvc.JsonNet;
+using CliqFlip.Web.Mvc.ViewModels;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
@@ -21,12 +22,13 @@ namespace CliqFlip.Web.Mvc.Controllers
 		private readonly IPrincipal _principal;
 		private readonly IUserProfileQuery _userProfileQuery;
 		private readonly IUserTasks _userTasks;
-
-		public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal)
+        private readonly IConversationQuery _conversationQuery;
+        public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IConversationQuery conversationQuery)
 		{
 			_userTasks = profileTasks;
 			_userProfileQuery = userProfileQuery;
 			_principal = principal;
+            _conversationQuery = conversationQuery;
 		}
 
 		public ActionResult Create()
@@ -260,7 +262,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult SaveBio(JeipSaveTextViewModel saveTextViewModel)
 		{
-			//get user and save it
+			//get conversation and save it
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			user.UpdateBio(saveTextViewModel.New_Value);
 			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
@@ -272,7 +274,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult SaveTwitterUsername(JeipSaveTextViewModel saveTextViewModel)
 		{
-			//get user and save it
+			//get conversation and save it
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			user.UpdateTwitterUsername(saveTextViewModel.New_Value);
 			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
@@ -284,7 +286,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult SaveYouTubeUsername(JeipSaveTextViewModel saveTextViewModel)
 		{
-			//get user and save it
+			//get conversation and save it
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			user.UpdateYouTubeUsername(saveTextViewModel.New_Value);
 			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
@@ -296,7 +298,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult SaveWebiste(JeipSaveTextViewModel saveTextViewModel)
 		{
-			//get user and save it
+			//get conversation and save it
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			var retVal = new JeipSaveResponseViewModel();
 
@@ -362,5 +364,73 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 			return View(user);
 		}
+
+        
+
+        [Transaction]
+        [Authorize]
+        public ActionResult StartConversationWith(string username)
+        {
+            return PartialView();
+        }
+
+        [Transaction]
+        [Authorize]
+        [HttpPost]
+        public ActionResult StartConversationWith(StartConversationWithViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _userTasks.StartConversation(_principal.Identity.Name, model.Username, model.Text);
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
+
+        [Transaction]
+        [Authorize]
+        public ActionResult ReplyToConversation(int id)
+        {
+            var model = new UserReplyToConversationViewModel { Id = id };
+            return PartialView(model);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Transaction]
+        public ActionResult ReplyToConversation(UserReplyToConversationViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var message = _userTasks.ReplyToConversation(model.Id, _principal.Identity.Name, model.Text);
+                return PartialView("Message", new MessageViewModel(message));
+            }
+            return new EmptyResult();
+        }
+
+        [Authorize]
+        [Transaction]
+        public ActionResult Inbox()
+        {
+            UserInboxViewModel model = _userProfileQuery.GetUserInbox(_principal);
+            return View(model);
+        }
+
+        [Authorize]
+        [Transaction]
+        public int NewMessageCount()
+        {
+            return _userTasks.GetUser(_principal.Identity.Name).GetNumberOfUnreadConversations();
+        }
+
+        [Authorize]
+        [Transaction]
+        public ActionResult ReadConversation(int id)
+        {
+            var user = _userTasks.GetUser(_principal.Identity.Name);
+            user.ReadConversation(id);
+            var messages = _conversationQuery.GetMessages(id, _principal.Identity.Name);
+            return PartialView(messages);
+        }
 	}
 }

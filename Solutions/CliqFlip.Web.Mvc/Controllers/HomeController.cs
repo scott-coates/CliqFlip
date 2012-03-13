@@ -18,7 +18,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			var viewModel = new IndexViewModel
 								{
-									//TODO: Put this in a query - like how we do with the user controller
+									//TODO: Put this in a query - like how we do with the conversation controller
 									KeywordSearchUrl = "\"" + Url.Action("Interest", "Search") + "\"",
 									TagCloudInterests = _interestTasks
 										.GetMostPopularInterests()

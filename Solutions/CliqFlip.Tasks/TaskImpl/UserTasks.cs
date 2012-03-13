@@ -19,6 +19,7 @@ using CliqFlip.Infrastructure.Validation;
 using CliqFlip.Infrastructure.Web.Interfaces;
 using SharpArch.Domain.PersistenceSupport;
 using SharpArch.Domain.Specifications;
+using CliqFlip.Infrastructure.Email.Interfaces;
 
 namespace CliqFlip.Tasks.TaskImpl
 {
@@ -30,7 +31,9 @@ namespace CliqFlip.Tasks.TaskImpl
 		private readonly IImageProcessor _imageProcessor;
 		private readonly IInterestTasks _interestTasks;
 		private readonly ILinqRepository<User> _repository;
+        private readonly ILinqRepository<Conversation> _conversationRepository;
 		private readonly IUserAuthentication _userAuthentication;
+        private readonly IEmailService _emailService;
 
 		public UserTasks(ILinqRepository<User> repository,
 						 IInterestTasks interestTasks,
@@ -38,7 +41,9 @@ namespace CliqFlip.Tasks.TaskImpl
 						 IFileUploadService fileUploadService,
 						 IHtmlService htmlService,
 						 IFeedFinder feedFinder,
-						 IUserAuthentication userAuthentication)
+						 IUserAuthentication userAuthentication,
+                         ILinqRepository<Conversation> conversationRepository,
+                         IEmailService emailService)
 		{
 			_repository = repository;
 			_interestTasks = interestTasks;
@@ -47,6 +52,8 @@ namespace CliqFlip.Tasks.TaskImpl
 			_htmlService = htmlService;
 			_feedFinder = feedFinder;
 			_userAuthentication = userAuthentication;
+            _conversationRepository = conversationRepository;
+            _emailService = emailService;
 		}
 
 		#region IUserTasks Members
@@ -367,5 +374,54 @@ namespace CliqFlip.Tasks.TaskImpl
 				UserDto = new UserDto { Username = user.Username, InterestDtos = user.Interests.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(), Bio = user.Bio }
 			}).ToList();
 		}
+
+        public void StartConversation(string starter, string receiver, string text)
+        {
+            //get the users involved in the conversation
+            User sender = GetUser(starter),
+                recipient = GetUser(receiver);
+
+            //check that both users exists
+            if (sender == null || recipient == null)
+                return;
+            
+            //get the conversation that the recipient has with the sender, if any
+            var conversation = recipient.Conversations.SingleOrDefault(x => x.Users.Any(user => user.Username == starter));
+            
+            if (conversation == null)
+            {
+                //start a new conversation
+                conversation =  new Conversation(sender, recipient);
+            }
+
+            Message message = sender.WriteMessage(text);
+            conversation.AddMessage(message);
+            _conversationRepository.Save(conversation);
+            //_emailService.SendMail(recipient.Email, "Some one likes you on CliqFlip.com", "Hey, <br/> Looks like someone finds you interesting. Go talk to this person at CliqFlip.com");
+        }
+
+        public Message ReplyToConversation(int conversationId, string replier, string text)
+        {
+            Message retVal = null;
+            var sender = GetUser(replier);
+
+            if (sender != null)
+            {
+                var conversation = sender.Conversations.SingleOrDefault(x => x.Id == conversationId);
+
+                if (conversation != null)
+                {
+                    retVal = sender.WriteMessage(text);
+                    conversation.AddMessage(retVal);
+                    var users = conversation.Users.ToList();
+                    users.Remove(sender);
+                    var subject = "You have a new messages on CliqFlip.com :)";
+                    var message = "Hey come back, {0} sent you a message.";
+
+                    users.ForEach(user => _emailService.SendMail(user.Email, subject, String.Format(message, user.Username)));
+                }
+            }
+            return retVal;
+        }
 	}
 }
