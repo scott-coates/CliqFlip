@@ -48,6 +48,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
             Database.RemoveTable("Messages");
             Database.RemoveTable("UsersMessages");
             Database.RemoveTable("Conversations");
+            Database.RemoveTable("UserConversations");
 		}
 	}
 }
