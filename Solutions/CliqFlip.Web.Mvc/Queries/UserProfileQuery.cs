@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
+using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
@@ -126,11 +127,11 @@ namespace CliqFlip.Web.Mvc.Queries
                     var users = conversation.Users.ToList();
                     users.Remove(user);
                     var sender = users.Single();
-                    UserInboxViewModel.ConversationViewModel conv = new UserInboxViewModel.ConversationViewModel
+                    var conv = new UserInboxViewModel.ConversationViewModel
                     {
                         Id = conversation.Id,
                         HasUnreadMessages = conversation.HasNewMessagesFor(user),
-                        SenderImage = sender.ProfileImage != null ? sender.ProfileImage.Data.ThumbFileName : "/Content/img/empty-avatar.jpg",
+                        SenderImage = sender.ProfileImage != null ? sender.ProfileImage.Data.ThumbFileName : Constants.DEFAULT_PROFILE_IMAGE,
                         Sender = sender.Username,
                         LastMessage = conversation.Messages.First().Text
                     };
