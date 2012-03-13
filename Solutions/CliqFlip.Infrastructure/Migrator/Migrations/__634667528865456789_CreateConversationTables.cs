@@ -35,14 +35,14 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 
             Database.AddForeignKey("FK_Messages_Users", "Messages", "SenderId", "Users", "Id");
             Database.AddForeignKey("FK_Messages_Conversations", "Messages", "ConversationId", "Conversations", "Id");
-            Database.AddForeignKey("FK_UsersConversations_Users", "UserConversations", "UserId", "Users", "Id");
-            Database.AddForeignKey("FK_UsersConversations_Conversations", "UserConversations", "ConversationId", "Conversations", "Id");
+            Database.AddForeignKey("FK_UserConversations_Users", "UserConversations", "UserId", "Users", "Id");
+            Database.AddForeignKey("FK_UserConversations_Conversations", "UserConversations", "ConversationId", "Conversations", "Id");
 		}
 
 		public override void Down()
 		{
-            Database.RemoveForeignKey("UserConversations", "FK_UsersConversations_Conversations");
-            Database.RemoveForeignKey("UserConversations", "FK_UsersConversations_Users");
+            Database.RemoveForeignKey("UserConversations", "FK_UserConversations_Conversations");
+            Database.RemoveForeignKey("UserConversations", "FK_UserConversations_Users");
             Database.RemoveForeignKey("Messages", "FK_Messages_Conversations");
             Database.RemoveForeignKey("Messages", "FK_Messages_Users");
             Database.RemoveTable("Messages");
