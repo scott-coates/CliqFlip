@@ -16,7 +16,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
                 new Column("HasUnreadMessages", DbType.Boolean, ColumnProperty.NotNull, true)
             });
 
-            Database.AddTable("UsersConversations", new[]
+            Database.AddTable("UserConversations", new[]
             {
                 new Column("Id", DbType.Int32, ColumnProperty.PrimaryKeyWithIdentity),
                 new Column("UserId", DbType.Int32, ColumnProperty.ForeignKey),
@@ -35,19 +35,18 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 
             Database.AddForeignKey("FK_Messages_Users", "Messages", "SenderId", "Users", "Id");
             Database.AddForeignKey("FK_Messages_Conversations", "Messages", "ConversationId", "Conversations", "Id");
-            Database.AddForeignKey("FK_UsersConversations_Users", "UsersConversations", "UserId", "Users", "Id");
-            Database.AddForeignKey("FK_UsersConversations_Conversations", "UsersConversations", "ConversationId", "Conversations", "Id");
+            Database.AddForeignKey("FK_UsersConversations_Users", "UserConversations", "UserId", "Users", "Id");
+            Database.AddForeignKey("FK_UsersConversations_Conversations", "UserConversations", "ConversationId", "Conversations", "Id");
 		}
 
 		public override void Down()
 		{
-            Database.RemoveForeignKey("UsersConversations", "FK_UsersConversations_Conversations");
-            Database.RemoveForeignKey("UsersConversations", "FK_UsersConversations_Users");
+            Database.RemoveForeignKey("UserConversations", "FK_UsersConversations_Conversations");
+            Database.RemoveForeignKey("UserConversations", "FK_UsersConversations_Users");
             Database.RemoveForeignKey("Messages", "FK_Messages_Conversations");
             Database.RemoveForeignKey("Messages", "FK_Messages_Users");
             Database.RemoveTable("Messages");
-            Database.RemoveTable("UsersMessages");
-			Database.RemoveTable("UsersConversations");
+			Database.RemoveTable("UserConversations");
 			Database.RemoveTable("Conversations");
 		}
 	}

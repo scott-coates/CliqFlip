@@ -14,7 +14,7 @@ namespace CliqFlip.Infrastructure.NHibernateMaps.Overrides
 		{
             mapping.HasManyToMany(conversation => conversation.Users)
                     .Cascade.All()
-                    .Table("UsersConversations")
+                    .Table("UserConversations")
                     .ParentKeyColumn("ConversationId")
                     .ChildKeyColumn("UserId");
             mapping.HasMany(conv => conv.Messages).OrderBy("SendDate desc");
