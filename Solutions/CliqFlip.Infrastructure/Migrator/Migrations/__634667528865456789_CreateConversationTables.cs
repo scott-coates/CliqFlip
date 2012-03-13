@@ -47,8 +47,8 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
             Database.RemoveForeignKey("Messages", "FK_Messages_Users");
             Database.RemoveTable("Messages");
             Database.RemoveTable("UsersMessages");
-            Database.RemoveTable("Conversations");
-            Database.RemoveTable("UserConversations");
+			Database.RemoveTable("UsersConversations");
+			Database.RemoveTable("Conversations");
 		}
 	}
 }
