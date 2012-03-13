@@ -397,7 +397,7 @@ namespace CliqFlip.Tasks.TaskImpl
             Message message = sender.WriteMessage(text);
             conversation.AddMessage(message);
             _conversationRepository.Save(conversation);
-            //_emailService.SendMail(recipient.Email, "Some one likes you on CliqFlip.com", "Hey, <br/> Looks like someone finds you interesting. Go talk to this person at CliqFlip.com");
+            _emailService.SendMail(recipient.Email, "Some one likes you on CliqFlip.com", "Hey, <br/> Looks like someone finds you interesting. Go talk to this person at CliqFlip.com");
         }
 
         public Message ReplyToConversation(int conversationId, string replier, string text)
