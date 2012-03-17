@@ -1,7 +1,7 @@
 @model CliqFlip.Web.Mvc.ViewModels.User.UserProfileViewModel
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 	ViewBag.Title = Model.Username + " - " + Model.Headline;
 }           
 
@@ -9,56 +9,50 @@
 {
 	@*TODO: Move this to CSS file*@
 	<style type="text/css">
-		body
-		{
-			background-color: #D1E1E7;
-		}
+		body { background-color: #D1E1E7; }
+
 		.post-info .blogdate {
-			width: auto;
 			height: auto;
+			width: auto;
 		}
+
 		.post-info {
-			width: 200px;
 			margin-right: 24px;
+			width: 200px;
 		}
-		.blog-post
-		{
-		    margin: 0;
-            overflow: hidden;
-            float: left;
-            width: auto;
+
+		.blog-post {
+			float: left;
+			margin: 0;
+			overflow: hidden;
+			width: auto;
 		}
-		
-		.sidebar
-		{
-		    margin: 0;
-            width: 22%;
-            float: right;
+
+		.sidebar {
+			float: right;
+			margin: 0;
+			width: 22%;
 		}
-		
-		#send-message
-		{
-		     display: none;
+
+		#send-message { display: none; }
+
+		#send-message p {
+			margin-bottom: 0;
+			margin-top: 5px;
+			text-align: right;
 		}
-		
-		#send-message p
-		{
-		    margin-top: 5px;
-            margin-bottom: 0;
-            text-align: right;
-		}
-		#send-message textarea
-		{
-		    border-color: #899BC1;
-            font-size: 14px;
-            height: 60px;
-            margin-right: 6px;
-            overflow: hidden;
-            width: 100%;
-            max-width: 342px;
+
+		#send-message textarea {
+			border-color: #899BC1;
+			font-size: 14px;
+			height: 60px;
+			margin-right: 6px;
+			max-width: 342px;
+			overflow: hidden;
+			width: 100%;
 		}
 	</style>
-    @RenderSection("styles", false)
+	@RenderSection("styles", false)
 }
 
 @*The common content between the profile pages*@
@@ -69,9 +63,9 @@
 <div class="post-info">
 	<div class="blogdate">
 		@{
-            string imagePath = string.IsNullOrWhiteSpace(Model.ProfileImageUrl)
-                                ? @Url.Content("/Content/img/empty-avatar.jpg")
-                                : Model.ProfileImageUrl;
+			string imagePath = string.IsNullOrWhiteSpace(Model.ProfileImageUrl)
+			                   	? @Url.Content("/Content/img/empty-avatar.jpg")
+			                   	: Model.ProfileImageUrl;
 		}
 		<img class="profile-image" alt="@Model.Username profile image" src="@imagePath"/>
 	</div>
@@ -82,49 +76,50 @@
 			@Html.ActionMenuItem("Social Media", "SocialMedia", "User")
 			@Html.ActionMenuItem("Interests", "Interests", "User")
 
-            @if (Model.AuthenticatedVisitor && !Model.AuthenticatedProfileOwner)
-            {
-                //the user must be logged and the user cannot send a message to themselves
-                <li id="send-message-link">
-                    @Html.ActionLink("Start a conversation", "StartConversationWith", "User")
-                </li>
-            }
+			@if (Model.AuthenticatedVisitor)
+			{
+				//the user must be logged and the user cannot send a message to themselves
+				<li id="send-message-link">
+					@Html.ActionLink("Start a conversation", "StartConversationWith", "User")
+					<div id="send-message">
+						@Html.Action("StartConversationWith")
+					</div>
+
+				</li>
+			}
 		</ul>
 	</div>
 	<p class="post_author">by Marius Pop</p>
 </div>
 
-<div id="send-message">
-    @Html.Action("StartConversationWith")
-</div>
 
 @RenderBody()
 
 
 @section scripts
 {
-    @*
+	@*
         //TODO: move this to seperate js file specific for this layout
         //theres already a file called profile.js
         //we can rename to index.js
         //talk to Scott before making changes
     *@
-    <script type="text/javascript">
-        var sendMessageDialog = null;
-        $(document).ready(function () {
-            sendMessageDialog = $("#send-message").dialog({ autoOpen: false });
+	<script type="text/javascript">
+		var sendMessageDialog = null;
+		$(document).ready(function() {
+			sendMessageDialog = $("#send-message").dialog({ autoOpen: false });
 
-            $("#send-message-link").click(function (e) {
-                e.preventDefault();
-                sendMessageDialog.dialog("open");
-            });
-        });
+			$("#send-message-link").click(function(e) {
+				e.preventDefault();
+				sendMessageDialog.dialog("open");
+			});
+		});
 
-        function StartConversationSuccess(response, request) {
-            sendMessageDialog.dialog("close");
-            sendMessageDialog.find("form")[0].reset();
-        }
+		function StartConversationSuccess(response, request) {
+			sendMessageDialog.dialog("close");
+			sendMessageDialog.find("form")[0].reset();
+		}
 
-    </script>
-    @RenderSection("scripts", false)
+	</script>
+	@RenderSection("scripts", false)
 }
