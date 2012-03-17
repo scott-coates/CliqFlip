@@ -6,11 +6,18 @@
 }
 @section styles
 {
+<style type="">
+		.add-interest
+		{
+			margin-left:6px;
+		}
+		
+	</style>
 }
 
 @if (Model.AuthenticatedProfileOwner)
 {
-	<input type="button" value="Add Interest" class="button" id="add-interest-button" />
+	<input type="button" value="Add Interest" class="button add-interest" id="add-interest-button" />
 }
 
 @Html.ValidationSummary()
