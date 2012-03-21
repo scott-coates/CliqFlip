@@ -86,7 +86,7 @@ namespace CliqFlip.Tasks.TaskImpl
 				{
 					Username = user.Username,
 					InterestDtos = user.Interests
-						.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(),
+						.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug, x.Options.Passion)).ToList(),
 					Bio = user.Bio
 				}
 			}).OrderByDescending(x => x.MatchCount).ToList();
@@ -375,11 +375,16 @@ namespace CliqFlip.Tasks.TaskImpl
 			var query = new AdHoc<User>(x => x.Interests.Any(y => interestList.Contains(y.Id)));
 
 			List<User> users = _repository.FindAll(query).ToList();
-			return users.Select(user => new UserSearchByInterestsDto
-			{
-				MatchCount = user.Interests.Select(x => x.Id).Intersect(interestList).Count(),
-				UserDto = new UserDto { Username = user.Username, InterestDtos = user.Interests.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug)).ToList(), Bio = user.Bio }
-			}).ToList();
+            return users.Select(user => new UserSearchByInterestsDto
+            {
+                MatchCount = user.Interests.Select(x => x.Id).Intersect(interestList).Count(),
+                UserDto = new UserDto
+                {
+                    Username = user.Username,
+                    InterestDtos = user.Interests.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug, x.Options.Passion)).ToList(),
+                    Bio = user.Bio
+                }
+            }).ToList();
 		}
 
         public void StartConversation(string starter, string receiver, string text)

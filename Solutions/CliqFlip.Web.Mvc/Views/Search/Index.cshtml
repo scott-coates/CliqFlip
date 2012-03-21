@@ -1,5 +1,6 @@
 ﻿@using CliqFlip.Web.Mvc.ViewModels.Search
 @model CliqFlip.Web.Mvc.ViewModels.Search.UsersByInterestViewModel
+           
 
 <div id="userSearchResults">
 	@foreach (UsersByInterestViewModel.IndividualResultViewModel user in Model.PagedResults)
@@ -30,3 +31,13 @@
 		@Html.Raw(Html.Pager(Model.PagedResults).ToString())
 	</div>
 </div>
+
+@section scripts
+{
+    <script type="text/javascript" src="@Url.Content("~/Content/js/jquery.dotdotdot-1.2.1.min.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("div.userSearchBio").dotdotdot();
+        });
+    </script>
+}
