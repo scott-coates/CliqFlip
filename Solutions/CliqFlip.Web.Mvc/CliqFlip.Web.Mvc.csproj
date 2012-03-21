@@ -254,7 +254,9 @@
     <Content Include="Content\img\button_icon.png" />
     <Content Include="Content\img\check.png" />
     <Content Include="Content\img\ClipFliq-LogoMoto.png" />
+    <Content Include="Content\js\jquery.dotdotdot-1.2.1.min.js" />
     <Content Include="Content\js\cliqFlip\error-handler.js" />
+    <Content Include="Content\js\jquery.dotdotdot-1.2.1.js" />
     <Content Include="Content\js\user\add-interest.js" />
     <Content Include="Content\js\user\inbox.js" />
     <Content Include="Content\js\user\interests.js" />

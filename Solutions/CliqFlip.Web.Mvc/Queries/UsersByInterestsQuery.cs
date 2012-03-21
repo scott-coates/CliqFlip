@@ -22,7 +22,9 @@ namespace CliqFlip.Web.Mvc.Queries
 
 		public UsersByInterestViewModel GetGetUsersByInterests(string slugs, int? page)
 		{
-			List<string> aliasCollection = slugs.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+            //NOTE: The slug string was lowered cased because if someone changed 'software' to 'Software' in the query string
+            //      no matches would be found.
+			List<string> aliasCollection = slugs.ToLower().Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
 				.Where(x => !x.StartsWith("-1")).ToList();
 
 			IList<UserSearchByInterestsDto> users = _userTasks.GetUsersByInterestsDtos(aliasCollection);
@@ -37,7 +39,7 @@ namespace CliqFlip.Web.Mvc.Queries
 											.Select(x => new UsersByInterestViewModel.IndividualResultInterestViewModel
 															{
 																InterestName = x.Name,
-																IsMatch = aliasCollection.Contains(x.Slug),
+																IsMatch = aliasCollection.Contains(x.Slug.ToLower()),
                                                                 Passion = x.Passion
 															}).OrderByDescending(x => x.IsMatch).ThenByDescending(x => x.Passion).Take(5).ToList()
 									});
