@@ -7,6 +7,7 @@ using Amazon.S3;
 using Amazon.SimpleEmail;
 using Castle.Windsor;
 using CliqFlip.Domain.Entities;
+using CliqFlip.Infrastructure.Exceptions;
 using CliqFlip.Infrastructure.NHibernateMaps;
 using CliqFlip.Web.Mvc.CastleWindsor;
 using CliqFlip.Web.Mvc.Controllers;
@@ -66,6 +67,7 @@ namespace CliqFlip.Web.Mvc
 			//TODO: Consider using filter configs
 			Exception exception = args.Exception;
 			bool include = (
+			               	exception is CriticalException ||
 			               	exception is AmazonS3Exception ||
 			               	exception is AmazonSimpleEmailServiceException
 			               	||

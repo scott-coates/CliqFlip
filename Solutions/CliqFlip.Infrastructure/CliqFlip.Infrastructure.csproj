@@ -124,6 +124,7 @@
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Common\AssemblyVersion.cs">
@@ -135,8 +136,10 @@
     <Compile Include="Authentication\Interfaces\IUserAuthentication.cs" />
     <Compile Include="Authentication\UserAuthentication.cs" />
     <Compile Include="Common\PathHelper.cs" />
-    <Compile Include="Email\EmailService.cs" />
+    <Compile Include="Email\SESEmailService.cs" />
     <Compile Include="Email\Interfaces\IEmailService.cs" />
+    <Compile Include="Exceptions\CriticalException.cs" />
+    <Compile Include="Exceptions\LocationException.cs" />
     <Compile Include="Exceptions\JavaScriptException.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Images\ResizedImage.cs" />
@@ -147,6 +150,8 @@
     <Compile Include="IO\TestFileUpload.cs" />
     <Compile Include="IO\S3FileUploadService.cs" />
     <Compile Include="IO\Interfaces\IFileUploadService.cs" />
+    <Compile Include="Location\Interfaces\ILocationService.cs" />
+    <Compile Include="Location\Interfaces\YahooGeoLocationService.cs" />
     <Compile Include="Logging\Elmah\Assertions\AssertionFactory.cs" />
     <Compile Include="Logging\Elmah\Assertions\ThrottleAssertion.cs" />
     <Compile Include="Logging\ElmahLogger.cs" />

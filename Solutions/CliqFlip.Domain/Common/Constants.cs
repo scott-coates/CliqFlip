@@ -12,5 +12,6 @@ namespace CliqFlip.Domain.Common
 		public const string SES_FROM_EMAIL = "SESFromEmail";
         public const string FACEBOOK_APPID = "FacebookAppId";
         public const string DEFAULT_PROFILE_IMAGE = "/Content/img/empty-avatar.jpg";
+		public const string YAHOO_APP_ID = "YahooAppId";
 	}
 }
