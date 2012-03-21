@@ -4,6 +4,7 @@ using System.Text;
 using System.Web;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ValueObjects;
 
 namespace CliqFlip.Domain.Contracts.Tasks
 {
@@ -11,7 +12,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 	{
 		IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IList<string> interestAliases );
 
-        User Create(UserDto profileToCreate);
+		User Create(UserDto profileToCreate, LocationData location);
 
 		void Login(User user, bool stayLoggedIn);
 		bool Login(string username, string password, bool stayLoggedIn);

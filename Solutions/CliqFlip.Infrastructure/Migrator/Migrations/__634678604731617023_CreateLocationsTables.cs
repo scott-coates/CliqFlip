@@ -4,7 +4,7 @@ using Migrator.Framework;
 namespace CliqFlip.Infrastructure.Migrator.Migrations
 {
 	[Migration(634678604731617023)]
-	public class __634678604731617023_CreateMajorLocationsTables : Migration
+	public class __634678604731617023_CreateLocationsTables : Migration
 	{
 		public override void Up()
 		{
@@ -216,7 +216,8 @@ INSERT MajorLocations(slug,name,country,timezone,timezoneOffsetInSeconds,Latitud
 			#endregion
 
 			Database.ExecuteNonQuery(@"ALTER TABLE [dbo].[MajorLocations] ADD [GeoLocation] GEOGRAPHY;");
-			Database.ExecuteNonQuery(@"
+			Database.ExecuteNonQuery(
+				@"
 				UPDATE [dbo].[MajorLocations]
 				SET [GeoLocation] = geography::STPointFromText('POINT(' + CAST(ISNULL([LongitudeSpecificSubset],[Longitude]) AS VARCHAR(20)) + ' ' + 
                 CAST(ISNULL([LatitudeSpecificSubset],[Latitude]) AS VARCHAR(20)) + ')', 4326)");
@@ -224,16 +225,16 @@ INSERT MajorLocations(slug,name,country,timezone,timezoneOffsetInSeconds,Latitud
 			Database.AddTable("Locations", new[]
 			{
 				new Column("Id", DbType.Int32, ColumnProperty.PrimaryKeyWithIdentity),
-				new Column( "CountryCode", DbType.String, 255, ColumnProperty.NotNull),
+				new Column("CountryCode", DbType.String, 255, ColumnProperty.NotNull),
 				new Column("CountryName", DbType.String, 255, ColumnProperty.NotNull),
 				new Column("RegionCode", DbType.String, 255, ColumnProperty.NotNull),
 				new Column("RegionName", DbType.String, 255, ColumnProperty.NotNull),
-				new Column("MetroCode", DbType.String, 255, ColumnProperty.NotNull),
+				new Column("MetroCode", DbType.String, 255),
 				new Column("County", DbType.String, 255, ColumnProperty.NotNull),
 				new Column("Street", DbType.String, 255, ColumnProperty.NotNull),
-				new Column( "City", DbType.String, 255, ColumnProperty.NotNull),
+				new Column("City", DbType.String, 255, ColumnProperty.NotNull),
 				new Column("ZipCode", DbType.String, 255, ColumnProperty.NotNull),
-				new Column("AreaCode", DbType.String, 255, ColumnProperty.NotNull),
+				new Column("AreaCode", DbType.String, 255),
 				new Column("Latitude", DbType.Single, ColumnProperty.NotNull),
 				new Column("Longitude", DbType.Single, ColumnProperty.NotNull),
 				new Column("MajorLocationId", DbType.Int32, ColumnProperty.NotNull)

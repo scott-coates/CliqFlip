@@ -14,6 +14,7 @@ using CliqFlip.Infrastructure.IO;
 using CliqFlip.Infrastructure.IO.Interfaces;
 using CliqFlip.Infrastructure.Images;
 using CliqFlip.Infrastructure.Images.Interfaces;
+using CliqFlip.Infrastructure.Location.Interfaces;
 using CliqFlip.Infrastructure.Syndication.Interfaces;
 using CliqFlip.Infrastructure.Validation;
 using CliqFlip.Infrastructure.Web.Interfaces;
@@ -34,6 +35,7 @@ namespace CliqFlip.Tasks.TaskImpl
         private readonly ILinqRepository<Conversation> _conversationRepository;
 		private readonly IUserAuthentication _userAuthentication;
         private readonly IEmailService _emailService;
+		private readonly ILocationService _locationService;
 
 		public UserTasks(ILinqRepository<User> repository,
 						 IInterestTasks interestTasks,
@@ -43,7 +45,7 @@ namespace CliqFlip.Tasks.TaskImpl
 						 IFeedFinder feedFinder,
 						 IUserAuthentication userAuthentication,
                          ILinqRepository<Conversation> conversationRepository,
-                         IEmailService emailService)
+                         IEmailService emailService, ILocationService locationService)
 		{
 			_repository = repository;
 			_interestTasks = interestTasks;
@@ -54,6 +56,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			_userAuthentication = userAuthentication;
             _conversationRepository = conversationRepository;
             _emailService = emailService;
+			_locationService = locationService;
 		}
 
 		#region IUserTasks Members
@@ -89,7 +92,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			}).OrderByDescending(x => x.MatchCount).ToList();
 		}
 
-		public User Create(UserDto userToCreate)
+		public User Create(UserDto userToCreate, LocationData location)
 		{
 			var withMatchingNameOrEmail = new AdHoc<User>(x => x.Username == userToCreate.Username || x.Email == userToCreate.Email);
 
@@ -114,12 +117,16 @@ namespace CliqFlip.Tasks.TaskImpl
 				user.AddInterest(interest, userInterest.Sociality);
 			}
 
-			user.Bio = "I ♥ " + string.Join(", ", user.Interests.Select(x => x.Interest.Name));
-			user.Headline = "I am " + user.Username + ", hear me roar!";
+			var majorLocation = _locationService.GetNearestMajorCity(location.Latitude, location.Longitude);
+
+			user.UpdateBio("I ♥ " + string.Join(", ", user.Interests.Select(x => x.Interest.Name)));
+			user.UpdateHeadline("I am " + user.Username + ", hear me roar!");
+			user.UpdateLocation(location, majorLocation);
 
 			user.UpdateCreateDate();
 
 			_repository.Save(user);
+
 			return user;
 		}
 

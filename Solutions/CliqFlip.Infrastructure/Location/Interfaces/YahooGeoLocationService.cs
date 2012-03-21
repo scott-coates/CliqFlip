@@ -54,6 +54,18 @@ namespace CliqFlip.Infrastructure.Location.Interfaces
 			return ParseLocationData(xmlResult);
 		}
 
+		public LocationData GetLocation(string zip)
+		{
+			var retVal = GetLocation(null, null, null, zip);
+
+			if(zip != retVal.ZipCode)
+			{
+				throw new LocationException(zip + " is not a valid zip");
+			}
+
+			return retVal;
+		}
+
 		public LocationData ParseLocationData(string locationData)
 		{
 			LocationData retVal;

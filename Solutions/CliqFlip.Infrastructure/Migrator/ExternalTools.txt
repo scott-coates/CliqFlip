@@ -8,7 +8,7 @@ Initial Directory:	$(SolutionDir)\CliqFlip.Infrastructure\Migrator
 
 Title:				Migrate To
 Command:			C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe
-Arguments:			CliqFlip.targets /t:Migrate /p:SchemaVersion=X /p:Configuration="THIS IS OPTIONAL -> Default: Debug"
+Arguments:			CliqFlip.targets /t:Migrate /p:SchemaVersion=0 /p:Configuration="THIS IS OPTIONAL -> Default: Debug"
 Initial Directory:	$(SolutionDir)\CliqFlip.Infrastructure\Migrator
 [X] Use output window
 [X] Prompt for arguments

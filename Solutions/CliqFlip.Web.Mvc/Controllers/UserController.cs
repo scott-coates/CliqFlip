@@ -1,12 +1,15 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
+using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Exceptions;
 using CliqFlip.Domain.ValueObjects;
+using CliqFlip.Infrastructure.Web.Interfaces;
 using CliqFlip.Web.Mvc.Extensions.Exceptions;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Jeip;
@@ -19,16 +22,18 @@ namespace CliqFlip.Web.Mvc.Controllers
 {
 	public class UserController : Controller
 	{
+		private readonly IHttpContextProvider _httpContextProvider;
 		private readonly IPrincipal _principal;
 		private readonly IUserProfileQuery _userProfileQuery;
 		private readonly IUserTasks _userTasks;
-        private readonly IConversationQuery _conversationQuery;
-        public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IConversationQuery conversationQuery)
+		private readonly IConversationQuery _conversationQuery;
+		public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IConversationQuery conversationQuery, IHttpContextProvider httpContextProvider)
 		{
 			_userTasks = profileTasks;
 			_userProfileQuery = userProfileQuery;
 			_principal = principal;
-            _conversationQuery = conversationQuery;
+			_conversationQuery = conversationQuery;
+			_httpContextProvider = httpContextProvider;
 		}
 
 		public ActionResult Create()
@@ -56,7 +61,14 @@ namespace CliqFlip.Web.Mvc.Controllers
 					profileToCreate.InterestDtos.Add(userInterest);
 				}
 
-				User user = _userTasks.Create(profileToCreate);
+				var locationData = _httpContextProvider.Session[Constants.LOCATION_SESSION_KEY] as LocationData;
+
+				if (locationData == null)
+				{
+					throw new Exception("The location data was not found in the user's session");
+				}
+
+				User user = _userTasks.Create(profileToCreate, locationData);
 
 				//There was a problem creating the account
 				//Username/Email already exists
@@ -227,12 +239,12 @@ namespace CliqFlip.Web.Mvc.Controllers
 		public ActionResult AddSingleInterest(int interestId)
 		{
 			User user = _userTasks.GetUser(_principal.Identity.Name);
-			
+
 			_userTasks.AddInterestToUser(user, interestId);
 
 			return RedirectToAction("Interests");
 		}
-		
+
 		[Authorize]
 		[HttpPost]
 		[Transaction]
@@ -365,72 +377,72 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return View(user);
 		}
 
-        
 
-        [Transaction]
-        [Authorize]
-        public ActionResult StartConversationWith(string username)
-        {
-            return PartialView();
-        }
 
-        [Transaction]
-        [Authorize]
-        [HttpPost]
-        public ActionResult StartConversationWith(StartConversationWithViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                _userTasks.StartConversation(_principal.Identity.Name, model.Username, model.Text);
-                return Json(new { success = true });
-            }
-            return Json(new { success = false });
-        }
+		[Transaction]
+		[Authorize]
+		public ActionResult StartConversationWith(string username)
+		{
+			return PartialView();
+		}
 
-        [Transaction]
-        [Authorize]
-        public ActionResult ReplyToConversation(int id)
-        {
-            var model = new UserReplyToConversationViewModel { Id = id };
-            return PartialView(model);
-        }
+		[Transaction]
+		[Authorize]
+		[HttpPost]
+		public ActionResult StartConversationWith(StartConversationWithViewModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				_userTasks.StartConversation(_principal.Identity.Name, model.Username, model.Text);
+				return Json(new { success = true });
+			}
+			return Json(new { success = false });
+		}
 
-        [HttpPost]
-        [Authorize]
-        [Transaction]
-        public ActionResult ReplyToConversation(UserReplyToConversationViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var message = _userTasks.ReplyToConversation(model.Id, _principal.Identity.Name, model.Text);
-                return PartialView("Message", new MessageViewModel(message));
-            }
-            return new EmptyResult();
-        }
+		[Transaction]
+		[Authorize]
+		public ActionResult ReplyToConversation(int id)
+		{
+			var model = new UserReplyToConversationViewModel { Id = id };
+			return PartialView(model);
+		}
 
-        [Authorize]
-        [Transaction]
-        public ActionResult Inbox()
-        {
-            UserInboxViewModel model = _userProfileQuery.GetUserInbox(_principal);
-            return View(model);
-        }
+		[HttpPost]
+		[Authorize]
+		[Transaction]
+		public ActionResult ReplyToConversation(UserReplyToConversationViewModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				var message = _userTasks.ReplyToConversation(model.Id, _principal.Identity.Name, model.Text);
+				return PartialView("Message", new MessageViewModel(message));
+			}
+			return new EmptyResult();
+		}
 
-        [Authorize]
-        [Transaction]
-        public int NewMessageCount()
-        {
-            return _userTasks.GetUser(_principal.Identity.Name).GetNumberOfUnreadConversations();
-        }
+		[Authorize]
+		[Transaction]
+		public ActionResult Inbox()
+		{
+			UserInboxViewModel model = _userProfileQuery.GetUserInbox(_principal);
+			return View(model);
+		}
 
-        [Authorize]
-        [Transaction]
-        public ActionResult ReadConversation(int id)
-        {
-            var user = _userTasks.GetUser(_principal.Identity.Name);
-            user.ReadConversation(id);
-            var messages = _conversationQuery.GetMessages(id, _principal.Identity.Name);
-            return PartialView(messages);
-        }
+		[Authorize]
+		[Transaction]
+		public int NewMessageCount()
+		{
+			return _userTasks.GetUser(_principal.Identity.Name).GetNumberOfUnreadConversations();
+		}
+
+		[Authorize]
+		[Transaction]
+		public ActionResult ReadConversation(int id)
+		{
+			var user = _userTasks.GetUser(_principal.Identity.Name);
+			user.ReadConversation(id);
+			var messages = _conversationQuery.GetMessages(id, _principal.Identity.Name);
+			return PartialView(messages);
+		}
 	}
 }

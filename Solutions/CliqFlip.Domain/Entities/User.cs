@@ -11,19 +11,19 @@ namespace CliqFlip.Domain.Entities
 	public class User : Entity
 	{
 		private readonly Iesi.Collections.Generic.ISet<UserInterest> _interests;
-        private readonly Iesi.Collections.Generic.ISet<Conversation> _conversations;
-		
-        private UserWebsite _userWebsite;
+		private readonly Iesi.Collections.Generic.ISet<Conversation> _conversations;
+
+		private UserWebsite _userWebsite;
 
 		public virtual IEnumerable<UserInterest> Interests
 		{
 			get { return new List<UserInterest>(_interests).AsReadOnly(); }
 		}
 
-        public virtual IEnumerable<Conversation> Conversations
-        {
-            get { return new List<Conversation>(_conversations).AsReadOnly(); }
-        }
+		public virtual IEnumerable<Conversation> Conversations
+		{
+			get { return new List<Conversation>(_conversations).AsReadOnly(); }
+		}
 
 		/*
 			//if we ever have a collection of images (user.images), we'll need to set cascade.noaction
@@ -34,6 +34,7 @@ namespace CliqFlip.Domain.Entities
 		 */
 
 		public virtual Image ProfileImage { get; set; }
+		public virtual Location Location { get; set; }
 
 
 		public virtual UserWebsite UserWebsite
@@ -58,7 +59,7 @@ namespace CliqFlip.Domain.Entities
 		public User()
 		{
 			_interests = new HashedSet<UserInterest>();
-            _conversations = new HashedSet<Conversation>();
+			_conversations = new HashedSet<Conversation>();
 		}
 
 		public User(string username, string email, string password, string salt)
@@ -184,33 +185,46 @@ namespace CliqFlip.Domain.Entities
 			UpdateLastActivity();
 		}
 
-        public virtual void ReadConversation(int id)
-        {
-            UpdateLastActivity();
-            var conversation = _conversations.SingleOrDefault(x => x.Id == id);
+		public virtual void ReadConversation(int id)
+		{
+			var conversation = _conversations.SingleOrDefault(x => x.Id == id);
 
-            //only mark the conversation as read if the user reading it
-            //is the one who has a new message waiting for them
-            if (conversation != null && conversation.HasNewMessagesFor(this))
-            {
-                conversation.HasUnreadMessages = false;
-            }
-        }
+			//only mark the conversation as read if the user reading it
+			//is the one who has a new message waiting for them
+			if (conversation != null && conversation.HasNewMessagesFor(this))
+			{
+				conversation.HasUnreadMessages = false;
+			}
+			UpdateLastActivity();
+		}
 
-        public virtual Message WriteMessage(string text)
-        {
-            UpdateLastActivity();
-            return new Message(this, text);
-        }
+		public virtual Message WriteMessage(string text)
+		{
+			UpdateLastActivity();
+			return new Message(this, text);
+		}
 
-        public virtual int GetNumberOfUnreadConversations()
-        {
-            return _conversations.Count(x => x.HasNewMessagesFor(this));
-        }
+		public virtual int GetNumberOfUnreadConversations()
+		{
+			return _conversations.Count(x => x.HasNewMessagesFor(this));
+		}
 
-        protected internal virtual void Subscribe(Conversation conversation)
-        {
-            _conversations.Add(conversation);
-        }
-    }
+		protected internal virtual void Subscribe(Conversation conversation)
+		{
+			_conversations.Add(conversation);
+		}
+
+		public virtual void UpdateLocation(LocationData location, MajorLocation majorLocation)
+		{
+			if (Location == null)
+			{
+				Location = new Location();
+			}
+
+			Location.Data = location;
+			Location.MajorLocation = majorLocation;
+
+			UpdateLastActivity();
+		}
+	}
 }
