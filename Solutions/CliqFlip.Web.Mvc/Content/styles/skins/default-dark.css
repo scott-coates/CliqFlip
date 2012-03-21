@@ -1677,7 +1677,7 @@ div.conversation.unread
 }
 #conversations
 {
-    padding-left: 130px;
+	float: left;
     width: 650px;
 }
         
