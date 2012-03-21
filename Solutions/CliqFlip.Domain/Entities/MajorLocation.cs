@@ -13,7 +13,6 @@ namespace CliqFlip.Domain.Entities
 		public virtual string Longitude { get; set; }
 		public virtual string SlugSpecificSubset { get; set; }
 		public virtual string NameSpecificSubset { get; set; }
-		public virtual string Name3 { get; set; }
 		public virtual string LatitudeSpecificSubset { get; set; }
 		public virtual string LongitudeSpecificSubset { get; set; }
 	}
