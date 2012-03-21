@@ -1,4 +1,5 @@
-﻿using CliqFlip.Domain.ValueObjects;
+﻿using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ValueObjects;
 
 namespace CliqFlip.Infrastructure.Location.Interfaces
 {
@@ -6,5 +7,6 @@ namespace CliqFlip.Infrastructure.Location.Interfaces
 	{
 		LocationData GetLocation(string street = null, string city = null, string state = null, string zip = null);
 		LocationData ParseLocationData(string locationData);
+		MajorLocation GetNearestMajorCity(float latitude, float longitude);
 	}
 }

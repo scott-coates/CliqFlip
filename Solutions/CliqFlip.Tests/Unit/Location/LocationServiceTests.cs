@@ -16,7 +16,7 @@ namespace CliqFlip.Tests.Unit.Location
 		[SetUp]
 		public void Setup()
 		{
-			_locationService = new YahooGeoLocationService();
+			_locationService = new YahooGeoLocationService(null);
 		}
 
 		#endregion
@@ -59,7 +59,7 @@ namespace CliqFlip.Tests.Unit.Location
 		}
 
 		[TestCase("92657", "Newport Coast", "California")]
-		[TestCase("Empty",null, null,ExpectedException = typeof(LocationException),ExpectedMessage = "No location parameters")]
+		[TestCase("Empty", null, null, ExpectedException = typeof(LocationException), ExpectedMessage = "No location parameters")]
 		[TestCase("00000", null, null, ExpectedException = typeof(LocationException), ExpectedMessage = "No locations were found")]
 		public void LocationServiceFindsCorrectLocation(string zip, string expectedCity, string expectedState)
 		{

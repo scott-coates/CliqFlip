@@ -89,6 +89,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Integration\Location\LocationServiceTests.cs" />
     <Compile Include="NHibernate\MappingTest.cs" />
     <Compile Include="NHibernate\DbSchemaTest.cs" />
     <Compile Include="Integration\Email\SESEmailTests.cs" />
