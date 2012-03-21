@@ -33,7 +33,8 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
 		{
 			public string InterestName { get; set; }
 			public bool IsMatch { get; set; }
-		}
+            public float? Passion { get; set; }
+        }
 	}
 
 

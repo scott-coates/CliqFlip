@@ -37,8 +37,9 @@ namespace CliqFlip.Web.Mvc.Queries
 											.Select(x => new UsersByInterestViewModel.IndividualResultInterestViewModel
 															{
 																InterestName = x.Name,
-																IsMatch = aliasCollection.Contains(x.Slug)
-															}).OrderByDescending(x => x.IsMatch).Take(5).ToList()
+																IsMatch = aliasCollection.Contains(x.Slug),
+                                                                Passion = x.Passion
+															}).OrderByDescending(x => x.IsMatch).ThenByDescending(x => x.Passion).Take(5).ToList()
 									});
 			}
 
