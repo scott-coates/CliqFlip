@@ -90,6 +90,7 @@
     <Compile Include="Dtos\ImageFilenamesDto.cs" />
     <Compile Include="Dtos\RankedInterestDto.cs" />
     <Compile Include="Entities\Conversation.cs" />
+    <Compile Include="Entities\MajorLocation.cs" />
     <Compile Include="Entities\Image.cs" />
     <Compile Include="Entities\Message.cs" />
     <Compile Include="Exceptions\ErrorInfo.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Search\FuzzySearch.cs" />
+    <Compile Include="Entities\Location.cs" />
     <Compile Include="ValueObjects\UserWebsite.cs" />
     <Compile Include="ValueObjects\ImageData.cs" />
     <Compile Include="ValueObjects\UserInterestOption.cs" />

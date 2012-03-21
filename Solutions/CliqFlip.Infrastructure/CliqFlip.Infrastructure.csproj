@@ -153,6 +153,7 @@
     <Compile Include="Logging\Interfaces\ILogger.cs" />
     <Compile Include="Migrator\ConditionalMigration.cs" />
     <Compile Include="Migrator\MigrationConstants.cs" />
+    <Compile Include="Migrator\Migrations\__634678604731617023_CreateMajorLocationsTables.cs" />
     <Compile Include="Migrator\Migrations\__634667528865456789_CreateConversationTables.cs" />
     <Compile Include="Migrator\Migrations\__634666644898137456_CreateInterestImagesTable.cs" />
     <Compile Include="Migrator\Migrations\__634654274650150024_AddFacebookUsername.cs" />
