@@ -56,7 +56,7 @@ namespace CliqFlip.Infrastructure.Location.Interfaces
 				{
 					throw new LocationException(xdoc.Element("ErrorMessage").Value);
 				}
-				else if (xdoc.Element("Error").Value.ToLowerInvariant() == "0")
+				else if (xdoc.Element("Found").Value.ToLowerInvariant() == "0")
 				{
 					throw new LocationException("No locations were found");
 				}
