@@ -13,6 +13,11 @@ namespace CliqFlip.Web.Mvc
 			//Error handling routes are in the MagicalUnicornErrorHandling.cs file
 
 			routes.MapRoute(
+				"User Landing Page",
+				"u",
+				new { controller = "User", action = "Landing" });
+
+			routes.MapRoute(
 				"Users",
 				"Users/{username}/{action}",
 				new {controller = "User", action = "Index"});

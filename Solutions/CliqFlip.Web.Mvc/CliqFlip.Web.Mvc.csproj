@@ -188,6 +188,7 @@
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
     <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
+    <Compile Include="ViewModels\User\UserLandingPageViewModel.cs" />
     <Compile Include="ViewModels\User\MessageViewModel.cs" />
     <Compile Include="ViewModels\User\UserReplyToConversationViewModel.cs" />
     <Compile Include="ViewModels\User\StartConversationWithViewModel.cs" />
@@ -660,6 +661,7 @@
     <Content Include="Views\User\ReplyToConversation.cshtml" />
     <Content Include="Views\User\Message.cshtml" />
     <Content Include="Views\User\ReadConversation.cshtml" />
+    <Content Include="Views\User\Landing.cshtml" />
     <None Include="Views\User\StartConversationWith.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

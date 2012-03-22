@@ -437,6 +437,17 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 		[Authorize]
 		[Transaction]
+		public ActionResult Landing()
+		{
+			RouteData.Values["username"] = _principal.Identity.Name;
+			
+			var viewModel = new UserLandingPageViewModel {Username = _principal.Identity.Name};
+			
+			return View(viewModel);
+		}
+
+		[Authorize]
+		[Transaction]
 		public ActionResult ReadConversation(int id)
 		{
 			var user = _userTasks.GetUser(_principal.Identity.Name);
