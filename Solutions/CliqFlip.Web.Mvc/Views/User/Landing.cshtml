@@ -9,18 +9,31 @@
 	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/autoSuggest.css")" />
 }
 
-<h2>title</h2>
-<div class="wrapper">
-	<div class="inner">
-		<div class="tryout">
-			<div class="header">
-				Welcome, @Model.Username
-			</div>
-			<div class="subheader">
-				@Model.Headline</div>
-			@{ Html.RenderAction("InterestSearch", "Search"); }
+
+<div style="padding: 10px;">
+	<a href="#" style="display: inline-block;float: left;margin-right:60px;">
+		<div style="background: url('/Content/img/lower-1.png') no-repeat; background-position: center top; background-size: 87px;  padding-top: 110px; text-align: center; width: 110px;">
+			<h2>
+				Test</h2>
 		</div>
+	</a>
+	<a href="#" style="display: inline-block;float: left;">
+		<div style="background: url('/Content/img/lower-1.png') no-repeat; background-position: center top; background-size: 87px;  padding-top: 110px; text-align: center; width: 110px;">
+			<h2>
+				Test</h2>
+		</div>
+	</a>
+	<div class="clear"></div>
+</div>
+			
+
+<div class="tryout">
+	<div class="header">
+		Welcome, @Model.Username
 	</div>
+	<div class="subheader">
+		@Model.Headline</div>
+	@{ Html.RenderAction("InterestSearch", "Search"); }
 </div>
 
 @section scripts
