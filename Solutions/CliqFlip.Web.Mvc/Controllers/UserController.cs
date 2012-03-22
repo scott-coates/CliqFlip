@@ -439,10 +439,14 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult Landing()
 		{
-			RouteData.Values["username"] = _principal.Identity.Name;
-			
-			var viewModel = new UserLandingPageViewModel {Username = _principal.Identity.Name};
-			
+			var username = _principal.Identity.Name;
+
+			var user = _userTasks.GetUser(username);
+
+			RouteData.Values["username"] = username;
+
+			var viewModel = new UserLandingPageViewModel { Username = username, Headline = user.Headline };
+
 			return View(viewModel);
 		}
 

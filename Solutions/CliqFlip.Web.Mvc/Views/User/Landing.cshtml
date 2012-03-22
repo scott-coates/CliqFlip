@@ -4,4 +4,38 @@
 	ViewBag.Title = "Welcome " + Model.Username;
 }
 
+@section  styles
+{
+	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/autoSuggest.css")" />
+}
+
 <h2>title</h2>
+<div class="wrapper">
+	<div class="inner">
+		<div class="tryout">
+			<div class="header">
+				Welcome, @Model.Username
+			</div>
+			<div class="subheader">
+				@Model.Headline</div>
+			@{ Html.RenderAction("InterestSearch", "Search"); }
+		</div>
+	</div>
+</div>
+
+@section scripts
+{
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.autoSuggest.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.tagcloud.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/search/interest-search.js")"> </script>
+	<script type="text/javascript">
+		@*TODO: implement something without duplciation - http://stackoverflow.com/questions/5433531/using-sections-in-editor-display-templates/5433722#5433722 *@
+		$(function() {
+			InitAutoSuggest('@(Html.Raw(Url.Action("Interest", "Search")))');
+
+			InitTagCloud();
+
+			ChangeSearchQueryParamName();
+		});
+	</script>
+}

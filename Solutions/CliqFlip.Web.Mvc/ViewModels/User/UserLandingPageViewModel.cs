@@ -11,5 +11,6 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 	public class UserLandingPageViewModel
 	{
 		public string Username { get; set; }
+		public string Headline { get; set; }
     }
 }
