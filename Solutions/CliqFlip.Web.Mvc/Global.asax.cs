@@ -8,7 +8,7 @@ using Amazon.SimpleEmail;
 using Castle.Windsor;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Infrastructure.Exceptions;
-using CliqFlip.Infrastructure.NHibernateMaps;
+using CliqFlip.Infrastructure.NHibernate.Maps;
 using CliqFlip.Web.Mvc.CastleWindsor;
 using CliqFlip.Web.Mvc.Controllers;
 using CommonServiceLocator.WindsorAdapter;

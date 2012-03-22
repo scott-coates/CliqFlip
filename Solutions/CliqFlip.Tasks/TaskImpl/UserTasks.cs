@@ -15,6 +15,7 @@ using CliqFlip.Infrastructure.IO.Interfaces;
 using CliqFlip.Infrastructure.Images;
 using CliqFlip.Infrastructure.Images.Interfaces;
 using CliqFlip.Infrastructure.Location.Interfaces;
+using CliqFlip.Infrastructure.Repositories.Interfaces;
 using CliqFlip.Infrastructure.Syndication.Interfaces;
 using CliqFlip.Infrastructure.Validation;
 using CliqFlip.Infrastructure.Web.Interfaces;
@@ -26,6 +27,7 @@ namespace CliqFlip.Tasks.TaskImpl
 {
 	public class UserTasks : IUserTasks
 	{
+		private readonly IUserRepository _userRepository;
 		private readonly IFeedFinder _feedFinder;
 		private readonly IFileUploadService _fileUploadService;
 		private readonly IHtmlService _htmlService;
@@ -45,7 +47,7 @@ namespace CliqFlip.Tasks.TaskImpl
 						 IFeedFinder feedFinder,
 						 IUserAuthentication userAuthentication,
                          ILinqRepository<Conversation> conversationRepository,
-                         IEmailService emailService, ILocationService locationService)
+                         IEmailService emailService, ILocationService locationService, IUserRepository userRepository)
 		{
 			_repository = repository;
 			_interestTasks = interestTasks;
@@ -57,6 +59,7 @@ namespace CliqFlip.Tasks.TaskImpl
             _conversationRepository = conversationRepository;
             _emailService = emailService;
 			_locationService = locationService;
+			_userRepository = userRepository;
 		}
 
 		#region IUserTasks Members
@@ -162,6 +165,12 @@ namespace CliqFlip.Tasks.TaskImpl
 		{
 			var adhoc = new AdHoc<User>(x => x.Username == username);
 			return _repository.FindOne(adhoc);
+		}
+
+		public User GetSuggestUser(string username)
+		{
+			var user = GetUser(username);
+			return _userRepository.GetSuggestedUser(user);
 		}
 
 		public void SaveInterestImage(User user, HttpPostedFileBase interestImage, int userInterestId, string description)

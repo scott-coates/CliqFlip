@@ -4,7 +4,7 @@ using FluentNHibernate;
 using FluentNHibernate.Automapping;
 using SharpArch.Domain.DomainModel;
 
-namespace CliqFlip.Infrastructure.NHibernateMaps
+namespace CliqFlip.Infrastructure.NHibernate.Maps
 {
 	public class AutomappingConfiguration : DefaultAutomappingConfiguration
 	{

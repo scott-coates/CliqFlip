@@ -1,4 +1,4 @@
-﻿using CliqFlip.Infrastructure.NHibernateMaps;
+﻿using CliqFlip.Infrastructure.NHibernate.Maps;
 using NHibernate.Dialect;
 using NHibernate.Tool.hbm2ddl;
 using NUnit.Framework;

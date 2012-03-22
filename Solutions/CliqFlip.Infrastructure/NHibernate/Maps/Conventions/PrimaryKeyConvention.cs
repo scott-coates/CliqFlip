@@ -1,10 +1,12 @@
-﻿namespace CliqFlip.Infrastructure.NHibernateMaps.Conventions
+﻿using FluentNHibernate.Conventions;
+
+namespace CliqFlip.Infrastructure.NHibernate.Maps.Conventions
 {
     #region Using Directives
 
-    using FluentNHibernate.Conventions;
+	
 
-    #endregion
+	#endregion
 
     public class PrimaryKeyConvention : IIdConvention
     {

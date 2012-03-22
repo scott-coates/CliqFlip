@@ -171,21 +171,25 @@
     <Compile Include="Migrator\Migrations\__634653560469431604_AddBlogUrls.cs" />
     <Compile Include="Migrator\Migrations\__634653694060482576_AddActivity.cs" />
     <Compile Include="Migrator\Migrations\__634662457651019146_AddElmahDDL.cs" />
-    <Compile Include="NHibernateMaps\AutomappingConfiguration.cs" />
-    <Compile Include="NHibernateMaps\Conventions\ComponentConvention.cs" />
-    <Compile Include="NHibernateMaps\Conventions\ReferenceConvention.cs" />
-    <Compile Include="NHibernateMaps\Conventions\PropertyConvention.cs" />
-    <Compile Include="NHibernateMaps\Conventions\CustomForeignKeyConvention.cs" />
-    <Compile Include="NHibernateMaps\Conventions\HasManyConvention.cs" />
-    <Compile Include="NHibernateMaps\Conventions\PrimaryKeyConvention.cs" />
-    <Compile Include="NHibernateMaps\Conventions\TableNameConvention.cs" />
-    <Compile Include="NHibernateMaps\AutoPersistenceModelGenerator.cs" />
+    <Compile Include="NHibernate\Criteria\RandomOrder.cs" />
+    <Compile Include="NHibernate\Extensions\NHibernateExtensions.cs" />
+    <Compile Include="NHibernate\Maps\AutomappingConfiguration.cs" />
+    <Compile Include="NHibernate\Maps\Conventions\ComponentConvention.cs" />
+    <Compile Include="NHibernate\Maps\Conventions\ReferenceConvention.cs" />
+    <Compile Include="NHibernate\Maps\Conventions\PropertyConvention.cs" />
+    <Compile Include="NHibernate\Maps\Conventions\CustomForeignKeyConvention.cs" />
+    <Compile Include="NHibernate\Maps\Conventions\HasManyConvention.cs" />
+    <Compile Include="NHibernate\Maps\Conventions\PrimaryKeyConvention.cs" />
+    <Compile Include="NHibernate\Maps\Conventions\TableNameConvention.cs" />
+    <Compile Include="NHibernate\Maps\AutoPersistenceModelGenerator.cs" />
     <Compile Include="Common\PasswordHelper.cs" />
-    <Compile Include="NHibernateMaps\Overrides\ConversationMappingOverride.cs">
+    <Compile Include="NHibernate\Maps\Overrides\ConversationMappingOverride.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="NHibernateMaps\Overrides\ImageMappingOverride.cs" />
-    <Compile Include="NHibernateMaps\Overrides\UserInterestMappingOverride.cs" />
+    <Compile Include="NHibernate\Maps\Overrides\ImageMappingOverride.cs" />
+    <Compile Include="NHibernate\Maps\Overrides\UserInterestMappingOverride.cs" />
+    <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Syndication\FeedFinder.cs" />
     <Compile Include="Syndication\Interfaces\IFeedFinder.cs" />
     <Compile Include="Validation\UrlValidation.cs" />

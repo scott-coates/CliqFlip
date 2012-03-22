@@ -1,10 +1,11 @@
 ﻿using FluentNHibernate.Conventions.Inspections;
+using FluentNHibernate.Conventions;
 
-namespace CliqFlip.Infrastructure.NHibernateMaps.Conventions
+namespace CliqFlip.Infrastructure.NHibernate.Maps.Conventions
 {
 	#region Using Directives
 
-	using FluentNHibernate.Conventions;
+	
 
 	#endregion
 

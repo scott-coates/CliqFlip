@@ -18,6 +18,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		bool Login(string username, string password, bool stayLoggedIn);
 
 		User GetUser(string username);
+		User GetSuggestUser(string username);
 
 		void SaveProfileImage(User user, HttpPostedFileBase profileImage);
 		void SaveInterestImage(User user, HttpPostedFileBase profileImage, int userInterestId, string description);

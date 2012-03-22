@@ -1,15 +1,13 @@
 ﻿using FluentNHibernate.Conventions.Instances;
+using FluentNHibernate.Conventions;
 
-namespace CliqFlip.Infrastructure.NHibernateMaps.Conventions
+namespace CliqFlip.Infrastructure.NHibernate.Maps.Conventions
 {
     #region Using Directives
 
-    using System;
+	
 
-    using FluentNHibernate;
-    using FluentNHibernate.Conventions;
-
-    #endregion
+	#endregion
 
     public class PropertyConvention : IPropertyConvention 
     {

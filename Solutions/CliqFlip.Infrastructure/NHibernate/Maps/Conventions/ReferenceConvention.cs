@@ -1,7 +1,7 @@
 ﻿using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.Instances;
 
-namespace CliqFlip.Infrastructure.NHibernateMaps.Conventions
+namespace CliqFlip.Infrastructure.NHibernate.Maps.Conventions
 {
 
 	#region Using Directives

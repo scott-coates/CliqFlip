@@ -1,20 +1,16 @@
 ﻿using CliqFlip.Domain.Entities;
+using System;
+using CliqFlip.Infrastructure.NHibernate.Maps.Conventions;
+using FluentNHibernate.Automapping;
+using FluentNHibernate.Conventions;
+using SharpArch.Domain.DomainModel;
+using SharpArch.NHibernate.FluentNHibernate;
 
-namespace CliqFlip.Infrastructure.NHibernateMaps
+namespace CliqFlip.Infrastructure.NHibernate.Maps
 {
 	#region Using Directives
 
-	using System;
-
-	using Conventions;
-
-	using Domain;
-
-	using FluentNHibernate.Automapping;
-	using FluentNHibernate.Conventions;
-
-	using SharpArch.Domain.DomainModel;
-	using SharpArch.NHibernate.FluentNHibernate;
+	
 
 	#endregion
 

@@ -3,7 +3,7 @@ using CliqFlip.Domain.Entities;
 using CliqFlip.Infrastructure.Email;
 using CliqFlip.Infrastructure.Email.Interfaces;
 using CliqFlip.Infrastructure.Location.Interfaces;
-using CliqFlip.Infrastructure.NHibernateMaps;
+using CliqFlip.Infrastructure.NHibernate.Maps;
 using CliqFlip.Web.Mvc.CastleWindsor;
 using CommonServiceLocator.WindsorAdapter;
 using Microsoft.Practices.ServiceLocation;

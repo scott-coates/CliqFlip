@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CliqFlip.Domain.Entities;
+﻿using CliqFlip.Domain.Entities;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;
 
-namespace CliqFlip.Infrastructure.NHibernateMaps.Overrides
+namespace CliqFlip.Infrastructure.NHibernate.Maps.Overrides
 {
 	public class UserInterestMappingOverride: IAutoMappingOverride<UserInterest>
 	{

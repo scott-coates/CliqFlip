@@ -1,6 +1,6 @@
 ﻿using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.ValueObjects;
-using CliqFlip.Infrastructure.NHibernateMaps;
+using CliqFlip.Infrastructure.NHibernate.Maps;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 using NUnit.Framework;
