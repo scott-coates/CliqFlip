@@ -1,0 +1,20 @@
+﻿@using CliqFlip.Web.Mvc.ViewModels.Search
+@model InterestSearchViewModel
+
+<div class="tryout-search">
+	<div class="tryout-search-input">
+		@using (Html.BeginForm("Index", "Search", FormMethod.Get))
+		{
+			<div class="search">
+				<input type="text" class="search_box" id="interestSearch" />
+				<input class="search_submit" value="" type="submit" />
+			</div>
+		}
+	</div>
+	<div class="tag-cloud" id="interest-tag-cloud">
+		@foreach (InterestSearchViewModel.TagCloudInterestsViewModel tag in Model.TagCloudInterests)
+		{
+			<a href="javascript:void(0)" value="@tag.Slug" rel="@tag.Weight">@tag.Name</a>
+		}
+	</div>
+</div>

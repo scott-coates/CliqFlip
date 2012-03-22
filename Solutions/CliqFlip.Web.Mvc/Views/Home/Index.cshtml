@@ -1,5 +1,5 @@
-﻿@using CliqFlip.Web.Mvc.ViewModels.Home
-@model CliqFlip.Web.Mvc.ViewModels.Home.IndexViewModel
+﻿@using CliqFlip.Web.Mvc.ViewModels.Search
+@model InterestSearchViewModel
 @{
 	ViewBag.Title = "CliqFlip - Discover More";
 }
@@ -17,23 +17,7 @@
 			</div>
 			<div class="subheader">
 				Why don't you give it a try?</div>
-			<div class="tryout-search">
-				<div class="tryout-search-input">
-					@using (Html.BeginForm("Index", "Search", FormMethod.Get))
-					{
-						<div class="search">
-							<input type="text" class="search_box" id="interestSearch" />
-							<input class="search_submit" value="" type="submit" />
-						</div>
-					}
-				</div>
-				<div class="tag-cloud" id="interest-tag-cloud">
-					@foreach (IndexViewModel.TagCloudInterestsViewModel tag in Model.TagCloudInterests)
-					{
-						<a href="javascript:void(0)" value="@tag.Slug" rel="@tag.Weight">@tag.Name</a>
-					}
-				</div>
-			</div>
+			@{ Html.RenderAction("InterestSearch", "Search"); }
 		</div>
 	</div>
 </div>
@@ -72,15 +56,15 @@
 </div>
 <!-- SERVICES BOX END -->
 <div class="clear"></div>
-
 @section scripts
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.autoSuggest.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.tagcloud.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/home/home.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/search/interest-search.js")"> </script>
 	<script type="text/javascript">
+		@*TODO: implement something without duplciation - http://stackoverflow.com/questions/5433531/using-sections-in-editor-display-templates/5433722#5433722 *@
 		$(function() {
-			InitAutoSuggest(@(Html.Raw(Model.KeywordSearchUrl)));
+			InitAutoSuggest('@(Html.Raw(Url.Action("Interest","Search")))');
 
 			InitTagCloud();
 

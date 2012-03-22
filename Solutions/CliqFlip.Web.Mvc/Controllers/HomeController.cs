@@ -2,7 +2,7 @@
 using System.Security.Principal;
 using System.Web.Mvc;
 using CliqFlip.Domain.Contracts.Tasks;
-using CliqFlip.Web.Mvc.ViewModels.Home;
+using CliqFlip.Web.Mvc.ViewModels.Search;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
@@ -23,26 +23,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				return Redirect("~/u");
 			}
-			else
-			{
-				var viewModel = new IndexViewModel
-				{
-					//TODO: Put this in a query - like how we do with the conversation controller
-					KeywordSearchUrl = "\"" + Url.Action("Interest", "Search") + "\"",
-					TagCloudInterests = _interestTasks
-						.GetMostPopularInterests()
-						.OrderBy(x => x.Name)
-						.Select(x => new IndexViewModel.TagCloudInterestsViewModel
 
-						{
-							Name = x.Name,
-							Slug = x.Slug,
-							Weight = x.Count
-						}).ToList()
-				};
-
-				return View(viewModel);
-			}
+			return View();
 		}
 	}
 }

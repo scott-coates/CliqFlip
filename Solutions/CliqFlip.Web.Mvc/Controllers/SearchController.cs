@@ -5,7 +5,6 @@ using System.Threading;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
-using CliqFlip.Web.Mvc.ViewModels.Home;
 using CliqFlip.Web.Mvc.ViewModels.Search;
 using Newtonsoft.Json;
 using SharpArch.NHibernate.Web.Mvc;
@@ -55,6 +54,28 @@ namespace CliqFlip.Web.Mvc.Controllers
 			};
 
 			return retVal;
+		}
+
+		[Transaction]
+		[ChildActionOnly]
+		public ActionResult InterestSearch()
+		{
+			var viewModel = new InterestSearchViewModel
+			{
+				//TODO: Put this in a query - like how we do with the conversation controller
+				TagCloudInterests = _interestTasks
+					.GetMostPopularInterests()
+					.OrderBy(x => x.Name)
+					.Select(x => new InterestSearchViewModel.TagCloudInterestsViewModel
+
+					{
+						Name = x.Name,
+						Slug = x.Slug,
+						Weight = x.Count
+					}).ToList()
+			};
+
+			return PartialView(viewModel);
 		}
 	}
 }

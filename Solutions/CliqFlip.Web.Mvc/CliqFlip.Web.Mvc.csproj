@@ -186,7 +186,7 @@
     <Compile Include="ViewModels\Jeip\JeipSaveResponseViewModel.cs" />
     <Compile Include="ViewModels\Jeip\JeipSaveTextViewModel.cs" />
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
-    <Compile Include="ViewModels\Home\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Search\InterestSearchViewModel.cs" />
     <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
     <Compile Include="ViewModels\User\UserLandingPageViewModel.cs" />
     <Compile Include="ViewModels\User\MessageViewModel.cs" />
@@ -478,7 +478,7 @@
     <Content Include="Content\js\colorbox\jquery.colorbox.js" />
     <Content Include="Content\js\core.js" />
     <Content Include="Content\js\global.js" />
-    <Content Include="Content\js\home\home.js" />
+    <Content Include="Content\js\search\interest-search.js" />
     <Content Include="Content\js\jquery.jeip.js" />
     <Content Include="Content\js\jquery.json.js" />
     <Content Include="Content\js\raphael\graffle.js" />
@@ -662,6 +662,7 @@
     <Content Include="Views\User\Message.cshtml" />
     <Content Include="Views\User\ReadConversation.cshtml" />
     <Content Include="Views\User\Landing.cshtml" />
+    <Content Include="Views\Search\InterestSearch.cshtml" />
     <None Include="Views\User\StartConversationWith.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
