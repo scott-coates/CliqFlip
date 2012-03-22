@@ -240,7 +240,7 @@ INSERT MajorLocations(slug,name,country,timezone,timezoneOffsetInSeconds,Latitud
 				new Column("MajorLocationId", DbType.Int32, ColumnProperty.NotNull)
 			});
 
-			Database.AddColumn("Users", "LocationId", DbType.Int32);
+			Database.AddColumn("Users", "LocationId", DbType.Int32, ColumnProperty.NotNull);
 
 			Database.AddForeignKey("FK_Users_Locations", "Users", "LocationId", "Locations", "Id");
 			Database.AddForeignKey("FK_Locations_MajorLocations", "Locations", "MajorLocationId", "MajorLocations", "Id");
