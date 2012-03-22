@@ -455,7 +455,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		public ActionResult Flip()
 		{
 			var username = _principal.Identity.Name;
-			var nextUser = _userTasks.GetSuggestUser(username);
+			var nextUser = _userTasks.GetSuggestedUser(username);
 
 			return RedirectToAction("Index", new { username = nextUser.Username });
 		}

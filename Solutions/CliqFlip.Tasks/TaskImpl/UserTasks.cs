@@ -167,7 +167,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			return _repository.FindOne(adhoc);
 		}
 
-		public User GetSuggestUser(string username)
+		public User GetSuggestedUser(string username)
 		{
 			var user = GetUser(username);
 			return _userRepository.GetSuggestedUser(user);
