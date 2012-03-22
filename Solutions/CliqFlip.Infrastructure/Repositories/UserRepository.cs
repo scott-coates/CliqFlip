@@ -15,7 +15,7 @@ namespace CliqFlip.Infrastructure.Repositories
 		{
 			User retVal;
 			int rand = new Random().Next(100);
-			bool onlyLocal = rand < 75;
+			bool onlyLocal = rand <= 75;
 
 			IQueryOver<User, User> query = Session.QueryOver<User>()
 				.Where(x => x.Id != user.Id);
