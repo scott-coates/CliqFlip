@@ -26,7 +26,7 @@
 		<Copy SourceFiles="@(MySourceFiles)" DestinationFolder="$(ConfigDir)"/>
 		<Delete Files="@(FilesToRemove)"/>
 		<RemoveDir  Directories="$(ConfigDir)\Alpha;$(ConfigDir)\Beta"/>
-		<MSBuild Projects="..\CliqFlip.Infrastructure\Migrator\CliqFlip.targets" Targets="Migrate" Properties="Configuration=Release"/>
+		<MSBuild Projects="..\CliqFlip.Infrastructure\Migrator\CliqFlip.targets" Targets="Migrate" Properties="Configuration=Debug"/>
 	</Target>
 
 </Project>
