@@ -30,10 +30,6 @@
 		<ConvertToAbsolutePath Paths="$(OutDir)">
 			<Output TaskParameter="AbsolutePaths" PropertyName="Source_Dir_Abs"/>
 		</ConvertToAbsolutePath>
-		<Message Text="!!!!!!!!!!!!!!!!!!!"/>
-		<Message Text='$(OutDir) asdfasdfasdf' />
-		<Message Text='Copying "$(Source_Dir_Abs)" to "$(OutDir)".' />
-		<Message Text="$(Source_Dir_Abs)/CliqFlip.Infrastructure.dll"/>
 		<Migrate Provider="SqlServer2005"
 				Connectionstring="@(ConnectionString)"
 						 Migrations="$(Source_Dir_Abs)/CliqFlip.Infrastructure.dll	"
