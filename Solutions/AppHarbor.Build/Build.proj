@@ -7,13 +7,25 @@
   <PropertyGroup>
 		<MSBuildExtensionPack>..\..\ReferencedAssemblies\MSBuild\MSBuild.ExtensionPack.tasks</MSBuildExtensionPack>
 		<ExtensionTasksPath>..\..\ReferencedAssemblies\MSBuild\</ExtensionTasksPath>
+		<ConfigDir>..\CliqFlip.Web.Mvc\Configuration</ConfigDir>
   </PropertyGroup>
 
 	<Import Project="$(MSBuildExtensionPack)"/>
 
   <Target Name="All" DependsOnTargets="Build" />
 
+
+	<ItemGroup>
+		<MySourceFiles Include="$(ConfigDir)\Beta\*.*"/>
+		<FilesToRemove Include="$(ConfigDir)\*.default"/>
+		<FilesToRemove Include="$(ConfigDir)\*.bat"/>
+	</ItemGroup>
+
+
 	<Target Name="Build">
+		<Copy SourceFiles="@(MySourceFiles)" DestinationFolder="$(ConfigDir)"/>
+		<Delete Files="@(FilesToRemove)"/>
+		<RemoveDir  Directories="$(ConfigDir)\Alpha;$(ConfigDir)\Beta"/>
 	</Target>
 
 </Project>
