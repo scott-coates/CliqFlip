@@ -22,7 +22,7 @@
 		<FilesToRemove Include="$(WebConfigDir)\*.default"/>
 		<FilesToRemove Include="$(WebConfigDir)\*.bat"/>
 		<FilesToRemove Include="$(InfraConfigDir)\*.bat"/>
-		<FilesToRemove Include="$(InfraConfigDir)\*.bat"/>
+		<FilesToRemove Include="$(InfraConfigDir)\*.default"/>
 		<DirectoriesToRemove Include="$(WebConfigDir)\Alpha"/>
 		<DirectoriesToRemove Include="$(WebConfigDir)\Beta"/>
 		<DirectoriesToRemove Include="$(InfraConfigDir)\Alpha"/>
