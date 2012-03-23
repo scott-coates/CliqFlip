@@ -8,7 +8,6 @@
 
 	<Target Name="Migrate">
 
-		<Message Text="OUT DIR ============> $(OutDir)"/>
 		<CreateProperty Value="-1"  Condition="'$(SchemaVersion)'==''">
 			<Output TaskParameter="Value" PropertyName="SchemaVersion"/>
 		</CreateProperty>
