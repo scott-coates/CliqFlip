@@ -9,6 +9,7 @@ namespace CliqFlip.Infrastructure.Repositories
 {
 	public class UserRepository : LinqRepository<User>, IUserRepository
 	{
+		//TODO: All data logic in the user tasks should be moved here
 		#region IUserRepository Members
 
 		public User GetSuggestedUser(User user)
@@ -37,7 +38,7 @@ namespace CliqFlip.Infrastructure.Repositories
 					.SingleOrDefault();
 			}
 
-			return retVal;
+			return retVal ?? user;
 		}
 
 		#endregion
