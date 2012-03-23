@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Project ToolsVersion="4.0" DefaultTargets="All" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<Import Project="$(MSBuildProjectDirectory)\properties\build.properties" />
+
+	<PropertyGroup>
+		<MSBuildExtensionPack>..\..\ReferencedAssemblies\MSBuild\MSBuild.ExtensionPack.tasks</MSBuildExtensionPack>
+		<ExtensionTasksPath>..\..\ReferencedAssemblies\MSBuild\</ExtensionTasksPath>
+		<WebConfigDir>..\CliqFlip.Web.Mvc\Configuration</WebConfigDir>
+		<InfraConfigDir>..\CliqFlip.Infrastructure\Configuration</InfraConfigDir>
+	</PropertyGroup>
+
+	<Import Project="$(MSBuildExtensionPack)"/>
+
+	<Target Name="All" DependsOnTargets="Build" />
+
+
+	<ItemGroup>
+		<FilesToRemove Include="$(WebConfigDir)\*.default"/>
+		<FilesToRemove Include="$(WebConfigDir)\*.bat"/>
+		<FilesToRemove Include="$(InfraConfigDir)\*.bat"/>
+		<FilesToRemove Include="$(InfraConfigDir)\*.default"/>
+		<DirectoriesToRemove Include="$(WebConfigDir)\Alpha"/>
+		<DirectoriesToRemove Include="$(WebConfigDir)\Beta"/>
+		<DirectoriesToRemove Include="$(InfraConfigDir)\Alpha"/>
+		<DirectoriesToRemove Include="$(InfraConfigDir)\Beta"/>
+	</ItemGroup>
+
+
+	<Target Name="Build">
+		<Delete Files="@(FilesToRemove)"/>
+		<RemoveDir Directories="@(DirectoriesToRemove)"/>
+		<MSBuild Projects="..\CliqFlip.Infrastructure\Migrator\CliqFlip.targets" Targets="Migrate" Properties="Configuration=Release"/>
+	</Target>
+
+</Project>

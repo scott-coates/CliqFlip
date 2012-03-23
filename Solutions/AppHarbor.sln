@@ -21,7 +21,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliqFlip.Web.Mvc", "CliqFli
 		{8B4117C9-4C7B-4EF8-9AAD-6099AB485E63} = {8B4117C9-4C7B-4EF8-9AAD-6099AB485E63}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHarbor.Build", "AppHarbor.Build\AppHarbor.Build.csproj", "{8B4117C9-4C7B-4EF8-9AAD-6099AB485E63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHarbor.PreBuild", "AppHarbor.PreBuild\AppHarbor.PreBuild.csproj", "{8B4117C9-4C7B-4EF8-9AAD-6099AB485E63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHarbor.PostBuild", "AppHarbor.PostBuild\AppHarbor.PostBuild.csproj", "{7DAF0EA5-3FA7-467A-BDD6-B3C1FED4DD4A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C9AAC14B-E695-4508-83B7-ACB8FC5A7284} = {C9AAC14B-E695-4508-83B7-ACB8FC5A7284}
+		{9544D94B-9B6E-4B61-8A09-88382205BF86} = {9544D94B-9B6E-4B61-8A09-88382205BF86}
+		{39613BA0-1206-4A4B-A16A-C1F2A22D1267} = {39613BA0-1206-4A4B-A16A-C1F2A22D1267}
+		{8B4117C9-4C7B-4EF8-9AAD-6099AB485E63} = {8B4117C9-4C7B-4EF8-9AAD-6099AB485E63}
+		{8DEF56CD-601E-443C-9DCE-C4EC54C0B6A6} = {8DEF56CD-601E-443C-9DCE-C4EC54C0B6A6}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +92,16 @@ Global
 		{8B4117C9-4C7B-4EF8-9AAD-6099AB485E63}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{8B4117C9-4C7B-4EF8-9AAD-6099AB485E63}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8B4117C9-4C7B-4EF8-9AAD-6099AB485E63}.Release|x86.ActiveCfg = Release|Any CPU
+		{7DAF0EA5-3FA7-467A-BDD6-B3C1FED4DD4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DAF0EA5-3FA7-467A-BDD6-B3C1FED4DD4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DAF0EA5-3FA7-467A-BDD6-B3C1FED4DD4A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7DAF0EA5-3FA7-467A-BDD6-B3C1FED4DD4A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7DAF0EA5-3FA7-467A-BDD6-B3C1FED4DD4A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7DAF0EA5-3FA7-467A-BDD6-B3C1FED4DD4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DAF0EA5-3FA7-467A-BDD6-B3C1FED4DD4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DAF0EA5-3FA7-467A-BDD6-B3C1FED4DD4A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7DAF0EA5-3FA7-467A-BDD6-B3C1FED4DD4A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7DAF0EA5-3FA7-467A-BDD6-B3C1FED4DD4A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
