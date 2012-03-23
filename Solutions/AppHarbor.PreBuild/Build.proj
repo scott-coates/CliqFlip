@@ -25,6 +25,6 @@
 	<Target Name="Build">
 		<Copy SourceFiles="@(WebConfigFiles)" DestinationFolder="$(WebConfigDir)"/>
 		<Copy SourceFiles="@(InfraConfigFiles)" DestinationFolder="$(InfraConfigDir)"/>
+		<Message Text="!!!!!!!!!!!!! $(OutDir)"/>
 	</Target>
-
 </Project>
