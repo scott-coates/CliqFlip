@@ -7,7 +7,8 @@
   <PropertyGroup>
 		<MSBuildExtensionPack>..\..\ReferencedAssemblies\MSBuild\MSBuild.ExtensionPack.tasks</MSBuildExtensionPack>
 		<ExtensionTasksPath>..\..\ReferencedAssemblies\MSBuild\</ExtensionTasksPath>
-		<ConfigDir>..\CliqFlip.Web.Mvc\Configuration</ConfigDir>
+		<WebConfigDir>..\CliqFlip.Web.Mvc\Configuration</WebConfigDir>
+		<InfraConfigDir>..\CliqFlip.InfraStructure\Configuration</InfraConfigDir>
   </PropertyGroup>
 
 	<Import Project="$(MSBuildExtensionPack)"/>
@@ -16,17 +17,25 @@
 
 
 	<ItemGroup>
-		<MySourceFiles Include="$(ConfigDir)\Beta\*.*"/>
-		<FilesToRemove Include="$(ConfigDir)\*.default"/>
-		<FilesToRemove Include="$(ConfigDir)\*.bat"/>
+		<WebConfigFiles Include="$(WebConfigDir)\Beta\*.*"/>
+		<InfraConfigFiles Include="$(InfraConfigDir)\Beta\*.*"/>
+		<FilesToRemove Include="$(WebConfigDir)\*.default"/>
+		<FilesToRemove Include="$(WebConfigDir)\*.bat"/>
+		<FilesToRemove Include="$(InfraConfigDir)\*.bat"/>
+		<FilesToRemove Include="$(InfraConfigDir)\*.bat"/>
+		<DirectoriesToRemove Include="$(WebConfigDir)\Alpha"/>
+		<DirectoriesToRemove Include="$(WebConfigDir)\Beta"/>
+		<DirectoriesToRemove Include="$(InfraConfigDir)\Alpha"/>
+		<DirectoriesToRemove Include="$(InfraConfigDir)\Beta"/>
 	</ItemGroup>
 
 
 	<Target Name="Build">
-		<Copy SourceFiles="@(MySourceFiles)" DestinationFolder="$(ConfigDir)"/>
+		<Copy SourceFiles="@(WebConfigFiles)" DestinationFolder="$(WebConfigDir)"/>
+		<Copy SourceFiles="@(InfraConfigFiles)" DestinationFolder="$(InfraConfigDir)"/>
 		<Delete Files="@(FilesToRemove)"/>
-		<RemoveDir  Directories="$(ConfigDir)\Alpha;$(ConfigDir)\Beta"/>
-		
+		<RemoveDir Directories="@(DirectoriesToRemove)"/>
+		<MSBuild Projects="..\CliqFlip.Infrastructure\Migrator\CliqFlip.targets" Targets="Migrate" Properties="Configuration=Release"/>
 	</Target>
 
 </Project>
