@@ -15,7 +15,6 @@
 
 	<Target Name="All" DependsOnTargets="Build" />
 
-
 	<ItemGroup>
 		<FilesToRemove Include="$(WebConfigDir)\*.default"/>
 		<FilesToRemove Include="$(WebConfigDir)\*.bat"/>
@@ -27,11 +26,10 @@
 		<DirectoriesToRemove Include="$(InfraConfigDir)\Beta"/>
 	</ItemGroup>
 
-
 	<Target Name="Build">
+		<MSBuild Projects="..\CliqFlip.Infrastructure\Migrator\CliqFlip.targets" Targets="Migrate" Properties="OutDir=../$(OutDir)"/>
 		<Delete Files="@(FilesToRemove)"/>
 		<RemoveDir Directories="@(DirectoriesToRemove)"/>
-		<MSBuild Projects="..\CliqFlip.Infrastructure\Migrator\CliqFlip.targets" Targets="Migrate" Properties="Configuration=Release"/>
 	</Target>
 
 </Project>
