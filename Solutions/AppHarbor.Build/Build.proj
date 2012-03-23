@@ -11,7 +11,7 @@
   </PropertyGroup>
 
 	<Import Project="$(MSBuildExtensionPack)"/>
-
+	
   <Target Name="All" DependsOnTargets="Build" />
 
 
@@ -26,6 +26,7 @@
 		<Copy SourceFiles="@(MySourceFiles)" DestinationFolder="$(ConfigDir)"/>
 		<Delete Files="@(FilesToRemove)"/>
 		<RemoveDir  Directories="$(ConfigDir)\Alpha;$(ConfigDir)\Beta"/>
+		<MSBuild Projects="..\CliqFlip.Infrastructure\Migrator\CliqFlip.targets" Targets="Migrate" Properties="Configuration=Release"/>
 	</Target>
 
 </Project>
