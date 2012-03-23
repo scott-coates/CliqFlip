@@ -8,7 +8,7 @@
 		<MSBuildExtensionPack>..\..\ReferencedAssemblies\MSBuild\MSBuild.ExtensionPack.tasks</MSBuildExtensionPack>
 		<ExtensionTasksPath>..\..\ReferencedAssemblies\MSBuild\</ExtensionTasksPath>
 		<WebConfigDir>..\CliqFlip.Web.Mvc\Configuration</WebConfigDir>
-		<InfraConfigDir>..\CliqFlip.InfraStructure\Configuration</InfraConfigDir>
+		<InfraConfigDir>..\CliqFlip.Infrastructure\Configuration</InfraConfigDir>
   </PropertyGroup>
 
 	<Import Project="$(MSBuildExtensionPack)"/>
