@@ -34,7 +34,7 @@
 		<Copy SourceFiles="@(WebConfigFiles)" DestinationFolder="$(WebConfigDir)"/>
 		<Copy SourceFiles="@(InfraConfigFiles)" DestinationFolder="$(InfraConfigDir)"/>
 		<Delete Files="@(FilesToRemove)"/>
-		<RemoveDir Directories="@(DirectoriesToRemove)"/>
+		<!--<RemoveDir Directories="@(DirectoriesToRemove)"/>--> 
 		<MSBuild Projects="..\CliqFlip.Infrastructure\Migrator\CliqFlip.targets" Targets="Migrate" Properties="Configuration=Release"/>
 	</Target>
 
