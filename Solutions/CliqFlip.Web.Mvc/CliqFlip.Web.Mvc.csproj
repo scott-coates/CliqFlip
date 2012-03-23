@@ -206,6 +206,7 @@
     <Compile Include="ViewModels\User\UserSocialMediaViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\img\empty-avatar.jpg" />
     <Content Include="Content\img\Error\NotFound.jpg" />
     <Content Include="Content\img\Error\ServerError.jpg" />
     <Content Include="Content\img\1.jpg" />
@@ -256,6 +257,13 @@
     <Content Include="Content\img\button_icon.png" />
     <Content Include="Content\img\check.png" />
     <Content Include="Content\img\ClipFliq-LogoMoto.png" />
+    <Content Include="Content\img\inbox.png" />
+    <Content Include="Content\img\profile.png" />
+    <Content Include="Content\img\rss.png" />
+    <Content Include="Content\img\social1.png" />
+    <Content Include="Content\img\social2.png" />
+    <Content Include="Content\img\social3.png" />
+    <Content Include="Content\img\suggested.png" />
     <Content Include="Content\js\jquery.dotdotdot-1.2.1.min.js" />
     <Content Include="Content\js\cliqFlip\error-handler.js" />
     <Content Include="Content\js\jquery.dotdotdot-1.2.1.js" />
