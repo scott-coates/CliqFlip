@@ -238,6 +238,7 @@
     </None>
     <None Include="Configuration\Beta\AppSettings.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Migrator\CliqFlip.targets">
       <SubType>Designer</SubType>
