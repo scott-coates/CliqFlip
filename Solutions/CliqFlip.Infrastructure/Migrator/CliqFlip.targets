@@ -16,10 +16,9 @@
 			<Output TaskParameter="Value" PropertyName="Configuration"/>
 		</CreateProperty>
 
-		<CreateProperty Value="../bin/$(Configuration)"  Condition="'$(OutDir)	'==''">
+		<CreateProperty Value="../bin/$(Configuration)"  Condition="'$(OutDir)'==''">
 			<Output TaskParameter="Value" PropertyName="OutDir"/>
 		</CreateProperty>
-
 		
 		<!--THANK YOU
 			http://stackoverflow.com/questions/2605933/change-nhibernate-config-with-nant-xmlpoke
