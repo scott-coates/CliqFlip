@@ -1,0 +1,1 @@
+AppHarbor.sln needs to be built in Release mode
