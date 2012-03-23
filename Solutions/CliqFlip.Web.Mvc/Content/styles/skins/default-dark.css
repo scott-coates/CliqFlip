@@ -1740,3 +1740,35 @@ div.conversation-reply input
     width: 165px;
     height: 30px;
 }
+
+.landing-container {
+			padding: 10px;width:700px;margin:0 auto;
+		}
+		.landing-page-button {
+			display: inline-block;float: left;margin-right:170px;
+		}
+		
+		.landing-page-button:last-of-type {
+			margin-right:0;
+		}
+
+		.landing-page-direction {
+			
+			background-position: center top; padding-top: 135px; text-align: center; width: 110px;
+		}
+		
+		#landig-page-profile {
+			background-image: url('/Content/img/profile.png');
+			background-repeat:  no-repeat; 
+		}
+		
+		#landig-page-inbox {
+			background-image: url('/Content/img/inbox.png');
+			background-repeat:  no-repeat; 
+		}
+		
+		#landig-page-suggested {
+			background-image: url('/Content/img/suggested.png');
+			background-repeat:  no-repeat; 
+		}
+		
