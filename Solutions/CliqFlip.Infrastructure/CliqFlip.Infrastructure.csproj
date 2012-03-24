@@ -229,9 +229,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="App.config" />
     <None Include="Configuration\Alpha\AppSettings.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
