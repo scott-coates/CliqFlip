@@ -80,7 +80,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 				_userTasks.Login(user, false);
 
-				return RedirectToAction("Index", "User", new { username = profile.Username });
+				return Redirect("~/u");
 			}
 
 			//TODO: Implement PRG pattern for post forms
