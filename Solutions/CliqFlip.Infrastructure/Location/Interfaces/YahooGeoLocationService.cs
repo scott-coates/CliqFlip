@@ -35,6 +35,7 @@ namespace CliqFlip.Infrastructure.Location.Interfaces
 		public LocationData GetLocation(string street = null, string city = null, string state = null, string zip = null)
 		{
 			//TODO: Use the RestSharp library and strongly typed classes
+			//TODO: Or use nuget packages for geo - like NGeo
 			string xmlResult;
 
 			string address = string.Format(_addressFormat, street, city, state, zip);
