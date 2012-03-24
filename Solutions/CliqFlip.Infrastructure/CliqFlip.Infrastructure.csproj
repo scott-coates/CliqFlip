@@ -235,6 +235,7 @@
     </None>
     <None Include="Configuration\AppSettings.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Configuration\Beta\AppSettings.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
