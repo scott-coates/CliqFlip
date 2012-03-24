@@ -680,7 +680,7 @@
   <Target Name="BeforeBuild">
   </Target> -->
 	<Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
-		<AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+		<AspNetCompiler VirtualPath="temp" PhysicalPath="$(OutDir)" />
 	</Target>
   <ProjectExtensions>
     <VisualStudio>
