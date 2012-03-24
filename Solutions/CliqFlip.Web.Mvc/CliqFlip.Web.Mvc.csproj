@@ -13,8 +13,9 @@
     <RootNamespace>CliqFlip.Web.Mvc</RootNamespace>
     <AssemblyName>CliqFlip.Web.Mvc</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-		<MvcBuildViews Condition="'$(Configuration)' == 'Release'">true</MvcBuildViews>
-    <SignAssembly>false</SignAssembly>
+		<!--AppHarbor overrides OutDir to an absolute temp location-->
+		<MvcBuildViews Condition="'$(OutDir)'=='bin\$(Configuration)\'">true</MvcBuildViews>
+		<SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\Build\Signing\CliqFlip.snk</AssemblyOriginatorKeyFile>
     <SccProjectName>
     </SccProjectName>
