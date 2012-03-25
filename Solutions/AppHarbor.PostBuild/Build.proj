@@ -43,6 +43,10 @@
 		<MSBuild Projects="..\CliqFlip.Infrastructure\Migrator\CliqFlip.targets" Targets="Migrate" Properties="OutDir=$(OutputProperDir)"/>
 		<Delete Files="@(FilesToRemove)"/>
 		<RemoveDir Directories="@(DirectoriesToRemove)"/>
+		<ItemGroup>
+			<MyFiles Include="$(OutDir)\**\*.*"/>
+		</ItemGroup>
+		<Message Importance="normal" Text="%(MyFiles.FullPath)"/>
 		<XmlPeek XmlInputPath="$(OutDir)Web.config"
            Query="/appSettings/">
 			<Output TaskParameter="Result" ItemName="AppSettings" />
