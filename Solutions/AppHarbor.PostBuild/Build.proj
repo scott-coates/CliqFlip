@@ -47,7 +47,7 @@
 			<MyFiles Include="$(OutDir)\**\*.*"/>
 		</ItemGroup>
 		<Message Importance="normal" Text="%(MyFiles.FullPath)"/>
-		<XmlPeek XmlInputPath="$(OutDir)Web.config"
+		<XmlPeek XmlInputPath="$(OutDir)output\_PublishedWebsites\CliqFlip.Web.Mvc\Web.config"
            Query="/appSettings/">
 			<Output TaskParameter="Result" ItemName="AppSettings" />
 		</XmlPeek>
