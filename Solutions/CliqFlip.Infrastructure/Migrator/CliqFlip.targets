@@ -16,6 +16,7 @@
 			<Output TaskParameter="Value" PropertyName="Configuration"/>
 		</CreateProperty>
 
+		<!--Calling from AppHarbor, the OutDir is set to a random absolute path-->
 		<CreateProperty Value="../bin/$(Configuration)"  Condition="'$(OutDir)'==''">
 			<Output TaskParameter="Value" PropertyName="OutDir"/>
 		</CreateProperty>
@@ -32,6 +33,7 @@
 		</XmlPeek>
 
 		<ConvertToAbsolutePath Paths="$(OutDir)">
+			<!--This needs to be absolute to accomdate for AppHarbor-->
 			<Output TaskParameter="AbsolutePaths" PropertyName="Source_Dir_Abs"/>
 		</ConvertToAbsolutePath>
 		<Migrate Provider="SqlServer2005"
