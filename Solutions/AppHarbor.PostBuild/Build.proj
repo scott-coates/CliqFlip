@@ -31,6 +31,7 @@
 		<WebConfigDir>$(PublishedFolder)\CliqFlip.Web.Mvc\Configuration</WebConfigDir>
 		<InfraConfigDir>$(PublishedFolder)\CliqFlip.Infrastructure\Configuration</InfraConfigDir>
 	</PropertyGroup>
+	
 	<ItemGroup>
 		<FilesToRemove Include="$(WebConfigDir)\*.default"/>
 		<FilesToRemove Include="$(WebConfigDir)\*.bat"/>
