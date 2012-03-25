@@ -47,11 +47,7 @@
 			<MyFiles Include="$(OutDir)\**\*.*"/>
 		</ItemGroup>
 		<Message Importance="normal" Text="%(MyFiles.FullPath)"/>
-		<XmlPeek XmlInputPath="$(OutDir)_PublishedWebsites\CliqFlip.Web.Mvc\Web.config"
-           Query="/appSettings/">
-			<Output TaskParameter="Result" ItemName="AppSettings" />
-		</XmlPeek>
-		<Message Text="@(AppSettings) ===============> AppSettings"/>
+		<Message Text="$([System.IO.File]::ReadAllText($(OutDir)_PublishedWebsites\CliqFlip.Web.Mvc\Web.config))"/>
 	</Target>
 
 </Project>
