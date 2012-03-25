@@ -7,8 +7,6 @@
 	<PropertyGroup>
 		<MSBuildExtensionPack>..\..\ReferencedAssemblies\MSBuild\MSBuild.ExtensionPack.tasks</MSBuildExtensionPack>
 		<ExtensionTasksPath>..\..\ReferencedAssemblies\MSBuild\</ExtensionTasksPath>
-		<WebConfigDir>..\CliqFlip.Web.Mvc\Configuration</WebConfigDir>
-		<InfraConfigDir>..\CliqFlip.Infrastructure\Configuration</InfraConfigDir>
 	</PropertyGroup>
 
 	<Import Project="$(MSBuildExtensionPack)"/>
@@ -27,7 +25,12 @@
             </PropertyGroup>
         </When>
     </Choose>
-	
+
+	<PropertyGroup>
+		<PublishedFolder>$(OutDir)_PublishedWebsites</PublishedFolder>
+		<WebConfigDir>$(PublishedFolder)\CliqFlip.Web.Mvc\Configuration</WebConfigDir>
+		<InfraConfigDir>$(PublishedFolder)\CliqFlip.Infrastructure\Configuration</InfraConfigDir>
+	</PropertyGroup>
 	<ItemGroup>
 		<FilesToRemove Include="$(WebConfigDir)\*.default"/>
 		<FilesToRemove Include="$(WebConfigDir)\*.bat"/>
@@ -47,7 +50,7 @@
 			<MyFiles Include="$(OutDir)\**\*.*"/>
 		</ItemGroup>
 		<Message Importance="normal" Text="%(MyFiles.FullPath)"/>
-		<Message Text="$([System.IO.File]::ReadAllText($(OutDir)_PublishedWebsites\CliqFlip.Web.Mvc\Web.config))"/>
+		<Message Text="$([System.IO.File]::ReadAllText($(PublishedFolder)\CliqFlip.Web.Mvc\Web.config))"/>
 	</Target>
 
 </Project>
