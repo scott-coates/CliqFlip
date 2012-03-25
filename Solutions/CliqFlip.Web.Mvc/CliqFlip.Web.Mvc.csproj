@@ -13,9 +13,9 @@
     <RootNamespace>CliqFlip.Web.Mvc</RootNamespace>
     <AssemblyName>CliqFlip.Web.Mvc</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-		<!--AppHarbor overrides OutDir to an absolute temp location-->
-		<MvcBuildViews Condition="'$(OutDir)'=='bin\$(Configuration)\'">true</MvcBuildViews>
-		<SignAssembly>false</SignAssembly>
+    <!--AppHarbor overrides OutDir to an absolute temp location-->
+    <MvcBuildViews Condition="'$(OutDir)'=='bin\$(Configuration)\'">true</MvcBuildViews>
+    <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\Build\Signing\CliqFlip.snk</AssemblyOriginatorKeyFile>
     <SccProjectName>
     </SccProjectName>
@@ -573,15 +573,6 @@
     <Content Include="Configuration\Alpha\NHibernate.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Configuration\Compilation.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configuration\Beta\Compilation.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configuration\Alpha\Compilation.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Configuration\ConnectionStrings.config">
       <SubType>Designer</SubType>
     </Content>
@@ -678,11 +669,17 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target> -->
-	<Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
-		<AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+   -->
+	<Target Name="BeforeBuild">
+		<!--Cannot use configSource as AppHarbor places another attr alongside configSource which is not valid-->
+		<!--http://stackoverflow.com/a/4514356/173957-->
+		<!--http://stackoverflow.com/a/678137/173957-->
+		<XmlPoke Condition="'$(Configuration)' == 'Release'" XmlInputPath="Web.config" Query="/configuration/system.web/compilation/@debug" Value="false">
+		</XmlPoke>
 	</Target>
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
