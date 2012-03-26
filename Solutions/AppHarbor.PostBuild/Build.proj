@@ -48,16 +48,23 @@
 		<XmlPeek XmlInputPath="../CliqFlip.Web.Mvc/Configuration/AppSettings.config" Query="/appSettings">
 			<Output TaskParameter="Result" ItemName="AppSettingsContent" />
 		</XmlPeek>
+		
 		<MSBuild.ExtensionPack.Xml.XmlFile 
 			File="../CliqFlip.Web.Mvc/Web.config" 
 			TaskAction="RemoveAttribute" 
 			XPath="/configuration/appSettings"
 			Key="configSource"/>
-		<XmlPoke XmlInputPath="../CliqFlip.Web.Mvc/Web.config" Query="/configuration/appSettings" Value="@(AppSettingsContent)">
-		</XmlPoke>
+		<Message Text="======> @(AppSettingsContent)"/>
+		
+		<MSBuild.ExtensionPack.Xml.XmlFile File="../CliqFlip.Web.Mvc/Web.config"
+		TaskAction="UpdateElement"
+		XPath="/configuration" Value="@(AppSettingsContent)"/>		 
+		<!--<XmlPoke XmlInputPath="../CliqFlip.Web.Mvc/Web.config" Query="/configuration/appSettings" Value="@(AppSettingsContent)">
+		</XmlPoke>-->
 
 		<Delete Files="@(FilesToRemove)"/>
 		<RemoveDir Directories="@(DirectoriesToRemove)"/>
+
 	</Target>
 
 </Project>
