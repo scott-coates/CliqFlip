@@ -13,8 +13,6 @@
     <RootNamespace>CliqFlip.Web.Mvc</RootNamespace>
     <AssemblyName>CliqFlip.Web.Mvc</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <!--AppHarbor overrides OutDir to an absolute temp location. We don't have write access to this location. AppHarbor build breaks-->
-    <MvcBuildViews Condition="'$(OutDir)'=='bin\$(Configuration)\'">true</MvcBuildViews>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\Build\Signing\CliqFlip.snk</AssemblyOriginatorKeyFile>
     <SccProjectName>
@@ -677,8 +675,9 @@
 		<XmlPoke Condition="'$(Configuration)' == 'Release'" XmlInputPath="Web.config" Query="/configuration/system.web/compilation/@debug" Value="false">
 		</XmlPoke>
 	</Target>
-  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
-    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+	  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(OutDir)'=='bin\' And '$(Configuration)' == 'Release'">
+    <!--AppHarbor overrides OutDir to an absolute temp location. We don't have write access to this location. AppHarbor build breaks-->
+	<AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
   </Target>
   <ProjectExtensions>
     <VisualStudio>
