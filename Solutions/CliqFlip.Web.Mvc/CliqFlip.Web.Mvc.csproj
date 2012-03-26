@@ -639,6 +639,9 @@
     <Content Include="Configuration\Alpha\HttpErrors.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Configuration\Alpha\Compilation.config" />
+    <Content Include="Configuration\Beta\Compilation.config" />
+    <Content Include="Configuration\Compilation.config" />
     <None Include="Content\img\patterns\Thumbs.db" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
@@ -668,16 +671,9 @@
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
    -->
-	<Target Name="BeforeBuild">
-		<!--Cannot use configSource as AppHarbor places another attr alongside configSource which is not valid-->
-		<!--http://stackoverflow.com/a/4514356/173957-->
-		<!--http://stackoverflow.com/a/678137/173957-->
-		<XmlPoke Condition="'$(Configuration)' == 'Release'" XmlInputPath="Web.config" Query="/configuration/system.web/compilation/@debug" Value="false">
-		</XmlPoke>
-	</Target>
-	  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(OutDir)'=='bin\' And '$(Configuration)' == 'Release'">
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(OutDir)'=='bin\' And '$(Configuration)' == 'Release'">
     <!--AppHarbor overrides OutDir to an absolute temp location. We don't have write access to this location. AppHarbor build breaks-->
-	<AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
   </Target>
   <ProjectExtensions>
     <VisualStudio>
