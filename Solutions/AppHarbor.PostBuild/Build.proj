@@ -22,7 +22,7 @@
 		</When>
 		<When Condition="'$(OutDir)'=='$(OutDir)'">
 			<PropertyGroup>
-				<OutputProperDir>$(OutDir)</OutputProperDir>
+				<OutputProperDir>$(OutDir)_PublishedWebsites</OutputProperDir>
 			</PropertyGroup>
 		</When>
 	</Choose>
@@ -44,6 +44,7 @@
 	</ItemGroup>
 
 	<Target Name="Build">
+		<Message Text="===============> $(OutDir)"/>
 		<MSBuild Projects="..\CliqFlip.Infrastructure\Migrator\CliqFlip.targets" Targets="Migrate" Properties="OutDir=$(OutputProperDir)"/>
 		
 		<!--AppSettings-->
