@@ -5,7 +5,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
 {
 	public class UsersByInterestViewModel
 	{
-		public IList<IndividualResultViewModel> Results { get; set; }
+		public IList<IndividualResultViewModel> Results { get; private set; }
 		public IPagination<IndividualResultViewModel> PagedResults { get; set; }
 
 		public UsersByInterestViewModel()
