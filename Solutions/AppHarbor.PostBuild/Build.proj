@@ -47,6 +47,8 @@
 		<XmlPeek XmlInputPath="../CliqFlip.Web.Mvc/Configuration/AppSettings.config" Query="/appSettings">
 			<Output TaskParameter="Result" ItemName="AppSettingsContent" />
 		</XmlPeek>
+		<XmlPoke XmlInputPath="../CliqFlip.Web.Mvc/Web.config" Query="/configuration/appSettings" Value="">
+		</XmlPoke>
 		<Message Text="@(AppSettingsContent) ========> AppSettn"/>
 		<Delete Files="@(FilesToRemove)"/>
 		<RemoveDir Directories="@(DirectoriesToRemove)"/>
