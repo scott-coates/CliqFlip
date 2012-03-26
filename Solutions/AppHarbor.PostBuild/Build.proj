@@ -52,7 +52,7 @@
 			File="../CliqFlip.Web.Mvc/Web.config" 
 			TaskAction="RemoveElement" 
 			XPath="/configuration/appSettings"/>
-		<XmlPoke XmlInputPath="../CliqFlip.Web.Mvc/Web.config" Query="/configuration/appSettings/@configSource" Value="@(AppSettingsContent)">
+		<XmlPoke XmlInputPath="../CliqFlip.Web.Mvc/Web.config" Query="/configuration" Value="@(AppSettingsContent)">
 		</XmlPoke>
 
 		<Delete Files="@(FilesToRemove)"/>
