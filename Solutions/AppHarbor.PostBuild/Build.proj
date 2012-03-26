@@ -22,7 +22,7 @@
 		</When>
 		<When Condition="'$(OutDir)'=='$(OutDir)'">
 			<PropertyGroup>
-				<OutputProperDir>$(OutDir)_PublishedWebsites</OutputProperDir>
+				<OutputProperDir>$(OutDir)</OutputProperDir>
 			</PropertyGroup>
 		</When>
 	</Choose>
