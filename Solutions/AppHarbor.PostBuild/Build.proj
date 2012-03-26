@@ -45,7 +45,7 @@
 	<Target Name="Build">
 		<MSBuild Projects="..\CliqFlip.Infrastructure\Migrator\CliqFlip.targets" Targets="Migrate" Properties="OutDir=$(OutputProperDir)"/>
 		
-		<XmlPeek XmlInputPath="../CliqFlip.Web.Mvc/Configuration/AppSettings.config" Query="/appSettings">
+		<XmlPeek XmlInputPath="../CliqFlip.Web.Mvc/Configuration/AppSettings.config" Query="/appSettings/add">
 			<Output TaskParameter="Result" ItemName="AppSettingsContent" />
 		</XmlPeek>
 		
@@ -58,7 +58,7 @@
 		
 		<MSBuild.ExtensionPack.Xml.XmlFile File="../CliqFlip.Web.Mvc/Web.config"
 		TaskAction="UpdateElement"
-		XPath="/configuration" Value="@(AppSettingsContent)"/>		 
+		XPath="/configuration/appSettings" InnerXml="@(AppSettingsContent,'')"/>																	 
 		<!--<XmlPoke XmlInputPath="../CliqFlip.Web.Mvc/Web.config" Query="/configuration/appSettings" Value="@(AppSettingsContent)">
 		</XmlPoke>-->
 
