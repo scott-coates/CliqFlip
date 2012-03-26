@@ -14,22 +14,21 @@
 	<Target Name="All" DependsOnTargets="Build" />
 
 	  <Choose>
-        <When Condition="'$(OutDir)'=='bin\$(Configuration)\'"> <!--AppHarbor overrides OutDir to an absolute temp location-->
+        <When Condition="'$(OutDir)'==''"> <!--AppHarbor overrides OutDir to an absolute temp location-->
             <PropertyGroup>
                 <OutputProperDir>../bin/$(Configuration)</OutputProperDir>
             </PropertyGroup>
         </When>
         <When Condition="'$(OutDir)'=='$(OutDir)'">
             <PropertyGroup>
-               <OutputProperDir>$(OutDir)</OutputProperDir>
+               <OutputProperDir>$(OutDir)_PublishedWebsites</OutputProperDir>
             </PropertyGroup>
         </When>
     </Choose>
 
 	<PropertyGroup>
-		<PublishedFolder>$(OutDir)_PublishedWebsites</PublishedFolder>
-		<WebConfigDir>$(PublishedFolder)\CliqFlip.Web.Mvc\Configuration</WebConfigDir>
-		<InfraConfigDir>$(PublishedFolder)\CliqFlip.Infrastructure\Configuration</InfraConfigDir>
+		<WebConfigDir>..\CliqFlip.Web.Mvc\Configuration</WebConfigDir>
+		<InfraConfigDir>..\CliqFlip.Infrastructure\Configuration</InfraConfigDir>
 	</PropertyGroup>
 	
 	<ItemGroup>
@@ -45,13 +44,12 @@
 
 	<Target Name="Build">
 		<MSBuild Projects="..\CliqFlip.Infrastructure\Migrator\CliqFlip.targets" Targets="Migrate" Properties="OutDir=$(OutputProperDir)"/>
+		<XmlPeek XmlInputPath="../CliqFlip.Web.Mvc/Configuration/AppSettings.config" Query="/appSettings">
+			<Output TaskParameter="Result" ItemName="AppSettingsContent" />
+		</XmlPeek>
+		<Message Text="@(AppSettingsContent) ========> AppSettn"/>
 		<Delete Files="@(FilesToRemove)"/>
 		<RemoveDir Directories="@(DirectoriesToRemove)"/>
-		<ItemGroup>
-			<MyFiles Include="$(OutDir)\**\*.*"/>
-		</ItemGroup>
-		<Message Importance="normal" Text="%(MyFiles.FullPath)"/>
-		<Message Text="$([System.IO.File]::ReadAllText($(PublishedFolder)\CliqFlip.Web.Mvc\Web.config))"/>
 	</Target>
 
 </Project>
