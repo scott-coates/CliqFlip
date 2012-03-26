@@ -63,7 +63,7 @@
 		<!--End AppSettings-->
 
 		<!--ConnectionStrings-->
-		<XmlPeek XmlInputPath="../CliqFlip.Web.Mvc/Configuration/ConnectionStrings.config" Query="/ConnectionStrings/add">
+		<XmlPeek XmlInputPath="../CliqFlip.Web.Mvc/Configuration/ConnectionStrings.config" Query="/connectionStrings/add">
 			<Output TaskParameter="Result" ItemName="ConnectionStringContent" />
 		</XmlPeek>
 
