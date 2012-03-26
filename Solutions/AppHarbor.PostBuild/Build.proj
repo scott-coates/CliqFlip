@@ -14,7 +14,7 @@
 	<Target Name="All" DependsOnTargets="Build" />
 
 	<Choose>
-		<When Condition="'$(OutDir)'==''">
+		<When Condition="'$(OutDir)'=='' Or '$(OutDir)'=='bin\$(Configuration)\'">
 			<!--AppHarbor overrides OutDir to an absolute temp location-->
 			<PropertyGroup>
 				<OutputProperDir>../bin/$(Configuration)</OutputProperDir>
