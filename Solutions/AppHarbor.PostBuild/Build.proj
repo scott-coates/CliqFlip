@@ -18,69 +18,51 @@
 			<!--AppHarbor overrides OutDir to an absolute temp location-->
 			<PropertyGroup>
 				<OutputProperDir>../bin/$(Configuration)</OutputProperDir>
+				<ConfigDir>..</ConfigDir>
 			</PropertyGroup>
 		</When>
 		<When Condition="'$(OutDir)'=='$(OutDir)'">
 			<PropertyGroup>
-				<OutputProperDir>$(OutDir)_PublishedWebsites</OutputProperDir>
+				<OutputProperDir>$(OutDir)</OutputProperDir>
+				<ConfigDir>$(OutDir)_PublishedWebsites</ConfigDir>
 			</PropertyGroup>
 		</When>
 	</Choose>
 
-	<PropertyGroup>
-		<WebConfigDir>..\CliqFlip.Web.Mvc\Configuration</WebConfigDir>
-		<InfraConfigDir>..\CliqFlip.Infrastructure\Configuration</InfraConfigDir>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<FilesToRemove Include="$(WebConfigDir)\*.default"/>
-		<FilesToRemove Include="$(WebConfigDir)\*.bat"/>
-		<FilesToRemove Include="$(InfraConfigDir)\*.bat"/>
-		<FilesToRemove Include="$(InfraConfigDir)\*.default"/>
-		<DirectoriesToRemove Include="$(WebConfigDir)\Alpha"/>
-		<DirectoriesToRemove Include="$(WebConfigDir)\Beta"/>
-		<DirectoriesToRemove Include="$(InfraConfigDir)\Alpha"/>
-		<DirectoriesToRemove Include="$(InfraConfigDir)\Beta"/>
-	</ItemGroup>
-
 	<Target Name="Build">
-		<Message Text="===============> $(OutDir)"/>
 		<MSBuild Projects="..\CliqFlip.Infrastructure\Migrator\CliqFlip.targets" Targets="Migrate" Properties="OutDir=$(OutputProperDir)"/>
 		
 		<!--AppSettings-->
-		<XmlPeek XmlInputPath="../CliqFlip.Web.Mvc/Configuration/AppSettings.config" Query="/appSettings/add">
+		<XmlPeek XmlInputPath="$(ConfigDir)/CliqFlip.Web.Mvc/Configuration/AppSettings.config" Query="/appSettings/add">
 			<Output TaskParameter="Result" ItemName="AppSettingsContent" />
 		</XmlPeek>
 
 		<MSBuild.ExtensionPack.Xml.XmlFile
-			File="../CliqFlip.Web.Mvc/Web.config"
+			File="$(ConfigDir)/CliqFlip.Web.Mvc/Web.config"
 			TaskAction="RemoveAttribute"
 			XPath="/configuration/appSettings"
 			Key="configSource"/>
 
-		<MSBuild.ExtensionPack.Xml.XmlFile File="../CliqFlip.Web.Mvc/Web.config"
+		<MSBuild.ExtensionPack.Xml.XmlFile File="$(ConfigDir)/CliqFlip.Web.Mvc/Web.config"
 			TaskAction="UpdateElement"
 			XPath="/configuration/appSettings" InnerXml="@(AppSettingsContent,'')"/>
 		<!--End AppSettings-->
 
 		<!--ConnectionStrings-->
-		<XmlPeek XmlInputPath="../CliqFlip.Web.Mvc/Configuration/ConnectionStrings.config" Query="/connectionStrings/add">
+		<XmlPeek XmlInputPath="$(ConfigDir)/CliqFlip.Web.Mvc/Configuration/ConnectionStrings.config" Query="/connectionStrings/add">
 			<Output TaskParameter="Result" ItemName="ConnectionStringContent" />
 		</XmlPeek>
 
 		<MSBuild.ExtensionPack.Xml.XmlFile
-			File="../CliqFlip.Web.Mvc/Web.config"
+			File="$(ConfigDir)/CliqFlip.Web.Mvc/Web.config"
 			TaskAction="RemoveAttribute"
 			XPath="/configuration/connectionStrings"
 			Key="configSource"/>
 
-		<MSBuild.ExtensionPack.Xml.XmlFile File="../CliqFlip.Web.Mvc/Web.config"
+		<MSBuild.ExtensionPack.Xml.XmlFile File="$(ConfigDir)/CliqFlip.Web.Mvc/Web.config"
 			TaskAction="UpdateElement"
 			XPath="/configuration/connectionStrings" InnerXml="@(ConnectionStringContent,'')"/>
 		<!--End ConnectionStrings-->
-
-		<Delete Files="@(FilesToRemove)"/>
-		<RemoveDir Directories="@(DirectoriesToRemove)"/>
 
 	</Target>
 
