@@ -31,7 +31,7 @@
 
 	<Target Name="Build">
 		<MSBuild Projects="..\CliqFlip.Infrastructure\Migrator\CliqFlip.targets" Targets="Migrate" Properties="OutDir=$(OutputProperDir)"/>
-		
+
 		<!--AppSettings-->
 		<XmlPeek XmlInputPath="$(ConfigDir)/CliqFlip.Web.Mvc/Configuration/AppSettings.config" Query="/appSettings/add">
 			<Output TaskParameter="Result" ItemName="AppSettingsContent" />
@@ -63,6 +63,39 @@
 			TaskAction="UpdateElement"
 			XPath="/configuration/connectionStrings" InnerXml="@(ConnectionStringContent,'')"/>
 		<!--End ConnectionStrings-->
+
+
+		<!--Compilation-->
+		<XmlPeek XmlInputPath="$(ConfigDir)/CliqFlip.Web.Mvc/Configuration/Compilation.config" Query="/compilation/assemblies">
+			<Output TaskParameter="Result" ItemName="CompilationContent" />
+		</XmlPeek>
+
+		<MSBuild.ExtensionPack.Xml.XmlFile
+			File="$(ConfigDir)/CliqFlip.Web.Mvc/Web.config"
+			TaskAction="RemoveAttribute"
+			XPath="/configuration/system.web/compilation"
+			Key="configSource"/>
+
+		<MSBuild.ExtensionPack.Xml.XmlFile
+			File="$(ConfigDir)/CliqFlip.Web.Mvc/Web.config"
+			TaskAction="UpdateElement"
+			XPath="/configuration/system.web/compilation"
+			InnerXml="@(CompilationContent,'')"/>
+
+		<MSBuild.ExtensionPack.Xml.XmlFile
+			File="$(ConfigDir)/CliqFlip.Web.Mvc/Web.config"
+			TaskAction="AddAttribute"
+			XPath="/configuration/system.web/compilation"
+			Key="debug"
+			Value="false"/>
+
+		<MSBuild.ExtensionPack.Xml.XmlFile
+			File="$(ConfigDir)/CliqFlip.Web.Mvc/Web.config"
+			TaskAction="AddAttribute"
+			XPath="/configuration/system.web/compilation"
+			Key="targetFramework"
+			Value="4.0"/>
+		<!--End Compilation-->
 
 	</Target>
 
