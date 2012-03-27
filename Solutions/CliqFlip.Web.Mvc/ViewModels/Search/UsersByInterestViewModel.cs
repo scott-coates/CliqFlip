@@ -25,8 +25,8 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
 			{
 				ResultInterestViewModels = new List<IndividualResultInterestViewModel>();
 			}
-                InterestsWithImages = ResultInterestViewModels.Where(x => x.DefaultImageUrl != null).ToList(); //generate a list of the interests with images
-                NumberOfInterestsWithImages = InterestsWithImages.Count;
+                NumberOfInterestsWithImages = ResultInterestViewModels.Count(x => x.DefaultImageUrl != null);
+                InterestsWithImages = ResultInterestViewModels.Where(x => x.DefaultImageUrl != null).ToList();
 		}
 
 		#endregion
