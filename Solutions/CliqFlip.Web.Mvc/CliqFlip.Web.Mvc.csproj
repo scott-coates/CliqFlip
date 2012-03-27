@@ -671,7 +671,7 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\LoginAjax.cshtml" />
     <Content Include="Views\Shared\_HeaderNavigation.cshtml" />
     <Content Include="Content\js\validation\jquery.validate.collection-not-empty.js" />
     <Content Include="Views\User\SocialMedia.cshtml" />
@@ -688,6 +688,7 @@
     <Content Include="Views\User\ReadConversation.cshtml" />
     <Content Include="Views\User\Landing.cshtml" />
     <Content Include="Views\Search\InterestSearch.cshtml" />
+    <Content Include="Views\User\_Login.cshtml" />
     <None Include="Views\User\StartConversationWith.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

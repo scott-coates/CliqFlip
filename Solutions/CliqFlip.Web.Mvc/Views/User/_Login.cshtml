@@ -1,0 +1,21 @@
+﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserLoginViewModel
+<div class="editor-label">
+	@Html.LabelFor(model => model.Username)
+</div>
+<div class="editor-field">
+	@Html.EditorFor(model => model.Username)
+	@Html.ValidationMessageFor(model => model.Username)
+</div>
+<div class="editor-label">
+	@Html.LabelFor(model => model.Password)
+</div>
+<div class="editor-field">
+	@Html.EditorFor(model => model.Password)
+	@Html.ValidationMessageFor(model => model.Password)
+</div>
+<label>
+	Keep me logged in @Html.EditorFor(model => model.LogMeIn)
+</label>
+<p>
+	<input type="submit" value="Login" />
+</p>
