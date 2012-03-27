@@ -1742,7 +1742,7 @@ div.conversation-reply input
 }
 
 .landing-container {
-			padding: 10px;width:700px;margin:0 auto;
+			padding: 10px;width:950px;margin:0 auto;
 		}
 		.landing-page-button {
 			display: inline-block;float: left;margin-right:170px;
@@ -1769,6 +1769,11 @@ div.conversation-reply input
 		
 		#landig-page-suggested {
 			background-image: url('/Content/img/suggested.png');
+			background-repeat:  no-repeat; 
+		}
+		
+		#landig-page-feedback {
+			background-image: url('/Content/img/feedback.png');
 			background-repeat:  no-repeat; 
 		}
 		
