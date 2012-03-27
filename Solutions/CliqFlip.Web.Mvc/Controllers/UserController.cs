@@ -137,6 +137,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 				return Redirect("~/u");
 			}
 
+			ViewBag.ReturnUrl = _httpContextProvider.Request.QueryString[Constants.RETURN_URL];
+
 			return View(new UserLoginViewModel());
 		}
 
@@ -156,7 +158,6 @@ namespace CliqFlip.Web.Mvc.Controllers
 					ModelState.AddModelError("", "Invalid credentials");
 				}
 			}
-		
 
 			return View();
 		}
