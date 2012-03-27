@@ -42,11 +42,11 @@
 			
 			<div class="userSearchInterest">
                 @*if the user has matching interests with images shows those, otherwise just write out the interests*@
-                @if (user.NumberOfInterestsWithImages != 0)
+                @if (user.InterestsWithImages.Count != 0)
                 {
 				    foreach (UsersByInterestViewModel.IndividualResultInterestViewModel interest in user.InterestsWithImages)
                     {
-                        <div class="@GetCssClass(user.NumberOfInterestsWithImages)">
+                        <div class="@GetCssClass(user.InterestsWithImages.Count)">
                             @interest.InterestName<br />
                             <img alt="photo" src='@interest.DefaultImageUrl'/>
                         </div>
