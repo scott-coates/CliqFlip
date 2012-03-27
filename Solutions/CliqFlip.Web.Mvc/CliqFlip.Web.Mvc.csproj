@@ -256,6 +256,7 @@
     <Content Include="Content\img\button_icon.png" />
     <Content Include="Content\img\check.png" />
     <Content Include="Content\img\ClipFliq-LogoMoto.png" />
+    <Content Include="Content\img\feedback.png" />
     <Content Include="Content\img\inbox.png" />
     <Content Include="Content\img\profile.png" />
     <Content Include="Content\img\rss.png" />
