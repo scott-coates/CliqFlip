@@ -36,6 +36,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		}
 
 		[Transaction]
+		[AllowAnonymous]
 		public ActionResult Interest(string input)
 		{
 			IList<InterestKeywordDto> matchingKeywords = _interestTasks.GetMatchingKeywords(input);
