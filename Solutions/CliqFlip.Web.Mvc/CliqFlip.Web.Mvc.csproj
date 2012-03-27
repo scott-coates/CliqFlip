@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Arachnophobia.IIS">
+      <HintPath>..\..\Packages\Arachnophobia.1.0\lib\net20\Arachnophobia.IIS.dll</HintPath>
+    </Reference>
     <Reference Include="AWSSDK, Version=1.4.2.0, Culture=neutral, PublicKeyToken=cd2d24cd2bace800, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Packages\AWSSDK.1.4.2.0\lib\AWSSDK.dll</HintPath>
@@ -643,6 +646,12 @@
     <Content Include="Configuration\Alpha\Compilation.config" />
     <Content Include="Configuration\Beta\Compilation.config" />
     <Content Include="Configuration\Compilation.config" />
+    <Content Include="Configuration\Modules.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Handlers.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Content\img\patterns\Thumbs.db" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
