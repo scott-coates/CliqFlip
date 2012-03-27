@@ -689,6 +689,7 @@
     <Content Include="Views\User\Landing.cshtml" />
     <Content Include="Views\Search\InterestSearch.cshtml" />
     <Content Include="Views\User\_Login.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
     <None Include="Views\User\StartConversationWith.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

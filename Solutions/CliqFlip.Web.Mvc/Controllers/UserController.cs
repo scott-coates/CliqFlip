@@ -110,7 +110,33 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[AllowAnonymous]
 		public ActionResult LoginAjax()
 		{
-			return PartialView();
+			return PartialView(new UserLoginViewModel());
+		}
+
+		[AllowAnonymous]
+		[HttpPost]
+		public ActionResult LoginAjax(UserLoginViewModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				if (_userTasks.Login(model.Username, model.Password, model.LogMeIn))
+				{
+					return Content("Awesome! You are now logged in.");
+				}
+			}
+			//TODO: Return a partial view instead of inline html
+			return Content("<strong>Login failed!</strong><br/> Please verify your username and password.");
+		}
+
+		[AllowAnonymous]
+		public ActionResult Login()
+		{
+			if(_principal.Identity.IsAuthenticated)
+			{
+				return Redirect("~/u");
+			}
+
+			return View(new UserLoginViewModel());
 		}
 
 		[AllowAnonymous]
@@ -124,8 +150,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 					return Content("Awesome! You are now logged in.");
 				}
 			}
-			//TODO: Return a partial view instead of inline html
-			return Content("<strong>Login failed!</strong><br/> Please verify your username and password.");
+
+			return View();
 		}
 
 		[AllowAnonymous]

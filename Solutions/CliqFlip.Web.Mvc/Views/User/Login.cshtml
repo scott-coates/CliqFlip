@@ -1,0 +1,11 @@
+﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserLoginViewModel
+<div style="width:500px;margin:0 auto;padding:50px;height:320px;">
+	<h1>Please login</h1>
+	@using (Html.BeginForm("Login", "User"))
+	{
+		@Html.ValidationSummary(true)
+		<fieldset>
+			@{ Html.RenderPartial("_Login"); }
+		</fieldset>
+	}
+</div>
