@@ -4,9 +4,9 @@
 @{
 	Layout = "~/Views/User/_Profile.cshtml";
 }
-@section styles
+@section beforeHeadClose
 {
-<style type="">
+<style type="text/css">
 		.add-interest
 		{
 			margin-left:6px;
@@ -84,7 +84,7 @@
 	</div>
 }
 
-@section scripts
+@section beforeBodyClose
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.tmpl.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/interests.js")"> </script>

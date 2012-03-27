@@ -4,7 +4,7 @@
 	ViewBag.Title = "Welcome " + Model.Username;
 }
 
-@section  styles
+@section  beforeHeadClose
 {
 	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/autoSuggest.css")" />
 }
@@ -39,7 +39,7 @@
 	@{ Html.RenderAction("InterestSearch", "Search"); }
 </div>
 
-@section scripts
+@section beforeBodyClose
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.autoSuggest.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.tagcloud.js")"> </script>

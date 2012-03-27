@@ -5,7 +5,7 @@
 	ViewBag.Title = Model.Username + " - " + Model.Headline;
 }           
 
-@section styles
+@section beforeHeadClose
 {
 	@*TODO: Move this to CSS file*@
 	<style type="text/css">
@@ -52,7 +52,7 @@
 			width: 100%;
 		}
 	</style>
-	@RenderSection("styles", false)
+	@RenderSection("beforeHeadClose", false)
 }
 
 @*The common content between the profile pages*@
@@ -96,7 +96,7 @@
 @RenderBody()
 
 
-@section scripts
+@section beforeBodyClose
 {
 	@*
         //TODO: move this to seperate js file specific for this layout
@@ -121,5 +121,5 @@
 		}
 
 	</script>
-	@RenderSection("scripts", false)
+	@RenderSection("beforeBodyClose", false)
 }
