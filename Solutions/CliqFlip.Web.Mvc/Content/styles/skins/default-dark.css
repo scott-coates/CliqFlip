@@ -1061,12 +1061,15 @@ display: block; float: left;
 }
 
 #innerUserSearchResults {
-	width: 640px;
-	margin: 50px auto 5px;
+	width: 21%;
+	margin-right: 1%;
+	float: left;
 	background-color: #EDEDED;
 	border-color: #5B5E62;
 	border-style: solid;
 	padding: 2px 7px 2px 10px;
+	height: 250px;
+	margin-top: 15px;
 }
 .interestSearchExactMatch {
 	color: black;
