@@ -73,6 +73,8 @@ namespace CliqFlip.Tasks.TaskImpl
 											 x.Interests.Any(y => subjAliasAndParent.Contains(y.Interest.ParentInterest.Slug)));
 
 			List<User> users = _repository.FindAll(query).ToList();
+
+            //TODO: DRY creating the UserDto maybe even all of UserSearchByInterestsDto
 			return users.Select(user => new UserSearchByInterestsDto
 			{
 				MatchCount = user.Interests.Sum(x =>
@@ -90,7 +92,8 @@ namespace CliqFlip.Tasks.TaskImpl
 					Username = user.Username,
 					InterestDtos = user.Interests
 						.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug, x.Options.Passion)).ToList(),
-					Bio = user.Bio
+					Bio = user.Bio, 
+                    Headline = user.Headline
 				}
 			}).OrderByDescending(x => x.MatchCount).ToList();
 		}
@@ -384,6 +387,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			var query = new AdHoc<User>(x => x.Interests.Any(y => interestList.Contains(y.Id)));
 
 			List<User> users = _repository.FindAll(query).ToList();
+            //TODO: DRY creating the UserDto maybe even all of UserSearchByInterestsDto
             return users.Select(user => new UserSearchByInterestsDto
             {
                 MatchCount = user.Interests.Select(x => x.Id).Intersect(interestList).Count(),
@@ -391,7 +395,8 @@ namespace CliqFlip.Tasks.TaskImpl
                 {
                     Username = user.Username,
                     InterestDtos = user.Interests.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug, x.Options.Passion)).ToList(),
-                    Bio = user.Bio
+                    Bio = user.Bio,
+                    Headline = user.Headline
                 }
             }).ToList();
 		}

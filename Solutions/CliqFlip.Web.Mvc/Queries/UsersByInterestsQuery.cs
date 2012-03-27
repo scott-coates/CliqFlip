@@ -33,6 +33,7 @@ namespace CliqFlip.Web.Mvc.Queries
 			{
 				retVal.Results.Add(new UsersByInterestViewModel.IndividualResultViewModel
 									{
+                                        Headline = user.UserDto.Headline,
 										Name = user.UserDto.Username,
 										Bio = user.UserDto.Bio,
 										ResultInterestViewModels = user.UserDto.InterestDtos

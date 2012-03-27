@@ -20,12 +20,14 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
 			public string Name { get; set; }
 			public IList<IndividualResultInterestViewModel> ResultInterestViewModels { get; set; }
 			public string Bio { get; set; }
+            public string Headline { get; set; }
 
 			public IndividualResultViewModel()
 			{
 				ResultInterestViewModels = new List<IndividualResultInterestViewModel>();
 			}
-		}
+
+        }
 
 		#endregion
 
