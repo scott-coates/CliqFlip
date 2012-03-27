@@ -10,39 +10,40 @@
 @section beforeHeadClose
 {
 	@*TODO: have config vales like appid part of viewmodel*@
-	<script type="text/javascript" language="javascript">
+	
 
-		@{
-			if (Model.AuthenticatedProfileOwner && string.IsNullOrWhiteSpace(Model.FacebookUsername))
-			{
-				<text>
-				window.fbAsyncInit = function () {
-			window.FB.init({
-				appId: '@ConfigurationManager.AppSettings[Constants.FACEBOOK_APPID]', // App ID
-				//channelUrl: '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
-				status: true, // check login status
-				cookie: true, // enable cookies to allow the server to access the session
-				xfbml: true  // parse XFBML
-			});
-		};
+	@{
+		if (Model.AuthenticatedProfileOwner && string.IsNullOrWhiteSpace(Model.FacebookUsername))
+		{
+			<text>
+				<script type="text/javascript" language="javascript">
+					window.fbAsyncInit = function() {
+						window.FB.init({
+							appId: '@ConfigurationManager.AppSettings[Constants.FACEBOOK_APPID]', // App ID
+							//channelUrl: '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
+							status: true, // check login status
+							cookie: true, // enable cookies to allow the server to access the session
+							xfbml: true  // parse XFBML
+						});
+					};
 
-		// Load the SDK Asynchronously
-		(function (d) {
-			var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-			if (d.getElementById(id)) {
-				return;
-			}
-			js = d.createElement('script');
-			js.id = id;
-			js.async = true;
-			js.src = "//connect.facebook.net/en_US/all.js";
-			ref.parentNode.insertBefore(js, ref);
-		} (document));
+					// Load the SDK Asynchronously
+					(function(d) {
+						var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+						if (d.getElementById(id)) {
+							return;
+						}
+						js = d.createElement('script');
+						js.id = id;
+						js.async = true;
+						js.src = "//connect.facebook.net/en_US/all.js";
+						ref.parentNode.insertBefore(js, ref);
+					}(document));
+				</script>
 		
 			</text>
-			}
 		}
-	</script>
+	}
 }
 
 @if (Model.AuthenticatedProfileOwner)
