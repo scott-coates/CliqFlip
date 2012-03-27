@@ -48,7 +48,6 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
                                         DefaultImageUrl = x.DefaultImageUrl
                                     }).OrderByDescending(x => x.IsMatch).ThenByDescending(x => x.Passion).Take(5).ToList();
                 InterestsWithImages = ResultInterestViewModels.Where(x => x.DefaultImageUrl != null).ToList(); //generate a list of the interests with images
-                NumberOfInterestsWithImages = InterestsWithImages.Count;
                 
             }
 
