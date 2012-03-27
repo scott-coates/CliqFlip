@@ -20,6 +20,22 @@ function InitAddInterest() {
 	_tmplNewInterest = $("#tmplNewInterest");
 
 	CreateAutoComplete();
+
+	SetupEnterKey();
+}
+
+function SetupEnterKey() {
+	var interestName = $("#interestName");
+	interestName.keydown(function (event) {
+
+		// ESCAPE key pressed
+		if (event.keyCode == 13 && $.trim(interestName.val()).length > 0) {
+			event.stopPropagation();
+			return false;
+		}
+
+		return true;
+	});
 }
 
 function CreateAutoComplete() {
