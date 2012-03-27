@@ -6,20 +6,16 @@ using CliqFlip.Domain.Dtos;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Search;
 using MvcContrib.Pagination;
-using System.Web.Mvc;
-using CliqFlip.Infrastructure.Web.Interfaces;
-using CliqFlip.Domain.Common;
 
 namespace CliqFlip.Web.Mvc.Queries
 {
 	public class UsersByInterestsQuery : IUsersByInterestsQuery
 	{
 		private readonly IUserTasks _userTasks;
-        private readonly IHttpContextProvider _httpProvider;
-		public UsersByInterestsQuery(IUserTasks userTasks, IHttpContextProvider httpProvider)
+
+		public UsersByInterestsQuery(IUserTasks userTasks)
 		{
 			_userTasks = userTasks;
-            _httpProvider = httpProvider;
 		}
 
 		#region IUsersByInterestsQuery Members
@@ -35,12 +31,18 @@ namespace CliqFlip.Web.Mvc.Queries
 			var retVal = new UsersByInterestViewModel();
 			foreach (UserSearchByInterestsDto user in users)
 			{
-                var indvResultViewModel = new UsersByInterestViewModel.IndividualResultViewModel(user, aliasCollection);
-                if (indvResultViewModel.ImageUrl == null)
-	            {
-                    indvResultViewModel.ImageUrl = UrlHelper.GenerateContentUrl(Constants.DEFAULT_PROFILE_IMAGE, _httpProvider.Context);
-	            }
-				retVal.Results.Add(indvResultViewModel);
+				retVal.Results.Add(new UsersByInterestViewModel.IndividualResultViewModel
+									{
+										Name = user.UserDto.Username,
+										Bio = user.UserDto.Bio,
+										ResultInterestViewModels = user.UserDto.InterestDtos
+											.Select(x => new UsersByInterestViewModel.IndividualResultInterestViewModel
+															{
+																InterestName = x.Name,
+																IsMatch = aliasCollection.Contains(x.Slug.ToLower()),
+                                                                Passion = x.Passion
+															}).OrderByDescending(x => x.IsMatch).ThenByDescending(x => x.Passion).Take(5).ToList()
+									});
 			}
 
 			retVal.PagedResults = retVal.Results.AsPagination(page ?? 1, 5);

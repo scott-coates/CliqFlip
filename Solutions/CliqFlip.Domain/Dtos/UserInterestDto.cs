@@ -1,7 +1,4 @@
-﻿using CliqFlip.Domain.Entities;
-using System.Linq;
-
-namespace CliqFlip.Domain.Dtos
+﻿namespace CliqFlip.Domain.Dtos
 {
 	public class UserInterestDto
 	{
@@ -13,7 +10,6 @@ namespace CliqFlip.Domain.Dtos
 		public float? Passion { get; set; }
 		public float? XAxis { get; set; }
 		public float? YAxis { get; set; }
-        public string DefaultImageUrl { get; set; }
 
         public UserInterestDto(int id, string name, string slug, float? passion)
         {
@@ -44,15 +40,5 @@ namespace CliqFlip.Domain.Dtos
 			XAxis = xAxis;
 			YAxis = yAxis;
 		}
-
-        public UserInterestDto(UserInterest interests)
-        {
-            Id = interests.Id;
-            Name = interests.Interest.Name;
-            Slug = interests.Interest.Slug;
-            Passion = interests.Options.Passion;
-            var defaultImage= interests.Images.FirstOrDefault();
-            DefaultImageUrl = defaultImage != null ? defaultImage.Data.ThumbFileName : null;
-        }
-    }
+	}
 }
