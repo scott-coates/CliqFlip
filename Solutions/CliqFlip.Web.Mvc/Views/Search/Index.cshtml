@@ -1,32 +1,166 @@
 ﻿@using CliqFlip.Web.Mvc.ViewModels.Search
 @model CliqFlip.Web.Mvc.ViewModels.Search.UsersByInterestViewModel
-           
+
+@section beforeHeadClose
+{
+    <style type="text/css">
+        .profile-image
+        {
+            max-height: 40px;
+        }
+        
+        .innerUserSearchResults h3 div
+        {
+            display: inline;
+            font-size: 14px;
+            text-transform: none;
+        }
+        .innerUserSearchResults h3
+        {
+            border-bottom: 2px solid;
+            margin-bottom: 5px;
+        }
+        
+        .innerUserSearchResults h3 a
+        {
+            display: block;
+            font-size: 10px;
+            padding-top: 5px;
+            text-align: right;
+            margin-right: 5px;
+        }
+        
+        .innerUserSearchResults .one-interest
+        {
+            height: 140px;
+            width: 230px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .innerUserSearchResults .one-interest img
+        {
+            height: 80%;
+            padding-bottom: 5px;
+        }
+        
+        
+        .innerUserSearchResults .two-interests
+        {
+            display: block;
+            height: 70px;
+            width: 230px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 12px;
+        }
+        
+        .innerUserSearchResults .two-interests img
+        {
+            height: 65%;
+            padding-bottom: 5px;
+        }
+        
+        
+        .innerUserSearchResults .three-interests, .innerUserSearchResults .four-interests
+        {
+            float: left;
+            width: 49%;
+            height: 70px;
+            text-align: center;
+            font-size: 10px;
+        }
+        
+        .innerUserSearchResults .three-interests img, .innerUserSearchResults .four-interests img
+        {
+            height: 65%;
+            padding-bottom: 5px;
+        }
+        
+        .userSearchInterest ul
+        {
+            margin: 10px 0px 0px 40px;
+            height: 110px;
+        }
+    </style>
+}           
+
+@helper GetCssClass(int interestsWithImages)
+{
+    var cssClass = "";
+    switch (interestsWithImages)
+    {
+        case 1:
+            cssClass = "one-interest";
+            break;
+        case 2:
+            cssClass = "two-interests";
+            break;
+        case 3:
+            cssClass = "three-interests";
+            break;
+        case 4:
+            cssClass = "four-interests";
+            break;
+        default:
+            break;
+    }
+    @cssClass;
+}
 
 <div id="userSearchResults">
 	@foreach (UsersByInterestViewModel.IndividualResultViewModel user in Model.PagedResults)
-	{
-		<div id="innerUserSearchResults">
+ {
+		<div class="innerUserSearchResults">
 			<h3>
-				<a>@Html.ActionLink(user.Name, "Index", "User", new {username = @user.Name}, null)</a></h3>
-			<img class="innerResultPhoto" alt="photo" src='@Url.Content("/Content/img/star.png")'/>
-			<ul class="userSearchInterest">
-				@foreach (UsersByInterestViewModel.IndividualResultInterestViewModel interest in user.ResultInterestViewModels)
-				{
-					if (interest.IsMatch)
-					{
-						<li><span class="interestSearchExactMatch">@interest.InterestName</span></li>
-					}
-					else
-					{
-						<li>@interest.InterestName</li>
-					}
-				}
-			</ul>
-			<div class="userSearchBio">@user.Bio</div>
+                <div>
+                    <img class="innerResultPhoto profile-image" alt="photo" src='@user.ImageUrl'/>
+                </div>
+                <div>
+                    @user.Headline
+                </div>
+                @Html.ActionLink("- " + user.Name, "Index", "User", new { username = @user.Name }, null)
+            </h3>
+            
+			
+			<div class="userSearchInterest">
+                @*if the user has matching interests with images shows those, otherwise just write out the interests*@
+                @if (user.NumberOfInterestsWithImages != 0)
+                {
+				    foreach (UsersByInterestViewModel.IndividualResultInterestViewModel interest in user.InterestsWithImages)
+                    {
+                        <div class="@GetCssClass(user.NumberOfInterestsWithImages)">
+                            @interest.InterestName<br />
+                            <img alt="photo" src='@interest.DefaultImageUrl'/>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <ul>
+                    @foreach (UsersByInterestViewModel.IndividualResultInterestViewModel interest in user.ResultInterestViewModels)
+                    {
+                        if (interest.IsMatch)
+					    {
+						    <li><span class="interestSearchExactMatch">@interest.InterestName</span></li>
+                        }
+                        else
+                        {
+						    <li>@interest.InterestName</li>
+                        }
+                    }
+                    </ul>
+                }
+			</div>
+			<div class="userSearchBio">
+                @user.Bio
+            </div>
 			<div class="clear">
 			</div>
 		</div>
-	}
+ }
+    <div class="clear">
+	</div>
 	<div id="userSearchPaging">
 		@Html.Raw(Html.Pager(Model.PagedResults).ToString())
 	</div>
@@ -38,6 +172,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("div.userSearchBio").dotdotdot();
+            $("div.headline").dotdotdot({ after: "a.headline-read-more" });
         });
     </script>
 }
