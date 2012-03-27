@@ -116,7 +116,7 @@ function InitFacebook() {
 
 function InitFacebookSdk(appId) {
 	window.fbAsyncInit = function() {
-		FB.init({
+		window.FB.init({
 			appId: appId, // App ID
 			//channelUrl: '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
 			status: true, // check login status
