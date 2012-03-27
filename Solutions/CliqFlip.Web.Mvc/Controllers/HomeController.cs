@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Security.Principal;
 using System.Web.Mvc;
+using CliqFlip.Web.Mvc.Security.Attributes;
 using CliqFlip.Web.Mvc.ViewModels.Search;
 
 namespace CliqFlip.Web.Mvc.Controllers
@@ -14,6 +15,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			_principal = principal;
 		}
 
+		[AllowAnonymous]
 		public ActionResult Index()
 		{
 			if (_principal.Identity.IsAuthenticated)

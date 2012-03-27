@@ -5,6 +5,7 @@ using System.Threading;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
+using CliqFlip.Web.Mvc.Security.Attributes;
 using CliqFlip.Web.Mvc.ViewModels.Search;
 using Newtonsoft.Json;
 using SharpArch.NHibernate.Web.Mvc;
@@ -58,6 +59,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 		[Transaction]
 		[ChildActionOnly]
+		[AllowAnonymous]
 		public ActionResult InterestSearch()
 		{
 			var viewModel = new InterestSearchViewModel
