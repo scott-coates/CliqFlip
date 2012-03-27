@@ -1,89 +1,6 @@
 ﻿@using CliqFlip.Web.Mvc.ViewModels.Search
 @model CliqFlip.Web.Mvc.ViewModels.Search.UsersByInterestViewModel
 
-@section beforeHeadClose
-{
-    <style type="text/css">
-        .profile-image
-        {
-            max-height: 40px;
-        }
-        
-        .innerUserSearchResults h3 div
-        {
-            display: inline;
-            font-size: 14px;
-            text-transform: none;
-        }
-        .innerUserSearchResults h3
-        {
-            border-bottom: 2px solid;
-            margin-bottom: 5px;
-        }
-        
-        .innerUserSearchResults h3 a
-        {
-            display: block;
-            font-size: 10px;
-            padding-top: 5px;
-            text-align: right;
-            margin-right: 5px;
-        }
-        
-        .innerUserSearchResults .one-interest
-        {
-            height: 140px;
-            width: 230px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .innerUserSearchResults .one-interest img
-        {
-            height: 80%;
-            padding-bottom: 5px;
-        }
-        
-        
-        .innerUserSearchResults .two-interests
-        {
-            display: block;
-            height: 70px;
-            width: 230px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 12px;
-        }
-        
-        .innerUserSearchResults .two-interests img
-        {
-            height: 65%;
-            padding-bottom: 5px;
-        }
-        
-        
-        .innerUserSearchResults .three-interests, .innerUserSearchResults .four-interests
-        {
-            float: left;
-            width: 49%;
-            height: 70px;
-            text-align: center;
-            font-size: 10px;
-        }
-        
-        .innerUserSearchResults .three-interests img, .innerUserSearchResults .four-interests img
-        {
-            height: 65%;
-            padding-bottom: 5px;
-        }
-        
-        .userSearchInterest ul
-        {
-            margin: 10px 0px 0px 40px;
-            height: 110px;
-        }
-    </style>
-}           
 
 @helper GetCssClass(int interestsWithImages)
 {
@@ -119,7 +36,7 @@
                 <div>
                     @user.Headline
                 </div>
-                @Html.ActionLink("- " + user.Name, "Index", "User", new { username = @user.Name }, null)
+                @Html.ActionLink("- " + user.Name, "Index", "User", new { username = @user.Name }, new { @class = "user-profile" })
             </h3>
             
 			
@@ -169,10 +86,10 @@
 @section beforeBodyClose
 {
     <script type="text/javascript" src="@Url.Content("~/Content/js/jquery.dotdotdot-1.2.1.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/search/index.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("div.userSearchBio").dotdotdot();
-            $("div.headline").dotdotdot({ after: "a.headline-read-more" });
+            InitSearchPage();
         });
     </script>
 }
