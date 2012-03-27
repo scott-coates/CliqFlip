@@ -1400,6 +1400,10 @@ color: white;
             padding: 10px;
             text-align: center;
         }
+        
+        #user-register {
+        	display: none;
+        }
 
         #login-progress
         {
