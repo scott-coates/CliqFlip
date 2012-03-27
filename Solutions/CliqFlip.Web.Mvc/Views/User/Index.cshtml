@@ -1,12 +1,50 @@
-﻿@using System.Configuration
-@using System.Globalization
-@using CliqFlip.Domain.Common
-
+﻿
 @{
 	Layout = "~/Views/User/_Profile.cshtml";
 }
-
+@using System.Configuration
+@using System.Globalization
+@using CliqFlip.Domain.Common
 @model CliqFlip.Web.Mvc.ViewModels.User.UserProfileIndexViewModel
+
+@section beforeHeadClose
+{
+	@*TODO: have config vales like appid part of viewmodel*@
+	<script type="text/javascript" language="javascript">
+
+		@{
+			if (Model.AuthenticatedProfileOwner && string.IsNullOrWhiteSpace(Model.FacebookUsername))
+			{
+				<text>
+				window.fbAsyncInit = function () {
+			window.FB.init({
+				appId: '@ConfigurationManager.AppSettings[Constants.FACEBOOK_APPID]', // App ID
+				//channelUrl: '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
+				status: true, // check login status
+				cookie: true, // enable cookies to allow the server to access the session
+				xfbml: true  // parse XFBML
+			});
+		};
+
+		// Load the SDK Asynchronously
+		(function (d) {
+			var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+			if (d.getElementById(id)) {
+				return;
+			}
+			js = d.createElement('script');
+			js.id = id;
+			js.async = true;
+			js.src = "//connect.facebook.net/en_US/all.js";
+			ref.parentNode.insertBefore(js, ref);
+		} (document));
+		
+			</text>
+			}
+		}
+	</script>
+}
+
 @if (Model.AuthenticatedProfileOwner)
 {
 	<div class="uploadProfileImageData">
@@ -69,7 +107,7 @@
 			<li>
 				<div class="social-media-username-container" id="twitterUsername">
 					<img  src="https://si0.twimg.com/a/1329332580/images/logos/twitter_newbird_blue.png"
-						 alt="Twitter" />
+						  alt="Twitter" />
 					<p id="twitterUsernameText" class="social-media-text">@Model.TwitterUsername</p>
 				</div>
 			</li>
@@ -101,8 +139,6 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/cliqFlip/ui.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.jeip.js")"> </script>
 	<script type="text/javascript">
-		//TODO: Only load FB if user can edit
-		InitFacebookSdk('@ConfigurationManager.AppSettings[Constants.FACEBOOK_APPID]');
 		$(function() {
 			InitUser(@(Model.AuthenticatedProfileOwner.ToString(CultureInfo.InvariantCulture).ToLower()));
 			InitHeadline(@(Html.Raw(Model.SaveHeadlineUrl)));
