@@ -1060,22 +1060,109 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa200', end
 display: block; float: left;	
 }
 
-#innerUserSearchResults {
-	width: 640px;
-	margin: 50px auto 5px;
+.innerUserSearchResults {
+	width: 23%;
+	margin-right: 1%;
+	float: left;
 	background-color: #EDEDED;
 	border-color: #5B5E62;
 	border-style: solid;
-	padding: 2px 7px 2px 10px;
+	padding: 2px 0px;
+	height: 250px;
+	margin-top: 15px;
+	cursor: pointer;
+}
+.innerUserSearchResults:hover
+{
+    background-color: white;
 }
 .interestSearchExactMatch {
 	color: black;
 }
 .userSearchBio {
-	float: right; font-size: smaller; font-weight: bold; margin-right: 68px;max-width: 195px; height: 90px;
+	float: left; font-size: smaller; font-weight: bold; height: 40px; padding: 5px;
 }
 .userSearchInterest {
-	float: left; font-size: larger; font-weight: bold;margin-left: 25px; 
+	float: left; font-size: larger; font-weight: bold;width: 100%;
+}
+
+.innerResultPhoto.profile-image
+{
+    max-height: 40px;
+}
+        
+.innerUserSearchResults h3 div
+{
+    display: inline;
+    font-size: 14px;
+    text-transform: none;
+}
+.innerUserSearchResults h3
+{
+    border-bottom: 2px solid;
+    margin-bottom: 5px;
+}
+        
+.innerUserSearchResults h3 a
+{
+    display: block;
+    font-size: 10px;
+    padding-top: 5px;
+    text-align: right;
+    margin-right: 5px;
+}
+        
+.innerUserSearchResults .one-interest
+{
+    height: 140px;
+    width: 230px;
+    margin: 0 auto;
+    text-align: center;
+}
+        
+.innerUserSearchResults .one-interest img
+{
+    height: 80%;
+    padding-bottom: 5px;
+}
+        
+        
+.innerUserSearchResults .two-interests
+{
+    display: block;
+    height: 70px;
+    width: 230px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 12px;
+}
+        
+.innerUserSearchResults .two-interests img
+{
+    height: 65%;
+    padding-bottom: 5px;
+}
+        
+        
+.innerUserSearchResults .three-interests, .innerUserSearchResults .four-interests
+{
+    float: left;
+    width: 49%;
+    height: 70px;
+    text-align: center;
+    font-size: 10px;
+}
+        
+.innerUserSearchResults .three-interests img, .innerUserSearchResults .four-interests img
+{
+    height: 65%;
+    padding-bottom: 5px;
+}
+        
+.userSearchInterest ul
+{
+    margin: 10px 0px 0px 40px;
+    height: 110px;
 }
 
 #userSearchPaging {
