@@ -62,7 +62,9 @@ namespace CliqFlip.Web.Mvc
 			var reflectionTypeLoadException = ex as ReflectionTypeLoadException;
 		}
 
+		// ReSharper disable InconsistentNaming
 		protected void ErrorMail_Filtering(object sender, ExceptionFilterEventArgs args)
+		// ReSharper restore InconsistentNaming
 		{
 			//TODO: Consider using filter configs
 			Exception exception = args.Exception;
