@@ -1060,14 +1060,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa200', end
 display: block; float: left;	
 }
 
-#innerUserSearchResults {
-	width: 21%;
+.innerUserSearchResults {
+	width: 23%;
 	margin-right: 1%;
 	float: left;
 	background-color: #EDEDED;
 	border-color: #5B5E62;
 	border-style: solid;
-	padding: 2px 7px 2px 10px;
+	padding: 2px 0px;
 	height: 250px;
 	margin-top: 15px;
 }
@@ -1078,7 +1078,7 @@ display: block; float: left;
 	float: right; font-size: smaller; font-weight: bold; margin-right: 68px;max-width: 195px; height: 90px;
 }
 .userSearchInterest {
-	float: left; font-size: larger; font-weight: bold;margin-left: 25px; 
+	float: left; font-size: larger; font-weight: bold;width: 100%;
 }
 
 #userSearchPaging {

@@ -14,11 +14,13 @@ namespace CliqFlip.Domain.Dtos
 		public string Username { get; set; }
 		public string Bio { get; set; }
         public string Headline { get; set; }
+        public string ImageUrl { get; set; }
 
 		public UserDto()
 		{
 			InterestDtos = new List<UserInterestDto>();
 		}
+
 
     }
 }

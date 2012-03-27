@@ -93,7 +93,8 @@ namespace CliqFlip.Tasks.TaskImpl
 					InterestDtos = user.Interests
 						.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug, x.Options.Passion)).ToList(),
 					Bio = user.Bio, 
-                    Headline = user.Headline
+                    Headline = user.Headline,
+                    ImageUrl = user.ProfileImage != null ? user.ProfileImage.Data.ThumbFileName : null
 				}
 			}).OrderByDescending(x => x.MatchCount).ToList();
 		}
@@ -381,6 +382,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			}
 		}
 
+        //can we get rid of this
 		public IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IEnumerable<int> interestIds)
 		{
 			List<int> interestList = interestIds.ToList();

@@ -1,34 +1,120 @@
 ﻿@using CliqFlip.Web.Mvc.ViewModels.Search
 @model CliqFlip.Web.Mvc.ViewModels.Search.UsersByInterestViewModel
-           
+
+@section styles
+{
+    <style type="text/css">
+        .profile-image
+        {
+            max-height: 40px;
+        }
+        
+        .innerUserSearchResults h3 div
+        {
+            display: inline;
+            font-size: 14px;
+            text-transform: none;
+        }
+        .innerUserSearchResults h3
+        {
+            border-bottom: 2px solid;
+        }
+        
+        .innerUserSearchResults h3 a
+        {
+            display: block;
+            font-size: 10px;
+            padding-top: 5px;
+        }
+        
+        .innerUserSearchResults .one-interest
+        {
+            background-color: Black;
+            height: 140px;
+            width: 190px;
+        }
+        
+        .innerUserSearchResults .two-interests
+        {
+            background-color: Black;
+            display: block;
+            width: 190px;
+            height: 70px;
+        }
+        
+        .innerUserSearchResults .userSearchInterest div
+        {
+            background-color: Black;
+        }
+        
+        .innerUserSearchResults .three-interests, .innerUserSearchResults .four-interests
+        {
+            background-color: Black;
+            float: left;
+            width: 49%;
+            height: 70px;
+        }
+        
+    </style>
+}           
+
+@helper GetCssClass(int interestsWithImages)
+{
+    var cssClass = "";
+    switch (interestsWithImages)
+    {
+        case 1:
+            cssClass = "one-interest";
+            break;
+        case 2:
+            cssClass = "two-interests";
+            break;
+        case 3:
+            cssClass = "three-interests";
+            break;
+        case 4:
+            cssClass = "four-interests";
+            break;
+        default:
+            break;
+    }
+    return cssClass;
+}
 
 <div id="userSearchResults">
 	@foreach (UsersByInterestViewModel.IndividualResultViewModel user in Model.PagedResults)
-	{
-		<div id="innerUserSearchResults">
+ {
+		<div class="innerUserSearchResults">
 			<h3>
-                @user.Headline
-				@Html.ActionLink(user.Name, "Index", "User", new {username = @user.Name}, null)
+                <div>
+                    <img class="innerResultPhoto profile-image" alt="photo" src='@user.ImageUrl'/>
+                </div>
+                <div>
+                    @user.Headline
+                </div>
+                @Html.ActionLink(user.Name, "Index", "User", new { username = @user.Name }, null)
             </h3>
-			<img class="innerResultPhoto" alt="photo" src='@Url.Content("/Content/img/star.png")'/>
-			<ul class="userSearchInterest">
+            }
+			
+			<div class="userSearchInterest">
+                @{ var cssClass = GetCssClass(user.InterestsWithImages); }
 				@foreach (UsersByInterestViewModel.IndividualResultInterestViewModel interest in user.ResultInterestViewModels)
 				{
-					if (interest.IsMatch)
-					{
-						<li><span class="interestSearchExactMatch">@interest.InterestName</span></li>
-					}
-					else
-					{
-						<li>@interest.InterestName</li>
-					}
-				}
-			</ul>
-			<div class="userSearchBio">@user.Bio</div>
+                    <div class="@cssClass">
+                        @interest.InterestName
+                        
+                    </div>
+                }
+			</div>
+			<div class="userSearchBio">
+                @user.Bio
+            </div>
 			<div class="clear">
 			</div>
 		</div>
-	}
+ }
+    <div class="clear">
+	</div>
 	<div id="userSearchPaging">
 		@Html.Raw(Html.Pager(Model.PagedResults).ToString())
 	</div>
