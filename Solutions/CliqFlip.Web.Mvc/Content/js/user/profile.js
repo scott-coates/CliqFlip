@@ -98,9 +98,11 @@ function InitWebsiteUrl(saveUrl) {
 function InitFacebook() {
 	$("#facebook-connect").click(function(event) {
 		var p = $(this).find("p");
-		FB.login(function(response) {
+		window.FB.login(function(response) {
 			if (response.authResponse) {
 				//send the user id to our app
+				//TODO: don't hardcode /user/savefacebook - use Url.Action() so it takes routes 
+				//and iis virtual apps into account
 				$.post("/User/SaveFacebook", { fbid: response.authResponse.userID }, function() {
 					p.html("Linked...");
 				});
