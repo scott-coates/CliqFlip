@@ -26,6 +26,14 @@
 			window.logErrorUrl = '@Url.Action("LogJavaScriptError", "Error", new{area = ""})';
 		</script>
 		<script type="text/javascript" src="@Url.Content("/Content/js/cliqflip/error-handler.js")"> </script>
+		<script type="text/javascript">
+			var uvOptions = {};
+			(function () {
+				var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+				uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/q3DwyrZM7VF8Wykt7zPQ.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+			})();
+		</script>
 		@RenderSection("beforeHeadClose", false)
 	</head>
 	<body>
