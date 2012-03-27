@@ -652,6 +652,18 @@
     <Content Include="Configuration\Handlers.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Configuration\Beta\Handlers.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Beta\Modules.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Alpha\Handlers.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Alpha\Modules.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Content\img\patterns\Thumbs.db" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
