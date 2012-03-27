@@ -7,6 +7,7 @@ namespace CliqFlip.Web.Mvc
 	{
 		public static void RegisterRoutesTo(RouteCollection routes)
 		{
+			routes.IgnoreRoute("{*robotstxt}", new { robotstxt = @"(.*/)?robots.txt(/.*)?" });
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 			routes.IgnoreRoute("{*favicon}", new {favicon = @"(.*/)?favicon.ico(/.*)?"});
 
