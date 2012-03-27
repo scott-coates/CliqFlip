@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
@@ -147,9 +148,15 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				if (_userTasks.Login(model.Username, model.Password, model.LogMeIn))
 				{
-					return Content("Awesome! You are now logged in.");
+					FormsAuthentication.RedirectFromLoginPage(model.Username, model.LogMeIn);
+					return null;
+				}
+				else
+				{
+					ModelState.AddModelError("", "Invalid credentials");
 				}
 			}
+		
 
 			return View();
 		}
