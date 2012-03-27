@@ -34,7 +34,7 @@ namespace CliqFlip.Web.Mvc.Extensions.Html
                 div.Attributes.Add("id", "youtube-container");
                 return new MvcHtmlString(div.ToString());
             }
-            return htmlHelper.Partial("_NotShared", "This conversation is not sharing their YouTube videos.");
+            return htmlHelper.Partial("_NotShared", "This user is not sharing their YouTube videos.");
         }
 
 		public static MvcHtmlString DisplayTwitter(this HtmlHelper<UserSocialMediaViewModel> htmlHelper)
@@ -53,7 +53,7 @@ namespace CliqFlip.Web.Mvc.Extensions.Html
                                 shellColor: "black").ToHtmlString();
                 return new MvcHtmlString(html);
             }
-            return htmlHelper.Partial("_NotShared", "This conversation is not sharing their twitter feed.");
+            return htmlHelper.Partial("_NotShared", "This user is not sharing their twitter feed.");
         }
 
 		public static MvcHtmlString DisplayBlogFeed(this HtmlHelper<UserSocialMediaViewModel> htmlHelper)
@@ -64,7 +64,7 @@ namespace CliqFlip.Web.Mvc.Extensions.Html
                 div.Attributes.Add("id", "blog-container");
                 return MvcHtmlString.Create(div.ToString());
             }
-            return htmlHelper.Partial("_NotShared", "This conversation is not sharing their blog feed.");
+            return htmlHelper.Partial("_NotShared", "This user is not sharing their blog feed.");
         }
 
 		public static MvcHtmlString DisplayFacebook(this HtmlHelper<UserSocialMediaViewModel> htmlHelper)
@@ -74,7 +74,7 @@ namespace CliqFlip.Web.Mvc.Extensions.Html
 				//TODO:Make a specific viewmodel for facebook
                 return htmlHelper.Partial("_FacebookLink", htmlHelper.ViewData.Model.FacebookUsername);
             }
-            return htmlHelper.Partial("_NotShared", "This conversation is not sharing their facebook page.");
+            return htmlHelper.Partial("_NotShared", "This user is not sharing their facebook page.");
         }
 	}
 }
