@@ -150,8 +150,18 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				if (_userTasks.Login(model.Username, model.Password, model.LogMeIn))
 				{
-					FormsAuthentication.RedirectFromLoginPage(model.Username, model.LogMeIn);
-					return null;
+					//don't use formsAuth.Redirect as it sets the cookie again and will screw things up
+					//down the road
+
+					string returnUrl = _httpContextProvider.Request.QueryString[Constants.RETURN_URL];
+					if(string.IsNullOrWhiteSpace(returnUrl))
+					{
+						return Redirect(FormsAuthentication.DefaultUrl);
+					}
+					else
+					{
+						return Redirect(returnUrl);
+					}
 				}
 				else
 				{
