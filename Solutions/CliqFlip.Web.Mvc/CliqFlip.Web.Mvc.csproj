@@ -177,7 +177,8 @@
     <Compile Include="Queries\ConversationQuery.cs" />
     <Compile Include="Queries\Interfaces\IConversationQuery.cs" />
     <Compile Include="Security\Attributes\AllowAnonymousAttribute.cs" />
-    <Compile Include="Security\Attributes\REquireAuthenticationAttribute.cs" />
+    <Compile Include="Security\Attributes\FormsAuthReadUserDataAttribute.cs" />
+    <Compile Include="Security\Attributes\RequireAuthenticationAttribute.cs" />
     <Compile Include="Validation\MustBeTrueAttribute.cs" />
     <Compile Include="Validation\CollectionNotEmptyAttribute.cs" />
     <Compile Include="Queries\Interfaces\IUserProfileQuery.cs" />

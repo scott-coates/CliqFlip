@@ -8,7 +8,7 @@ using CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Test;
 
 namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 {
-	[Authorize(Users = "scott")]
+	[Authorize(Roles = "Administrator")]
 	public class TestController : Controller
 	{
 		private readonly ILogger _logger;

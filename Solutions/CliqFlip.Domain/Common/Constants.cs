@@ -7,6 +7,7 @@ namespace CliqFlip.Domain.Common
 {
 	public static class Constants
 	{
+		public const string IS_ADMIN = "IsAdmin";
 		public const string RETURN_URL = "ReturnUrl";
 		public const string AUTO_SUGGEST_POST_NAME = "as_values_post";
 		public const string S3_BUCKET = "S3Bucket";
