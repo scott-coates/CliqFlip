@@ -11,6 +11,7 @@ using CliqFlip.Infrastructure.Exceptions;
 using CliqFlip.Infrastructure.NHibernate.Maps;
 using CliqFlip.Web.Mvc.CastleWindsor;
 using CliqFlip.Web.Mvc.Controllers;
+using CliqFlip.Web.Mvc.Security.Attributes;
 using CommonServiceLocator.WindsorAdapter;
 using Elmah;
 using Microsoft.Practices.ServiceLocation;
@@ -62,7 +63,9 @@ namespace CliqFlip.Web.Mvc
 			var reflectionTypeLoadException = ex as ReflectionTypeLoadException;
 		}
 
+		// ReSharper disable InconsistentNaming
 		protected void ErrorMail_Filtering(object sender, ExceptionFilterEventArgs args)
+			// ReSharper restore InconsistentNaming
 		{
 			//TODO: Consider using filter configs
 			Exception exception = args.Exception;
@@ -99,6 +102,13 @@ namespace CliqFlip.Web.Mvc
 
 			AreaRegistration.RegisterAllAreas();
 			RouteRegistrar.RegisterRoutesTo(RouteTable.Routes);
+
+			RegisterGlobalFilters(GlobalFilters.Filters);
+		}
+
+		private static void RegisterGlobalFilters(GlobalFilterCollection filters)
+		{
+			filters.Add(new RequireAuthenticationAttribute());
 		}
 
 		/// <summary>

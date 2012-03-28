@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
@@ -12,6 +13,7 @@ using CliqFlip.Domain.ValueObjects;
 using CliqFlip.Infrastructure.Web.Interfaces;
 using CliqFlip.Web.Mvc.Extensions.Exceptions;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
+using CliqFlip.Web.Mvc.Security.Attributes;
 using CliqFlip.Web.Mvc.ViewModels.Jeip;
 using CliqFlip.Web.Mvc.ViewModels.User;
 using SharpArch.NHibernate.Web.Mvc;
@@ -36,6 +38,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			_httpContextProvider = httpContextProvider;
 		}
 
+		[AllowAnonymous]
 		public ActionResult Create()
 		{
 			if (_principal.Identity.IsAuthenticated)
@@ -46,6 +49,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return View(new UserCreateViewModel());
 		}
 
+		[AllowAnonymous]
 		[HttpPost]
 		[Transaction]
 		public ActionResult Create(UserCreateViewModel profile)
@@ -104,13 +108,15 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return Interests(_principal.Identity.Name);
 		}
 
-		public ActionResult Login()
+		[AllowAnonymous]
+		public ActionResult LoginAjax()
 		{
-			return PartialView();
+			return PartialView(new UserLoginViewModel());
 		}
 
+		[AllowAnonymous]
 		[HttpPost]
-		public ActionResult Login(UserLoginViewModel model)
+		public ActionResult LoginAjax(UserLoginViewModel model)
 		{
 			if (ModelState.IsValid)
 			{
@@ -123,6 +129,50 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return Content("<strong>Login failed!</strong><br/> Please verify your username and password.");
 		}
 
+		[AllowAnonymous]
+		public ActionResult Login()
+		{
+			if(_principal.Identity.IsAuthenticated)
+			{
+				return Redirect("~/u");
+			}
+
+			ViewBag.ReturnUrl = _httpContextProvider.Request.QueryString[Constants.RETURN_URL];
+
+			return View(new UserLoginViewModel());
+		}
+
+		[AllowAnonymous]
+		[HttpPost]
+		public ActionResult Login(UserLoginViewModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				if (_userTasks.Login(model.Username, model.Password, model.LogMeIn))
+				{
+					//don't use formsAuth.Redirect as it sets the cookie again and will screw things up
+					//down the road
+
+					string returnUrl = _httpContextProvider.Request.QueryString[Constants.RETURN_URL];
+					if(string.IsNullOrWhiteSpace(returnUrl))
+					{
+						return Redirect(FormsAuthentication.DefaultUrl);
+					}
+					else
+					{
+						return Redirect(returnUrl);
+					}
+				}
+				else
+				{
+					ModelState.AddModelError("", "Invalid credentials");
+				}
+			}
+
+			return View();
+		}
+
+		[AllowAnonymous]
 		public ActionResult Logout()
 		{
 			_userTasks.Logout(_principal.Identity.Name);

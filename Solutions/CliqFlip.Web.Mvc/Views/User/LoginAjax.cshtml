@@ -1,0 +1,26 @@
+﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserLoginViewModel
+@{
+	var ajaxOptions = new AjaxOptions
+	{
+		OnSuccess = "FormLogin_OnSuccess",
+		UpdateTargetId = "login-summary",
+		LoadingElementId = "login-progress"
+	};
+}
+@using (Ajax.BeginForm("Login", "User", ajaxOptions))
+{
+	@Html.ValidationSummary(true)
+	<a id="close-login" href="javascript:;">
+		<img class="login-close" alt="close login" src="@Url.Content("/Content/img/close.png")" />
+	</a>
+	<div class="clear">
+	</div>
+	<div id="login-progress">
+		Loggin in....
+	</div>
+	<div id="login-summary">
+	</div>
+	<fieldset>
+		@{ Html.RenderPartial("_Login"); }
+	</fieldset>
+}

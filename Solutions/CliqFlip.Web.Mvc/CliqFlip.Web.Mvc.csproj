@@ -72,6 +72,7 @@
     <Reference Include="log4net">
       <HintPath>..\..\Packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\Packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -175,6 +176,9 @@
     <Compile Include="Extensions\Url\UrlExtensions.cs" />
     <Compile Include="Queries\ConversationQuery.cs" />
     <Compile Include="Queries\Interfaces\IConversationQuery.cs" />
+    <Compile Include="Security\Attributes\AllowAnonymousAttribute.cs" />
+    <Compile Include="Security\Attributes\FormsAuthReadUserDataAttribute.cs" />
+    <Compile Include="Security\Attributes\RequireAuthenticationAttribute.cs" />
     <Compile Include="Validation\MustBeTrueAttribute.cs" />
     <Compile Include="Validation\CollectionNotEmptyAttribute.cs" />
     <Compile Include="Queries\Interfaces\IUserProfileQuery.cs" />
@@ -670,7 +674,7 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\LoginAjax.cshtml" />
     <Content Include="Views\Shared\_HeaderNavigation.cshtml" />
     <Content Include="Content\js\validation\jquery.validate.collection-not-empty.js" />
     <Content Include="Views\User\SocialMedia.cshtml" />
@@ -687,6 +691,9 @@
     <Content Include="Views\User\ReadConversation.cshtml" />
     <Content Include="Views\User\Landing.cshtml" />
     <Content Include="Views\Search\InterestSearch.cshtml" />
+    <Content Include="Views\User\_Login.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Home\Invite.cshtml" />
     <None Include="Views\User\StartConversationWith.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

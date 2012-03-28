@@ -131,9 +131,8 @@ namespace CliqFlip.Tasks.TaskImpl
 		public void Login(User user, bool stayLoggedIn)
 		{
 			user.UpdateLastActivity();
-			_userAuthentication.Login(user.Username, stayLoggedIn);
+			_userAuthentication.Login(user.Username, stayLoggedIn, user.Role);
 		}
-
 
 		public bool Login(string username, string password, bool stayLoggedIn)
 		{

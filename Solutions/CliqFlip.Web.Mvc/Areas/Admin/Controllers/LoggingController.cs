@@ -1,11 +1,13 @@
 using System;
 using System.Web;
 using System.Web.Mvc;
+using CliqFlip.Web.Mvc.Security.Attributes;
 using Elmah;
 
 namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers 
 {
-	[Authorize(Users = "scott,jorgecruz")]
+	[FormsAuthReadUserData]
+	[Authorize(Roles = "Administrator")]
     public class LoggingController : Controller
     {
         public ActionResult Index()

@@ -1,0 +1,28 @@
+﻿@{
+	ViewBag.Title = "CliqFlip - Discover More";
+}
+@section beforeHeadClose
+{
+	<style type="text/css">
+		#user-register
+		{
+			display: inline;
+		}
+	</style>
+}
+<!-- SLIDER TRYOUT START-->
+<div class="wrapper">
+	<div class="inner">
+		<div class="tryout">
+			<div class="header">
+				@Html.Raw(ViewBag.InviteMessage)
+			</div>
+			<div class="subheader">
+				@Html.Raw("Thank you for joining the " + ViewBag.InviteKey + " beta program!")
+				<br/>
+				<br/>
+				Click the "Register Now!" button at the top-right corner to get started!
+			</div>
+		</div>
+	</div>
+</div>
