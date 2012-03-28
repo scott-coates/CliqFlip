@@ -1405,6 +1405,11 @@ color: white;
         	display: none;
         }
 
+		#login-container 
+		{
+			/*the non-ajax form*/
+			width:500px;margin:0 auto;padding:50px;height:320px;
+		}
         #login-progress
         {
             display: none;
