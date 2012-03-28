@@ -372,14 +372,14 @@ namespace CliqFlip.Tasks.TaskImpl
 			}
 		}
 
-        //can we get rid of this
+        //can we get rid of this?
 		public IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IEnumerable<int> interestIds)
 		{
 			List<int> interestList = interestIds.ToList();
 			var query = new AdHoc<User>(x => x.Interests.Any(y => interestList.Contains(y.Id)));
 
 			List<User> users = _repository.FindAll(query).ToList();
-            //TODO: DRY creating the UserDto maybe even all of UserSearchByInterestsDto
+
             return users.Select(user => new UserSearchByInterestsDto
             {
                 MatchCount = user.Interests.Select(x => x.Id).Intersect(interestList).Count(),
