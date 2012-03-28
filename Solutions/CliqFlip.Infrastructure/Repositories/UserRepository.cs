@@ -29,6 +29,14 @@ namespace CliqFlip.Infrastructure.Repositories
 					.OrderByRandom()
 					.Take(1)
 					.SingleOrDefault();
+
+				if(retVal == null)
+				{
+					retVal = query
+					.OrderByRandom()
+					.Take(1)
+					.SingleOrDefault();
+				}
 			}
 			else
 			{

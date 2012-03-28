@@ -10,11 +10,13 @@ using CliqFlip.Infrastructure.Location.Interfaces;
 using CliqFlip.Infrastructure.Logging.Interfaces;
 using CliqFlip.Infrastructure.Web.Interfaces;
 using CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Test;
+using CliqFlip.Web.Mvc.Security.Attributes;
 using SharpArch.Web.Mvc.JsonNet;
 
 namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 {
 	[OutputCache(Location = OutputCacheLocation.None, NoStore = true)] //prevent caching
+	[AllowAnonymous]
 	public class ValidationController : Controller
 	{
 		private readonly ILocationService _locationService;
