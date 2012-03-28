@@ -84,7 +84,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 				_userTasks.Login(user, false);
 
-				return Redirect("~/u");
+				return RedirectToRoute(Constants.ROUTE_LANDING_PAGE);
 			}
 
 			//TODO: Implement PRG pattern for post forms
@@ -134,7 +134,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			if(_principal.Identity.IsAuthenticated)
 			{
-				return Redirect("~/u");
+				return RedirectToRoute(Constants.ROUTE_LANDING_PAGE);
 			}
 
 			ViewBag.ReturnUrl = _httpContextProvider.Request.QueryString[Constants.RETURN_URL];

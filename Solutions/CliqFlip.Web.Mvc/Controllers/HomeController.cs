@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
+using CliqFlip.Domain.Common;
 using CliqFlip.Web.Mvc.Security.Attributes;
 using CliqFlip.Web.Mvc.ViewModels.Search;
 
@@ -27,7 +28,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			if (_principal.Identity.IsAuthenticated)
 			{
-				return Redirect("~/u");
+				return RedirectToRoute(Constants.ROUTE_LANDING_PAGE);
 			}
 
 			return View();
@@ -38,7 +39,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			if (_principal.Identity.IsAuthenticated)
 			{
-				return Redirect("~/u");
+				return RedirectToRoute(Constants.ROUTE_LANDING_PAGE);
 			}
 
 			inviteKey = inviteKey.ToLowerInvariant();

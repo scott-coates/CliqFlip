@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using CliqFlip.Domain.Common;
 
 namespace CliqFlip.Web.Mvc
 {
@@ -14,7 +15,7 @@ namespace CliqFlip.Web.Mvc
 			//Error handling routes are in the MagicalUnicornErrorHandling.cs file
 
 			routes.MapRoute(
-				"User Landing Page",
+				Constants.ROUTE_LANDING_PAGE,
 				"u",
 				new { controller = "User", action = "Landing" });
 
