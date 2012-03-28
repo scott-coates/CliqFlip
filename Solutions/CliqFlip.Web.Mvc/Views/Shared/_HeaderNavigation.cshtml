@@ -1,27 +1,30 @@
 ﻿<ul id="header-nav">
 	@if (!Request.IsAuthenticated)
- {
+	{
 		<li>
-			@Html.ActionLink("Register Now!", "Create", "User", null, new { id = "user-register" })
+			@Html.ActionLink("Register Now!", "Create", "User", null, new {id = "user-register"})
 		</li>
 		<li>
-			@Html.ActionLink("Login", "LoginAjax", "User", null, new { id = "user-login" })
+			@Html.ActionLink("Login", "LoginAjax", "User", null, new {id = "user-login"})
 			<div id="user-login-container">
-				@Html.Action("LoginAjax", "User") 
+				@Html.Action("LoginAjax", "User")
 				@*//TODO: make this just a partial - render action is extra work, right?*@
 			</div>
 		</li>
- }
- else
- {
+	}
+	else
+	{
 		<li>
-			@Html.ActionLink("Hello " + User.Identity.Name, "Index", "User", new { username = User.Identity.Name }, null)
+			@Html.ActionLink("Hello " + User.Identity.Name, "Index", "User", new {username = User.Identity.Name}, null)
 		</li>
-        <li>
-            @Html.ActionLink("Inbox (" + @Html.Action("NewMessageCount", "User") + ")", "Inbox", "User", new { username = User.Identity.Name }, null) 
-        </li>
+		<li>
+			@Html.ActionLink("Inbox (" + @Html.Action("NewMessageCount", "User") + ")", "Inbox", "User", new {username = User.Identity.Name}, null)
+		</li>
+		<li>
+			@Html.ActionLink("Flip", "Flip", "User")
+		</li>
 		<li>
 			@Html.ActionLink("Logout", "Logout", "User")
 		</li>
- }
+	}
 </ul>

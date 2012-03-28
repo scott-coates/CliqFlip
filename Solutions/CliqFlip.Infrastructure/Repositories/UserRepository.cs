@@ -29,6 +29,15 @@ namespace CliqFlip.Infrastructure.Repositories
 					.OrderByRandom()
 					.Take(1)
 					.SingleOrDefault();
+
+				if(retVal == null)
+				{
+					retVal = Session.QueryOver<User>()
+					.Where(x => x.Id != user.Id)
+					.OrderByRandom()
+					.Take(1)
+					.SingleOrDefault();
+				}
 			}
 			else
 			{
