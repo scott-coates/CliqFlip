@@ -25,71 +25,101 @@
     @cssClass;
 }
 
-<div id="userSearchResults">
-	@foreach (UsersByInterestViewModel.IndividualResultViewModel user in Model.PagedResults)
- {
-		<div class="innerUserSearchResults">
-			<h3>
-                <div>
-                    <img class="innerResultPhoto profile-image" alt="photo" src='@user.ImageUrl'/>
-                </div>
-                <div>
-                    @user.Headline
-                </div>
-                @Html.ActionLink("- " + user.Name, "Index", "User", new { username = @user.Name }, new { @class = "user-profile" })
-            </h3>
+@section  beforeHeadClose
+{
+	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/autoSuggest.css")" />
+}
+@if (Model.Results.Count > 0)
+{
+	<div id="userSearchResults">
+		@foreach (UsersByInterestViewModel.IndividualResultViewModel user in Model.PagedResults)
+		{
+			<div class="innerUserSearchResults">
+				<h3>
+					<div>
+						<img class="innerResultPhoto profile-image" alt="photo" src='@user.ImageUrl'/>
+					</div>
+					<div>
+						@user.Headline
+					</div>
+					@Html.ActionLink("- " + user.Name, "Index", "User", new {username = @user.Name}, new {@class = "user-profile"})
+				</h3>
             
 			
-			<div class="userSearchInterest">
-                @*if the user has matching interests with images shows those, otherwise just write out the interests*@
-                @if (user.InterestsWithImages.Count != 0)
-                {
-				    foreach (UsersByInterestViewModel.IndividualResultInterestViewModel interest in user.InterestsWithImages)
-                    {
-                        <div class="@GetCssClass(user.InterestsWithImages.Count)">
-                            @interest.InterestName<br />
-                            <img alt="photo" src='@interest.DefaultImageUrl'/>
-                        </div>
-                    }
-                }
-                else
-                {
-                    <ul>
-                    @foreach (UsersByInterestViewModel.IndividualResultInterestViewModel interest in user.ResultInterestViewModels)
-                    {
-                        if (interest.IsMatch)
-					    {
-						    <li><span class="interestSearchExactMatch">@interest.InterestName</span></li>
-                        }
-                        else
-                        {
-						    <li>@interest.InterestName</li>
-                        }
-                    }
-                    </ul>
-                }
+				<div class="userSearchInterest">
+					@*if the user has matching interests with images shows those, otherwise just write out the interests*@
+					@if (user.InterestsWithImages.Count != 0)
+					{
+						foreach (UsersByInterestViewModel.IndividualResultInterestViewModel interest in user.InterestsWithImages)
+						{
+							<div class="@GetCssClass(user.InterestsWithImages.Count)">
+								@interest.InterestName<br />
+								<img alt="photo" src='@interest.DefaultImageUrl'/>
+							</div>
+						}
+					}
+					else
+					{
+						<ul>
+							@foreach (UsersByInterestViewModel.IndividualResultInterestViewModel interest in user.ResultInterestViewModels)
+							{
+								if (interest.IsMatch)
+								{
+									<li><span class="interestSearchExactMatch">@interest.InterestName</span></li>
+								}
+								else
+								{
+									<li>@interest.InterestName</li>
+								}
+							}
+						</ul>
+					}
+				</div>
+				<div class="userSearchBio">
+					@user.Bio
+				</div>
+				<div class="clear">
+				</div>
 			</div>
-			<div class="userSearchBio">
-                @user.Bio
-            </div>
-			<div class="clear">
-			</div>
+		}
+		<div class="clear">
 		</div>
- }
-    <div class="clear">
+		<div id="userSearchPaging">
+			@Html.Raw(Html.Pager(Model.PagedResults).ToString())
+		</div>
+		<div class="tryout">
+			@{ Html.RenderAction("InterestSearch", "Search"); }
+		</div>
 	</div>
-	<div id="userSearchPaging">
-		@Html.Raw(Html.Pager(Model.PagedResults).ToString())
+}
+else
+{
+	<div class="tryout">
+	<div class="header">
+		Sorry, no results were found for this query
 	</div>
+	<div class="subheader">
+		Please try one of the popular terms below</div>
+	@{ Html.RenderAction("InterestSearch", "Search"); }
 </div>
+}
 
 @section beforeBodyClose
 {
+<script type="text/javascript" src="@Url.Content("/Content/js/jquery.autoSuggest.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.tagcloud.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/search/interest-search.js")"> </script>
     <script type="text/javascript" src="@Url.Content("~/Content/js/jquery.dotdotdot-1.2.1.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/js/search/index.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            InitSearchPage();
+        	InitSearchPage();
+
+        	InitAutoSuggest('@(Html.Raw(Url.Action("Interest", "Search")))');
+
+        	InitTagCloud();
+
+        	ChangeSearchQueryParamName();
         });
     </script>
 }
