@@ -39,6 +39,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[AllowAnonymous]
 		public ActionResult Interest(string input)
 		{
+			//TODO: put this in a view model query
 			IList<InterestKeywordDto> matchingKeywords = _interestTasks.GetMatchingKeywords(input);
 
 			if (!matchingKeywords.Any(x => x.Name.ToLower() == input.ToLower()))
