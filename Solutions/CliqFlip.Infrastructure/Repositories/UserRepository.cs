@@ -32,7 +32,8 @@ namespace CliqFlip.Infrastructure.Repositories
 
 				if(retVal == null)
 				{
-					retVal = query
+					retVal = Session.QueryOver<User>()
+					.Where(x => x.Id != user.Id)
 					.OrderByRandom()
 					.Take(1)
 					.SingleOrDefault();
