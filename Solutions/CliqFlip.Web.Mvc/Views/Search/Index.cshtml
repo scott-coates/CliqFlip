@@ -4,25 +4,26 @@
 
 @helper GetCssClass(int interestsWithImages)
 {
-    var cssClass = "";
-    switch (interestsWithImages)
-    {
-        case 1:
-            cssClass = "one-interest";
-            break;
-        case 2:
-            cssClass = "two-interests";
-            break;
-        case 3:
-            cssClass = "three-interests";
-            break;
-        case 4:
-            cssClass = "four-interests";
-            break;
-        default:
-            break;
-    }
-    @cssClass;
+	string cssClass = "";
+	switch (interestsWithImages)
+	{
+		case 1:
+			cssClass = "one-interest";
+			break;
+		case 2:
+			cssClass = "two-interests";
+			break;
+		case 3:
+			cssClass = "three-interests";
+			break;
+		case 4:
+			cssClass = "four-interests";
+			break;
+		default:
+			break;
+	}
+	@cssClass
+	;
 }
 
 @section  beforeHeadClose
@@ -95,31 +96,31 @@
 else
 {
 	<div class="tryout">
-	<div class="header">
-		Sorry, no results were found for this query
+		<div class="header">
+			Sorry, no results were found for this query
+		</div>
+		<div class="subheader">
+			Please try one of the popular terms below</div>
+		@{ Html.RenderAction("InterestSearch", "Search"); }
 	</div>
-	<div class="subheader">
-		Please try one of the popular terms below</div>
-	@{ Html.RenderAction("InterestSearch", "Search"); }
-</div>
 }
 
 @section beforeBodyClose
 {
-<script type="text/javascript" src="@Url.Content("/Content/js/jquery.autoSuggest.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.autoSuggest.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.tagcloud.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/search/interest-search.js")"> </script>
-    <script type="text/javascript" src="@Url.Content("~/Content/js/jquery.dotdotdot-1.2.1.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/js/search/index.js")"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-        	InitSearchPage();
+	<script type="text/javascript" src="@Url.Content("~/Content/js/jquery.dotdotdot-1.2.1.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Content/js/search/index.js")"> </script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			InitSearchPage();
 
-        	InitAutoSuggest('@(Html.Raw(Url.Action("Interest", "Search")))');
+			InitAutoSuggest('@(Html.Raw(Url.Action("Interest", "Search")))');
 
-        	InitTagCloud();
+			InitTagCloud();
 
-        	ChangeSearchQueryParamName();
-        });
-    </script>
+			ChangeSearchQueryParamName();
+		});
+	</script>
 }
