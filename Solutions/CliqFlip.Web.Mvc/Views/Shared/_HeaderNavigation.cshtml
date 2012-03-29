@@ -21,7 +21,7 @@
 			@Html.ActionLink("Inbox (" + @Html.Action("NewMessageCount", "User") + ")", "Inbox", "User", new {username = User.Identity.Name}, null)
 		</li>
 		<li>
-			@Html.ActionLink("Flip", "Flip", "User")
+			@Html.ActionLink("Flip", "Flip", "User", null, new { title = "Find Random User" })
 		</li>
 		<li>
 			@Html.ActionLink("Logout", "Logout", "User")
