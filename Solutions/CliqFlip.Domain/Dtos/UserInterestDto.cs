@@ -52,7 +52,7 @@ namespace CliqFlip.Domain.Dtos
             Slug = interests.Interest.Slug;
             Passion = interests.Options.Passion;
             var defaultImage= interests.Images.FirstOrDefault();
-            DefaultImageUrl = defaultImage != null ? defaultImage.Data.ThumbFileName : null;
+            DefaultImageUrl = defaultImage != null ? defaultImage.Data.MediumFileName : null;
         }
     }
 }

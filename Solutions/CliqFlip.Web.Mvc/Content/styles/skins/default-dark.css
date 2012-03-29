@@ -1122,7 +1122,7 @@ display: block; float: left;
         
 .innerUserSearchResults .one-interest img
 {
-    height: 80%;
+    max-height: 80%;
     padding-bottom: 5px;
 }
         
@@ -1139,7 +1139,7 @@ display: block; float: left;
         
 .innerUserSearchResults .two-interests img
 {
-    height: 65%;
+    max-height: 65%;
     padding-bottom: 5px;
 }
         
@@ -1155,7 +1155,7 @@ display: block; float: left;
         
 .innerUserSearchResults .three-interests img, .innerUserSearchResults .four-interests img
 {
-    height: 65%;
+    max-height: 65%;
     padding-bottom: 5px;
 }
         
