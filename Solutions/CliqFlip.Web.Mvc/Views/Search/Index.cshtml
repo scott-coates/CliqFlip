@@ -4,34 +4,62 @@
 
 @helper GetCssClass(int interestsWithImages)
 {
-	string cssClass = "";
-	switch (interestsWithImages)
-	{
-		case 1:
-			cssClass = "one-interest";
-			break;
-		case 2:
-			cssClass = "two-interests";
-			break;
-		case 3:
-			cssClass = "three-interests";
-			break;
-		case 4:
-			cssClass = "four-interests";
-			break;
-	}
+    string cssClass = "";
+    switch (interestsWithImages)
+    {
+        case 1:
+            cssClass = "one-interest";
+            break;
+        case 2:
+            cssClass = "two-interests";
+            break;
+        case 3:
+            cssClass = "three-interests";
+            break;
+        case 4:
+            cssClass = "four-interests";
+            break;
+    }
 	@cssClass
+}
+
+@helper DisplayUserInterests(UsersByInterestViewModel.IndividualResultViewModel user)
+{
+    var maxInterests = 4;
+    var interests = user.ResultInterestViewModels.ToList();
+	<div class="userSearchInterest">
+        <ul class="interest-slider">
+        @while (interests.Any())
+        {
+            var currentSet = interests.Take(maxInterests).ToList();// work with 4 interests at a time
+            <li>
+                @foreach (var interest in currentSet)
+                {
+                    interests.Remove(interest);
+					<div class="@GetCssClass(currentSet.Count)">
+						@interest.InterestName<br />
+                        @if (interest.DefaultImageUrl != null)
+                        {
+							<img alt="photo" src='@interest.DefaultImageUrl'/>
+                        }
+					</div>
+                }
+            </li>
+        }
+        </ul>
+	</div>
 }
 
 @section  beforeHeadClose
 {
 	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/autoSuggest.css")" />
 }
+
 @if (Model.Results.Count > 0)
 {
 	<div id="userSearchResults">
-		@foreach (UsersByInterestViewModel.IndividualResultViewModel user in Model.PagedResults)
-		{
+		@foreach (var user in Model.PagedResults)
+        {
 			<div class="innerUserSearchResults">
 				<h3>
 					<div>
@@ -40,46 +68,18 @@
 					<div>
 						@user.Headline
 					</div>
-					@Html.ActionLink("- " + user.Name, "Index", "User", new {username = @user.Name}, new {@class = "user-profile"})
+					@Html.ActionLink("- " + user.Name, "Index", "User", new { username = @user.Name }, new { @class = "user-profile" })
 				</h3>
-            
-			
-				<div class="userSearchInterest">
-					@*if the user has matching interests with images shows those, otherwise just write out the interests*@
-					@if (user.InterestsWithImages.Count != 0)
-					{
-						foreach (UsersByInterestViewModel.IndividualResultInterestViewModel interest in user.InterestsWithImages)
-						{
-							<div class="@GetCssClass(user.InterestsWithImages.Count)">
-								@interest.InterestName<br />
-								<img alt="photo" src='@interest.DefaultImageUrl'/>
-							</div>
-						}
-					}
-					else
-					{
-						<ul>
-							@foreach (UsersByInterestViewModel.IndividualResultInterestViewModel interest in user.ResultInterestViewModels)
-							{
-								if (interest.IsMatch)
-								{
-									<li><span class="interestSearchExactMatch">@interest.InterestName</span></li>
-								}
-								else
-								{
-									<li>@interest.InterestName</li>
-								}
-							}
-						</ul>
-					}
-				</div>
+                
+                @DisplayUserInterests(user)
+
 				<div class="userSearchBio">
 					@user.Bio
 				</div>
 				<div class="clear">
 				</div>
 			</div>
-		}
+        }
 		<div class="clear">
 		</div>
 		<div id="userSearchPaging">
@@ -106,18 +106,20 @@ else
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.autoSuggest.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.tagcloud.js")"> </script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/jquery.anythingslider.min.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/search/interest-search.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("~/Content/js/jquery.dotdotdot-1.2.1.min.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("~/Content/js/search/index.js")"> </script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/search/index.js")"> </script>
+	
 	<script type="text/javascript">
-		$(document).ready(function() {
-			InitSearchPage();
+	    $(document).ready(function () {
+	        InitSearchPage();
 
-			InitAutoSuggest('@(Html.Raw(Url.Action("Interest", "Search")))');
+	        InitAutoSuggest('@(Html.Raw(Url.Action("Interest", "Search")))');
 
-			InitTagCloud();
+	        InitTagCloud();
 
-			ChangeSearchQueryParamName();
-		});
+	        ChangeSearchQueryParamName();
+	    });
 	</script>
 }
