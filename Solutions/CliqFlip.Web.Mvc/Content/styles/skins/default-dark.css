@@ -1071,8 +1071,11 @@ display: block; float: left;
 	height: 250px;
 	margin-top: 15px;
 	cursor: pointer;
+    border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
 }
-.innerUserSearchResults:hover
+.innerUserSearchResults h3:hover
 {
     background-color: white;
 }
@@ -1080,7 +1083,7 @@ display: block; float: left;
 	color: black;
 }
 .userSearchBio {
-	float: left; font-size: smaller; font-weight: bold; height: 40px; padding: 5px;
+	float: left; font-size: smaller; font-weight: bold; height: 40px; padding: 5px; display: none;
 }
 .userSearchInterest {
 	float: left; font-size: larger; font-weight: bold;width: 100%;
@@ -1123,7 +1126,6 @@ display: block; float: left;
 .innerUserSearchResults .one-interest img
 {
     max-height: 80%;
-    padding-bottom: 5px;
 }
         
         
@@ -1140,29 +1142,39 @@ display: block; float: left;
 .innerUserSearchResults .two-interests img
 {
     max-height: 65%;
-    padding-bottom: 5px;
 }
         
         
 .innerUserSearchResults .three-interests, .innerUserSearchResults .four-interests
 {
     float: left;
-    width: 49%;
-    height: 70px;
+    width: 50%;
+    height: 65px;
     text-align: center;
     font-size: 10px;
+    line-height: 11px;
+    padding-bottom: 5px;
 }
         
 .innerUserSearchResults .three-interests img, .innerUserSearchResults .four-interests img
 {
+    padding-top: 2px;
     max-height: 65%;
-    padding-bottom: 5px;
 }
         
-.userSearchInterest ul
+div.userSearchInterest div.anythingWindow
 {
-    margin: 10px 0px 0px 40px;
-    height: 110px;
+    border: none;
+}
+
+div.userSearchInterest div.anythingSlider-default1 span.back
+{
+    left: -7px;
+}
+
+div.userSearchInterest div.anythingSlider-default1 span.forward
+{
+    right: -7px;
 }
 
 #userSearchPaging {

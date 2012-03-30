@@ -38,7 +38,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
                 Name = user.UserDto.Username;
                 Bio = user.UserDto.Bio;
                 ImageUrl = user.UserDto.ImageUrl;
-                
+
                 ResultInterestViewModels = user.UserDto.InterestDtos
                     .Select(x => new IndividualResultInterestViewModel
                                     {
@@ -47,7 +47,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
                                         Passion = x.Passion,
                                         DefaultImageUrl = x.DefaultImageUrl
                                     }).OrderByDescending(x => x.IsMatch).ThenByDescending(x => x.Passion).Take(5).ToList();
-                InterestsWithImages = ResultInterestViewModels.Where(x => x.DefaultImageUrl != null).ToList(); //generate a list of the interests with images
+                //InterestsWithImages = ResultInterestViewModels.Where(x => x.DefaultImageUrl != null).ToList(); //generate a list of the interests with images
                 
             }
 
