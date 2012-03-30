@@ -82,7 +82,7 @@
 				<li id="send-message-link">
 					@Html.ActionLink("Start a conversation", "StartConversationWith", "User")
 					<div id="send-message">
-						@Html.Action("StartConversationWith")
+						@{ Html.RenderAction("StartConversationWith"); }
 					</div>
 
 				</li>

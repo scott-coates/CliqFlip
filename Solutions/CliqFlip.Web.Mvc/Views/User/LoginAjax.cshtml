@@ -7,7 +7,7 @@
 		LoadingElementId = "login-progress"
 	};
 }
-@using (Ajax.BeginForm("Login", "User", ajaxOptions))
+@using (Ajax.BeginForm("LoginAjax", "User", ajaxOptions))
 {
 	@Html.ValidationSummary(true)
 	<a id="close-login" href="javascript:;">
