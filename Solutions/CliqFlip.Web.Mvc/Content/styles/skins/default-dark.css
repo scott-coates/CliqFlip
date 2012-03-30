@@ -1463,6 +1463,10 @@ color: white;
             background-color: #176787;
         }
         
+        #header-nav-flip {
+        	color: #4DBCE9;
+        }
+        
         #user-login-container
         {
         	position: relative;
