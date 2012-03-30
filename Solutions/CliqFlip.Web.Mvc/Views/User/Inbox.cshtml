@@ -27,7 +27,7 @@
             <div id="conversation-messages-@conversation.Id" class="conversation-messages">
             </div>
             <div class="conversation-reply">
-                @{ Html.Action("ReplyToConversation", "User", new {id = conversation.Id}); }
+                @{ Html.RenderAction("ReplyToConversation", "User", new {id = conversation.Id}); }
             </div>
         </div>
     @*</div>*@
