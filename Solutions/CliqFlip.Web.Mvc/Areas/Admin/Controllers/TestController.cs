@@ -2,12 +2,15 @@ using System;
 using System.Web;
 using System.Web.Mvc;
 using CliqFlip.Infrastructure.Email.Interfaces;
+using CliqFlip.Infrastructure.Exceptions;
 using CliqFlip.Infrastructure.Logging.Interfaces;
 using CliqFlip.Infrastructure.Web.Interfaces;
 using CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Test;
+using CliqFlip.Web.Mvc.Security.Attributes;
 
 namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 {
+	[FormsAuthReadUserData]
 	[Authorize(Roles = "Administrator")]
 	public class TestController : Controller
 	{
@@ -35,6 +38,11 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 		public ActionResult RandomError()
 		{
 			throw new HttpException(500, "Test Error " + new Random().NextDouble());
+		}
+
+		public ActionResult CriticalError()
+		{
+			throw new CriticalException("CriticalTest " + new Random().NextDouble());
 		}
 
 		public ActionResult LogError()
