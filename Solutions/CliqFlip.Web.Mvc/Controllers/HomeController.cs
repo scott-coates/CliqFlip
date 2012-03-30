@@ -42,6 +42,11 @@ namespace CliqFlip.Web.Mvc.Controllers
 				return RedirectToRoute(Constants.ROUTE_LANDING_PAGE);
 			}
 
+			if(string.IsNullOrWhiteSpace(inviteKey))
+			{
+				throw new HttpException(403, "Invalid key");				
+			}
+
 			inviteKey = inviteKey.ToLowerInvariant();
 
 			if(!_invites.ContainsKey(inviteKey))
