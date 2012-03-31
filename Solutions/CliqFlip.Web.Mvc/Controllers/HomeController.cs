@@ -15,7 +15,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 		private static readonly Dictionary<string, string> _invites=
 			new Dictionary<string, string>
 			{
-				{"oc-invite","Welcome Orange County users!" }
+				{"oc-invite","Welcome Orange County users!" },
+				{"beta-invite","Welcome beta users!" }
 			};
 
 		public HomeController(IPrincipal principal)
