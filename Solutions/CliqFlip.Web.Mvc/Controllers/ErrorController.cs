@@ -2,9 +2,11 @@ using System.Net;
 using System.Web.Mvc;
 using CliqFlip.Infrastructure.Exceptions;
 using CliqFlip.Infrastructure.Logging.Interfaces;
+using CliqFlip.Web.Mvc.Security.Attributes;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
+	[AllowAnonymous]
 	public class ErrorController : Controller
 	{
 		private readonly ILogger _logger;
