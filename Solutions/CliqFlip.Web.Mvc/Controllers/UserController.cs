@@ -431,7 +431,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 		[Transaction]
 		[Authorize]
-		public ActionResult StartConversationWith(string username)
+		public ActionResult StartConversationWith()
 		{
 			return PartialView();
 		}
