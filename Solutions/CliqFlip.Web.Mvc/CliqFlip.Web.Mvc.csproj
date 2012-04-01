@@ -694,7 +694,7 @@
     <Content Include="Views\User\_Login.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Home\Invite.cshtml" />
-    <None Include="Views\User\StartConversationWith.cshtml" />
+    <Content Include="Views\User\StartConversationWith.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
