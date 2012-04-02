@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using CliqFlip.Domain.Common;
 using CliqFlip.Web.Mvc.Extensions.Request;
 using CliqFlip.Web.Mvc.ViewModels.User;
 using Microsoft.Web.Helpers;
@@ -76,5 +79,15 @@ namespace CliqFlip.Web.Mvc.Extensions.Html
             }
             return htmlHelper.Partial("_NotShared", "This user is not sharing their facebook page.");
         }
+
+		public static IHtmlString GetAnalyticsHtmlIfAvailable()
+		{
+			if (!String.IsNullOrWhiteSpace(WebConfigurationManager.AppSettings[Constants.GA_ID]))
+			{
+				return Analytics.GetGoogleAsyncHtml(WebConfigurationManager.AppSettings[Constants.GA_ID]);
+			}
+
+			return MvcHtmlString.Empty;
+		}
 	}
 }
