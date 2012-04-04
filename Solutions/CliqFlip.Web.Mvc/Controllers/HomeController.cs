@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
@@ -12,7 +13,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 	public class HomeController : Controller
 	{
 		private readonly IPrincipal _principal;
-		private static readonly Dictionary<string, string> _invites=
+		private static readonly Dictionary<string, string> _invites =
 			new Dictionary<string, string>
 			{
 				{"oc-invite","Welcome Orange County users!" },
@@ -45,9 +46,9 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 			inviteKey = inviteKey.ToLowerInvariant();
 
-			if(!_invites.ContainsKey(inviteKey))
+			if (!_invites.ContainsKey(inviteKey))
 			{
-				throw new HttpException(403, "You do not have access to this invite");
+				throw new HttpException((int)HttpStatusCode.Forbidden, "You do not have access to this invite");
 			}
 
 			ViewBag.InviteKey = inviteKey;

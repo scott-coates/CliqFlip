@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
@@ -407,7 +408,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			}
 
 			//http://stackoverflow.com/a/4985562/173957
-			throw new HttpException(404, "Not found");
+			throw new HttpException((int)HttpStatusCode.NotFound, "Not found");
 		}
 
 		[Transaction]

@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CliqFlip.Infrastructure.Email.Interfaces;
@@ -32,12 +33,12 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 
 		public ActionResult Error()
 		{
-			throw new HttpException(500, "Test Error");
+			throw new HttpException((int)HttpStatusCode.InternalServerError, "Test Error");
 		}
 
 		public ActionResult RandomError()
 		{
-			throw new HttpException(500, "Test Error " + new Random().NextDouble());
+			throw new HttpException((int)HttpStatusCode.InternalServerError, "Test Error " + new Random().NextDouble());
 		}
 
 		public ActionResult CriticalError()
