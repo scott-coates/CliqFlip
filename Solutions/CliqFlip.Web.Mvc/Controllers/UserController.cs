@@ -61,7 +61,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 				foreach (InterestCreate interest in profile.UserInterests)
 				{
 					//TODO - use the id passed in
-					var userInterest = new UserInterestDto(0, interest.Name, interest.Category, interest.Sociality);
+					var userInterest = new UserInterestDto(0, interest.Name, interest.Category);
 					profileToCreate.InterestDtos.Add(userInterest);
 				}
 
@@ -97,7 +97,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var interestDtos = addInterestsViewModel.UserInterests.Select(x => new UserInterestDto(x.Id, x.Name, x.Category, x.Sociality));
+				var interestDtos = addInterestsViewModel.UserInterests.Select(x => new UserInterestDto(x.Id, x.Name, x.Category));
 
 				_userTasks.AddInterestsToUser(_principal.Identity.Name, interestDtos);
 				return RedirectToAction("Interests", "User");
