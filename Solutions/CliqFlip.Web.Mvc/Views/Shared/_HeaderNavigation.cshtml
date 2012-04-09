@@ -1,4 +1,5 @@
-﻿<ul id="header-nav">
+﻿@using CliqFlip.Web.Mvc.ViewModels.User
+<ul id="header-nav">
 	@if (!Request.IsAuthenticated)
  {
 		<li>
@@ -7,18 +8,17 @@
 		<li>
 			@Html.ActionLink("Login", "LoginAjax", "User", null, new { id = "user-login" })
 			<div id="user-login-container">
-				@{ Html.RenderAction("LoginAjax", "User"); }
-				@*//TODO: make this just a partial - render action is extra work, right?*@
+				@{ Html.RenderPartial("~/Views/User/LoginAjax.cshtml", new UserLoginViewModel()); }
 			</div>
 		</li>
-	}
-	else
-	{
+ }
+ else
+ {
 		<li>
-			@Html.ActionLink("Hello " + User.Identity.Name, "Index", "User", new {username = User.Identity.Name}, null)
+			@Html.ActionLink("Hello " + User.Identity.Name, "Index", "User", new { username = User.Identity.Name }, null)
 		</li>
 		<li>
-			@Html.ActionLink("Inbox (" + @Html.Action("NewMessageCount", "User") + ")", "Inbox", "User", new {username = User.Identity.Name}, null)
+			@Html.ActionLink("Inbox (" + @Html.Action("NewMessageCount", "User") + ")", "Inbox", "User", new { username = User.Identity.Name }, null)
 		</li>
 		<li>
 			@Html.ActionLink("Flip", "Flip", "User", null, new { title = "Find Random User", id = "header-nav-flip" })
@@ -26,5 +26,5 @@
 		<li>
 			@Html.ActionLink("Logout", "Logout", "User")
 		</li>
-	}
+ }
 </ul>

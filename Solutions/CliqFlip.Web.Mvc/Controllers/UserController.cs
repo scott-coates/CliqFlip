@@ -117,12 +117,6 @@ namespace CliqFlip.Web.Mvc.Controllers
 		}
 
 		[AllowAnonymous]
-		public ActionResult LoginAjax()
-		{
-			return PartialView(new UserLoginViewModel());
-		}
-
-		[AllowAnonymous]
 		[HttpPost]
 		public ActionResult LoginAjax(UserLoginViewModel model)
 		{
