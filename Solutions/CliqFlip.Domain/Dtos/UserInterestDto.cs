@@ -24,12 +24,11 @@ namespace CliqFlip.Domain.Dtos
         }
 
         //TODO: Get rid the sociality questions and we can probably get rid of this
-		public UserInterestDto(int id, string name, string relatedTo, int? sociality)
+		public UserInterestDto(int id, string name, string relatedTo)
 		{
 			Id = id;
 			Name = name;
 			RelatedTo = relatedTo;
-			Sociality = sociality;
 		}
 
 
