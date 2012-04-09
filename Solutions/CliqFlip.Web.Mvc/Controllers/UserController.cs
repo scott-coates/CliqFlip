@@ -312,8 +312,6 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult SaveHeadline(JeipSaveTextViewModel saveTextViewModel)
 		{
-			//TODO: look into XSS vulnerability
-			//We're taking in raw text and sending it back
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			user.UpdateHeadline(saveTextViewModel.New_Value);
 			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
