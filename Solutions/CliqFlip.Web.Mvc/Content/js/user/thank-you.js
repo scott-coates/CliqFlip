@@ -4,8 +4,7 @@ function InitThankYou(redirectPage) {
 	_redirectPage = redirectPage;
 	if (window._gaq) {
 		window._gaq.push(function() {
-			alert(window._gaq.t);
-			Redirect();
+			setTimeout(Redirect, 2000);
 		});
 	}
 	else {
