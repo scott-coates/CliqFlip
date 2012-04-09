@@ -42,8 +42,6 @@ namespace CliqFlip.Web.Mvc.Extensions.Html
 
 		public static MvcHtmlString DisplayTwitter(this HtmlHelper<UserSocialMediaViewModel> htmlHelper)
         {
-			//TODO: Do we need microsoft.web.helpers.dll anymore?
-
             var username = htmlHelper.ViewData.Model.TwitterUsername;
             if (!String.IsNullOrWhiteSpace(username))
             {
