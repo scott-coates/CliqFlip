@@ -1,0 +1,24 @@
+﻿@using CliqFlip.Domain.Common
+@model CliqFlip.Web.Mvc.ViewModels.User.ThankYouViewModel
+
+@{
+	ViewBag.Title = "Thank you " + Model.Username;
+}
+
+<div class="tryout">
+	<div class="header">
+		Thank you for registering, @Model.Username
+	</div>
+	<div class="subheader">
+		We are now logging you in...</div>
+</div>
+
+@section beforeBodyClose
+{
+	<script type="text/javascript" src="@Url.Content("/Content/js/user/thank-you.js")"> </script>
+	<script type="text/javascript">
+		$(function () {
+			InitThankYou('@(Url.RouteUrl(Constants.ROUTE_LANDING_PAGE))');
+		});
+	</script>
+}

@@ -85,13 +85,20 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 				_userTasks.Login(user, false);
 
-				return RedirectToRoute(Constants.ROUTE_LANDING_PAGE);
+				return RedirectToAction("ThankYou");
 			}
 
 			//TODO: Implement PRG pattern for post forms
 			return View(profile);
 		}
 
+		[Authorize]
+		public ActionResult ThankYou()
+		{
+			var viewModel = new ThankYouViewModel { Username = _principal.Identity.Name };
+			return View(viewModel);
+		}
+		
 		[HttpPost]
 		[Transaction]
 		public ActionResult AddInterests(UserAddInterestsViewModel addInterestsViewModel)
