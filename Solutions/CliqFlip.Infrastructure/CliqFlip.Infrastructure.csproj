@@ -189,7 +189,11 @@
     </Compile>
     <Compile Include="NHibernate\Maps\Overrides\ImageMappingOverride.cs" />
     <Compile Include="NHibernate\Maps\Overrides\UserInterestMappingOverride.cs" />
+    <Compile Include="Repositories\Interfaces\IUserInterestRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IInterestRepository.cs" />
+    <Compile Include="Repositories\InterestRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
+    <Compile Include="Repositories\UserInterestRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Syndication\FeedFinder.cs" />
     <Compile Include="Syndication\Interfaces\IFeedFinder.cs" />

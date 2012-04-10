@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -6,19 +5,16 @@ using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Search;
-using SharpArch.Domain.PersistenceSupport;
-using SharpArch.Domain.Specifications;
-using SharpArch.NHibernate;
+using CliqFlip.Infrastructure.Repositories.Interfaces;
 
 namespace CliqFlip.Tasks.TaskImpl
 {
 	public class InterestTasks : IInterestTasks
 	{
-		private readonly ILinqRepository<Interest> _interestRepository;
-		//userInterestRepo is aggregate root - http://stackoverflow.com/a/5806356/173957
-		private readonly ILinqRepository<UserInterest> _userInterestRepository;
+		private readonly IInterestRepository _interestRepository;
+		private readonly IUserInterestRepository _userInterestRepository;
 
-		public InterestTasks(ILinqRepository<Interest> interestRepository, ILinqRepository<UserInterest> userInterestRepository)
+		public InterestTasks(IInterestRepository interestRepository, IUserInterestRepository userInterestRepository)
 		{
 			_interestRepository = interestRepository;
 			_userInterestRepository = userInterestRepository;
@@ -30,9 +26,7 @@ namespace CliqFlip.Tasks.TaskImpl
 		{
 			var retVal = new List<InterestKeywordDto>();
 
-			var adHoc = new AdHoc<Interest>(s => s.Name.Contains(input) || input.Contains(s.Name));
-
-			IList<Interest> subjs = _interestRepository.FindAll(adHoc).ToList();
+			var subjs = _interestRepository.GetMatchingKeywords(input).ToList(); //tolist - prevent deferred ex many times
 
 			if (subjs.Any())
 			{
@@ -44,30 +38,21 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public IList<string> GetSlugAndParentSlug(IList<string> slugs)
 		{
-			var interestsAndParentQuery = new AdHoc<Interest>(x => slugs.Contains(x.Slug) && x.ParentInterest != null);
-			List<string> interestandParents = _interestRepository.FindAll(interestsAndParentQuery).Select(x => x.ParentInterest.Slug).ToList();
+			var interestandParents = _interestRepository.GetSlugAndParentSlug(slugs).ToList();
+			
 			interestandParents.AddRange(slugs);
+
 			return interestandParents.Distinct().ToList();
 		}
 
-		IList<RankedInterestDto> IInterestTasks.GetMostPopularInterests()
+		public IList<RankedInterestDto> GetMostPopularInterests()
 		{
-			var popularInterests = _userInterestRepository
-				.FindAll().ToList()
-				.GroupBy(x => x.Interest)
-				.Select(x => new { x.Key, Count = x.Count() })
-				.OrderByDescending(x => x.Count)
-				.Take(10).ToList();
-
-			return popularInterests.Select(x => new RankedInterestDto(x.Key.Id, x.Key.Name, x.Key.Slug, x.Count)).ToList();
-
+			return _userInterestRepository.GetMostPopularInterests();
 		}
-
 
 		public Interest GetOrCreate(string name)
 		{
-			var withMatchingName = new AdHoc<Interest>(x => x.Name == name);
-			Interest interest = _interestRepository.FindOne(withMatchingName);
+			Interest interest = _interestRepository.GetByName(name);
 
 			if (interest == null)
 			{
@@ -78,18 +63,16 @@ namespace CliqFlip.Tasks.TaskImpl
 				//TODO: Turn the formatted name into the Slug format
 				//TODO: relate the new Interest to the know Interest
 
-				_interestRepository.Save(interest);
+				_interestRepository.SaveOrUpdate(interest);
 			}
 			return interest;
 		}
 
 		public Interest Get(int id)
 		{
-			return _interestRepository.FindOne(id);
+			return _interestRepository.Get(id);
 		}
 
 		#endregion
-
-
 	}
 }
