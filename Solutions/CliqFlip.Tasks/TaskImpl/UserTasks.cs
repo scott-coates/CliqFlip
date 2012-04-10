@@ -33,23 +33,21 @@ namespace CliqFlip.Tasks.TaskImpl
 		private readonly IHtmlService _htmlService;
 		private readonly IImageProcessor _imageProcessor;
 		private readonly IInterestTasks _interestTasks;
-		private readonly ILinqRepository<User> _repository;
-        private readonly ILinqRepository<Conversation> _conversationRepository;
 		private readonly IUserAuthentication _userAuthentication;
+		private readonly IConversationRepository _conversationRepository;
         private readonly IEmailService _emailService;
 		private readonly ILocationService _locationService;
 
-		public UserTasks(ILinqRepository<User> repository,
+		public UserTasks(
 						 IInterestTasks interestTasks,
 						 IImageProcessor imageProcessor,
 						 IFileUploadService fileUploadService,
 						 IHtmlService htmlService,
 						 IFeedFinder feedFinder,
 						 IUserAuthentication userAuthentication,
-                         ILinqRepository<Conversation> conversationRepository,
+						 IConversationRepository conversationRepository,
                          IEmailService emailService, ILocationService locationService, IUserRepository userRepository)
 		{
-			_repository = repository;
 			_interestTasks = interestTasks;
 			_imageProcessor = imageProcessor;
 			_fileUploadService = fileUploadService;
@@ -66,13 +64,9 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IList<string> interestAliases)
 		{
-			//TODO: Move this data access to our infra project
 			IList<string> subjAliasAndParent = _interestTasks.GetSlugAndParentSlug(interestAliases);
-			var query = new AdHoc<User>(x => x.Interests.Any(y => subjAliasAndParent.Contains(y.Interest.Slug))
-											 ||
-											 x.Interests.Any(y => subjAliasAndParent.Contains(y.Interest.ParentInterest.Slug)));
 
-			List<User> users = _repository.FindAll(query).ToList();
+			List<User> users = _userRepository.GetUsersByInterests(subjAliasAndParent).ToList();
 
             return users.Select(user => new UserSearchByInterestsDto
             {
@@ -92,16 +86,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public User Create(UserDto userToCreate, LocationData location)
 		{
-			var withMatchingNameOrEmail = new AdHoc<User>(x => x.Username == userToCreate.Username || x.Email == userToCreate.Email);
-
-			//Check username and email are unique
-			if (_repository.FindAll(withMatchingNameOrEmail).Any())
-			{
-				//TODO: this is a race condition - just let the db throw if unique violation
-				return null;
-			}
-
-			string salt = PasswordHelper.GenerateSalt(16);
+			string salt = PasswordHelper.GenerateSalt(16);//TODO: should this be 32
 			string pHash = PasswordHelper.GetPasswordHash(userToCreate.Password, salt);
 
 			var user = new User(userToCreate.Username, userToCreate.Email, pHash, salt);
@@ -123,7 +108,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 			user.UpdateCreateDate();
 
-			_repository.Save(user);
+			_userRepository.SaveOrUpdate(user);
 
 			return user;
 		}
@@ -137,8 +122,7 @@ namespace CliqFlip.Tasks.TaskImpl
 		public bool Login(string username, string password, bool stayLoggedIn)
 		{
 			bool retVal = false;
-			var withMatchingNameOrEmail = new AdHoc<User>(x => x.Username == username || x.Email == username);
-			User user = _repository.FindOne(withMatchingNameOrEmail);
+			User user = _userRepository.FindByNameOrEmail(username);
 
 			if (user != null)
 			{
@@ -157,8 +141,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public User GetUser(string username)
 		{
-			var adhoc = new AdHoc<User>(x => x.Username == username);
-			return _repository.FindOne(adhoc);
+			return _userRepository.FindByName(username);
 		}
 
 		public User GetSuggestedUser(string username)
@@ -372,27 +355,6 @@ namespace CliqFlip.Tasks.TaskImpl
 			}
 		}
 
-        //can we get rid of this?
-		public IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IEnumerable<int> interestIds)
-		{
-			List<int> interestList = interestIds.ToList();
-			var query = new AdHoc<User>(x => x.Interests.Any(y => interestList.Contains(y.Id)));
-
-			List<User> users = _repository.FindAll(query).ToList();
-
-            return users.Select(user => new UserSearchByInterestsDto
-            {
-                MatchCount = user.Interests.Select(x => x.Id).Intersect(interestList).Count(),
-                UserDto = new UserDto
-                {
-                    Username = user.Username,
-                    InterestDtos = user.Interests.Select(x => new UserInterestDto(x.Interest.Id, x.Interest.Name, x.Interest.Slug, x.Options.Passion)).ToList(),
-                    Bio = user.Bio,
-                    Headline = user.Headline
-                }
-            }).ToList();
-		}
-
         public void StartConversation(string starter, string receiver, string text)
         {
             //get the users involved in the conversation
@@ -414,7 +376,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
             Message message = sender.WriteMessage(text);
             conversation.AddMessage(message);
-            _conversationRepository.Save(conversation);
+            _conversationRepository.SaveOrUpdate(conversation);
             _emailService.SendMail(recipient.Email, "Some one likes you on CliqFlip.com", "Hey, <br/> Looks like someone finds you interesting. Go talk to this person at CliqFlip.com");
         }
 
