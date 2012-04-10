@@ -19,6 +19,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 		//TODO:RemoteveValidation on username
 		[Required(ErrorMessage = "Please choose a username")]
 		[Display(Name = "Choose a username:")]
+        [Remote("Username", "Validation", "Admin", ErrorMessage = "This username is taken... Try another one.")]
 		public string Username { get; set; }
 
 		[Required(ErrorMessage = "Please provide your zip code")]
@@ -30,7 +31,8 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 		[Required(ErrorMessage = "Please provide an email address.")]
 		[Display(Name = "Whats your email?")]
 		[EmailAddress(ErrorMessage = "Please provide a valid email address.")]
-		public String Email { get; set; }
+        [Remote("Email", "Validation", "Admin", ErrorMessage = "This email is taken... Are you sure you not signed up already?")]
+        public String Email { get; set; }
 
 		[Required(ErrorMessage = "Please provide a password.")]
 		[Display(Name = "Set your password. Choose a strong one.")]

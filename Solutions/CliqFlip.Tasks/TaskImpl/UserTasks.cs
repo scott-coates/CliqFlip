@@ -403,5 +403,10 @@ namespace CliqFlip.Tasks.TaskImpl
             }
             return retVal;
         }
+
+        public bool IsUsernameOrEmailAvailable(string value)
+        {
+            return _userRepository.FindByNameOrEmail(value) == null;
+        }
 	}
 }

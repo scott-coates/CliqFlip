@@ -12,6 +12,7 @@ using CliqFlip.Infrastructure.Web.Interfaces;
 using CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Test;
 using CliqFlip.Web.Mvc.Security.Attributes;
 using SharpArch.Web.Mvc.JsonNet;
+using CliqFlip.Domain.Contracts.Tasks;
 
 namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 {
@@ -21,11 +22,13 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 	{
 		private readonly ILocationService _locationService;
 		private readonly IHttpContextProvider _httpContextProvider;
+        private readonly IUserTasks _userTasks;
 
-		public ValidationController(ILocationService locationService, IHttpContextProvider httpContextProvider)
+		public ValidationController(ILocationService locationService, IHttpContextProvider httpContextProvider, IUserTasks userTasks)
 		{
 			_locationService = locationService;
 			_httpContextProvider = httpContextProvider;
+            _userTasks = userTasks;
 		}
 
 		public ActionResult ZipCode(string zipCode)
@@ -44,5 +47,15 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 
 			return new JsonNetResult(result);
 		}
+
+        public ActionResult Username(string username)
+        {
+            return new JsonNetResult(_userTasks.IsUsernameOrEmailAvailable(username));
+        }
+
+        public ActionResult Email(string email)
+        {
+            return new JsonNetResult(_userTasks.IsUsernameOrEmailAvailable(email));
+        }
 	}
 }
