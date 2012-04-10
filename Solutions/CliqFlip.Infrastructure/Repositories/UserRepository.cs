@@ -77,6 +77,12 @@ namespace CliqFlip.Infrastructure.Repositories
 			return FindOne(adhoc);
 		}
 
+        public bool IsUsernameOrEmailAvailable(string usernameOrEmail)
+        {
+            var withMatchingNameOrEmail = new AdHoc<User>(x => x.Username == usernameOrEmail || x.Email == usernameOrEmail);
+            return base.FindAll(withMatchingNameOrEmail).Any();
+        }
+
 		#endregion
 	}
 }

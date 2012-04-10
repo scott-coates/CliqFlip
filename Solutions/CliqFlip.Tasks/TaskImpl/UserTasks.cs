@@ -406,7 +406,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
         public bool IsUsernameOrEmailAvailable(string value)
         {
-            return _userRepository.FindByNameOrEmail(value) == null;
+            return _userRepository.IsUsernameOrEmailAvailable(value);
         }
 	}
 }

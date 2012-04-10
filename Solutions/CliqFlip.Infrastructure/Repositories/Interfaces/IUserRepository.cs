@@ -15,7 +15,7 @@ namespace CliqFlip.Infrastructure.Repositories.Interfaces
 		IQueryable<User> GetUsersByInterests(IList<string> interestAliases);
 		User FindByNameOrEmail(string usernameOrEmail );
 		User FindByName(string username );
-
+        bool IsUsernameOrEmailAvailable(string usernameOrEmail);
 		// ReSharper restore ReturnTypeCanBeEnumerable.Global
 	}
 }
