@@ -20,7 +20,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
                 new Column("ParentInterestId", System.Data.DbType.Int32, ColumnProperty.Null)
             });
 
-            Database.AddForeignKey(FK_Interests_Interests, "Interests", "ParentInterestId", "Interests", "Id", ForeignKeyConstraint.SetNull);
+            Database.AddForeignKey(FK_Interests_Interests, "Interests", "ParentInterestId", "Interests", "Id", ForeignKeyConstraint.NoAction);
         }
 
         public override void Down()
