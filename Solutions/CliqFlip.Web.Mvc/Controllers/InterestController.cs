@@ -4,24 +4,32 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CliqFlip.Domain.Contracts.Tasks;
+using SharpArch.Web.Mvc.JsonNet;
+using CliqFlip.Web.Mvc.Security.Attributes;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
     public class InterestController : Controller
     {
-        IInterestTasks _interestTasks;
+        private readonly IInterestTasks _interestTasks;
         public InterestController(IInterestTasks interestTasks)
         {
             _interestTasks = interestTasks;
         }
 
         //
-        // GET: /Interest/
-        [OutputCache(Duration=Int32.MaxValue)]
+        // GET: /Interest/GetMainCategoryInterests
+        // This action will be used by the module used to add interests
+        //
+        // cache this as long as possible
+        // the list most likely wont change frequently
+        // TODO: Enable output cache once we have our final list of interests
+        //[OutputCache(Duration=Int32.MaxValue)]
+        [AllowAnonymous]
         public ActionResult GetMainCategoryInterests()
         {
-            var results = _interestTasks.GetMainCategoryInterests().ToList();
-            return View();
+            var results = _interestTasks.GetMainCategoryInterests().ToList().Select(x => new { Text = x.Name, Value = x.Id }).ToList();
+            return new JsonNetResult(results);
         }
     }
 }

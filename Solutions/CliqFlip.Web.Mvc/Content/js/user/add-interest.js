@@ -11,13 +11,29 @@ var _tmplNewInterest = null;
 
 
 var _interestNames = [];
-
+var _optionsListHtml = [];
 function InitAddInterest() {
 	//bind all the elements we need
 	_interestTextBox = $("#interestName");
 	_divInterestCategory = $("#divInterestCategory");
 	_interestsList = $("#interestsList");
 	_tmplNewInterest = $("#tmplNewInterest");
+
+
+	//http://stackoverflow.com/a/1683041 - i was inspired by this answer
+	//get the interests for the select list
+	//we will use the values later on to show them as options in the drop down lists
+	$.getJSON("/Interest/GetMainCategoryInterests", function (json) {
+	    //create an array that will hold the html for each individual option
+        //and the default option
+	    var tempList = ["<option>Choose...</option>"];
+
+	    for (var i = 0; i < json.length; i++) {
+	        tempList.push("<option>" + json[i].Text + "</option>");
+	    }
+
+	    _optionsListHtml = tempList.join('');
+	});
 
 	CreateAutoComplete();
 
@@ -110,17 +126,32 @@ function GenerateInterestCategoryVisibility(interest) {
 
 function OnInterestAdded(interest) {
 
-	//if an interest with the same Interest has been added
+    //if an interest with the same name already is in the interestsNames array
+    //dont add it. It's a duplicate
 	if ($.inArray(interest.Name.toLowerCase(), _interestNames) >= 0) {
 		return;
 	}
 
-	_interestNames.push(interest.Name.toLowerCase());
+    //this is a unique interest add it to the list of interets
+    _interestNames.push(interest.Name.toLowerCase());
+
+    //create the data object we will pass to template
+    //add an index value
 	var data = $.extend({ }, {
 		Index: _interestsList.find("li").length
 	}, interest);
+
+    //get the data bound template
 	var newItem = _tmplNewInterest.tmpl(data);
 	newItem.data("item", interest);
+    
+    //get the empty and only select list
+	var selectList = newItem.find("select");
+
+    //add all the main category interests to the list
+	selectList.html(_optionsListHtml);
+
+    //add it to the DOM and show it
 	newItem.appendTo(_interestsList);
 	newItem.fadeIn();
 }
