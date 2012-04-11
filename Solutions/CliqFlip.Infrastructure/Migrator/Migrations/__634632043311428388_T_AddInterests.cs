@@ -14,7 +14,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
             #region InsertInterests
 
             const string createInterests = @"INSERT INTO [Interests] ([Name],[Description],[Slug],[ParentInterestId])VALUES('Communications','Multum venit. quad nomen estis nomen et et Sed Id estum. quo Id Quad et regit, quantare quad quartu Et','Communications',NULL)
-INSERT INTO [Interests] ([Name],[Description],[Slug],[ParentInterestId])VALUES('Automotive','Longam, eggredior. quartu volcans plurissimum in Pro quad travissimantor Pro nomen quad linguens Longam, travissimantor cognitio,','Automotive',NULL)
+INSERT INTO [Interests] ([Name],[Description],[Slug],[ParentInterestId])VALUES('Auto','Longam, eggredior. quartu volcans plurissimum in Pro quad travissimantor Pro nomen quad linguens Longam, travissimantor cognitio,','Auto',NULL)
 INSERT INTO [Interests] ([Name],[Description],[Slug],[ParentInterestId])VALUES('Fire, Police & Security','linguens vobis novum funem. trepicandor plorum eudis e Longam, e esset delerium. fecit. volcans quis','Fire-Police-Security',NULL)
 INSERT INTO [Interests] ([Name],[Description],[Slug],[ParentInterestId])VALUES('Oil & Gas','fecit. et Et et in plorum Longam, habitatio Et gravum Pro si fecit, habitatio quis trepicandor quoque imaginator fecit. estum.','Oil-Gas',NULL)
 INSERT INTO [Interests] ([Name],[Description],[Slug],[ParentInterestId])VALUES('Mechanical Electrical & Process Engineering','gravum quad et gravis imaginator nomen essit. vantis. et essit. Multum ut in pladior et quad Pro quartu','Mechanical-Electrical-Process-Engineering',NULL)
