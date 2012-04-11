@@ -21,12 +21,12 @@
 				<ConfigDir>..</ConfigDir>
 			</PropertyGroup>
 		</When>
-		<When Condition="'$(OutDir)'=='$(OutDir)'">
+		<Otherwise>
 			<PropertyGroup>
 				<OutputProperDir>$(OutDir)</OutputProperDir>
 				<ConfigDir>$(OutDir)_PublishedWebsites</ConfigDir>
 			</PropertyGroup>
-		</When>
+		</Otherwise>
 	</Choose>
 
 	<Target Name="Build">
