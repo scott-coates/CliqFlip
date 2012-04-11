@@ -91,7 +91,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 			var user = new User(userToCreate.Username, userToCreate.Email, pHash, salt);
 
-            ProcessUsersInterests(user, userToCreate.InterestDtos);
+            ProcessUserInterests(user, userToCreate.InterestDtos);
 
 			var majorLocation = _locationService.GetNearestMajorCity(location.Latitude, location.Longitude);
 
@@ -216,7 +216,7 @@ namespace CliqFlip.Tasks.TaskImpl
 		public void AddInterestsToUser(string name, IEnumerable<UserInterestDto> interestDtos)
 		{
 			var user = GetUser(name);
-            ProcessUsersInterests(user, interestDtos);
+            ProcessUserInterests(user, interestDtos);
 		}
 
 		public void SaveProfileImage(User user, HttpPostedFileBase profileImage)
@@ -398,7 +398,7 @@ namespace CliqFlip.Tasks.TaskImpl
             return _userRepository.IsUsernameOrEmailAvailable(value);
         }
 
-        private void ProcessUsersInterests(User user, IEnumerable<UserInterestDto> interestDtos)
+        private void ProcessUserInterests(User user, IEnumerable<UserInterestDto> interestDtos)
         {
             foreach (var interestDto in interestDtos)
             {
