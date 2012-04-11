@@ -33,7 +33,7 @@ namespace CliqFlip.Infrastructure.Repositories
 
         public IQueryable<Interest> GetMainCategoryInterests()
         {
-            return FindAll(new AdHoc<Interest>(x => x.IsMainCategory));
+            return FindAll(new AdHoc<Interest>(x => x.IsMainCategory)).OrderBy(x=>x.Name);
         }
     }
 }
