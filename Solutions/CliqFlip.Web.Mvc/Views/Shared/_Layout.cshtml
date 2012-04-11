@@ -8,7 +8,7 @@
 		<link rel="shortcut icon" href="@Url.Content("/favicon.ico")" type="image/x-icon" />
 		<title>@ViewBag.Title</title>
 		<!-- Website Styles -->
-		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/skins/default-dark.css")" />
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.ContentWithVersioning("/Content/styles/skins/default-dark.css")" />
 		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/skins/blue-cScheme.css")" />
 		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/anythingslider-default1.css")" />
 		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/skitter.styles.css")" />
@@ -157,7 +157,7 @@
 		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.unobtrusive-ajax.min.js")"> </script>
 		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.js")"> </script>
 		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.unobtrusive.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/cliqflip/login.js")"> </script>
+		<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/cliqflip/login.js")"> </script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				InitLogin();

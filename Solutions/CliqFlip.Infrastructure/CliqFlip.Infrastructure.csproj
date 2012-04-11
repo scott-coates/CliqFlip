@@ -135,6 +135,7 @@
     </Compile>
     <Compile Include="Authentication\Interfaces\IUserAuthentication.cs" />
     <Compile Include="Authentication\UserAuthentication.cs" />
+    <Compile Include="Common\AssemblyHelper.cs" />
     <Compile Include="Common\PathHelper.cs" />
     <Compile Include="Email\SESEmailService.cs" />
     <Compile Include="Email\Interfaces\IEmailService.cs" />
