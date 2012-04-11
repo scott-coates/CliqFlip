@@ -53,7 +53,7 @@ namespace CliqFlip.Tasks.TaskImpl
 		public Interest Create(string name, int? relatedTo)
 		{
             string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(name.ToLower());
-            Interest interest = interest = new Interest(formattedName);
+            Interest interest = new Interest(formattedName);
             interest.ParentInterest = relatedTo.HasValue ? Get(relatedTo.Value) : null;
 
 			_interestRepository.SaveOrUpdate(interest);
