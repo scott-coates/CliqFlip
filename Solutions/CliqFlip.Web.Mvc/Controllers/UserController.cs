@@ -60,7 +60,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 				foreach (InterestCreate interest in profile.UserInterests)
 				{
-					var userInterest = new UserInterestDto(0, interest.Name, interest.Category);
+					var userInterest = new UserInterestDto(0, interest.Name, interest.CategoryId);
 					profileToCreate.InterestDtos.Add(userInterest);
 				}
 
@@ -95,7 +95,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var interestDtos = addInterestsViewModel.UserInterests.Select(x => new UserInterestDto(x.Id, x.Name, x.Category));
+				var interestDtos = addInterestsViewModel.UserInterests.Select(x => new UserInterestDto(x.Id, x.Name, x.CategoryId));
 
 				_userTasks.AddInterestsToUser(_principal.Identity.Name, interestDtos);
 				return RedirectToAction("Interests", "User");
@@ -276,6 +276,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return RedirectToAction("Interests");
 		}
 
+        //TODO: Can we remove this. I don't see it being used.
 		[Authorize]
 		[Transaction]
 		public ActionResult AddSingleInterest(int interestId)

@@ -25,11 +25,12 @@ function InitAddInterest() {
     //everytime an unknown interest is added
 	$.getJSON("/Interest/GetMainCategoryInterests", function (json) {
 	    //create an array that will hold the html for each individual option
-        //and the default option
-	    var tempList = ["<option>Choose...</option>"];
+	    //and the default option.
+        //NOTE: The value must be set to empty or a validation error occurs
+	    var tempList = ["<option value=''>Choose...</option>"];
 
 	    for (var i = 0; i < json.length; i++) {
-	        tempList.push("<option>" + json[i].Text + "</option>");
+	        tempList.push("<option value='" + json[i].Value + "'>" + json[i].Text + "</option>");
 	    }
 
 	    _optionsListHtml = tempList.join('');

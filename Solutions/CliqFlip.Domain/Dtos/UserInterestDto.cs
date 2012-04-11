@@ -8,7 +8,7 @@ namespace CliqFlip.Domain.Dtos
 		public int Id { get; set; }
 		public string Name { get; set; }
 		public string Slug { get; set; }
-		public string RelatedTo { get; set; }
+		public int? RelatedTo { get; set; }
 		public int? Sociality { get; set; }
 		public float? Passion { get; set; }
 		public float? XAxis { get; set; }
@@ -23,7 +23,7 @@ namespace CliqFlip.Domain.Dtos
             Passion = passion;
         }
 
-		public UserInterestDto(int id, string name, string relatedTo)
+		public UserInterestDto(int id, string name, int? relatedTo)
 		{
 			Id = id;
 			Name = name;
@@ -31,7 +31,7 @@ namespace CliqFlip.Domain.Dtos
 		}
 
 
-		public UserInterestDto(int id, string name, string slug, string relatedTo, int? sociality, float? passion, float? xAxis, float? yAxis)
+		public UserInterestDto(int id, string name, string slug, int? relatedTo, int? sociality, float? passion, float? xAxis, float? yAxis)
 		{
 			Id = id;
 			Name = name;
