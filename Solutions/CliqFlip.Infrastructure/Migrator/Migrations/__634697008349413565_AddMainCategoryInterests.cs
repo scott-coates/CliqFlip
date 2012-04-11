@@ -42,6 +42,12 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 
 		public override void Down()
 		{
+			Database.ExecuteNonQuery(@"UPDATE [Interests] SET ParentInterestId = NULL
+									WHERE ParentInterestId IN
+									(
+										SELECT Id FROM [Interests] WHERE [IsMainCategory] = 1
+									)");
+
             Database.ExecuteNonQuery("DELETE FROM [Interests] WHERE [IsMainCategory] = 1");
 		}
 	}
