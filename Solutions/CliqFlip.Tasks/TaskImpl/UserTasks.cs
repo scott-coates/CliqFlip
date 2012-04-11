@@ -403,15 +403,19 @@ namespace CliqFlip.Tasks.TaskImpl
             foreach (var interestDto in interestDtos)
             {
                 Interest interest;
+                
                 if (interestDto.Id > 0)
-                {
                     interest = _interestTasks.Get(interestDto.Id);
-                }
                 else
-                {
                     interest = _interestTasks.Create(interestDto.Name, interestDto.RelatedTo);
+
+                //interest should never be null by the time it get heres but just in case
+                //someone somehow provides an id that does not exist
+                if (interest != null)
+                {
+                    user.AddInterest(interest, null);
                 }
-                user.AddInterest(interest, null);
+
             }
         }
 	}
