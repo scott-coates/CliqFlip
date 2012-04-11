@@ -409,13 +409,7 @@ namespace CliqFlip.Tasks.TaskImpl
                 else
                     interest = _interestTasks.Create(interestDto.Name, interestDto.RelatedTo);
 
-                //interest should never be null by the time it get heres but just in case
-                //someone somehow provides an id that does not exist
-                if (interest != null)
-                {
-                    user.AddInterest(interest, null);
-                }
-
+                user.AddInterest(interest, null);
             }
         }
 	}
