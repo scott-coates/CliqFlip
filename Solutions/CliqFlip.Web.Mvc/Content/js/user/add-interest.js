@@ -21,8 +21,8 @@ function InitAddInterest() {
 
 
 	//http://stackoverflow.com/a/1683041 - i was inspired by this answer
-	//get the interests for the select list
-	//we will use the values later on to show them as options in the drop down lists
+	//get the interests, create the options and store the options html that will be used
+    //everytime an unknown interest is added
 	$.getJSON("/Interest/GetMainCategoryInterests", function (json) {
 	    //create an array that will hold the html for each individual option
         //and the default option
