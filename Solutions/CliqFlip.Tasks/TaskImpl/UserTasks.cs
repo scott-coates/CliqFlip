@@ -96,7 +96,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			{
 				//get or create the Interest
 				//TODO  - check if id > 0 , then don't create it - can use nhibernate.session.load for more perforamnce
-				var interest = _interestTasks.GetOrCreate(userInterest.Name);
+				var interest = _interestTasks.GetOrCreate(userInterest.Name, userInterest.RelatedTo);
 				user.AddInterest(interest, userInterest.Sociality);
 			}
 

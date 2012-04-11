@@ -60,7 +60,6 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 				foreach (InterestCreate interest in profile.UserInterests)
 				{
-					//TODO - use the id passed in
 					var userInterest = new UserInterestDto(0, interest.Name, interest.Category);
 					profileToCreate.InterestDtos.Add(userInterest);
 				}

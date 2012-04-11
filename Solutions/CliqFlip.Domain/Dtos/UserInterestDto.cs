@@ -23,7 +23,6 @@ namespace CliqFlip.Domain.Dtos
             Passion = passion;
         }
 
-        //TODO: Get rid the sociality questions and we can probably get rid of this
 		public UserInterestDto(int id, string name, string relatedTo)
 		{
 			Id = id;

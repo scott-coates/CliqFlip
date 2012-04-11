@@ -80,7 +80,7 @@ namespace CliqFlip.Infrastructure.Repositories
         public bool IsUsernameOrEmailAvailable(string usernameOrEmail)
         {
             var withMatchingNameOrEmail = new AdHoc<User>(x => x.Username == usernameOrEmail || x.Email == usernameOrEmail);
-            return base.FindAll(withMatchingNameOrEmail).Any();
+            return !FindAll(withMatchingNameOrEmail).Any();
         }
 
 		#endregion

@@ -50,18 +50,19 @@ namespace CliqFlip.Tasks.TaskImpl
 			return _userInterestRepository.GetMostPopularInterests();
 		}
 
-		public Interest GetOrCreate(string name)
+		public Interest GetOrCreate(string name, string relatedTo)
 		{
 			Interest interest = _interestRepository.GetByName(name);
 
 			if (interest == null)
 			{
+                Interest relatedInterest = string.IsNullOrWhiteSpace(relatedTo) ? null : _interestRepository.GetByName(relatedTo);
+
 				//Since the interest does not exist create it.
 				string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(name.ToLower());
 				interest = new Interest(formattedName);
 
-				//TODO: Turn the formatted name into the Slug format
-				//TODO: relate the new Interest to the know Interest
+                interest.ParentInterest = relatedInterest;
 
 				_interestRepository.SaveOrUpdate(interest);
 			}
