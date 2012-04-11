@@ -402,7 +402,7 @@ namespace CliqFlip.Tasks.TaskImpl
         {
             foreach (var interestDto in interestDtos)
             {
-                var interest = _interestTasks.Get(interestDto.Id);
+                var interest = _interestTasks.GetByName(interestDto.Name);
                 if (interest == null)
                 {
                     interest = _interestTasks.Create(interestDto.Name, interestDto.RelatedTo);
