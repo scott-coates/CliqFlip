@@ -27,9 +27,9 @@
 			http://www.pabich.eu/blog/archive/2011/03/28/Automated-database-deployments-to-AppHarbor.aspx
 		-->
 
-		<XmlPeek XmlInputPath="../../CliqFlip.Web.Mvc/Configuration/ConnectionStrings.config"
+		<XmlPeek Condition="'$(ConnectionString)'==''" XmlInputPath="../../CliqFlip.Web.Mvc/Configuration/ConnectionStrings.config"
            Query="/connectionStrings/add[@name='default']/@connectionString">
-			<Output TaskParameter="Result" ItemName="ConnectionString" />
+			<Output TaskParameter="Result" PropertyName="ConnectionString"  />
 		</XmlPeek>
 
 		<ConvertToAbsolutePath Paths="$(OutDir)">
@@ -37,7 +37,7 @@
 			<Output TaskParameter="AbsolutePaths" PropertyName="Source_Dir_Abs"/>
 		</ConvertToAbsolutePath>
 		<Migrate Provider="SqlServer2005"
-				Connectionstring="@(ConnectionString)"
+				Connectionstring="$(ConnectionString)"
 						 Migrations="$(Source_Dir_Abs)/CliqFlip.Infrastructure.dll	"
 						 To="$(SchemaVersion)"/>
 	</Target>
