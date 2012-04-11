@@ -8,7 +8,7 @@
 		<link rel="shortcut icon" href="@Url.Content("/favicon.ico")" type="image/x-icon" />
 		<title>@ViewBag.Title</title>
 		<!-- Website Styles -->
-		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/skins/default-dark.css")" />
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.ContentWithVersioning("/Content/styles/skins/default-dark.css")" />
 		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/skins/blue-cScheme.css")" />
 		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/anythingslider-default1.css")" />
 		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/skitter.styles.css")" />
@@ -76,7 +76,7 @@
 								<li><a href="http://twitter.com/CliqFlip"><span class="twitter_icon"></span>Twitter</a></li>
 								<li><a href="http://facebook.com/CliqFlip"><span class="facebook_icon"></span>Facebook</a></li>
 								<li><a href="http://blog.cliqflip.com/?feed=rss2"><span class="rss_icon"></span>RSS</a></li>
-								<li><a href="mailto:cliqflip@gmail.com"><span class="contact_icon"></span>Contact</a></li>
+								<li><a href="mailto:support@cliqflip.com"><span class="contact_icon"></span>Contact</a></li>
 							</ul>
 						</div>
 						<div class="one_fifth last">
@@ -103,7 +103,7 @@
 							<p>
 								Orange County, CA</p>
 							<p>
-								E-mail: <a href="mailto:cliqflip@gmail.com">cliqflip@gmail.com</a>
+								E-mail: <a href="mailto:support@cliqflip.com">support@cliqflip.com</a>
 							</p>
 						</div>
 						<div class="one_fourth recent-posts">
@@ -157,7 +157,7 @@
 		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.unobtrusive-ajax.min.js")"> </script>
 		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.js")"> </script>
 		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.unobtrusive.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/cliqflip/login.js")"> </script>
+		<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/cliqflip/login.js")"> </script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				InitLogin();

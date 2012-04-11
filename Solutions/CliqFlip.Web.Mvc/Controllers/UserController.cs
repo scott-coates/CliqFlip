@@ -74,14 +74,6 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 				User user = _userTasks.Create(profileToCreate, locationData);
 
-				//There was a problem creating the account
-				//Username/Email already exists
-				if (user == null)
-				{
-					//TODO: don't return null - throw exception 
-					return View(profile);
-				}
-
 				_userTasks.Login(user, false);
 
 				return RedirectToAction("ThankYou");
