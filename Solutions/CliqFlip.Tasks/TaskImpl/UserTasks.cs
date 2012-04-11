@@ -91,14 +91,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 			var user = new User(userToCreate.Username, userToCreate.Email, pHash, salt);
 
-			//add all the interests
-			foreach (UserInterestDto userInterest in userToCreate.InterestDtos)
-			{
-				//get or create the Interest
-				//TODO  - check if id > 0 , then don't create it - can use nhibernate.session.load for more perforamnce
-				var interest = _interestTasks.GetOrCreate(userInterest.Name, userInterest.RelatedTo);
-				user.AddInterest(interest, userInterest.Sociality);
-			}
+            ProcessUsersInterests(user, userToCreate.InterestDtos);
 
 			var majorLocation = _locationService.GetNearestMajorCity(location.Latitude, location.Longitude);
 
@@ -223,11 +216,7 @@ namespace CliqFlip.Tasks.TaskImpl
 		public void AddInterestsToUser(string name, IEnumerable<UserInterestDto> interestDtos)
 		{
 			var user = GetUser(name);
-			foreach(var interestDto in interestDtos)
-			{
-				var interest = _interestTasks.Get(interestDto.Id) ?? new Interest(interestDto.Name);
-				user.AddInterest(interest, null);	
-			}
+            ProcessUsersInterests(user, interestDtos);
 		}
 
 		public void SaveProfileImage(User user, HttpPostedFileBase profileImage)
@@ -407,6 +396,19 @@ namespace CliqFlip.Tasks.TaskImpl
         public bool IsUsernameOrEmailAvailable(string value)
         {
             return _userRepository.IsUsernameOrEmailAvailable(value);
+        }
+
+        private void ProcessUsersInterests(User user, IEnumerable<UserInterestDto> interestDtos)
+        {
+            foreach (var interestDto in interestDtos)
+            {
+                var interest = _interestTasks.Get(interestDto.Id);
+                if (interest == null)
+                {
+                    interest = _interestTasks.Create(interestDto.Name, interestDto.RelatedTo);
+                }
+                user.AddInterest(interest, null);
+            }
         }
 	}
 }

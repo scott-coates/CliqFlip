@@ -50,7 +50,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			return _userInterestRepository.GetMostPopularInterests();
 		}
 
-		public Interest GetOrCreate(string name, string relatedTo)
+		public Interest Create(string name, string relatedTo)
 		{
 			Interest interest = _interestRepository.GetByName(name);
 
