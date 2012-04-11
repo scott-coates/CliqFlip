@@ -16,7 +16,6 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 			UserInterests = new List<InterestCreate>();
 		}
 
-		//TODO:RemoteveValidation on username
 		[Required(ErrorMessage = "Please choose a username")]
 		[Display(Name = "Choose a username:")]
         [Remote("Username", "Validation", "Admin", ErrorMessage = "This username is taken... Try another one.")]
@@ -27,7 +26,6 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 		[Remote("ZipCode","Validation","Admin")]
 		public string ZipCode { get; set; }
 
-		//TODO:RemoteveValidation on email
 		[Required(ErrorMessage = "Please provide an email address.")]
 		[Display(Name = "Whats your email?")]
 		[EmailAddress(ErrorMessage = "Please provide a valid email address.")]
@@ -51,5 +49,6 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 
 		[CollectionNotEmptyAttribute(ErrorMessage = "Okay, we get it, you're not very interesting. But please, for our sake, just provide us with an interest that tells us about yourself.")]
 		public List<InterestCreate> UserInterests { get; set; }
+
 	}
 }

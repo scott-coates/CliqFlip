@@ -13,5 +13,6 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		IList<RankedInterestDto> GetMostPopularInterests();
         Interest GetOrCreate(string name);
         Interest Get(int id);
+        IList<Interest> GetMainCategoryInterests();
     }
 }

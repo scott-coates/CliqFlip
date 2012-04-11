@@ -46,7 +46,6 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				return RedirectToAction("Index", "User", new { username = _principal.Identity.Name });
 			}
-
 			return View(new UserCreateViewModel());
 		}
 

@@ -30,5 +30,10 @@ namespace CliqFlip.Infrastructure.Repositories
 
 			return interest;
 		}
-	}
+
+        public IQueryable<Interest> GetMainCategoryInterests()
+        {
+            return FindAll(new AdHoc<Interest>(x => x.IsMainCategory));
+        }
+    }
 }

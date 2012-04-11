@@ -73,6 +73,11 @@ namespace CliqFlip.Tasks.TaskImpl
 			return _interestRepository.Get(id);
 		}
 
+
+        public IList<Interest> GetMainCategoryInterests()
+        {
+            return _interestRepository.GetMainCategoryInterests().ToList();
+        }
 		#endregion
 	}
 }
