@@ -17,6 +17,12 @@ namespace CliqFlip.Web.Mvc.Controllers
 			new Dictionary<string, string>
 			{
 				{"oc-invite","Welcome Orange County users!" },
+				{"facebook-invite","Welcome Facebook friends!" },
+				{"early-bird-invite-le1","Welcome early birds! Thanks for registering!" }, //launch effect 1,2,3,4,5
+				{"early-bird-invite-le2","Welcome early birds! Thanks for registering!" },
+				{"early-bird-invite-le3","Welcome early birds! Thanks for registering!" },
+				{"early-bird-invite-le4","Welcome early birds! Thanks for registering!" },
+				{"early-bird-invite-le5","Welcome early birds! Thanks for registering!" },
 				{"beta-invite","Welcome beta users!" }
 			};
 
