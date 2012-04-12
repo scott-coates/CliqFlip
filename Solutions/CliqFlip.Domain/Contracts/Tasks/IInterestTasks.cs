@@ -14,7 +14,5 @@ namespace CliqFlip.Domain.Contracts.Tasks
         Interest Create(string name, int? relatedTo);
         Interest Get(int id);
         IList<Interest> GetMainCategoryInterests();
-
-        Interest GetByName(string name);
     }
 }

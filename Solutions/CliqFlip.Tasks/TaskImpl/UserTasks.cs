@@ -402,11 +402,13 @@ namespace CliqFlip.Tasks.TaskImpl
         {
             foreach (var interestDto in interestDtos)
             {
-                var interest = _interestTasks.GetByName(interestDto.Name);
-                if (interest == null)
-                {
+                Interest interest;
+                
+                if (interestDto.Id > 0)
+                    interest = _interestTasks.Get(interestDto.Id);
+                else
                     interest = _interestTasks.Create(interestDto.Name, interestDto.RelatedTo);
-                }
+
                 user.AddInterest(interest, null);
             }
         }
