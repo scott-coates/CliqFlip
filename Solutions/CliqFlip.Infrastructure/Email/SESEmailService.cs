@@ -22,8 +22,8 @@ namespace CliqFlip.Infrastructure.Email
 
 				var sendEmailRequest = new SendEmailRequest()
 					.WithDestination(new Destination().WithToAddresses(to))
-					.WithSource(sesFromEmail)
-					.WithReturnPath(sesFromEmail)
+					.WithSource(sesFromEmail) // The sender's email address.
+					.WithReturnPath(sesFromEmail)// The email address to which bounce notifications are to be forwarded.
 					.WithMessage(new Message()
 					             	.WithBody(new Body().WithHtml(new Content(body).WithCharset("UTF-8")))
 					             	.WithSubject(new Content(subject).WithCharset("UTF-8")));
