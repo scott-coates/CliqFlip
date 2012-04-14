@@ -1887,4 +1887,23 @@ div.conversation-reply input
 			background-image: url('/Content/img/feedback.png');
 			background-repeat:  no-repeat; 
 		}
+
+/*========================*/
+/*===  Invite page
+/*========================*/
+        
+#user-register-now
+{
+	background-color: #3599CD;
+    padding: 10px;
+    border-radius: 5px;
+    display: block;
+    width: 115px;
+    margin: 10px auto;
+    color: White;
+}
 		
+#user-register-now:hover
+{
+	background-color: #24282D;
+}
