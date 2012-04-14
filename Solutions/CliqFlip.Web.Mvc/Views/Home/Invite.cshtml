@@ -21,7 +21,8 @@
 				@Html.Raw("Thank you for joining the " + ViewBag.InviteKey + " beta program!")
 				<br/>
 				<br/>
-				Click the "Register Now!" button at the top-right corner to get started!
+				Click the "Register Now!" to get started!
+                @Html.ActionLink("Register Now!", "Create", "User", null, new { id = "user-register-now" })
 			</div>
 		</div>
 	</div>
