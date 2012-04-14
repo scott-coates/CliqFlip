@@ -387,7 +387,7 @@ namespace CliqFlip.Tasks.TaskImpl
                     var subject = "You have a new messages on CliqFlip.com :)";
                     var message = "Hey come back, {0} sent you a message.";
 
-                    users.ForEach(user => _emailService.SendMail(user.Email, subject, String.Format(message, user.Username)));
+                    users.ForEach(user => _emailService.SendMail(user.Email, subject, String.Format(message, sender.Username)));
                 }
             }
             return retVal;
