@@ -6,8 +6,8 @@ using Elmah;
 
 namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers 
 {
-	[FormsAuthReadUserData(Order = 1)]
-	[Authorize(Roles = "Administrator",Order = 2)]
+	[FormsAuthReadUserData]
+	[Authorize(Roles = "Administrator")]
     public class LoggingController : Controller
     {
         public ActionResult Index()
