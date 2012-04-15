@@ -142,6 +142,7 @@
 	<script type="text/javascript">
 		$(function() {
 			InitUser(@(Model.AuthenticatedProfileOwner.ToString(CultureInfo.InvariantCulture).ToLower()));
+			InitSocial(@(Html.Raw(Model.SocialPageUrl)));
 			InitHeadline(@(Html.Raw(Model.SaveHeadlineUrl)));
 			InitBio(@(Html.Raw(Model.SaveBioUrl)));
 			InitMindMap(@(Html.Raw(Model.InterestsJson)), @(Html.Raw(Model.SaveMindMapUrl)));

@@ -11,6 +11,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 	public class UserProfileIndexViewModel : UserProfileViewModel
 	{
 		public string Bio { get; set; }
+		public string SocialPageUrl { get; set; }
         public string TwitterUsername { get; set; }
         public string YouTubeUsername { get; set; }
         public string WebsiteUrl { get; set; }

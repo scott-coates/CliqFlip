@@ -394,6 +394,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 				user.SaveTwitterUsernameUrl = "\"" + Url.Action("SaveTwitterUsername", "User") + "\"";
 				user.SaveYouTubeUsernameUrl = "\"" + Url.Action("SaveYouTubeUsername", "User") + "\"";
 				user.SaveWebsiteUrl = "\"" + Url.Action("SaveWebiste", "User") + "\"";
+				user.SocialPageUrl = "\"" + Url.Action("SocialMedia", "User") + "\"";
 				return View(user);
 			}
 
