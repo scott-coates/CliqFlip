@@ -3,7 +3,6 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using CliqFlip.Infrastructure.Logging;
 
 namespace CliqFlip.Web.Mvc.Security.Attributes
 {
@@ -22,11 +21,9 @@ namespace CliqFlip.Web.Mvc.Security.Attributes
 				FormsAuthenticationTicket ticket = identity.Ticket;
 
 				var principal = new GenericPrincipal(identity, new[] { ticket.UserData });
-				new ElmahLogger().LogException(new Exception("principal " + ticket.UserData));
+
 				httpContext.User = principal;
 			}
-
-			new ElmahLogger().LogException(new Exception("is authorized " + isAuthorized));
 			return isAuthorized;
 		}
 
