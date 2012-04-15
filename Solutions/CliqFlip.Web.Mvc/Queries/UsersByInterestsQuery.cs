@@ -43,7 +43,7 @@ namespace CliqFlip.Web.Mvc.Queries
 				retVal.Results.Add(indvResultViewModel);
 			}
 
-			retVal.PagedResults = retVal.Results.AsPagination(page ?? 1, 5);
+			retVal.PagedResults = retVal.Results.AsPagination(page ?? 1, 8);
 			return retVal;
 		}
 
