@@ -60,12 +60,19 @@ namespace CliqFlip.Infrastructure.Location.Interfaces
 		{
 			var retVal = GetLocation(null, null, null, zip);
 
+			zip = NormalizeZip(zip);
+
 			if(zip != retVal.ZipCode)
 			{
 				throw new LocationException(zip + " is not a valid zip");
 			}
 
 			return retVal;
+		}
+
+		private string NormalizeZip(string zip)
+		{
+			return zip.ToUpperInvariant();
 		}
 
 		public LocationData ParseLocationData(string locationData)
