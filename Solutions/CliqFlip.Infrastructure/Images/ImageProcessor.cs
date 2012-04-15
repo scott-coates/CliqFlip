@@ -13,7 +13,7 @@ namespace CliqFlip.Infrastructure.Images
 	public class ImageProcessor : IImageProcessor
 	{
 		private const int MIN_RESOLUTION = 100;
-		private const int MAX_RESOLUTION = 2048;
+		private const int MAX_RESOLUTION = 15000;
 		private const int THUMBNAIL_RESOLUTION = 50;
 		private const int MEDIUM_RESOLUTION_WIDTH = 240;
 		private const int MEDIUM_RESOLUTION_HEIGHT = 160;
