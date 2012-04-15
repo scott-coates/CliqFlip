@@ -4,107 +4,107 @@ using System.Web.Mvc;
 using CliqFlip.Web.Mvc.Security.Attributes;
 using Elmah;
 
-namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers 
+namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 {
-	[FormsAuthReadUserData]
-	[Authorize(Roles = "Administrator")]
-    public class LoggingController : Controller
-    {
-        public ActionResult Index()
-        {
-            return new ElmahResult();
-        }
+	[FormsAuthReadUserData(Order = 0)]
+	[Authorize(Roles = "Administrator", Order = 1)]
+	public class LoggingController : Controller
+	{
+		public ActionResult Index()
+		{
+			return new ElmahResult();
+		}
 
-        public ActionResult Stylesheet()
-        {
-            return new ElmahResult("stylesheet");
-        }
+		public ActionResult Stylesheet()
+		{
+			return new ElmahResult("stylesheet");
+		}
 
-        public ActionResult Rss()
-        {
-            return new ElmahResult("rss");
-        }
+		public ActionResult Rss()
+		{
+			return new ElmahResult("rss");
+		}
 
-        public ActionResult DigestRss()
-        {
-            return new ElmahResult("digestrss");
-        }
+		public ActionResult DigestRss()
+		{
+			return new ElmahResult("digestrss");
+		}
 
-        public ActionResult About()
-        {
-            return new ElmahResult("about");
-        }
+		public ActionResult About()
+		{
+			return new ElmahResult("about");
+		}
 
-        public ActionResult Detail()
-        {
-            return new ElmahResult("detail");
-        }
+		public ActionResult Detail()
+		{
+			return new ElmahResult("detail");
+		}
 
-        public ActionResult Download()
-        {
-            return new ElmahResult("download");
-        }
+		public ActionResult Download()
+		{
+			return new ElmahResult("download");
+		}
 
-        public ActionResult Json()
-        {
-            return new ElmahResult("json");
-        }
+		public ActionResult Json()
+		{
+			return new ElmahResult("json");
+		}
 
-        public ActionResult Xml()
-        {
-            return new ElmahResult("xml");
-        }
-    }
+		public ActionResult Xml()
+		{
+			return new ElmahResult("xml");
+		}
+	}
 
-    internal class ElmahResult : ActionResult
-    {
-        private readonly string _resouceType;
+	internal class ElmahResult : ActionResult
+	{
+		private readonly string _resouceType;
 
-        public ElmahResult()
-            : this(null)
-        {
-        }
+		public ElmahResult()
+			: this(null)
+		{
+		}
 
-        public ElmahResult(string resouceType)
-        {
-            _resouceType = resouceType;
-        }
+		public ElmahResult(string resouceType)
+		{
+			_resouceType = resouceType;
+		}
 
-        public override void ExecuteResult(ControllerContext context)
-        {
-            var factory = new ErrorLogPageFactory();
+		public override void ExecuteResult(ControllerContext context)
+		{
+			var factory = new ErrorLogPageFactory();
 
-            if (!string.IsNullOrEmpty(_resouceType))
-            {
-                string pathInfo = "/" + _resouceType;
-                context.HttpContext.RewritePath(FilePath(context), pathInfo,
-                                                context.HttpContext.Request.QueryString.ToString());
-            }
+			if (!string.IsNullOrEmpty(_resouceType))
+			{
+				string pathInfo = "/" + _resouceType;
+				context.HttpContext.RewritePath(FilePath(context), pathInfo,
+												context.HttpContext.Request.QueryString.ToString());
+			}
 
-            var currentContext = GetCurrentContextAsHttpContext(context);
+			var currentContext = GetCurrentContextAsHttpContext(context);
 
-            var httpHandler = factory.GetHandler(currentContext, null, null, null);
-            var httpAsyncHandler = httpHandler as IHttpAsyncHandler;
+			var httpHandler = factory.GetHandler(currentContext, null, null, null);
+			var httpAsyncHandler = httpHandler as IHttpAsyncHandler;
 
-            if (httpAsyncHandler != null)
-            {
-                httpAsyncHandler.BeginProcessRequest(currentContext, r => { }, null);
-                return;
-            }
+			if (httpAsyncHandler != null)
+			{
+				httpAsyncHandler.BeginProcessRequest(currentContext, r => { }, null);
+				return;
+			}
 
-            httpHandler.ProcessRequest(currentContext);
-        }
+			httpHandler.ProcessRequest(currentContext);
+		}
 
-        private static HttpContext GetCurrentContextAsHttpContext(ControllerContext context)
-        {
-            return context.HttpContext.ApplicationInstance.Context;
-        }
+		private static HttpContext GetCurrentContextAsHttpContext(ControllerContext context)
+		{
+			return context.HttpContext.ApplicationInstance.Context;
+		}
 
-        private string FilePath(ControllerContext context)
-        {
-            return _resouceType != "stylesheet"
-                       ? context.HttpContext.Request.Path.Replace(String.Format("/{0}", _resouceType), string.Empty)
-                       : context.HttpContext.Request.Path;
-        }
-    }
+		private string FilePath(ControllerContext context)
+		{
+			return _resouceType != "stylesheet"
+					   ? context.HttpContext.Request.Path.Replace(String.Format("/{0}", _resouceType), string.Empty)
+					   : context.HttpContext.Request.Path;
+		}
+	}
 }
