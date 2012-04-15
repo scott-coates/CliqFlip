@@ -73,7 +73,7 @@ namespace CliqFlip.Tasks.TaskImpl
                 MatchCount = user.Interests.Sum(x =>
                 {
                     if (interestAliases.Contains(x.Interest.Slug))
-                        return 3; //movies -> movies (same match)
+                        return 10; //movies -> movies (same match)
                     if (x.Interest.ParentInterest != null && subjAliasAndParent.Contains(x.Interest.ParentInterest.Slug))
                         return 2; //movies -> tv shows (sibling match)
                     if (subjAliasAndParent.Contains(x.Interest.Slug))
