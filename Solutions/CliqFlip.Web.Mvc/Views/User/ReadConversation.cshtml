@@ -7,14 +7,19 @@
         return currentIndex < messages.Count() - 1;
     };
 }
+
 @for (int i = 0; i < Model.Count(); i++)
 {
     var currentMessage = Model.ElementAt(i);
     MessageViewModel nextMessage = null;
     
     <div class="message">
-        <img src="@currentMessage.SenderImageUrl" alt="Alternate Text" class="profile-image" />
-        <strong>@currentMessage.Sender</strong>
+        <a href="@Url.Action("Index", "User", new { username = currentMessage.Sender })">
+            <img src="@currentMessage.SenderImageUrl" alt="Alternate Text" class="profile-image" />
+        </a>
+        <strong>
+            @Html.ActionLink(currentMessage.Sender, "Index", "User", new { username = currentMessage.Sender }, null)
+        </strong>
         <p>
             @currentMessage.Text
         </p>
