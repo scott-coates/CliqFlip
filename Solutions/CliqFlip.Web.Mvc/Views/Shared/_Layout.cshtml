@@ -9,7 +9,7 @@
 		<title>@ViewBag.Title</title>
 		<!-- Website Styles -->
 		<link rel="stylesheet" type="text/css" media="all" href="@Url.ContentWithVersioning("/Content/styles/skins/default-dark.css")" />
-		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/skins/blue-cScheme.css")" />
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.ContentWithVersioning("/Content/styles/skins/blue-cScheme.css")" />
 		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/anythingslider-default1.css")" />
 		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/skitter.styles.css")" />
 		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/js/colorbox/colorbox.css")" />
@@ -133,6 +133,7 @@
 						<div class="divider">
 						</div>
 						<em>&copy; @DateTime.Now.Year <a href="index.html">CliqFlip</a> - All rights reserved.</em>
+						<a href="javascript:void(0);" id="site-tos">Terms of Service</a>.
 						<div class="divider">
 						</div>
 					</div>
@@ -141,6 +142,26 @@
 			<!-- COPYRIGHT END -->
 		</div>
 		<!-- end #main-container -->
+		<div class="user-create-tos" id="tos-dialog">
+		<ol>
+			<li>Don’t Spam the site, don’t spam the users. Or else you’re gonna get canned. Pun
+				intended.</li>
+			<li>Don’t post porn or violence. There’s a place for that and it’s called HBO.</li>
+			<li>Don’t steal stuff off the site. </li>
+			<li>We reserve the right to give you the boot for any or no reason. But we won’t unless
+				you’re being an idiot.</li>
+			<li>We’re not liable for anything. Stuff you post and where you go is your liability.
+				Why do you think we’re an LLC? LIMITED LIABILITY. In this case limited = none.</li>
+			<li>We’re not going to sell all your secret info like the “other guys.” Your secret’s
+				safe with us.</li>
+			<li>Do unto others and you would have them do unto you. Just a good life rule.</li>
+			<li>Help us, help you. We’re building a better way to meet and connect with people.
+				Tell us what works and what doesn’t, we value your input.</li>
+		</ol>
+		<p>
+			(Big Boy Terms of Service coming soon but this will be the gist of it.)</p>
+	</div>
+
 		<!-- Scripts -->
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"> </script>
 		<script type="text/javascript" src="@Url.Content("/Content/js/colorbox/jquery.colorbox-min.js")"> </script>
@@ -151,9 +172,11 @@
 		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.js")"> </script>
 		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.unobtrusive.js")"> </script>
 		<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/cliqflip/login.js")"> </script>
+		<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/cliqflip/tos.js")"> </script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				InitLogin();
+				InitTOS();
 			});
 		</script>
 		@RenderSection("beforeBodyClose", false)

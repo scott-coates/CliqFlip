@@ -2,10 +2,9 @@
 @{
 	ViewBag.Title = "Create";
 }
-
 <div id="steps">
 </div>
-@using (Html.BeginForm("Create", "User", FormMethod.Post, new {id = "formProfileCreate", @class = "ui-formwizard"}))
+@using (Html.BeginForm("Create", "User", FormMethod.Post, new { id = "formProfileCreate", @class = "ui-formwizard" }))
 {
 	@Html.ValidationSummary(true)
 
@@ -45,14 +44,14 @@
 			</div>
 			<div class="editor-label">
 				@Html.LabelFor(model => model.PasswordVerify)
-			</div>  
+			</div>
 			<div class="editor-field">
 				@Html.EditorFor(model => model.PasswordVerify)
 				@Html.ValidationMessageFor(model => model.PasswordVerify)
 			</div>
 			<div class="editor-label">
-				@Html.LabelFor(model => model.AcceptTermsAndConditions)
-			</div>  
+				<a href="javascript:void(0);" id="tos-link">Accept Terms & Conditions</a>
+			</div>
 			<div class="editor-field">
 				@Html.EditorFor(model => model.AcceptTermsAndConditions)
 				@Html.ValidationMessageFor(model => model.AcceptTermsAndConditions)
@@ -60,13 +59,13 @@
 		</div>
 	</fieldset>
 
-	<div class="clear"></div>
+	<div class="clear">
+	</div>
 	<p id="button-container">
 		<input type="submit" value="Next" class="button dark-blue" />
 		<input type="reset" value="Back" class="button blue" />
 	</p>
 }
-
 <script id="tmplStepIndicator" type="text/x-jquery-tmpl">
 	<div>
 		<a href="#${StepId}" class="button blue">
@@ -75,18 +74,19 @@
 	</div>
 </script>
 
+
 @section beforeBodyClose
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.tmpl.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.form.wizard.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/user/create.js")"> </script>
+	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/user/create.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/add-interest.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/validation/jquery.validate.must-be-true.js")"> </script>
 	<script type="text/javascript">
 
-	    $(document).ready(function () {
-	        InitUserCreate();
-	        InitAddInterest();
-	    });
-    </script>
+		$(document).ready(function () {
+			InitUserCreate();
+			InitAddInterest();
+		});
+	</script>
 }

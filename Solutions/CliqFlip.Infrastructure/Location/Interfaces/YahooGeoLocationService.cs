@@ -112,6 +112,7 @@ namespace CliqFlip.Infrastructure.Location.Interfaces
 
 		public MajorLocation GetNearestMajorCity(float latitude, float longitude)
 		{
+			//TODO this needs to go in infra project
 			MajorLocation retVal;
 			//Forced to use a manual search because the colons in the query cause an nh exception
 			//and a stored proc named query in NH is a pain

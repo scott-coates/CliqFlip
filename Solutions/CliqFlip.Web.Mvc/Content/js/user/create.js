@@ -15,6 +15,10 @@ function InitUserCreate() {
 	//find the user create form
 	_formProfileCreate = $("#formProfileCreate");
 
+	$("#tos-link").click(function () {
+		window._tosDialog.dialog("open");
+	});
+	
 	CreateFormWizard();
 	GenerateIndicators();
 }
