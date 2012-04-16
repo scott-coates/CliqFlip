@@ -273,6 +273,7 @@
     <Content Include="Content\img\social2.png" />
     <Content Include="Content\img\social3.png" />
     <Content Include="Content\img\suggested.png" />
+    <Content Include="Content\js\cliqFlip\tos.js" />
     <Content Include="Content\js\jquery.dotdotdot-1.2.1.min.js" />
     <Content Include="Content\js\cliqFlip\error-handler.js" />
     <Content Include="Content\js\jquery.dotdotdot-1.2.1.js" />

@@ -1,168 +1,190 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
-	<head runat="server">
-		<meta charset="UTF-8" />
-		<meta name="description" content="CliqFlip is a social platform that connects people
+<head runat="server">
+	<meta charset="UTF-8" />
+	<meta name="description" content="CliqFlip is a social platform that connects people
 	on sociality, personality, and commonalitys" />
-		<meta name="keywords" content="cliqflip, sociality, personality, commonality" />
-		<link rel="shortcut icon" href="@Url.Content("/favicon.ico")" type="image/x-icon" />
-		<title>@ViewBag.Title</title>
-		<!-- Website Styles -->
-		<link rel="stylesheet" type="text/css" media="all" href="@Url.ContentWithVersioning("/Content/styles/skins/default-dark.css")" />
-		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/skins/blue-cScheme.css")" />
-		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/anythingslider-default1.css")" />
-		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/skitter.styles.css")" />
-		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/js/colorbox/colorbox.css")" />
-		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/jquery-ui/jquery-ui-1.8.18.custom.css")" />
-		<!-- IE HTML5 Hack -->
-		<!--[if lt IE 9]>
+	<meta name="keywords" content="cliqflip, sociality, personality, commonality" />
+	<link rel="shortcut icon" href="@Url.Content("/favicon.ico")" type="image/x-icon" />
+	<title>@ViewBag.Title</title>
+	<!-- Website Styles -->
+	<link rel="stylesheet" type="text/css" media="all" href="@Url.ContentWithVersioning("/Content/styles/skins/default-dark.css")" />
+	<link rel="stylesheet" type="text/css" media="all" href="@Url.ContentWithVersioning("/Content/styles/skins/blue-cScheme.css")" />
+	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/anythingslider-default1.css")" />
+	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/skitter.styles.css")" />
+	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/js/colorbox/colorbox.css")" />
+	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/jquery-ui/jquery-ui-1.8.18.custom.css")" />
+	<!-- IE HTML5 Hack -->
+	<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"> </script>
 		<![endif]-->
-		<!-- Google Font -->
-		<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
-		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet'
-			  type='text/css' />
-		<script type="text/javascript">
-			window.logErrorUrl = '@Url.Action("LogJavaScriptError", "Error", new{area = ""})';
-		</script>
-		<script type="text/javascript">
-			var uvOptions = {};
-			(function () {
-				var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
-				uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/q3DwyrZM7VF8Wykt7zPQ.js';
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
-			})();
-		</script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/cliqflip/error-handler.js")"> </script>
-		@HtmlExtensions.GetAnalyticsHtmlIfAvailable()
-		@RenderSection("beforeHeadClose", false)
-	</head>
-	<body>
-		<div id="main-container">
-			<!-- HEADER START -->
-			<div id="header" class="wrapper">
-				<div class="inner">
-					<div class="logo">
-						<a href="/">
-							<img src="@Url.Content("/Content/img/ClipFliq-LogoMoto.png")" alt="CliqFlip logo"/>
-						</a>
-					</div>
-					<div class="motto">Discover <span>More</span>
-					</div>
-					<div class="clear">
-					</div>
+	<!-- Google Font -->
+	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet'
+		type='text/css' />
+	<script type="text/javascript">
+		window.logErrorUrl = '@Url.Action("LogJavaScriptError", "Error", new { area = "" })';
+	</script>
+	<script type="text/javascript">
+		var uvOptions = {};
+		(function () {
+			var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+			uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/q3DwyrZM7VF8Wykt7zPQ.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+		})();
+	</script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/cliqflip/error-handler.js")"> </script>
+	@HtmlExtensions.GetAnalyticsHtmlIfAvailable()
+	@RenderSection("beforeHeadClose", false)
+</head>
+<body>
+	<div id="main-container">
+		<!-- HEADER START -->
+		<div id="header" class="wrapper">
+			<div class="inner">
+				<div class="logo">
+					<a href="/">
+						<img src="@Url.Content("/Content/img/ClipFliq-LogoMoto.png")" alt="CliqFlip logo"/>
+					</a>
 				</div>
-				@Html.Partial("_HeaderNavigation")
-			</div>
-			<!-- HEADER END -->
-        
-			<div class="wrapper">
-				<div class="inner">
-					@RenderBody()
+				<div class="motto">
+					Discover <span>More</span>
 				</div>
 				<div class="clear">
 				</div>
 			</div>
-			<!-- CONNECT BOX START -->
-			<div id="connect_box" class="full-width">
-				<div class="wrapper">
-					<div class="inner">
-						<div class="one_fifth">
-							<h4>
-								Connect</h4>
-						</div>
-						<div class="three_fifth">
-							<ul class="list">
-								<li><a href="http://twitter.com/CliqFlip"><span class="twitter_icon"></span>Twitter</a></li>
-								<li><a href="http://facebook.com/CliqFlip"><span class="facebook_icon"></span>Facebook</a></li>
-								<li><a href="http://blog.cliqflip.com/?feed=rss2"><span class="rss_icon"></span>RSS</a></li>
-								<li><a href="mailto:support@cliqflip.com"><span class="contact_icon"></span>Contact</a></li>
-							</ul>
-						</div>
-						<div class="one_fifth last">
-							<a href="http://www.addthis.com/bookmark.html?v=250&amp;pubid=ra-4e6377ae614835f5"
-							   class="addthis_button_compact"><span class="share_icon"></span>Share this page
-							</a>
-							<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e6377ae614835f5"> </script>
-						</div>
-						<div class="clear">
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- CONNECT BOX END -->
-			<!-- FOOTER START -->
-			<div id="footer_box" class="full-width">
-				<div class="wrapper">
-					<div class="inner">
-						<div class="one_fourth">
-							<h4>
-								<em>Where to</em> Find US</h4>
-							<p>
-								Our Garage, HQ</p>
-							<p>
-								Orange County, CA</p>
-							<p>
-								E-mail: <a href="mailto:support@cliqflip.com">support@cliqflip.com</a>
-							</p>
-						</div>
-						<div class="one_fourth recent-posts">
-							<h4>
-								<em>Latest from the</em> Blog</h4>
-							<h4><a href="http://blog.cliqflip.com">Check out our blog</></a></h4>
-						</div>
-						<div class="one_fourth">
-							<h4>
-								<em>Copyright</em> Disclaimer</h4>
-							<p>
-								<em>All images are copyrighted to their respective owners.</em></p>
-						</div>
-						<div class="one_fourth last">
-							
-						</div>
-						<div class="clear">
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- FOOTER END -->
-			<!-- COPYRIGHT START -->
-			<div id="copyright_box">
-				<div class="wrapper">
-					<div class="inner">
-						<div class="divider">
-						</div>
-						<em>&copy; @DateTime.Now.Year <a href="index.html">CliqFlip</a> - All rights reserved.</em>
-						<div class="divider">
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- COPYRIGHT END -->
+			@Html.Partial("_HeaderNavigation")
 		</div>
-		<!-- end #main-container -->
-		<!-- Scripts -->
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/colorbox/jquery.colorbox-min.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.quicksand.min.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.skitter.min.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.animate-colors-min.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jquery-easing.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.anythingslider.min.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.anythingslider.fx.min.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.cycle.all.min.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jflickrfeed.min.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jquery-ui-1.8.16.custom.min.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/twitterjs-2.0.0.min.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.unobtrusive-ajax.min.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.unobtrusive.js")"> </script>
-		<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/cliqflip/login.js")"> </script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				InitLogin();
-			});
-		</script>
-		@RenderSection("beforeBodyClose", false)
-	</body>
+		<!-- HEADER END -->
+		<div class="wrapper">
+			<div class="inner">
+				@RenderBody()
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+		<!-- CONNECT BOX START -->
+		<div id="connect_box" class="full-width">
+			<div class="wrapper">
+				<div class="inner">
+					<div class="one_fifth">
+						<h4>
+							Connect</h4>
+					</div>
+					<div class="three_fifth">
+						<ul class="list">
+							<li><a href="http://twitter.com/CliqFlip"><span class="twitter_icon"></span>Twitter</a></li>
+							<li><a href="http://facebook.com/CliqFlip"><span class="facebook_icon"></span>Facebook</a></li>
+							<li><a href="http://blog.cliqflip.com/?feed=rss2"><span class="rss_icon"></span>RSS</a></li>
+							<li><a href="mailto:support@cliqflip.com"><span class="contact_icon"></span>Contact</a></li>
+						</ul>
+					</div>
+					<div class="one_fifth last">
+						<a href="http://www.addthis.com/bookmark.html?v=250&amp;pubid=ra-4e6377ae614835f5"
+							class="addthis_button_compact"><span class="share_icon"></span>Share this page
+						</a>
+						<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e6377ae614835f5"> </script>
+					</div>
+					<div class="clear">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- CONNECT BOX END -->
+		<!-- FOOTER START -->
+		<div id="footer_box" class="full-width">
+			<div class="wrapper">
+				<div class="inner">
+					<div class="one_fourth">
+						<h4>
+							<em>Where to</em> Find US</h4>
+						<p>
+							Our Garage, HQ</p>
+						<p>
+							Orange County, CA</p>
+						<p>
+							E-mail: <a href="mailto:support@cliqflip.com">support@cliqflip.com</a>
+						</p>
+					</div>
+					<div class="one_fourth recent-posts">
+						<h4>
+							<em>Latest from the</em> Blog</h4>
+						<h4>
+							<a href="http://blog.cliqflip.com">Check out our blog</></a></h4>
+					</div>
+					<div class="one_fourth">
+						<h4>
+							<em>Copyright</em> Disclaimer</h4>
+						<p>
+							<em>All images are copyrighted to their respective owners.</em></p>
+					</div>
+					<div class="one_fourth last">
+					</div>
+					<div class="clear">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- FOOTER END -->
+		<!-- COPYRIGHT START -->
+		<div id="copyright_box">
+			<div class="wrapper">
+				<div class="inner">
+					<div class="divider">
+					</div>
+					<em>&copy; @DateTime.Now.Year <a href="/">CliqFlip</a> - All rights reserved.</em>
+					<a href="javascript:void(0);" id="site-tos">Terms of Service</a>.
+					<div class="divider">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- COPYRIGHT END -->
+	</div>
+	<!-- end #main-container -->
+	<div class="user-create-tos" id="tos-dialog">
+		<ol>
+			<li>Don’t Spam the site, don’t spam the users. Or else you’re gonna get canned. Pun
+				intended.</li>
+			<li>Don’t post porn or violence. There’s a place for that and it’s called HBO.</li>
+			<li>Don’t steal stuff off the site. </li>
+			<li>We reserve the right to give you the boot for any or no reason. But we won’t unless
+				you’re being an idiot.</li>
+			<li>We’re not liable for anything. Stuff you post and where you go is your liability.
+				Why do you think we’re an LLC? LIMITED LIABILITY. In this case limited = none.</li>
+			<li>We’re not going to sell all your secret info like the “other guys.” Your secret’s
+				safe with us.</li>
+			<li>Do unto others and you would have them do unto you. Just a good life rule.</li>
+			<li>Help us, help you. We’re building a better way to meet and connect with people.
+				Tell us what works and what doesn’t, we value your input.</li>
+		</ol>
+		<p>
+			(Big Boy Terms of Service coming soon but this will be the gist of it.)</p>
+	</div>
+	<!-- Scripts -->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/colorbox/jquery.colorbox-min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.quicksand.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.skitter.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.animate-colors-min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery-easing.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.anythingslider.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.anythingslider.fx.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.cycle.all.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jflickrfeed.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery-ui-1.8.16.custom.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/twitterjs-2.0.0.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.unobtrusive-ajax.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.unobtrusive.js")"> </script>
+	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/cliqflip/login.js")"> </script>
+	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/cliqflip/tos.js")"> </script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			InitLogin();
+			InitTOS();
+		});
+	</script>
+	@RenderSection("beforeBodyClose", false)
+</body>
 </html>
