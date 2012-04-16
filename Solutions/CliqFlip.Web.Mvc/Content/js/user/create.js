@@ -6,6 +6,7 @@ var _steps = null;
 
 var _selectedCssClass = "dark-blue";
 var _unselectedCssClass = "blue";
+var _tosDialog = null;
 
 function InitUserCreate() {
 	//bind all the elements we need
@@ -15,6 +16,17 @@ function InitUserCreate() {
 	//find the user create form
 	_formProfileCreate = $("#formProfileCreate");
 
+	_tosDialog = $("#create-tos").dialog({
+		autoOpen: false,
+		modal: true,
+		width: 730,
+		height: 480
+	});
+
+	$("#tos-link").click(function () {
+		_tosDialog.dialog("open");
+	});
+	
 	CreateFormWizard();
 	GenerateIndicators();
 }

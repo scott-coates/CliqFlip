@@ -1643,6 +1643,10 @@ color: white;
 			font-size: 20px;
 			margin: 10px;
 			text-align: center;
+		} 
+		
+		.user-create-tos {
+			display: none;
 		}
         
 		.social-media

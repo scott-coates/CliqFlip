@@ -2,10 +2,9 @@
 @{
 	ViewBag.Title = "Create";
 }
-
 <div id="steps">
 </div>
-@using (Html.BeginForm("Create", "User", FormMethod.Post, new {id = "formProfileCreate", @class = "ui-formwizard"}))
+@using (Html.BeginForm("Create", "User", FormMethod.Post, new { id = "formProfileCreate", @class = "ui-formwizard" }))
 {
 	@Html.ValidationSummary(true)
 
@@ -45,14 +44,14 @@
 			</div>
 			<div class="editor-label">
 				@Html.LabelFor(model => model.PasswordVerify)
-			</div>  
+			</div>
 			<div class="editor-field">
 				@Html.EditorFor(model => model.PasswordVerify)
 				@Html.ValidationMessageFor(model => model.PasswordVerify)
 			</div>
 			<div class="editor-label">
-				@Html.LabelFor(model => model.AcceptTermsAndConditions)
-			</div>  
+				<a href="javascript:void(0);" id="tos-link">Accept Terms & Conditions</a>
+			</div>
 			<div class="editor-field">
 				@Html.EditorFor(model => model.AcceptTermsAndConditions)
 				@Html.ValidationMessageFor(model => model.AcceptTermsAndConditions)
@@ -60,13 +59,13 @@
 		</div>
 	</fieldset>
 
-	<div class="clear"></div>
+	<div class="clear">
+	</div>
 	<p id="button-container">
 		<input type="submit" value="Next" class="button dark-blue" />
 		<input type="reset" value="Back" class="button blue" />
 	</p>
 }
-
 <script id="tmplStepIndicator" type="text/x-jquery-tmpl">
 	<div>
 		<a href="#${StepId}" class="button blue">
@@ -74,6 +73,19 @@
 		</a>
 	</div>
 </script>
+<div class="user-create-tos" id="create-tos">
+	<ol>
+		<li>Don’t Spam the site, don’t spam the users.  Or else you’re gonna get canned.  Pun intended.</li>
+		<li>Don’t post porn or violence.  There’s a place for that and it’s called HBO.</li>
+		<li>Don’t steal stuff off the site. </li>
+		<li>We reserve the right to give you the boot for any or no reason.  But we won’t unless you’re being an idiot.</li>
+		<li>We’re not liable for anything.  Stuff you post and where you go is your liability. Why do you think we’re an LLC?  LIMITED LIABILITY.  In this case limited = none.</li>
+		<li>We’re not going to sell all your secret info like the “other guys.”  Your secret’s safe with us.</li>
+		<li>Do unto others and you would have them do unto you.  Just a good life rule.</li>
+		<li>Help us, help you.  We’re building a better way to meet and connect with people.  Tell us what works and what doesn’t, we value your input.</li>
+	</ol>
+	<p>(Big Boy Terms of Service coming soon but this will be the gist of it.)</p>
+</div>
 
 @section beforeBodyClose
 {
@@ -84,9 +96,9 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/validation/jquery.validate.must-be-true.js")"> </script>
 	<script type="text/javascript">
 
-	    $(document).ready(function () {
-	        InitUserCreate();
-	        InitAddInterest();
-	    });
-    </script>
+		$(document).ready(function () {
+			InitUserCreate();
+			InitAddInterest();
+		});
+	</script>
 }
