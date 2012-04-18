@@ -1911,3 +1911,33 @@ div.conversation-reply input
 {
 	background-color: #24282D;
 }
+
+
+
+/*========================*/
+/*===  Browser not supported page
+/*========================*/
+        
+#unsupported-browser
+{
+    padding-top: 15px;
+}
+#unsupported-browser table
+{
+    width: 100%;
+}
+#unsupported-browser td
+{
+    padding: 50px 0px;
+    width: 160px;
+    vertical-align: middle;
+    text-align: center;
+}
+#unsupported-browser img
+{
+    height: 65px;
+}
+#unsupported-browser a:hover
+{
+    color: Black;
+}
