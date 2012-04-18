@@ -39,6 +39,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			_httpContextProvider = httpContextProvider;
 		}
 
+        [BlockUnsupportedBrowsers]
 		[AllowAnonymous]
 		public ActionResult Create()
 		{
@@ -121,6 +122,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return Content("<strong>Login failed!</strong><br/> Please verify your username and password.");
 		}
 
+        [BlockUnsupportedBrowsers]
 		[AllowAnonymous]
 		public ActionResult Login()
 		{
@@ -381,7 +383,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		}
 
 
-
+        [BlockUnsupportedBrowsers]
 		[Transaction]
 		public ActionResult Index(string username)
 		{
@@ -402,6 +404,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			throw new HttpException((int)HttpStatusCode.NotFound, "Not found");
 		}
 
+        [BlockUnsupportedBrowsers]
 		[Transaction]
 		public ActionResult SocialMedia(string username)
 		{
@@ -409,6 +412,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return View(user);
 		}
 
+        [BlockUnsupportedBrowsers]
 		[Transaction]
 		public ActionResult Interests(string username)
 		{
@@ -462,6 +466,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return new EmptyResult();
 		}
 
+        [BlockUnsupportedBrowsers]
 		[Authorize]
 		[Transaction]
 		public ActionResult Inbox()
@@ -477,6 +482,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return _userTasks.GetUser(_principal.Identity.Name).GetNumberOfUnreadConversations();
 		}
 
+        [BlockUnsupportedBrowsers]
 		[Authorize]
 		[Transaction]
 		public ActionResult Landing()

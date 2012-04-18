@@ -178,6 +178,7 @@
     <Compile Include="Queries\ConversationQuery.cs" />
     <Compile Include="Queries\Interfaces\IConversationQuery.cs" />
     <Compile Include="Security\Attributes\AllowAnonymousAttribute.cs" />
+    <Compile Include="Security\Attributes\BlockUnsupportedBrowsersAttribute.cs" />
     <Compile Include="Security\Attributes\FormsAuthReadUserDataAttribute.cs" />
     <Compile Include="Security\Attributes\RequireAuthenticationAttribute.cs" />
     <Compile Include="Validation\MustBeTrueAttribute.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="ViewModels\User\UserSocialMediaViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\img\chrome.png" />
     <Content Include="Content\img\empty-avatar.jpg" />
     <Content Include="Content\img\Error\NotFound.jpg" />
     <Content Include="Content\img\Error\ServerError.jpg" />
@@ -266,6 +268,8 @@
     <Content Include="Content\img\check.png" />
     <Content Include="Content\img\ClipFliq-LogoMoto.png" />
     <Content Include="Content\img\feedback.png" />
+    <Content Include="Content\img\firefox.png" />
+    <Content Include="Content\img\ie.png" />
     <Content Include="Content\img\inbox.png" />
     <Content Include="Content\img\profile.png" />
     <Content Include="Content\img\rss.png" />
@@ -694,6 +698,7 @@
     <Content Include="Views\Home\Invite.cshtml" />
     <Content Include="Views\User\StartConversationWith.cshtml" />
     <Content Include="Views\User\ThankYou.cshtml" />
+    <Content Include="Views\Shared\BrowserNotSupported.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

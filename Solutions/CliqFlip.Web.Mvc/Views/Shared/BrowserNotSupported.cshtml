@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Browser Not Supported";
+}
+@section beforeHeadClose
+{
+    <style type="text/css">
+        #unsupported-browser
+        {
+            padding-top: 15px;
+        }
+        #unsupported-browser table
+        {
+            width: 100%;
+        }
+        #unsupported-browser td
+        {
+            padding: 50px 0px;
+            width: 160px;
+            vertical-align: middle;
+            text-align: center;
+        }
+        #unsupported-browser img
+        {
+            height: 65px;
+        }
+        #unsupported-browser a:hover
+        {
+            color: Black;
+        }
+    </style>
+}
+<div id="unsupported-browser">
+    <div>
+        <h2>
+            Unsupported browser
+        </h2>
+        <h3>
+            CliqFlip currently works best on the following browsers.
+        </h3>
+    </div>
+    <div>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <a target="_blank" href="http://www.google.com/chrome">
+                            <img src="@Url.Content("~/content/img/chrome.png")">
+                            <br />
+                            Chrome
+                        </a>
+                    </td>
+                    <td>
+                        <a target="_blank" href="http://www.apple.com/safari/">
+                                                            
+                            <img src="@Url.Content("~/content/img/safari.gif")">
+                            <br />
+                            Safari
+                        </a>
+                    </td>
+                    <td>
+                        <a target="_blank" href="http://www.mozilla.com/firefox/">
+                            <img src="@Url.Content("~/content/img/firefox.png")">
+                            <br />
+                            Firefox
+                        </a>
+                    </td>
+                    <td>
+                        <a target="_blank" href="http://windows.microsoft.com/en-us/internet-explorer/products/ie/home">
+                            <img src="@Url.Content("~/content/img/ie.png")">
+                            <br />
+                            Internet Explorer 9
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
