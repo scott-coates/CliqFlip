@@ -10,7 +10,7 @@ namespace CliqFlip.Web.Mvc.Security.Attributes
     /// They flood the elmah error logs with JavaScript errors.
     /// </summary>
 	[AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-	public class BlockUnsupportedBrowsersAttribute : ActionFilterAttribute
+	public sealed class BlockUnsupportedBrowsersAttribute : ActionFilterAttribute
 	{
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
