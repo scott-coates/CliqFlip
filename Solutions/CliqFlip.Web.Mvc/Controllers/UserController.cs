@@ -500,6 +500,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 		[Authorize]
 		[Transaction]
+        [BlockUnsupportedBrowsers]
 		public ActionResult Flip()
 		{
 			var username = _principal.Identity.Name;
