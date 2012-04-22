@@ -1,0 +1,8 @@
+@{
+	Layout = "_Layout.cshtml";
+}
+@model CliqFlip.Web.Mvc.ViewModels.Email.ReplyToViewModel
+
+<h2>@Model.FromUsername has replied to you!</h2>
+
+<p>The message can be found at @Url.Action("Inbox", "User", new { username = Model.ToUsername }, "http")</p>

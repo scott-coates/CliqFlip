@@ -370,25 +370,19 @@ namespace CliqFlip.Tasks.TaskImpl
             _emailService.SendMail(recipient.Email,subject, body);
         }
 
-        public Message ReplyToConversation(int conversationId, string replier, string text)
+        public Message ReplyToConversation(Conversation conversation, User sender,User receiver, string messageText,string subject, string body)
         {
             Message retVal = null;
-            var sender = GetUser(replier);
 
             if (sender != null)
             {
-                var conversation = sender.Conversations.SingleOrDefault(x => x.Id == conversationId);
-
                 if (conversation != null)
                 {
-                    retVal = sender.WriteMessage(text);
-                    conversation.AddMessage(retVal);
-                    var users = conversation.Users.ToList();
-                    users.Remove(sender);
-                    var subject = "You have a new messages on CliqFlip.com :)";
-                    var message = "Hey come back, {0} sent you a message.";
+                    retVal = sender.WriteMessage(messageText);
+                    
+					conversation.AddMessage(retVal);
 
-                    users.ForEach(user => _emailService.SendMail(user.Email, subject, String.Format(message, sender.Username)));
+					_emailService.SendMail(receiver.Email, subject, body);
                 }
             }
             return retVal;

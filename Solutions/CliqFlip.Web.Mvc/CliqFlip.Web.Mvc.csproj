@@ -191,6 +191,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Email\ReplyToViewModel.cs" />
     <Compile Include="ViewModels\Email\NewConversationViewModel.cs" />
     <Compile Include="ViewModels\Jeip\JeipSaveResponseViewModel.cs" />
     <Compile Include="ViewModels\Jeip\JeipSaveTextViewModel.cs" />
@@ -704,6 +705,7 @@
     <Content Include="Views\Shared\BrowserNotSupported.cshtml" />
     <Content Include="Views\Email\_Layout.cshtml" />
     <Content Include="Views\Email\NewConversation.cshtml" />
+    <Content Include="Views\Email\ReplyToConversation.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

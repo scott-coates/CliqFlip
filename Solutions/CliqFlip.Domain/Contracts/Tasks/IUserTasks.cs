@@ -29,7 +29,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		void AddInterestToUser(User user, int interestId);
 		void AddInterestsToUser(string name, IEnumerable<UserInterestDto> interestDtos);
         void StartConversation(string starter, string receiver, string messageText, string subject, string body);
-        Message ReplyToConversation(int conversationId, string replier, string text);
+		Message ReplyToConversation(Conversation conversation, User sender,User receiver, string messageText,string subject, string body);
 
         bool IsUsernameOrEmailAvailable(string value);
 	}

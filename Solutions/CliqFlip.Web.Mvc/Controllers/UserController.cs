@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Security.Principal;
@@ -44,7 +45,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			_viewRenderer = viewRenderer;
 		}
 
-        [BlockUnsupportedBrowsers]
+		[BlockUnsupportedBrowsers]
 		[AllowAnonymous]
 		public ActionResult Create()
 		{
@@ -94,7 +95,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			var viewModel = new ThankYouViewModel { Username = _principal.Identity.Name };
 			return View(viewModel);
 		}
-		
+
 		[HttpPost]
 		[Transaction]
 		public ActionResult AddInterests(UserAddInterestsViewModel addInterestsViewModel)
@@ -127,11 +128,11 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return Content("<strong>Login failed!</strong><br/> Please verify your username and password.");
 		}
 
-        [BlockUnsupportedBrowsers]
+		[BlockUnsupportedBrowsers]
 		[AllowAnonymous]
 		public ActionResult Login()
 		{
-			if(_principal.Identity.IsAuthenticated)
+			if (_principal.Identity.IsAuthenticated)
 			{
 				return RedirectToRoute(Constants.ROUTE_LANDING_PAGE);
 			}
@@ -153,7 +154,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 					//down the road
 
 					string returnUrl = _httpContextProvider.Request.QueryString[Constants.RETURN_URL];
-					if(string.IsNullOrWhiteSpace(returnUrl))
+					if (string.IsNullOrWhiteSpace(returnUrl))
 					{
 						return Redirect(FormsAuthentication.DefaultUrl);
 					}
@@ -283,7 +284,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return RedirectToAction("Interests");
 		}
 
-        //TODO: Can we remove this. I don't see it being used.
+		//TODO: Can we remove this. I don't see it being used.
 		[Authorize]
 		[Transaction]
 		public ActionResult AddSingleInterest(int interestId)
@@ -388,7 +389,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		}
 
 
-        [BlockUnsupportedBrowsers]
+		[BlockUnsupportedBrowsers]
 		[Transaction]
 		public ActionResult Index(string username)
 		{
@@ -409,7 +410,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			throw new HttpException((int)HttpStatusCode.NotFound, "Not found");
 		}
 
-        [BlockUnsupportedBrowsers]
+		[BlockUnsupportedBrowsers]
 		[Transaction]
 		public ActionResult SocialMedia(string username)
 		{
@@ -417,7 +418,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return View(user);
 		}
 
-        [BlockUnsupportedBrowsers]
+		[BlockUnsupportedBrowsers]
 		[Transaction]
 		public ActionResult Interests(string username)
 		{
@@ -445,7 +446,11 @@ namespace CliqFlip.Web.Mvc.Controllers
 			if (ModelState.IsValid)
 			{
 				string body = _viewRenderer.RenderView(this, "~/Views/Email/NewConversation.cshtml"
-					, new NewConversationViewModel { FromUsername = _principal.Identity.Name });
+					, new NewConversationViewModel
+					{
+						ToUsername = model.Username,
+						FromUsername = _principal.Identity.Name
+					});
 
 				_userTasks.StartConversation(_principal.Identity.Name
 					, model.Username
@@ -473,13 +478,36 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var message = _userTasks.ReplyToConversation(model.Id, _principal.Identity.Name, model.Text);
+				User sender = _userTasks.GetUser(_principal.Identity.Name);
+				Conversation conversation = sender.Conversations.SingleOrDefault(x => x.Id == model.Id);
+				List<User> users = conversation.Users.ToList();
+
+				users.Remove(sender);
+				User reveiver = users.Single();
+
+				string subject = _principal.Identity.Name + " has Replied to You";
+
+				string body = _viewRenderer.RenderView(this, "~/Views/Email/ReplyToConversation.cshtml"
+				                                       , new ReplyToViewModel
+				                                       {
+				                                       	ToUsername = reveiver.Username,
+				                                       	FromUsername = _principal.Identity.Name
+				                                       });
+
+				Message message = _userTasks
+					.ReplyToConversation(conversation
+					                     , sender
+					                     , reveiver
+					                     , model.Text
+					                     , subject
+					                     , body);
+
 				return PartialView("Message", new MessageViewModel(message));
 			}
 			return new EmptyResult();
 		}
 
-        [BlockUnsupportedBrowsers]
+		[BlockUnsupportedBrowsers]
 		[Authorize]
 		[Transaction]
 		public ActionResult Inbox()
@@ -495,7 +523,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return _userTasks.GetUser(_principal.Identity.Name).GetNumberOfUnreadConversations();
 		}
 
-        [BlockUnsupportedBrowsers]
+		[BlockUnsupportedBrowsers]
 		[Authorize]
 		[Transaction]
 		public ActionResult Landing()
@@ -513,7 +541,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 		[Authorize]
 		[Transaction]
-        [BlockUnsupportedBrowsers]
+		[BlockUnsupportedBrowsers]
 		public ActionResult Flip()
 		{
 			var username = _principal.Identity.Name;
