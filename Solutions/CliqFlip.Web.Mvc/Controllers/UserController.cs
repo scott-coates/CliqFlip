@@ -460,6 +460,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 				return Json(new { success = true });
 			}
+			//TODO - throw ex or display to user the validation error
 			return Json(new { success = false });
 		}
 
@@ -504,6 +505,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 				return PartialView("Message", new MessageViewModel(message));
 			}
+
+			//TODO - throw ex or display to user the validation error
 			return new EmptyResult();
 		}
 

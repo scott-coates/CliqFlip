@@ -376,6 +376,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
             if (sender != null)
             {
+				//TODO - don't just check or null - throw ex or don't check at all
                 if (conversation != null)
                 {
                     retVal = sender.WriteMessage(messageText);
