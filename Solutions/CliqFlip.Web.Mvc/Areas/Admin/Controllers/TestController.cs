@@ -8,6 +8,7 @@ using CliqFlip.Infrastructure.Logging.Interfaces;
 using CliqFlip.Infrastructure.Web.Interfaces;
 using CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Test;
 using CliqFlip.Web.Mvc.Security.Attributes;
+using CliqFlip.Web.Mvc.Views.Interfaces;
 
 namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 {

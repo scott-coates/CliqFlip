@@ -1,8 +1,8 @@
 using System.IO;
 using System.Web.Mvc;
-using CliqFlip.Infrastructure.Web.Interfaces;
+using CliqFlip.Web.Mvc.Views.Interfaces;
 
-namespace CliqFlip.Infrastructure.Web
+namespace CliqFlip.Web.Mvc.Views
 {
 	public class StringViewRenderer : IViewRenderer
 	{

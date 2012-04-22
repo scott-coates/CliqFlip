@@ -1,0 +1,7 @@
+@{
+	Layout = "_Layout.cshtml";
+}
+@model CliqFlip.Web.Mvc.ViewModels.Email.NewConversationViewModel
+<h2>@Model.FromUsername would like to talk to you!</h2>
+<p>@Model.FromUsername sent you a message on CliqFlip!</p>
+<p>The message can be found at @Url.Action("Inbox", "User", null, "http")</p>

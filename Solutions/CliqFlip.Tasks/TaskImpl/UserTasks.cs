@@ -344,13 +344,14 @@ namespace CliqFlip.Tasks.TaskImpl
 			}
 		}
 
-        public void StartConversation(string starter, string receiver, string text)
+        public void StartConversation(string starter, string receiver, string messageText, string subject, string body)
         {
             //get the users involved in the conversation
             User sender = GetUser(starter),
                 recipient = GetUser(receiver);
 
             //check that both users exists
+			//TODO: don't just return - throw ex when this kind of thing happens
             if (sender == null || recipient == null)
                 return;
             
@@ -363,10 +364,10 @@ namespace CliqFlip.Tasks.TaskImpl
                 conversation =  new Conversation(sender, recipient);
             }
 
-            Message message = sender.WriteMessage(text);
+            Message message = sender.WriteMessage(messageText);
             conversation.AddMessage(message);
             _conversationRepository.SaveOrUpdate(conversation);
-            _emailService.SendMail(recipient.Email, "Some one likes you on CliqFlip.com", "Hey, <br/> Looks like someone finds you interesting. Go talk to this person at CliqFlip.com");
+            _emailService.SendMail(recipient.Email,subject, body);
         }
 
         public Message ReplyToConversation(int conversationId, string replier, string text)

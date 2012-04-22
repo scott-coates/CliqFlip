@@ -15,8 +15,10 @@ using CliqFlip.Infrastructure.Web.Interfaces;
 using CliqFlip.Web.Mvc.Extensions.Exceptions;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.Security.Attributes;
+using CliqFlip.Web.Mvc.ViewModels.Email;
 using CliqFlip.Web.Mvc.ViewModels.Jeip;
 using CliqFlip.Web.Mvc.ViewModels.User;
+using CliqFlip.Web.Mvc.Views.Interfaces;
 using SharpArch.NHibernate.Web.Mvc;
 using SharpArch.Web.Mvc.JsonNet;
 using CliqFlip.Web.Mvc.ViewModels;
@@ -30,13 +32,16 @@ namespace CliqFlip.Web.Mvc.Controllers
 		private readonly IUserProfileQuery _userProfileQuery;
 		private readonly IUserTasks _userTasks;
 		private readonly IConversationQuery _conversationQuery;
-		public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IConversationQuery conversationQuery, IHttpContextProvider httpContextProvider)
+		private readonly IViewRenderer _viewRenderer;
+
+		public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IConversationQuery conversationQuery, IHttpContextProvider httpContextProvider, IViewRenderer viewRenderer)
 		{
 			_userTasks = profileTasks;
 			_userProfileQuery = userProfileQuery;
 			_principal = principal;
 			_conversationQuery = conversationQuery;
 			_httpContextProvider = httpContextProvider;
+			_viewRenderer = viewRenderer;
 		}
 
         [BlockUnsupportedBrowsers]
@@ -439,7 +444,15 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				_userTasks.StartConversation(_principal.Identity.Name, model.Username, model.Text);
+				string body = _viewRenderer.RenderView(this, "~/Views/Email/NewConversation.cshtml"
+					, new NewConversationViewModel { FromUsername = _principal.Identity.Name });
+
+				_userTasks.StartConversation(_principal.Identity.Name
+					, model.Username
+					, model.Text
+					, "New Message on CliqFlip"
+					, body);
+
 				return Json(new { success = true });
 			}
 			return Json(new { success = false });
