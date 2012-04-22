@@ -28,8 +28,10 @@ namespace CliqFlip.Web.Mvc.Queries
 		{
             //NOTE: The slug string was lowered cased because if someone changed 'software' to 'Software' in the query string
             //      no matches would be found.
-			List<string> aliasCollection = slugs.ToLower().Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-				.Where(x => !x.StartsWith("-1")).ToList();
+			List<string> aliasCollection = slugs
+				.ToLower()
+				.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+				.ToList();
 
 			IList<UserSearchByInterestsDto> users = _userTasks.GetUsersByInterestsDtos(aliasCollection);
 			var retVal = new UsersByInterestViewModel();
