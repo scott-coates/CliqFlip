@@ -44,14 +44,16 @@ function InitAddInterest() {
 function SetupEnterKey() {
 	var interestName = $("#interestName");
 	interestName.keydown(function (event) {
-
-		// ESCAPE key pressed
-		if (event.keyCode == 13 && $.trim(interestName.val()).length > 0) {
-			event.stopPropagation();
-			return false;
-		}
-
-		return true;
+	    var autoComplete = interestName.data("autocomplete");
+	    // ',' key pressed
+	    if (event.keyCode == 188 && $.trim(interestName.val()).length > 0) {
+	        var activeMenuItem = autoComplete.menu.active;
+	        OnInterestAdded(activeMenuItem.data("item.autocomplete"));
+	        interestName.val("");
+	        autoComplete.close();
+	        return false;
+	    }
+	    return true;
 	});
 }
 
