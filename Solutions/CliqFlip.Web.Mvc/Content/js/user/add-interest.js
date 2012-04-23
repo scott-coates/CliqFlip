@@ -38,19 +38,21 @@ function InitAddInterest() {
 
 	CreateAutoComplete();
 
-	SetupEnterKey();
+	SetupKeys();
 }
 
-function SetupEnterKey() {
-	var interestName = $("#interestName");
-	interestName.keydown(function (event) {
-	    var autoComplete = interestName.data("autocomplete");
+function SetupKeys() {
+	_interestTextBox.keydown(function (event) {
+	    var autoComplete = _interestTextBox.data("autocomplete");
 	    // ',' key pressed
-	    if (event.keyCode == 188 && $.trim(interestName.val()).length > 0) {
-	        var activeMenuItem = autoComplete.menu.active;
-	        OnInterestAdded(activeMenuItem.data("item.autocomplete"));
-	        interestName.val("");
-	        autoComplete.close();
+	    if (event.keyCode == 188 && $.trim(_interestTextBox.val()).length > 0) {
+	        //when ',' is typed into the search box
+	        //whatever menu item is selected should be added to the
+	        //list of interests
+            var activeMenuItem = autoComplete.menu.active; //get the selected item
+	        OnInterestAdded(activeMenuItem.data("item.autocomplete")); //add it to the list of interests
+	        _interestTextBox.val(""); //clear the textbox
+	        autoComplete.close(); //close the menu
 	        return false;
 	    }
 	    return true;
