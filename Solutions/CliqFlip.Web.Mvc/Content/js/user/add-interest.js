@@ -97,6 +97,10 @@ function CreateAutoComplete() {
             this.value = "";
             return false;
         },
+        focus: function (event, ui) {
+            this.value = ui.item.Name;
+            return false;
+        },
         autoFocus: true //select the first element on the list
     }).data("autocomplete")._renderItem = function (ul, item) {
         return $("<li></li>").data("item.autocomplete", item).append("<a>" + item.Name + "</a>").appendTo(ul);
