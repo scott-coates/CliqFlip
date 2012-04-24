@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using CliqFlip.Infrastructure.Email.Interfaces;
 using CliqFlip.Infrastructure.Exceptions;
+using CliqFlip.Infrastructure.Extensions;
 using CliqFlip.Infrastructure.Logging.Interfaces;
 using CliqFlip.Infrastructure.Web.Interfaces;
 using CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Test;
@@ -19,12 +20,17 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 		private readonly ILogger _logger;
 		private readonly IEmailService _emailService;
 		private readonly IViewRenderer _viewRenderer;
+		private readonly IPageParsingService _pageParsingService;
+		private readonly IHtmlService _htmlService;
 
-		public TestController(ILogger logger, IEmailService emailService, IViewRenderer viewRenderer)
+
+		public TestController(ILogger logger, IEmailService emailService, IViewRenderer viewRenderer, IPageParsingService pageParsingService, IHtmlService htmlService)
 		{
 			_logger = logger;
 			_emailService = emailService;
 			_viewRenderer = viewRenderer;
+			_pageParsingService = pageParsingService;
+			_htmlService = htmlService;
 		}
 
 		public ActionResult Index()
@@ -73,6 +79,17 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 			string body = _viewRenderer.RenderView(this, "~/Areas/Admin/Views/TestMailer/TestSimpleSend.cshtml", simpleSendEmailViewModel);
 			_emailService.SendMail(simpleSendEmailViewModel.ToEmailAddress, simpleSendEmailViewModel.Subject, body);
 			return RedirectToAction("SendEmail");
+		}
+
+		public ActionResult ParsePage(string url = null)
+		{
+			if (!String.IsNullOrWhiteSpace(url))
+			{
+				var content = _htmlService.GetHtmlFromUrl(url.FormatWebAddress());
+				var model = _pageParsingService.GetDetails(content);
+				return View(model);
+			}
+			return View();
 		}
 	}
 }

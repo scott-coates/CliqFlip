@@ -160,7 +160,6 @@
     </Compile>
     <Compile Include="App_Start\MagicalUnicornCustomErrorHandling.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\PageParsingTestController.cs" />
     <Compile Include="Areas\Admin\Controllers\ValidationController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoggingController.cs" />
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
@@ -676,7 +675,7 @@
     <Content Include="Configuration\Alpha\Modules.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Areas\Admin\Views\PageParsingTest\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Test\ParsePage.cshtml" />
     <None Include="Content\img\patterns\Thumbs.db" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />

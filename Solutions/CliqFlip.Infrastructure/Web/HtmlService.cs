@@ -1,8 +1,6 @@
-using System;
 using System.Net;
 using CliqFlip.Domain.Exceptions;
 using CliqFlip.Infrastructure.Web.Interfaces;
-using CliqFlip.Infrastructure.Extensions;
 
 namespace CliqFlip.Infrastructure.Web
 {
@@ -18,7 +16,7 @@ namespace CliqFlip.Infrastructure.Web
 			{
 				try
 				{
-					retVal = wc.DownloadString(url.FormatWebAddress());
+					retVal = wc.DownloadString(url);
 				}
 				catch (WebException)
 				{
