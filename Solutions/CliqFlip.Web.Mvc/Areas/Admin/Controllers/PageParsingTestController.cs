@@ -13,7 +13,7 @@ using CliqFlip.Web.Mvc.Views.Interfaces;
 namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 {
     [FormsAuthReadUserData]
-    //[Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator")]
     public class PageParsingTestController : Controller
     {
         private readonly IPageParsingService _pageParsingService;

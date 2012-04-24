@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Net;
 using CliqFlip.Infrastructure.Web.Interfaces;
 using HtmlAgilityPack;
-using System.Net;
 namespace CliqFlip.Infrastructure.Web
 {
     public class PageParsingService : IPageParsingService
