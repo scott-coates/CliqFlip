@@ -1371,13 +1371,13 @@ color: white;
             position: relative;
             width: 48%;
             float: left;
-            height: 220px;
+            height: 270px;
 		}
 .user-interest-title {
 	border-bottom: 1px solid #999;
             width: 100%;
             display: block;
-            height: 25px;
+            height: 75px;
             line-height: 24px;
 }		
 
