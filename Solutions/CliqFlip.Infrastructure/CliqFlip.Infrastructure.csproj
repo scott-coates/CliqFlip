@@ -73,6 +73,15 @@
     <Reference Include="Elmah">
       <HintPath>..\..\Packages\elmah.corelibrary.1.2.1\lib\Elmah.dll</HintPath>
     </Reference>
+    <Reference Include="Fizzler">
+      <HintPath>..\..\Packages\Fizzler.0.9\Fizzler.dll</HintPath>
+    </Reference>
+    <Reference Include="Fizzler.Systems.HtmlAgilityPack">
+      <HintPath>..\..\Packages\Fizzler.0.9\Fizzler.Systems.HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Fizzler.Systems.XmlNodeQuery">
+      <HintPath>..\..\Packages\Fizzler.0.9\Fizzler.Systems.XmlNodeQuery.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\Packages\FluentNHibernate.1.2.0.712\lib\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -207,6 +216,9 @@
     <Compile Include="Web\HttpContextProvider.cs" />
     <Compile Include="Web\Interfaces\IHtmlService.cs" />
     <Compile Include="Web\Interfaces\IHttpContextProvider.cs" />
+    <Compile Include="Web\Interfaces\ILinkIdentifier.cs" />
+    <Compile Include="Web\LinkDetails.cs" />
+    <Compile Include="Web\LinkIdentifyingService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CliqFlip.Domain\CliqFlip.Domain.csproj">
