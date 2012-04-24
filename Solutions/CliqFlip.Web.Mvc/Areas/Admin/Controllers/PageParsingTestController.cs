@@ -9,7 +9,6 @@ using CliqFlip.Infrastructure.Web.Interfaces;
 using CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Test;
 using CliqFlip.Web.Mvc.Security.Attributes;
 using CliqFlip.Web.Mvc.Views.Interfaces;
-using HtmlAgilityPack;
 
 namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 {
