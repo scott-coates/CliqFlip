@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using CliqFlip.Domain.Exceptions;
 using CliqFlip.Infrastructure.Web.Interfaces;
+using CliqFlip.Infrastructure.Extensions;
 
 namespace CliqFlip.Infrastructure.Web
 {
@@ -9,7 +10,6 @@ namespace CliqFlip.Infrastructure.Web
 	{
 		#region IHtmlService Members
 
-        //TODO: download string fails if 'http://' is missing
 		public string GetHtmlFromUrl(string url)
 		{
 			string retVal;
@@ -18,7 +18,7 @@ namespace CliqFlip.Infrastructure.Web
 			{
 				try
 				{
-					retVal = wc.DownloadString(url);
+					retVal = wc.DownloadString(url.FormatWebAddress());
 				}
 				catch (WebException)
 				{
