@@ -53,7 +53,13 @@ namespace CliqFlip.Infrastructure.Web
             //<meta name="description" content="Text were interested in" />
             //<meta property="og:description" content=” Text were interested in " /> og = FB's OpenGraph, this is what FB looks for
 
-            HtmlNode metaDescription = document.DocumentNode.SelectSingleNode("/html/head/meta[@name='description']") ??
+            //the names given to meta tags have insconsistent casings EX.(name="Description" || name="description")
+            //so we need to ignore the case by making it lower case but
+            //apparently .NET only has XPATH v1 so we can't use lower-case
+            //we have to use translate instead to make everything lowercase
+            //http://channel9.msdn.com/Forums/TechOff/259602-XPath-Whats-wrong-with-my-query
+
+            HtmlNode metaDescription = document.DocumentNode.SelectSingleNode("/html/head/meta[translate(@name, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')='description']") ??
                                     document.DocumentNode.SelectSingleNode("/html/head/meta[@property='og:description']");
 
             if (metaDescription != null)
