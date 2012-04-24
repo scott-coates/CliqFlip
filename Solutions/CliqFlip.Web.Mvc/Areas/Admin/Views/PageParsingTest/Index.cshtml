@@ -1,0 +1,42 @@
+﻿@model CliqFlip.Infrastructure.Web.PageDetails
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        @if(Model != null)
+        {
+            <div>
+                Site Name: <strong>@Model.SiteName</strong>
+            </div>
+            <div>
+                Title: <strong>@Model.Title</strong>
+            </div>
+            <div>
+                Description: <strong>@Model.Description</strong>
+            </div>
+            <div>
+                Shortlink Url: <strong>@Model.ShortlinkUrl</strong>
+            </div>
+            <div>
+                Open Gaph Url: <strong>@Model.OpenGraphUrl</strong>
+            </div>
+            <div>
+                Image: <br />
+                <img src="@Model.ImageUrl" />
+            </div>
+            <div>
+                <iframe src="@Model.VideoUrl" width="300px"></iframe>
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -206,6 +206,9 @@
     <Compile Include="Web\HttpContextProvider.cs" />
     <Compile Include="Web\Interfaces\IHtmlService.cs" />
     <Compile Include="Web\Interfaces\IHttpContextProvider.cs" />
+    <Compile Include="Web\Interfaces\IPageParsingService.cs" />
+    <Compile Include="Web\PageDetails.cs" />
+    <Compile Include="Web\PageParsingService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CliqFlip.Domain\CliqFlip.Domain.csproj">
