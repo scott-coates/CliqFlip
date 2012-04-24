@@ -9,6 +9,7 @@ namespace CliqFlip.Infrastructure.Web
 	{
 		#region IHtmlService Members
 
+        //TODO: download string fails if 'http://' is missing
 		public string GetHtmlFromUrl(string url)
 		{
 			string retVal;

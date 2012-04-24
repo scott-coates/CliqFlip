@@ -84,6 +84,7 @@ namespace CliqFlip.Infrastructure.Web
 
         private String GetMainVideo(HtmlDocument document)
         {
+            //we can set src of an iframe to this url to embed the video
             //the video url could be found in the following places
             //<meta property="og:video" content=” Text were interested in " /> og = FB's OpenGraph, this is what FB looks for
 
