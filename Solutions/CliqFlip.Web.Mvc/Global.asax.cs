@@ -64,8 +64,23 @@ namespace CliqFlip.Web.Mvc
 		}
 
 		// ReSharper disable InconsistentNaming
+		protected void ErrorLog_Filtering(object sender, ExceptionFilterEventArgs args)
+		// ReSharper restore InconsistentNaming
+		{
+			var httpEx = args.Exception.GetBaseException() as HttpException;
+			if(httpEx != null)
+			{
+				int code = httpEx.GetHttpCode();
+				if(code == 404)
+				{
+					args.Dismiss();
+				}
+			}
+		}
+
+		// ReSharper disable InconsistentNaming
 		protected void ErrorMail_Filtering(object sender, ExceptionFilterEventArgs args)
-			// ReSharper restore InconsistentNaming
+		//ReSharper restore InconsistentNaming
 		{
 			//TODO: Consider using filter configs
 			Exception exception = args.Exception;
