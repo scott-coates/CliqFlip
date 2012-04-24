@@ -30,7 +30,6 @@
 				@if (Model.AuthenticatedProfileOwner)
 				{
 					<a class="user-interest-remove" title="remove interest" href='@Url.Action("RemoveInterest", new {interestId = interest.UserInterestId})'></a>
-					<a class="user-interest-title-add-photo" value="@interest.UserInterestId" href="javascript:void(0);" title="add photo"></a>
 				}
 				else if (Model.AuthenticatedVisitor)
 				{
@@ -43,12 +42,11 @@
 						<a class="user-interest-add-single" title="add interest to your profile" href='@Url.Action("AddSingleInterest", new {interestId = interest.InterestId})'></a>
 					}
 				}
-				<div style="text-align: left;">
+				<div id="user-interest-add-text">
 					<strong >Add:</strong>
-					<a href="#" style="display: inline-block; margin-left:25px;
-	                           	background-image: url('/Content/img/photoICON.png'); background-repeat: no-repeat; background-position: center top;
-						text-align:center;width:50px; 
-						padding-top:32px;">Photo</a>
+					<a href="javascript:void(0);" id="user-interest-add-photo" class="user-interest-add-media">Photo</a>
+					<a href="javascript:void(0);" id="user-interest-add-video" class="user-interest-add-media">Video</a>
+					<a href="javascript:void(0);" id="user-interest-add-link" class="user-interest-add-media">Link</a>
 				</div>
 			</div>
 			<ul class="intereset-slider">
