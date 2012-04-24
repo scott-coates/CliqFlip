@@ -15,7 +15,7 @@ namespace CliqFlip.Infrastructure.Web
             document.LoadHtml(content);
             return new PageDetails{
                 SiteName = GetSiteName(document),
-                Title = WebUtility.HtmlDecode(GetTitle(document)),
+                Title = GetTitle(document),
                 Description = GetDescription(document),
                 ImageUrl = GetMainImage(document),
                 VideoUrl = GetMainVideo(document),
