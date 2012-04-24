@@ -1449,11 +1449,11 @@ text-align: left;
 		    overflow-x: hidden;
             height: 194px;
 		}
-		.user-interest-add-photo-dialog,.user-interest-add-interest-dialog {
+		.user-interest-add-dialog {
 			display: none;
 		}
 
-		.user-interest-add-photo-dialog h2, .user-interest-add-interest-dialog h2 {
+		.user-interest-add-dialog h2 {
 			color: #999;
 		}
 
