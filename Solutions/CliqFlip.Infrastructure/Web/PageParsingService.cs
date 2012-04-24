@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CliqFlip.Infrastructure.Web.Interfaces;
 using HtmlAgilityPack;
+using System.Net;
 //using Fizzler;
 //using Fizzler.Systems.HtmlAgilityPack;
 //using Fizzler.Systems.XmlNodeQuery;
@@ -17,8 +18,8 @@ namespace CliqFlip.Infrastructure.Web
             document.LoadHtml(content);
             return new PageDetails{
                 SiteName = GetSiteName(document),
-                Title = GetTitle(document),
-                Description = GetDescription(document),
+                Title = WebUtility.HtmlDecode(GetTitle(document)),
+                Description = WebUtility.HtmlDecode(GetDescription(document)),
                 ImageUrl = GetMainImage(document),
                 VideoUrl = GetMainVideo(document),
                 ShortlinkUrl = GetShortlinkUrl(document),
