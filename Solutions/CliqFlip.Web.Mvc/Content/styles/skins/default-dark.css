@@ -1398,22 +1398,22 @@ text-align: left;
 
 .user-interest-add-media {
 	display: inline-block; 
-	margin-left:45px;
+	margin-left:33px;
 	background-repeat: no-repeat;
 	background-position: center top;
 	text-align:center;width:50px; 
 	padding-top:32px;	
 }
 
-#user-interest-add-photo {
+.user-interest-add-photo {
 	background-image: url('/Content/img/photoICON.png');
 }
 
-#user-interest-add-video {
+.user-interest-add-video {
 	background-image: url('/Content/img/YouTube_Icon.png');
 }
 
-#user-interest-add-link {
+.user-interest-add-link {
 	background-image: url('/Content/img/icons.png');
 }
 

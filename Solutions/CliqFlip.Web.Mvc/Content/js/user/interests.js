@@ -21,7 +21,7 @@ function InitSaveImages() {
 			height:600
 		});
 
-		$(".user-interest-title-add-photo").click(function() {
+		$(".user-interest-add-photo").click(function () {
 			$("#userInterestId").val($(this).attr('value'));
 			_addPhotoDialog.dialog("open");
 		});
