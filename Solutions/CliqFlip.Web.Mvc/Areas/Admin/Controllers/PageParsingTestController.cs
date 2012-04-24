@@ -30,9 +30,8 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
         {
             if (!String.IsNullOrWhiteSpace(url))
             {
-                var document = new HtmlDocument();
-                document.LoadHtml(_htmlService.GetHtmlFromUrl(url));
-                var model = _pageParsingService.GetDetails(document);
+                var content = _htmlService.GetHtmlFromUrl(url);
+                var model = _pageParsingService.GetDetails(content);
                 return View(model);
             }
             return View();

@@ -8,6 +8,6 @@ namespace CliqFlip.Infrastructure.Web.Interfaces
 {
     public interface IPageParsingService
     {
-        PageDetails GetDetails(HtmlDocument document);
+        PageDetails GetDetails(string content);
     }
 }

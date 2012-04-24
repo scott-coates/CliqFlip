@@ -1,4 +1,4 @@
-﻿@model CliqFlip.Infrastructure.Web.LinkDetails
+﻿@model CliqFlip.Infrastructure.Web.PageDetails
 
 @{
     Layout = null;
@@ -15,10 +15,19 @@
         @if(Model != null)
         {
             <div>
+                Site Name: <strong>@Model.SiteName</strong>
+            </div>
+            <div>
                 Title: <strong>@Model.Title</strong>
             </div>
             <div>
                 Description: <strong>@Model.Description</strong>
+            </div>
+            <div>
+                Shortlink Url: <strong>@Model.ShortlinkUrl</strong>
+            </div>
+            <div>
+                Open Gaph Url: <strong>@Model.OpenGraphUrl</strong>
             </div>
             <div>
                 Image: <br />

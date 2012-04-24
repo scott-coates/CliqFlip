@@ -11,13 +11,18 @@ namespace CliqFlip.Infrastructure.Web
 {
     public class PageParsingService : IPageParsingService
     {
-        public PageDetails GetDetails(HtmlDocument document)
+        public PageDetails GetDetails(string content)
         {
+            var document = new HtmlDocument();
+            document.LoadHtml(content);
             return new PageDetails{
+                SiteName = GetSiteName(document),
                 Title = GetTitle(document),
                 Description = GetDescription(document),
                 ImageUrl = GetMainImage(document),
-                VideoUrl = GetMainVideo(document)
+                VideoUrl = GetMainVideo(document),
+                ShortlinkUrl = GetShortlinkUrl(document),
+                OpenGraphUrl = GetOpenGraphUrl(document)
             };
         }
 
@@ -83,6 +88,39 @@ namespace CliqFlip.Infrastructure.Web
 
             HtmlNode metaTag = document.DocumentNode.SelectSingleNode("/html/head/meta[@property='og:video']");
 
+            if (metaTag != null)
+            {
+                return metaTag.GetAttributeValue("content", null);
+            }
+            return null;
+        }
+
+        public string GetShortlinkUrl(HtmlDocument document)
+        {
+            //EX: <link rel="shortlink" href="http://youtu.be/EfS1x5RnZZQ" />
+            HtmlNode metaTag = document.DocumentNode.SelectSingleNode("/html/head/link[@rel='shortlink']");
+            if (metaTag != null)
+            {
+                return metaTag.GetAttributeValue("href", null);
+            }
+            return null;
+        }
+
+        public string GetOpenGraphUrl(HtmlDocument document)
+        {
+            //<meta property="og:url" content="http://www.youtube.com/watch?v=EfS1x5RnZZQ">
+            HtmlNode metaTag = document.DocumentNode.SelectSingleNode("/html/head/meta[@property='og:url']");
+            if (metaTag != null)
+            {
+                return metaTag.GetAttributeValue("content", null);
+            }
+            return null;
+        }
+
+        public string GetSiteName(HtmlDocument document)
+        {
+            //<meta property="og:site_name" content="the content">
+            HtmlNode metaTag = document.DocumentNode.SelectSingleNode("/html/head/meta[@property='og:site_name']");
             if (metaTag != null)
             {
                 return metaTag.GetAttributeValue("content", null);
