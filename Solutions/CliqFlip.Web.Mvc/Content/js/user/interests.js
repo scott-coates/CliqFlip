@@ -1,5 +1,7 @@
 ﻿var _canEdit = false;
 var _addPhotoDialog;
+var _addVideoDialog;
+var _addLinkDialog;
 var _addInterestDialog;
 
 function InitInterests(canEdit) {
@@ -14,6 +16,18 @@ function InitSaveImages() {
 			width: 430
 		});
 
+		_addVideoDialog = $("#add-video").dialog({
+			autoOpen: false,
+			modal: true,
+			width: 430
+		});
+
+		_addLinkDialog = $("#add-link").dialog({
+			autoOpen: false,
+			modal: true,
+			width: 430
+		});
+
 		_addInterestDialog = $("#add-interest").dialog({
 			autoOpen: false,
 			modal: true,
@@ -22,8 +36,18 @@ function InitSaveImages() {
 		});
 
 		$(".user-interest-add-photo").click(function () {
-			$("#userInterestId").val($(this).attr('value'));
+			$("#userInterestIdPhoto").val($(this).attr('value'));
 			_addPhotoDialog.dialog("open");
+		});
+
+		$(".user-interest-add-video").click(function () {
+			$("#userInterestIdVideo").val($(this).attr('value'));
+			_addVideoDialog.dialog("open");
+		});
+
+		$(".user-interest-add-link").click(function () {
+			$("#userInterestIdLink").val($(this).attr('value'));
+			_addLinkDialog.dialog("open");
 		});
 
 		$(".user-interest-remove").click(function() {
