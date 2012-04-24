@@ -16,7 +16,7 @@ namespace CliqFlip.Infrastructure.Web
             return new PageDetails{
                 SiteName = GetSiteName(document),
                 Title = WebUtility.HtmlDecode(GetTitle(document)),
-                Description = WebUtility.HtmlDecode(GetDescription(document)),
+                Description = GetDescription(document),
                 ImageUrl = GetMainImage(document),
                 VideoUrl = GetMainVideo(document),
                 ShortlinkUrl = GetShortlinkUrl(document),
@@ -26,37 +26,41 @@ namespace CliqFlip.Infrastructure.Web
 
         private String GetTitle(HtmlDocument document)
         {
+            String retVal = null;
             //the title could be found in the following places
             //<meta name="title" content="Text were interested in" />
             //<meta property="og:title" content=” Text were interested in " /> og = FB's OpenGraph, this is what FB looks for
             //<title>Text were interested in</title > most comment but I would rather use it as a last resort
 
-            HtmlNode _metaTitle = document.DocumentNode.SelectSingleNode("/html/head/meta[@name='title']") ??
+            HtmlNode metaTag = document.DocumentNode.SelectSingleNode("/html/head/meta[@name='title']") ??
                                     document.DocumentNode.SelectSingleNode("/html/head/meta[@property='og:title']");
-            if (_metaTitle != null)
+            if (metaTag != null)
             {
-                return _metaTitle.GetAttributeValue("content", null);
+                retVal = WebUtility.HtmlDecode(metaTag.GetAttributeValue("content", null));
             }
             else
             {
-                return document.DocumentNode.SelectSingleNode("/html/head/title").InnerText.Trim();
+                retVal = WebUtility.HtmlDecode(document.DocumentNode.SelectSingleNode("/html/head/title").InnerText.Trim());
             }
+            return retVal;
         }
 
 
         private String GetDescription(HtmlDocument document)
         {
+            String retVal = null;
             //the description could be found in the following places
             //<meta name="description" content="Text were interested in" />
             //<meta property="og:description" content=” Text were interested in " /> og = FB's OpenGraph, this is what FB looks for
 
             HtmlNode metaDescription = document.DocumentNode.SelectSingleNode("/html/head/meta[@name='description']") ??
                                     document.DocumentNode.SelectSingleNode("/html/head/meta[@property='og:description']");
+
             if (metaDescription != null)
             {
-                return metaDescription.GetAttributeValue("content", null);
+                retVal = WebUtility.HtmlDecode(metaDescription.GetAttributeValue("content", null));
             }
-            return null;
+            return retVal;
         }
 
         private String GetMainImage(HtmlDocument document)
