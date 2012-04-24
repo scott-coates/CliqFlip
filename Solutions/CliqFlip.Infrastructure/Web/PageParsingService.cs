@@ -27,7 +27,7 @@ namespace CliqFlip.Infrastructure.Web
             //the title could be found in the following places
             //<meta name="title" content="Text were interested in" />
             //<meta property="og:title" content=” Text were interested in " /> og = FB's OpenGraph, this is what FB looks for
-            //<title>Text were interested in</title > most comment but I would rather use it as a last resort
+            //<title>Text were interested in</title > most common but I would rather use it as a last resort
 
             HtmlNode metaTag = document.DocumentNode.SelectSingleNode("/html/head/meta[@name='title']") ??
                                     document.DocumentNode.SelectSingleNode("/html/head/meta[@property='og:title']");
