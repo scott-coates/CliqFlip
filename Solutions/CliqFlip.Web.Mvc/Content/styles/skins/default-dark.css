@@ -115,7 +115,7 @@ html { overflow-y: scroll; }
 #main-container { width:100%; }
 .wrapper { width:1080px; margin:0 auto; }
 .inner { width:1040px; margin:0 auto; }
-#header, #main, #footer { margin:0 auto; width:100%; }
+#header, #main, #footer { margin:0 auto; width:100%; min-width:1080px; }
 a { color:#AE0C13; text-decoration:none; transition: color 0.1s linear; 
 	-moz-transition: color 0.1s linear; -webkit-transition: color 0.1s linear; -o-transition: color 0.1s linear; }
 	a:hover { color:#fff; }
