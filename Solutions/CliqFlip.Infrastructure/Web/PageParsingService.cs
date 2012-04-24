@@ -5,9 +5,6 @@ using System.Text;
 using CliqFlip.Infrastructure.Web.Interfaces;
 using HtmlAgilityPack;
 using System.Net;
-//using Fizzler;
-//using Fizzler.Systems.HtmlAgilityPack;
-//using Fizzler.Systems.XmlNodeQuery;
 namespace CliqFlip.Infrastructure.Web
 {
     public class PageParsingService : IPageParsingService
