@@ -13,8 +13,8 @@ using CliqFlip.Web.Mvc.Views.Interfaces;
 
 namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 {
-	[FormsAuthReadUserData]
-	[Authorize(Roles = "Administrator")]
+	[FormsAuthReadUserData(Order = 0 )]
+	[Authorize(Roles = "Administrator", Order = 1)]
 	public class TestController : Controller
 	{
 		private readonly ILogger _logger;
@@ -81,6 +81,7 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 			return RedirectToAction("SendEmail");
 		}
 
+        [HttpGet]
 		public ActionResult ParsePage(string url = null)
 		{
 			if (!String.IsNullOrWhiteSpace(url))
