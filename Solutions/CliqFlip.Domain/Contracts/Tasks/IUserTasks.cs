@@ -10,6 +10,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 {
 	public interface  IUserTasks
 	{
+		// ReSharper disable ReturnTypeCanBeEnumerable.Global
 		IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IList<string> interestAliases );
 
 		User Create(UserDto profileToCreate, LocationData location);
@@ -22,6 +23,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 
 		void SaveProfileImage(User user, HttpPostedFileBase profileImage);
 		void SaveInterestImage(User user, HttpPostedFileBase profileImage, int userInterestId, string description);
+		void SaveInterestVideo(User user, int userInterestId, string videoUrl);
 		void SaveWebsite(User user, string siteUrl);
 		void Logout(string name);
 		void RemoveImage(User user, int imageId);
@@ -32,5 +34,6 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		Message ReplyToConversation(Conversation conversation, User sender,User receiver, string messageText,string subject, string body);
 
         bool IsUsernameOrEmailAvailable(string value);
+		// ReSharper restore ReturnTypeCanBeEnumerable.Global
 	}
 }

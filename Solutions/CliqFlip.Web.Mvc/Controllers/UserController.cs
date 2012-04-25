@@ -222,7 +222,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		public ActionResult SaveInterestImage(UserSaveInterestImageViewModel userSaveInterestImageViewModel)
 		{
 			User user = _userTasks.GetUser(_principal.Identity.Name);
-			if (userSaveInterestImageViewModel.ProfileImage == null)
+			if (userSaveInterestImageViewModel.ProfileImage == null) //TODO: use required/not-null attribute instead of checking for null
 			{
 				ViewData.ModelState.AddModelError("Image", "You need to provide a file first... or don't. Have it your way.");
 				RouteData.Values["action"] = "Interests";
@@ -249,6 +249,21 @@ namespace CliqFlip.Web.Mvc.Controllers
 			}
 
 			return RedirectToAction("Interests");
+		}
+
+		[Authorize]
+		[HttpPost]
+		[Transaction]
+		public ActionResult SaveInterestVideo(UserSaveInterestVideoViewModel userSaveInterestImageViewModel)
+		{
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+
+			if (ModelState.IsValid)
+			{
+				return null;
+			}
+
+			return View("Interests");
 		}
 
 		[Authorize]

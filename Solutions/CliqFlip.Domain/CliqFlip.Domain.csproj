@@ -90,6 +90,7 @@
     <Compile Include="Dtos\ImageFilenamesDto.cs" />
     <Compile Include="Dtos\RankedInterestDto.cs" />
     <Compile Include="Entities\Conversation.cs" />
+    <Compile Include="Entities\Video.cs" />
     <Compile Include="Entities\MajorLocation.cs" />
     <Compile Include="Entities\Image.cs" />
     <Compile Include="Entities\Message.cs" />

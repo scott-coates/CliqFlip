@@ -37,6 +37,7 @@ namespace CliqFlip.Tasks.TaskImpl
 		private readonly IConversationRepository _conversationRepository;
         private readonly IEmailService _emailService;
 		private readonly ILocationService _locationService;
+		private readonly IPageParsingService _pageParsingService;
 
 		public UserTasks(
 						 IInterestTasks interestTasks,
@@ -46,7 +47,7 @@ namespace CliqFlip.Tasks.TaskImpl
 						 IFeedFinder feedFinder,
 						 IUserAuthentication userAuthentication,
 						 IConversationRepository conversationRepository,
-                         IEmailService emailService, ILocationService locationService, IUserRepository userRepository)
+                         IEmailService emailService, ILocationService locationService, IUserRepository userRepository, IPageParsingService pageParsingService)
 		{
 			_interestTasks = interestTasks;
 			_imageProcessor = imageProcessor;
@@ -58,6 +59,7 @@ namespace CliqFlip.Tasks.TaskImpl
             _emailService = emailService;
 			_locationService = locationService;
 			_userRepository = userRepository;
+			_pageParsingService = pageParsingService;
 		}
 
 		#region IUserTasks Members
@@ -150,6 +152,16 @@ namespace CliqFlip.Tasks.TaskImpl
 							 user.Username + "-Interest-Image-" + interest.Interest.Name,
 							 imgFileNamesDto =>
 							 interest.AddImage(new ImageData(interestImage.FileName, description, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename)));
+		}
+
+		public void SaveInterestVideo(User user, int userInterestId, string videoUrl)
+		{
+			videoUrl = videoUrl.FormatWebAddress();
+			string html = _htmlService.GetHtmlFromUrl(videoUrl);
+			var details = _pageParsingService.GetDetails(html);
+
+			UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
+
 		}
 
 		public void SaveWebsite(User user, string siteUrl)
