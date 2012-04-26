@@ -177,24 +177,54 @@ namespace CliqFlip.Tasks.TaskImpl
 			PageDetails details = _pageParsingService.GetDetails(html);
 
 			string description = details.Description;
-			
-			if(string.IsNullOrWhiteSpace(details.VideoUrl))
+
+			if (string.IsNullOrWhiteSpace(details.VideoUrl))
 			{
 				throw new RulesException("Description", "Invalid video");
 			}
 
-			var medium = new Video { Description = description,VideoUrl = details.VideoUrl};
+			var medium = new Video { Description = description, VideoUrl = details.VideoUrl };
 
 			//determine if image is available
-			if(!string.IsNullOrWhiteSpace(details.ImageUrl))
+			if (!string.IsNullOrWhiteSpace(details.ImageUrl))
 			{
-				//if exception, skip it
 				byte[] data = _webContentService.GetDataFromUrl(details.ImageUrl);
 				string fileName = Path.GetFileName(details.ImageUrl);
-				using(var memoryStream = new MemoryStream(data))
+				using (var memoryStream = new MemoryStream(data))
 				{
 					var fileStreamDto = new FileStreamDto(memoryStream, fileName);
-					SaveImageForUser(fileStreamDto, user.Username + "-Interest-Video-Image-" + interest.Interest.Name, imgFileNamesDto => 
+					SaveImageForUser(fileStreamDto, user.Username + "-Interest-Video-Image-" + interest.Interest.Name, imgFileNamesDto =>
+						medium.AddImage(new ImageData(fileName, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename)));
+				}
+			}
+
+			interest.AddMedium(medium);
+		}
+
+		public void SaveInterestWebPage(User user, int userInterestId, string linkUrl)
+		{
+			UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
+
+			linkUrl = linkUrl.FormatWebAddress();
+			string html = _webContentService.GetHtmlFromUrl(linkUrl);
+			PageDetails details = _pageParsingService.GetDetails(html);
+
+			string description = details.Description;
+
+			var uri = new Uri(linkUrl);
+			var domain = uri.GetLeftPart(UriPartial.Authority).Replace(uri.GetLeftPart(UriPartial.Scheme), "");
+
+			var medium = new WebPage { Description = description, LinkUrl = linkUrl, WebPageDomainName = domain };
+
+			//determine if image is available
+			if (!string.IsNullOrWhiteSpace(details.ImageUrl))
+			{
+				byte[] data = _webContentService.GetDataFromUrl(details.ImageUrl);
+				string fileName = Path.GetFileName(details.ImageUrl);
+				using (var memoryStream = new MemoryStream(data))
+				{
+					var fileStreamDto = new FileStreamDto(memoryStream, fileName);
+					SaveImageForUser(fileStreamDto, user.Username + "-Interest-WebPage-Image-" + interest.Interest.Name, imgFileNamesDto =>
 						medium.AddImage(new ImageData(fileName, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename)));
 				}
 			}

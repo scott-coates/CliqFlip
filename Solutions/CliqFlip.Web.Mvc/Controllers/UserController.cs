@@ -263,15 +263,32 @@ namespace CliqFlip.Web.Mvc.Controllers
 			if (ModelState.IsValid)
 			{
 				_userTasks.SaveInterestVideo(user, userSaveInterestImageViewModel.UserInterestId,userSaveInterestImageViewModel.VideoURL);
-				return null;
+				return RedirectToAction("Interests");
 			}
 			else
 			{
 				RouteData.Values["action"] = "Interests";
 				return Interests(_principal.Identity.Name);
 			}
+		}
 
-			return View("Interests");
+		[Authorize]
+		[HttpPost]
+		[Transaction]
+		public ActionResult SaveInterestWebPage(UserSaveInterestWebPageViewModel userSaveInterestWebPageViewModel)
+		{
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+
+			if (ModelState.IsValid)
+			{
+				_userTasks.SaveInterestWebPage(user, userSaveInterestWebPageViewModel.UserInterestId,userSaveInterestWebPageViewModel.LinkUrl);
+				return RedirectToAction("Interests");
+			}
+			else
+			{
+				RouteData.Values["action"] = "Interests";
+				return Interests(_principal.Identity.Name);
+			}
 		}
 
 		[Authorize]

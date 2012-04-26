@@ -24,16 +24,17 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		void SaveProfileImage(User user, FileStreamDto profileImage);
 		void SaveInterestImage(User user, FileStreamDto profileImage, int userInterestId, string description);
 		void SaveInterestVideo(User user, int userInterestId, string videoUrl);
+		void SaveInterestWebPage(User user, int userInterestId, string linkUrl);
 		void SaveWebsite(User user, string siteUrl);
 		void Logout(string name);
 		void RemoveMedium(User user, int mediumId);
 		void RemoveInterest(User user, int interestId);
 		void AddInterestToUser(User user, int interestId);
 		void AddInterestsToUser(string name, IEnumerable<UserInterestDto> interestDtos);
-        void StartConversation(string starter, string receiver, string messageText, string subject, string body);
+		void StartConversation(string starter, string receiver, string messageText, string subject, string body);
 		Message ReplyToConversation(Conversation conversation, User sender,User receiver, string messageText,string subject, string body);
 
-        bool IsUsernameOrEmailAvailable(string value);
+		bool IsUsernameOrEmailAvailable(string value);
 		// ReSharper restore ReturnTypeCanBeEnumerable.Global
 	}
 }

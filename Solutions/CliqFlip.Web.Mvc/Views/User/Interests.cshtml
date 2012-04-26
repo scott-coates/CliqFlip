@@ -88,7 +88,7 @@
 	</div>
 
 	<div class="user-interest-add-dialog" id="add-link">
-		@using (Html.BeginForm("SaveInterestLink", "User", FormMethod.Post))
+		@using (Html.BeginForm("SaveInterestWebPage", "User", FormMethod.Post))
 		{
 			<h2>Link URL:</h2>
 			@Html.TextBox("linkUrl", "", new {@class = "interest-upload-media-description"})
