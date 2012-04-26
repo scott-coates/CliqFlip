@@ -26,7 +26,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		void SaveInterestVideo(User user, int userInterestId, string videoUrl);
 		void SaveWebsite(User user, string siteUrl);
 		void Logout(string name);
-		void RemoveImage(User user, int imageId);
+		void RemoveMedium(User user, int mediumId);
 		void RemoveInterest(User user, int interestId);
 		void AddInterestToUser(User user, int interestId);
 		void AddInterestsToUser(string name, IEnumerable<UserInterestDto> interestDtos);

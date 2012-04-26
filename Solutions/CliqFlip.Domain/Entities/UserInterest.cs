@@ -7,7 +7,7 @@ namespace CliqFlip.Domain.Entities
 {
 	public class UserInterest : Entity
 	{
-		private readonly Iesi.Collections.Generic.ISet<Image> _images;
+		private readonly Iesi.Collections.Generic.ISet<Medium> _media;
 		private UserInterestOption _options;
 
 		public virtual User User { get; set; }
@@ -21,42 +21,38 @@ namespace CliqFlip.Domain.Entities
 			set { _options = value; }
 		}
 
-		public virtual IEnumerable<Image> Images
+		public virtual IEnumerable<Medium> Media
 		{
-			get { return new List<Image>(_images).AsReadOnly(); }
+			get { return new List<Medium>(_media).AsReadOnly(); }
 		}
 
 		public UserInterest()
 		{
-			_images = new HashedSet<Image>();
+			_media = new HashedSet<Medium>();
 		}
 
-		//TODO: consider law of demeter violation
+		//TODO: consider law of demeter violation - should we be working with user class instead of directly with userInterest??
 		//http://msdn.microsoft.com/en-us/magazine/cc947917.aspx#id0070040 - i think we can skip the law of demeter since we're working
 		//directly with user intersts
-		public virtual void AddImage(ImageData data)
+		public virtual void AddMedium(Medium medium)
 		{
-			var image = new Image
-			{
-				Data = data,
-				UserInterest = this
-			};
+			medium.UserInterest = this;
 
-			_images.Add(image);
+			_media.Add(medium);
 		}
 
-		public virtual void MakeImageDefault(Image image)
+		public virtual void MakeMediumDefault(Medium medium)
 		{
-			var temp = new List<Image>(_images);
-			_images.Clear();
-			_images.Add(image);
-			temp.Remove(image);
-			_images.AddAll(temp);
+			var temp = new List<Medium>(_media);
+			_media.Clear();
+			_media.Add(medium);
+			temp.Remove(medium);
+			_media.AddAll(temp);
 		}
 
-		public virtual void RemoveInterestImage(Image image)
+		public virtual void RemoveInterestMedium(Medium medium)
 		{
-			_images.Remove(image);
+			_media.Remove(medium);
 		}
 	}
 }

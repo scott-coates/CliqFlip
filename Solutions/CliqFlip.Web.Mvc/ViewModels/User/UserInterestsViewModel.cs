@@ -35,10 +35,10 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 			public InterestImageViewModel(Image image)
 			{
 				ImageId = image.Id;
-				Description = image.Data.Description;
-				ThumbImage = image.Data.ThumbFileName;
-				MediumImage = image.Data.MediumFileName;
-				FullImage = image.Data.FullFileName;
+				Description = image.Description;
+				ThumbImage = image.ImageData.ThumbFileName;
+				MediumImage = image.ImageData.MediumFileName;
+				FullImage = image.ImageData.FullFileName;
 			}
 
 			public int ImageId { get; set; }

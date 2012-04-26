@@ -129,7 +129,7 @@ namespace CliqFlip.Domain.Entities
 				ProfileImage = new Image();
 			}
 
-			ProfileImage.Data = data;
+			ProfileImage.ImageData = data;
 			UpdateLastActivity();
 		}
 
@@ -157,21 +157,21 @@ namespace CliqFlip.Domain.Entities
 			UpdateLastActivity();
 		}
 
-		public virtual void MakeInterestImageDefault(int imageId)
+		public virtual void MakeInterestMediumDefault(int mediumId)
 		{
-			Image image = GetImage(imageId);
-			image.UserInterest.MakeImageDefault(image);
+			Medium medium = GetMedium(mediumId);
+			medium.UserInterest.MakeMediumDefault(medium);
 			UpdateLastActivity();
 		}
 
-		public virtual Image GetImage(int imageId)
+		public virtual Medium GetMedium(int mediumId)
 		{
-			return _interests.SelectMany(x => x.Images).First(x => x.Id == imageId);
+			return _interests.SelectMany(x => x.Media).First(x => x.Id == mediumId);
 		}
 
-		public virtual void RemoveInterestImage(Image image)
+		public virtual void RemoveInterestMedium(Medium medium)
 		{
-			image.UserInterest.RemoveInterestImage(image);
+			medium.UserInterest.RemoveInterestMedium(medium);
 			UpdateLastActivity();
 		}
 

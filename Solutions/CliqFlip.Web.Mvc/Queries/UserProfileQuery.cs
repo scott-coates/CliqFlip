@@ -98,9 +98,9 @@ namespace CliqFlip.Web.Mvc.Queries
 						InterestId = interest.Interest.Id,
 						VisitorSharesThisInterest = visitor != null && visitor.Interests.Any(x => x.Interest == interest.Interest),
 						Images = interest
-							.Images
+							.Media
 							.Select(x =>
-									new UserInterestsViewModel.InterestImageViewModel(x)).ToList()
+									new UserInterestsViewModel.InterestImageViewModel((Image)x)).ToList() //TODO: don't cast this
 					};
 
 					retVal.Interests.Add(interestViewModel);
@@ -131,7 +131,7 @@ namespace CliqFlip.Web.Mvc.Queries
                     {
                         Id = conversation.Id,
                         HasUnreadMessages = conversation.HasNewMessagesFor(user),
-                        SenderImage = sender.ProfileImage != null ? sender.ProfileImage.Data.ThumbFileName : Constants.DEFAULT_PROFILE_IMAGE,
+                        SenderImage = sender.ProfileImage != null ? sender.ProfileImage.ImageData.ThumbFileName : Constants.DEFAULT_PROFILE_IMAGE,
                         Sender = sender.Username,
                         LastMessage = conversation.Messages.First().Text
                     };
@@ -165,7 +165,7 @@ namespace CliqFlip.Web.Mvc.Queries
 			}
 			if (user.ProfileImage != null)
 			{
-				retVal.ProfileImageUrl = user.ProfileImage.Data.MediumFileName;
+				retVal.ProfileImageUrl = user.ProfileImage.ImageData.MediumFileName;
 			}
 		}
 	}

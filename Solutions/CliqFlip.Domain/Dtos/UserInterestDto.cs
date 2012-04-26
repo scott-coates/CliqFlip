@@ -15,21 +15,12 @@ namespace CliqFlip.Domain.Dtos
 		public float? YAxis { get; set; }
         public string DefaultImageUrl { get; set; }
 
-        public UserInterestDto(int id, string name, string slug, float? passion)
-        {
-            Id = id;
-            Name = name;
-            Slug = slug;
-            Passion = passion;
-        }
-
 		public UserInterestDto(int id, string name, int? relatedTo)
 		{
 			Id = id;
 			Name = name;
 			RelatedTo = relatedTo;
 		}
-
 
 		public UserInterestDto(int id, string name, string slug, int? relatedTo, int? sociality, float? passion, float? xAxis, float? yAxis)
 		{
@@ -49,8 +40,8 @@ namespace CliqFlip.Domain.Dtos
             Name = interests.Interest.Name;
             Slug = interests.Interest.Slug;
             Passion = interests.Options.Passion;
-            var defaultImage = interests.Images.FirstOrDefault();
-            DefaultImageUrl = defaultImage != null ? defaultImage.Data.MediumFileName : null;
+            var defaultImage = interests.Media.FirstOrDefault() as Image;
+            DefaultImageUrl = defaultImage != null ? defaultImage.ImageData.MediumFileName : null;
         }
     }
 }

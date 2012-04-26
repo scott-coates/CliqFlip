@@ -6,9 +6,11 @@ using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Exceptions;
+using CliqFlip.Domain.Interfaces;
 using CliqFlip.Domain.ValueObjects;
 using CliqFlip.Infrastructure.Authentication.Interfaces;
 using CliqFlip.Infrastructure.Common;
+using CliqFlip.Infrastructure.Email.Interfaces;
 using CliqFlip.Infrastructure.Extensions;
 using CliqFlip.Infrastructure.IO;
 using CliqFlip.Infrastructure.IO.Interfaces;
@@ -18,36 +20,37 @@ using CliqFlip.Infrastructure.Location.Interfaces;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
 using CliqFlip.Infrastructure.Syndication.Interfaces;
 using CliqFlip.Infrastructure.Validation;
+using CliqFlip.Infrastructure.Web;
 using CliqFlip.Infrastructure.Web.Interfaces;
-using SharpArch.Domain.PersistenceSupport;
-using SharpArch.Domain.Specifications;
-using CliqFlip.Infrastructure.Email.Interfaces;
 
 namespace CliqFlip.Tasks.TaskImpl
 {
 	public class UserTasks : IUserTasks
 	{
-		private readonly IUserRepository _userRepository;
+		private readonly IConversationRepository _conversationRepository;
+		private readonly IEmailService _emailService;
 		private readonly IFeedFinder _feedFinder;
 		private readonly IFileUploadService _fileUploadService;
 		private readonly IHtmlService _htmlService;
 		private readonly IImageProcessor _imageProcessor;
 		private readonly IInterestTasks _interestTasks;
-		private readonly IUserAuthentication _userAuthentication;
-		private readonly IConversationRepository _conversationRepository;
-        private readonly IEmailService _emailService;
 		private readonly ILocationService _locationService;
 		private readonly IPageParsingService _pageParsingService;
+		private readonly IUserAuthentication _userAuthentication;
+		private readonly IUserRepository _userRepository;
 
 		public UserTasks(
-						 IInterestTasks interestTasks,
-						 IImageProcessor imageProcessor,
-						 IFileUploadService fileUploadService,
-						 IHtmlService htmlService,
-						 IFeedFinder feedFinder,
-						 IUserAuthentication userAuthentication,
-						 IConversationRepository conversationRepository,
-                         IEmailService emailService, ILocationService locationService, IUserRepository userRepository, IPageParsingService pageParsingService)
+			IInterestTasks interestTasks,
+			IImageProcessor imageProcessor,
+			IFileUploadService fileUploadService,
+			IHtmlService htmlService,
+			IFeedFinder feedFinder,
+			IUserAuthentication userAuthentication,
+			IConversationRepository conversationRepository,
+			IEmailService emailService,
+			ILocationService locationService,
+			IUserRepository userRepository,
+			IPageParsingService pageParsingService)
 		{
 			_interestTasks = interestTasks;
 			_imageProcessor = imageProcessor;
@@ -55,8 +58,8 @@ namespace CliqFlip.Tasks.TaskImpl
 			_htmlService = htmlService;
 			_feedFinder = feedFinder;
 			_userAuthentication = userAuthentication;
-            _conversationRepository = conversationRepository;
-            _emailService = emailService;
+			_conversationRepository = conversationRepository;
+			_emailService = emailService;
 			_locationService = locationService;
 			_userRepository = userRepository;
 			_pageParsingService = pageParsingService;
@@ -70,32 +73,32 @@ namespace CliqFlip.Tasks.TaskImpl
 
 			List<User> users = _userRepository.GetUsersByInterests(subjAliasAndParent).ToList();
 
-            return users.Select(user => new UserSearchByInterestsDto
-            {
-                MatchCount = user.Interests.Sum(x =>
-                {
-                    if (interestAliases.Contains(x.Interest.Slug))
-                        return 10; //movies -> movies (same match)
-                    if (x.Interest.ParentInterest != null && subjAliasAndParent.Contains(x.Interest.ParentInterest.Slug))
-                        return 2; //movies -> tv shows (sibling match)
-                    if (subjAliasAndParent.Contains(x.Interest.Slug))
-                        return 1; //movies -> entertainment (parent match)
-                    return 0;
-                }),
-                UserDto = new UserDto(user)
-            }).OrderByDescending(x => x.MatchCount).ToList();
+			return users.Select(user => new UserSearchByInterestsDto
+			{
+				MatchCount = user.Interests.Sum(x =>
+				{
+					if (interestAliases.Contains(x.Interest.Slug))
+						return 10; //movies -> movies (same match)
+					if (x.Interest.ParentInterest != null && subjAliasAndParent.Contains(x.Interest.ParentInterest.Slug))
+						return 2; //movies -> tv shows (sibling match)
+					if (subjAliasAndParent.Contains(x.Interest.Slug))
+						return 1; //movies -> entertainment (parent match)
+					return 0;
+				}),
+				UserDto = new UserDto(user)
+			}).OrderByDescending(x => x.MatchCount).ToList();
 		}
 
 		public User Create(UserDto userToCreate, LocationData location)
 		{
-			string salt = PasswordHelper.GenerateSalt(16);//TODO: should this be 32
+			string salt = PasswordHelper.GenerateSalt(16); //TODO: should this be 32
 			string pHash = PasswordHelper.GetPasswordHash(userToCreate.Password, salt);
 
 			var user = new User(userToCreate.Username, userToCreate.Email, pHash, salt);
 
-            ProcessUserInterests(user, userToCreate.InterestDtos);
+			ProcessUserInterests(user, userToCreate.InterestDtos);
 
-			var majorLocation = _locationService.GetNearestMajorCity(location.Latitude, location.Longitude);
+			MajorLocation majorLocation = _locationService.GetNearestMajorCity(location.Latitude, location.Longitude);
 
 			user.UpdateBio("I ♥ " + string.Join(", ", user.Interests.Select(x => x.Interest.Name)));
 			user.UpdateHeadline("I am " + user.Username + ", hear me roar!");
@@ -141,7 +144,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public User GetSuggestedUser(string username)
 		{
-			var user = GetUser(username);
+			User user = GetUser(username);
 			return _userRepository.GetSuggestedUser(user);
 		}
 
@@ -149,19 +152,28 @@ namespace CliqFlip.Tasks.TaskImpl
 		{
 			UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
 			SaveImageForUser(interestImage,
-							 user.Username + "-Interest-Image-" + interest.Interest.Name,
-							 imgFileNamesDto =>
-							 interest.AddImage(new ImageData(interestImage.FileName, description, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename)));
+			                 user.Username + "-Interest-Image-" + interest.Interest.Name,
+			                 imgFileNamesDto =>
+			                 interest.AddMedium(
+			                 	new Image
+			                 	{
+									Description = description,
+			                 		ImageData =
+			                 			new ImageData(
+											interestImage.FileName
+											, imgFileNamesDto.ThumbFilename
+											, imgFileNamesDto.MediumFilename
+											, imgFileNamesDto.FullFilename)
+			                 	}));
 		}
 
 		public void SaveInterestVideo(User user, int userInterestId, string videoUrl)
 		{
 			videoUrl = videoUrl.FormatWebAddress();
 			string html = _htmlService.GetHtmlFromUrl(videoUrl);
-			var details = _pageParsingService.GetDetails(html);
+			PageDetails details = _pageParsingService.GetDetails(html);
 
 			UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
-
 		}
 
 		public void SaveWebsite(User user, string siteUrl)
@@ -196,23 +208,23 @@ namespace CliqFlip.Tasks.TaskImpl
 			_userAuthentication.Logout();
 		}
 
-		public void RemoveImage(User user, int imageId)
+		public void RemoveMedium(User user, int mediumId)
 		{
-			Image image = user.GetImage(imageId);
-			ImageFileNamesDto originalImageNames = GetImageFileNamesDto(image);
+			Medium medium = user.GetMedium(mediumId);
+			ImageFileNamesDto originalImageNames = GetImageFileNamesDto(medium);
 			DeleteImages(originalImageNames);
-			user.RemoveInterestImage(image);
+			user.RemoveInterestMedium(medium);
 		}
 
 		public void RemoveInterest(User user, int interestId)
 		{
-			var interest = user.GetInterest(interestId);
+			UserInterest interest = user.GetInterest(interestId);
 
-			var images = interest.Images.ToList();
+			List<Medium> media = interest.Media.ToList();
 
-			var files = new List<ImageFileNamesDto>(images.Count * 3);
+			var files = new List<ImageFileNamesDto>(media.Count*3);
 
-			files.AddRange(images.Select(GetImageFileNamesDto));
+			files.AddRange(media.Select(GetImageFileNamesDto));
 
 			DeleteImages(files.ToArray());
 
@@ -221,14 +233,14 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public void AddInterestToUser(User user, int interestId)
 		{
-			var interest = _interestTasks.Get(interestId);
+			Interest interest = _interestTasks.Get(interestId);
 			user.AddInterest(interest, null);
 		}
 
 		public void AddInterestsToUser(string name, IEnumerable<UserInterestDto> interestDtos)
 		{
-			var user = GetUser(name);
-            ProcessUserInterests(user, interestDtos);
+			User user = GetUser(name);
+			ProcessUserInterests(user, interestDtos);
 		}
 
 		public void SaveProfileImage(User user, HttpPostedFileBase profileImage)
@@ -241,7 +253,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 			SaveImageForUser(profileImage, user.Username + "-Profile-Image", imgFileNamesDto =>
 			{
-				user.UpdateProfileImage(new ImageData(profileImage.FileName, null, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename));
+				user.UpdateProfileImage(new ImageData(profileImage.FileName, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename));
 				if (originalImageNames != null)
 				{
 					DeleteImages(originalImageNames);
@@ -249,17 +261,76 @@ namespace CliqFlip.Tasks.TaskImpl
 			});
 		}
 
-		private static ImageFileNamesDto GetImageFileNamesDto(Image image)
+		public void StartConversation(string starter, string receiver, string messageText, string subject, string body)
 		{
-			return new ImageFileNamesDto
+			//get the users involved in the conversation
+			User sender = GetUser(starter),
+			     recipient = GetUser(receiver);
+
+			//check that both users exists
+			//TODO: don't just return - throw ex when this kind of thing happens
+			if (sender == null || recipient == null)
+				return;
+
+			//get the conversation that the recipient has with the sender, if any
+			Conversation conversation = recipient.Conversations.SingleOrDefault(x => x.Users.Any(user => user.Username == starter));
+
+			if (conversation == null)
 			{
-				ThumbFilename = image.Data.ThumbFileName,
-				MediumFilename = image.Data.MediumFileName,
-				FullFilename = image.Data.FullFileName
-			};
+				//start a new conversation
+				conversation = new Conversation(sender, recipient);
+			}
+
+			Message message = sender.WriteMessage(messageText);
+			conversation.AddMessage(message);
+			_conversationRepository.SaveOrUpdate(conversation);
+			_emailService.SendMail(recipient.Email, subject, body);
+		}
+
+		public Message ReplyToConversation(Conversation conversation, User sender, User receiver, string messageText, string subject, string body)
+		{
+			Message retVal = null;
+
+			if (sender != null)
+			{
+				//TODO - don't just check or null - throw ex or don't check at all
+				if (conversation != null)
+				{
+					retVal = sender.WriteMessage(messageText);
+
+					conversation.AddMessage(retVal);
+
+					_emailService.SendMail(receiver.Email, subject, body);
+				}
+			}
+			return retVal;
+		}
+
+		public bool IsUsernameOrEmailAvailable(string value)
+		{
+			return _userRepository.IsUsernameOrEmailAvailable(value);
 		}
 
 		#endregion
+
+		private static ImageFileNamesDto GetImageFileNamesDto(Medium medium)
+		{
+			var image = medium as IHasImage;
+
+			if(image != null)
+			{
+				return new ImageFileNamesDto
+				{
+					ThumbFilename = image.ImageData.ThumbFileName,
+					MediumFilename = image.ImageData.MediumFileName,
+					FullFilename = image.ImageData.FullFileName
+				};
+			}
+			else
+			{
+				return null;
+			}
+		}
 
 		private void SaveImageForUser(HttpPostedFileBase profileImage, string metaPrefix, Action<ImageFileNamesDto> afterProcessing)
 		{
@@ -322,23 +393,26 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		private void DeleteImages(params ImageFileNamesDto[] imageNames)
 		{
-			if (imageNames == null) throw new ArgumentNullException("imageNames");
-
-			var filesToDelete = new List<string>(imageNames.Length * 3);
-
-			foreach (var image in imageNames)
+			//it's possible this could be called on media that doesn't have images 
+			//associated with it
+			if (imageNames != null && imageNames.Length > 0)
 			{
-				filesToDelete.Add(image.ThumbFilename);
-				filesToDelete.Add(image.MediumFilename);
+				var filesToDelete = new List<string>(imageNames.Length*3);
 
-				if (image.FullFilename != image.MediumFilename)
+				foreach (ImageFileNamesDto image in imageNames)
 				{
-					//only delete if there is truly a full image
-					filesToDelete.Add(image.FullFilename);
-				}
-			}
+					filesToDelete.Add(image.ThumbFilename);
+					filesToDelete.Add(image.MediumFilename);
 
-			_fileUploadService.DeleteFiles("Images/", filesToDelete);
+					if (image.FullFilename != image.MediumFilename)
+					{
+						//only delete if there is truly a full image
+						filesToDelete.Add(image.FullFilename);
+					}
+				}
+
+				_fileUploadService.DeleteFiles("Images/", filesToDelete);
+			}
 		}
 
 		private void DisposeImageIfNotEmpty(ResizedImage resizedImage, IList<Exception> exceptions)
@@ -356,69 +430,19 @@ namespace CliqFlip.Tasks.TaskImpl
 			}
 		}
 
-        public void StartConversation(string starter, string receiver, string messageText, string subject, string body)
-        {
-            //get the users involved in the conversation
-            User sender = GetUser(starter),
-                recipient = GetUser(receiver);
+		private void ProcessUserInterests(User user, IEnumerable<UserInterestDto> interestDtos)
+		{
+			foreach (UserInterestDto interestDto in interestDtos)
+			{
+				Interest interest;
 
-            //check that both users exists
-			//TODO: don't just return - throw ex when this kind of thing happens
-            if (sender == null || recipient == null)
-                return;
-            
-            //get the conversation that the recipient has with the sender, if any
-            var conversation = recipient.Conversations.SingleOrDefault(x => x.Users.Any(user => user.Username == starter));
-            
-            if (conversation == null)
-            {
-                //start a new conversation
-                conversation =  new Conversation(sender, recipient);
-            }
+				if (interestDto.Id > 0)
+					interest = _interestTasks.Get(interestDto.Id);
+				else
+					interest = _interestTasks.Create(interestDto.Name, interestDto.RelatedTo);
 
-            Message message = sender.WriteMessage(messageText);
-            conversation.AddMessage(message);
-            _conversationRepository.SaveOrUpdate(conversation);
-            _emailService.SendMail(recipient.Email,subject, body);
-        }
-
-        public Message ReplyToConversation(Conversation conversation, User sender,User receiver, string messageText,string subject, string body)
-        {
-            Message retVal = null;
-
-            if (sender != null)
-            {
-				//TODO - don't just check or null - throw ex or don't check at all
-                if (conversation != null)
-                {
-                    retVal = sender.WriteMessage(messageText);
-                    
-					conversation.AddMessage(retVal);
-
-					_emailService.SendMail(receiver.Email, subject, body);
-                }
-            }
-            return retVal;
-        }
-
-        public bool IsUsernameOrEmailAvailable(string value)
-        {
-            return _userRepository.IsUsernameOrEmailAvailable(value);
-        }
-
-        private void ProcessUserInterests(User user, IEnumerable<UserInterestDto> interestDtos)
-        {
-            foreach (var interestDto in interestDtos)
-            {
-                Interest interest;
-                
-                if (interestDto.Id > 0)
-                    interest = _interestTasks.Get(interestDto.Id);
-                else
-                    interest = _interestTasks.Create(interestDto.Name, interestDto.RelatedTo);
-
-                user.AddInterest(interest, null);
-            }
-        }
+				user.AddInterest(interest, null);
+			}
+		}
 	}
 }

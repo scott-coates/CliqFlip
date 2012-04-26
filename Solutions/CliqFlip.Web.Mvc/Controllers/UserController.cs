@@ -272,7 +272,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 
-			user.MakeInterestImageDefault(imageId);
+			user.MakeInterestMediumDefault(imageId);
 
 			return RedirectToAction("Interests");
 		}
@@ -283,7 +283,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 
-			_userTasks.RemoveImage(user, imageId);
+			_userTasks.RemoveMedium(user, imageId);
 
 			return RedirectToAction("Interests");
 		}

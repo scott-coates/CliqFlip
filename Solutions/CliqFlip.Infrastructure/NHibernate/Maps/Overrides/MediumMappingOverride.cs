@@ -4,11 +4,11 @@ using FluentNHibernate.Automapping.Alterations;
 
 namespace CliqFlip.Infrastructure.NHibernate.Maps.Overrides
 {
-	public class ImageMappingOverride : IAutoMappingOverride<Image>
+	public class MediumMappingOverride: IAutoMappingOverride<Medium>
 	{
-		public void Override(AutoMapping<Image> mapping)
+		public void Override(AutoMapping<Medium> mapping)
 		{
-			mapping.Table("Images");
+			mapping.Map(x => x.InterestMediumOrder).Access.ReadOnly();
 		}
 	}
 }

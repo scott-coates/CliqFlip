@@ -40,7 +40,7 @@ namespace CliqFlip.Tests.NHibernate
 		public void TestUserInterestImage()
 		{
 			var userint = new UserInterest();
-			userint.AddImage(new ImageData(null, null, null, null, null));
+			userint.AddMedium(new Image { ImageData = new ImageData(null, null, null, null) });
 
 			NHibernateSession.Current.Save(userint);
 		}

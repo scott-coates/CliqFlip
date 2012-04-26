@@ -19,7 +19,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
             Text = message.Text;
             SendDate = message.SendDate;
             Sender = message.Sender.Username;
-            SenderImageUrl = message.Sender.ProfileImage != null ? message.Sender.ProfileImage.Data.ThumbFileName : Constants.DEFAULT_PROFILE_IMAGE;
+            SenderImageUrl = message.Sender.ProfileImage != null ? message.Sender.ProfileImage.ImageData.ThumbFileName : Constants.DEFAULT_PROFILE_IMAGE;
         }
     }
 }

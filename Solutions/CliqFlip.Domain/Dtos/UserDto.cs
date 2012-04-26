@@ -27,7 +27,7 @@ namespace CliqFlip.Domain.Dtos
             InterestDtos = user.Interests.Select(x => new UserInterestDto(x)).ToList();
 			Bio = user.Bio;
             Headline = user.Headline;
-            ImageUrl = user.ProfileImage != null ? user.ProfileImage.Data.MediumFileName : null;
+            ImageUrl = user.ProfileImage != null ? user.ProfileImage.ImageData.MediumFileName : null;
         }
     }
 }
