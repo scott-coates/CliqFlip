@@ -15,7 +15,10 @@ namespace CliqFlip.Domain.Entities
 
 		public virtual ImageData ImageData
 		{
-			get { return Image.ImageData; }
+			get {
+                //I wan't to look more into this.
+                return Image == null ? null : Image.ImageData; 
+            }
 		}
 
 		public virtual void AddImage(ImageData data)

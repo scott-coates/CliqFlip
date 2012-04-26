@@ -77,6 +77,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
                         var website = (WebPage)medium;
                         Title = website.Title;
                         WebSiteUrl = website.LinkUrl;
+                        MediumType += MediumImage == null ? "NoImage" : "";
                         break;
                 }
             }

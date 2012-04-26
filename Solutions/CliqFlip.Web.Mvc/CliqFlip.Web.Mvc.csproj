@@ -716,7 +716,7 @@
     <Content Include="Views\User\DisplayTemplates\Image.cshtml" />
     <Content Include="Views\User\DisplayTemplates\Video.cshtml" />
     <Content Include="Views\User\DisplayTemplates\WebPage.cshtml" />
-    <Content Include="Views\User\DisplayTemplates\WebSiteNoImage.cshtml" />
+    <Content Include="Views\User\DisplayTemplates\WebPageNoImage.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
