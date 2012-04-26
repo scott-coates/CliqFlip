@@ -7,9 +7,9 @@ using ForeignKeyConstraint = Migrator.Framework.ForeignKeyConstraint;
 namespace CliqFlip.Infrastructure.Migrator.Migrations
 {
 	[Migration(634709905194637407)]
-	public class __634709905194637407_T_AddTestAdmin : Migration
+	public class __634709905194637407_T_AddTestAdmin : ConditionalMigration
 	{
-		public override void Up()
+		protected override void ConditionalUp()
 		{
 			Database.ExecuteNonQuery("INSERT [dbo].[Locations] ([CountryCode], [CountryName], [RegionCode], [RegionName], [MetroCode], [County], [Street], [City], [ZipCode], [AreaCode], [Latitude], [Longitude], [MajorLocationId]) VALUES (N'US', N'United States', N'CA', N'California', NULL, N'Orange County', N'', N'Newport Coast', N'92657', NULL, 33.59875, -117.831306, 114)");
 	
@@ -22,7 +22,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 			);
 		}
 
-		public override void Down()
+		protected override void ConditionalDown()
 		{
 			int locationId = Convert.ToInt32(Database.ExecuteScalar("SELECT LocationId FROM USERS where username = 'cliqadmin'"));
 			Database.Delete("Users", "Username", "cliqadmin");
