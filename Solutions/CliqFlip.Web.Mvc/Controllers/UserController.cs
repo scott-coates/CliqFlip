@@ -262,7 +262,18 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 			if (ModelState.IsValid)
 			{
-				_userTasks.SaveInterestVideo(user, userSaveInterestImageViewModel.UserInterestId,userSaveInterestImageViewModel.VideoURL);
+				try
+				{
+					_userTasks.SaveInterestVideo(user, userSaveInterestImageViewModel.UserInterestId,userSaveInterestImageViewModel.VideoURL);
+				}
+				catch (RulesException e)
+				{
+					//TODO: Implement PRG pattern for post forms
+					//TODO: Log These exceptions in elmah
+					e.AddModelStateErrors(ModelState);
+					RouteData.Values["action"] = "Interests";
+					return Interests(_principal.Identity.Name);
+				}
 				return RedirectToAction("Interests");
 			}
 			else
@@ -281,7 +292,18 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 			if (ModelState.IsValid)
 			{
-				_userTasks.SaveInterestWebPage(user, userSaveInterestWebPageViewModel.UserInterestId,userSaveInterestWebPageViewModel.LinkUrl);
+				try
+				{
+					_userTasks.SaveInterestWebPage(user, userSaveInterestWebPageViewModel.UserInterestId,userSaveInterestWebPageViewModel.LinkUrl);
+				}
+				catch (RulesException e)
+				{
+					//TODO: Implement PRG pattern for post forms
+					//TODO: Log These exceptions in elmah
+					e.AddModelStateErrors(ModelState);
+					RouteData.Values["action"] = "Interests";
+					return Interests(_principal.Identity.Name);
+				}
 				return RedirectToAction("Interests");
 			}
 			else
