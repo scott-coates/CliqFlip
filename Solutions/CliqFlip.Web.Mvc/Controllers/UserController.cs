@@ -262,6 +262,11 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				return null;
 			}
+			else
+			{
+				RouteData.Values["action"] = "Interests";
+				return Interests(_principal.Identity.Name);
+			}
 
 			return View("Interests");
 		}
