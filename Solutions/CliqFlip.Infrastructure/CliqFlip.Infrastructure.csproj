@@ -192,6 +192,7 @@
     <Compile Include="NHibernate\Maps\Overrides\ConversationMappingOverride.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="NHibernate\Maps\Overrides\VideoMappingOverride.cs" />
     <Compile Include="NHibernate\Maps\Overrides\ImageMappingOverride.cs" />
     <Compile Include="NHibernate\Maps\Overrides\MediumMappingOverride.cs" />
     <Compile Include="NHibernate\Maps\Overrides\UserInterestMappingOverride.cs" />
