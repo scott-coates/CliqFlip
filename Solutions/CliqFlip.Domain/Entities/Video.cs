@@ -13,5 +13,10 @@ namespace CliqFlip.Domain.Entities
 		{
 			get { return Image.ImageData; }
 		}
+
+		public virtual void AddImage(ImageData data)
+		{
+			Image = new Image {ImageData = data};
+		}
 	}
 }

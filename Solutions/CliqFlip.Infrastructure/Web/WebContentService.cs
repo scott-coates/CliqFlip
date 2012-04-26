@@ -27,6 +27,25 @@ namespace CliqFlip.Infrastructure.Web
 			return retVal;
 		}
 
+		public byte[] GetDataFromUrl(string url)
+		{
+			byte[] retVal;
+
+			using (var wc = new WebClient())
+			{
+				try
+				{
+					retVal = wc.DownloadData(url);
+				}
+				catch (WebException)
+				{
+					throw new RulesException("website", "Invalid website");
+				}
+			}
+
+			return retVal;
+		}
+
 		#endregion
 	}
 }

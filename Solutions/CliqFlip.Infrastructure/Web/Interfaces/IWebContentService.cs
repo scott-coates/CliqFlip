@@ -8,5 +8,6 @@ namespace CliqFlip.Infrastructure.Web.Interfaces
 	public interface IWebContentService
 	{
 		string GetHtmlFromUrl(string url);
+		byte[] GetDataFromUrl(string url);
 	}
 }

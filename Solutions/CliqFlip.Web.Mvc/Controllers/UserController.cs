@@ -262,6 +262,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 			if (ModelState.IsValid)
 			{
+				_userTasks.SaveInterestVideo(user, userSaveInterestImageViewModel.UserInterestId,userSaveInterestImageViewModel.VideoURL);
 				return null;
 			}
 			else

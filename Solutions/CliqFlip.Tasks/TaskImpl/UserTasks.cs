@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using CliqFlip.Domain.Contracts.Tasks;
@@ -169,19 +170,36 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public void SaveInterestVideo(User user, int userInterestId, string videoUrl)
 		{
+			UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
+
 			videoUrl = videoUrl.FormatWebAddress();
 			string html = _webContentService.GetHtmlFromUrl(videoUrl);
 			PageDetails details = _pageParsingService.GetDetails(html);
+
+			string description = details.Description;
+			
+			if(string.IsNullOrWhiteSpace(details.VideoUrl))
+			{
+				throw new RulesException("Description", "Invalid video");
+			}
+
+			var medium = new Video { Description = description,VideoUrl = details.VideoUrl};
 
 			//determine if image is available
 			if(!string.IsNullOrWhiteSpace(details.ImageUrl))
 			{
 				//if exception, skip it
-				_pageParsingService
+				byte[] data = _webContentService.GetDataFromUrl(details.ImageUrl);
+				string fileName = Path.GetFileName(details.ImageUrl);
+				using(var memoryStream = new MemoryStream(data))
+				{
+					var fileStreamDto = new FileStreamDto(memoryStream, fileName);
+					SaveImageForUser(fileStreamDto, user.Username + "-Interest-Video-Image-" + interest.Interest.Name, imgFileNamesDto => 
+						medium.AddImage(new ImageData(fileName, imgFileNamesDto.ThumbFilename, imgFileNamesDto.MediumFilename, imgFileNamesDto.FullFilename)));
+				}
 			}
 
-
-			UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
+			interest.AddMedium(medium);
 		}
 
 		public void SaveWebsite(User user, string siteUrl)
