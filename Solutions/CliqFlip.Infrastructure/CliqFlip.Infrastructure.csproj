@@ -159,6 +159,7 @@
     <Compile Include="Migrator\ConditionalMigration.cs" />
     <Compile Include="Migrator\MigrationConstants.cs" />
     <Compile Include="Migrator\Migrations\__634709500038974205_AddMediaTable.cs" />
+    <Compile Include="Migrator\Migrations\__634709905194637407_T_AddTestAdmin.cs" />
     <Compile Include="Migrator\Migrations\__634697008349413565_AddMainCategoryInterests.cs" />
     <Compile Include="Migrator\Migrations\__634696078341536810_AddIsMainCategoryColumn.cs" />
     <Compile Include="Migrator\Migrations\__634685005560831821_AddRoleColumn.cs" />
