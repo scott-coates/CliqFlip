@@ -148,7 +148,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			return _userRepository.GetSuggestedUser(user);
 		}
 
-		public void SaveInterestImage(User user, HttpPostedFileBase interestImage, int userInterestId, string description)
+		public void SaveInterestImage(User user, FileStreamDto interestImage, int userInterestId, string description)
 		{
 			UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
 			SaveImageForUser(interestImage,
@@ -243,7 +243,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			ProcessUserInterests(user, interestDtos);
 		}
 
-		public void SaveProfileImage(User user, HttpPostedFileBase profileImage)
+		public void SaveProfileImage(User user, FileStreamDto profileImage)
 		{
 			ImageFileNamesDto originalImageNames = null;
 			if (user.ProfileImage != null)
@@ -332,7 +332,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			}
 		}
 
-		private void SaveImageForUser(HttpPostedFileBase profileImage, string metaPrefix, Action<ImageFileNamesDto> afterProcessing)
+		private void SaveImageForUser(FileStreamDto profileImage, string metaPrefix, Action<ImageFileNamesDto> afterProcessing)
 		{
 			if (afterProcessing == null) throw new ArgumentNullException("afterProcessing");
 

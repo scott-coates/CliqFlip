@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
+using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Exceptions;
 using CliqFlip.Infrastructure.Images.Interfaces;
 
@@ -26,13 +27,13 @@ namespace CliqFlip.Infrastructure.Images
 
 		#region IImageProcessor Members
 
-		public ImageProcessResult ProcessImage(HttpPostedFileBase profileImage)
+		public ImageProcessResult ProcessImage(FileStreamDto profileImage)
 		{
 			var retVal = new ImageProcessResult();
 
 			ValidateExtension(profileImage.FileName);
 
-			using (Image image = Image.FromStream(profileImage.InputStream))
+			using (Image image = Image.FromStream(profileImage.Stream))
 			{
 				ValidateImageSize(image);
 

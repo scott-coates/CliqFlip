@@ -21,8 +21,8 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		User GetUser(string username);
 		User GetSuggestedUser(string username);
 
-		void SaveProfileImage(User user, HttpPostedFileBase profileImage);
-		void SaveInterestImage(User user, HttpPostedFileBase profileImage, int userInterestId, string description);
+		void SaveProfileImage(User user, FileStreamDto profileImage);
+		void SaveInterestImage(User user, FileStreamDto profileImage, int userInterestId, string description);
 		void SaveInterestVideo(User user, int userInterestId, string videoUrl);
 		void SaveWebsite(User user, string siteUrl);
 		void Logout(string name);

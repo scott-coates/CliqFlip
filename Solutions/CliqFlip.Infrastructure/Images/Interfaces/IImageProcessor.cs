@@ -2,11 +2,12 @@
 using System.Linq;
 using System.Text;
 using System.Web;
+using CliqFlip.Domain.Dtos;
 
 namespace CliqFlip.Infrastructure.Images.Interfaces
 {
 	public interface IImageProcessor
 	{
-		ImageProcessResult ProcessImage(HttpPostedFileBase profileImage);
+		ImageProcessResult ProcessImage(FileStreamDto profileImage);
 	}
 }

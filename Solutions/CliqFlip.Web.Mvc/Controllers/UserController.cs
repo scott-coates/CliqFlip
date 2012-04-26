@@ -197,7 +197,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				try
 				{
-					_userTasks.SaveProfileImage(user, profileImage);
+					var fileStreamDto = new FileStreamDto(profileImage.InputStream, profileImage.FileName);
+					_userTasks.SaveProfileImage(user, fileStreamDto);
 				}
 				catch (RulesException rex)
 				{
@@ -232,7 +233,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				try
 				{
-					_userTasks.SaveInterestImage(user, userSaveInterestImageViewModel.ProfileImage, userSaveInterestImageViewModel.UserInterestId, userSaveInterestImageViewModel.ImageDescription);
+					var fileStreamDto = new FileStreamDto(userSaveInterestImageViewModel.ProfileImage.InputStream, userSaveInterestImageViewModel.ProfileImage.FileName);
+					_userTasks.SaveInterestImage(user, fileStreamDto, userSaveInterestImageViewModel.UserInterestId, userSaveInterestImageViewModel.ImageDescription);
 				}
 				catch (RulesException rex)
 				{
