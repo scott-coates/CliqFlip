@@ -158,6 +158,7 @@
     <Compile Include="Logging\Interfaces\ILogger.cs" />
     <Compile Include="Migrator\ConditionalMigration.cs" />
     <Compile Include="Migrator\MigrationConstants.cs" />
+    <Compile Include="Migrator\Migrations\__634709922386830512_RemoveOldImageColumns.cs" />
     <Compile Include="Migrator\Migrations\__634709500038974205_AddMediaTable.cs" />
     <Compile Include="Migrator\Migrations\__634709905194637407_T_AddTestAdmin.cs" />
     <Compile Include="Migrator\Migrations\__634697008349413565_AddMainCategoryInterests.cs" />
