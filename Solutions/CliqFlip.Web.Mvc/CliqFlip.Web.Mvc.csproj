@@ -580,9 +580,7 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\User\DisplayTemplates\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -715,6 +713,10 @@
     <Content Include="Views\Email\_Layout.cshtml" />
     <Content Include="Views\Email\NewConversation.cshtml" />
     <Content Include="Views\Email\ReplyToConversation.cshtml" />
+    <Content Include="Views\User\DisplayTemplates\Image.cshtml" />
+    <Content Include="Views\User\DisplayTemplates\Video.cshtml" />
+    <Content Include="Views\User\DisplayTemplates\WebPage.cshtml" />
+    <Content Include="Views\User\DisplayTemplates\WebSiteNoImage.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

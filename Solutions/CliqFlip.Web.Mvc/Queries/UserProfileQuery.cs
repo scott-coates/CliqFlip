@@ -91,6 +91,7 @@ namespace CliqFlip.Web.Mvc.Queries
 
 				foreach (UserInterest interest in user.Interests)
 				{
+                    var media = interest.Media.ToList();
 					var interestViewModel = new UserInterestsViewModel.InterestViewModel
 					{
 						Name = interest.Interest.Name,
@@ -100,7 +101,7 @@ namespace CliqFlip.Web.Mvc.Queries
 						Images = interest
 							.Media
 							.Select(x =>
-									new UserInterestsViewModel.InterestImageViewModel((Image)x)).ToList() //TODO: don't cast this
+									new UserInterestsViewModel.InterestMediumViewModel(x)).ToList() //TODO: don't cast this
 					};
 
 					retVal.Interests.Add(interestViewModel);
