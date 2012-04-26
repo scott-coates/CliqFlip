@@ -67,29 +67,15 @@ function InitShowImages(makeDefaultUrl, removeImageUrl) {
 		    resizeContents: false,
 		    theme: "default1",
 		    buildStartStop: false,
-            buildNavigation: false
-//		    onInitialized: function (event, slider) {
-//		        var elements = slider.$currentPage.find("p, a strong, a div");
-//		        elements.each(function () {
-//		            var el = $(this);
-//		            if (!el.data("dotdotdot")) {
-//		                el.dotdotdot();
-//		            }
-//		        });
-//		        //slider.$currentPage.find("p, a strong, a div").dotdotdot();
-//		    },
-//		    onSlideInit: function (event, slider) {
-//		        //alert("hey");
-//		        //slider.$currentPage.find("p").dotdotdot();
-//		        //slider.$targetPage.find("p, a strong, a div").dotdotdot();
-//		        var elements = slider.$targetPage.find("p, a strong, a div");
-//		        elements.each(function () {
-//		            var el = $(this);
-//		            if (!el.data("dotdotdot")) {
-//		                el.dotdotdot();
-//		            }
-//		        });
-//		    }
+		    buildNavigation: false,
+		    onBeforeInitialize: function (event, slider) {
+		        //I could of added the rel attribute to the anchor on the server side
+		        //but I didn't want to add it to the view model
+
+		        //so any li that is in the list should ge grouped together
+		        var listItems = slider.$el.find("li");
+		        listItems.find("a").attr("rel", new Date().getTime());
+		    }
 		})
 		.show()
 		.find('.panel:not(.cloned) a') // ignore the cloned panels
