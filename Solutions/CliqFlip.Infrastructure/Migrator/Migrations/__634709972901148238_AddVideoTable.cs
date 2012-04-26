@@ -16,6 +16,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 			{
 				new Column("MediumId", DbType.Int32, ColumnProperty.PrimaryKey),
 				new Column("VideoUrl", DbType.String,2048, ColumnProperty.NotNull),
+				new Column("Title", DbType.String,1024, ColumnProperty.Null),
 				new Column("ImageId", DbType.Int32, ColumnProperty.Null)
 			});
 

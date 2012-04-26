@@ -6,6 +6,7 @@ namespace CliqFlip.Domain.Entities
 	public class Video : Medium, IHasImage
 	{
 		public virtual string VideoUrl { get; set; }
+		public virtual string Title { get; set; }
 
 		public virtual Image Image { get; set; }
 
