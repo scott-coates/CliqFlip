@@ -152,19 +152,19 @@ namespace CliqFlip.Tasks.TaskImpl
 		{
 			UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
 			SaveImageForUser(interestImage,
-			                 user.Username + "-Interest-Image-" + interest.Interest.Name,
-			                 imgFileNamesDto =>
-			                 interest.AddMedium(
-			                 	new Image
-			                 	{
+							 user.Username + "-Interest-Image-" + interest.Interest.Name,
+							 imgFileNamesDto =>
+							 interest.AddMedium(
+								new Image
+								{
 									Description = description,
-			                 		ImageData =
-			                 			new ImageData(
+									ImageData =
+										new ImageData(
 											interestImage.FileName
 											, imgFileNamesDto.ThumbFilename
 											, imgFileNamesDto.MediumFilename
 											, imgFileNamesDto.FullFilename)
-			                 	}));
+								}));
 		}
 
 		public void SaveInterestVideo(User user, int userInterestId, string videoUrl)
@@ -172,6 +172,10 @@ namespace CliqFlip.Tasks.TaskImpl
 			videoUrl = videoUrl.FormatWebAddress();
 			string html = _htmlService.GetHtmlFromUrl(videoUrl);
 			PageDetails details = _pageParsingService.GetDetails(html);
+
+			//determine if image is available
+
+			//if exception, skip it
 
 			UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
 		}
@@ -222,7 +226,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 			List<Medium> media = interest.Media.ToList();
 
-			var files = new List<ImageFileNamesDto>(media.Count*3);
+			var files = new List<ImageFileNamesDto>(media.Count * 3);
 
 			files.AddRange(media.Select(GetImageFileNamesDto));
 
@@ -265,7 +269,7 @@ namespace CliqFlip.Tasks.TaskImpl
 		{
 			//get the users involved in the conversation
 			User sender = GetUser(starter),
-			     recipient = GetUser(receiver);
+				 recipient = GetUser(receiver);
 
 			//check that both users exists
 			//TODO: don't just return - throw ex when this kind of thing happens
@@ -315,15 +319,15 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		private static ImageFileNamesDto GetImageFileNamesDto(Medium medium)
 		{
-			var image = medium as IHasImage;
+			var mediumWithImage = medium as IHasImage;
 
-			if(image != null)
+			if (mediumWithImage != null && mediumWithImage.ImageData != null)
 			{
 				return new ImageFileNamesDto
 				{
-					ThumbFilename = image.ImageData.ThumbFileName,
-					MediumFilename = image.ImageData.MediumFileName,
-					FullFilename = image.ImageData.FullFileName
+					ThumbFilename = mediumWithImage.ImageData.ThumbFileName,
+					MediumFilename = mediumWithImage.ImageData.MediumFileName,
+					FullFilename = mediumWithImage.ImageData.FullFileName
 				};
 			}
 			else
@@ -397,7 +401,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			//associated with it
 			if (imageNames != null && imageNames.Length > 0)
 			{
-				var filesToDelete = new List<string>(imageNames.Length*3);
+				var filesToDelete = new List<string>(imageNames.Length * 3);
 
 				foreach (ImageFileNamesDto image in imageNames)
 				{
