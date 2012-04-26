@@ -4,10 +4,58 @@
 @{
 	Layout = "~/Views/User/_Profile.cshtml";
 }
+@*div.anythingSlider-default1{ margin: 0 1px;}*@
 @section beforeHeadClose
 {
+    @*Absolute Positioning
+
+    An absolute position element is positioned relative to the 
+    first parent element that has a position other than static. 
+    If no such element is found, the containing block is <html>*@
 	<style type="text/css">
 		.add-interest { margin-left: 6px; }
+		.interest-slider-panel-container a
+		{
+		    margin: 0 auto;
+		    display: block;
+		    position: relative;
+		}
+		.interest-slider-panel-container img
+		{
+		    padding: 2px 0px;
+		    max-height: 112px;
+		    max-width: 150px;   
+		}
+		span.video-indicator
+		{ 
+		    background-image: url("/content/img/video-play.png");
+		    height: 26px;
+            left: 40%;
+            bottom: 40%;
+            position: absolute;
+            width: 35px;
+		}
+
+        .interest-slider-panel-container p
+        {
+            height: 38px;
+        }
+		
+		.interest-slider-panel-container strong
+		{
+		    max-width: 255px;
+            margin: 5px auto;
+            display: block;
+            height: 20px;
+		}
+		
+		.interest-slider-panel-container div
+		{
+		    max-width: 255px;
+            margin: 0 auto;
+            text-align: left;
+            height: 90px;
+		}
 	</style>
 }
 @if (Model.AuthenticatedProfileOwner)
@@ -47,7 +95,7 @@
 				</div>
 			</div>
 			<ul class="intereset-slider">
-				@foreach (UserInterestsViewModel.InterestImageViewModel image in interest.Images)
+				@*@foreach (UserInterestsViewModel.InterestImageViewModel image in interest.Images)
 				{
 					<li>
 						<div class="interest-slider-panel-container">
@@ -56,7 +104,101 @@
 							</a>
 						</div>
 					</li>
-				}
+				}*@
+                <li>
+                    <!-- Image -->
+                    <div class="interest-slider-panel-container">
+                        <a rel="interest-@interest.UserInterestId" value="1" title="some title" href="http://sphotos.xx.fbcdn.net/hphotos-ash3/562666_305217079548450_262424913827667_810251_1639808121_n.jpg">
+                            <input type="hidden" name="type" value="image" />
+                            <img src="http://sphotos.xx.fbcdn.net/hphotos-ash3/562666_305217079548450_262424913827667_810251_1639808121_n.jpg" 
+                                alt="Alternate Text"/>
+                        </a>
+                        <p>
+                            Some comment about the photo
+                        </p>
+                    </div>
+                </li>
+                @*<li>  
+                    <!-- Video 1 -->
+                    <div class="interest-slider-panel-container">
+                        
+                        <div>
+                            <a rel="interest-@interest.UserInterestId" class="video-link">
+                                <img src="http://external.ak.fbcdn.net/safe_image.php?d=AQD8CytN6xgNKbXZ&url=http%3A%2F%2Fi4.ytimg.com%2Fvi%2FcdgQpa1pUUE%2Fhqdefault.jpg" 
+                                alt="Alternate Text" style="max-height: inherit; max-width: inherit;" />
+                                <span class="video-indicator"></span>
+                            </a>
+                            <div style="width: 200px; display: inline-block; text-align: left;">
+                                <a href="http://www.youtube.com/watch?v=9c6W4CCU9M4">Title</a><br />
+                                <a style="font-size: 9px;" href="http://www.youtube.com/watch?v=9c6W4CCU9M4">http://www.youtube.com/watch?v=9c6W4CCU9M4</a>
+                                <br />
+                                <p style="display: inline; font-size: 9px;">We announced our self-driving car project in 2010 to make driving safer, more enjoyable, and more efficient. Having safely completed over 200,000 miles of co...</p>
+                            </div>
+                        </div>
+                        <p>
+                            Oh! some awesome video!
+                        </p>
+                    </div>
+                </li>*@
+
+                <li>
+                    <!-- Video 2 -->
+                    <div class="interest-slider-panel-container">
+                        <a rel="interest-@interest.UserInterestId" value="2" title="title 2" href="http://www.youtube.com/v/SNPJMk2fgJU?version=3&amp;autohide=1">
+                            <img src="http://external.ak.fbcdn.net/safe_image.php?d=AQD8CytN6xgNKbXZ&url=http%3A%2F%2Fi4.ytimg.com%2Fvi%2FcdgQpa1pUUE%2Fhqdefault.jpg" 
+                            alt="Alternate Text"/>
+                            <span class="video-indicator"></span>
+                        </a>
+                        <p>
+                            I've watched this 2012 Britain's Got Talent clip over 20 times in the past 3 hours and each time I burst into tears. I can't tell you what I find more beautiful, their voices or their friendship.
+                        </p>
+                    </div>
+                </li>
+
+                <li>
+                    <!-- Link/Website/Video -->
+                    <!-- Video and website should share the same structure -->
+                    <div class="interest-slider-panel-container">
+                        <a rel="interest-@interest.UserInterestId" value="3" title="title 3" href="http://news.yahoo.com/blogs/cutline/fox-news-mole-says-served-warrant-laptop-iphone-162203728.html">
+                            <img src="http://l.yimg.com/bt/api/res/1.2/_070BRkTc66j9oW_ZQuNsA--/YXBwaWQ9eW5ld3M7Zmk9ZmlsbDtoPTE1MDtweG9mZj01MDtweW9mZj0wO3c9MTUw/http://media.zenfs.com/en/blogs/thecutline/fox-news-mole.jpg.cf.png" 
+                                alt="Alternate Text"/>
+                        </a>
+                        <p>
+                            I've watched this 2012 Britain's Got Talent clip over 20 times in the past 3 hours and each time I burst into tears. I can't tell you what I find more beautiful, their voices or their friendship.
+                        </p>
+                    </div>
+                </li>
+
+                <li>
+                    <!-- Video 4 -->
+                    <div class="interest-slider-panel-container">
+                        <a rel="interest-@interest.UserInterestId" value="4" title="title 4" href="http://www.youtube.com/v/1kmI2UdHdlQ?version=3&amp;autohide=1">
+                            <img src="http://i2.ytimg.com/vi/1kmI2UdHdlQ/hqdefault.jpg" 
+                                alt="Alternate Text"/>
+                            <span class="video-indicator"></span>
+                        </a>
+                        <p>
+                            I've watched this 2012 Britain's Got Talent clip over 20 times in the past 3 hours and each time I burst into tears. I can't tell you what I find more beautiful, their voices or their friendship.
+                        </p>
+                    </div>
+                </li>
+
+                <li>
+                    <!-- Link to image -->
+                    <div class="interest-slider-panel-container">
+                        <a rel="interest-@interest.UserInterestId" value="5" title="title 5" href="http://www.youtube.com/v/1kmI2UdHdlQ?version=3&amp;autohide=1">
+                            <strong>
+                                Some article with no image to use as a preview of the content. 
+                            </strong>
+                            <div>
+                                Some description about an article Some description about an article Some description about an article Some description about an article
+                            </div>
+                        </a>
+                        <p>
+                            I've watched this 2012 Britain's Got Talent clip over 20 times in the past 3 hours and each time I burst into tears. I can't tell you what I find more beautiful, their voices or their friendship.
+                        </p>
+                    </div>
+                </li>
 			</ul>
 		</div>
 	}
@@ -109,9 +251,11 @@
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.tmpl.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/interests.js")"> </script>
+    <script type="text/javascript" src="@Url.Content("/Content/js/jquery.dotdotdot-1.2.1.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/add-interest.js")"> </script>
 	<script type="text/javascript">
 		$(function() {
+            //$(".interest-slider-panel-container").find("p, a strong,a div").filter(":visible").dotdotdot();
 			InitInterests(@(Model.AuthenticatedProfileOwner.ToString(CultureInfo.InvariantCulture).ToLower()));
 			InitSaveImages();
 			InitShowImages(@(Html.Raw(Model.MakeDefaultUrl)), @(Html.Raw(Model.RemoveImageUrl)));

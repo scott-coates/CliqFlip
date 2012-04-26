@@ -61,31 +61,59 @@ function InitSaveImages() {
 }
 
 function InitShowImages(makeDefaultUrl, removeImageUrl) {
-	$('.intereset-slider').anythingSlider(
+    $('.intereset-slider').anythingSlider(
 		{
-			hashTags: false,
-			resizeContents: false,
-			theme: "default1",
-			buildStartStop: false
+		    hashTags: false,
+		    resizeContents: false,
+		    theme: "default1",
+		    buildStartStop: false,
+            buildNavigation: false
+//		    onInitialized: function (event, slider) {
+//		        var elements = slider.$currentPage.find("p, a strong, a div");
+//		        elements.each(function () {
+//		            var el = $(this);
+//		            if (!el.data("dotdotdot")) {
+//		                el.dotdotdot();
+//		            }
+//		        });
+//		        //slider.$currentPage.find("p, a strong, a div").dotdotdot();
+//		    },
+//		    onSlideInit: function (event, slider) {
+//		        //alert("hey");
+//		        //slider.$currentPage.find("p").dotdotdot();
+//		        //slider.$targetPage.find("p, a strong, a div").dotdotdot();
+//		        var elements = slider.$targetPage.find("p, a strong, a div");
+//		        elements.each(function () {
+//		            var el = $(this);
+//		            if (!el.data("dotdotdot")) {
+//		                el.dotdotdot();
+//		            }
+//		        });
+//		    }
 		})
 		.show()
 		.find('.panel:not(.cloned) a') // ignore the cloned panels
 		.colorbox({
-			width: '90%',
-			height: '90%',
-			preloading: false,
-			title: function() {
-				var title = $(this).attr('title');
+		    iframe: function () {
+		        //if the content is an image, don't show it in an iframe
+		        //everything else show in an iframe
+		        return $("input[name='type']", this).val() != "image";
+		    },
+		    width: '90%',
+		    height: '90%',
+		    preloading: false,
+		    title: function () {
+		        var title = $(this).attr('title');
 
-				if (_canEdit) {
-					title = title
+		        if (_canEdit) {
+		            title = title
 						+ " <a href=" + makeDefaultUrl + "/?imageId=" + $(this).attr('value') + " title='make default'>make default</a>"
 							+ " <a href=" + removeImageUrl + "/?imageId=" + $(this).attr('value')
 								+ " title='remove image' onclick='return RemoveImage();'>remove image</a>";
-				}
+		        }
 
-				return title;
-			}
+		        return title;
+		    }
 		});
 }
 

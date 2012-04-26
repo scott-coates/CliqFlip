@@ -284,6 +284,7 @@
     <Content Include="Content\img\social2.png" />
     <Content Include="Content\img\social3.png" />
     <Content Include="Content\img\suggested.png" />
+    <Content Include="Content\img\video-play.png" />
     <Content Include="Content\img\YouTube_Icon.png" />
     <Content Include="Content\js\cliqFlip\tos.js" />
     <Content Include="Content\js\jquery.dotdotdot-1.2.1.min.js" />
@@ -578,7 +579,9 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\User\DisplayTemplates\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
