@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CliqFlip.Infrastructure.Web.Interfaces
 {
-	public interface IHtmlService
+	public interface IWebContentService
 	{
 		string GetHtmlFromUrl(string url);
 	}

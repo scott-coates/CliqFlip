@@ -4,7 +4,7 @@ using CliqFlip.Infrastructure.Web.Interfaces;
 
 namespace CliqFlip.Infrastructure.Web
 {
-	public class HtmlService : IHtmlService
+	public class WebContentService : IWebContentService
 	{
 		#region IHtmlService Members
 

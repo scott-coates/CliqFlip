@@ -17,17 +17,17 @@ namespace CliqFlip.Tests.Unit.Tasks
 	public class UserTaskTests
 	{
 		private IUserTasks _userTasks;
-		private IHtmlService _htmlService;
+		private IWebContentService _webContentService;
 		private IFeedFinder _feedFinder;
 		private User _user;
 
 		[SetUp]
 		public void Setup()
 		{
-			_htmlService = new Mock<IHtmlService>().Object;
+			_webContentService = new Mock<IWebContentService>().Object;
 			_feedFinder = new Mock<IFeedFinder>().Object;
 			_user = new Mock<User> { CallBase = true }.Object;
-			_userTasks = new UserTasks(null, null, null, _htmlService, _feedFinder, null, null, null, null, null, null);
+			_userTasks = new UserTasks(null, null, null, _webContentService, _feedFinder, null, null, null, null, null, null);
 		}
 
 		#region Website tests

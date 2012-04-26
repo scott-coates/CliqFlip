@@ -208,9 +208,9 @@
     <Compile Include="Syndication\FeedFinder.cs" />
     <Compile Include="Syndication\Interfaces\IFeedFinder.cs" />
     <Compile Include="Validation\UrlValidation.cs" />
-    <Compile Include="Web\HtmlService.cs" />
+    <Compile Include="Web\WebContentService.cs" />
     <Compile Include="Web\HttpContextProvider.cs" />
-    <Compile Include="Web\Interfaces\IHtmlService.cs" />
+    <Compile Include="Web\Interfaces\IWebContentService.cs" />
     <Compile Include="Web\Interfaces\IHttpContextProvider.cs" />
     <Compile Include="Web\Interfaces\IPageParsingService.cs" />
     <Compile Include="Web\PageDetails.cs" />

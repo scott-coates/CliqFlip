@@ -21,16 +21,16 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 		private readonly IEmailService _emailService;
 		private readonly IViewRenderer _viewRenderer;
 		private readonly IPageParsingService _pageParsingService;
-		private readonly IHtmlService _htmlService;
+		private readonly IWebContentService _webContentService;
 
 
-		public TestController(ILogger logger, IEmailService emailService, IViewRenderer viewRenderer, IPageParsingService pageParsingService, IHtmlService htmlService)
+		public TestController(ILogger logger, IEmailService emailService, IViewRenderer viewRenderer, IPageParsingService pageParsingService, IWebContentService webContentService)
 		{
 			_logger = logger;
 			_emailService = emailService;
 			_viewRenderer = viewRenderer;
 			_pageParsingService = pageParsingService;
-			_htmlService = htmlService;
+			_webContentService = webContentService;
 		}
 
 		public ActionResult Index()
@@ -85,7 +85,7 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 		{
 			if (!String.IsNullOrWhiteSpace(url))
 			{
-				var content = _htmlService.GetHtmlFromUrl(url.FormatWebAddress());
+				var content = _webContentService.GetHtmlFromUrl(url.FormatWebAddress());
 				var model = _pageParsingService.GetDetails(content);
 				return View(model);
 			}

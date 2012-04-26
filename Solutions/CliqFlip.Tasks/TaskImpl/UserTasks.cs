@@ -31,7 +31,7 @@ namespace CliqFlip.Tasks.TaskImpl
 		private readonly IEmailService _emailService;
 		private readonly IFeedFinder _feedFinder;
 		private readonly IFileUploadService _fileUploadService;
-		private readonly IHtmlService _htmlService;
+		private readonly IWebContentService _webContentService;
 		private readonly IImageProcessor _imageProcessor;
 		private readonly IInterestTasks _interestTasks;
 		private readonly ILocationService _locationService;
@@ -43,7 +43,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			IInterestTasks interestTasks,
 			IImageProcessor imageProcessor,
 			IFileUploadService fileUploadService,
-			IHtmlService htmlService,
+			IWebContentService webContentService,
 			IFeedFinder feedFinder,
 			IUserAuthentication userAuthentication,
 			IConversationRepository conversationRepository,
@@ -55,7 +55,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			_interestTasks = interestTasks;
 			_imageProcessor = imageProcessor;
 			_fileUploadService = fileUploadService;
-			_htmlService = htmlService;
+			_webContentService = webContentService;
 			_feedFinder = feedFinder;
 			_userAuthentication = userAuthentication;
 			_conversationRepository = conversationRepository;
@@ -170,12 +170,16 @@ namespace CliqFlip.Tasks.TaskImpl
 		public void SaveInterestVideo(User user, int userInterestId, string videoUrl)
 		{
 			videoUrl = videoUrl.FormatWebAddress();
-			string html = _htmlService.GetHtmlFromUrl(videoUrl);
+			string html = _webContentService.GetHtmlFromUrl(videoUrl);
 			PageDetails details = _pageParsingService.GetDetails(html);
 
 			//determine if image is available
+			if(!string.IsNullOrWhiteSpace(details.ImageUrl))
+			{
+				//if exception, skip it
+				_pageParsingService
+			}
 
-			//if exception, skip it
 
 			UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
 		}
@@ -188,7 +192,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 			if (!UrlValidation.IsValidUrl(siteUrl)) throw new RulesException("SiteUrl", "Invalid URL");
 
-			string html = _htmlService.GetHtmlFromUrl(siteUrl);
+			string html = _webContentService.GetHtmlFromUrl(siteUrl);
 
 			string feedUrl = _feedFinder.GetFeedUrl(html);
 
