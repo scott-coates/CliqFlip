@@ -26,7 +26,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 				new Column("TmpImageId", DbType.Int32, ColumnProperty.Null)
 			});
 
-			//make the old image pk not be id
+			//make the old image pk not be identity
 			#region changeIdentityColumn
 
 			const string changeIdentityColumn =
@@ -125,7 +125,7 @@ COMMIT
 			//move image order to media order & move image description to media description
 			#region moveImageToMedia
 
-			const string movieImageToMedia =
+			const string moveImagesToMedia =
 				@"
 INSERT INTO [Media]
            ([InterestMediumOrder]
@@ -149,7 +149,7 @@ on m.TmpImageId = u.ProfileImageId
 ";
 
 			#endregion
-			Database.ExecuteNonQuery(movieImageToMedia);
+			Database.ExecuteNonQuery(moveImagesToMedia);
 			Database.RemoveColumn("Media", "TmpImageId");
 
 			//now that we've migrated images to media, create fk images -> media
