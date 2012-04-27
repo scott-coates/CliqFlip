@@ -106,8 +106,8 @@
 	<script type="text/javascript">
 		$(function() {
 			InitInterests(@(Model.AuthenticatedProfileOwner.ToString(CultureInfo.InvariantCulture).ToLower()));
-			InitSaveImages();
-			InitShowImages(@(Html.Raw(Model.MakeDefaultUrl)), @(Html.Raw(Model.RemoveImageUrl)));
+			InitSaveMedia();
+			InitShowMedia(@(Html.Raw(Model.MakeDefaultUrl)), @(Html.Raw(Model.RemoveImageUrl)));
 			@{
 				if (Model.AuthenticatedVisitor)
 				{
