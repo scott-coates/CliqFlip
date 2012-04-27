@@ -1,6 +1,6 @@
 ﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserInterestsViewModel.InterestMediumViewModel
 
-<a value="@Model.MediumId" title="@Model.Description" href="@Model.FullImage">
+<a value="@Model.MediumId" title="@Model.Description" href="@Model.FullImage" medium="@Model.MediumType">
     <input type="hidden" name="type" value="image" />
     <img src="@Model.MediumImage" 
         alt="@Model.Description"/>

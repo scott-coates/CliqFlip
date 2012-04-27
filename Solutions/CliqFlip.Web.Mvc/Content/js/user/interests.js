@@ -71,8 +71,7 @@ function InitShowImages(makeDefaultUrl, removeImageUrl) {
 		    onBeforeInitialize: function (event, slider) {
 		        //I could of added the rel attribute to the anchor on the server side
 		        //but I didn't want to add it to the view model
-
-		        //so any li that is in the list should ge grouped together
+		        //so any li that is in the list should be grouped together
 		        var listItems = slider.$el.find("li");
 		        listItems.find("a").attr("rel", new Date().getTime());
 		    }
@@ -81,9 +80,9 @@ function InitShowImages(makeDefaultUrl, removeImageUrl) {
 		.find('.panel:not(.cloned) a') // ignore the cloned panels
 		.colorbox({
 		    iframe: function () {
-		        //if the content is an image, don't show it in an iframe
+		        //if the medium is an image, don't show it in an iframe
 		        //everything else show in an iframe
-		        return $("input[name='type']", this).val() != "image";
+		        return $(this).attr("medium") != "Image";
 		    },
 		    width: '90%',
 		    height: '90%',
@@ -95,7 +94,7 @@ function InitShowImages(makeDefaultUrl, removeImageUrl) {
 		            title = title
 						+ " <a href=" + makeDefaultUrl + "/?imageId=" + $(this).attr('value') + " title='make default'>make default</a>"
 							+ " <a href=" + removeImageUrl + "/?imageId=" + $(this).attr('value')
-								+ " title='remove image' onclick='return RemoveImage();'>remove image</a>";
+								+ " title='remove image' onclick='return RemoveImage();'>remove media</a>";
 		        }
 
 		        return title;
