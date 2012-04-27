@@ -451,7 +451,8 @@ namespace CliqFlip.Tasks.TaskImpl
 		{
 			//it's possible this could be called on media that doesn't have images 
 			//associated with it
-			if (imageNames != null && imageNames.Length > 0)
+			//check .First() because a null passed to params has collection with 1 nul value
+			if (imageNames != null && imageNames.Length > 0 && imageNames.First() != null) 
 			{
 				var filesToDelete = new List<string>(imageNames.Length * 3);
 
