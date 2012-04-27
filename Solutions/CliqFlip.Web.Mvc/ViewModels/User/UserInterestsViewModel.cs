@@ -31,24 +31,6 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 			}
 		}
 
-		public class InterestImageViewModel
-		{
-			public InterestImageViewModel(Image image)
-			{
-				ImageId = image.Id;
-				Description = image.Description;
-				ThumbImage = image.ImageData.ThumbFileName;
-				MediumImage = image.ImageData.MediumFileName;
-				FullImage = image.ImageData.FullFileName;
-			}
-
-			public int ImageId { get; set; }
-			public string Description { get; set; }
-			public string ThumbImage { get; set; }
-			public string MediumImage { get; set; }
-			public string FullImage { get; set; }
-		}
-
         public class InterestMediumViewModel
         {
             public InterestMediumViewModel(Medium medium)
