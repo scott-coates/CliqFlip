@@ -15,8 +15,9 @@ namespace CliqFlip.Domain.Entities
 
 		public virtual ImageData ImageData
 		{
-			get {
-                //I wan't to look more into this.
+			get 
+            {
+                //some web pages wont have images, so check first
                 return Image == null ? null : Image.ImageData; 
             }
 		}
