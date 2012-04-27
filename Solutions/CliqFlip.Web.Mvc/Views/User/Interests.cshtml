@@ -5,58 +5,7 @@
 	Layout = "~/Views/User/_Profile.cshtml";
 }
 @*div.anythingSlider-default1{ margin: 0 1px;}*@
-@section beforeHeadClose
-{
-    @*Absolute Positioning
 
-    An absolute position element is positioned relative to the 
-    first parent element that has a position other than static. 
-    If no such element is found, the containing block is <html>*@
-	<style type="text/css">
-		.add-interest { margin-left: 6px; }
-		.interest-slider-panel-container a
-		{
-		    margin: 0 auto;
-		    display: inline-block;
-		    position: relative;
-		}
-		.interest-slider-panel-container img
-		{
-		    padding: 2px 0px;
-		    max-height: 112px;
-		    max-width: 150px;   
-		}
-		span.video-indicator
-		{ 
-		    background-image: url("/content/img/video-play.png");
-		    height: 26px;
-            left: 40%;
-            bottom: 40%;
-            position: absolute;
-            width: 35px;
-		}
-
-        .interest-slider-panel-container p
-        {
-            height: 38px;
-        }
-		
-		.interest-slider-panel-container strong
-		{
-		    max-width: 255px;
-            margin: 5px auto;
-            display: block;
-		}
-		
-		.interest-slider-panel-container div
-		{
-		    max-width: 255px;
-            margin: 0 auto;
-            text-align: left;
-            height: 90px;
-		}
-	</style>
-}
 @if (Model.AuthenticatedProfileOwner)
 {
 	<input type="button" value="Add Interest" class="button add-interest" id="add-interest-button" />
@@ -154,11 +103,9 @@
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.tmpl.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/interests.js")"> </script>
-    <script type="text/javascript" src="@Url.Content("/Content/js/jquery.dotdotdot-1.2.1.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/user/add-interest.js")"> </script>
 	<script type="text/javascript">
 		$(function() {
-            //$(".interest-slider-panel-container").find("p, a strong,a div").filter(":visible").dotdotdot();
 			InitInterests(@(Model.AuthenticatedProfileOwner.ToString(CultureInfo.InvariantCulture).ToLower()));
 			InitSaveImages();
 			InitShowImages(@(Html.Raw(Model.MakeDefaultUrl)), @(Html.Raw(Model.RemoveImageUrl)));
