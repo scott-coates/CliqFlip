@@ -168,6 +168,21 @@ namespace CliqFlip.Tasks.TaskImpl
 								}));
 		}
 
+		public void SaveInterestImage(User user, int userInterestId, string description, string imageUrl)
+		{
+			imageUrl = imageUrl.FormatWebAddress();
+			
+			//DRY this up..the formatWebAddress, the byte[], the streams (videos, iframe, etc)
+			byte[] data = _webContentService.GetDataFromUrl(imageUrl);
+			
+			string fileName = Path.GetFileName(imageUrl);
+
+			using (var memoryStream = new MemoryStream(data))
+			{
+				SaveInterestImage(user, new FileStreamDto(memoryStream, fileName), userInterestId, description);
+			}
+		}
+
 		public void SaveInterestVideo(User user, int userInterestId, string videoUrl)
 		{
 			UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
@@ -452,7 +467,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			//it's possible this could be called on media that doesn't have images 
 			//associated with it
 			//check .First() because a null passed to params has collection with 1 nul value
-			if (imageNames != null && imageNames.Length > 0 && imageNames.First() != null) 
+			if (imageNames != null && imageNames.Length > 0 && imageNames.First() != null)
 			{
 				var filesToDelete = new List<string>(imageNames.Length * 3);
 

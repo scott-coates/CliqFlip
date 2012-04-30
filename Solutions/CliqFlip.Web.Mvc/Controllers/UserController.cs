@@ -217,6 +217,37 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return RedirectToAction("Index");
 		}
 
+
+		[Authorize]
+		[HttpPost]
+		[Transaction]
+		public ActionResult SaveInterestMediumFromUrl(UserSaveInterestMediumFromUrlViewModel  saveInterestMediumFromUrlViewModel)
+		{
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+
+			if (ModelState.IsValid)
+			{
+				try
+				{
+					_userTasks.SaveInterestImage(user, saveInterestMediumFromUrlViewModel.UserInterestId, saveInterestMediumFromUrlViewModel.MediumDescription, saveInterestMediumFromUrlViewModel.MediumUrl);
+				}
+				catch (RulesException e)
+				{
+					//TODO: Implement PRG pattern for post forms
+					//TODO: Log These exceptions in elmah
+					e.AddModelStateErrors(ModelState);
+					RouteData.Values["action"] = "Interests";
+					return Interests(_principal.Identity.Name);
+				}
+				return RedirectToAction("Interests");
+			}
+			else
+			{
+				RouteData.Values["action"] = "Interests";
+				return Interests(_principal.Identity.Name);
+			}
+		}
+
 		[Authorize]
 		[HttpPost]
 		[Transaction]

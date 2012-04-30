@@ -195,9 +195,11 @@
     <Compile Include="ViewModels\Email\NewConversationViewModel.cs" />
     <Compile Include="ViewModels\Jeip\JeipSaveResponseViewModel.cs" />
     <Compile Include="ViewModels\Jeip\JeipSaveTextViewModel.cs" />
+    <Compile Include="ViewModels\Popup\BookmarkMediumViewModel.cs" />
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
     <Compile Include="ViewModels\Search\InterestSearchViewModel.cs" />
     <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
+    <Compile Include="ViewModels\User\UserSaveInterestMediumFromUrlViewModel.cs" />
     <Compile Include="ViewModels\User\UserSaveInterestWebPageViewModel.cs" />
     <Compile Include="ViewModels\User\UserSaveInterestVideoViewModel.cs" />
     <Compile Include="ViewModels\User\ThankYouViewModel.cs" />

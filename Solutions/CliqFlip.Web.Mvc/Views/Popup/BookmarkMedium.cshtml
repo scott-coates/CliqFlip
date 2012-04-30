@@ -1,5 +1,23 @@
 ﻿@{
 	Layout = "_Layout.cshtml";
 }
+@model CliqFlip.Web.Mvc.ViewModels.Popup.BookmarkMediumViewModel
+@using (Html.BeginForm("SaveInterestMediumFromUrl", "User", FormMethod.Post))
+{
+	@Html.Image(Model.MediumUrl, "Bookmark Image", new {@class = "bookmark-image", name = "MediumUrl"})
+	<div class="divider">
+	</div>
+	<em>
+		Select an interest to tag the media to
+	</em>
+	@Html.DropDownList("UserInterestId", Model.InterestList)
 
-test content
+	<div class="divider">
+		<textarea cols="20" rows="2" name="MediumDescription" class="bookmark-description" placeholder="Description..."></textarea>
+	</div>
+	<div class="divider">
+	</div>
+	<div class="divider">
+		<input type="submit" class="button blue" value="Add Media" />
+	</div>
+}
