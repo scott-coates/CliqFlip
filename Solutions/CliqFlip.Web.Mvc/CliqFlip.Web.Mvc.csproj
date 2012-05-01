@@ -287,6 +287,7 @@
     <Content Include="Content\img\suggested.png" />
     <Content Include="Content\img\video-play.png" />
     <Content Include="Content\img\YouTube_Icon.png" />
+    <Content Include="Content\js\bookmarklet.js" />
     <Content Include="Content\js\cliqFlip\tos.js" />
     <Content Include="Content\js\jquery.dotdotdot-1.2.1.min.js" />
     <Content Include="Content\js\cliqFlip\error-handler.js" />
