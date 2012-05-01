@@ -27,13 +27,13 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				throw new HttpException((int)HttpStatusCode.NotFound, "Not found");
 			}
-			var viewModel = new BookmarkMediumViewModel { MediumUrl = mediumUrl };
+			var viewModel = new BookmarkMediumViewModel { Username = _principal.Identity.Name, MediumUrl = mediumUrl };
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			viewModel
 				.Interests
 				.AddRange(user
 							.Interests
-							.OrderBy(x=>x.Interest.Name)
+							.OrderBy(x => x.Interest.Name)
 							.Select(x => new BookmarkMediumViewModel.InterestsViewModel
 							{
 								UserInterestId = x.Id,
