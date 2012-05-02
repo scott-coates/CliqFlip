@@ -92,7 +92,7 @@
             //youtube videos don't play nice with the z-index
             //the youtube video will always show on top
             //to overcome this put in iframe that stretches the whole bg
-            var iframe = jQuery("<iframe allowtransparency='true' width='100%' height='100%' />").appendTo(background);
+            jQuery("<iframe allowtransparency='true' width='100%' height='100%' />").appendTo(background);
         }
 
         function createImageStructure(url) {
@@ -139,19 +139,16 @@
                 }
 
                 loadjQuery(function () {
-                    var images = jDocParser.getImages();
                     createMainContainer();
-                    var i;
-                    var numOfImages = images.length;
+                    var i,
+                        images = jDocParser.getImages(),
+                        numOfImages = images.length;
+
                     for (i = 0; i < numOfImages; i++) {
                         var imageUrl = images[i];
                         createImageStructure(imageUrl).appendTo(contentContainer);
                     }
                 });
-
-            },
-            closeBookmarklet: function () {
-                mainContainer.remove();
             }
         }
     } ();
@@ -171,8 +168,3 @@
     endpoint: "http://localhost:51949/popup/bookmarkmedium",
     name: "bookmarklet_" + (new Date()).getTime()
 });
-
-
-
-
-//javascript: void ((function () { var e = document.createElement('script'); e.setAttribute('type', 'text/javascript'); e.setAttribute('charset', 'UTF-8'); e.setAttribute('src', 'http://localhost:51949/Content/js/bookmarklet.js?r=' + Math.random() * 99999999); document.body.appendChild(e) })());
