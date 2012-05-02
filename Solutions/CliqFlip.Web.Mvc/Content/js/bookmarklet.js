@@ -1,7 +1,37 @@
 ﻿
 (function (theWindow, theOptions) {
 
-    var viewGenerator = function () {
+    // jDocParser is an object to process the document current being displayed in the window
+    // It uses jQuery to retrieve items from the DOM and then it remove images that are too small
+    // In the future this object should also take care of videos.
+    var jDocParser = function () {
+        //privates
+        //working window
+        var minSize = theOptions.minSize;
+        return {
+            //public
+            getImages: function () {
+                var imagesTags = jQuery("img");
+
+                var imgUrls = jQuery.grep(imagesTags, function (image, index) { //remove small images
+                    //only images bigger than the min size and that have a src
+                    //check the natural size of the image not the size on the screen
+                    return image.naturalWidth >= minSize && image.naturalHeight >= minSize && image.src;
+                }).map(function (image, index) {
+                    //this is the image tag
+                    return image.src;
+                });
+                return imgUrls;
+            }
+        }
+    } ();
+
+    //I want this plug in to be developed using OO practices.
+    //I'm experimenting with OO javascript and closures.
+
+    //we need a bookmarklet object
+    //that will serve as the main entry point for the mini-application
+    var bookmarklet = function () {
         var mainContainer, background, contentContainer, closer, highestZIndex;
 
         function getTopZIndex() {
@@ -11,10 +41,10 @@
                 return highestZIndex;
             }
             highestZIndex = 0;
-            var elements = jQuery("body *");
-            var i, numOfElements = elements.length;
+            var bodyElements = theWindow.document.body.getElementsByTagName("*"); // jQuery("body *");
+            var i, numOfElements = bodyElements.length;
             for (i = 0; i < numOfElements; i++) {
-                var element = elements[i];
+                var element = bodyElements[i];
 
                 var zIndex = parseInt(theWindow.document.defaultView.getComputedStyle(element, null).getPropertyValue("z-index"), 10);
                 if (zIndex && highestZIndex < zIndex) {
@@ -65,90 +95,36 @@
             var iframe = jQuery("<iframe allowtransparency='true' width='100%' height='100%' />").appendTo(background);
         }
 
-
         function createImageStructure(url) {
-            var containerSize = 200;
+            var containerSize = theOptions.thumbnailSize;
             var containerHtml = "<div class='share-item-container' style='text-align: center; float: left; width: " + containerSize + "px;height: " + containerSize + "px;background-color: white;margin: 10px;border: 1px solid;padding: 10px;position: relative;'>" +
                                     "<img src='" + url + "' />" +
                                     "<span>Share</span>" +
                                 "</div>";
             var div = jQuery(containerHtml).click(function () {
                 var imgSrc = jQuery(this).find("img")[0].src;
-                window.open("http://localhost:51949/popup/bookmarkmedium?mediumurl=" + imgSrc, "CliqFlip Share", "status=no,resizable=yes,scrollbars=yes,personalbar=no,directories=no,location=no,toolbar=no,menubar=no,width=632,height=270,left=0,top=0");
+                window.open(theOptions.endpoint + "?mediumurl=" + imgSrc, "CliqFlip Share", "status=no,resizable=yes,scrollbars=yes,personalbar=no,directories=no,location=no,toolbar=no,menubar=no,width=632,height=270,left=0,top=0");
             });
             return div;
         }
-
-        return {
-            showImages: function (images) {
-                createMainContainer();
-                var i;
-                var numOfImages = images.length;
-                for (i = 0; i < numOfImages; i++) {
-                    var imageUrl = images[i];
-                    createImageStructure(imageUrl).appendTo(contentContainer);
-                }
-            },
-            close: function () {
-                mainContainer.remove();
-            }
-        };
-    } ();
-
-
-    // jDocParser is an object to process the document current being displayed in the window
-    // It uses jQuery to retrieve items from the DOM and then it remove images that are too small
-    // In the future this object should also take care of videos.
-    var jDocParser = function (w) {
-        //privates
-        //working window
-        var ww = w;
-        return {
-            //public
-            getImages: function () {
-                var imagesTags = jQuery("img");
-
-                var imgUrls = jQuery.grep(imagesTags, function (image, index) { //remove small images
-                    var minWidth = 75, minHeight = 75;
-                    //only images bigger than the min size and that have a src
-                    //check the natural size of the image not the size on the screen
-                    return image.naturalWidth >= minWidth && image.naturalHeight >= minHeight && image.src;
-                }).map(function (image, index) {
-                    //this is the image tag
-                    return image.src;
-                });
-                return imgUrls;
-            }
-        }
-    } (theWindow);
-
-    //I want this plug in to be developed using OO practices.
-    //I'm experimenting with OO javascript and closures.
-
-    //we need a bookmarklet object
-    //that will serve as the main entry point for the mini-application
-    var bookmarklet = function () {
 
         function loadjQuery(onjQueryLoaded) {
             //check if jquery is in place
             // check prior inclusion and version
             if (theWindow.jQuery === undefined || theWindow.jQuery.fn.jquery < theOptions.jQueryMinVersion) {
-                //jQuery is not available
-                //load it
+                //jQuery is not available load it
 
                 var done = false;
-
                 var script = theWindow.document.createElement("script");
                 script.src = "http://ajax.googleapis.com/ajax/libs/jquery/" + theOptions.jQueryDesiredVersion + "/jquery.min.js";
                 script.onload = script.onreadystatechange = function () {
-                    if (!done && (!this.readyState || this.readyState == "loaded" || this.readyState == "complete")) {
+                    if (!done && (!this.readyState || this.readyState === "loaded" || this.readyState === "complete")) {
                         done = true;
-                        viewGenerator.showImages(jDocParser.getImages());
+                        onjQueryLoaded();
                     }
                 };
                 theWindow.document.getElementsByTagName("head")[0].appendChild(script);
             } else {
-                viewGenerator.showImages(jDocParser.getImages());
                 onjQueryLoaded();
             }
         }
@@ -157,33 +133,32 @@
         return {
             init: function () {
 
-                //check if jquery is in place
-                // check prior inclusion and version
-                if (theWindow.jQuery === undefined || theWindow.jQuery.fn.jquery < theOptions.jQueryMinVersion) {
-                    //jQuery is not available
-                    //load it
-
-                    var done = false;
-
-                    var script = theWindow.document.createElement("script");
-                    script.src = "http://ajax.googleapis.com/ajax/libs/jquery/" + theOptions.jQueryDesiredVersion + "/jquery.min.js";
-                    script.onload = script.onreadystatechange = function () {
-                        if (!done && (!this.readyState || this.readyState == "loaded" || this.readyState == "complete")) {
-                            done = true;
-                            viewGenerator.showImages(jDocParser.getImages());
-                        }
-                    };
-
-                    theWindow.document.getElementsByTagName("head")[0].appendChild(script);
-                } else {
-                    viewGenerator.showImages(jDocParser.getImages());
+                if (theWindow.location.hostname.match("cliqflip")) {
+                    alert("Awesome! Your bookmarklet is working.");
+                    return;
                 }
+
+                loadjQuery(function () {
+                    var images = jDocParser.getImages();
+                    createMainContainer();
+                    var i;
+                    var numOfImages = images.length;
+                    for (i = 0; i < numOfImages; i++) {
+                        var imageUrl = images[i];
+                        createImageStructure(imageUrl).appendTo(contentContainer);
+                    }
+                });
+
+            },
+            closeBookmarklet: function () {
+                mainContainer.remove();
             }
         }
-    } (); // execute the function so it creates the bookmarklet object
+    } ();
 
     //only open the bookmarklet if it's not open already
     if (!theWindow.hasAnOpenBookmarklet) {
+
         bookmarklet.init();
         theWindow.hasAnOpenBookmarklet = true;
     }
