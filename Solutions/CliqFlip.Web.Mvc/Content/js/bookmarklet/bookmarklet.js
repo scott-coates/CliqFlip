@@ -1,12 +1,10 @@
 ﻿
 (function (theWindow, theOptions) {
 
-    // jDocParser is an object to process the document current being displayed in the window
+    // mediaFinder will process the document current being displayed in the window
     // It uses jQuery to retrieve items from the DOM and then it remove images that are too small
     // In the future this object should also take care of videos.
     var mediaFinder = function () {
-        //privates
-        //working window
         var minSize = theOptions.minSize;
         return {
             //public
