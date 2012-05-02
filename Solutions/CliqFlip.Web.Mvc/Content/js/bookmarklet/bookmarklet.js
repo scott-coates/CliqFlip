@@ -1,8 +1,8 @@
 ﻿
 (function (theWindow, theOptions) {
 
-    // mediaFinder will process the document current being displayed in the window
-    // It uses jQuery to retrieve items from the DOM and then it remove images that are too small
+    // mediaFinder will look at the document in the window
+    // It uses jQuery to retrieve images from the page and then it remove images that are too small
     // In the future this object should also take care of videos.
     var mediaFinder = function () {
         var minSize = theOptions.minSize;
