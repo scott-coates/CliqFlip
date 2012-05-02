@@ -23,6 +23,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 
 		void SaveProfileImage(User user, FileStreamDto profileImage);
 		void SaveInterestImage(User user, FileStreamDto profileImage, int userInterestId, string description);
+		void SaveInterestImage(User user, int userInterestId, string description, string imageUrl);
 		void SaveInterestVideo(User user, int userInterestId, string videoUrl);
 		void SaveInterestWebPage(User user, int userInterestId, string linkUrl);
 		void SaveWebsite(User user, string siteUrl);

@@ -217,6 +217,37 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return RedirectToAction("Index");
 		}
 
+
+		[Authorize]
+		[HttpPost]
+		[Transaction]
+		public ActionResult SaveInterestMediumFromUrl(UserSaveInterestMediumFromUrlViewModel  saveInterestMediumFromUrlViewModel)
+		{
+			User user = _userTasks.GetUser(_principal.Identity.Name);
+
+			if (ModelState.IsValid)
+			{
+				try
+				{
+					_userTasks.SaveInterestImage(user, saveInterestMediumFromUrlViewModel.UserInterestId, saveInterestMediumFromUrlViewModel.MediumDescription, saveInterestMediumFromUrlViewModel.MediumUrl);
+				}
+				catch (RulesException e)
+				{
+					//TODO: Implement PRG pattern for post forms
+					//TODO: Log These exceptions in elmah
+					e.AddModelStateErrors(ModelState);
+					RouteData.Values["action"] = "Interests";
+					return Interests(_principal.Identity.Name);
+				}
+				return RedirectToAction("Interests");
+			}
+			else
+			{
+				RouteData.Values["action"] = "Interests";
+				return Interests(_principal.Identity.Name);
+			}
+		}
+
 		[Authorize]
 		[HttpPost]
 		[Transaction]
@@ -315,22 +346,22 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 		[Authorize]
 		[Transaction]
-		public ActionResult MakeInterestImageDefault(int imageId)
+		public ActionResult MakeInterestMediumDefault(int mediumId)
 		{
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 
-			user.MakeInterestMediumDefault(imageId);
+			user.MakeInterestMediumDefault(mediumId);
 
 			return RedirectToAction("Interests");
 		}
 
 		[Authorize]
 		[Transaction]
-		public ActionResult RemoveImage(int imageId)
+		public ActionResult RemoveMedium(int mediumId)
 		{
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 
-			_userTasks.RemoveMedium(user, imageId);
+			_userTasks.RemoveMedium(user, mediumId);
 
 			return RedirectToAction("Interests");
 		}
@@ -485,8 +516,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 		public ActionResult Interests(string username)
 		{
 			UserInterestsViewModel user = _userProfileQuery.GetUserIntersets(username, _principal);
-			user.MakeDefaultUrl = "\"" + Url.Action("MakeInterestImageDefault", "User") + "\"";
-			user.RemoveImageUrl = "\"" + Url.Action("RemoveImage", "User") + "\"";
+			user.MakeDefaultUrl = "\"" + Url.Action("MakeInterestMediumDefault", "User") + "\"";
+			user.RemoveImageUrl = "\"" + Url.Action("RemoveMedium", "User") + "\"";
 
 			return View(user);
 		}

@@ -2010,3 +2010,14 @@ div.conversation-reply input
 {
     color: Black;
 }
+
+
+/*========================*/
+/*===  Bookmarklet & Popup
+/*========================*/
+.bookmark-image {
+	max-width:150px;	
+}
+.bookmark-description {
+	width:300px;
+}

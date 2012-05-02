@@ -168,6 +168,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InterestController.cs" />
+    <Compile Include="Controllers\PopupController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Extensions\Exceptions\RulesExceptionExtensions.cs" />
@@ -194,9 +195,11 @@
     <Compile Include="ViewModels\Email\NewConversationViewModel.cs" />
     <Compile Include="ViewModels\Jeip\JeipSaveResponseViewModel.cs" />
     <Compile Include="ViewModels\Jeip\JeipSaveTextViewModel.cs" />
+    <Compile Include="ViewModels\Popup\BookmarkMediumViewModel.cs" />
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
     <Compile Include="ViewModels\Search\InterestSearchViewModel.cs" />
     <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
+    <Compile Include="ViewModels\User\UserSaveInterestMediumFromUrlViewModel.cs" />
     <Compile Include="ViewModels\User\UserSaveInterestWebPageViewModel.cs" />
     <Compile Include="ViewModels\User\UserSaveInterestVideoViewModel.cs" />
     <Compile Include="ViewModels\User\ThankYouViewModel.cs" />
@@ -718,6 +721,8 @@
     <Content Include="Views\User\DisplayTemplates\Video.cshtml" />
     <Content Include="Views\User\DisplayTemplates\WebPage.cshtml" />
     <Content Include="Views\User\DisplayTemplates\WebPageNoImage.cshtml" />
+    <Content Include="Views\Popup\BookmarkMedium.cshtml" />
+    <Content Include="Views\Popup\_Layout.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
