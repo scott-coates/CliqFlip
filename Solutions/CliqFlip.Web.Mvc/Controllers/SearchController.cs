@@ -59,6 +59,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return retVal;
 		}
 
+		[OutputCache(Duration = Int32.MaxValue)]
 		[Transaction]
 		[ChildActionOnly]
 		[AllowAnonymous]

@@ -23,8 +23,7 @@ namespace CliqFlip.Web.Mvc.Controllers
         //
         // cache this as long as possible
         // the list most likely wont change frequently
-        // TODO: Enable output cache once we have our final list of interests
-        //[OutputCache(Duration=Int32.MaxValue)]
+		[OutputCache(Duration = Int32.MaxValue)]
         [AllowAnonymous]
         public ActionResult GetMainCategoryInterests()
         {
