@@ -54,6 +54,11 @@
 
         function createMainContainer() {
             var minZIndex = getTopZIndex() + 1;
+            
+            //create the main container for bookmarklet
+            mainContainer = jQuery("<div></div>")
+                                .appendTo("body");
+            //add some styles
             jQuery("<style type='text/css'>" +
                     "#bookmarklet_closer:hover{ background-color: #046491; }" +
                     "#bookmarklet_closer{ background-color: #24282D; width: 100%; height: 35px; line-height: 35px; text-align: center; position: fixed; top: 0; left: 0; z-index: 1000; display:block; }" +
@@ -63,17 +68,18 @@
                     "#bookmarklet-content-container {width: 80%;height: 80%;background-color: white;position: fixed;top: 15%;left: 10%;z-index: 1000;overflow-y: scroll;z-index:" + minZIndex + "}" +
                     "#bookmarklet-content-container img {max-height: 100%;max-width: 100%;margin: 0 auto;display: block;}" +
                     "#bookmarklet_closer{ color: white; }"
-                + "</style>").appendTo("body");
-
-            //create the main container for bookmarklet
-            mainContainer = jQuery("<div></div>")
-                                .appendTo("body");
+                + "</style>").appendTo(mainContainer);
 
             //create the background. Since we will give the background an opacity, we can't place elements inside of it.
             //If we do, all the child elements will also have an opacity and it can't be removed or overwriten.
             //so make an empty div that stretches the whole screen
             background = jQuery("<div id='bookmarklet-background'></div>")
                                 .appendTo(mainContainer);
+
+            //youtube videos don't play nice with the z-index
+            //the youtube video will always show on top
+            //to overcome this put in iframe that stretches the whole bg
+            jQuery("<iframe allowtransparency='true' width='100%' height='100%' />").appendTo(background);
 
             //create the container that will hold all the elements
             contentContainer = jQuery("<div id='bookmarklet-content-container'></div>")
@@ -87,10 +93,6 @@
                                     theWindow.hasAnOpenBookmarklet = false;
                                 });
 
-            //youtube videos don't play nice with the z-index
-            //the youtube video will always show on top
-            //to overcome this put in iframe that stretches the whole bg
-            jQuery("<iframe allowtransparency='true' width='100%' height='100%' />").appendTo(background);
         }
 
         function createImageStructure(url) {
