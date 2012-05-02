@@ -26,11 +26,9 @@
         }
     } ();
 
-    //I want this plug in to be developed using OO practices.
-    //I'm experimenting with OO javascript and closures.
 
-    //we need a bookmarklet object
-    //that will serve as the main entry point for the mini-application
+
+
     var bookmarklet = function () {
         var mainContainer, background, contentContainer, closer, highestZIndex;
 
