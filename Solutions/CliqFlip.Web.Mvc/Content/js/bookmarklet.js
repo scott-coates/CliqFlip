@@ -4,7 +4,7 @@
     // jDocParser is an object to process the document current being displayed in the window
     // It uses jQuery to retrieve items from the DOM and then it remove images that are too small
     // In the future this object should also take care of videos.
-    var jDocParser = function () {
+    var mediaFinder = function () {
         //privates
         //working window
         var minSize = theOptions.minSize;
@@ -135,13 +135,15 @@
 
                 if (theWindow.location.hostname.match("cliqflip")) {
                     alert("Awesome! Your bookmarklet is working.");
+                    theWindow.hasAnOpenBookmarklet = false;
                     return;
                 }
 
                 loadjQuery(function () {
+                    theWindow.hasAnOpenBookmarklet = true;
                     createMainContainer();
                     var i,
-                        images = jDocParser.getImages(),
+                        images = mediaFinder.getImages(),
                         numOfImages = images.length;
 
                     for (i = 0; i < numOfImages; i++) {
@@ -155,9 +157,7 @@
 
     //only open the bookmarklet if it's not open already
     if (!theWindow.hasAnOpenBookmarklet) {
-
         bookmarklet.init();
-        theWindow.hasAnOpenBookmarklet = true;
     }
 
 })(window, {
@@ -165,6 +165,5 @@
     jQueryMinVersion: "1.3.2",
     jQueryDesiredVersion: "1.7.1",
     thumbnailSize: 200,
-    endpoint: "http://localhost:51949/popup/bookmarkmedium",
-    name: "bookmarklet_" + (new Date()).getTime()
+    endpoint: "http://localhost:51949/popup/bookmarkmedium"
 });
