@@ -12,6 +12,11 @@ namespace CliqFlip.Web.Mvc.Extensions.Url
 			return helper.Content(AssemblyHelper.GeneratePath(fileName));
 		}
 
+		public static string ToPublicUrl(this UrlHelper urlHelper, string relativeUriString)
+		{
+			return ToPublicUrl(urlHelper, new Uri(urlHelper.RequestContext.HttpContext.Request.Url.GetLeftPart(UriPartial.Authority) + relativeUriString));
+		}
+
 		public static string ToPublicUrl(this UrlHelper urlHelper, Uri relativeUri)
 		{
 			//http://support.appharbor.com/kb/getting-started/workaround-for-generating-absolute-urls-without-port-number

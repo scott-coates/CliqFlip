@@ -1,9 +1,14 @@
 ﻿@{
-    ViewBag.Title = "Bookmarklet";
+	ViewBag.Title = "Bookmarklet";
+	string bookmarkletPath = Context.IsDebuggingEnabled
+								? Url.Content("~/Content/js/bookmarklet/bookmarklet.min.js")
+								: Url.Content("~/Content/js/bookmarklet/bookmarklet.js");
+
+	string publicPath = Url.ToPublicUrl(bookmarkletPath);
 }
 
 <h2>Bookmarklet</h2>
 
-<a href="javascript:void((function(){var e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://localhost:51949/Content/js/bookmarklet/bookmarklet.min.js?r='+Math.random()*99999999);document.body.appendChild(e)})());">
-    Share on CliqFlip
+<a href="javascript:void((function(){var e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','@publicPath?r='+Math.random()*99999999);document.body.appendChild(e)})());">
+	Share on CliqFlip
 </a>
