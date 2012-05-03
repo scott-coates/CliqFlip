@@ -14,11 +14,6 @@ namespace CliqFlip.Web.Mvc.Extensions.Url
 
 		public static string ToPublicUrl(this UrlHelper urlHelper, string relativeUriString)
 		{
-			return ToPublicUrl(urlHelper, new Uri(urlHelper.RequestContext.HttpContext.Request.Url.GetLeftPart(UriPartial.Authority) + relativeUriString));
-		}
-
-		public static string ToPublicUrl(this UrlHelper urlHelper, Uri relativeUri)
-		{
 			//http://support.appharbor.com/kb/getting-started/workaround-for-generating-absolute-urls-without-port-number
 			HttpContextBase httpContext = urlHelper.RequestContext.HttpContext;
 
@@ -35,7 +30,7 @@ namespace CliqFlip.Web.Mvc.Extensions.Url
 				uriBuilder.Port = httpContext.Request.Url.Port;
 			}
 
-			return new Uri(uriBuilder.Uri, relativeUri).AbsoluteUri;
+			return new Uri(uriBuilder.Uri, relativeUriString).AbsoluteUri;
 		}
 	}
 }
