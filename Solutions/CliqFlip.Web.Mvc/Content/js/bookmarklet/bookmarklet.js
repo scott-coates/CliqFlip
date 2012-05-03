@@ -95,7 +95,7 @@
 
 		function createImageStructure(url) {
 			var containerSize = theOptions.thumbnailSize;
-			var containerHtml = "<div class='share-item-container' style='text-align: center; float: left; width: " + containerSize + "px;height: " + containerSize + "px;background-color: white;margin: 10px;border: 1px solid;padding: 10px;position: relative;'>" +
+			var containerHtml = "<div class='share-item-container' style='cursor: pointer; text-align: center; float: left; width: " + containerSize + "px;height: " + containerSize + "px;background-color: white;margin: 10px;border: 1px solid;padding: 10px;position: relative;'>" +
                                     "<img src='" + url + "' />" +
                                     "<span>Share</span>" +
                                 "</div>";
