@@ -736,7 +736,7 @@ margin-bottom:5px; }
 .button.red:hover { background:#B52021;color:#fff; }
 /* Button icons */
 .button.icon {padding:5px 15px 5px 38px;position:relative;}
-.button.icon span.icon {position:absolute;top:5px;left:10px;width:25px;height:25px;background:url(../../img/skins/dark-yellow/button_icon.png) no-repeat left top;-webkit-transition: all .2s linear;-webkit-transition: all .2s linear;-moz-transition: all .2s linear;transition: all .2s linear;}
+.button.icon span.icon {position:absolute;top:5px;left:10px;width:25px;height:25px;background:url(../../img/button_icon.png) no-repeat left top;-webkit-transition: all .2s linear;-webkit-transition: all .2s linear;-moz-transition: all .2s linear;transition: all .2s linear;}
 .button.small.icon span.icon { position:absolute;top:2px;left:10px; }
 .button.big.icon span.icon { position:absolute;top:18px;left:10px; }
 .button.icon span.icon.right_arw{background-position:-25px -50px;}
