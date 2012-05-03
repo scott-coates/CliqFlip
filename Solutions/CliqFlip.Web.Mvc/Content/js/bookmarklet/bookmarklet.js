@@ -163,5 +163,5 @@
 	jQueryMinVersion: "1.3.2",
 	jQueryDesiredVersion: "1.7.1",
 	thumbnailSize: 200,
-	endpoint: "http://localhost:51949/popup/bookmarkmedium"
+	endpoint: window.cliqflipBookmarkPath
 });
