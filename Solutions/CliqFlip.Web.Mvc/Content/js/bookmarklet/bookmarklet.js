@@ -7,15 +7,15 @@
 	var mediaFinder = function () {
 		var minSize = theOptions.minSize;
 		return {
-		//public
-			getImages: function() {
+			//public
+			getImages: function () {
 				var imagesTags = jQuery("img");
 
-				var imgUrls = jQuery.grep(imagesTags, function(image, index) { //remove small images
+				var imgUrls = jQuery.grep(imagesTags, function (image, index) { //remove small images
 					//only images bigger than the min size and that have a src
 					//check the natural size of the image not the size on the screen
 					return image.naturalWidth >= minSize && image.naturalHeight >= minSize && image.src;
-				}).map(function(image, index) {
+				}).map(function (image, index) {
 					//this is the image tag
 					return image.src;
 				});
@@ -100,7 +100,8 @@
                                     "<span>Share</span>" +
                                 "</div>";
 			var div = jQuery(containerHtml).click(function () {
-				var imgSrc = jQuery(this).find("img")[0].src;
+				debugger;
+				var imgSrc = encodeURIComponent(jQuery(this).find("img")[0].src);
 				window.open(theOptions.endpoint + "?mediumurl=" + imgSrc, "CliqFlip Share", "status=no,resizable=yes,scrollbars=yes,personalbar=no,directories=no,location=no,toolbar=no,menubar=no,width=632,height=270,left=0,top=0");
 			});
 			return div;
@@ -154,6 +155,7 @@
 	} ();
 
 	//only open the bookmarklet if it's not open already
+	debugger;
 	if (!theWindow.hasAnOpenBookmarklet) {
 		bookmarklet.init();
 	}
