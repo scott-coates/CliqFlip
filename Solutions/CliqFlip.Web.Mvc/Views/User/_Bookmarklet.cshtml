@@ -1,0 +1,16 @@
+﻿@{
+	string bookmarkletPath = Context.IsDebuggingEnabled
+								? Url.Content("~/Content/js/bookmarklet/bookmarklet.min.js")
+								: Url.Content("~/Content/js/bookmarklet/bookmarklet.js");
+
+	string publicPath = Url.ToPublicUrl(bookmarkletPath);
+}
+<h2>Bookmarklet</h2>
+
+<a class="button small icon" 
+   href="javascript:void((function(){var e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','@publicPath?r='+Math.random()*99999999);document.body.appendChild(e)})());"
+   onclick="alert('Drag this to your Bookmarks Bar.');return false;">
+	<span class="icon right_arw"></span>
+	Share on CliqFlip
+</a>
+<span class="title">← Drag this to your Bookmarks Bar.</span>

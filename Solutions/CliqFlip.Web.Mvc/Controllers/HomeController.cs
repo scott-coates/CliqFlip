@@ -63,9 +63,5 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return View();
 		}
 
-        public ActionResult Bookmarklet()
-        {
-            return View();
-        }
 	}
 }
