@@ -102,7 +102,7 @@
 			var div = jQuery(containerHtml).click(function () {
 				debugger;
 				var imgSrc = encodeURIComponent(jQuery(this).find("img")[0].src);
-				window.open(theOptions.endpoint + "?mediumurl=" + imgSrc, "CliqFlip Share", "status=no,resizable=yes,scrollbars=yes,personalbar=no,directories=no,location=no,toolbar=no,menubar=no,width=632,height=270,left=0,top=0");
+				window.open(theOptions.endpoint + "?mediumurl=" + imgSrc, "CliqFlip Share", "status=no,resizable=yes,scrollbars=yes,personalbar=no,directories=no,location=no,toolbar=no,menubar=no,width=632,height=412,left=0,top=0");
 			});
 			return div;
 		}
