@@ -21,6 +21,7 @@ function InitUserCreate() {
 	
 	CreateFormWizard();
 	GenerateIndicators();
+	UpdateLocationRemoteValiation();
 }
 
 function GenerateIndicators() {
@@ -82,4 +83,23 @@ function OnStepShown(event, data) {
 
 	//mark the currently selected step
 	_steps.find("a[href='#" + data.currentStep + "']").addClass(_selectedCssClass).removeClass(_unselectedCssClass);
+}
+
+function UpdateLocationRemoteValiation() {
+    var validator = _formProfileCreate.data("validator");
+    var locationRemoteValidation = validator.settings.rules.Location.remote;
+
+    //the remote validation uses $.ajax to make it's request
+    //Add a callback so once it's complete, we can display the location
+    //the location will be in the header
+    locationRemoteValidation.complete = function (jqXHR) {
+        var span = $("#location-found");
+        if (jqXHR.responseText === "true") {
+            var location = jqXHR.getResponseHeader("location-found");
+            span.html(location);
+        }
+        else {
+            span.html("");
+        }
+    };
 }
