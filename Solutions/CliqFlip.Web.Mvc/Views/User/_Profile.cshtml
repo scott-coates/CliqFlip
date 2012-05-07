@@ -62,12 +62,16 @@
 
 <div class="post-info">
 	<div class="blogdate">
-		@{
-			string imagePath = string.IsNullOrWhiteSpace(Model.ProfileImageUrl)
-			                   	? @Url.Content("/Content/img/empty-avatar.jpg")
-			                   	: Model.ProfileImageUrl;
+		@if (string.IsNullOrWhiteSpace(Model.ProfileImageUrl))
+		{
+			<img class="profile-image" alt="@Model.Username profile image" src="@Url.Content("/Content/img/empty-avatar.jpg")"/>
 		}
-		<img class="profile-image" alt="@Model.Username profile image" src="@imagePath"/>
+		else
+		{
+			<a id="profile-image-container" rel="profile-photo" title="@Model.Username profile image" href="@Model.FullProfileImageUrl">
+				<img class="profile-image" alt="@Model.Username profile image" src="@Model.ProfileImageUrl"/>
+			</a>
+		}
 	</div>
 	<div class="category">
 		<ul>
@@ -112,6 +116,13 @@
 				e.preventDefault();
 				sendMessageDialog.dialog("open");
 			});
+			
+			@{
+				if(!string.IsNullOrWhiteSpace(Model.ProfileImageUrl))
+				{
+					@:$("#profile-image-container").colorbox();
+				}
+			}
 		});
 
 		function StartConversationSuccess(response, request) {
