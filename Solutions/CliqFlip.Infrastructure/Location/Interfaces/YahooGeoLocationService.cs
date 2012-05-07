@@ -15,7 +15,6 @@ namespace CliqFlip.Infrastructure.Location.Interfaces
 {
 	public class YahooGeoLocationService : ILocationService
 	{
-		private const string _addressFormat = "{0}, {1}, {2}, {3}";
 		private const string _mapApiUrl = "http://where.yahooapis.com/geocode?q={0}&appid={1}";
 		private static readonly string _appId;
 		private readonly IRepository<MajorLocation> _majorLocationRepo;
@@ -32,14 +31,15 @@ namespace CliqFlip.Infrastructure.Location.Interfaces
 
 		#region ILocationService Members
 
-		public LocationData GetLocation(string street = null, string city = null, string state = null, string zip = null)
+		public LocationData GetLocation(string input)
 		{
+			if (input == null) throw new ArgumentNullException("input");
+
 			//TODO: Use the RestSharp library and strongly typed classes
 			//TODO: Or use nuget packages for geo - like NGeo
 			string xmlResult;
 
-			string address = string.Format(_addressFormat, street, city, state, zip);
-			string yahooLocationRequest = String.Format(_mapApiUrl, HttpUtility.UrlEncode(address), _appId);
+			string yahooLocationRequest = String.Format(_mapApiUrl, HttpUtility.UrlEncode(input), _appId);
 
 			using (var wc = new WebClient())
 			{
@@ -54,25 +54,6 @@ namespace CliqFlip.Infrastructure.Location.Interfaces
 			}
 
 			return ParseLocationData(xmlResult);
-		}
-
-		public LocationData GetLocation(string zip)
-		{
-			var retVal = GetLocation(null, null, null, zip);
-
-			zip = NormalizeZip(zip);
-
-			if(zip != retVal.ZipCode)
-			{
-				throw new LocationException(zip + " is not a valid zip");
-			}
-
-			return retVal;
-		}
-
-		private string NormalizeZip(string zip)
-		{
-			return zip.ToUpperInvariant();
 		}
 
 		public LocationData ParseLocationData(string locationData)

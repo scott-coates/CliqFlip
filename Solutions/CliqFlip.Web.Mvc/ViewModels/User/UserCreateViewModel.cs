@@ -23,7 +23,6 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 
 		[Required(ErrorMessage = "Please provide your zip code")]
 		[Display(Name = "Zip Code:")]
-		[Remote("ZipCode","Validation","Admin")]
 		public string ZipCode { get; set; }
 
 		[Required(ErrorMessage = "Please provide an email address.")]
