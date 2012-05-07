@@ -31,13 +31,13 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
             _userTasks = userTasks;
 		}
 
-		public ActionResult ZipCode(string zipCode)
+		public ActionResult Location(string location)
 		{
 			object result = true;
 
 			try
 			{
-				_httpContextProvider.Session[Constants.LOCATION_SESSION_KEY] = _locationService.GetLocation(zipCode);
+				_httpContextProvider.Session[Constants.LOCATION_SESSION_KEY] = _locationService.GetLocation(location);
 			}
 			catch (LocationException e)
 			{
