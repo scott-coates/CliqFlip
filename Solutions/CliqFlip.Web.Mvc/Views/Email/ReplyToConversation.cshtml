@@ -5,4 +5,4 @@
 
 <h2>@Model.FromUsername has replied to you!</h2>
 
-<p>The message can be found at @Url.Action("Inbox", "User", new { username = Model.ToUsername }, "http")</p>
+<p>The message can be found at @Url.ToPublicUrl(Url.Action("Inbox", "User", new { username = Model.ToUsername }))</p>

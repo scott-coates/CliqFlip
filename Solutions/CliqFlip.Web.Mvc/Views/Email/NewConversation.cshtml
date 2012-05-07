@@ -5,4 +5,4 @@
 <h2>@Model.FromUsername would like to talk to you!</h2>
 <p>@Model.FromUsername sent you a message on CliqFlip!</p>
 <p>
-	The message can be found at @Url.Action("Inbox", "User", new { username = Model.ToUsername }, "http")</p>
+	The message can be found at @Url.ToPublicUrl(Url.Action("Inbox", "User", new { username = Model.ToUsername }))</p>
