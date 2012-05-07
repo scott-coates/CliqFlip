@@ -58,7 +58,9 @@ function CreateFormWizard() {
 	};
 
 	_formProfileCreate.formwizard(formWizardOptions).bind("step_shown", OnStepShown);
-	_formProfileCreate.data('validator').settings.submitHandler = function(form) {
+	var settings = _formProfileCreate.data('validator').settings;
+	settings.onkeyup = false;
+	settings.submitHandler = function(form) {
 		var userInterests = $(".userInterestValue", $(form));
 		if (userInterests.length > 0) {
 			form.submit();

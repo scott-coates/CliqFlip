@@ -1601,6 +1601,7 @@ span.video-indicator
 		#userInterestEmptyError { display: none; }
         
         .field-validation-error { color: Red; }
+        .valid { color: Green; }
 
 		.button.dark-blue { background-color: #24282D; }
 
