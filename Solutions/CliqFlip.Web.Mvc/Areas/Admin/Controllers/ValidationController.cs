@@ -38,6 +38,12 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 			try
 			{
                 var loc = _locationService.GetLocation(location);
+
+				if (string.IsNullOrWhiteSpace(loc.City))
+				{
+					throw new LocationException("The city is required");
+				}
+
                 _httpContextProvider.Session[Constants.LOCATION_SESSION_KEY] = loc;
                 
                 //the response from the request must true. we can't change the response.
