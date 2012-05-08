@@ -70,25 +70,8 @@ function CreateAutoComplete() {
             var addToList = true;
 
             //make a call to the Interest search
-            //If the item the user has typed does not have an exact match
-            //it should add it to the end of the list by pushing a new json object into the Interest array
             //Then let autocomplete do it's thing
             $.getJSON("/Search/Interest?input=" + term, function (data) {
-
-                //if the item the user is searching for is in the list
-                //it should not be added at the end
-                for (var counter = 0; counter < data.length; counter++) {
-                    if (data[counter].Name.toLowerCase() == term.toLowerCase()) {
-                        addToList = false;
-                    }
-                }
-
-                if (addToList) {
-                    data.push({
-                        Name: term,
-                        Id: 0
-                    });
-                }
                 response(data);
             });
         },
@@ -98,7 +81,6 @@ function CreateAutoComplete() {
             return false;
         },
         focus: function (event, ui) {
-            this.value = ui.item.Name;
             return false;
         },
         autoFocus: true //select the first element on the list
