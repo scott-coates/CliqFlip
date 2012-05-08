@@ -33,6 +33,8 @@ namespace CliqFlip.Infrastructure.Location.Interfaces
 
 		public LocationData GetLocation(string input)
 		{
+			LocationData retVal;
+
 			if (input == null) throw new ArgumentNullException("input");
 
 			//TODO: Use the RestSharp library and strongly typed classes
@@ -53,7 +55,15 @@ namespace CliqFlip.Infrastructure.Location.Interfaces
 				}
 			}
 
-			return ParseLocationData(xmlResult);
+
+			retVal = ParseLocationData(xmlResult);
+
+			if(string.IsNullOrWhiteSpace(retVal.City))
+			{
+				throw new LocationException("The city is required");
+			}
+
+			return retVal;
 		}
 
 		public LocationData ParseLocationData(string locationData)
