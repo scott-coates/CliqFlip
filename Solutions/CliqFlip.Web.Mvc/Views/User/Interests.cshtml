@@ -101,8 +101,8 @@
 @section beforeBodyClose
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.tmpl.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/user/interests.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/user/add-interest.js")"> </script>
+	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/user/interests.js")"> </script>
+	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/user/add-interest.js")"> </script>
 	<script type="text/javascript">
 		$(function() {
 			InitInterests(@(Model.AuthenticatedProfileOwner.ToString(CultureInfo.InvariantCulture).ToLower()));

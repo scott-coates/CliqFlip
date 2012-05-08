@@ -167,6 +167,7 @@ namespace CliqFlip.Web.Mvc.Queries
 			if (user.ProfileImage != null)
 			{
 				retVal.ProfileImageUrl = user.ProfileImage.ImageData.MediumFileName;
+				retVal.FullProfileImageUrl = user.ProfileImage.ImageData.FullFileName;
 			}
 		}
 	}
