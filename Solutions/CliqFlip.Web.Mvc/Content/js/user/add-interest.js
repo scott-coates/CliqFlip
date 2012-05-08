@@ -88,6 +88,9 @@ function CreateAutoComplete() {
         return $("<li></li>").data("item.autocomplete", item).append("<a>" + item.Name + "</a>").appendTo(ul);
     };
 
+    //delete the blur event for the autosuggest menu
+    delete _interestTextBox.data("autocomplete").menu.options.blur;
+
 	//whenever the link 'a.remove-interest' is clicked
 	//it should remove the interest from the list of added interests
 	_interestsList.on("click", "a.remove-interest", function(event) {
