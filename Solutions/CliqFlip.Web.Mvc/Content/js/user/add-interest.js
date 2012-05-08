@@ -88,7 +88,8 @@ function CreateAutoComplete() {
         return $("<li></li>").data("item.autocomplete", item).append("<a>" + item.Name + "</a>").appendTo(ul);
     };
 
-    //delete the blur event for the autosuggest menu
+    //a blur event is added to autosuggest in jquery ui but it causes letters to be cutoff in the textbox so
+    //delete the blur event for the autosuggest menu.
     delete _interestTextBox.data("autocomplete").menu.options.blur;
 
 	//whenever the link 'a.remove-interest' is clicked
