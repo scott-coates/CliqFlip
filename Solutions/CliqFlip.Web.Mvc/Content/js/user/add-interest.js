@@ -44,6 +44,13 @@ function InitAddInterest() {
 function SetupKeys() {
     _interestTextBox.keydown(function (event) {
         var autoComplete = _interestTextBox.data("autocomplete");
+
+        // ENTER key pressed
+        if (event.keyCode == 13 && $.trim(_interestTextBox.val()).length > 0) {
+			event.stopPropagation();
+			return false;
+		}
+
         // ',' key pressed
         if (event.keyCode == 188 && $.trim(_interestTextBox.val()).length > 0) {
             //when ',' is typed into the search box
