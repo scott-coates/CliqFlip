@@ -89,7 +89,8 @@ function CreateAutoComplete() {
     };
 
     //a blur event is added to autosuggest in jquery ui but it causes letters to be cutoff in the textbox so
-    //delete the blur event for the autosuggest menu.
+       //delete the blur event for the autosuggest menu.
+       //#5349 - http://bugs.jqueryui.com/ticket/5349
     delete _interestTextBox.data("autocomplete").menu.options.blur;
 
 	//whenever the link 'a.remove-interest' is clicked
