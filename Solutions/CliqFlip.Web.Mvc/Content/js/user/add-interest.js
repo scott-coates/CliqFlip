@@ -62,35 +62,31 @@ function SetupKeys() {
 }
 
 function CreateAutoComplete() {
-	_interestTextBox.autocomplete({
-		source: function (request, response) {
-			// delegate back to autocomplete, but extract the last term
-			var term = request.term;
+    _interestTextBox.autocomplete({
+        source: function (request, response) {
+            // delegate back to autocomplete, but extract the last term
+            var term = request.term;
 
-			var addToList = true;
+            var addToList = true;
 
-			//make a call to the Interest search
-			//Then let autocomplete do it's thing
-			$.getJSON("/Search/Interest?input=" + term, function (data) {
-				response(data);
-			});
-		},
-		select: function (event, ui) {
-			OnInterestAdded(ui.item);
-			this.value = "";
-			return false;
-		},
-		focus: function (event, ui) {
-			if (event.preventDefault) event.preventDefault();
-			if (event.stopPropagation) event.stopPropagation();
-
-			ui.item.Name = _interestTextBox.val();
-			return false;
-		},
-		autoFocus: true //select the first element on the list
-	}).data("autocomplete")._renderItem = function (ul, item) {
-		return $("<li></li>").data("item.autocomplete", item).append("<a>" + item.Name + "</a>").appendTo(ul);
-	};
+            //make a call to the Interest search
+            //Then let autocomplete do it's thing
+            $.getJSON("/Search/Interest?input=" + term, function (data) {
+                response(data);
+            });
+        },
+        select: function (event, ui) {
+            OnInterestAdded(ui.item);
+            this.value = "";
+            return false;
+        },
+        focus: function (event, ui) {
+            return false;
+        },
+        autoFocus: true //select the first element on the list
+    }).data("autocomplete")._renderItem = function (ul, item) {
+        return $("<li></li>").data("item.autocomplete", item).append("<a>" + item.Name + "</a>").appendTo(ul);
+    };
 
 	//whenever the link 'a.remove-interest' is clicked
 	//it should remove the interest from the list of added interests
