@@ -37,7 +37,12 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 
 			try
 			{
-				_httpContextProvider.Session[Constants.LOCATION_SESSION_KEY] = _locationService.GetLocation(location);
+                var loc = _locationService.GetLocation(location);
+                _httpContextProvider.Session[Constants.LOCATION_SESSION_KEY] = loc;
+                
+                //the response from the request must true. we can't change the response.
+                //send back the location as a header value and leave the response alone
+                _httpContextProvider.Response.AddHeader("location-found", loc.City + " " + loc.County + " " + loc.RegionName  + " " + loc.CountryName);
 			}
 			catch (LocationException e)
 			{
