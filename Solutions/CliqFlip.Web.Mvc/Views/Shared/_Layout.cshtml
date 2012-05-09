@@ -159,7 +159,12 @@
 		<p>
 			(Big Boy Terms of Service coming soon but this will be the gist of it.)</p>
 	</div>
-
+	 <div id="notification" class="sticky hide">
+        <p>
+            This is a sample notification!</p>
+        <a class="close" href="javascript:void(0);">
+            <img src="@Url.Content("/Content/img/icon-close.png")" /></a>
+    </div>
 		<!-- Scripts -->
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"> </script>
 		<script type="text/javascript" src="@Url.Content("/Content/js/colorbox/jquery.colorbox-min.js")"> </script>
@@ -169,12 +174,14 @@
 		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.unobtrusive-ajax.min.js")"> </script>
 		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.js")"> </script>
 		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.unobtrusive.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.notify.js")"> </script>
 		<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/cliqflip/login.js")"> </script>
 		<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/cliqflip/tos.js")"> </script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				InitLogin();
 				InitTOS();
+				$('#notification').notify();
 			});
 		</script>
 		@RenderSection("beforeBodyClose", false)

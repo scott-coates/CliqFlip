@@ -284,6 +284,7 @@
     <Content Include="Content\img\ClipFliq-LogoMoto.png" />
     <Content Include="Content\img\feedback.png" />
     <Content Include="Content\img\firefox.png" />
+    <Content Include="Content\img\icon-close.png" />
     <Content Include="Content\img\Icons.png" />
     <Content Include="Content\img\ie.png" />
     <Content Include="Content\img\inbox.png" />
@@ -304,6 +305,7 @@
     <Content Include="Content\js\cliqFlip\error-handler.js" />
     <Content Include="Content\js\jquery.dotdotdot-1.2.1.js" />
     <Content Include="Content\js\jquery.zrssfeed.min.js" />
+    <Content Include="Content\js\jquery.notify.js" />
     <Content Include="Content\js\search\index.js" />
     <Content Include="Content\js\user\add-interest.js" />
     <Content Include="Content\js\user\thank-you.js" />
