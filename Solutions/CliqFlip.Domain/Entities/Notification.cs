@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using SharpArch.Domain.DomainModel;
 
 namespace CliqFlip.Domain.Entities

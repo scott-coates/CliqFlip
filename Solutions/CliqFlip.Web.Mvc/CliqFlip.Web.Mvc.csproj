@@ -63,6 +63,9 @@
     <Reference Include="Elmah">
       <HintPath>..\..\Packages\elmah.corelibrary.1.2.1\lib\Elmah.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\Packages\EntityFramework.4.1.10715.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\Packages\FluentNHibernate.1.2.0.712\lib\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -112,6 +115,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -160,9 +164,12 @@
     </Compile>
     <Compile Include="App_Start\MagicalUnicornCustomErrorHandling.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\NotificationController.cs" />
     <Compile Include="Areas\Admin\Controllers\ValidationController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoggingController.cs" />
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
+    <Compile Include="Areas\Admin\Models\CliqFlipWebMvcContext.cs" />
+    <Compile Include="Areas\Admin\Models\NotificationRepository.cs" />
     <Compile Include="Areas\Admin\ViewModels\Test\SimpleSendEmailViewModel.cs" />
     <Compile Include="CastleWindsor\ComponentRegistrar.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -687,6 +694,12 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\Admin\Views\Test\ParsePage.cshtml" />
+    <Content Include="Areas\Admin\Views\Notification\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Notification\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Notification\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Notification\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Notification\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Notification\_CreateOrEdit.cshtml" />
     <None Include="Content\img\patterns\Thumbs.db" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />

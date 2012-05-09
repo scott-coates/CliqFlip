@@ -11,5 +11,9 @@ namespace CliqFlip.Domain.Contracts.Tasks
 	public interface  INotificationTasks
 	{
 		Notification GetMostRecentNotification();
+		IList<Notification> GetAll();
+		Notification Get(int id);
+		void Save(Notification notification);
+		void Delete(Notification notification);
 	}
 }
