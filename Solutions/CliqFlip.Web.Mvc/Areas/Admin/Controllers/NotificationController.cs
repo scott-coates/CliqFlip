@@ -6,10 +6,13 @@ using System.Web.Mvc;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Web.Mvc.Areas.Admin.Models;
+using CliqFlip.Web.Mvc.Security.Attributes;
 using SharpArch.NHibernate.Web.Mvc;
 
 namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
-{   
+{
+	[FormsAuthReadUserData(Order = 0)]
+	[Authorize(Roles = "Administrator,Management", Order = 1)]
     public class NotificationController : Controller
     {
     	private readonly INotificationTasks _notificationTasks;
