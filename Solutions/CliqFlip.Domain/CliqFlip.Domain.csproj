@@ -85,6 +85,7 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Contracts\Tasks\INotificationTasks.cs" />
     <Compile Include="Contracts\Tasks\IInterestTasks.cs" />
     <Compile Include="Dtos\FileStreamDto.cs" />
     <Compile Include="Dtos\ImageFilenamesDto.cs" />
