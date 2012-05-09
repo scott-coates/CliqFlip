@@ -1,0 +1,14 @@
+﻿@model CliqFlip.Web.Mvc.ViewModels.Notification.LatestNotificationViewModel
+@if (Model != null)
+{
+	<div id="notification" class="sticky hide">
+		<p>
+			@Model.Message</p>
+		<a class="close" href="javascript:void(0);">
+			<img src="@Url.Content("/Content/img/icon-close.png")" /></a>
+	</div>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.notify.js")"> </script>
+	<script type="text/javascript" language="javascript">
+		$('#notification').notify();
+	</script>
+}

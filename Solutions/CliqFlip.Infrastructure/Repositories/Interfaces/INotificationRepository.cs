@@ -8,6 +8,6 @@ namespace CliqFlip.Infrastructure.Repositories.Interfaces
 {
 	public interface INotificationRepository : IRepository<Notification>
 	{
-
+		Notification GetMostRecentNotification();
 	}
 }

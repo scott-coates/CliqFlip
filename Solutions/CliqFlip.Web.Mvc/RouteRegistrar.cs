@@ -22,7 +22,7 @@ namespace CliqFlip.Web.Mvc
 			routes.MapRoute(
 				"Users",
 				"Users/{username}/{action}",
-				new {controller = "User", action = "Index"});
+				new { controller = "User", action = "Index" });
 
 			routes.MapRoute(
 				"Login",
@@ -37,7 +37,8 @@ namespace CliqFlip.Web.Mvc
 			routes.MapRoute(
 				"Default", // Route name
 				"{controller}/{action}/{id}", // URL with parameters
-				new {controller = "Home", action = "Index", id = UrlParameter.Optional}); // Parameter defaults
+				new { controller = "Home", action = "Index", id = UrlParameter.Optional }, 
+				new[] { "CliqFlip.Web.Mvc.Controllers" }); // Parameter defaults
 		}
 	}
 }

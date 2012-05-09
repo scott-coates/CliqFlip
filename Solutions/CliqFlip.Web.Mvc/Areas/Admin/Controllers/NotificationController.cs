@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Entities;
-using CliqFlip.Web.Mvc.Areas.Admin.Models;
 using CliqFlip.Web.Mvc.Security.Attributes;
 using SharpArch.NHibernate.Web.Mvc;
 
@@ -43,8 +42,9 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
         // GET: /Notifications/Create
 
 		public ActionResult Create()
-        {
-            return View();
+		{
+			var notification = new Notification {CreateDate = DateTime.UtcNow};
+            return View(notification);
         } 
 
         //

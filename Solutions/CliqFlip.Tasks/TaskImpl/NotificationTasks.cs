@@ -16,7 +16,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public Notification GetMostRecentNotification()
 		{
-			throw new System.NotImplementedException();
+			return _notificationRepository.GetMostRecentNotification();
 		}
 
 		public IList<Notification> GetAll()
