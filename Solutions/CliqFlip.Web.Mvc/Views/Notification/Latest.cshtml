@@ -9,7 +9,7 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.notify.js")"> </script>
 	<script type="text/javascript" language="javascript">
 		function persist() {
-			$.cookie("@Model.NotificationCookie", "@Model.Id", { expires: 365 });
+			$.cookie("@Model.NotificationCookie", "@Model.Id", { expires: 365, path:"/" });
 		}
 
 		var notification = $('#notification').notify({ onClose: persist });
