@@ -16,5 +16,6 @@ namespace CliqFlip.Domain.Common
 		public const string YAHOO_APP_ID = "YahooAppId";
 		public const string LOCATION_SESSION_KEY = "LocationSessionKey";
 		public const string ROUTE_LANDING_PAGE = "User Landing Page";
+		public const string NOTIFICATION_COOKIE = "NotificationCookie";
 	}
 }

@@ -2,13 +2,21 @@
 @if (Model != null)
 {
 	<div id="notification" class="sticky hide">
-		<p>
-			@Model.Message</p>
+		<p>@Html.Raw(Model.Message)</p>
 		<a class="close" href="javascript:void(0);">
 			<img src="@Url.Content("/Content/img/icon-close.png")" /></a>
 	</div>
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.notify.js")"> </script>
 	<script type="text/javascript" language="javascript">
-		$('#notification').notify();
+		function persist() {
+			$.cookie("@Model.NotificationCookie", "@Model.Id", { expires: 365 });
+		}
+
+		var notification = $('#notification').notify({ onClose: persist });
+		$("a:not(.close)", notification)
+			.attr('target', '_blank')
+			.click(function (parameters) {
+				$("a.close").click();
+			});
 	</script>
 }

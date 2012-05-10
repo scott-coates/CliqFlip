@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
@@ -21,7 +22,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public IList<Notification> GetAll()
 		{
-			return _notificationRepository.GetAll();
+			return _notificationRepository.GetAll().OrderByDescending(x => x.CreateDate).ToList();
 		}
 
 		public Notification Get(int id)

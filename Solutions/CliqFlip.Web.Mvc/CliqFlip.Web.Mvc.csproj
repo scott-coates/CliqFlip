@@ -303,6 +303,7 @@
     <Content Include="Content\js\bookmarklet\bookmarklet.js" />
     <Content Include="Content\js\bookmarklet\bookmarklet.min.js" />
     <Content Include="Content\js\cliqFlip\tos.js" />
+    <Content Include="Content\js\jquery.cookie.js" />
     <Content Include="Content\js\jquery.dotdotdot-1.2.1.min.js" />
     <Content Include="Content\js\cliqFlip\error-handler.js" />
     <Content Include="Content\js\jquery.dotdotdot-1.2.1.js" />

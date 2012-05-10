@@ -1,7 +1,7 @@
 (function ($) {
 	$.fn.extend({
 		notify: function (options) {
-			var settings = $.extend({ type: 'sticky', speed: 500, onDemandButtonHeight: 35 }, options);
+			var settings = $.extend({ type: 'sticky', speed: 500, onDemandButtonHeight: 35, onClose: function () { } }, options);
 			return this.each(function () {
 				var wrapper = $(this);
 				var ondemandBtn = $('.ondemand-button');
@@ -17,20 +17,25 @@
 					ondemandBtn.stop(true, false).animate({ marginTop: 0 }, settings.speed);
 				}
 
+				function close() {
+						if (settings.type == 'ondemand') {
+							wrapper.stop(true, false).animate({ marginTop: h }, settings.speed, function () {
+								wrapper.removeClass('visible').addClass('hide');
+								ondemandBtn.stop(true, false).animate({ marginTop: 0 }, settings.speed);
+							});
+						}
+						else {
+							wrapper.stop(true, false).animate({ marginTop: h }, settings.speed, function () {
+								wrapper.removeClass('visible').addClass('hide');
+							});
+						}
+
+						options.onClose.call(this);
+				}
+
 				var closeBtn = $('.close', wrapper);
-				closeBtn.click(function () {
-					if (settings.type == 'ondemand') {
-						wrapper.stop(true, false).animate({ marginTop: h }, settings.speed, function () {
-							wrapper.removeClass('visible').addClass('hide');
-							ondemandBtn.stop(true, false).animate({ marginTop: 0 }, settings.speed);
-						});
-					}
-					else {
-						wrapper.stop(true, false).animate({ marginTop: h }, settings.speed, function () {
-							wrapper.removeClass('visible').addClass('hide');
-						});
-					}
-				});
+				
+				closeBtn.click(close);
 				if (settings.type == 'floated') {
 					$(document).scroll(function (e) {
 						wrapper.stop(true, false).animate({ top: $(document).scrollTop() }, settings.speed);
@@ -40,8 +45,8 @@
 				}
 				else if (settings.type == 'ondemand') {
 					ondemandBtn.click(function () {
-						$(this).animate({ marginTop: dh }, settings.speed, function() {
-							wrapper.removeClass('hide').addClass('visible').animate({ marginTop: 0 }, settings.speed, function() {
+						$(this).animate({ marginTop: dh }, settings.speed, function () {
+							wrapper.removeClass('hide').addClass('visible').animate({ marginTop: 0 }, settings.speed, function () {
 
 							});
 						});

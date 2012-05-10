@@ -52,6 +52,7 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 
 		[Transaction]
 		[HttpPost]
+		[ValidateInput(false)]
         public ActionResult Create(Notification notification)
         {
 			if (ModelState.IsValid)
@@ -80,6 +81,7 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 
 		[Transaction]
 		[HttpPost]
+		[ValidateInput(false)]
         public ActionResult Edit(Notification notification)
         {
 			if (ModelState.IsValid)

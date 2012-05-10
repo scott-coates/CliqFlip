@@ -1,3 +1,4 @@
+using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
@@ -22,7 +23,7 @@ namespace CliqFlip.Web.Mvc.Queries
 			LatestNotificationViewModel vm = null;
 			if (notification != null)
 			{
-				vm = new LatestNotificationViewModel {Id = notification.Id, Message = notification.Message};
+				vm = new LatestNotificationViewModel {Id = notification.Id, Message = notification.Message,NotificationCookie = Constants.NOTIFICATION_COOKIE};
 			}
 			return vm;
 		}
