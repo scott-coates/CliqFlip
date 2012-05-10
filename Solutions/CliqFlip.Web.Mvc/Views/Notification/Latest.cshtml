@@ -9,12 +9,24 @@
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.notify.js")"> </script>
 	<script type="text/javascript" language="javascript">
 		function persist() {
-			$.cookie("@Model.NotificationCookie", "@Model.Id", { expires: 365, path:"/" });
+			$.cookie("@Model.NotificationCookie", "@Model.Id", { expires: 365, path: "/" });
+			setTimeout(showBody, 500);
 		}
 
-		var notification = $('#notification').notify({ onClose: persist });
+		function showBody() {
+			$('body').animate({
+				'padding-top': '0'
+			}, 500);
+		}
 
-		//make every link popout
-		$("a:not(.close)", notification).attr('target', '_blank');
+		var notification = null;
+		$('body').animate({
+				'padding-top': '50px'
+			}, 500, function() {
+				notification = $('#notification').notify({ type: 'sticky', onClose: persist });
+
+				//make every link popout
+				$("a:not(.close)", notification).attr('target', '_blank');
+			});
 	</script>
 }

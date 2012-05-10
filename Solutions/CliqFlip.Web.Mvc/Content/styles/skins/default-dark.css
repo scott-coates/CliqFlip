@@ -2079,7 +2079,7 @@ background: -moz-linear-gradient(top, #0e59ae 0%, #0e59ae 100%); /* FF3.6+ */
 
 .fixed {
     position:absolute;
-	top:0;
+	top:100px;
 	left:0;
 	width:100%;
 	border-bottom:3px solid #fff !important;

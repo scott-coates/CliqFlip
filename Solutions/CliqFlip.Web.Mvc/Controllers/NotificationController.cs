@@ -10,6 +10,7 @@ using CliqFlip.Infrastructure.Web.Interfaces;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Notification;
 using NHibernate.Hql.Ast.ANTLR;
+using SharpArch.NHibernate.Web.Mvc;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
@@ -24,6 +25,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 			_httpContextProvider = httpContextProvider;
 		}
 
+		[Transaction]
+		[ChildActionOnly]
 		public ActionResult Latest()
 		{
 			var vm = _latestNotificationQuery.GetLatestNotification();
