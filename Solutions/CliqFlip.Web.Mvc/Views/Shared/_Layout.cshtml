@@ -178,8 +178,12 @@
 				InitTOS();
 			});
 		</script>
-		@if(User.Identity.IsAuthenticated)
+		@if(User.Identity.IsAuthenticated && Url.RequestContext.RouteData.Values["action"] == "Landing")
 		{
+				/*TODO:if this wiill only 
+				 ever be on the landing page, move this to the landing page
+				 or allow other pages touse this
+				 */
 				Html.RenderAction("Latest", "Notification", new {Area = ""});
 		}
 		@RenderSection("beforeBodyClose", false)
