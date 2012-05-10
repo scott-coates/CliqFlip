@@ -2137,7 +2137,7 @@ z-index:999;
 position:absolute;
 margin-right:100px!important;
 }
-.sticky p, .floated p, .fixed p, .ondemand p{ float:left; padding:0px; margin:0px; margin-left:10px; line-height:45px; color:#fff; font-size:12px;}
+.sticky p, .floated p, .fixed p, .ondemand p{ float:left; padding:0px; margin:0px; margin-left:10px; line-height:45px; color:#fff; font-size:12px;width: 90%;text-align: center;}
 .sticky a.close, .floated a.close, .fixed a.close, .ondemand a.close{ float:right; margin:13px 10px 0px 0px; }
 .hide{display:none;}
 

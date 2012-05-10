@@ -13,10 +13,8 @@
 		}
 
 		var notification = $('#notification').notify({ onClose: persist });
-		$("a:not(.close)", notification)
-			.attr('target', '_blank')
-			.click(function (parameters) {
-				$("a.close").click();
-			});
+
+		//make every link popout
+		$("a:not(.close)", notification).attr('target', '_blank');
 	</script>
 }
