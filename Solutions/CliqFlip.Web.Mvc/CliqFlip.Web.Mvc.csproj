@@ -309,6 +309,7 @@
     <Content Include="Content\js\jquery.dotdotdot-1.2.1.js" />
     <Content Include="Content\js\jquery.zrssfeed.min.js" />
     <Content Include="Content\js\jquery.notify.js" />
+    <Content Include="Content\js\notification\notification.js" />
     <Content Include="Content\js\search\index.js" />
     <Content Include="Content\js\user\add-interest.js" />
     <Content Include="Content\js\user\thank-you.js" />
