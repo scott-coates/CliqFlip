@@ -1,22 +1,31 @@
-﻿function SetupNotifications(parameters) {
-	function persist() {
-		$.cookie("@Model.NotificationCookie", "@Model.Id", { expires: 365, path: "/" });
-		setTimeout(showBody, 500);
-	}
+﻿var _cookieName = null;
+var _notificationId = null;
+var _notification = null;
 
-	function showBody() {
-		$('body').animate({
-			'padding-top': '0'
-		}, 500);
-	}
+function InitNotification(cookieName, notificationId) {
+	_cookieName = _cookieName;
+	_notificationId = notificationId;
+	setInterval(SetupNotifications, 1000);
+}
 
-	var notification = null;
+function SetupNotifications() {
 	$('body').animate({
 		'padding-top': '50px'
 	}, 1000, function () {
-		notification = $('#notification').notify({ type: 'sticky', onClose: persist });
+		_notification = $('#notification').notify({ type: 'sticky', onClose: Persist });
 
 		//make every link popout
-		$("a:not(.close)", notification).attr('target', '_blank');
+		$("a:not(.close)", _notification).attr('target', '_blank');
 	});
+}
+
+function Persist() {
+	$.cookie(_cookieName, _notificationId, { expires: 365, path: "/" });
+	setTimeout(ShowBody, 500);
+}
+
+function ShowBody() {
+	$('body').animate({
+		'padding-top': '0'
+	}, 500);
 }
