@@ -5,7 +5,7 @@ var _notification = null;
 function InitNotification(cookieName, notificationId) {
 	_cookieName = _cookieName;
 	_notificationId = notificationId;
-	setInterval(SetupNotifications, 1000);
+	setTimeout(SetupNotifications, 1000);
 }
 
 function SetupNotifications() {
