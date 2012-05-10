@@ -3,7 +3,7 @@ var _notificationId = null;
 var _notification = null;
 
 function InitNotification(cookieName, notificationId) {
-	_cookieName = _cookieName;
+	_cookieName = cookieName;
 	_notificationId = notificationId;
 	setTimeout(SetupNotifications, 1000);
 }
