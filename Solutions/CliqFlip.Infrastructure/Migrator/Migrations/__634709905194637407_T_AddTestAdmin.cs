@@ -24,19 +24,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 
 		protected override void ConditionalDown()
 		{
-			int userId = Convert.ToInt32(Database.ExecuteScalar("SELECT Id FROM USERS where username = 'cliqadmin'"));
-
-			object convoString = Database.ExecuteScalar("SELECT ConversationId FROM Messages where SenderId = " + userId);
-			if (convoString != null)
-			{
-				Database.Delete("Messages", "ConversationId", convoString.ToString());
-				Database.Delete("UserConversations", "ConversationId", convoString.ToString());
-				Database.Delete("Conversations", "Id", convoString.ToString());
-			}
-
-			Database.Delete("Users", "Username", "cliqadmin");
-			int locationId = Convert.ToInt32(Database.ExecuteScalar("SELECT LocationId FROM USERS where username = 'cliqadmin'"));
-			Database.Delete("Locations", "Id", locationId.ToString());
+			//just easier to just migrate down
 		}
 	}
 }
