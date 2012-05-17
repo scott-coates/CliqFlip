@@ -119,6 +119,7 @@
 				script.onload = script.onreadystatechange = function () {
 					if (!done && (!this.readyState || this.readyState === "loaded" || this.readyState === "complete")) {
 						done = true;
+						//TODO: look into noConflict if they have old jQuery
 						onjQueryLoaded();
 					}
 				};
