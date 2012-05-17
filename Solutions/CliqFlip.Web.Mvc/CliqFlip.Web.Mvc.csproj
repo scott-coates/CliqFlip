@@ -571,6 +571,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\js\raphael\raphael-min.js" />
     <Content Include="Content\js\raphael\raphael.js" />
+    <Content Include="Content\js\jscroller-0.1.4.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

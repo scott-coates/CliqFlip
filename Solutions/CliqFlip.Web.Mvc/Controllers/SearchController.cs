@@ -27,6 +27,15 @@ namespace CliqFlip.Web.Mvc.Controllers
 			_interestTasks = interestTasks;
 		}
 
+		[HttpPost]
+		public JsonNetResult InterestFeed(int start, int limit)
+		{
+			var rows = Enumerable.Range(1, 10).Select(x => new { Name = "x" + x });
+			var result = new { success = true, total = 30, data = rows, message = string.Empty };
+			Thread.Sleep(1000);
+			return new JsonNetResult(result);
+		}
+
 		[Transaction]
 		public ActionResult Index(string q, int? page)
 		{
