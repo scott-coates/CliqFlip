@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
@@ -20,20 +21,22 @@ namespace CliqFlip.Web.Mvc.Controllers
 	{
 		private readonly IUsersByInterestsQuery _usersByInterestsQuery;
 		private readonly IInterestTasks _interestTasks;
+		private readonly IInterestFeedQuery _interestFeedQuery;
+		private readonly IPrincipal _principal;
 
-		public SearchController(IUsersByInterestsQuery usersByInterestsQuery, IInterestTasks interestTasks)
+		public SearchController(IUsersByInterestsQuery usersByInterestsQuery, IInterestTasks interestTasks, IInterestFeedQuery interestFeedQuery, IPrincipal principal)
 		{
 			_usersByInterestsQuery = usersByInterestsQuery;
 			_interestTasks = interestTasks;
+			_interestFeedQuery = interestFeedQuery;
+			_principal = principal;
 		}
 
 		[HttpPost]
-		public JsonNetResult InterestFeed(int start, int limit)
+		public JsonNetResult InterestFeed(int? start)
 		{
-			var rows = Enumerable.Range(1, 10).Select(x => new { Name = "x" + x });
-			var result = new { success = true, total = 30, data = rows, message = string.Empty };
-			Thread.Sleep(1000);
-			return new JsonNetResult(result);
+			var viewModel = _interestFeedQuery.GetGetUsersByInterests(_principal.Identity.Name, start);
+			return new JsonNetResult(viewModel);
 		}
 
 		[Transaction]

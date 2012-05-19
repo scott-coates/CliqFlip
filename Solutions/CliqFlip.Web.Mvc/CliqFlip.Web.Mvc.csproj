@@ -182,8 +182,10 @@
     <Compile Include="Extensions\Request\ReuqestExtensions.cs" />
     <Compile Include="Extensions\Url\UrlExtensions.cs" />
     <Compile Include="Queries\ConversationQuery.cs" />
+    <Compile Include="Queries\Interfaces\IInterestFeedQuery.cs" />
     <Compile Include="Queries\Interfaces\IConversationQuery.cs" />
     <Compile Include="Queries\Interfaces\ILatestNotificationQuery.cs" />
+    <Compile Include="Queries\InterestFeedQuery.cs" />
     <Compile Include="Queries\LatestNotificationQuery.cs" />
     <Compile Include="Security\Attributes\AllowAnonymousAttribute.cs" />
     <Compile Include="Security\Attributes\BlockUnsupportedBrowsersAttribute.cs" />
@@ -205,6 +207,7 @@
     <Compile Include="ViewModels\Jeip\JeipSaveTextViewModel.cs" />
     <Compile Include="ViewModels\Notification\LatestNotificationViewModel.cs" />
     <Compile Include="ViewModels\Popup\BookmarkMediumViewModel.cs" />
+    <Compile Include="ViewModels\Search\InterestFeedViewModel.cs" />
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
     <Compile Include="ViewModels\Search\InterestSearchViewModel.cs" />
     <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
