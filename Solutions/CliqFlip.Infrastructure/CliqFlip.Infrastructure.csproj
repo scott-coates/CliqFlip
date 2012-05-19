@@ -158,6 +158,7 @@
     <Compile Include="Logging\Interfaces\ILogger.cs" />
     <Compile Include="Migrator\ConditionalMigration.cs" />
     <Compile Include="Migrator\MigrationConstants.cs" />
+    <Compile Include="Migrator\Migrations\__634730337103520104_AddMediaCreateDate.cs" />
     <Compile Include="Migrator\Migrations\__634721196754376007_AddNotificationsTable.cs" />
     <Compile Include="Migrator\Migrations\__634710315997405844_AddWebPageTable.cs" />
     <Compile Include="Migrator\Migrations\__634709972901148238_AddVideoTable.cs" />

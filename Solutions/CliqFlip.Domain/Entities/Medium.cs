@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using CliqFlip.Domain.ValueObjects;
 using SharpArch.Domain.DomainModel;
 
@@ -9,6 +10,8 @@ namespace CliqFlip.Domain.Entities
 		public virtual UserInterest UserInterest { get; set; }
 		
 		public virtual string Description { get; set; }
+
+		public virtual DateTime CreateDate { get; set; }
 
 		public virtual int? InterestMediumOrder
 		{
