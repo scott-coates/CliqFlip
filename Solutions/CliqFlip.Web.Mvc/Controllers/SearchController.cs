@@ -35,6 +35,11 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[HttpPost]
 		public JsonNetResult InterestFeed(int? start)
 		{
+			if(start != null)
+			{
+				//the plugin is 0-based
+				start++;
+			}
 			var viewModel = _interestFeedQuery.GetGetUsersByInterests(_principal.Identity.Name, start);
 			return new JsonNetResult(viewModel);
 		}

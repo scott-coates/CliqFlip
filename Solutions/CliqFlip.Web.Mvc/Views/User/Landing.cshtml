@@ -64,7 +64,7 @@
 
 			ChangeSearchQueryParamName();
 			var onSuccess = function(row, container) {
-				container.append('<div>' + row.Name + '</div>');
+				container.append('<div>' + row.Description + '</div>');
 			};
 
 			$('#interest-feed').jScroller('@(Html.Raw(Url.Action("InterestFeed", "Search")))', {

@@ -87,6 +87,8 @@
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Contracts\Tasks\INotificationTasks.cs" />
     <Compile Include="Contracts\Tasks\IInterestTasks.cs" />
+    <Compile Include="Contracts\Tasks\IUserInterestTasks.cs" />
+    <Compile Include="Dtos\MediaSearchByInterestsDto.cs" />
     <Compile Include="Dtos\FileStreamDto.cs" />
     <Compile Include="Dtos\ImageFilenamesDto.cs" />
     <Compile Include="Dtos\RankedInterestDto.cs" />

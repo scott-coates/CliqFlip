@@ -1,29 +1,47 @@
-using System;
+using System.Collections.Generic;
+using System.Linq;
+using CliqFlip.Domain.Common;
+using CliqFlip.Domain.Contracts.Tasks;
+using CliqFlip.Domain.Dtos;
+using CliqFlip.Domain.Entities;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Search;
+using MvcContrib.Pagination;
 
 namespace CliqFlip.Web.Mvc.Queries
 {
-	public  class InterestFeedQuery : IInterestFeedQuery
+	public class InterestFeedQuery : IInterestFeedQuery
 	{
-		public InterestFeedViewModel GetGetUsersByInterests(string userName, int? page)
+		private readonly IUserInterestTasks _userInterestTasks;
+		private readonly IUserTasks _userTasks;
+
+		public InterestFeedQuery(IUserInterestTasks userInterestTasks, IUserTasks userTasks)
 		{
-			//get user interests
+			_userInterestTasks = userInterestTasks;
+			_userTasks = userTasks;
+		}
 
-			//get sibling and parent interests
+		#region IInterestFeedQuery Members
 
-			//get all media with any matching interests order by date desc limit by 100
+		public InterestsFeedViewModel GetGetUsersByInterests(string userName, int? page)
+		{
+			var retVal = new InterestsFeedViewModel();
+
+			User user = _userTasks.GetUser(userName);
+
+			IList<MediaSearchByInterestsDto> mediumDtos = _userInterestTasks.GetMediaByInterests(user.Interests.Select(x => x.Interest).ToList());
+			retVal.Total = mediumDtos.Count;
+			retVal.InterestViewModels = mediumDtos
+				.AsPagination( page ?? 1, Constants.FEED_LIMIT)
+				.Select(x => new InterestsFeedViewModel.InterestViewModel
+				{
+					Description = x.Description
+				}).ToList();
 
 			//rank them in order then grab that page
-
-			/*
-			 * my thinking is take the last 100 because a user probably won't read past that..
-			 * if we only grab the first 10 then there is the problem that 11th might be extremely relevent 
-			 * but shows up much later on cause it's
-			 * slightly older
-			 */
-
-			return null;
+			return retVal;
 		}
+
+		#endregion
 	}
 }

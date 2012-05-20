@@ -8,6 +8,6 @@ namespace CliqFlip.Web.Mvc.Queries.Interfaces
 {
 	public interface IInterestFeedQuery
 	{
-		InterestFeedViewModel GetGetUsersByInterests(string userName, int? page);
+		InterestsFeedViewModel GetGetUsersByInterests(string userName, int? page);
 	}
 }

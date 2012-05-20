@@ -17,5 +17,6 @@ namespace CliqFlip.Domain.Common
 		public const string LOCATION_SESSION_KEY = "LocationSessionKey";
 		public const string ROUTE_LANDING_PAGE = "User Landing Page";
 		public const string NOTIFICATION_COOKIE = "notification-id";
+		public const int FEED_LIMIT = 10;
 	}
 }

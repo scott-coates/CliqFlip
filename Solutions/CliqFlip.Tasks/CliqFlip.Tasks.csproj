@@ -98,6 +98,7 @@
     <Compile Include="Queries\InterestJsonQuery.cs" />
     <Compile Include="TaskImpl\InterestTasks.cs" />
     <Compile Include="TaskImpl\NotificationTasks.cs" />
+    <Compile Include="TaskImpl\UserInterestTasks.cs" />
     <Compile Include="TaskImpl\UserTasks.cs" />
   </ItemGroup>
   <ItemGroup>
