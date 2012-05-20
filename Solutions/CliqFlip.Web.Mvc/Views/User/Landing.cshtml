@@ -66,7 +66,7 @@
 
 			ChangeSearchQueryParamName();
 
-			InitFeed('@Html.Raw(Model.FeedLimit.ToString(CultureInfo.InvariantCulture))','@(Html.Raw(Url.Action("InterestFeed", "Search")))');
+			InitFeed(@(Model.FeedLimit.ToString(CultureInfo.InvariantCulture)),'@(Html.Raw(Url.Action("InterestFeed", "Search")))');
 		});
 	</script>
 }
