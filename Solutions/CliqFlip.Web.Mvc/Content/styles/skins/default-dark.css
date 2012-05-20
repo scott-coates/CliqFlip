@@ -1929,8 +1929,10 @@ div.conversation-reply input
 .landing-container {
 			padding: 10px;width:950px;margin:0 auto;
 		}
+		
+.landing-container h6{ font-size: 11px;}		
 		.landing-page-button {
-			display: inline-block;float: left;margin-right:170px;
+			display: inline-block;float: left;margin-right:30px;
 		}
 		
 		.landing-page-button:last-of-type {
@@ -1939,7 +1941,7 @@ div.conversation-reply input
 
 		.landing-page-direction {
 			
-			background-position: center top; padding-top: 135px; text-align: center; width: 110px;
+			background-position: center top; padding-top: 135px; text-align: center; width: 215px;
 		}
 		
 		#landig-page-profile {
