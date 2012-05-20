@@ -12,5 +12,6 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 	{
 		public string Username { get; set; }
 		public string Headline { get; set; }
-    }
+		public int FeedLimit { get; set; }
+	}
 }

@@ -221,7 +221,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Authorize]
 		[HttpPost]
 		[Transaction]
-		public ActionResult SaveInterestMediumFromUrl(UserSaveInterestMediumFromUrlViewModel  saveInterestMediumFromUrlViewModel)
+		public ActionResult SaveInterestMediumFromUrl(UserSaveInterestMediumFromUrlViewModel saveInterestMediumFromUrlViewModel)
 		{
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 
@@ -295,7 +295,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				try
 				{
-					_userTasks.SaveInterestVideo(user, userSaveInterestImageViewModel.UserInterestId,userSaveInterestImageViewModel.VideoURL);
+					_userTasks.SaveInterestVideo(user, userSaveInterestImageViewModel.UserInterestId, userSaveInterestImageViewModel.VideoURL);
 				}
 				catch (RulesException e)
 				{
@@ -325,7 +325,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				try
 				{
-					_userTasks.SaveInterestWebPage(user, userSaveInterestWebPageViewModel.UserInterestId,userSaveInterestWebPageViewModel.LinkUrl);
+					_userTasks.SaveInterestWebPage(user, userSaveInterestWebPageViewModel.UserInterestId, userSaveInterestWebPageViewModel.LinkUrl);
 				}
 				catch (RulesException e)
 				{
@@ -582,19 +582,19 @@ namespace CliqFlip.Web.Mvc.Controllers
 				string subject = _principal.Identity.Name + " has Replied to You";
 
 				string body = _viewRenderer.RenderView(this, "~/Views/Email/ReplyToConversation.cshtml"
-				                                       , new ReplyToViewModel
-				                                       {
-				                                       	ToUsername = reveiver.Username,
-				                                       	FromUsername = _principal.Identity.Name
-				                                       });
+													   , new ReplyToViewModel
+													   {
+														   ToUsername = reveiver.Username,
+														   FromUsername = _principal.Identity.Name
+													   });
 
 				Message message = _userTasks
 					.ReplyToConversation(conversation
-					                     , sender
-					                     , reveiver
-					                     , model.Text
-					                     , subject
-					                     , body);
+										 , sender
+										 , reveiver
+										 , model.Text
+										 , subject
+										 , body);
 
 				return PartialView("Message", new MessageViewModel(message));
 			}
@@ -630,7 +630,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 			RouteData.Values["username"] = username;
 
-			var viewModel = new UserLandingPageViewModel { Username = username, Headline = user.Headline };
+			var viewModel = new UserLandingPageViewModel { Username = username, Headline = user.Headline, FeedLimit = Constants.FEED_LIMIT };
 
 			return View(viewModel);
 		}

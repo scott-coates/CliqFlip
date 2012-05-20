@@ -315,6 +315,7 @@
     <Content Include="Content\js\notification\notification.js" />
     <Content Include="Content\js\search\index.js" />
     <Content Include="Content\js\user\add-interest.js" />
+    <Content Include="Content\js\user\landing.js" />
     <Content Include="Content\js\user\thank-you.js" />
     <Content Include="Content\js\user\inbox.js" />
     <Content Include="Content\js\user\interests.js" />

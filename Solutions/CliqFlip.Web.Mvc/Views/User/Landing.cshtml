@@ -1,4 +1,5 @@
-﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserLandingPageViewModel
+﻿@using System.Globalization
+@model CliqFlip.Web.Mvc.ViewModels.User.UserLandingPageViewModel
 
 @{
 	ViewBag.Title = "Welcome " + Model.Username;
@@ -53,8 +54,9 @@
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.autoSuggest.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.tagcloud.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/search/interest-search.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/jscroller-0.1.4.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/search/interest-search.js")"> </script>
+	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/user/landing.js")"> </script>
 	<script type="text/javascript">
 		@*TODO: implement something without duplciation - http://stackoverflow.com/questions/5433531/using-sections-in-editor-display-templates/5433722#5433722 *@
 		$(function() {
@@ -63,14 +65,8 @@
 			InitTagCloud();
 
 			ChangeSearchQueryParamName();
-			var onSuccess = function(row, container) {
-				container.append('<div>' + row.Description + '</div>');
-			};
 
-			$('#interest-feed').jScroller('@(Html.Raw(Url.Action("InterestFeed", "Search")))', {
-				limit: 15,
-				onSuccessCallback: onSuccess
-			});
+			InitFeed('@Html.Raw(Model.FeedLimit.ToString(CultureInfo.InvariantCulture))','@(Html.Raw(Url.Action("InterestFeed", "Search")))');
 		});
 	</script>
 }
