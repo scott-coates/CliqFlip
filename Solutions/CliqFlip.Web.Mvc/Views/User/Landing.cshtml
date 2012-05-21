@@ -58,7 +58,6 @@
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.autoSuggest.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.tagcloud.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/js/jscroller-0.1.4.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/search/interest-search.js")"> </script>
 	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/user/landing.js")"> </script>
 	<script type="text/javascript">
@@ -70,7 +69,7 @@
 
 			ChangeSearchQueryParamName();
 
-			InitFeed(@(Model.FeedLimit.ToString(CultureInfo.InvariantCulture)),'@(Html.Raw(Url.Action("InterestFeed", "Search")))');
+			InitFeed(@(Model.FeedLimit),'@(Html.Raw(Url.Action("InterestFeed", "Search")))');
 		});
 	</script>
 }

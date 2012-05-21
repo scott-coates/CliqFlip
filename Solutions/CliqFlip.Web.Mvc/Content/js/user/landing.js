@@ -3,8 +3,8 @@
 		container.append('<div>' + row.Description + '</div>');
 	};
 
-	$('#interest-feed').jScroller(searchUrl, {
-		limit: limit,
-		onSuccessCallback: onSuccess
-	});
+//	$('#interest-feed').jScroller(searchUrl, {
+//		limit: limit,
+//		onSuccessCallback: onSuccess
+//	});
 }
