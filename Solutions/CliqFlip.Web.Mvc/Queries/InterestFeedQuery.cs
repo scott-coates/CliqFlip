@@ -23,7 +23,7 @@ namespace CliqFlip.Web.Mvc.Queries
 
 		#region IInterestFeedQuery Members
 
-		public InterestsFeedViewModel GetGetUsersByInterests(string userName, int? page)
+		public InterestsFeedViewModel GetUsersByInterests(string userName, int? page)
 		{
 			var retVal = new InterestsFeedViewModel();
 
