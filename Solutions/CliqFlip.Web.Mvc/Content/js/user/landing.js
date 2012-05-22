@@ -8,10 +8,11 @@ CliqFlipMVC.Views.Feed = { };
 
 function InitFeed(feedUrl) {
 	CliqFlipMVC.Models.Feed.InterestFeed = Backbone.Model.extend({
-
+				
 	});
 
-	(function () {
+	(function() {
+
 		function incrementPage() {
 			this.page = this.page || 0;
 			this.page++;
@@ -21,31 +22,32 @@ function InitFeed(feedUrl) {
 			model: CliqFlipMVC.Models.Feed.InterestFeed,
 			url: feedUrl,
 			page: null,
-			fetch: function (options) {
-				options = options || {};
+			fetch: function(options) {
+				options = options || { };
 				if (this.page) {
-					options.data = options.data || {};
-					options.data.page = this.page;	
-				}				
+					options.data = options.data || { };
+					options.data.page = this.page;
+				}
 				incrementPage.call(this);
 				return Backbone.Collection.prototype.fetch.call(this, options);
 			}
 		});
-	})();  //anonymous function to hide the function to increment page
+	})(); //anonymous function to hide the function to increment page
 
 	CliqFlipMVC.Views.Feed.InterestFeedList = Backbone.View.extend({
 		initialize: function() {
 			// isLoading is a useful flag to make sure we don't send off more than
 			// one request at a time
 			this.isLoading = false;
-			this.feedCollection = new CliqFlipMVC.Collections.Feed.InterestFeedCollection();
 		},
 		loadResults: function() {
 			var that = this;
 			this.isLoading = true;
-			this.feedCollection.fetch({
-				success: function() {
-					that.$el.append('found');
+			this.collection.fetch({
+				success: function(models) {
+					_.each(that.collection.models, function (model) {
+						that.$el.append(new CliqFlipMVC.Views.Feed.InterestFeedItem({ model: model }).render().el);
+					});
 					that.isLoading = false;
 				}
 			});
@@ -64,6 +66,19 @@ function InitFeed(feedUrl) {
 		}
 	});
 
-	var view = new CliqFlipMVC.Views.Feed.InterestFeedList({ el: $("#interest-feed") });
+	CliqFlipMVC.Views.Feed.InterestFeedItem = Backbone.View.extend({
+		render: function () {
+			this.$el.html(this.template(this.model.toJSON()));
+			return this;
+		}			
+	});
+
+	//start app - anything before this could be in its own file
+	CliqFlipMVC.Views.Feed.InterestFeedItem.prototype.template = _.template($("#feedItem_template").html());
+	var view = new CliqFlipMVC.Views.Feed.InterestFeedList({
+		el: $("#interest-feed"),
+		collection: new CliqFlipMVC.Collections.Feed.InterestFeedCollection()
+	});
+	
 	view.render();
 }
