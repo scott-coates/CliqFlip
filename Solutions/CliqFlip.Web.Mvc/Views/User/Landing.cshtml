@@ -3,6 +3,7 @@
 
 @{
 	ViewBag.Title = "Welcome " + Model.Username;
+	Bundles.Reference("Content/templates");
 }
 
 @section  beforeHeadClose
@@ -70,6 +71,7 @@
 	<script type="text/javascript" src="@Url.Content("/Scripts/underscore.min.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Scripts/backbone.js")"> </script>
 	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/user/landing.js")"> </script>
+	@Bundles.RenderHtmlTemplates()
 	<script type="text/javascript">
 		@*TODO: implement something without duplciation - http://stackoverflow.com/questions/5433531/using-sections-in-editor-display-templates/5433722#5433722 *@
 		$(function() {

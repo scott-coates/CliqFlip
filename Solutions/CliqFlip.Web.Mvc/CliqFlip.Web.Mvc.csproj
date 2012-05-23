@@ -799,6 +799,7 @@
     <Content Include="Views\Popup\_Layout.cshtml" />
     <Content Include="Views\User\_Bookmarklet.cshtml" />
     <Content Include="Views\Notification\Latest.cshtml" />
+    <None Include="Content\templates\media\Image.mustache" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
