@@ -242,7 +242,7 @@ blockquote { color:#465363; font-size:15px; font-style:italic;  margin:20px 0px 
 /*========================*/
 #header { z-index: 999; position: absolute; top:18px;  }
 	#header .logo { float:left; }
-	#header .logo .logo_img { display:block; background:transparent url(../../img/ClipFliq-LogoMoto.png) no-repeat; width:216px; height:40px; text-indent:-999999px; }
+	#header .logo .logo_img { display:block; background:transparent url(../../img/CliqFlip-LogoMoto.png) no-repeat; width:216px; height:40px; text-indent:-999999px; }
 	#header .motto  { font-family: 'PT Sans Narrow', Arial, Helvetica, sans-serif; color:#3CC6FA; font-size:65px; float:left; margin-top: 8px;margin-left: 75px; height:40px; width:503px;letter-spacing: 13px;}
 	#header .motto span  { color: #EE5C4A;font-weight: 500;}
 	#header .back  { background:transparent url(../../img/bg_menu.png) repeat-x; height:40px; width:940px; }

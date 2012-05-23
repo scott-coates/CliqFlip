@@ -255,6 +255,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\img\chrome.png" />
+    <Content Include="Content\img\CliqFlip-Arrow.png" />
     <Content Include="Content\img\empty-avatar.jpg" />
     <Content Include="Content\img\Error\NotFound.jpg" />
     <Content Include="Content\img\Error\ServerError.jpg" />
@@ -305,7 +306,7 @@
     <Content Include="Content\img\blank.gif" />
     <Content Include="Content\img\button_icon.png" />
     <Content Include="Content\img\check.png" />
-    <Content Include="Content\img\ClipFliq-LogoMoto.png" />
+    <Content Include="Content\img\CliqFlip-LogoMoto.png" />
     <Content Include="Content\img\feedback.png" />
     <Content Include="Content\img\firefox.png" />
     <Content Include="Content\img\icon-close.png" />
