@@ -2175,3 +2175,16 @@ background: -moz-linear-gradient(top, #CC0000 0%, #CC0000 100%); /* FF3.6+ */
 
 .show img{margin-top:10px;}
 .close{}
+
+
+
+/*========================*/
+/*===  Interest Feed
+/*========================*/
+#interest-feed {
+	height:500px;
+	overflow-y: scroll
+}
+.interest-feed-item {
+	height: 300px;
+}

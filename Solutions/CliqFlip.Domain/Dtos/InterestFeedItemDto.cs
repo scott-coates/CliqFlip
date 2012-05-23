@@ -6,6 +6,7 @@ namespace CliqFlip.Domain.Dtos
 	{
 		public string Username { get; set; }
 		public string ImageUrl { get; set; }
+		public string Interest { get; set; }
 		public MediumDto Medium { get; set; }
 
 		public InterestFeedItemDto(Medium medium)
@@ -13,6 +14,7 @@ namespace CliqFlip.Domain.Dtos
 			Medium = new MediumDto(medium);
 			Username = medium.UserInterest.User.Username;
 			ImageUrl = medium.UserInterest.User.ProfileImage != null ? medium.UserInterest.User.ProfileImage.ImageData.MediumFileName : null;
+			Interest = medium.UserInterest.Interest.Name;
 		}
 	}
 }

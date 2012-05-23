@@ -1,4 +1,4 @@
-﻿@using System.Globalization
+﻿using System.Globalization
 @model CliqFlip.Web.Mvc.ViewModels.User.UserLandingPageViewModel
 
 @{
@@ -52,7 +52,7 @@
 		@Model.Headline</div>
 	@{ Html.RenderAction("InterestSearch", "Search"); }
 </div>
-<div id="interest-feed" style="height:500px;overflow-y: scroll">
+<div id="interest-feed">
 	
 </div>
 

@@ -1,8 +1,20 @@
-﻿<div class="interestFeedItem">
+﻿<div class="interest-feed-item">
+	<div style="float:left">
+		<h4>{{model.Username}}</h4>
+		<a value="{{medium.MediumId}}" title="{{model.Username}}" href="{{model.UserPageUrl}}">
+			<img class="profile-image" src="{{model.ImageUrl}}" alt="{{model.Username}}"/>
+		</a>
+	</div>
+
+	<div style="float:left">
+	<h4>{{model.Interest}}</h4>
+
 	<a value="{{medium.MediumId}}" title="{{model.Description}}" href="{{model.FullImage}}" medium="{{model.MediumType}}">
 		<img src="{{model.MediumImage}}"
 				alt="{{model.Description}}"/>
 	</a>
+	</div>
+	<div class="clear"></div>
 	<p>
 		{{model.Description}}
 	</p>
