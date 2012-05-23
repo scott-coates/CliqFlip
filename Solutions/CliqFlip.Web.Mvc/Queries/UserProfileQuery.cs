@@ -97,7 +97,7 @@ namespace CliqFlip.Web.Mvc.Queries
 						UserInterestId = interest.Id,
 						InterestId = interest.Interest.Id,
 						VisitorSharesThisInterest = visitor != null && visitor.Interests.Any(x => x.Interest == interest.Interest),
-						Images = interest
+						Media = interest
 							.Media
 							.Select(x =>
 									new UserInterestsViewModel.InterestMediumViewModel(x)).ToList()
