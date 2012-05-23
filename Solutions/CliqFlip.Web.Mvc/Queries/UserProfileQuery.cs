@@ -100,7 +100,7 @@ namespace CliqFlip.Web.Mvc.Queries
 						Media = interest
 							.Media
 							.Select(x =>
-									new UserInterestsViewModel.InterestMediumViewModel(x)).ToList()
+									new UserInterestsViewModel.UserInterestMediumViewModel(new MediumDto(x))).ToList()
 					};
 
 					retVal.Interests.Add(interestViewModel);

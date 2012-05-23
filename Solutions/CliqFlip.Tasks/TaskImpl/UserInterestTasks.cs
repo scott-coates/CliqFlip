@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ValueObjects;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
 
 namespace CliqFlip.Tasks.TaskImpl
@@ -18,7 +19,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			_userInterestRepository = userInterestRepository;
 		}
 
-		public IList<MediaSearchByInterestsDto> GetMediaByInterests(IList<Interest> interests)
+		public IList<MediumDto> GetMediaByInterests(IList<Interest> interests)
 		{
 			//get user interests
 			//get sibling and parent interests
@@ -56,9 +57,9 @@ namespace CliqFlip.Tasks.TaskImpl
 
 				rank -= daysSinceMediumCreated;
 
-				return new MediaSearchByInterestsDto { Rank = rank, Description = medium.Description };
+				return new  { Rank = rank, Medium = new MediumDto( medium )};
 
-			}).OrderByDescending(x => x.Rank).ToList();
+			}).OrderByDescending(x => x.Rank).Select(x=>x.Medium).ToList();
 		}
 	}
 }

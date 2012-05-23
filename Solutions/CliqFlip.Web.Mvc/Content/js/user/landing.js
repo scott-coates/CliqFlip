@@ -68,7 +68,8 @@ function InitFeed(feedUrl) {
 
 	CliqFlipMVC.Views.Feed.InterestFeedItem = Backbone.View.extend({
 		render: function () {
-			this.$el.html(window.JST['media-Image'].render({ model: this.model.toJSON() }));
+			var jsonModel = this.model.toJSON();
+			this.$el.html(window.JST['media-' + jsonModel.MediumType].render({ model: jsonModel }));
 			return this;
 		}			
 	});

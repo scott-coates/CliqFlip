@@ -1,4 +1,8 @@
 ﻿using System.Collections.Generic;
+using CliqFlip.Domain.Dtos;
+using CliqFlip.Domain.Entities;
+using CliqFlip.Web.Mvc.ViewModels.Media;
+using CliqFlip.Web.Mvc.ViewModels.User;
 using Newtonsoft.Json;
 
 namespace CliqFlip.Web.Mvc.ViewModels.Search
@@ -9,16 +13,18 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
 		public int Total { get; set; }
 
 		[JsonProperty("data")]
-		public IList<InterestViewModel> InterestViewModels { get; set; }
+		public IList<FeedMediumViewModel> InterestViewModels { get; set; }
 
 		public InterestsFeedViewModel()
 		{
-			InterestViewModels = new List<InterestViewModel>();
+			InterestViewModels = new List<FeedMediumViewModel>();
 		}
 
-		public class InterestViewModel
+		public class FeedMediumViewModel : InterestMediumViewModel
 		{
-			public string Description { get; set; }
+			public FeedMediumViewModel(MediumDto medium) : base(medium)
+			{
+			}
 		}
 	}
 }
