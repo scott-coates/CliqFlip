@@ -19,7 +19,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			_userInterestRepository = userInterestRepository;
 		}
 
-		public IList<MediumDto> GetMediaByInterests(IList<Interest> interests)
+		public IList<InterestFeedItemDto> GetMediaByInterests(IList<Interest> interests)
 		{
 			//get user interests
 			//get sibling and parent interests
@@ -57,9 +57,9 @@ namespace CliqFlip.Tasks.TaskImpl
 
 				rank -= daysSinceMediumCreated;
 
-				return new  { Rank = rank, Medium = new MediumDto( medium )};
+				return new { Rank = rank, FeedItem = new InterestFeedItemDto(medium) };
 
-			}).OrderByDescending(x => x.Rank).Select(x=>x.Medium).ToList();
+			}).OrderByDescending(x => x.Rank).Select(x => x.FeedItem).ToList();
 		}
 	}
 }

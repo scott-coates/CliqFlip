@@ -90,6 +90,7 @@
     <Compile Include="Contracts\Tasks\IUserInterestTasks.cs" />
     <Compile Include="Dtos\FileStreamDto.cs" />
     <Compile Include="Dtos\ImageFilenamesDto.cs" />
+    <Compile Include="Dtos\InterestFeedItemDto.cs" />
     <Compile Include="Dtos\MediumDto.cs" />
     <Compile Include="Dtos\RankedInterestDto.cs" />
     <Compile Include="Entities\Conversation.cs" />

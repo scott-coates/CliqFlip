@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
@@ -24,17 +25,17 @@ namespace CliqFlip.Web.Mvc.Queries
 
 		#region IInterestFeedQuery Members
 
-		public InterestsFeedViewModel GetUsersByInterests(string userName, int? page)
+		public InterestsFeedViewModel GetUsersByInterests(string userName, int? page, UrlHelper url)
 		{
 			var retVal = new InterestsFeedViewModel();
 
 			User user = _userTasks.GetUser(userName);
 
-			IList<MediumDto> mediumDtos = _userInterestTasks.GetMediaByInterests(user.Interests.Select(x => x.Interest).ToList());
+			IList<InterestFeedItemDto> mediumDtos = _userInterestTasks.GetMediaByInterests(user.Interests.Select(x => x.Interest).ToList());
 			retVal.Total = mediumDtos.Count;
 			retVal.InterestViewModels = mediumDtos
 				.AsPagination( page ?? 1, Constants.FEED_LIMIT)
-				.Select(x => new InterestsFeedViewModel.FeedMediumViewModel(x))
+				.Select(x => new InterestsFeedViewModel.FeedMediumViewModel(x) { UserPageUrl = url.Action("Index", "User", new { username = x.Username }) })
 				.ToList();
 
 			//rank them in order then grab that page

@@ -22,7 +22,11 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
 
 		public class FeedMediumViewModel : InterestMediumViewModel
 		{
-			public FeedMediumViewModel(MediumDto medium) : base(medium)
+			public string Username { get; set; }
+			public string UserPageUrl { get; set; }
+			public string ImageUrl { get; set; }
+
+			public FeedMediumViewModel(InterestFeedItemDto feedItemDto) : base(feedItemDto.Medium)
 			{
 			}
 		}

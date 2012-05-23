@@ -56,7 +56,7 @@ function InitFeed(feedUrl) {
 			'scroll': 'checkScroll'
 		},
 		checkScroll: function() {
-			var triggerPoint = 100;
+			var triggerPoint = 300;
 			if (!this.isLoading && this.el.scrollTop + this.el.clientHeight + triggerPoint > this.el.scrollHeight) {
 				this.loadResults();
 			}
@@ -67,7 +67,6 @@ function InitFeed(feedUrl) {
 	});
 
 	CliqFlipMVC.Views.Feed.InterestFeedItem = Backbone.View.extend({
-		className:"interestFeedItem",
 		render: function () {
 			var jsonModel = this.model.toJSON();
 			this.$el.html(window.JST['media-' + jsonModel.MediumType].render({ model: jsonModel }));
