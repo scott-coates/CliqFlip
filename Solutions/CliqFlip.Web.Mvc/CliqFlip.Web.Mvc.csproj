@@ -54,8 +54,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Packages\AWSSDK.1.4.2.0\lib\AWSSDK.dll</HintPath>
     </Reference>
-    <Reference Include="Cassette">
-      <HintPath>..\..\Packages\Cassette.1.2.1\lib\net40-Client\Cassette.dll</HintPath>
+    <Reference Include="Cassette, Version=2.0.0.28805, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Cassette.2.0.0-beta1\lib\net40-client\Cassette.dll</HintPath>
+    </Reference>
+    <Reference Include="Cassette.Hogan">
+      <HintPath>..\..\Packages\Cassette.Hogan.2.0.0-beta1\lib\net40-client\Cassette.Hogan.dll</HintPath>
     </Reference>
     <Reference Include="Cassette.Views">
       <HintPath>..\..\Packages\Cassette.Views.1.2.1\lib\net40\Cassette.Views.dll</HintPath>
@@ -84,15 +88,6 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\..\Packages\Iesi.Collections.3.1.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="IronRuby">
-      <HintPath>..\..\Packages\IronRuby.1.1.3\Lib\IronRuby.dll</HintPath>
-    </Reference>
-    <Reference Include="IronRuby.Libraries">
-      <HintPath>..\..\Packages\IronRuby.1.1.3\Lib\IronRuby.Libraries.dll</HintPath>
-    </Reference>
-    <Reference Include="IronRuby.Libraries.Yaml">
-      <HintPath>..\..\Packages\IronRuby.1.1.3\Lib\IronRuby.Libraries.Yaml.dll</HintPath>
-    </Reference>
     <Reference Include="Jurassic">
       <HintPath>..\..\Packages\Jurassic.2.1.1\lib\Jurassic.dll</HintPath>
     </Reference>
@@ -100,17 +95,8 @@
       <HintPath>..\..\Packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Dynamic">
-      <HintPath>..\..\Packages\IronRuby.1.1.3\Lib\Microsoft.Dynamic.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\Packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Scripting">
-      <HintPath>..\..\Packages\IronRuby.1.1.3\Lib\Microsoft.Scripting.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Scripting.Metadata">
-      <HintPath>..\..\Packages\IronRuby.1.1.3\Lib\Microsoft.Scripting.Metadata.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Helpers">
       <HintPath>..\..\Packages\microsoft-web-helpers.1.15\lib\Microsoft.Web.Helpers.dll</HintPath>
@@ -130,15 +116,6 @@
     </Reference>
     <Reference Include="NHibernate.ByteCode.Castle">
       <HintPath>..\..\Packages\NHibernate.Castle.3.1.0.4000\lib\Net35\NHibernate.ByteCode.Castle.dll</HintPath>
-    </Reference>
-    <Reference Include="Pandora">
-      <HintPath>..\..\Packages\Cassette.1.2.1\lib\net40-Client\Pandora.dll</HintPath>
-    </Reference>
-    <Reference Include="SassAndCoffee.Core">
-      <HintPath>..\..\Packages\SassAndCoffee.Core.2.0.2.0\lib\net40-Client\SassAndCoffee.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="SassAndCoffee.Ruby">
-      <HintPath>..\..\Packages\SassAndCoffee.Ruby.2.0.2.0\lib\net40-Client\SassAndCoffee.Ruby.dll</HintPath>
     </Reference>
     <Reference Include="SharpArch.Domain">
       <HintPath>..\..\ReferencedAssemblies\SharpArchitecture\SharpArch.Domain.dll</HintPath>
@@ -347,6 +324,7 @@
     <Content Include="Content\js\bookmarklet\bookmarklet.js" />
     <Content Include="Content\js\bookmarklet\bookmarklet.min.js" />
     <Content Include="Content\js\cliqFlip\tos.js" />
+    <Content Include="Content\js\hogan.js" />
     <Content Include="Content\js\jquery.cookie.js" />
     <Content Include="Content\js\jquery.dotdotdot-1.2.1.min.js" />
     <Content Include="Content\js\cliqFlip\error-handler.js" />

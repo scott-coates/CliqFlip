@@ -68,13 +68,12 @@ function InitFeed(feedUrl) {
 
 	CliqFlipMVC.Views.Feed.InterestFeedItem = Backbone.View.extend({
 		render: function () {
-			this.$el.html(this.template(this.model.toJSON()));
+			this.$el.html(window.JST['media-Image'].render({ model: this.model.toJSON() }));
 			return this;
 		}			
 	});
 
 	//start app - anything before this could be in its own file
-	CliqFlipMVC.Views.Feed.InterestFeedItem.prototype.template = _.template($("#feedItem_template").html());
 	var view = new CliqFlipMVC.Views.Feed.InterestFeedList({
 		el: $("#interest-feed"),
 		collection: new CliqFlipMVC.Collections.Feed.InterestFeedCollection()
