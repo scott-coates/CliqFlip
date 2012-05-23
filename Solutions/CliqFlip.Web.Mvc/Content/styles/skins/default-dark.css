@@ -2183,8 +2183,17 @@ background: -moz-linear-gradient(top, #CC0000 0%, #CC0000 100%); /* FF3.6+ */
 /*========================*/
 #interest-feed {
 	height:500px;
-	overflow-y: scroll
+	overflow-y: scroll;
+	
+	            
 }
 .interest-feed-item {
-	height: 300px;
+	width:500px;
+	margin: 0 auto 30px;
+	border: 1px solid;
+	padding: 20px;
+}
+
+.interest-feed-item p {
+	text-align: center;
 }
