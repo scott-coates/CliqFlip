@@ -630,7 +630,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 			RouteData.Values["username"] = username;
 
-			var viewModel = new UserLandingPageViewModel { Username = username, Headline = user.Headline, FeedLimit = Constants.FEED_LIMIT };
+			var viewModel = new UserLandingPageViewModel { Username = username };
 
 			return View(viewModel);
 		}

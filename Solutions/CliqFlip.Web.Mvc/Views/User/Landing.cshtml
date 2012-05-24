@@ -38,15 +38,7 @@
 	</a>
 	<div class="clear"></div>
 </div>
-
-<div class="tryout">
-	<div class="header">
-		Welcome, @Model.Username
-	</div>
-	<div class="subheader">
-		@Model.Headline</div>
-	@{ Html.RenderAction("InterestSearch", "Search"); }
-</div>
+@{ Html.RenderAction("InterestSearch", "Search"); }
 <h3 style="text-align:center;">Check out the latest interests</h3>
 <div id="interest-feed">
 	
