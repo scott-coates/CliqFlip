@@ -54,9 +54,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Packages\AWSSDK.1.4.2.0\lib\AWSSDK.dll</HintPath>
     </Reference>
-    <Reference Include="Cassette, Version=2.0.0.28805, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Cassette.2.0.0-beta1\lib\net40-client\Cassette.dll</HintPath>
+    <Reference Include="Cassette, Version=1.2.1.30492, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Packages\Cassette.1.2.1\lib\net40-Client\Cassette.dll</HintPath>
     </Reference>
     <Reference Include="Cassette.Views">
       <HintPath>..\..\Packages\Cassette.Views.1.2.1\lib\net40\Cassette.Views.dll</HintPath>
