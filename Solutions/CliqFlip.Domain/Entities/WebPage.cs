@@ -1,4 +1,5 @@
-﻿using CliqFlip.Domain.Interfaces;
+﻿using System;
+using CliqFlip.Domain.Interfaces;
 using CliqFlip.Domain.ValueObjects;
 
 namespace CliqFlip.Domain.Entities
@@ -15,16 +16,16 @@ namespace CliqFlip.Domain.Entities
 
 		public virtual ImageData ImageData
 		{
-			get 
-            {
-                //some web pages wont have images, so check first
-                return Image == null ? null : Image.ImageData; 
-            }
+			get
+			{
+				//some web pages wont have images, so check first
+				return Image == null ? null : Image.ImageData;
+			}
 		}
 
 		public virtual void AddImage(ImageData data)
 		{
-			Image = new Image {ImageData = data};
+			Image = new Image { ImageData = data, CreateDate = DateTime.UtcNow };
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using CliqFlip.Domain.Interfaces;
+﻿using System;
+using CliqFlip.Domain.Interfaces;
 using CliqFlip.Domain.ValueObjects;
 
 namespace CliqFlip.Domain.Entities
@@ -17,7 +18,7 @@ namespace CliqFlip.Domain.Entities
 
 		public virtual void AddImage(ImageData data)
 		{
-			Image = new Image {ImageData = data};
+			Image = new Image { ImageData = data, CreateDate = DateTime.UtcNow };
 		}
 	}
 }
