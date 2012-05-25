@@ -164,7 +164,8 @@ namespace CliqFlip.Tasks.TaskImpl
 											interestImage.FileName
 											, imgFileNamesDto.ThumbFilename
 											, imgFileNamesDto.MediumFilename
-											, imgFileNamesDto.FullFilename)
+											, imgFileNamesDto.FullFilename),
+                                    CreateDate = DateTime.UtcNow
 								}));
 		}
 
@@ -198,7 +199,7 @@ namespace CliqFlip.Tasks.TaskImpl
 				throw new RulesException("Description", "Invalid video");
 			}
 
-			var medium = new Video { Description = description, VideoUrl = details.VideoUrl, Title = details.Title };
+            var medium = new Video { Description = description, VideoUrl = details.VideoUrl, Title = details.Title, CreateDate = DateTime.UtcNow };
 
 			//determine if image is available
 			if (!string.IsNullOrWhiteSpace(details.ImageUrl))
@@ -229,7 +230,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			var uri = new Uri(linkUrl);
 			var domain = uri.GetLeftPart(UriPartial.Authority).Replace(uri.GetLeftPart(UriPartial.Scheme), "");
 
-			var medium = new WebPage { Description = description, LinkUrl = linkUrl, WebPageDomainName = domain, Title = details.Title };
+			var medium = new WebPage { Description = description, LinkUrl = linkUrl, WebPageDomainName = domain, Title = details.Title, CreateDate = DateTime.UtcNow };
 
 			//determine if image is available
 			if (!string.IsNullOrWhiteSpace(details.ImageUrl))
