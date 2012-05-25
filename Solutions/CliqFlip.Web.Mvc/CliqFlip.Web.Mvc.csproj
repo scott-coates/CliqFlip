@@ -58,9 +58,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Packages\Cassette.2.0.0-beta1\lib\net40-client\Cassette.dll</HintPath>
     </Reference>
-    <Reference Include="Cassette.Hogan">
-      <HintPath>..\..\Packages\Cassette.Hogan.2.0.0-beta1\lib\net40-client\Cassette.Hogan.dll</HintPath>
-    </Reference>
     <Reference Include="Cassette.Views">
       <HintPath>..\..\Packages\Cassette.Views.1.2.1\lib\net40\Cassette.Views.dll</HintPath>
     </Reference>
