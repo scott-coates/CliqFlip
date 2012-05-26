@@ -23,7 +23,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 		public class UserAccountEmailViewModel
 		{
 			[Required(ErrorMessage = "Please provide an email address.")]
-			[Display(Name = "Whats your email?")]
+			[Display(Name = "What's your email?")]
 			[EmailAddress(ErrorMessage = "Please provide a valid email address.")]
 			[Remote("Email", "Validation", "Admin", ErrorMessage = "This email is taken... Are you sure you're not signed up already?")]
 			public String Email { get; set; }
