@@ -1,0 +1,27 @@
+﻿
+@model CliqFlip.Web.Mvc.ViewModels.User.UserAccountViewModel.UserAccountLocationViewModel
+
+@section beforeHeadClose
+{
+
+}
+
+@using (Html.BeginForm("AccountLocation", "User", FormMethod.Post, new {id = "frmAccountLocation"}))
+{
+	@Html.ValidationSummary(true)
+
+	<div class="editor-label">
+		@Html.LabelFor(model => model.Location)
+	</div>
+	<div class="editor-field">
+		@Html.EditorFor(model => model.Location)
+		@Html.ValidationMessageFor(model => model.Location)
+		<span id="location-found"></span>
+	</div>
+	<input type="submit" class="button"/>
+}
+
+@section beforeBodyClose
+{
+	
+}

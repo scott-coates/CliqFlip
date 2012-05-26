@@ -333,6 +333,7 @@
     <Content Include="Content\js\notification\notification.js" />
     <Content Include="Content\js\search\index.js" />
     <Content Include="Content\js\user\add-interest.js" />
+    <Content Include="Content\js\user\account.js" />
     <Content Include="Content\js\user\landing.js" />
     <Content Include="Content\js\user\thank-you.js" />
     <Content Include="Content\js\user\inbox.js" />
@@ -783,6 +784,7 @@
     <Content Include="Views\User\Account\Account.cshtml" />
     <Content Include="Views\User\Account\_Email.cshtml" />
     <Content Include="Views\User\Account\_Password.cshtml" />
+    <Content Include="Views\User\Account\_Location.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

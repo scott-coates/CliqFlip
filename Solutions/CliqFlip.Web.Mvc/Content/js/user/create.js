@@ -60,7 +60,6 @@ function CreateFormWizard() {
 
 	_formProfileCreate.formwizard(formWizardOptions).bind("step_shown", OnStepShown);
 	var settings = _formProfileCreate.data('validator').settings;
-	settings.onkeyup = false;
 	settings.submitHandler = function(form) {
 		var userInterests = $(".userInterestValue", $(form));
 		if (userInterests.length > 0) {
@@ -86,20 +85,5 @@ function OnStepShown(event, data) {
 }
 
 function UpdateLocationRemoteValiation() {
-    var validator = _formProfileCreate.data("validator");
-    var locationRemoteValidation = validator.settings.rules.Location.remote;
-
-    //the remote validation uses $.ajax to make it's request
-    //Add a callback so once it's complete, we can display the location
-    //the location will be in the header
-    locationRemoteValidation.complete = function (jqXHR) {
-        var span = $("#location-found");
-        if (jqXHR.responseText === "true") {
-            var location = jqXHR.getResponseHeader("location-found");
-            span.html(location);
-        }
-        else {
-            span.html("");
-        }
-    };
+	cliqFlip.Validate.ShowLocationRemoteLocationValidation(_formProfileCreate);
 }

@@ -14,8 +14,17 @@
 	<div class="account-edit-section">
 		@{ Html.RenderPartial("Account/_Password", Model.UserAccountPassword); }
 	</div>
+	<div class="account-edit-section">
+		@{ Html.RenderPartial("Account/_Location", Model.UserAccountLocation); }
+	</div>
 </div>
 @section beforeBodyClose
 {
-	
+	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/cliqFlip/validate.js")"> </script>	
+	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/user/account.js")"> </script>	
+	<script type="text/javascript">
+		$(function (parameters) {
+			InitAccountSettings();
+		});
+	</script>
 }
