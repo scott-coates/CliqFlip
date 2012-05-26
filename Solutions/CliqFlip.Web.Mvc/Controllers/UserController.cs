@@ -93,7 +93,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		public ActionResult Account()
 		{
 			var viewModel = _userProfileQuery.GetUserAccount(_principal);
-			return View(viewModel);
+			return View("Account/Account", viewModel);
 		}
 
 		[Authorize]

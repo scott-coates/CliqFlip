@@ -1,0 +1,16 @@
+﻿@{
+	Layout = "~/Views/User/_Profile.cshtml";
+}
+@model CliqFlip.Web.Mvc.ViewModels.User.UserAccountViewModel
+
+@section beforeHeadClose
+{
+
+}
+
+@{Html.RenderPartial("Account/_Email",Model.UserAccountEmail);}
+
+@section beforeBodyClose
+{
+	
+}
