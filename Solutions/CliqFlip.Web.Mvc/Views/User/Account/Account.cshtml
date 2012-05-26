@@ -7,9 +7,14 @@
 {
 
 }
-
-@{Html.RenderPartial("Account/_Email",Model.UserAccountEmail);}
-
+<div class="account-edit three_fourth last">
+	<div class="account-edit-section">
+		@{ Html.RenderPartial("Account/_Email", Model.UserAccountEmail); }
+	</div>
+	<div class="account-edit-section">
+		@{ Html.RenderPartial("Account/_Password", Model.UserAccountPassword); }
+	</div>
+</div>
 @section beforeBodyClose
 {
 	

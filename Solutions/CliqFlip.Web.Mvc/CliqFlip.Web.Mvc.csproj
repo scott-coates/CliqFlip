@@ -782,6 +782,7 @@
     <None Include="Content\templates\media\WebPageNoImage.mustache" />
     <Content Include="Views\User\Account\Account.cshtml" />
     <Content Include="Views\User\Account\_Email.cshtml" />
+    <Content Include="Views\User\Account\_Password.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
