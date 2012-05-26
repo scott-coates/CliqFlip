@@ -226,6 +226,7 @@
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
     <Compile Include="ViewModels\Search\InterestSearchViewModel.cs" />
     <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
+    <Compile Include="ViewModels\User\UserAccountViewModel.cs" />
     <Compile Include="ViewModels\User\UserSaveInterestMediumFromUrlViewModel.cs" />
     <Compile Include="ViewModels\User\UserSaveInterestWebPageViewModel.cs" />
     <Compile Include="ViewModels\User\UserSaveInterestVideoViewModel.cs" />
@@ -779,6 +780,7 @@
     <None Include="Content\templates\media\Video.mustache" />
     <None Include="Content\templates\media\WebPage.mustache" />
     <None Include="Content\templates\media\WebPageNoImage.mustache" />
+    <Content Include="Views\User\Account.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

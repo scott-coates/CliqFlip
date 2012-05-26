@@ -143,6 +143,23 @@ namespace CliqFlip.Web.Mvc.Queries
             return retVal;
         }
 
+		public UserAccountViewModel GetUserAccount(IPrincipal requestingUser)
+		{
+			UserAccountViewModel retVal = null;
+
+			//get the requesting sender
+			User user = GetUser(requestingUser.Identity.Name);
+
+			if (user != null)
+			{
+				retVal = new UserAccountViewModel();
+				
+				FillBaseProperties(retVal, user, requestingUser);
+			}
+
+			return retVal;
+		}
+
 		#endregion
 
 		private User GetUser(string username)

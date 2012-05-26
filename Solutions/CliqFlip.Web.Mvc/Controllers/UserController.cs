@@ -22,17 +22,16 @@ using CliqFlip.Web.Mvc.ViewModels.User;
 using CliqFlip.Web.Mvc.Views.Interfaces;
 using SharpArch.NHibernate.Web.Mvc;
 using SharpArch.Web.Mvc.JsonNet;
-using CliqFlip.Web.Mvc.ViewModels;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
 	public class UserController : Controller
 	{
+		private readonly IConversationQuery _conversationQuery;
 		private readonly IHttpContextProvider _httpContextProvider;
 		private readonly IPrincipal _principal;
 		private readonly IUserProfileQuery _userProfileQuery;
 		private readonly IUserTasks _userTasks;
-		private readonly IConversationQuery _conversationQuery;
 		private readonly IViewRenderer _viewRenderer;
 
 		public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IConversationQuery conversationQuery, IHttpContextProvider httpContextProvider, IViewRenderer viewRenderer)
@@ -51,7 +50,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			if (_principal.Identity.IsAuthenticated)
 			{
-				return RedirectToAction("Index", "User", new { username = _principal.Identity.Name });
+				return RedirectToAction("Index", "User", new {username = _principal.Identity.Name});
 			}
 			return View(new UserCreateViewModel());
 		}
@@ -63,7 +62,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var profileToCreate = new UserDto { Email = profile.Email, Password = profile.Password, Username = profile.Username };
+				var profileToCreate = new UserDto {Email = profile.Email, Password = profile.Password, Username = profile.Username};
 
 				foreach (InterestCreate interest in profile.UserInterests)
 				{
@@ -90,9 +89,25 @@ namespace CliqFlip.Web.Mvc.Controllers
 		}
 
 		[Authorize]
+		[Transaction]
+		public ActionResult Account()
+		{
+			var viewModel = _userProfileQuery.GetUserAccount(_principal);
+			return View(viewModel);
+		}
+
+		[Authorize]
+		[HttpPost]
+		[Transaction]
+		public ActionResult AccountEmail(UserAccountViewModel.UserAccountEmailViewModel userAccountEmailViewModel)
+		{
+			return null;
+		}
+
+		[Authorize]
 		public ActionResult ThankYou()
 		{
-			var viewModel = new ThankYouViewModel { Username = _principal.Identity.Name };
+			var viewModel = new ThankYouViewModel {Username = _principal.Identity.Name};
 			return View(viewModel);
 		}
 
@@ -102,7 +117,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var interestDtos = addInterestsViewModel.UserInterests.Select(x => new UserInterestDto(x.Id, x.Name, x.CategoryId));
+				IEnumerable<UserInterestDto> interestDtos = addInterestsViewModel.UserInterests.Select(x => new UserInterestDto(x.Id, x.Name, x.CategoryId));
 
 				_userTasks.AddInterestsToUser(_principal.Identity.Name, interestDtos);
 				return RedirectToAction("Interests", "User");
@@ -407,7 +422,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			user.UpdateHeadline(saveTextViewModel.New_Value);
-			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
+			var retVal = new JeipSaveResponseViewModel {html = saveTextViewModel.New_Value, is_error = false};
 			return new JsonNetResult(retVal);
 		}
 
@@ -419,7 +434,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			//get conversation and save it
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			user.UpdateBio(saveTextViewModel.New_Value);
-			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
+			var retVal = new JeipSaveResponseViewModel {html = saveTextViewModel.New_Value, is_error = false};
 			return new JsonNetResult(retVal);
 		}
 
@@ -431,7 +446,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			//get conversation and save it
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			user.UpdateTwitterUsername(saveTextViewModel.New_Value);
-			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
+			var retVal = new JeipSaveResponseViewModel {html = saveTextViewModel.New_Value, is_error = false};
 			return new JsonNetResult(retVal);
 		}
 
@@ -443,7 +458,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			//get conversation and save it
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			user.UpdateYouTubeUsername(saveTextViewModel.New_Value);
-			var retVal = new JeipSaveResponseViewModel { html = saveTextViewModel.New_Value, is_error = false };
+			var retVal = new JeipSaveResponseViewModel {html = saveTextViewModel.New_Value, is_error = false};
 			return new JsonNetResult(retVal);
 		}
 
@@ -500,7 +515,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			}
 
 			//http://stackoverflow.com/a/4985562/173957
-			throw new HttpException((int)HttpStatusCode.NotFound, "Not found");
+			throw new HttpException((int) HttpStatusCode.NotFound, "Not found");
 		}
 
 		[BlockUnsupportedBrowsers]
@@ -523,7 +538,6 @@ namespace CliqFlip.Web.Mvc.Controllers
 		}
 
 
-
 		[Transaction]
 		[Authorize]
 		public ActionResult StartConversationWith()
@@ -539,29 +553,29 @@ namespace CliqFlip.Web.Mvc.Controllers
 			if (ModelState.IsValid)
 			{
 				string body = _viewRenderer.RenderView(this, "~/Views/Email/NewConversation.cshtml"
-					, new NewConversationViewModel
-					{
-						ToUsername = model.Username,
-						FromUsername = _principal.Identity.Name
-					});
+				                                       , new NewConversationViewModel
+				                                       {
+				                                       	ToUsername = model.Username,
+				                                       	FromUsername = _principal.Identity.Name
+				                                       });
 
 				_userTasks.StartConversation(_principal.Identity.Name
-					, model.Username
-					, model.Text
-					, "New Message on CliqFlip"
-					, body);
+				                             , model.Username
+				                             , model.Text
+				                             , "New Message on CliqFlip"
+				                             , body);
 
-				return Json(new { success = true });
+				return Json(new {success = true});
 			}
 			//TODO - throw ex or display to user the validation error
-			return Json(new { success = false });
+			return Json(new {success = false});
 		}
 
 		[Transaction]
 		[Authorize]
 		public ActionResult ReplyToConversation(int id)
 		{
-			var model = new UserReplyToConversationViewModel { Id = id };
+			var model = new UserReplyToConversationViewModel {Id = id};
 			return PartialView(model);
 		}
 
@@ -582,19 +596,19 @@ namespace CliqFlip.Web.Mvc.Controllers
 				string subject = _principal.Identity.Name + " has Replied to You";
 
 				string body = _viewRenderer.RenderView(this, "~/Views/Email/ReplyToConversation.cshtml"
-													   , new ReplyToViewModel
-													   {
-														   ToUsername = reveiver.Username,
-														   FromUsername = _principal.Identity.Name
-													   });
+				                                       , new ReplyToViewModel
+				                                       {
+				                                       	ToUsername = reveiver.Username,
+				                                       	FromUsername = _principal.Identity.Name
+				                                       });
 
 				Message message = _userTasks
 					.ReplyToConversation(conversation
-										 , sender
-										 , reveiver
-										 , model.Text
-										 , subject
-										 , body);
+					                     , sender
+					                     , reveiver
+					                     , model.Text
+					                     , subject
+					                     , body);
 
 				return PartialView("Message", new MessageViewModel(message));
 			}
@@ -624,13 +638,13 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult Landing()
 		{
-			var username = _principal.Identity.Name;
+			string username = _principal.Identity.Name;
 
-			var user = _userTasks.GetUser(username);
+			User user = _userTasks.GetUser(username);
 
 			RouteData.Values["username"] = username;
 
-			var viewModel = new UserLandingPageViewModel { Username = username };
+			var viewModel = new UserLandingPageViewModel {Username = username};
 
 			return View(viewModel);
 		}
@@ -640,19 +654,19 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[BlockUnsupportedBrowsers]
 		public ActionResult Flip()
 		{
-			var username = _principal.Identity.Name;
-			var nextUser = _userTasks.GetSuggestedUser(username);
+			string username = _principal.Identity.Name;
+			User nextUser = _userTasks.GetSuggestedUser(username);
 
-			return RedirectToAction("Index", new { username = nextUser.Username });
+			return RedirectToAction("Index", new {username = nextUser.Username});
 		}
 
 		[Authorize]
 		[Transaction]
 		public ActionResult ReadConversation(int id)
 		{
-			var user = _userTasks.GetUser(_principal.Identity.Name);
+			User user = _userTasks.GetUser(_principal.Identity.Name);
 			user.ReadConversation(id);
-			var messages = _conversationQuery.GetMessages(id, _principal.Identity.Name);
+			IEnumerable<MessageViewModel> messages = _conversationQuery.GetMessages(id, _principal.Identity.Name);
 			return PartialView(messages);
 		}
 	}
