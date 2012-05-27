@@ -1,8 +1,26 @@
-﻿<a value="{{model.MediumId}}" title="{{model.Title}}" href="{{model.WebSiteUrl}}" medium="{{model.MediumType}}">
-    <strong>
-        {{model.Title}}
-    </strong>
+﻿<!--<div style="float:left;width:210px;">
+  
+  <a value="{{medium.MediumId}}" title="{{model.Username}}" href="{{model.UserPageUrl}}">
+    
+  </a>
+</div>-->
+
+<!--<a value="{{model.MediumId}}" title="{{model.Title}}" href="{{model.WebSiteUrl}}" medium="{{model.MediumType}}">
+    
     <div>
         {{model.Description}}
     </div>
-</a>
+</a>-->
+
+<div>
+  <h4>{{model.Username}}</h4>
+  <img class="profile-image" src="{{model.ImageUrl}}" alt="{{model.Username}}"/>
+  
+  <h5 style="text-align:right;">{{model.Interest}}</h5>
+  <h4>
+    {{model.Title}}
+  </h4>
+  <p>
+    {{model.Description}}
+  </p>
+</div>

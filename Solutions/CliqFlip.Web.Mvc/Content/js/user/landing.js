@@ -66,14 +66,38 @@ function InitFeed(feedUrl) {
 		}
 	});
 
-    CliqFlipMVC.Views.Feed.InterestFeedItem = Backbone.View.extend({
-        className: "interest-feed-item box-grey",
-		render: function () {
-			var jsonModel = this.model.toJSON();
-			this.$el.html(window.JST['media-' + jsonModel.MediumType].render({ model: jsonModel },
+	CliqFlipMVC.Views.Feed.InterestFeedItem = Backbone.View.extend({
+	    className: "interest-feed-item box-grey",
+	    events: {
+	        "click": "showDetailedView"
+	    },
+	    render: function () {
+	        var jsonModel = this.model.toJSON();
+	        this.$el.html(window.JST['media-' + jsonModel.MediumType].render({ model: jsonModel },
 				{ video: window.JST['media-Video'] }));
-			return this;
-		}			
+	        return this;
+	    },
+	    showDetailedView: function () {
+	        $.colorbox({ html: this.$el.html(), open: true });
+	        //new CliqFlipMVC.Views.Feed.InterestFeedItemDetailed({ model: this.model }).render();
+	    }
+	});
+
+	CliqFlipMVC.Views.Feed.InterestFeedItemDetailed = Backbone.View.extend({
+	    el: "#detailed-interest-item",
+	    render: function () {
+	        //alert(this.model);
+	        var jsonModel = this.model.toJSON();
+	        //this.$el.html();
+	        //alert(this.$el.html());
+	        //this.$el.appendTo("body");
+            var html = window.JST['media-' + jsonModel.MediumType].render({ model: jsonModel },
+				{ video: window.JST['media-Video'] });
+
+	        //this.$el.colorbox({ open: true });
+	        $.colorbox({html: html, open: true });
+	        return this;
+	    }
 	});
 
 	//start app - anything before this could be in its own file
