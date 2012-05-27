@@ -19,6 +19,11 @@
 		@{ Html.RenderPartial("Account/_Location", Model.UserAccountLocation); }
 	</div>
 </div>
+<div class="clear"></div>
+<div class="heading_box">
+<h1>Extras</h1>
+@{Html.RenderPartial("_Bookmarklet");}
+</div>
 @section beforeBodyClose
 {
 	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/cliqFlip/validate.js")"> </script>	
