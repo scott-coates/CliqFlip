@@ -2224,3 +2224,11 @@ background: -moz-linear-gradient(top, #CC0000 0%, #CC0000 100%); /* FF3.6+ */
 {
     width: 265px;
 }
+
+/*========================*/
+/*===  Flash
+/*========================*/
+
+#flash {
+	display: none;
+}

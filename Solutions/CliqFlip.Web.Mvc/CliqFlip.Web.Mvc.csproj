@@ -191,6 +191,7 @@
     <Compile Include="Controllers\PopupController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Extensions\Controller\ControllerExtensions.cs" />
     <Compile Include="Extensions\Exceptions\RulesExceptionExtensions.cs" />
     <Compile Include="Extensions\Html\HtmlExtensions.cs" />
     <Compile Include="Extensions\Request\ReuqestExtensions.cs" />
@@ -738,6 +739,7 @@
     <Content Include="Areas\Admin\Views\Notification\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Notification\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Notification\_CreateOrEdit.cshtml" />
+    <Content Include="App_Code\Flash.cshtml" />
     <None Include="Content\img\patterns\Thumbs.db" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />

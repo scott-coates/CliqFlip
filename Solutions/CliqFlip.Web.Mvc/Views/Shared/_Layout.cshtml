@@ -58,6 +58,7 @@
         
 			<div class="wrapper">
 				<div class="inner">
+					<div id="flash"></div>
 					@RenderBody()
 				</div>
 				<div class="clear">
@@ -172,6 +173,7 @@
 		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.cookie.js")"> </script>
 		<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/cliqflip/login.js")"> </script>
 		<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/cliqflip/tos.js")"> </script>
+		@Flash.FlashMessage(TempData)
 		<script type="text/javascript">
 			$(document).ready(function() {
 				InitLogin();

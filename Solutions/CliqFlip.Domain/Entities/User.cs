@@ -227,5 +227,12 @@ namespace CliqFlip.Domain.Entities
 
 			UpdateLastActivity();
 		}
+
+		public virtual void UpdateEmail(string email)
+		{
+			//TODO: put validation on domain entity too
+			Email = email;
+			UpdateLastActivity();
+		}
 	}
 }

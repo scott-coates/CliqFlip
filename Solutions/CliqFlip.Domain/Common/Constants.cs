@@ -18,5 +18,7 @@ namespace CliqFlip.Domain.Common
 		public const string ROUTE_LANDING_PAGE = "User Landing Page";
 		public const string NOTIFICATION_COOKIE = "notification-id";
 		public const int FEED_LIMIT = 10;
+		public const string SUCCESS_TEMPDATA_KEY = "success";
+		public const string ERROR_TEMPDATA_KEY = "error";
 	}
 }

@@ -22,6 +22,7 @@ using CliqFlip.Web.Mvc.ViewModels.User;
 using CliqFlip.Web.Mvc.Views.Interfaces;
 using SharpArch.NHibernate.Web.Mvc;
 using SharpArch.Web.Mvc.JsonNet;
+using CliqFlip.Web.Mvc.Extensions.Controller;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
@@ -101,7 +102,15 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Transaction]
 		public ActionResult AccountEmail(UserAccountViewModel.UserAccountEmailViewModel userAccountEmailViewModel)
 		{
-			return null;
+			if(ModelState.IsValid)
+			{
+				var user = _userTasks.GetUser(_principal.Identity.Name);
+				user.UpdateEmail(userAccountEmailViewModel.Email);
+				this.FlashSuccess("Email Updated");
+				return RedirectToAction("Account");
+			}
+
+			return Account();
 		}
 
 		[Authorize]
