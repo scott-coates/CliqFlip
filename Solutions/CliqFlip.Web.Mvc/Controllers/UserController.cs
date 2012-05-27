@@ -71,12 +71,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 					profileToCreate.InterestDtos.Add(userInterest);
 				}
 
-				var locationData = _httpContextProvider.Session[Constants.LOCATION_SESSION_KEY] as LocationData;
-
-				if (locationData == null)
-				{
-					throw new Exception("The location data was not found in the user's session");
-				}
+				var locationData = GetLocationData();
 
 				User user = _userTasks.Create(profileToCreate, locationData);
 
@@ -87,6 +82,17 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 			//TODO: Implement PRG pattern for post forms
 			return View(profile);
+		}
+
+		private LocationData GetLocationData()
+		{
+			var locationData = _httpContextProvider.Session[Constants.LOCATION_SESSION_KEY] as LocationData;
+
+			if (locationData == null)
+			{
+				throw new Exception("The location data was not found in the user's session");
+			}
+			return locationData;
 		}
 
 		[Authorize]
@@ -115,6 +121,40 @@ namespace CliqFlip.Web.Mvc.Controllers
 			//functions just call View();
 			return Account();
 		}
+
+		[Authorize]
+		[HttpPost]
+		[Transaction]
+		public ActionResult AccountPassword(UserAccountViewModel.UserAccountPasswordViewModel userAccountPasswordViewModel)
+		{
+			if (ModelState.IsValid)
+			{
+				var user = _userTasks.GetUser(_principal.Identity.Name);
+				_userTasks.SavePassword(user,userAccountPasswordViewModel.Password);
+				this.FlashSuccess("Password Updated");
+				return RedirectToAction("Account");
+			}
+
+			return Account();
+		}
+
+		[Authorize]
+		[HttpPost]
+		[Transaction]
+		public ActionResult AccountLocation(UserAccountViewModel.UserAccountLocationViewModel userAccountLocationViewModel)
+		{
+			if (ModelState.IsValid)
+			{
+				var user = _userTasks.GetUser(_principal.Identity.Name);
+				var locationData = GetLocationData();
+				_userTasks.SaveLocation(user, locationData);
+				this.FlashSuccess("Location Updated");
+				return RedirectToAction("Account");
+			}
+
+			return Account();
+		}
+
 
 		[Authorize]
 		public ActionResult ThankYou()

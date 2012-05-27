@@ -92,7 +92,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public User Create(UserDto userToCreate, LocationData location)
 		{
-			string salt = PasswordHelper.GenerateSalt(16); //TODO: should this be 32
+			string salt = PasswordHelper.GenerateSalt(16); //TODO: should this be 32 - encapsulate this somehwere
 			string pHash = PasswordHelper.GetPasswordHash(userToCreate.Password, salt);
 
 			var user = new User(userToCreate.Username, userToCreate.Email, pHash, salt);
@@ -266,6 +266,21 @@ namespace CliqFlip.Tasks.TaskImpl
 			}
 
 			user.UpdateWebsite(siteUrl, feedUrl);
+		}
+
+		public void SavePassword(User user, string password)
+		{
+			string salt = PasswordHelper.GenerateSalt(16); //TODO: should this be 32 - encapsulate this somehwere
+			string pHash = PasswordHelper.GetPasswordHash(password, salt);
+
+			user.UpdatePassword(pHash,salt);
+		}
+
+		public void SaveLocation(User user, LocationData locationData)
+		{
+			MajorLocation majorLocation = _locationService.GetNearestMajorCity(locationData.Latitude, locationData.Longitude);
+
+			user.UpdateLocation(locationData, majorLocation);
 		}
 
 		public void Logout(string name)

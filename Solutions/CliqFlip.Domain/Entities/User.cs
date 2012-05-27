@@ -234,5 +234,12 @@ namespace CliqFlip.Domain.Entities
 			Email = email;
 			UpdateLastActivity();
 		}
+
+		public virtual void UpdatePassword(string password, string salt)
+		{
+			Password = password;
+			Salt = salt;
+			UpdateLastActivity();
+		}
 	}
 }
