@@ -1,5 +1,5 @@
-﻿@using CliqFlip.Web.Mvc.ViewModels.User
-@using CliqFlip.Domain.Common
+﻿@using CliqFlip.Domain.Common
+@using CliqFlip.Web.Mvc.ViewModels.User
 @*TODO: make this a helper in App_Code*@
 <ul id="header-nav">
 	@if (!Request.IsAuthenticated)
@@ -17,10 +17,13 @@
  else
  {
 		<li>
-			@Html.ActionLink("Hello " + User.Identity.Name, "Index", "User", new { username = User.Identity.Name }, null)
+			@Html.RouteLink("Home", Constants.ROUTE_LANDING_PAGE)
 		</li>
 		<li>
-			@Html.RouteLink("Home", Constants.ROUTE_LANDING_PAGE)
+			@Html.ActionLink("Profile", "Index", "User", new { username = User.Identity.Name }, null)
+		</li>
+		<li>
+			@Html.ActionLink("Account", "Account", "User")
 		</li>
 		<li>
 			@Html.ActionLink("Inbox (" + @Html.Action("NewMessageCount", "User", new { Area = "" }) + ")", "Inbox", "User", new { username = User.Identity.Name }, null)
