@@ -8,6 +8,7 @@
 
 }
 <div class="account-edit three_fourth last">
+	@Html.ValidationSummary(true)	
 	<div class="account-edit-section">
 		@{ Html.RenderPartial("Account/_Email", Model.UserAccountEmail); }
 	</div>

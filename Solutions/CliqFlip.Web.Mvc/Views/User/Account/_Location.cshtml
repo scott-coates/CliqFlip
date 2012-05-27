@@ -8,8 +8,6 @@
 
 @using (Html.BeginForm("AccountLocation", "User", FormMethod.Post, new {id = "frmAccountLocation"}))
 {
-	@Html.ValidationSummary(true)
-
 	<div class="editor-label">
 		@Html.LabelFor(model => model.Location)
 	</div>
