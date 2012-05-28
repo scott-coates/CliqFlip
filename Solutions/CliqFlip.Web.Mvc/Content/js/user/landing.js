@@ -78,14 +78,14 @@ function InitFeed(feedUrl) {
                 .find("div.detailed-content").empty();
 	        return this;
 	    },
-	    showDetailedView: function () {
+	    showDetailedView: function (event) {
 
 	        //the detailed view will be basically the as it shows on the feed
 	        //but will show some extra things. I will have the video/iframe/or big image
 
 	        //if this element is clicked when it's inside the 
 	        //color box ignore the click
-	        if (this.$el.parents("#colorbox").length) {
+	        if (this.$el.parents("#colorbox").length || $(event.srcElement).is("a")) {
 	            return;
 	        }
 
