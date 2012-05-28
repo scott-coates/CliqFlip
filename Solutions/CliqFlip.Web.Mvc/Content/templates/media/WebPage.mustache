@@ -1,7 +1,28 @@
-﻿<a value="{{model.MediumId}}" title="{{model.Title}}" href="{{model.WebSiteUrl}}" medium="{{model.MediumType}}">
-    <img src="{{model.MediumImage}}" 
-        alt="{{model.Description}}"/>
-</a>
-<p>
+﻿<div class="item-header" style="border-bottom: 1px solid #26ADE4;">
+  <!--The person that posted it-->
+  <h4>
+    <a title="{{model.Username}}" href="{{model.UserPageUrl}}">{{model.Username}}</a>
+  </h4> shared
+  <img class="profile-image" src="{{model.ImageUrl}}" alt="{{model.Username}}"/>
+  <strong>
+    {{model.Title}}
+  </strong>
+
+  
+  <!--the interest it belongs to-->
+  <h5>
+    {{model.Interest}}
+  </h5>
+</div>
+<div class="item-content">
+  <p>
     {{model.Description}}
-</p>
+  </p>
+  <div class="preview-image">
+    <img src="{{model.MediumImage}}" />
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="detailed-content" style="display: none;">
+</div>

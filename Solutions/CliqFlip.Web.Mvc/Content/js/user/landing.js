@@ -67,44 +67,63 @@ function InitFeed(feedUrl) {
 	});
 
 	CliqFlipMVC.Views.Feed.InterestFeedItem = Backbone.View.extend({
-	    className: "interest-feed-item box-grey",
+
 	    events: {
 	        "click": "showDetailedView"
 	    },
 	    render: function () {
 	        var jsonModel = this.model.toJSON();
 	        this.$el.html(window.JST['media-' + jsonModel.MediumType].render({ model: jsonModel },
-				{ video: window.JST['media-Video'] }));
+				{ video: window.JST['media-Video'] }))
+                .find("div.detailed-content").empty();
 	        return this;
 	    },
 	    showDetailedView: function () {
-	        //var content = $("#detailed-interest-item").html(this.$el.html());
-	        //var colorbox = $("#detailed-interest-item");
-	        $.colorbox({ html: this.$el.html(), open: true,
-	            onComplete: function () {
-	                $("#colorbox .detailed-content").show();
+
+	        //the detailed view will be basically the as it shows on the feed
+            //but will show some extra things. I will have the video/iframe/or big image
+
+	        //if this element is clicked when it's inside the 
+	        //color box ignore the click
+	        if (this.$el.parents("#colorbox").length) {
+	            return;
+	        }
+
+	        var that = this;
+
+	        if (this.$el.find("div.detailed-content").is(":empty")) {
+	            //to prevent loading a bunch of hidden iframe's and having them
+	            //pre-load, insert the iframe into the right place when the item is clicked
+	            var detailedContent;
+	            switch (this.model.get('MediumType')) {
+	                case "Video":
+	                    detailedContent = "<iframe src=" + this.model.get("VideoUrl") + "/>";
+	                    break;
+	                case "WebPageNoImage":
+	                case "WebPage":
+	                    detailedContent = "<iframe src=" + this.model.get("WebSiteUrl") + "/>";
+	                    break;
 	            }
+	            this.$el.find(".detailed-content").html(detailedContent);
+	        }
+
+
+            //show the color box
+	        $.colorbox({ inline: true, href: this.$el, open: true,
+	            onComplete: function () {
+	                that.$el.find(".detailed-content").show();
+	            },
+	            onCleanup: function () {
+	                //we need to clear the detailed contents or the
+	                //browser will end up loading the iframe as the modal is closed
+	                that.$el.find(".detailed-content").empty().hide();
+	            },
+	            width: 800,
+	            height: "90%"
 	        });
-	        //new CliqFlipMVC.Views.Feed.InterestFeedItemDetailed({ model: this.model }).render();
 	    }
 	});
 
-	CliqFlipMVC.Views.Feed.InterestFeedItemDetailed = Backbone.View.extend({
-	    el: "#detailed-interest-item",
-	    render: function () {
-	        //alert(this.model);
-	        var jsonModel = this.model.toJSON();
-	        //this.$el.html();
-	        //alert(this.$el.html());
-	        //this.$el.appendTo("body");
-            var html = window.JST['media-' + jsonModel.MediumType].render({ model: jsonModel },
-				{ video: window.JST['media-Video'] });
-
-	        //this.$el.colorbox({ open: true });
-	        $.colorbox({html: html, open: true });
-	        return this;
-	    }
-	});
 
 	//start app - anything before this could be in its own file
 	var view = new CliqFlipMVC.Views.Feed.InterestFeedList({

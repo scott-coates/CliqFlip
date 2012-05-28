@@ -1,41 +1,23 @@
-﻿<!--<div style="float:left;width:210px;">
-  
-  <a value="{{medium.MediumId}}" title="{{model.Username}}" href="{{model.UserPageUrl}}">
-    
-  </a>
-</div>-->
-
-<!--<a value="{{model.MediumId}}" title="{{model.Title}}" href="{{model.WebSiteUrl}}" medium="{{model.MediumType}}">
-    
-    <div>
-        {{model.Description}}
-    </div>
-</a>-->
-<div class="item-header" style="border-bottom: 1px solid #26ADE4;">
+﻿<div class="item-header" style="border-bottom: 1px solid #26ADE4;">
   <!--The person that posted it-->
-  <h4 style="
-    display: inline-block;
-    height: 27px;
-    padding-left: 20px;margin: 0px;">{{model.Username}}</h4>
-  shared
-  <img class="profile-image" src="http://assets.beta.cliqflip.com/Images/acac3b9f-b8b7-4467-b8c4-bbd6d4c883bb.jpg" alt="username1" style="
-    max-height: 40px;
-    float: left;">
+  <h4>
+    <a title="{{model.Username}}" href="{{model.UserPageUrl}}">{{model.Username}}</a>
+  </h4> shared
+  <img class="profile-image" src="{{model.ImageUrl}}" alt="{{model.Username}}"/>
 
-  <strong style="display: block;text-align: center;">
+  <strong>
     {{model.Title}}
   </strong>
     
-  <!--<img class="profile-image" src="{{model.ImageUrl}}" alt="{{model.Username}}"/>-->
   <!--the interest it belongs to-->
-  <h5 style="text-align:right;position: absolute;top: 0;right: 0;background-color: lightblue;padding: 10px 30px;border-radius: 0px 0px 0px 25px;">
+  <h5>
     {{model.Interest}}
   </h5>
 </div>
 <div>
-  
   <p>
     {{model.Description}}
   </p>
 </div>
-<iframe src="" style="display: none;" ></iframe>
+<div class="detailed-content" style="display: none;">
+</div>

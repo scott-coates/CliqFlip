@@ -2208,8 +2208,97 @@ background: -moz-linear-gradient(top, #CC0000 0%, #CC0000 100%); /* FF3.6+ */
     border-color:#ddd; color:#666;
     position: relative;
     background-color: White;
+    width:508px;
+	margin: 0 auto 30px;
+	border: 1px solid;
+	padding: 20px;
 }
 
+div.item-header
+{
+    margin-bottom: 15px;
+}
+div.item-header h4
+{
+    display: inline-block;
+    height: 27px;
+    padding-left: 20px;
+    margin: 0px;
+}
+        
+div.item-header img
+{
+    max-height: 40px;
+    float: left;
+}
+        
+div.item-header strong
+{
+    display: block;
+    text-align: center;
+}
+        
+div.item-header h5
+{
+    text-align:right;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: lightblue;
+    padding: 10px 30px;
+    border-radius: 0px 0px 0px 25px;
+}
+        
+div.item-content div.preview-image
+{
+    float: left;
+    max-width: 45%;
+    margin: 0 2%;
+    position: relative;
+}
+        
+div.item-content div.preview-image img
+{
+    width: 100%
+}
+        
+#colorbox div.item-content div.preview-image
+{
+    display: none;
+    width: 0%;
+    margin: 0%;
+}
+        
+div.item-content p
+{
+    width: 50%;
+    float: right;
+}
+        
+#colorbox div.item-content p
+{
+    width: 100%;
+}
+        
+#colorbox div.detailed-content
+{
+    height: 400px
+}
+        
+#colorbox div.detailed-content iframe
+{
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    max-width: 99%;
+}
+        
+#interest-feed span.video-indicator
+{
+    left: 45%;
+    bottom: 45%;
+}
+        
 /*========================*/
 /*===  Account Settings
 /*========================*/
