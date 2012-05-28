@@ -81,7 +81,7 @@ function InitFeed(feedUrl) {
 	    showDetailedView: function () {
 
 	        //the detailed view will be basically the as it shows on the feed
-            //but will show some extra things. I will have the video/iframe/or big image
+	        //but will show some extra things. I will have the video/iframe/or big image
 
 	        //if this element is clicked when it's inside the 
 	        //color box ignore the click
@@ -108,15 +108,14 @@ function InitFeed(feedUrl) {
 	        }
 
 
-            //show the color box
-	        $.colorbox({ inline: true, href: this.$el, open: true,
-	            onComplete: function () {
-	                that.$el.find(".detailed-content").show();
-	            },
+	        //show the color box
+	        $.colorbox({ inline: true, 
+                href: this.$el, 
+                open: true,
 	            onCleanup: function () {
 	                //we need to clear the detailed contents or the
 	                //browser will end up loading the iframe as the modal is closed
-	                that.$el.find(".detailed-content").empty().hide();
+	                that.$el.find(".detailed-content").empty();
 	            },
 	            width: 800,
 	            height: "90%"

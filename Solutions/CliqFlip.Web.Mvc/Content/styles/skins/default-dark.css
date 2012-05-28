@@ -2261,7 +2261,7 @@ div.item-content div.preview-image img
 {
     width: 100%
 }
-        
+/*hide the preview image in the colorbox*/
 #colorbox div.item-content div.preview-image
 {
     display: none;
@@ -2274,17 +2274,26 @@ div.item-content p
     width: 50%;
     float: right;
 }
-        
+
+
+/*makes the description take up all the width in the colorbox*/        
 #colorbox div.item-content p
 {
     width: 100%;
 }
-        
+
+
+div.item-content div.detailed-content
+{
+    display: none;
+}
+
+/*show the detailed content in colorbox*/      
 #colorbox div.detailed-content
 {
-    height: 400px
+    height: 400px;
+    display: block;
 }
-        
 #colorbox div.detailed-content iframe
 {
     width: 100%;
