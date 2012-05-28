@@ -24,10 +24,10 @@
 			<h6>(check your mail)</h6>
 		</div>
 	</a>
-	<a href="@Url.Action("Flip")" class="landing-page-button"  title="Find Random User">
+	<a href="@Url.Action("Flip")" class="landing-page-button"  title="Find Suggested User">
 		<div class="landing-page-direction" id="landig-page-suggested">
 			<h2>Flip</h2>
-			<h6>(browse random users)</h6>
+			<h6>(browse suggested users)</h6>
 		</div>
 	</a>
 	<a href="javascript:UserVoice.showPopupWidget();" class="landing-page-button" title="Open feedback & support dialog (powered by UserVoice)">
@@ -43,15 +43,9 @@
 <div class="line"></div>
 <h3 style="text-align:center;">Check out the latest interests</h3>
 <div id="interest-feed">
-	
-</div>
-
 <div id="detailed-interest-item">
 </div>
 
-<div class="heading_box">
-<h1>Extras</h1>
-@{Html.RenderPartial("_Bookmarklet");}
 </div>
 
 @section beforeBodyClose

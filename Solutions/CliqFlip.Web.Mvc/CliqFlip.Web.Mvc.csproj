@@ -191,6 +191,7 @@
     <Compile Include="Controllers\PopupController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Extensions\Controller\ControllerExtensions.cs" />
     <Compile Include="Extensions\Exceptions\RulesExceptionExtensions.cs" />
     <Compile Include="Extensions\Html\HtmlExtensions.cs" />
     <Compile Include="Extensions\Request\ReuqestExtensions.cs" />
@@ -226,6 +227,7 @@
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
     <Compile Include="ViewModels\Search\InterestSearchViewModel.cs" />
     <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
+    <Compile Include="ViewModels\User\UserAccountViewModel.cs" />
     <Compile Include="ViewModels\User\UserSaveInterestMediumFromUrlViewModel.cs" />
     <Compile Include="ViewModels\User\UserSaveInterestWebPageViewModel.cs" />
     <Compile Include="ViewModels\User\UserSaveInterestVideoViewModel.cs" />
@@ -332,6 +334,7 @@
     <Content Include="Content\js\notification\notification.js" />
     <Content Include="Content\js\search\index.js" />
     <Content Include="Content\js\user\add-interest.js" />
+    <Content Include="Content\js\user\account.js" />
     <Content Include="Content\js\user\landing.js" />
     <Content Include="Content\js\user\thank-you.js" />
     <Content Include="Content\js\user\inbox.js" />
@@ -736,6 +739,7 @@
     <Content Include="Areas\Admin\Views\Notification\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Notification\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Notification\_CreateOrEdit.cshtml" />
+    <Content Include="App_Code\Flash.cshtml" />
     <None Include="Content\img\patterns\Thumbs.db" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
@@ -779,6 +783,10 @@
     <None Include="Content\templates\media\Video.mustache" />
     <None Include="Content\templates\media\WebPage.mustache" />
     <None Include="Content\templates\media\WebPageNoImage.mustache" />
+    <Content Include="Views\User\Account\Account.cshtml" />
+    <Content Include="Views\User\Account\_Email.cshtml" />
+    <Content Include="Views\User\Account\_Password.cshtml" />
+    <Content Include="Views\User\Account\_Location.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

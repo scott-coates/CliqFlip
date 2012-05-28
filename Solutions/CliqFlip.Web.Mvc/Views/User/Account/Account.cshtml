@@ -1,0 +1,36 @@
+﻿@{
+	Layout = "~/Views/User/_Profile.cshtml";
+}
+@model CliqFlip.Web.Mvc.ViewModels.User.UserAccountViewModel
+
+@section beforeHeadClose
+{
+
+}
+<div class="account-edit three_fourth last">
+	@Html.ValidationSummary(true)	
+	<div class="account-edit-section">
+		@{ Html.RenderPartial("Account/_Email", Model.UserAccountEmail); }
+	</div>
+	<div class="account-edit-section">
+		@{ Html.RenderPartial("Account/_Password", Model.UserAccountPassword); }
+	</div>
+	<div class="account-edit-section">
+		@{ Html.RenderPartial("Account/_Location", Model.UserAccountLocation); }
+	</div>
+</div>
+<div class="clear"></div>
+<div class="heading_box">
+<h1>Extras</h1>
+@{Html.RenderPartial("_Bookmarklet");}
+</div>
+@section beforeBodyClose
+{
+	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/cliqFlip/validate.js")"> </script>	
+	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/user/account.js")"> </script>	
+	<script type="text/javascript">
+		$(function (parameters) {
+			InitAccountSettings();
+		});
+	</script>
+}

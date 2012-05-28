@@ -1,0 +1,29 @@
+﻿@using CliqFlip.Domain.Common
+@using System.Web.Mvc
+
+@helper FlashMessage(TempDataDictionary tempData){
+	//http://stackoverflow.com/questions/5581214/flash-equivalent-in-asp-net-mvc-3
+    var message = "";
+    var className = "";
+    if (tempData[Constants.SUCCESS_TEMPDATA_KEY] != null)
+    {
+		message = tempData[Constants.SUCCESS_TEMPDATA_KEY].ToString();
+        className = "tip_box";
+    }
+	else if (tempData[Constants.ERROR_TEMPDATA_KEY] != null)
+    {
+		message = tempData[Constants.ERROR_TEMPDATA_KEY].ToString();
+        className = "error_box";
+    }
+    if (!String.IsNullOrEmpty(message))
+    {
+        <script type="text/javascript">
+        	$(document).ready(function () {
+        		$('#flash').html('@message');
+        		$('#flash').toggleClass('@className');
+        		$('#flash').slideDown('slow');
+        		$('#flash').click(function () { $(this).toggle('highlight'); });
+        	});
+        </script>
+    }
+}
