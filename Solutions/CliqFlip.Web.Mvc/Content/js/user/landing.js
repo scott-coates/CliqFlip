@@ -78,7 +78,13 @@ function InitFeed(feedUrl) {
 	        return this;
 	    },
 	    showDetailedView: function () {
-	        $.colorbox({ html: this.$el.html(), open: true });
+	        //var content = $("#detailed-interest-item").html(this.$el.html());
+	        //var colorbox = $("#detailed-interest-item");
+	        $.colorbox({ html: this.$el.html(), open: true,
+	            onComplete: function () {
+	                $("#colorbox .detailed-content").show();
+	            }
+	        });
 	        //new CliqFlipMVC.Views.Feed.InterestFeedItemDetailed({ model: this.model }).render();
 	    }
 	});

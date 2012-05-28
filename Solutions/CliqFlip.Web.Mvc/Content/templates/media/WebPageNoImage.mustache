@@ -15,24 +15,27 @@
   <!--The person that posted it-->
   <h4 style="
     display: inline-block;
-    height: 40px;
-    padding-left: 20px;">{{model.Username}}</h4>
+    height: 27px;
+    padding-left: 20px;margin: 0px;">{{model.Username}}</h4>
+  shared
   <img class="profile-image" src="http://assets.beta.cliqflip.com/Images/acac3b9f-b8b7-4467-b8c4-bbd6d4c883bb.jpg" alt="username1" style="
     max-height: 40px;
     float: left;">
-  <!--<img class="profile-image" src="{{model.ImageUrl}}" alt="{{model.Username}}"/>-->
 
+  <strong style="display: block;text-align: center;">
+    {{model.Title}}
+  </strong>
+    
+  <!--<img class="profile-image" src="{{model.ImageUrl}}" alt="{{model.Username}}"/>-->
   <!--the interest it belongs to-->
   <h5 style="text-align:right;position: absolute;top: 0;right: 0;background-color: lightblue;padding: 10px 30px;border-radius: 0px 0px 0px 25px;">
     {{model.Interest}}
   </h5>
 </div>
 <div>
-  <strong style="display: block;text-align: center;">
-    {{model.Title}}
-  </strong>
+  
   <p>
     {{model.Description}}
   </p>
 </div>
-<iframe src="" ></iframe>
+<iframe src="" style="display: none;" ></iframe>
