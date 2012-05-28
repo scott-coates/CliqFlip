@@ -49,7 +49,7 @@ function InitAutoSuggest(searchUrl) {
 			searchObjProps: "Name,OriginalInput",
 			queryParam: "input",
 			minChars: 2,
-			startText: "Type in some things you like",
+			startText: "Use this box to find people with specifc interests. Ex: Hiking, Blogging, Italian",
 			formatList: FormatList,
 			selectionAdded: SelectionAdded
 		});
