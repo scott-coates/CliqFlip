@@ -20,5 +20,6 @@ namespace CliqFlip.Domain.Common
 		public const int FEED_LIMIT = 10;
 		public const string SUCCESS_TEMPDATA_KEY = "success";
 		public const string ERROR_TEMPDATA_KEY = "error";
+		public const string GRAPH_URL = "graph";
 	}
 }

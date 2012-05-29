@@ -1,8 +1,12 @@
-﻿using System.Security.Principal;
+﻿using System;
+using System.Security.Principal;
 using System.Web;
+using System.Web.Configuration;
 using Castle.Facilities.FactorySupport;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
+using CliqFlip.Domain.Common;
+using Neo4jClient;
 using SharpArch.Domain.Commands;
 using SharpArch.Domain.PersistenceSupport;
 using SharpArch.NHibernate;
@@ -56,6 +60,19 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
 					.Pick()
 					.WithService.FirstNonGenericCoreInterface("CliqFlip.Domain")
 					.WithService.FirstNonGenericCoreInterface("CliqFlip.Infrastructure"));
+
+			container
+				.Register(Component
+							.For<IGraphClient>()
+							.LifeStyle.Singleton.UsingFactoryMethod(() =>
+							{
+								var graphClient =
+									new GraphClient(new
+														Uri(WebConfigurationManager
+														.ConnectionStrings[Constants.GRAPH_URL].ConnectionString));
+								graphClient.Connect();
+								return graphClient;
+							}));
 		}
 
 		private static void AddGenericRepositoriesTo(IWindsorContainer container)
