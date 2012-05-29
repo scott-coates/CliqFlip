@@ -28,16 +28,17 @@
 		-->
 
 		<XmlPeek Condition="'$(ConnectionString)'==''" XmlInputPath="../../CliqFlip.Web.Mvc/Configuration/ConnectionStrings.config"
-           Query="/connectionStrings/add[@name='default']/@connectionString">
-			<Output TaskParameter="Result" PropertyName="ConnectionString"  />
+           Query="/connectionStrings/add/@connectionString">
+			<Output TaskParameter="Result" ItemName="ConnectionString"  />
 		</XmlPeek>
 
 		<ConvertToAbsolutePath Paths="$(OutDir)">
 			<!--This needs to be absolute to accomdate for AppHarbor-->
 			<Output TaskParameter="AbsolutePaths" PropertyName="Source_Dir_Abs"/>
 		</ConvertToAbsolutePath>
-		<Migrate Provider="SqlServer2005"
-				Connectionstring="$(ConnectionString)"
+		<!--|^| is a special delimiter for migrations -->
+		<Migrate Provider="CliqFlip"
+				Connectionstring="@(ConnectionString,'|^|')"
 						 Migrations="$(Source_Dir_Abs)/CliqFlip.Infrastructure.dll	"
 						 To="$(SchemaVersion)"/>
 	</Target>

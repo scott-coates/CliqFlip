@@ -88,23 +88,32 @@
     <Reference Include="Microsoft.Web.Mvc">
       <HintPath>..\..\Packages\Mvc3Futures.3.0.20105.0\lib\Microsoft.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="Migrator">
+    <Reference Include="Migrator, Version=0.9.0.28138, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib\Migrator.dll</HintPath>
     </Reference>
-    <Reference Include="Migrator.Framework">
+    <Reference Include="Migrator.Framework, Version=0.9.0.26940, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib\Migrator.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="Migrator.MSBuild">
-      <HintPath>..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib\Migrator.MSBuild.dll</HintPath>
-    </Reference>
-    <Reference Include="Migrator.Providers">
+    <Reference Include="Migrator.Providers, Version=0.9.0.33276, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib\Migrator.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="Neo4jClient, Version=1.0.0.355, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Packages\Neo4jClient.1.0.0.355\lib\Neo4jClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\Packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\Packages\NHibernate.3.1.0.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate.ByteCode.Castle">
       <HintPath>..\..\Packages\NHibernate.Castle.3.1.0.4000\lib\Net35\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\..\Packages\RestSharp.102.7\lib\net35\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="SharpArch.Domain">
       <HintPath>..\..\ReferencedAssemblies\SharpArchitecture\SharpArch.Domain.dll</HintPath>
@@ -158,6 +167,7 @@
     <Compile Include="Logging\Interfaces\ILogger.cs" />
     <Compile Include="Migrator\ConditionalMigration.cs" />
     <Compile Include="Migrator\MigrationConstants.cs" />
+    <Compile Include="Migrator\Migrations\__634738636074216034_AddInterestIndex.cs" />
     <Compile Include="Migrator\Migrations\__634730337103520104_AddMediaCreateDate.cs" />
     <Compile Include="Migrator\Migrations\__634721196754376007_AddNotificationsTable.cs" />
     <Compile Include="Migrator\Migrations\__634710315997405844_AddWebPageTable.cs" />
