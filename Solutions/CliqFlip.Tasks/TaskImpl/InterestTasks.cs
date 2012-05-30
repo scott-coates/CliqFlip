@@ -73,7 +73,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public IList<Interest> GetAll(int page)
 		{
-			page
+			return _interestRepository.GetAll(page).ToList();
 		}
 
 		#endregion

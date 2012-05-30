@@ -35,5 +35,11 @@ namespace CliqFlip.Infrastructure.Repositories
         {
             return FindAll(new AdHoc<Interest>(x => x.IsMainCategory)).OrderBy(x=>x.Name);
         }
-    }
+
+		public IQueryable<Interest> GetAll(int page)
+		{
+			const int pageSize = 10;
+			return FindAll().Skip((page - 1) * pageSize).Take(pageSize);
+		}
+	}
 }
