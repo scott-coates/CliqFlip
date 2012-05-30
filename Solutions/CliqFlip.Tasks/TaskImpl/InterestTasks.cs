@@ -70,6 +70,12 @@ namespace CliqFlip.Tasks.TaskImpl
         {
             return _interestRepository.GetMainCategoryInterests().ToList();
         }
+
+		public IList<Interest> GetAll(int page)
+		{
+			page
+		}
+
 		#endregion
 	}
 }

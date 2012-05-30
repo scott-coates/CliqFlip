@@ -183,10 +183,14 @@
     </Compile>
     <Compile Include="App_Start\MagicalUnicornCustomErrorHandling.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\InterestController.cs" />
     <Compile Include="Areas\Admin\Controllers\NotificationController.cs" />
     <Compile Include="Areas\Admin\Controllers\ValidationController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoggingController.cs" />
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
+    <Compile Include="Areas\Admin\Queries\InterestFeedQuery.cs" />
+    <Compile Include="Areas\Admin\Queries\Interfaces\InterestListQuery.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Interest\InterestListViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Test\SimpleSendEmailViewModel.cs" />
     <Compile Include="CassetteConfiguration.cs" />
     <Compile Include="CastleWindsor\ComponentRegistrar.cs" />
@@ -635,9 +639,7 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Admin\ViewModels\NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -746,6 +748,7 @@
     <Content Include="Areas\Admin\Views\Notification\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Notification\_CreateOrEdit.cshtml" />
     <Content Include="App_Code\Flash.cshtml" />
+    <Content Include="Areas\Admin\Views\Interest\Index.cshtml" />
     <None Include="Content\img\patterns\Thumbs.db" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
