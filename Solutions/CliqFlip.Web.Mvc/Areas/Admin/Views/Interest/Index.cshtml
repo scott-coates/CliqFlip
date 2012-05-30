@@ -4,4 +4,9 @@
 	ViewBag.Title = "title";
 }
 
-<h2>title</h2>
+<h2>Interests</h2>
+
+@{
+	var grid = new WebGrid(Model.ListItemViewModels,new[]{"Name"});
+}
+@grid.GetHtml()

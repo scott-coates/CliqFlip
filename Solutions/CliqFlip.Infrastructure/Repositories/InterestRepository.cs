@@ -2,12 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
+using NHibernate.Criterion;
 using SharpArch.Domain.Specifications;
 using SharpArch.NHibernate;
 
 namespace CliqFlip.Infrastructure.Repositories
 {
-	public class InterestRepository :LinqRepository<Interest>, IInterestRepository
+	public class InterestRepository : LinqRepository<Interest>, IInterestRepository
 	{
 		public IQueryable<Interest> GetMatchingKeywords(string input)
 		{
@@ -36,10 +37,29 @@ namespace CliqFlip.Infrastructure.Repositories
             return FindAll(new AdHoc<Interest>(x => x.IsMainCategory)).OrderBy(x=>x.Name);
         }
 
-		public IQueryable<Interest> GetAll(int page)
+		public IQueryable<Interest> GetAll(int page, string order = "")
 		{
 			const int pageSize = 10;
-			return FindAll().Skip((page - 1) * pageSize).Take(pageSize);
+
+			var resultSet = FindAll().Skip((page - 1) * pageSize).Take(pageSize);
+
+			switch(order.ToLower())
+			{
+				case "date asc":
+					resultSet = resultSet.OrderBy(x => x.CreateDate);
+					break;
+				case "date desc":
+					resultSet = resultSet.OrderByDescending(x => x.CreateDate);
+					break;
+				case "name asc":
+					resultSet = resultSet.OrderBy(x => x.Name);
+					break;
+				case "name desc":
+					resultSet = resultSet.OrderByDescending(x => x.CreateDate);
+					break;
+			}
+
+			return resultSet;
 		}
 	}
 }
