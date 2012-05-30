@@ -45,10 +45,10 @@ namespace CliqFlip.Infrastructure.Repositories
 
 			switch(order.ToLower())
 			{
-				case "date asc":
+				case "createDate asc":
 					resultSet = resultSet.OrderBy(x => x.CreateDate);
 					break;
-				case "date desc":
+				case "createDate desc":
 					resultSet = resultSet.OrderByDescending(x => x.CreateDate);
 					break;
 				case "name asc":
