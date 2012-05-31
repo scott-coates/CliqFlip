@@ -334,6 +334,7 @@
     <Content Include="Content\img\suggested.png" />
     <Content Include="Content\img\video-play.png" />
     <Content Include="Content\img\YouTube_Icon.png" />
+    <Content Include="Content\js\admin\interest\interest.js" />
     <Content Include="Content\js\bookmarklet\bookmarklet.js" />
     <Content Include="Content\js\bookmarklet\bookmarklet.min.js" />
     <Content Include="Content\js\cliqFlip\tos.js" />
@@ -345,6 +346,7 @@
     <Content Include="Content\js\jquery.zrssfeed.min.js" />
     <Content Include="Content\js\jquery.notify.js" />
     <Content Include="Content\js\notification\notification.js" />
+    <Content Include="Content\js\raphael\dracula_graffle.js" />
     <Content Include="Content\js\raphael\dracula_graph.js" />
     <Content Include="Content\js\search\index.js" />
     <Content Include="Content\js\user\add-interest.js" />
@@ -572,7 +574,6 @@
     <Content Include="Content\js\search\interest-search.js" />
     <Content Include="Content\js\jquery.jeip.js" />
     <Content Include="Content\js\jquery.json.js" />
-    <Content Include="Content\js\raphael\graffle.js" />
     <Content Include="Content\js\raphael\raphael.cliqFlip.js" />
     <Content Include="Content\js\user\profile.js" />
     <Content Include="Content\js\user\create.js" />

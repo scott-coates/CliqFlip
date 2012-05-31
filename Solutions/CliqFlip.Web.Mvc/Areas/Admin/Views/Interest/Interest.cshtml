@@ -3,6 +3,19 @@
 	ViewBag.Title = @Model.Interest.Name;
 }
 <h2>@Model.Interest.Name</h2>
-<div id="interest-relationship">
+<div id="interest-relationship" style="width: 800px;height:800px; border:solid;">
 	
 </div>
+
+@section beforeBodyClose
+{
+	<script type="text/javascript" src="@Url.Content("/Content/js/raphael/raphael.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/raphael/dracula_graffle.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/raphael/dracula_graph.js")"> </script>
+	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/admin/interest/interest.js")"> </script>
+	<script type="text/javascript">
+		$(function () {
+			InitInterest(@(Html.Raw(Model.RelatedInterestItemViewModelsJson)));
+		});
+	</script>
+}

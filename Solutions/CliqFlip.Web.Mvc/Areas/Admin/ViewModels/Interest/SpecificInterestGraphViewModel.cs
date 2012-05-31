@@ -6,14 +6,14 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest
 	{
 		public SpecificInterestItemViewModel Interest { get; set; }
 
-		public List<RelatedSpecificInterestItemViewModel> RelatedInterestItemViewModels { get; set; }
+		public string RelatedInterestItemViewModelsJson { get; set; }
 
 		#region Nested type: RelatedSpecificInterestItemViewModel
 
 		public class RelatedSpecificInterestItemViewModel
 		{
 			public SpecificInterestItemViewModel Interest { get; set; }
-			public float Wegith { get; set; }
+			public float Weight { get; set; }
 		}
 
 		#endregion
