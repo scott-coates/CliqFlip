@@ -193,6 +193,7 @@
     <Compile Include="Migrator\Migrations\__634653560469431604_AddBlogUrls.cs" />
     <Compile Include="Migrator\Migrations\__634653694060482576_AddActivity.cs" />
     <Compile Include="Migrator\Migrations\__634662457651019146_AddElmahDDL.cs" />
+    <Compile Include="NeoRelaionships\InterestBelongsTo.cs" />
     <Compile Include="NHibernate\Criteria\RandomOrder.cs" />
     <Compile Include="NHibernate\Extensions\NHibernateExtensions.cs" />
     <Compile Include="NHibernate\Maps\AutomappingConfiguration.cs" />
