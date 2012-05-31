@@ -75,9 +75,9 @@ namespace CliqFlip.Tasks.TaskImpl
 			return _interestRepository.GetMainCategoryInterests().ToList();
 		}
 
-		public IList<Interest> GetAll(int page, string sort)
+		public IList<Interest> GetAll()
 		{
-			return _interestRepository.GetAll(page, sort).ToList();
+			return _interestRepository.GetAll();
 		}
 
 		#endregion

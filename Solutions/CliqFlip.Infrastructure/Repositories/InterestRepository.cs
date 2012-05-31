@@ -37,33 +37,5 @@ namespace CliqFlip.Infrastructure.Repositories
         {
             return FindAll(new AdHoc<Interest>(x => x.IsMainCategory)).OrderBy(x=>x.Name);
         }
-
-		public IQueryable<Interest> GetAll(int page, string order)
-		{
-			if (order == null) throw new ArgumentNullException("order");
-
-			const int pageSize = 10;
-
-			var resultSet = FindAll();
-			
-			//TODO:look into linq dynamic sort
-			//switch(order.ToLower())
-			//{
-			//    case "createdate asc":
-			//        resultSet = resultSet.OrderBy(x => x.CreateDate);
-			//        break;
-			//    case "createdate desc":
-			//        resultSet = resultSet.OrderByDescending(x => x.CreateDate);
-			//        break;
-			//    case "name asc":
-			//        resultSet = resultSet.OrderBy(x => x.Name);
-			//        break;
-			//    case "name desc":
-			//        resultSet = resultSet.OrderByDescending(x => x.CreateDate);
-			//        break;
-			//}
-
-			return resultSet;
-		}
 	}
 }

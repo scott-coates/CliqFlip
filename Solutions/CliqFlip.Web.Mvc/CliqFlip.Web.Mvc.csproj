@@ -191,6 +191,7 @@
     <Compile Include="Areas\Admin\Queries\InterestFeedQuery.cs" />
     <Compile Include="Areas\Admin\Queries\Interfaces\InterestListQuery.cs" />
     <Compile Include="Areas\Admin\ViewModels\Interest\InterestListViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Interest\InterestSearchViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Test\SimpleSendEmailViewModel.cs" />
     <Compile Include="CassetteConfiguration.cs" />
     <Compile Include="CastleWindsor\ComponentRegistrar.cs" />

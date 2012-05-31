@@ -1,5 +1,6 @@
 using System.Web.Mvc;
 using CliqFlip.Web.Mvc.Areas.Admin.Queries.Interfaces;
+using CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest;
 using CliqFlip.Web.Mvc.Security.Attributes;
 using SharpArch.NHibernate.Web.Mvc;
 
@@ -20,9 +21,9 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 		// GET: /Notifications/
 
 		[Transaction]
-		public ViewResult Index(int? page, string sort)
+		public ViewResult Index(InterestSearchViewModel searchViewModel)
 		{
-			return View(_interestListQuery.GetInterestList(page, sort));
+			return View(_interestListQuery.GetInterestList(searchViewModel.SearchTearm));
 		}
 	}
 }

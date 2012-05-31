@@ -1,11 +1,10 @@
-﻿@model CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest.InterestListViewModel
-
+﻿@using CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest
+@model InterestListViewModel
 @{
 	ViewBag.Title = "title";
 }
-
-<h2>Interests</h2>
-
+<h2>
+	Interests</h2>
 @{
 	var grid = new WebGrid(Model.ListItemViewModels, new[] {"Name", "CreateDate"}, "CreateDate");
 	if (Request.QueryString[grid.SortDirectionFieldName].IsEmpty())
@@ -13,5 +12,17 @@
 		//http://forums.asp.net/t/1649155.aspx/1
 		grid.SortDirection = SortDirection.Descending;
 	}
+}
+
+@using (Html.BeginForm("Index","Interest", FormMethod.Get))
+{
+	<div class="editor-label">
+		@Html.LabelFor(model => model.SearchTearm)
+	</div>
+	<div class="editor-field">
+		@Html.EditorFor(model => model.SearchTearm)
+		@Html.ValidationMessageFor(model => model.SearchTearm)
+	</div>
+	<input type="submit"/>
 }
 @grid.GetHtml()

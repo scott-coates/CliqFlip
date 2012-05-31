@@ -12,7 +12,6 @@ namespace CliqFlip.Infrastructure.Repositories.Interfaces
 		IQueryable<string> GetSlugAndParentSlug(IList<string> slugs);
 		Interest GetByName(string name);
         IQueryable<Interest> GetMainCategoryInterests();
-		IQueryable<Interest> GetAll(int page, string order);
 		// ReSharper restore ReturnTypeCanBeEnumerable.Global
 
     }
