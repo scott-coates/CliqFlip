@@ -18,15 +18,17 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Queries
 
 		#region IInterestListQuery Members
 
-		public InterestListViewModel GetInterestList(int? page, string orderBy = "createDate desc")
+		public InterestListViewModel GetInterestList(int? page, string orderBy)
 		{
 			var retVal = new InterestListViewModel();
-			IList<Interest> interests = _interestTasks.GetAll(page ?? 1);
-			retVal.ListItemViewModels = interests.Select(x => new
-			                                                  	InterestListViewModel.InterestListItemViewModel
-			{
-				Name = x.Name
-			}).ToList();
+			IList<Interest> interests = _interestTasks.GetAll(page ?? 1, orderBy ?? "CreateDate DESC");
+			retVal.ListItemViewModels = interests.Select(x =>
+			                                             new
+			                                             	InterestListViewModel.InterestListItemViewModel
+			                                             {
+			                                             	Name = x.Name,
+															CreateDate = x.CreateDate
+			                                             }).ToList();
 
 			return retVal;
 		}

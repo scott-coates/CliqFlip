@@ -20,9 +20,9 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 		// GET: /Notifications/
 
 		[Transaction]
-		public ViewResult Index(int? page)
+		public ViewResult Index(int? page, string sort)
 		{
-			return View(_interestListQuery.GetInterestList(page));
+			return View(_interestListQuery.GetInterestList(page, sort));
 		}
 	}
 }

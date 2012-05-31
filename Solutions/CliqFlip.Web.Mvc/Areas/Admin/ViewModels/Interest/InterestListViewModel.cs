@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest
 {
@@ -11,6 +12,7 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest
 		public class InterestListItemViewModel
 		{
 			public string Name { get; set; }
+			public DateTime CreateDate { get; set; }
 		}
 
 		#endregion

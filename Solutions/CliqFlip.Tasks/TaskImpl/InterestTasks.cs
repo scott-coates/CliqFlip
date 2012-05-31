@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -39,7 +40,7 @@ namespace CliqFlip.Tasks.TaskImpl
 		public IList<string> GetSlugAndParentSlug(IList<string> slugs)
 		{
 			var interestandParents = _interestRepository.GetSlugAndParentSlug(slugs).ToList();
-			
+
 			interestandParents.AddRange(slugs);
 
 			return interestandParents.Distinct().ToList();
@@ -52,9 +53,12 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public Interest Create(string name, int? relatedTo)
 		{
-            string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(name.ToLower());
-            Interest interest = new Interest(formattedName);
-            interest.ParentInterest = relatedTo.HasValue ? Get(relatedTo.Value) : null;
+			string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(name.ToLower());
+			var interest = new Interest(formattedName)
+			{
+				CreateDate = DateTime.UtcNow
+				, ParentInterest = relatedTo.HasValue ? Get(relatedTo.Value) : null
+			};
 
 			_interestRepository.SaveOrUpdate(interest);
 			return interest;
@@ -66,14 +70,14 @@ namespace CliqFlip.Tasks.TaskImpl
 		}
 
 
-        public IList<Interest> GetMainCategoryInterests()
-        {
-            return _interestRepository.GetMainCategoryInterests().ToList();
-        }
-
-		public IList<Interest> GetAll(int page)
+		public IList<Interest> GetMainCategoryInterests()
 		{
-			return _interestRepository.GetAll(page).ToList();
+			return _interestRepository.GetMainCategoryInterests().ToList();
+		}
+
+		public IList<Interest> GetAll(int page, string sort)
+		{
+			return _interestRepository.GetAll(page, sort).ToList();
 		}
 
 		#endregion

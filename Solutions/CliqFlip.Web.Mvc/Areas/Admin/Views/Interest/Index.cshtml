@@ -7,6 +7,11 @@
 <h2>Interests</h2>
 
 @{
-	var grid = new WebGrid(Model.ListItemViewModels,new[]{"Name"});
+	var grid = new WebGrid(Model.ListItemViewModels, new[] {"Name", "CreateDate"}, "CreateDate");
+	if (Request.QueryString[grid.SortDirectionFieldName].IsEmpty())
+	{
+		//http://forums.asp.net/t/1649155.aspx/1
+		grid.SortDirection = SortDirection.Descending;
+	}
 }
 @grid.GetHtml()
