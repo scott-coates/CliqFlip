@@ -17,13 +17,10 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 			_interestListQuery = interestListQuery;
 		}
 
-		//
-		// GET: /Notifications/
-
 		[Transaction]
-		public ViewResult Index(InterestSearchViewModel searchViewModel)
+		public ViewResult Index(string searchKey)
 		{
-			return View(_interestListQuery.GetInterestList(searchViewModel.SearchTearm));
+			return View(_interestListQuery.GetInterestList(searchKey));
 		}
 	}
 }

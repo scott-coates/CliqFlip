@@ -17,11 +17,11 @@
 @using (Html.BeginForm("Index","Interest", FormMethod.Get))
 {
 	<div class="editor-label">
-		@Html.LabelFor(model => model.SearchTearm)
+		@Html.LabelFor(model => model.SearchKey)
 	</div>
 	<div class="editor-field">
-		@Html.EditorFor(model => model.SearchTearm)
-		@Html.ValidationMessageFor(model => model.SearchTearm)
+		@Html.EditorFor(model => model.SearchKey)
+		@Html.ValidationMessageFor(model => model.SearchKey)
 	</div>
 	<input type="submit"/>
 }
