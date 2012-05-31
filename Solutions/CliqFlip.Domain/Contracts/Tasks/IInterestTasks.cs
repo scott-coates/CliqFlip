@@ -13,6 +13,6 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		Interest Get(int id);
 		IList<Interest> GetMainCategoryInterests();
 		IList<Interest> GetAll();
-		void GetRelatedInterests(string interestSlug);
+		RelatedInterestListDto GetRelatedInterests(string interestSlug);
 	}
 }

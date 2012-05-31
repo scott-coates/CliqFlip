@@ -6,7 +6,6 @@ namespace CliqFlip.Domain.Dtos
 	{
 		public RelatedInterestDto OriginalInterest { get; set; }
 		public List<WeightedRelatedInterestDto> WeightedRelatedInterestDtos { get; set; }
-
 		#region Nested type: RelatedInterestDto
 
 		public class RelatedInterestDto

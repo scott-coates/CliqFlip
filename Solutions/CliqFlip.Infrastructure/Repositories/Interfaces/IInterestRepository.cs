@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 using SharpArch.Domain.PersistenceSupport;
 
@@ -12,8 +13,7 @@ namespace CliqFlip.Infrastructure.Repositories.Interfaces
 		IQueryable<string> GetSlugAndParentSlug(IList<string> slugs);
 		Interest GetByName(string name);
         IQueryable<Interest> GetMainCategoryInterests();
-		void GetRelatedInterests(string interestSlug);
+		RelatedInterestListDto GetRelatedInterests(string interestSlug);
 		// ReSharper restore ReturnTypeCanBeEnumerable.Global
-
 	}
 }

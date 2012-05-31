@@ -80,9 +80,9 @@ namespace CliqFlip.Tasks.TaskImpl
 			return _interestRepository.GetAll();
 		}
 
-		public void GetRelatedInterests(string interestSlug)
+		public RelatedInterestListDto GetRelatedInterests(string interestSlug)
 		{
-			_interestRepository.GetRelatedInterests(interestSlug);
+			return _interestRepository.GetRelatedInterests(interestSlug);
 		}
 
 		#endregion

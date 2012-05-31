@@ -1,7 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
-using CliqFlip.Infrastructure.Migrator.Migrations;
 using CliqFlip.Infrastructure.Neo.NodeTypes;
 using CliqFlip.Infrastructure.Neo.Relationships;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
@@ -49,16 +50,39 @@ namespace CliqFlip.Infrastructure.Repositories
 			return FindAll(new AdHoc<Interest>(x => x.IsMainCategory)).OrderBy(x => x.Name);
 		}
 
-		public void GetRelatedInterests(string interestSlug)
+		public RelatedInterestListDto GetRelatedInterests(string interestSlug)
 		{
-			var startingRef = _graphClient.QueryIndex<NeoInterest>("interests", IndexFor.Node, string.Format("slug:{0}", interestSlug)).First();
-			var x =
+			var retVal = new RelatedInterestListDto();
+
+			Node<NeoInterest> startingRef = _graphClient.QueryIndex<NeoInterest>("interests", IndexFor.Node, string.Format("slug:{0}", interestSlug)).First();
+
+			Func<NeoInterest, RelatedInterestListDto.RelatedInterestDto> convert = x => new RelatedInterestListDto.RelatedInterestDto
+			{
+				Id = x.SqlId,
+				Name = x.Name,
+				Slug = x.Slug
+			};
+
+			retVal.OriginalInterest = convert(startingRef.Data);
+
+			IEnumerable<NeoInterestRelatedQuery> neoRelatedInterestQuery =
 				_graphClient
 					.Cypher
 					.Start("n", startingRef.Reference)
 					.Match("n -[r:INTEREST_RELATES_TO]-(x)")
-					.Return<NeoInterestRelatedQuery>("n AS SearchedInterest, x AS FoundInterest, r.Weight AS Weight")
+					.Return<NeoInterestRelatedQuery>("x AS FoundInterest, r.Weight AS Weight")
 					.Results;
+
+			if (neoRelatedInterestQuery != null)
+			{
+				retVal.WeightedRelatedInterestDtos = neoRelatedInterestQuery.Select(x => new RelatedInterestListDto.WeightedRelatedInterestDto
+				{
+					Interest = convert(x.FoundInterest.Data),
+					Weight = x.Weight
+				}).ToList();
+			}
+
+			return retVal;
 		}
 
 		public override Interest SaveOrUpdate(Interest entity)
