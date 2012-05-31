@@ -189,7 +189,10 @@
     <Compile Include="Areas\Admin\Controllers\LoggingController.cs" />
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
     <Compile Include="Areas\Admin\Queries\InterestFeedQuery.cs" />
+    <Compile Include="Areas\Admin\Queries\Interfaces\ISpecificInterestGraphQuery.cs" />
     <Compile Include="Areas\Admin\Queries\Interfaces\InterestListQuery.cs" />
+    <Compile Include="Areas\Admin\Queries\SpecificInterestGraphQuery.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Interest\SpecificInterestGraphViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Interest\InterestListViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Test\SimpleSendEmailViewModel.cs" />
     <Compile Include="CassetteConfiguration.cs" />

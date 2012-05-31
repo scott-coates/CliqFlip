@@ -16,7 +16,7 @@ namespace CliqFlip.Web.Mvc.Areas.Admin
         {
 			context.MapRoute(
 				"Interest",
-				"Admin/Interest/{id}",
+				"Admin/Interest/{interest}",
 				new { controller = "Interest", action = "SpecificInterest" });
 
             context.MapRoute(

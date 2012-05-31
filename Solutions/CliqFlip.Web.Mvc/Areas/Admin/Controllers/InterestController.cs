@@ -11,10 +11,12 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 	public class InterestController : Controller
 	{
 		private readonly IInterestListQuery _interestListQuery;
+		private readonly ISpecificInterestGraphQuery _specificInterestGraphQuery;
 
-		public InterestController(IInterestListQuery interestListQuery)
+		public InterestController(IInterestListQuery interestListQuery, ISpecificInterestGraphQuery specificInterestGraphQuery)
 		{
 			_interestListQuery = interestListQuery;
+			_specificInterestGraphQuery = specificInterestGraphQuery;
 		}
 
 		[Transaction]
@@ -24,13 +26,13 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 		}
 
 		[Transaction]
-		public ViewResult SpecificInterest(int id)
+		public ViewResult SpecificInterest(string interest)
 		{
 			//TODO: look into mvc restful routing
 			//https://github.com/mccalltd/AttributeRouting/wiki/Routing-to-Actions
 			//http://stevehodgkiss.github.com/restful-routing/
 			//haacked..but it looks lame?
-			return View("Interest");
+			return View("Interest",_specificInterestGraphQuery.GetInterestList(interest));
 		}
 	}
 }
