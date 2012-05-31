@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CliqFlip.Domain.Entities;
+using CliqFlip.Infrastructure.Migrator.Migrations;
 using CliqFlip.Infrastructure.Neo.NodeTypes;
 using CliqFlip.Infrastructure.Neo.Relationships;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
@@ -48,10 +49,16 @@ namespace CliqFlip.Infrastructure.Repositories
 			return FindAll(new AdHoc<Interest>(x => x.IsMainCategory)).OrderBy(x => x.Name);
 		}
 
-		public void GetRelatedInterests(string interest)
+		public void GetRelatedInterests(string interestSlug)
 		{
-			//var x = 
-			//    _graphClient.Cypher.Start("n = node:Interests(Slug = {p0})")
+			var startingRef = _graphClient.QueryIndex<NeoInterest>("interests", IndexFor.Node, string.Format("slug:{0}", interestSlug)).First();
+			var x =
+				_graphClient
+					.Cypher
+					.Start("n", startingRef.Reference)
+					.Match("n -[r:INTEREST_RELATES_TO]-(x)")
+					.Return<NeoInterestRelatedQuery>("n AS SearchedInterest, r AS FoundInterest")
+					.Results;
 		}
 
 		public override Interest SaveOrUpdate(Interest entity)

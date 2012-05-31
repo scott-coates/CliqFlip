@@ -15,6 +15,7 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Queries
 
 		public SpecificInterestGraphViewModel GetInterestList(string interest)
 		{
+			_interestTasks.GetRelatedInterests(interest);
 			return null;
 		}
 	}
