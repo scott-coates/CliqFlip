@@ -10,13 +10,13 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 		public override void Up()
 		{
 			var db = (CliqFlipTransformationProvider)Database;
-			db.GraphClient.CreateIndex("Interests", new IndexConfiguration { Provider = IndexProvider.lucene, Type = IndexType.fulltext }, IndexFor.Node);
+			db.GraphClient.CreateIndex("interests", new IndexConfiguration { Provider = IndexProvider.lucene, Type = IndexType.fulltext }, IndexFor.Node);
 		}
 
 		public override void Down()
 		{
 			var db = (CliqFlipTransformationProvider)Database;
-			db.GraphClient.DeleteIndex("Interests", IndexFor.Node);
+			db.GraphClient.DeleteIndex("interests", IndexFor.Node);
 		}
 	}
 }

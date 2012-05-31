@@ -48,17 +48,23 @@ namespace CliqFlip.Infrastructure.Repositories
 			return FindAll(new AdHoc<Interest>(x => x.IsMainCategory)).OrderBy(x => x.Name);
 		}
 
+		public void GetRelatedInterests(string interest)
+		{
+			//var x = 
+			//    _graphClient.Cypher.Start("n = node:Interests(Slug = {p0})")
+		}
+
 		public override Interest SaveOrUpdate(Interest entity)
 		{
 			Interest retVal = base.SaveOrUpdate(entity);
 			var ixEntry = new IndexEntry
 			{
-				Name = "Interests",
+				Name = "interests",
 				KeyValues = new[]
 				{
-					new KeyValuePair<string, object>("Name", entity.Name),
-					new KeyValuePair<string, object>("Slug", entity.Slug),
-					new KeyValuePair<string, object>("SqlId", retVal.Id)
+					new KeyValuePair<string, object>("name", entity.Name),
+					new KeyValuePair<string, object>("slug", entity.Slug),
+					new KeyValuePair<string, object>("sqlid", retVal.Id)
 				}
 			};
 

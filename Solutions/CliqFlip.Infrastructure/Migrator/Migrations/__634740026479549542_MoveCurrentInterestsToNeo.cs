@@ -34,12 +34,12 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 
 					var ixEntry = new IndexEntry
 					{
-						Name = "Interests",
+						Name = "interests",
 						KeyValues = new[]
 						{
-							new KeyValuePair<string, object>("Name", graphInterest.Name),
-							new KeyValuePair<string, object>("Slug", graphInterest.Slug),
-							new KeyValuePair<string, object>("SqlId", graphInterest.SqlId)
+							new KeyValuePair<string, object>("name", graphInterest.Name),
+							new KeyValuePair<string, object>("slug", graphInterest.Slug),
+							new KeyValuePair<string, object>("sqlid", graphInterest.SqlId)
 						}
 					};
 
