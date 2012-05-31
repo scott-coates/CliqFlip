@@ -1,10 +1,9 @@
 ﻿@using CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest
 @model InterestListViewModel
 @{
-	ViewBag.Title = "title";
+	ViewBag.Title = "Interests";
 }
-<h2>
-	Interests</h2>
+<h2>Interests</h2>
 @{
 	var grid = new WebGrid(Model.ListItemViewModels, new[] {"Name", "CreateDate"}, "CreateDate");
 	if (Request.QueryString[grid.SortDirectionFieldName].IsEmpty())

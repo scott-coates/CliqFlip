@@ -14,6 +14,11 @@ namespace CliqFlip.Web.Mvc.Areas.Admin
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
+			context.MapRoute(
+				"Interest",
+				"Admin/Interest/{id}",
+				new { controller = "Interest", action = "SpecificInterest" });
+
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",

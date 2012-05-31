@@ -342,6 +342,7 @@
     <Content Include="Content\js\jquery.zrssfeed.min.js" />
     <Content Include="Content\js\jquery.notify.js" />
     <Content Include="Content\js\notification\notification.js" />
+    <Content Include="Content\js\raphael\dracula_graph.js" />
     <Content Include="Content\js\search\index.js" />
     <Content Include="Content\js\user\add-interest.js" />
     <Content Include="Content\js\user\account.js" />
@@ -749,6 +750,7 @@
     <Content Include="Areas\Admin\Views\Notification\_CreateOrEdit.cshtml" />
     <Content Include="App_Code\Flash.cshtml" />
     <Content Include="Areas\Admin\Views\Interest\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Interest\Interest.cshtml" />
     <None Include="Content\img\patterns\Thumbs.db" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
