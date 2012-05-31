@@ -57,7 +57,7 @@ namespace CliqFlip.Infrastructure.Repositories
 					.Cypher
 					.Start("n", startingRef.Reference)
 					.Match("n -[r:INTEREST_RELATES_TO]-(x)")
-					.Return<NeoInterestRelatedQuery>("n AS SearchedInterest, collect(x) AS FoundInterests, collect(r.Weight) AS FoundInterestsWeights")
+					.Return<NeoInterestRelatedQuery>("n AS SearchedInterest, x AS FoundInterest, r.Weight AS Weight")
 					.Results;
 		}
 
