@@ -6,7 +6,7 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest
 {
 	public class InterestListViewModel
 	{
-		[Required(ErrorMessage = "Need a search term")]
+		[Required]
 		public string SearchTearm { get; set; } 
 
 		public IList<InterestListItemViewModel> ListItemViewModels { get; set; }
