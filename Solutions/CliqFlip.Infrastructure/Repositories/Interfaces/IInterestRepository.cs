@@ -14,6 +14,7 @@ namespace CliqFlip.Infrastructure.Repositories.Interfaces
 		Interest GetByName(string name);
         IQueryable<Interest> GetMainCategoryInterests();
 		RelatedInterestListDto GetRelatedInterests(string interestSlug);
+		void CreateRelationships(RelatedInterestListDto relatedInterestListDto);
 		// ReSharper restore ReturnTypeCanBeEnumerable.Global
 	}
 }

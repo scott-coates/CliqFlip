@@ -88,7 +88,7 @@
     <Compile Include="Contracts\Tasks\INotificationTasks.cs" />
     <Compile Include="Contracts\Tasks\IInterestTasks.cs" />
     <Compile Include="Contracts\Tasks\IUserInterestTasks.cs" />
-    <Compile Include="Dtos\RelatedInterestDto.cs" />
+    <Compile Include="Dtos\RelatedInterestListDto.cs" />
     <Compile Include="Dtos\FileStreamDto.cs" />
     <Compile Include="Dtos\ImageFilenamesDto.cs" />
     <Compile Include="Dtos\InterestFeedItemDto.cs" />

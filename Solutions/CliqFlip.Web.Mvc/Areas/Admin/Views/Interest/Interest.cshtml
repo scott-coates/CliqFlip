@@ -7,9 +7,16 @@
 <div id="interest-relationship" style="border: solid; height: 800px; width: 800px;">
 </div>
 <div class="user-interest-add-dialog" id="add-interest">
-	@using (Html.BeginForm("AddInterests", "User"))
+	@using (Html.BeginForm("AddInterestRelationship", "Interest"))
 	{
 		Html.RenderPartial("/Views/User/_AddInterest.cshtml");
+		<div class="editor-label">
+			@Html.LabelFor(model => model.RelationShipType)
+		</div>
+		<div class="editor-field">
+			@Html.DropDownListFor(x => x.RelationShipType, Model.RelationShipType, "Select a weight")
+			@Html.ValidationMessageFor(model => model.RelationShipType)
+		</div>
 		<input type="submit" value="OK" class="button" style="margin-left: 20px;" />
 	}
 </div>

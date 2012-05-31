@@ -14,5 +14,6 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		IList<Interest> GetMainCategoryInterests();
 		IList<Interest> GetAll();
 		RelatedInterestListDto GetRelatedInterests(string interestSlug);
+		void CreateRelationships(RelatedInterestListDto relatedInterestListDto);
 	}
 }

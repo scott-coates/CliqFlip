@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
@@ -54,7 +55,7 @@ namespace CliqFlip.Infrastructure.Repositories
 		{
 			var retVal = new RelatedInterestListDto();
 
-			Node<NeoInterest> startingRef = _graphClient.QueryIndex<NeoInterest>("interests", IndexFor.Node, string.Format("slug:{0}", interestSlug)).First();
+			Node<NeoInterest> startingRef = FindInterestNodeBySlug(interestSlug);
 
 			Func<NeoInterest, RelatedInterestListDto.RelatedInterestDto> convert = x => new RelatedInterestListDto.RelatedInterestDto
 			{
@@ -85,6 +86,16 @@ namespace CliqFlip.Infrastructure.Repositories
 			return retVal;
 		}
 
+		public void CreateRelationships(RelatedInterestListDto relatedInterestListDto)
+		{
+			Node<NeoInterest> startingRef = FindInterestNodeBySlug(relatedInterestListDto.OriginalInterest.Slug);
+			foreach (RelatedInterestListDto.WeightedRelatedInterestDto relatedInterest in relatedInterestListDto.WeightedRelatedInterestDtos)
+			{
+				Node<NeoInterest> relatedNode = FindInterestNodeBySqlId(relatedInterest.Interest.Id);
+				_graphClient.CreateRelationship(startingRef.Reference, new InterestRelatesTo(relatedNode.Reference, relatedInterest.Weight));
+			}
+		}
+
 		public override Interest SaveOrUpdate(Interest entity)
 		{
 			Interest retVal = base.SaveOrUpdate(entity);
@@ -106,10 +117,27 @@ namespace CliqFlip.Infrastructure.Repositories
 				Name = entity.Name,
 				Slug = entity.Slug,
 				SqlId = retVal.Id
-			}, new[] { new InterestBelongsTo(_graphClient.RootNode) }, new[] { ixEntry });
+			}, new[] {new InterestBelongsTo(_graphClient.RootNode)}, new[] {ixEntry});
 			return retVal;
 		}
 
 		#endregion
+
+		private Node<NeoInterest> FindInterestNodeBySqlId(int sqlId)
+		{
+			const string slug = "sqlid";
+			return FindInterestNode(sqlId.ToString(CultureInfo.InvariantCulture), slug);
+		}
+
+		private Node<NeoInterest> FindInterestNodeBySlug(string interestSlug)
+		{
+			const string slug = "slug";
+			return FindInterestNode(interestSlug, slug);
+		}
+
+		private Node<NeoInterest> FindInterestNode(string interestSlug, string key)
+		{
+			return _graphClient.QueryIndex<NeoInterest>("interests", IndexFor.Node, string.Format("{0}:{1}", key, interestSlug)).First();
+		}
 	}
 }

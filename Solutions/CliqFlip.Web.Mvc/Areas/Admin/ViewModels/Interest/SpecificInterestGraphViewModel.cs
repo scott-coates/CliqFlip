@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest
 {
@@ -7,6 +8,9 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest
 		public SpecificInterestItemViewModel Interest { get; set; }
 
 		public string RelatedInterestItemViewModelsJson { get; set; }
+
+		[Required]
+		public SelectList RelationShipType { get; set; }
 
 		#region Nested type: RelatedSpecificInterestItemViewModel
 

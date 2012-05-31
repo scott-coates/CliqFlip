@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Web.Mvc.Areas.Admin.Queries.Interfaces;
@@ -54,6 +55,12 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Queries
 				RelatedInterestItemViewModelsJson = JsonConvert.SerializeObject(interestAndRelatedInterestsToSerialize)
 			};
 
+			//TODO:encapsulate this somewhere
+			var high = new { Display = "High", Weight = .75 };
+			var medium = new { Display = "Medium", Weight = .5 };
+			var low = new { Display = "Low", Weight = .25 };
+
+			retVal.RelationShipType = new SelectList(new[] { high, medium, low }, "Weight", "Display");
 			return retVal;
 		}
 

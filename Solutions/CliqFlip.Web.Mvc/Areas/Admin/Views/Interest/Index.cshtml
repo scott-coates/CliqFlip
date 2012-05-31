@@ -36,5 +36,5 @@
 	<input type="submit" />
 }
 @grid.GetHtml(columns: grid.Columns(
-	grid.Column("Name", format: o => Html.ActionLink((string)o.Name, "SpecificInterest", new {interest = o.Slug})),
+	grid.Column("Name", format: o => Html.ActionLink((string)o.Name, "SpecificInterest", new {id = o.Slug})),
 	grid.Column("CreateDate")))

@@ -87,6 +87,11 @@ namespace CliqFlip.Tasks.TaskImpl
 			return _interestRepository.GetRelatedInterests(interestSlug);
 		}
 
+		public void CreateRelationships(RelatedInterestListDto relatedInterestListDto)
+		{
+			_interestRepository.CreateRelationships(relatedInterestListDto);
+		}
+
 		#endregion
 	}
 }
