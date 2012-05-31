@@ -38,6 +38,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 						KeyValues = new[]
 						{
 							new KeyValuePair<string, object>("Name", graphInterest.Name),
+							new KeyValuePair<string, object>("Slug", graphInterest.Slug),
 							new KeyValuePair<string, object>("SqlId", graphInterest.SqlId)
 						}
 					};

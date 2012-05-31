@@ -57,6 +57,7 @@ namespace CliqFlip.Infrastructure.Repositories
 				KeyValues = new[]
 				{
 					new KeyValuePair<string, object>("Name", entity.Name),
+					new KeyValuePair<string, object>("Slug", entity.Slug),
 					new KeyValuePair<string, object>("SqlId", retVal.Id)
 				}
 			};
