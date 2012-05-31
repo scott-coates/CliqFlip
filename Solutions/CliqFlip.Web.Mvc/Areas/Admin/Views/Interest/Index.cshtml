@@ -1,11 +1,10 @@
-﻿@using CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest
-@model InterestListViewModel
+﻿@model CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest.InterestListViewModel
 @{
 	ViewBag.Title = "Interests";
 }
 <h2>Interests</h2>
 @{
-	var grid = new WebGrid(Model.ListItemViewModels, new[] {"Name", "CreateDate"}, "CreateDate");
+	var grid = new WebGrid(Model.ListItemViewModels, defaultSort: "CreateDate");
 	if (Request.QueryString[grid.SortDirectionFieldName].IsEmpty())
 	{
 		//http://forums.asp.net/t/1649155.aspx/1
@@ -13,7 +12,19 @@
 	}
 }
 
-@using (Html.BeginForm("Index","Interest", FormMethod.Get))
+@using (Html.BeginForm("AddInterest", "Interest", FormMethod.Post))
+{
+	<div class="editor-label">
+		@Html.LabelFor(model => model.AddNewInterstName)
+	</div>
+	<div class="editor-field">
+		@Html.EditorFor(model => model.AddNewInterstName)
+		@Html.ValidationMessageFor(model => model.AddNewInterstName)
+	</div>
+	<input type="submit" />
+}
+
+@using (Html.BeginForm("Index", "Interest", FormMethod.Get))
 {
 	<div class="editor-label">
 		@Html.LabelFor(model => model.SearchKey)
@@ -22,6 +33,8 @@
 		@Html.EditorFor(model => model.SearchKey)
 		@Html.ValidationMessageFor(model => model.SearchKey)
 	</div>
-	<input type="submit"/>
+	<input type="submit" />
 }
-@grid.GetHtml()
+@grid.GetHtml(columns: grid.Columns(
+	grid.Column("Name", format: o => Html.ActionLink((string)o.Name, "SpecificInterest", new {interest = o.Slug})),
+	grid.Column("CreateDate")))

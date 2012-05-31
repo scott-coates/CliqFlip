@@ -7,7 +7,10 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest
 	public class InterestListViewModel
 	{
 		[Required]
-		public string SearchKey { get; set; } 
+		public string SearchKey { get; set; }
+
+		[Required]
+		public string AddNewInterstName { get; set; } 
 
 		public IList<InterestListItemViewModel> ListItemViewModels { get; set; }
 
@@ -16,6 +19,7 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest
 		public class InterestListItemViewModel
 		{
 			public string Name { get; set; }
+			public string Slug { get; set; }
 			public DateTime CreateDate { get; set; }
 		}
 

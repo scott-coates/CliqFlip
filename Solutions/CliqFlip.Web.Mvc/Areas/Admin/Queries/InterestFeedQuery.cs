@@ -38,6 +38,7 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Queries
 															InterestListViewModel.InterestListItemViewModel
 														 {
 															 Name = x.Name,
+															 Slug = x.Slug,
 															 CreateDate = x.CreateDate.ToLocalTime()
 														 }).ToList();
 
