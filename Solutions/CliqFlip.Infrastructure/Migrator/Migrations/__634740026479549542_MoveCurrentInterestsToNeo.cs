@@ -23,7 +23,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 			{
 				while (reader.Read())
 				{
-					var graphInterest = new GraphInterest
+					var graphInterest = new NeoInterest
 					{
 						Name = reader["Name"].ToString(),
 						SqlId = int.Parse(reader["Id"].ToString()),
@@ -52,11 +52,11 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 		public override void Down()
 		{
 			var db = (CliqFlipTransformationProvider)Database;
-			List<Node<GraphInterest>> graphInterests = db.GraphClient
+			List<Node<NeoInterest>> graphInterests = db.GraphClient
 				.RootNode
 				.StartCypher("n")
 				.Match("n <-[:INTEREST_BELONGS_TO]-(x)")
-				.Return<Node<GraphInterest>>("x")
+				.Return<Node<NeoInterest>>("x")
 				.ResultSet
 				.ToList();
 
@@ -74,7 +74,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 
 		#region Nested type: GraphInterest
 
-		public class GraphInterest //don't use the real graphInterest as it may change in the future 
+		public class NeoInterest //don't use the real NeoInterest as it may change in the future 
 		{
 			public string Name { get; set; }
 			public int SqlId { get; set; }
@@ -87,7 +87,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 
 		#region Nested type: InterestBelongsTo
 
-		public class InterestBelongsTo : Relationship, IRelationshipAllowingSourceNode<GraphInterest>, IRelationshipAllowingTargetNode<RootNode>
+		public class InterestBelongsTo : Relationship, IRelationshipAllowingSourceNode<NeoInterest>, IRelationshipAllowingTargetNode<RootNode>
 		{
 			public const string TypeKey = "INTEREST_BELONGS_TO";
 

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using CliqFlip.Domain.Entities;
-using CliqFlip.Domain.Entities.Graph;
-using CliqFlip.Infrastructure.NeoRelaionships;
+using CliqFlip.Infrastructure.Neo.NodeTypes;
+using CliqFlip.Infrastructure.Neo.Relationships;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
 using Neo4jClient;
 using SharpArch.Domain.Specifications;
@@ -62,7 +62,7 @@ namespace CliqFlip.Infrastructure.Repositories
 				}
 			};
 
-			NodeReference<GraphInterest> node = _graphClient.Create(new GraphInterest
+			NodeReference<NeoInterest> node = _graphClient.Create(new NeoInterest
 			{
 				Description = entity.Description,
 				IsMainCategory = entity.IsMainCategory,

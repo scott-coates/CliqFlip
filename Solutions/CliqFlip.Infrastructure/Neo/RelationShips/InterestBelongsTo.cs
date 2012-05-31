@@ -1,10 +1,10 @@
-﻿using CliqFlip.Domain.Entities.Graph;
+﻿using CliqFlip.Infrastructure.Neo.NodeTypes;
 using Neo4jClient;
 
-namespace CliqFlip.Infrastructure.NeoRelaionships
+namespace CliqFlip.Infrastructure.Neo.Relationships
 {
 	public class InterestBelongsTo : Relationship,
-									 IRelationshipAllowingSourceNode<GraphInterest>,
+									 IRelationshipAllowingSourceNode<NeoInterest>,
 									 IRelationshipAllowingTargetNode<RootNode>
 	{
 		public const string TypeKey = "INTEREST_BELONGS_TO";

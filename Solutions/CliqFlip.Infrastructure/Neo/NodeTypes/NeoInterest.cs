@@ -1,6 +1,6 @@
-﻿namespace CliqFlip.Domain.Entities.Graph
+﻿namespace CliqFlip.Infrastructure.Neo.NodeTypes
 {
-	public class GraphInterest
+	public class NeoInterest
 	{
 		public string Name { get; set; }
 		public int SqlId { get; set; }
