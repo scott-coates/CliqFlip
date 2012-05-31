@@ -7,8 +7,8 @@ using Neo4jClient;
 
 namespace CliqFlip.Infrastructure.Migrator.Migrations
 {
-	[Migration(634740630612747240)]
-	public class __634740630612747240_FixSlugs : Migration
+	[Migration(634740026479549123)]
+	public class __634740026479549123_FixSlugs : Migration
 	{
 		public override void Up()
 		{
