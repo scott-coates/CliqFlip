@@ -53,7 +53,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public Interest Create(string name, int? relatedTo)
 		{
-			string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(name.ToLower());
+			string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(name.ToLower().Trim());
 			var interest = new Interest(formattedName)
 			{
 				CreateDate = DateTime.UtcNow
