@@ -1,4 +1,17 @@
-﻿function InitInterest(relatedInterests) {
+﻿var _addInterestDialog;
+
+function InitInterest(relatedInterests) {
+	_addInterestDialog = $("#add-interest").dialog({
+		autoOpen: false,
+		modal: true,
+		width: 600,
+		height: 600
+	});
+
+	$("#add-interest-button").click(function () {
+		_addInterestDialog.dialog("open");
+	});
+
 	var containerName = "interest-relationship";
 	var container = $("#" + containerName);
 	var width = container.width() - 20;

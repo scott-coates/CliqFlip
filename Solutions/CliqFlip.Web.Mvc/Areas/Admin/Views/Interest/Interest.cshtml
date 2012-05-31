@@ -3,18 +3,27 @@
 	ViewBag.Title = @Model.Interest.Name;
 }
 <h2>@Model.Interest.Name</h2>
-<div id="interest-relationship" style="width: 800px;height:800px; border:solid;">
-	
+<input type="button" value="Add Related Interests" class="button add-interest" id="add-interest-button" />
+<div id="interest-relationship" style="border: solid; height: 800px; width: 800px;">
 </div>
-
+<div class="user-interest-add-dialog" id="add-interest">
+	@using (Html.BeginForm("AddInterests", "User"))
+	{
+		Html.RenderPartial("/Views/User/_AddInterest.cshtml");
+		<input type="submit" value="OK" class="button" style="margin-left: 20px;" />
+	}
+</div>
 @section beforeBodyClose
 {
 	<script type="text/javascript" src="@Url.Content("/Content/js/raphael/raphael.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/raphael/dracula_graffle.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/raphael/dracula_graph.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/js/jquery.tmpl.js")"> </script>
 	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/admin/interest/interest.js")"> </script>
+	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/user/add-interest.js")"> </script>
 	<script type="text/javascript">
-		$(function () {
+		$(function() {
+			InitAddInterest();
 			InitInterest(@(Html.Raw(Model.RelatedInterestItemViewModelsJson)));
 		});
 	</script>
