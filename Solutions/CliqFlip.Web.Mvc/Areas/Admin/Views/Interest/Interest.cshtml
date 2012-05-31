@@ -1,4 +1,8 @@
-﻿@{
-	ViewBag.Title = "Interests";
+﻿@model CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest.SpecificInterestGraphViewModel
+@{
+	ViewBag.Title = @Model.Interest.Name;
 }
-<h2>Interests</h2>
+<h2>@Model.Interest.Name</h2>
+<div id="interest-relationship">
+	
+</div>
