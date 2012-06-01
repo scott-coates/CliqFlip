@@ -15,11 +15,11 @@
 @using (Html.BeginForm("AddInterest", "Interest", FormMethod.Post))
 {
 	<div class="editor-label">
-		@Html.LabelFor(model => model.AddNewInterstName)
+		@Html.LabelFor(model => model.AddNewInterestName)
 	</div>
 	<div class="editor-field">
-		@Html.EditorFor(model => model.AddNewInterstName)
-		@Html.ValidationMessageFor(model => model.AddNewInterstName)
+		@Html.EditorFor(model => model.AddNewInterestName)
+		@Html.ValidationMessageFor(model => model.AddNewInterestName)
 	</div>
 	<input type="submit" />
 }
