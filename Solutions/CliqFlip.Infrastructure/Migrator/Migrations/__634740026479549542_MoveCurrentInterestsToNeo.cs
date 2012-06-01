@@ -18,7 +18,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 			int total = int.Parse(db.ExecuteScalar("SELECT COUNT(*) FROM INTERESTS").ToString());
 			int counter = 1;
 
-			Console.WriteLine("---- Total: {0} ----", total);
+			Console.WriteLine("---- Total Nodes: {0} ----", total);
 			using (IDataReader reader = db.ExecuteQuery("SELECT * FROM INTERESTS"))
 			{
 				while (reader.Read())
@@ -44,7 +44,28 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 					};
 
 					db.GraphClient.Create(graphInterest, new[] { new InterestBelongsTo(db.GraphClient.RootNode) }, new[] { ixEntry });
-					Console.WriteLine("---- Created number: {0} of {1} ----", counter++, total);
+					Console.WriteLine("---- Created number: {0} of {1} Nodes ----", counter++, total);
+				}
+			}
+
+			//Add existing parent/child relationships
+			total = int.Parse(db.ExecuteScalar("SELECT COUNT(*) FROM INTERESTS WHERE ParentInterestId IS NOT NULL").ToString());
+			counter = 1;
+
+			Console.WriteLine("---- Total Relationships: {0} ----", total);
+			using (IDataReader reader = db.ExecuteQuery("SELECT * FROM INTERESTS WHERE ParentInterestId IS NOT NULL"))
+			{
+				while (reader.Read())
+				{
+					int sqlId = int.Parse(reader["Id"].ToString());
+					int parentId = int.Parse(reader["ParentInterestId"].ToString());
+
+					var childNod = db.GraphClient.QueryIndex<NeoInterest>("interests", IndexFor.Node, string.Format("sqlid:{0}", sqlId)).First();
+					var parentNod = db.GraphClient.QueryIndex<NeoInterest>("interests", IndexFor.Node, string.Format("sqlid:{0}", parentId)).First();
+
+					db.GraphClient.CreateRelationship(childNod.Reference, new InterestRelatesTo(parentNod.Reference, new InterestRelatesTo.Payload { Weight = .25f }));
+
+					Console.WriteLine("---- Created number: {0} of {1} Relationships ----", counter++, total);
 				}
 			}
 		}
@@ -98,6 +119,28 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 
 			public InterestBelongsTo(NodeReference targetNode)
 				: base(targetNode)
+			{
+			}
+		}
+
+		public class InterestRelatesTo : Relationship<InterestRelatesTo.Payload>,
+									 IRelationshipAllowingSourceNode<NeoInterest>,
+									 IRelationshipAllowingTargetNode<NeoInterest>
+		{
+			public class Payload
+			{
+				public float Weight { get; set; }
+			}
+
+			public const string TypeKey = "INTEREST_RELATES_TO";
+
+			public override string RelationshipTypeKey
+			{
+				get { return TypeKey; }
+			}
+
+			public InterestRelatesTo(NodeReference targetNode, Payload relatesToPayload)
+				: base(targetNode, relatesToPayload)
 			{
 			}
 		}

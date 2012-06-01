@@ -10,7 +10,7 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest
 		public string SearchKey { get; set; }
 
 		[Required]
-		public string AddNewInterstName { get; set; } 
+		public string AddNewInterestName { get; set; } 
 
 		public IList<InterestListItemViewModel> ListItemViewModels { get; set; }
 
