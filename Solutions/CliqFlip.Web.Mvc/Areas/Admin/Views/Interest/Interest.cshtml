@@ -3,11 +3,13 @@
 	ViewBag.Title = @Model.Interest.Name;
 }
 <h2>@Model.Interest.Name</h2>
+@Html.ValidationSummary()
+
 <input type="button" value="Add Related Interests" class="button add-interest" id="add-interest-button" />
 <div id="interest-relationship" style="border: solid; height: 800px; width: 800px;">
 </div>
 <div class="user-interest-add-dialog" id="add-interest">
-	@using (Html.BeginForm("AddInterestRelationship", "Interest"))
+	@using (Html.BeginForm("AddInterestRelationship", "Interest", new {id = Model.Interest.Id}))
 	{
 		Html.RenderPartial("/Views/User/_AddInterest.cshtml");
 		<div class="editor-label">

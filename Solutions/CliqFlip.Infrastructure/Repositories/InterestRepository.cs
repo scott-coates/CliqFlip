@@ -92,7 +92,7 @@ namespace CliqFlip.Infrastructure.Repositories
 			foreach (RelatedInterestListDto.WeightedRelatedInterestDto relatedInterest in relatedInterestListDto.WeightedRelatedInterestDtos)
 			{
 				Node<NeoInterest> relatedNode = FindInterestNodeBySqlId(relatedInterest.Interest.Id);
-				_graphClient.CreateRelationship(startingRef.Reference, new InterestRelatesTo(relatedNode.Reference, relatedInterest.Weight));
+				_graphClient.CreateRelationship(startingRef.Reference, new InterestRelatesTo(relatedNode.Reference, new InterestRelatesTo.Payload { Weight = relatedInterest.Weight }));
 			}
 		}
 

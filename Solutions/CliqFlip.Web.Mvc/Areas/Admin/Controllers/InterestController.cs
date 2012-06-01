@@ -77,7 +77,7 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 						.UserInterests
 						.Select(x => new RelatedInterestListDto.WeightedRelatedInterestDto
 						{
-							Weight = createInterestRelationshipViewModel.Weight,
+							Weight = createInterestRelationshipViewModel.RelationShipType,
 							Interest = new RelatedInterestListDto.RelatedInterestDto
 							{
 								Id = x.Id,

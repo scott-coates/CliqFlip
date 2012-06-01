@@ -3,10 +3,15 @@ using Neo4jClient;
 
 namespace CliqFlip.Infrastructure.Neo.Relationships
 {
-	public class InterestRelatesTo : Relationship,
+	public class InterestRelatesTo : Relationship<InterestRelatesTo.Payload>,
 	                                 IRelationshipAllowingSourceNode<NeoInterest>,
 	                                 IRelationshipAllowingTargetNode<NeoInterest>
 	{
+		public class Payload
+		{
+			public float Weight { get; set; }
+		}
+
 		public const string TypeKey = "INTEREST_RELATES_TO";
 
 		public override string RelationshipTypeKey
@@ -14,8 +19,8 @@ namespace CliqFlip.Infrastructure.Neo.Relationships
 			get { return TypeKey; }
 		}
 
-		public InterestRelatesTo(NodeReference targetNode, float weight)
-			: base(targetNode, weight)
+		public InterestRelatesTo(NodeReference targetNode, Payload relatesToPayload)
+			: base(targetNode, relatesToPayload)
 		{
 		}
 	}

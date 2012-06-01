@@ -10,7 +10,7 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest
 		[Required]
 		public int Id { get; set; }
 
-		public float Weight { get; set; }
+		public float RelationShipType { get; set; }
 
 		[CollectionNotEmpty(ErrorMessage = "Okay, we get it, you're not very interesting. But please, for our sake, just provide us with an interest that tells us about yourself.")]
 		public List<InterestCreate> UserInterests { get; set; }
