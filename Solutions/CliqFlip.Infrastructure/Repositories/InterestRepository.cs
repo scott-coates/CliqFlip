@@ -8,6 +8,7 @@ using CliqFlip.Infrastructure.Neo.NodeTypes;
 using CliqFlip.Infrastructure.Neo.Relationships;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
 using Neo4jClient;
+using Neo4jClient.Gremlin;
 using SharpArch.Domain.Specifications;
 using SharpArch.NHibernate;
 
@@ -89,10 +90,36 @@ namespace CliqFlip.Infrastructure.Repositories
 		public void CreateRelationships(RelatedInterestListDto relatedInterestListDto)
 		{
 			Node<NeoInterest> startingRef = FindInterestNodeBySlug(relatedInterestListDto.OriginalInterest.Slug);
+
+			IGremlinRelationshipQuery relationshipsQuery = startingRef.Reference.OutE(InterestRelatesTo.TypeKey);
+
+			List<RelationshipInstance<InterestRelatesTo.Payload>> existingRelationships = _graphClient
+				.ExecuteGetAllRelationshipsGremlin<InterestRelatesTo.Payload>(
+					relationshipsQuery.QueryText.Replace("outE", "bothE"), //TODO use bothE method when it's available 
+					relationshipsQuery.QueryParameters)
+				.ToList();
+
 			foreach (RelatedInterestListDto.WeightedRelatedInterestDto relatedInterest in relatedInterestListDto.WeightedRelatedInterestDtos)
 			{
 				Node<NeoInterest> relatedNode = FindInterestNodeBySqlId(relatedInterest.Interest.Id);
-				_graphClient.CreateRelationship(startingRef.Reference, new InterestRelatesTo(relatedNode.Reference, new InterestRelatesTo.Payload {Weight = relatedInterest.Weight}));
+
+				RelationshipInstance<InterestRelatesTo.Payload> existingRelationship = existingRelationships
+					.FirstOrDefault(x =>
+					                x.StartNodeReference == relatedNode.Reference
+					                || x.EndNodeReference == relatedNode.Reference);
+
+				if (existingRelationship != null)
+				{
+					RelatedInterestListDto.WeightedRelatedInterestDto interest = relatedInterest;
+					_graphClient.Update(existingRelationship.Reference, x => x.Weight = interest.Weight);
+				}
+				else
+				{
+					_graphClient.CreateRelationship(startingRef.Reference, new InterestRelatesTo(relatedNode.Reference, new InterestRelatesTo.Payload
+					{
+						Weight = relatedInterest.Weight
+					}));
+				}
 			}
 		}
 
