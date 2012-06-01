@@ -34,12 +34,12 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 
 		[Transaction]
 		[HttpPost]
-		public ActionResult AddInterest(string addNewInterstName)
+		public ActionResult AddInterest(string addNewInterestName)
 		{
 			if (ModelState.IsValid)
 			{
-				_interestTasks.Create(addNewInterstName, null);
-				this.FlashSuccess(addNewInterstName + " Created");
+				_interestTasks.Create(addNewInterestName, null);
+				this.FlashSuccess(addNewInterestName + " Created");
 				return RedirectToAction("Index");
 			}
 
