@@ -81,7 +81,8 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 							Interest = new RelatedInterestListDto.RelatedInterestDto
 							{
 								Id = x.Id,
-								Name = x.Name
+								Name = x.Name,
+								ParentId = x.CategoryId
 							}
 						}).ToList()
 				};

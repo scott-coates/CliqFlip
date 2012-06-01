@@ -22,6 +22,7 @@ namespace CliqFlip.Infrastructure.Neo.Relationships
 		public InterestRelatesTo(NodeReference targetNode, Payload relatesToPayload)
 			: base(targetNode, relatesToPayload)
 		{
+			Direction = RelationshipDirection.Outgoing;//point direction from source to target
 		}
 	}
 }

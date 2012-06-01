@@ -92,7 +92,7 @@ namespace CliqFlip.Infrastructure.Repositories
 			foreach (RelatedInterestListDto.WeightedRelatedInterestDto relatedInterest in relatedInterestListDto.WeightedRelatedInterestDtos)
 			{
 				Node<NeoInterest> relatedNode = FindInterestNodeBySqlId(relatedInterest.Interest.Id);
-				_graphClient.CreateRelationship(startingRef.Reference, new InterestRelatesTo(relatedNode.Reference, new InterestRelatesTo.Payload { Weight = relatedInterest.Weight }));
+				_graphClient.CreateRelationship(startingRef.Reference, new InterestRelatesTo(relatedNode.Reference, new InterestRelatesTo.Payload {Weight = relatedInterest.Weight}));
 			}
 		}
 
@@ -110,6 +110,20 @@ namespace CliqFlip.Infrastructure.Repositories
 				}
 			};
 
+			var relationships = new List<IRelationshipAllowingParticipantNode<NeoInterest>>
+			{
+				new InterestBelongsTo(_graphClient.RootNode)
+			};
+
+			if (entity.ParentInterest != null)
+			{
+				Node<NeoInterest> parentNode = FindInterestNodeBySqlId(entity.ParentInterest.Id);
+				relationships.Add(new InterestRelatesTo(parentNode.Reference, new InterestRelatesTo.Payload
+				{
+					Weight = .25f
+				}));
+			}
+
 			NodeReference<NeoInterest> node = _graphClient.Create(new NeoInterest
 			{
 				Description = entity.Description,
@@ -117,7 +131,7 @@ namespace CliqFlip.Infrastructure.Repositories
 				Name = entity.Name,
 				Slug = entity.Slug,
 				SqlId = retVal.Id
-			}, new[] {new InterestBelongsTo(_graphClient.RootNode)}, new[] {ixEntry});
+			}, relationships, new[] {ixEntry});
 			return retVal;
 		}
 
