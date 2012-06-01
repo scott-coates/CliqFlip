@@ -89,6 +89,11 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public void CreateRelationships(RelatedInterestListDto relatedInterestListDto)
 		{
+			foreach(var newInterest in relatedInterestListDto.WeightedRelatedInterestDtos.Select(x=>x.Interest).Where(x=>x.Id == 0))
+			{
+				var createdInterest = Create(newInterest.Name, null);
+				newInterest.Id = createdInterest.Id;
+			}
 			_interestRepository.CreateRelationships(relatedInterestListDto);
 		}
 
