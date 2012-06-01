@@ -19,7 +19,10 @@ function InitInterest(relatedInterests) {
 	var g = new Graph();
 
 	for (var node in relatedInterests.RelatedInterests) {
-		g.addEdge(relatedInterests.MainInterest.Name, relatedInterests.RelatedInterests[node].Interest.Name, {'stroke': "#bfa", fill: "#56f", label: relatedInterests.RelatedInterests[node].Weight });
+		debugger;
+		var relatedInterest = relatedInterests.RelatedInterests[node];
+		var fillSize = (relatedInterest.Weight * 10).toString();
+		g.addEdge(relatedInterests.MainInterest.Name, relatedInterest.Interest.Name, { stroke: "#bfa", fill: "#56f|" + fillSize, label: relatedInterest.Weight });
 	}
 
 	var layouter = new Graph.Layout.Spring(g);
