@@ -19,7 +19,6 @@ function InitInterest(relatedInterests) {
 	var g = new Graph();
 
 	for (var node in relatedInterests.RelatedInterests) {
-		debugger;
 		var relatedInterest = relatedInterests.RelatedInterests[node];
 		var fillSize = (relatedInterest.Weight * 10).toString();
 		g.addEdge(relatedInterests.MainInterest.Name, relatedInterest.Interest.Name, { stroke: "#bfa", fill: "#56f|" + fillSize, label: relatedInterest.Weight });
