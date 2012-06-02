@@ -61,5 +61,10 @@ namespace CliqFlip.Tasks.TaskImpl
 
 			}).OrderByDescending(x => x.Rank).Select(x => x.FeedItem).ToList();
 		}
+
+		public void SaveOrUpdate(UserInterest interest)
+		{
+			_userInterestRepository.SaveOrUpdate(interest);
+		}
 	}
 }

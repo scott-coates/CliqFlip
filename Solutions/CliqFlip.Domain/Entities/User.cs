@@ -72,29 +72,35 @@ namespace CliqFlip.Domain.Entities
 			Salt = salt;
 		}
 
-		public virtual void AddInterest(Interest interest, int? socialityPoints)
+		public virtual UserInterest AddInterest(Interest interest, int? socialityPoints)
 		{
-			if (_interests.All(x => x.Interest != interest))
+			var existingUserInterest = _interests.FirstOrDefault(x => x.Interest == interest);
+
+			if (existingUserInterest == null)
 			{
-				var userInterest = new UserInterest
+				existingUserInterest = new UserInterest
 				{
 					User = this,
 					Interest = interest,
 					SocialityPoints = socialityPoints
 				};
 
-				_interests.Add(userInterest);
+				_interests.Add(existingUserInterest);
 			}
 
 			UpdateLastActivity();
+
+			return existingUserInterest;
 		}
 
-		public virtual void UpdateInterest(int userInterestId, UserInterestOption userInterestOption)
+		public virtual UserInterest UpdateInterest(int userInterestId, UserInterestOption userInterestOption)
 		{
 			UserInterest userInterest = _interests.First(x => x.Id == userInterestId);
 			userInterest.Options = userInterestOption;
 
 			UpdateLastActivity();
+
+			return userInterest;
 		}
 
 		public virtual void UpdateHeadline(string headline)

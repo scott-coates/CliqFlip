@@ -2,7 +2,11 @@ using System.Collections.Generic;
 using System.Linq;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
+using CliqFlip.Infrastructure.Neo.NodeTypes;
+using CliqFlip.Infrastructure.Neo.Relationships;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
+using Neo4jClient;
+using Neo4jClient.Gremlin;
 using SharpArch.Domain.Specifications;
 using SharpArch.NHibernate;
 
@@ -10,6 +14,13 @@ namespace CliqFlip.Infrastructure.Repositories
 {
 	public class UserInterestRepository : LinqRepository<UserInterest>, IUserInterestRepository
 	{
+		private readonly IGraphClient _graphClient;
+
+		public UserInterestRepository(IGraphClient graphClient)
+		{
+			_graphClient = graphClient;
+		}
+
 		#region IUserInterestRepository Members
 
 		public IList<RankedInterestDto> GetMostPopularInterests()
@@ -17,7 +28,7 @@ namespace CliqFlip.Infrastructure.Repositories
 			var popularInterests =
 				FindAll().ToList()
 					.GroupBy(x => x.Interest)
-					.Select(x => new {x.Key, Count = x.Count()})
+					.Select(x => new { x.Key, Count = x.Count() })
 					.OrderByDescending(x => x.Count)
 					.Take(10).ToList();
 
@@ -26,13 +37,58 @@ namespace CliqFlip.Infrastructure.Repositories
 
 		public IQueryable<UserInterest> GetUserInterestsByInterestTypes(IList<Interest> interests)
 		{
-			var query = new AdHoc<UserInterest>(x =>interests.Contains(x.Interest)
-											 ||
-											 interests.Contains(x.Interest.ParentInterest));
+			var query = new AdHoc<UserInterest>(x => interests.Contains(x.Interest)
+													 ||
+													 interests.Contains(x.Interest.ParentInterest));
 
 			return FindAll(query);
 		}
 
+		public override UserInterest SaveOrUpdate(UserInterest entity)
+		{
+			bool @new = entity.Id == 0;
+
+			UserInterest retVal = base.SaveOrUpdate(entity);
+
+			if (@new)
+			{
+				Node<NeoUser> userNode = GetUserNode(retVal);
+				Node<NeoInterest> interestNode = _graphClient.QueryIndex<NeoInterest>("interests", IndexFor.Node, string.Format("sqlid:{0}", retVal.Interest.Id)).First();
+
+				_graphClient.CreateRelationship(userNode.Reference,
+												new UserHasInterestTo(interestNode.Reference,
+																	  new UserHasInterestTo.Payload
+																	  {
+																		  Passion = retVal.Options.Passion,
+																		  SqlId = retVal.Id
+																	  }));
+			}
+			else
+			{
+				//TODO look into relationship indexes - currently QueryIndex() only returns Nodes not relationships
+				Node<NeoUser> userNode = GetUserNode(retVal);
+				IGremlinRelationshipQuery<UserHasInterestTo.Payload> userInterestQuery = userNode
+					.OutE<UserHasInterestTo.Payload>(UserHasInterestTo.TypeKey, x => x.SqlId == retVal.Id);
+
+				RelationshipInstance<UserHasInterestTo.Payload> userInterestRelationship = _graphClient
+					.ExecuteGetAllRelationshipsGremlin<UserHasInterestTo.Payload>(userInterestQuery.QueryText, userInterestQuery.QueryParameters)
+					.First();
+
+				_graphClient.Update(userInterestRelationship.Reference, x =>
+				{
+					x.SqlId = retVal.Id;
+					x.Passion = retVal.Options.Passion;
+				});
+			}
+
+			return retVal;
+		}
+
 		#endregion
+
+		private Node<NeoUser> GetUserNode(UserInterest retVal)
+		{
+			return _graphClient.QueryIndex<NeoUser>("users", IndexFor.Node, string.Format("sqlid:{0}", retVal.User.Id)).First();
+		}
 	}
 }

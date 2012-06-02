@@ -35,6 +35,7 @@ namespace CliqFlip.Tasks.TaskImpl
 		private readonly IWebContentService _webContentService;
 		private readonly IImageProcessor _imageProcessor;
 		private readonly IInterestTasks _interestTasks;
+		private readonly IUserInterestTasks _userInterestTasks;
 		private readonly ILocationService _locationService;
 		private readonly IPageParsingService _pageParsingService;
 		private readonly IUserAuthentication _userAuthentication;
@@ -51,7 +52,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			IEmailService emailService,
 			ILocationService locationService,
 			IUserRepository userRepository,
-			IPageParsingService pageParsingService)
+			IPageParsingService pageParsingService, IUserInterestTasks userInterestTasks)
 		{
 			_interestTasks = interestTasks;
 			_imageProcessor = imageProcessor;
@@ -64,6 +65,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			_locationService = locationService;
 			_userRepository = userRepository;
 			_pageParsingService = pageParsingService;
+			_userInterestTasks = userInterestTasks;
 		}
 
 		#region IUserTasks Members
@@ -165,17 +167,17 @@ namespace CliqFlip.Tasks.TaskImpl
 											, imgFileNamesDto.ThumbFilename
 											, imgFileNamesDto.MediumFilename
 											, imgFileNamesDto.FullFilename),
-                                    CreateDate = DateTime.UtcNow
+									CreateDate = DateTime.UtcNow
 								}));
 		}
 
 		public void SaveInterestImage(User user, int userInterestId, string description, string imageUrl)
 		{
 			imageUrl = imageUrl.FormatWebAddress();
-			
+
 			//DRY this up..the formatWebAddress, the byte[], the streams (videos, iframe, etc)
 			byte[] data = _webContentService.GetDataFromUrl(imageUrl);
-			
+
 			string fileName = Path.GetFileName(imageUrl);
 
 			using (var memoryStream = new MemoryStream(data))
@@ -199,7 +201,7 @@ namespace CliqFlip.Tasks.TaskImpl
 				throw new RulesException("Description", "Invalid video");
 			}
 
-            var medium = new Video { Description = description, VideoUrl = details.VideoUrl, Title = details.Title, CreateDate = DateTime.UtcNow };
+			var medium = new Video { Description = description, VideoUrl = details.VideoUrl, Title = details.Title, CreateDate = DateTime.UtcNow };
 
 			//determine if image is available
 			if (!string.IsNullOrWhiteSpace(details.ImageUrl))
@@ -273,7 +275,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			string salt = PasswordHelper.GenerateSalt(16); //TODO: should this be 32 - encapsulate this somehwere
 			string pHash = PasswordHelper.GetPasswordHash(password, salt);
 
-			user.UpdatePassword(pHash,salt);
+			user.UpdatePassword(pHash, salt);
 		}
 
 		public void SaveLocation(User user, LocationData locationData)
@@ -320,8 +322,12 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public void AddInterestToUser(User user, int interestId)
 		{
-			Interest interest = _interestTasks.Get(interestId);
-			user.AddInterest(interest, null);
+			if(interestId < 1)
+			{
+				throw new RulesException("InterestId", "An existing interest must be passed in");
+			}
+
+			ProcessUserInterests(user, new[] { new UserInterestDto(interestId, null, null) });
 		}
 
 		public void AddInterestsToUser(string name, IEnumerable<UserInterestDto> interestDtos)
@@ -370,7 +376,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 			Message message = sender.WriteMessage(messageText);
 			conversation.AddMessage(message);
-			_conversationRepository.SaveOrUpdate(conversation);
+			_conversationRepository.SaveOrUpdate(conversation);//TODO:remove this - it will be taken care of automatically
 			_emailService.SendMail(recipient.Email, subject, body);
 		}
 
@@ -522,14 +528,12 @@ namespace CliqFlip.Tasks.TaskImpl
 		{
 			foreach (UserInterestDto interestDto in interestDtos)
 			{
-				Interest interest;
+				Interest interest = interestDto.Id > 0 
+					? _interestTasks.Get(interestDto.Id) 
+					: _interestTasks.Create(interestDto.Name, interestDto.RelatedTo);
 
-				if (interestDto.Id > 0)
-					interest = _interestTasks.Get(interestDto.Id);
-				else
-					interest = _interestTasks.Create(interestDto.Name, interestDto.RelatedTo);
-
-				user.AddInterest(interest, null);
+				var userInterest = user.AddInterest(interest, null);
+				_userInterestTasks.SaveOrUpdate(userInterest);
 			}
 		}
 	}
