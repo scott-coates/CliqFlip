@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using Migrator.Framework;
 using MigratorNeo4j.CliqFlip;
@@ -9,8 +10,8 @@ using Neo4jClient.Gremlin;
 
 namespace CliqFlip.Infrastructure.Migrator.Migrations
 {
-	[Migration(634741839617969761)]
-	public class __634741839617969761_MoveCurrentUserInterestsToNeo : Migration
+	[Migration(634741868884803728)]
+	public class __634741868884803728_MoveCurrentUserInterestsToNeo : Migration
 	{
 		public override void Up()
 		{
