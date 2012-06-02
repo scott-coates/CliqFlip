@@ -84,12 +84,12 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 			int total = graphInterests.Count();
 			int counter = 1;
 
-			Console.WriteLine("---- Total: {0} ----", total);
+			Console.WriteLine("---- Total Interests: {0} ----", total);
 
 			foreach (var graphInterest in graphInterests)
 			{
 				db.GraphClient.Delete(graphInterest.Reference, DeleteMode.NodeAndRelationships);
-				Console.WriteLine("---- Deleted number: {0} of {1} ----", counter++, total);
+				Console.WriteLine("---- Deleted number: {0} of {1} Interests----", counter++, total);
 			}
 		}
 
