@@ -66,13 +66,7 @@ namespace CliqFlip.Infrastructure.Repositories
 			else
 			{
 				//TODO look into relationship indexes - currently QueryIndex() only returns Nodes not relationships
-				Node<NeoUser> userNode = GetUserNode(retVal);
-				IGremlinRelationshipQuery<UserHasInterestTo.Payload> userInterestQuery = userNode
-					.OutE<UserHasInterestTo.Payload>(UserHasInterestTo.TypeKey, x => x.SqlId == retVal.Id);
-
-				RelationshipInstance<UserHasInterestTo.Payload> userInterestRelationship = _graphClient
-					.ExecuteGetAllRelationshipsGremlin<UserHasInterestTo.Payload>(userInterestQuery.QueryText, userInterestQuery.QueryParameters)
-					.First();
+				var userInterestRelationship = GetUserInterestRelationship(retVal);
 
 				_graphClient.Update(userInterestRelationship.Reference, x =>
 				{
@@ -82,6 +76,25 @@ namespace CliqFlip.Infrastructure.Repositories
 			}
 
 			return retVal;
+		}
+
+		private RelationshipInstance<UserHasInterestTo.Payload> GetUserInterestRelationship(UserInterest retVal)
+		{
+			Node<NeoUser> userNode = GetUserNode(retVal);
+			IGremlinRelationshipQuery<UserHasInterestTo.Payload> userInterestQuery = userNode
+				.OutE<UserHasInterestTo.Payload>(UserHasInterestTo.TypeKey, x => x.SqlId == retVal.Id);
+
+			RelationshipInstance<UserHasInterestTo.Payload> userInterestRelationship = _graphClient
+				.ExecuteGetAllRelationshipsGremlin<UserHasInterestTo.Payload>(userInterestQuery.QueryText, userInterestQuery.QueryParameters)
+				.First();
+			return userInterestRelationship;
+		}
+
+		public override void Delete(UserInterest target)
+		{
+			base.Delete(target);
+			var userInterestRelationship = GetUserInterestRelationship(target);
+			_graphClient.DeleteRelationship(userInterestRelationship.Reference);
 		}
 
 		#endregion

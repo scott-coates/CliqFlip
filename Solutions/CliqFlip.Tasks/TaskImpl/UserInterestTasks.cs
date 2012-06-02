@@ -66,5 +66,10 @@ namespace CliqFlip.Tasks.TaskImpl
 		{
 			_userInterestRepository.SaveOrUpdate(interest);
 		}
+
+		public void Delete(UserInterest interest)
+		{
+			_userInterestRepository.Delete(interest);
+		}
 	}
 }

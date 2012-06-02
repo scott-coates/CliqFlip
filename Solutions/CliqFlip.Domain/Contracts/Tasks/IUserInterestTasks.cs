@@ -9,5 +9,6 @@ namespace CliqFlip.Domain.Contracts.Tasks
 	{
 		IList<InterestFeedItemDto> GetMediaByInterests(IList<Interest> interests);
 		void SaveOrUpdate(UserInterest interest);
+		void Delete(UserInterest interest);
 	}
 }

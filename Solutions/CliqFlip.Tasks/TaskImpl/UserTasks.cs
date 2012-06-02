@@ -318,6 +318,8 @@ namespace CliqFlip.Tasks.TaskImpl
 			DeleteImages(files.ToArray());
 
 			user.RemoveInterest(interest);
+
+			_userInterestTasks.Delete(interest);
 		}
 
 		public void AddInterestToUser(User user, int interestId)
