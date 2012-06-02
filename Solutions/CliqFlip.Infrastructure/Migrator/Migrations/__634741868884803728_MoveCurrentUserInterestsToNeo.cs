@@ -100,7 +100,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 		                                  IRelationshipAllowingSourceNode<NeoUser>,
 		                                  IRelationshipAllowingTargetNode<NeoInterest>
 		{
-			public const string TypeKey = "INTEREST_RELATES_TO";
+			public const string TypeKey = "USER_HAS_INTEREST";
 
 			public override string RelationshipTypeKey
 			{
