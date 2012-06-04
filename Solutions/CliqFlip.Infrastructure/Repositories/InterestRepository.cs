@@ -8,6 +8,7 @@ using CliqFlip.Infrastructure.Neo.NodeTypes;
 using CliqFlip.Infrastructure.Neo.Relationships;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
 using Neo4jClient;
+using Neo4jClient.Cypher;
 using Neo4jClient.Gremlin;
 using SharpArch.Domain.Specifications;
 using SharpArch.NHibernate;
@@ -67,17 +68,19 @@ namespace CliqFlip.Infrastructure.Repositories
 
 			retVal.OriginalInterest = convert(startingRef.Data);
 
-			IEnumerable<NeoInterestRelatedQuery> neoRelatedInterestQuery =
-				_graphClient
-					.Cypher
-					.Start("n", startingRef.Reference)
-					.Match("n -[r:INTEREST_RELATES_TO]-(x)")
-					.Return<NeoInterestRelatedQuery>("x AS FoundInterest, r.Weight AS Weight")
-					.Results;
+		    var query = _graphClient
+		        .Cypher
+		        .Start("n", startingRef.Reference)
+		        .Match("n -[r:INTEREST_RELATES_TO]-(x)")
+		        .Return<NeoInterestRelatedQuery>("x AS FoundInterest, r.Weight AS Weight").Query;
+		    
+            query = new CypherQuery(query.QueryText, query.QueryParameters, CypherResultMode.Projection);
 
-			if (neoRelatedInterestQuery != null)
+		    IEnumerable<NeoInterestRelatedQuery> results = _graphClient.ExecuteGetCypherResults<NeoInterestRelatedQuery>(query);
+
+			if (results != null)
 			{
-				retVal.WeightedRelatedInterestDtos = neoRelatedInterestQuery.Select(x => new RelatedInterestListDto.WeightedRelatedInterestDto
+				retVal.WeightedRelatedInterestDtos = results.Select(x => new RelatedInterestListDto.WeightedRelatedInterestDto
 				{
 					Interest = convert(x.FoundInterest.Data),
 					Weight = x.Weight
