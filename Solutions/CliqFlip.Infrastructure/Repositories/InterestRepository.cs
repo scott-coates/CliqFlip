@@ -91,11 +91,11 @@ namespace CliqFlip.Infrastructure.Repositories
 		{
 			Node<NeoInterest> startingRef = FindInterestNodeBySlug(relatedInterestListDto.OriginalInterest.Slug);
 
-			IGremlinRelationshipQuery relationshipsQuery = startingRef.Reference.OutE(InterestRelatesTo.TypeKey);
+			IGremlinRelationshipQuery relationshipsQuery = startingRef.Reference.BothE(InterestRelatesTo.TypeKey);
 
 			List<RelationshipInstance<InterestRelatesTo.Payload>> existingRelationships = _graphClient
 				.ExecuteGetAllRelationshipsGremlin<InterestRelatesTo.Payload>(
-					relationshipsQuery.QueryText.Replace("outE", "bothE"), //TODO use bothE method when it's available 
+					relationshipsQuery.QueryText,
 					relationshipsQuery.QueryParameters)
 				.ToList();
 
