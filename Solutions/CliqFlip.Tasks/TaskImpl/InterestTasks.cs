@@ -97,6 +97,11 @@ namespace CliqFlip.Tasks.TaskImpl
 			_interestRepository.CreateRelationships(relatedInterestListDto);
 		}
 
-		#endregion
+	    public int UploadInterests(FileStreamDto fileStream)
+	    {
+	        throw new NotImplementedException();
+	    }
+
+	    #endregion
 	}
 }

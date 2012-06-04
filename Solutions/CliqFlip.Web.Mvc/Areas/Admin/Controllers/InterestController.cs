@@ -1,29 +1,36 @@
+using System;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.Exceptions;
+using CliqFlip.Infrastructure.Web.Interfaces;
 using CliqFlip.Web.Mvc.Areas.Admin.Queries.Interfaces;
 using CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest;
 using CliqFlip.Web.Mvc.Extensions.Controller;
+using CliqFlip.Web.Mvc.Extensions.Exceptions;
 using CliqFlip.Web.Mvc.Security.Attributes;
 using SharpArch.NHibernate.Web.Mvc;
 
 namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 {
 	[FormsAuthReadUserData(Order = 0)]
-	[Authorize(Roles = "Administrator,Management", Order = 1)]
+	[Authorize(Roles = "Administrator,Manager", Order = 1)]
 	public class InterestController : Controller
 	{
 		private readonly IInterestListQuery _interestListQuery;
 		private readonly IInterestTasks _interestTasks;
 		private readonly ISpecificInterestGraphQuery _specificInterestGraphQuery;
+	    private readonly IHttpContextProvider _httpContextProvider;
 
-		public InterestController(IInterestListQuery interestListQuery, ISpecificInterestGraphQuery specificInterestGraphQuery, IInterestTasks interestTasks)
+		public InterestController(IInterestListQuery interestListQuery, ISpecificInterestGraphQuery specificInterestGraphQuery, IInterestTasks interestTasks, IHttpContextProvider httpContextProvider)
 		{
 			_interestListQuery = interestListQuery;
 			_specificInterestGraphQuery = specificInterestGraphQuery;
 			_interestTasks = interestTasks;
+		    _httpContextProvider = httpContextProvider;
 		}
 
 		[Transaction]
@@ -46,6 +53,39 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 			RouteData.Values["action"] = "Index";
 			return Index(null);
 		}
+
+        [Transaction]
+        [HttpPost]
+        public ActionResult UploadInterests(HttpPostedFileBase file)
+        {
+            //TODO:put this into a viewmodel and check for is valid            
+            if (file == null)
+            {
+                ViewData.ModelState.AddModelError("File", "You need to provide a file first... or don't. Have it your way.");
+                RouteData.Values["action"] = "Index";
+                return Index(null);
+            }
+
+            //set timeout to several minutes because this could take a bit
+            _httpContextProvider.Server.ScriptTimeout = 60 /*seconds*/*20 /*minutes*/;
+
+            try
+            {
+                _interestTasks.UploadInterests(new FileStreamDto(file.InputStream, file.FileName));
+            }
+            catch (RulesException rex)
+            {
+
+                rex.AddModelStateErrors(ModelState);
+
+                RouteData.Values["action"] = "Index";
+                return Index(null);
+            }
+            finally
+            {
+                file.InputStream.Dispose();
+            }
+        }
 
 		[Transaction]
 		public ViewResult SpecificInterest(string id)
