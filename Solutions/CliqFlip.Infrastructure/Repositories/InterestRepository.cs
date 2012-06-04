@@ -68,9 +68,8 @@ namespace CliqFlip.Infrastructure.Repositories
             retVal.OriginalInterest = convert(startingRef.Data);
 
             IEnumerable<NeoInterestRelatedQuery> neoRelatedInterestQuery =
-                _graphClient
-                    .Cypher
-                    .Start("n", startingRef.Reference)
+                startingRef
+                    .StartCypher("n")
                     .Match("n -[r:INTEREST_RELATES_TO]-(x)")
                     .Return(
                         (x, r) => new NeoInterestRelatedQuery
