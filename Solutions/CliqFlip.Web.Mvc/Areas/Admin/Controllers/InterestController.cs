@@ -107,23 +107,13 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 			{
 				var relatedInterestListDto = new RelatedInterestListDto
 				{
-					OriginalInterest = new RelatedInterestListDto.RelatedInterestDto
-					{
-						Id = mainInterest.Id,
-						Name = mainInterest.Name,
-						Slug = mainInterest.Slug
-					},
+                    OriginalInterest = new RelatedInterestListDto.RelatedInterestDto(mainInterest.Id, null, mainInterest.Name, mainInterest.Slug),
 					WeightedRelatedInterestDtos = createInterestRelationshipViewModel
 						.UserInterests
 						.Select(x => new RelatedInterestListDto.WeightedRelatedInterestDto
 						{
 							Weight = createInterestRelationshipViewModel.RelationShipType,
-							Interest = new RelatedInterestListDto.RelatedInterestDto
-							{
-								Id = x.Id,
-								Name = x.Name,
-								ParentId = x.CategoryId
-							}
+                            Interest = new RelatedInterestListDto.RelatedInterestDto(x.Id, x.CategoryId, x.Name, null)
 						}).ToList()
 				};
 

@@ -58,12 +58,7 @@ namespace CliqFlip.Infrastructure.Repositories
 
             Node<NeoInterest> startingRef = FindInterestNodeBySlug(interestSlug);
 
-            Func<NeoInterest, RelatedInterestListDto.RelatedInterestDto> convert = x => new RelatedInterestListDto.RelatedInterestDto
-            {
-                Id = x.SqlId,
-                Name = x.Name,
-                Slug = x.Slug
-            };
+            Func<NeoInterest, RelatedInterestListDto.RelatedInterestDto> convert = x => new RelatedInterestListDto.RelatedInterestDto(x.SqlId, null, x.Name, x.Slug);
 
             retVal.OriginalInterest = convert(startingRef.Data);
 
