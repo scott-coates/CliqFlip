@@ -696,8 +696,6 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			string username = _principal.Identity.Name;
 
-			User user = _userTasks.GetUser(username);
-
 			RouteData.Values["username"] = username;
 
 			var viewModel = new UserLandingPageViewModel {Username = username};
