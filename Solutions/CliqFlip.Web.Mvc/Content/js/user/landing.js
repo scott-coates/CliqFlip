@@ -35,33 +35,32 @@ function InitFeed(feedUrl) {
     })(); //anonymous function to hide the function to increment page
 
     CliqFlipMVC.Views.Feed.InterestFeedList = Backbone.View.extend({
-        initialize: function() {
+        initialize: function () {
             // isLoading is a useful flag to make sure we don't send off more than
             // one request at a time
+//            http: //stackoverflow.com/questions/9110060/how-do-i-add-a-resize-event-to-the-window-in-a-view-using-backbone
             this.isLoading = false;
+            $(window).bind("scroll", _.bind(this.checkScroll, this));
         },
-        loadResults: function() {
+        loadResults: function () {
             var that = this;
             this.isLoading = true;
             this.collection.fetch({
-                success: function(models) {
-                    _.each(that.collection.models, function(model) {
+                success: function (models) {
+                    _.each(that.collection.models, function (model) {
                         that.$el.append(new CliqFlipMVC.Views.Feed.InterestFeedItem({ model: model }).render().el);
                     });
                     that.isLoading = false;
                 }
             });
         },
-        events: {
-            'scroll': 'checkScroll'
-        },
-        checkScroll: function() {
+        checkScroll: function () {
             var triggerPoint = 300;
-            if (!this.isLoading && this.el.scrollTop + this.el.clientHeight + triggerPoint > this.el.scrollHeight) {
+            if (!this.isLoading && ($(window).scrollTop() >= $(document).height() - $(window).height() - triggerPoint)) {
                 this.loadResults();
             }
         },
-        render: function() {
+        render: function () {
             this.loadResults();
         }
     });
