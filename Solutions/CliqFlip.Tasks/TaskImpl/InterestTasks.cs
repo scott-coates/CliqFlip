@@ -62,8 +62,7 @@ namespace CliqFlip.Tasks.TaskImpl
             string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(name.ToLower().Trim());
             var interest = new Interest(formattedName)
             {
-                CreateDate = DateTime.UtcNow
-                ,
+                CreateDate = DateTime.UtcNow,
                 ParentInterest = relatedTo.HasValue ? Get(relatedTo.Value) : null
             };
 
