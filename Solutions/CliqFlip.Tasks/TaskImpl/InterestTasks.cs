@@ -87,15 +87,10 @@ namespace CliqFlip.Tasks.TaskImpl
 			return _interestRepository.GetRelatedInterests(interestSlug);
 		}
 
-		public void CreateRelationships(RelatedInterestListDto relatedInterestListDto)
-		{
-			foreach(var newInterest in relatedInterestListDto.WeightedRelatedInterestDtos.Select(x=>x.Interest).Where(x=>x.Id == 0))
-			{
-				var createdInterest = Create(newInterest.Name, newInterest.ParentId);
-				newInterest.Id = createdInterest.Id;
-			}
-			_interestRepository.CreateRelationships(relatedInterestListDto);
-		}
+            if(relatedInterestListDto.WeightedRelatedInterestDtos.Any(x=>x.Interest.Id == relatedInterestListDto.OriginalInterest.Id))
+            {
+                throw new RulesException("Interest", "An interest cannot have a relationship with itself");
+            }
 
 	    public int UploadInterests(FileStreamDto fileStream)
 	    {
