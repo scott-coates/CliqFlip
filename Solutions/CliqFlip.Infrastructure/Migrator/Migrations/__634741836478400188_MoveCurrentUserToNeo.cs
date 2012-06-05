@@ -50,7 +50,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 				.StartCypher("n")
 				.Match("n <-[:USER_BELONGS_TO]-(x)")
 				.Return<Node<NeoUser>>("x")
-				.ResultSet
+				.Results
 				.ToList();
 
 			int total = graphInterests.Count();

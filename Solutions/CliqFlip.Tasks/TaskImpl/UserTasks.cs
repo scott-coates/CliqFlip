@@ -97,9 +97,10 @@ namespace CliqFlip.Tasks.TaskImpl
 			string salt = PasswordHelper.GenerateSalt(16); //TODO: should this be 32 - encapsulate this somehwere
 			string pHash = PasswordHelper.GetPasswordHash(userToCreate.Password, salt);
 
-			var user = new User(userToCreate.Username, userToCreate.Email, pHash, salt);
-
-			ProcessUserInterests(user, userToCreate.InterestDtos);
+		    var user = new User(userToCreate.Username, userToCreate.Email, pHash, salt)
+		    {
+		        CreateDate = DateTime.UtcNow
+		    };
 
 			MajorLocation majorLocation = _locationService.GetNearestMajorCity(location.Latitude, location.Longitude);
 
@@ -110,6 +111,8 @@ namespace CliqFlip.Tasks.TaskImpl
 			user.UpdateCreateDate();
 
 			_userRepository.SaveOrUpdate(user);
+
+            ProcessUserInterests(user, userToCreate.InterestDtos);
 
 			return user;
 		}

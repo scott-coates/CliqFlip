@@ -1,4 +1,4 @@
-﻿using CliqFlip.Infrastructure.Neo.NodeTypes;
+﻿using CliqFlip.Infrastructure.Neo.Entities;
 using Neo4jClient;
 
 namespace CliqFlip.Infrastructure.Neo.Relationships

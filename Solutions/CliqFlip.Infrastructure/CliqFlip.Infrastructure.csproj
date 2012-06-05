@@ -100,8 +100,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib\Migrator.Providers.dll</HintPath>
     </Reference>
-    <Reference Include="Neo4jClient, Version=1.0.0.355, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Packages\Neo4jClient.1.0.0.355\lib\Neo4jClient.dll</HintPath>
+    <Reference Include="Neo4jClient, Version=1.0.0.365, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Neo4jClient.1.0.0.365\lib\Neo4jClient.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\Packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -197,9 +198,9 @@
     <Compile Include="Migrator\Migrations\__634653560469431604_AddBlogUrls.cs" />
     <Compile Include="Migrator\Migrations\__634653694060482576_AddActivity.cs" />
     <Compile Include="Migrator\Migrations\__634662457651019146_AddElmahDDL.cs" />
-    <Compile Include="Neo\NodeTypes\NeoInterestRelatedQuery.cs" />
-    <Compile Include="Neo\NodeTypes\NeoInterest.cs" />
-    <Compile Include="Neo\NodeTypes\NeoUser.cs" />
+    <Compile Include="Neo\Queries\NeoInterestRelatedQuery.cs" />
+    <Compile Include="Neo\Entities\NeoInterest.cs" />
+    <Compile Include="Neo\Entities\NeoUser.cs" />
     <Compile Include="Neo\Relationships\UserBelongsTo.cs" />
     <Compile Include="Neo\Relationships\InterestRelatesTo.cs" />
     <Compile Include="Neo\Relationships\InterestBelongsTo.cs" />

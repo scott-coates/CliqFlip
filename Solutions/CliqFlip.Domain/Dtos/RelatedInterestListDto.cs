@@ -10,7 +10,15 @@ namespace CliqFlip.Domain.Dtos
 
 		public class RelatedInterestDto
 		{
-			public int Id { get; set; }
+		    public RelatedInterestDto(int id, int? parentId, string name, string slug)
+		    {
+		        Id = id;
+		        ParentId = parentId;
+		        Name = name;
+		        Slug = slug;
+		    }
+
+		    public int Id { get; set; }
 			public int? ParentId { get; set; }
 			public string Name { get; set; }
 			public string Slug { get; set; }

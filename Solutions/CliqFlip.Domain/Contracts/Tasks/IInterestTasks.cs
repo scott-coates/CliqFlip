@@ -15,5 +15,6 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		IList<Interest> GetAll();
 		RelatedInterestListDto GetRelatedInterests(string interestSlug);
 		void CreateRelationships(RelatedInterestListDto relatedInterestListDto);
+	    int UploadInterests(FileStreamDto fileStream);
 	}
 }

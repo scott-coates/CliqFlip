@@ -1,40 +1,49 @@
 ﻿@model CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest.InterestListViewModel
 @{
-	ViewBag.Title = "Interests";
+    ViewBag.Title = "Interests";
 }
 <h2>Interests</h2>
 @{
-	var grid = new WebGrid(Model.ListItemViewModels, defaultSort: "CreateDate");
-	if (Request.QueryString[grid.SortDirectionFieldName].IsEmpty())
-	{
-		//http://forums.asp.net/t/1649155.aspx/1
-		grid.SortDirection = SortDirection.Descending;
-	}
+    var grid = new WebGrid(Model.ListItemViewModels, defaultSort: "CreateDate");
+    if (Request.QueryString[grid.SortDirectionFieldName].IsEmpty())
+    {
+        //http://forums.asp.net/t/1649155.aspx/1
+        grid.SortDirection = SortDirection.Descending;
+    }
 }
-
-@using (Html.BeginForm("AddInterest", "Interest", FormMethod.Post))
-{
-	<div class="editor-label">
-		@Html.LabelFor(model => model.AddNewInterestName)
-	</div>
-	<div class="editor-field">
-		@Html.EditorFor(model => model.AddNewInterestName)
-		@Html.ValidationMessageFor(model => model.AddNewInterestName)
-	</div>
-	<input type="submit" />
-}
-
-@using (Html.BeginForm("Index", "Interest", FormMethod.Get))
-{
-	<div class="editor-label">
-		@Html.LabelFor(model => model.SearchKey)
-	</div>
-	<div class="editor-field">
-		@Html.EditorFor(model => model.SearchKey)
-		@Html.ValidationMessageFor(model => model.SearchKey)
-	</div>
-	<input type="submit" />
-}
+<div class="border">
+    @using (Html.BeginForm("UploadInterests", "Interest", FormMethod.Post, new {@encType = "multipart/form-data"}))
+    {
+        @Html.ValidationSummary()
+        @FileUpload.GetHtml("interestList", initialNumberOfFiles: 1, allowMoreFilesToBeAdded: false, uploadText: "Upload Interest List")
+    }
+</div>
+<div class="border">
+    @using (Html.BeginForm("AddInterest", "Interest", FormMethod.Post))
+    {
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AddNewInterestName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AddNewInterestName)
+            @Html.ValidationMessageFor(model => model.AddNewInterestName)
+        </div>
+        <input type="submit" />
+    }
+</div>
+<div class="border">
+    @using (Html.BeginForm("Index", "Interest", FormMethod.Get))
+    {
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchKey)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SearchKey)
+            @Html.ValidationMessageFor(model => model.SearchKey)
+        </div>
+        <input type="submit" />
+    }
+</div>
 @grid.GetHtml(columns: grid.Columns(
-	grid.Column("Name", format: o => Html.ActionLink((string)o.Name, "SpecificInterest", new {id = o.Slug})),
-	grid.Column("CreateDate")))
+    grid.Column("Name", format: o => Html.ActionLink((string) o.Name, "SpecificInterest", new {id = o.Slug})),
+    grid.Column("CreateDate")))

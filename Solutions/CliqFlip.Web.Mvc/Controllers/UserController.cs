@@ -255,6 +255,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			//http://haacked.com/archive/2010/07/16/uploading-files-with-aspnetmvc.aspx
 			//model bound
+            //TODO:put this into a viewmodel and check for is valid
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			if (profileImage == null)
 			{
@@ -695,8 +696,6 @@ namespace CliqFlip.Web.Mvc.Controllers
 		public ActionResult Landing()
 		{
 			string username = _principal.Identity.Name;
-
-			User user = _userTasks.GetUser(username);
 
 			RouteData.Values["username"] = username;
 

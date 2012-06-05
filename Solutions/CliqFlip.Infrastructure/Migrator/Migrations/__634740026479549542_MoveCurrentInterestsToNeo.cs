@@ -78,7 +78,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 				.StartCypher("n")
 				.Match("n <-[:INTEREST_BELONGS_TO]-(x)")
 				.Return<Node<NeoInterest>>("x")
-				.ResultSet
+				.Results
 				.ToList();
 
 			int total = graphInterests.Count();
