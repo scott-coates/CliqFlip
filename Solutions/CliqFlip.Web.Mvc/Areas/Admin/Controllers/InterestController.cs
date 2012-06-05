@@ -56,10 +56,10 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 
         [Transaction]
         [HttpPost]
-        public ActionResult UploadInterests(HttpPostedFileBase file)
+        public ActionResult UploadInterests(HttpPostedFileBase interestList)
         {
             //TODO:put this into a viewmodel and check for is valid            
-            if (file == null)
+            if (interestList == null)
             {
                 ViewData.ModelState.AddModelError("File", "You need to provide a file first... or don't. Have it your way.");
                 RouteData.Values["action"] = "Index";
@@ -71,7 +71,9 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
 
             try
             {
-                _interestTasks.UploadInterests(new FileStreamDto(file.InputStream, file.FileName));
+                int uploaded = _interestTasks.UploadInterests(new FileStreamDto(interestList.InputStream, interestList.FileName));
+                this.FlashSuccess(uploaded + " Relationships Updated");
+                return RedirectToAction("Index");
             }
             catch (RulesException rex)
             {
@@ -83,7 +85,7 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Controllers
             }
             finally
             {
-                file.InputStream.Dispose();
+                interestList.InputStream.Dispose();
             }
         }
 

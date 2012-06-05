@@ -4,6 +4,8 @@ using System.Globalization;
 using System.Linq;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.Enums;
+using CliqFlip.Domain.Extensions;
 using CliqFlip.Infrastructure.Neo.NodeTypes;
 using CliqFlip.Infrastructure.Neo.Relationships;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
@@ -153,7 +155,7 @@ namespace CliqFlip.Infrastructure.Repositories
                     new InterestRelatesTo(
                         parentNode.Reference, new InterestRelatesTo.Payload
                         {
-                            Weight = .25f
+                            Weight = InterestRelationshipWeight.Low.ToFloat()
                         }));
             }
 

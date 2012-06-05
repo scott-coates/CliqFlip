@@ -3,6 +3,8 @@ using System.Linq;
 using System.Web.Mvc;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
+using CliqFlip.Domain.Enums;
+using CliqFlip.Domain.Extensions;
 using CliqFlip.Web.Mvc.Areas.Admin.Queries.Interfaces;
 using CliqFlip.Web.Mvc.Areas.Admin.ViewModels.Interest;
 using Newtonsoft.Json;
@@ -56,9 +58,9 @@ namespace CliqFlip.Web.Mvc.Areas.Admin.Queries
 			};
 
 			//TODO:encapsulate this somewhere
-			var high = new { Display = "High", Weight = .75 };
-			var medium = new { Display = "Medium", Weight = .5 };
-			var low = new { Display = "Low", Weight = .25 };
+			var high = new { Display = "High", Weight = InterestRelationshipWeight.High.ToFloat() };
+            var medium = new { Display = "Medium", Weight = InterestRelationshipWeight.Medium.ToFloat() };
+            var low = new { Display = "Low", Weight = InterestRelationshipWeight.Low.ToFloat() };
 
 			retVal.RelationShipType = new SelectList(new[] { high, medium, low }, "Weight", "Display");
 			return retVal;
