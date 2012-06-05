@@ -55,6 +55,7 @@
 	<script type="text/javascript" src="@Url.Content("/Scripts/underscore.min.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Scripts/backbone.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/js/hogan.js")"> </script>
+    <script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/cliqFlip/template.js")"> </script>
 	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/user/landing.js")"> </script>
 
 	@Bundles.RenderHtmlTemplates()
@@ -62,6 +63,8 @@
 	<script type="text/javascript">
 		@*TODO: implement something without duplciation - http://stackoverflow.com/questions/5433531/using-sections-in-editor-display-templates/5433722#5433722 *@
 		$(function() {
+            cliqFlip.Template.applyTemplateFix();
+
 			InitAutoSuggest('@(Html.Raw(Url.Action("Interest", "Search")))');
 
 			InitTagCloud();

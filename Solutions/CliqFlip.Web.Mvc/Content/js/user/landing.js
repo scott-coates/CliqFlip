@@ -73,8 +73,11 @@ function InitFeed(feedUrl) {
 	    },
 	    render: function () {
 	        var jsonModel = this.model.toJSON();
-	        this.$el.html(window.JST['media-' + jsonModel.MediumType].render({ model: jsonModel },
-				{ video: window.JST['media-Video'] }))
+	        jsonModel.Title = jsonModel.Title || ""; //images have no title
+
+	        var template = window.JST['media-Item'];
+
+	        this.$el.html(template.render({ model: jsonModel }, { content: window.JST['media-' + jsonModel.MediumType] }))
                 .find("div.detailed-content").empty();
 	        return this;
 	    },
@@ -103,15 +106,18 @@ function InitFeed(feedUrl) {
 	                case "WebPage":
 	                    detailedContent = "<iframe src=" + this.model.get("WebSiteUrl") + "/>";
 	                    break;
+	                case "Image":
+	                    detailedContent = "<img src=" + this.model.get("FullImage") + " />";
+	                    break;
 	            }
 	            this.$el.find(".detailed-content").html(detailedContent);
 	        }
 
 
 	        //show the color box
-	        $.colorbox({ inline: true, 
-                href: this.$el, 
-                open: true,
+	        $.colorbox({ inline: true,
+	            href: this.$el,
+	            open: true,
 	            onCleanup: function () {
 	                //we need to clear the detailed contents or the
 	                //browser will end up loading the iframe as the modal is closed
