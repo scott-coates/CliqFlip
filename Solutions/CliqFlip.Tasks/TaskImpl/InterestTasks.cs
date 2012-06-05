@@ -115,7 +115,9 @@ namespace CliqFlip.Tasks.TaskImpl
                 try
                 {
                     var csvData = new CSV(sr.ReadToEnd());
-                    var interestData = csvData.Rows.Select(
+
+                    //skip the first row
+                    var interestData = csvData.Rows.Skip(1).Select(
                         x =>
                         {
                             string interestName1 = x[0].Value;

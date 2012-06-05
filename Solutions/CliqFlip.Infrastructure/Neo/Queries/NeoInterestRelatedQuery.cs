@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using CliqFlip.Infrastructure.Migrator.Migrations;
+﻿using CliqFlip.Infrastructure.Neo.Entities;
 using Neo4jClient;
 
-namespace CliqFlip.Infrastructure.Neo.NodeTypes
+namespace CliqFlip.Infrastructure.Neo.Queries
 {
 	public class NeoInterestRelatedQuery
 	{

@@ -198,9 +198,9 @@
     <Compile Include="Migrator\Migrations\__634653560469431604_AddBlogUrls.cs" />
     <Compile Include="Migrator\Migrations\__634653694060482576_AddActivity.cs" />
     <Compile Include="Migrator\Migrations\__634662457651019146_AddElmahDDL.cs" />
-    <Compile Include="Neo\NodeTypes\NeoInterestRelatedQuery.cs" />
-    <Compile Include="Neo\NodeTypes\NeoInterest.cs" />
-    <Compile Include="Neo\NodeTypes\NeoUser.cs" />
+    <Compile Include="Neo\Queries\NeoInterestRelatedQuery.cs" />
+    <Compile Include="Neo\Entities\NeoInterest.cs" />
+    <Compile Include="Neo\Entities\NeoUser.cs" />
     <Compile Include="Neo\Relationships\UserBelongsTo.cs" />
     <Compile Include="Neo\Relationships\InterestRelatesTo.cs" />
     <Compile Include="Neo\Relationships\InterestBelongsTo.cs" />

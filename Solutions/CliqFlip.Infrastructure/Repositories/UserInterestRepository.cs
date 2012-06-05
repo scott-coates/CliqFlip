@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
-using CliqFlip.Infrastructure.Neo.NodeTypes;
+using CliqFlip.Infrastructure.Neo.Entities;
 using CliqFlip.Infrastructure.Neo.Relationships;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
 using Neo4jClient;

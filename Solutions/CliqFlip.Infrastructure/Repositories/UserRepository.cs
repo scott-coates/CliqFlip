@@ -5,7 +5,7 @@ using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Infrastructure.Migrator.Migrations;
 using CliqFlip.Infrastructure.NHibernate.Extensions;
-using CliqFlip.Infrastructure.Neo.NodeTypes;
+using CliqFlip.Infrastructure.Neo.Entities;
 using CliqFlip.Infrastructure.Neo.Relationships;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
 using NHibernate;
