@@ -69,7 +69,7 @@ function InitFeed(feedUrl) {
 	CliqFlipMVC.Views.Feed.InterestFeedItem = Backbone.View.extend({
 
 	    events: {
-	        "click": "showDetailedView"
+	        "click .item-content": "showDetailedView"
 	    },
 	    render: function () {
 	        var jsonModel = this.model.toJSON();

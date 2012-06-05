@@ -2249,7 +2249,12 @@ div.item-header h5
     padding: 10px 30px;
     border-radius: 0px 0px 0px 25px;
 }
-        
+
+div.item-content
+{
+    cursor: pointer;
+}
+
 div.item-content div.preview-image
 {
     float: left;
@@ -2289,7 +2294,11 @@ div.item-content div.detailed-content
     display: none;
 }
 
-/*show the detailed content in colorbox*/      
+/*show the detailed content in colorbox*/
+#colorbox div.item-content
+{
+    cursor: auto;
+}   
 #colorbox div.detailed-content
 {
     height: 400px;
