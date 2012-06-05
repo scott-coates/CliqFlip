@@ -2183,8 +2183,6 @@ background: -moz-linear-gradient(top, #CC0000 0%, #CC0000 100%); /* FF3.6+ */
 /*===  Interest Feed
 /*========================*/
 #interest-feed {
-	height:500px;
-	overflow-y: scroll;
 	margin-bottom: 25px;
 }
 .interest-feed-item {
@@ -2196,12 +2194,6 @@ background: -moz-linear-gradient(top, #CC0000 0%, #CC0000 100%); /* FF3.6+ */
 
 .interest-feed-item p {
 	text-align: center;
-}
-
-#interest-feed {
-	height:500px;
-	overflow-y: scroll;
-	margin-bottom: 25px;
 }
 
 #interest-feed>div
