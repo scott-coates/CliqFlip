@@ -797,8 +797,8 @@
     <Content Include="Views\Popup\_Layout.cshtml" />
     <Content Include="Views\User\_Bookmarklet.cshtml" />
     <Content Include="Views\Notification\Latest.cshtml" />
-    <None Include="Content\templates\media\Header.mustache" />
     <None Include="Content\templates\media\Image.mustache" />
+    <None Include="Content\templates\media\Item.mustache" />
     <None Include="Content\templates\media\Video.mustache" />
     <None Include="Content\templates\media\WebPage.mustache" />
     <None Include="Content\templates\media\WebPageNoImage.mustache" />
