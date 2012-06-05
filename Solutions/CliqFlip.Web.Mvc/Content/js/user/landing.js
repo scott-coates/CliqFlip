@@ -40,7 +40,7 @@ function InitFeed(feedUrl) {
             // one request at a time
 //            http: //stackoverflow.com/questions/9110060/how-do-i-add-a-resize-event-to-the-window-in-a-view-using-backbone
             this.isLoading = false;
-            $(window).bind("scroll", _.bind(this.checkScroll, this));
+            $(window).bind("scroll", null, _.bind(this.checkScroll, this));
         },
         loadResults: function () {
             var that = this;
@@ -55,7 +55,7 @@ function InitFeed(feedUrl) {
             });
         },
         checkScroll: function () {
-            var triggerPoint = 300;
+            var triggerPoint = 400;
             if (!this.isLoading && ($(window).scrollTop() >= $(document).height() - $(window).height() - triggerPoint)) {
                 this.loadResults();
             }
