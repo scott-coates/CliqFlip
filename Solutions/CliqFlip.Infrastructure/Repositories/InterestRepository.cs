@@ -168,7 +168,7 @@ namespace CliqFlip.Infrastructure.Repositories
                     Name = entity.Name,
                     Slug = entity.Slug,
                     SqlId = retVal.Id
-                }, relationships, new[] {ixEntry});
+                }, relationships, new[] { ixEntry });
             return retVal;
         }
 
