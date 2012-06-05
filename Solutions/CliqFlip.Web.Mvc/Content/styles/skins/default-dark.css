@@ -2237,6 +2237,7 @@ div.item-header strong
 {
     display: block;
     text-align: center;
+    height: 20px;
 }
         
 div.item-header h5

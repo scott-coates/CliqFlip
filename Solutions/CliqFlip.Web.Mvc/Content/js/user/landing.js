@@ -74,7 +74,7 @@ function InitFeed(feedUrl) {
 	    render: function () {
 	        var jsonModel = this.model.toJSON();
 	        jsonModel.Title = jsonModel.Title || ""; //images have no title
-
+	        jsonModel.ImageUrl = jsonModel.ImageUrl || "/Content/img/empty-avatar.jpg";
 	        var template = window.JST['media-Item'];
 
 	        this.$el.html(template.render({ model: jsonModel }, { content: window.JST['media-' + jsonModel.MediumType] }))
