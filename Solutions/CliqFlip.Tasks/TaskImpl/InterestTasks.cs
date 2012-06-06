@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
@@ -18,6 +19,8 @@ namespace CliqFlip.Tasks.TaskImpl
     {
         private readonly IInterestRepository _interestRepository;
         private readonly IUserInterestRepository _userInterestRepository;
+        static readonly int _maxHopsInverter = int.Parse(Constants.INTEREST_MAX_HOPS) + 1;
+
 
         public InterestTasks(IInterestRepository interestRepository, IUserInterestRepository userInterestRepository)
         {
@@ -43,7 +46,14 @@ namespace CliqFlip.Tasks.TaskImpl
 
         public IList<RelatedDistanceInterestDto> GetRelatedInterests(IList<string> slugs)
         {
-            return _interestRepository.GetRelatedInterests(slugs).ToList();
+            var retVal = _interestRepository.GetRelatedInterests(slugs).ToList();
+
+            foreach(var ret in retVal)
+            {
+                ret.Score = (int)Math.Pow((_maxHopsInverter - ret.Score), 2);
+            }
+
+            return retVal;
         }
 
         public IList<RankedInterestDto> GetMostPopularInterests()

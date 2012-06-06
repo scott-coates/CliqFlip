@@ -23,8 +23,6 @@ namespace CliqFlip.Infrastructure.Repositories
     {
         private readonly IGraphClient _graphClient;
         
-        static int _maxHopsInverter = int.Parse(Constants.INTEREST_MAX_HOPS)+1;
-
         public InterestRepository(IGraphClient graphClient)
         {
             _graphClient = graphClient;
@@ -57,7 +55,7 @@ namespace CliqFlip.Infrastructure.Repositories
             var relatedInterests = _graphClient.ExecuteGetCypherResults<NeoInterestRelatedDistanceGraphQuery>(query);
             
             var retVal = relatedInterests
-                .Select(x => new RelatedDistanceInterestDto(x.SqlId, _maxHopsInverter - x.Hops))
+                .Select(x => new RelatedDistanceInterestDto(x.SqlId, x.Hops))
                 .AsQueryable();
 
             return retVal;
