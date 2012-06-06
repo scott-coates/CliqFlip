@@ -69,6 +69,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 				foreach (InterestCreate interest in profile.UserInterests)
 				{
+                    //TODO: don't reuse this userinterest dto - it's not clear as to which id is assigned and is confusing
 					var userInterest = new UserInterestDto(interest.Id, interest.Name, interest.CategoryId);
 					profileToCreate.InterestDtos.Add(userInterest);
 				}
