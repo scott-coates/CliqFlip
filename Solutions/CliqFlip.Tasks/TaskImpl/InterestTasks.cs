@@ -53,7 +53,7 @@ namespace CliqFlip.Tasks.TaskImpl
                 ret.Score = (int)Math.Pow((_maxHopsInverter - ret.Score), 2);
             }
 
-            return retVal;
+            return retVal.OrderByDescending(x=>x.Score).ToList();
         }
 
         public IList<RankedInterestDto> GetMostPopularInterests()

@@ -70,12 +70,10 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		#region IUserTasks Members
 
-		public IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IList<string> interestAliases)
+        public IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IList<RelatedDistanceInterestDto> interests)
 		{
-			var relatedInterests = _interestTasks.GetRelatedInterests(interestAliases);
-
             List<User> users = _userRepository
-                .GetUsersByInterests(relatedInterests
+                .GetUsersByInterests(interests
                     .Select(x=>x.Id)
                     .ToList())
                 .ToList();
@@ -84,7 +82,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			{
 				MatchCount = user.Interests.Sum(x =>
 				{
-				    var foundInterest = relatedInterests.FirstOrDefault(y => y.Id == x.Interest.Id);
+                    var foundInterest = interests.FirstOrDefault(y => y.Id == x.Interest.Id);
 				    return foundInterest != null ? foundInterest.Score : 0;
 				}),
 				UserDto = new UserDto(user)

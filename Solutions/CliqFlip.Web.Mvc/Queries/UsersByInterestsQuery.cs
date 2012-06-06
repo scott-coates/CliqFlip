@@ -15,11 +15,13 @@ namespace CliqFlip.Web.Mvc.Queries
 	public class UsersByInterestsQuery : IUsersByInterestsQuery
 	{
 		private readonly IUserTasks _userTasks;
+	    private readonly IInterestTasks _interestTasks;
         private readonly IHttpContextProvider _httpProvider;
-		public UsersByInterestsQuery(IUserTasks userTasks, IHttpContextProvider httpProvider)
+		public UsersByInterestsQuery(IUserTasks userTasks, IHttpContextProvider httpProvider, IInterestTasks interestTasks)
 		{
 			_userTasks = userTasks;
             _httpProvider = httpProvider;
+		    _interestTasks = interestTasks;
 		}
 
 		#region IUsersByInterestsQuery Members
@@ -33,11 +35,13 @@ namespace CliqFlip.Web.Mvc.Queries
 				.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
 				.ToList();
 
-			IList<UserSearchByInterestsDto> users = _userTasks.GetUsersByInterestsDtos(aliasCollection);
+            var relatedInterests = _interestTasks.GetRelatedInterests(aliasCollection);
+
+            IList<UserSearchByInterestsDto> users = _userTasks.GetUsersByInterestsDtos(relatedInterests);
 			var retVal = new UsersByInterestViewModel();
 			foreach (UserSearchByInterestsDto user in users)
 			{
-                var indvResultViewModel = new UsersByInterestViewModel.IndividualResultViewModel(user, aliasCollection);
+                var indvResultViewModel = new UsersByInterestViewModel.IndividualResultViewModel(user, relatedInterests.Select(x=>x.Slug).ToList());
                 if (indvResultViewModel.ImageUrl == null)
 	            {
                     indvResultViewModel.ImageUrl = UrlHelper.GenerateContentUrl(Constants.DEFAULT_PROFILE_IMAGE, _httpProvider.Context);
