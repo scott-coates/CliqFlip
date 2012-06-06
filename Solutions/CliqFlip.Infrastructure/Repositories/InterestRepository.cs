@@ -11,6 +11,7 @@ using CliqFlip.Infrastructure.Neo.Queries;
 using CliqFlip.Infrastructure.Neo.Relationships;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
 using Neo4jClient;
+using Neo4jClient.Cypher;
 using Neo4jClient.Gremlin;
 using SharpArch.Domain.Specifications;
 using SharpArch.NHibernate;
@@ -38,6 +39,24 @@ namespace CliqFlip.Infrastructure.Repositories
         {
             var interestsAndParentQuery = new AdHoc<Interest>(x => slugs.Contains(x.Slug) && x.ParentInterest != null);
             IQueryable<string> interestandParents = FindAll(interestsAndParentQuery).Select(x => x.ParentInterest.Slug);
+
+             const string queryText = @"
+                START n = node:interests({p0})
+                MATCH p = n-[r:INTEREST_RELATES_TO*0..3]-(x)
+                RETURN x.Slug AS Slug, min(length(p)) AS Hops, last(collect(extract(r in relationships(p) : r.Weight))) AS Weight
+                ORDER BY x.Slug";
+
+            var query = new CypherQuery(
+                queryText,
+                new Dictionary<string, object>
+                {
+                    {"p0", string.Format("slug:({0})", string.Join(" ", slugs))}
+                },
+                CypherResultMode.Projection);
+
+            var relatedInterests = _graphClient.ExecuteGetCypherResults<NeoInterestRelatedDistanceGraphQuery>(query);
+
+
 
             return interestandParents;
         }
