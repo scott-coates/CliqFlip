@@ -10,7 +10,7 @@ namespace CliqFlip.Infrastructure.Repositories.Interfaces
 	{
 		// ReSharper disable ReturnTypeCanBeEnumerable.Global
 		IQueryable<Interest> GetMatchingKeywords(string input);
-		IQueryable<string> GetSlugAndParentSlug(IList<string> slugs);
+        IQueryable<RelatedDistanceInterestDto> GetRelatedInterests(IList<string> slugs);
 		Interest GetByName(string name);
         IQueryable<Interest> GetMainCategoryInterests();
 		RelatedInterestListDto GetRelatedInterests(string interestSlug);

@@ -66,12 +66,11 @@ namespace CliqFlip.Infrastructure.Repositories
 			return retVal ?? user;
 		}
 
-		public IQueryable<User> GetUsersByInterests(IList<string> interestAliases)
+		public IQueryable<User> GetUsersByInterests(IList<int> interestIds)
 		{
 			//TODO we have code in the userInterest Repo that is very similar - try to clean it up
-			var query = new AdHoc<User>(x => x.Interests.Any(y => interestAliases.Contains(y.Interest.Slug))
-			                                 ||
-			                                 x.Interests.Any(y => interestAliases.Contains(y.Interest.ParentInterest.Slug)));
+		    var query = new AdHoc<User>(
+		        x => x.Interests.Any(y => interestIds.Contains(y.Interest.Id)));
 
 			return FindAll(query);
 		}

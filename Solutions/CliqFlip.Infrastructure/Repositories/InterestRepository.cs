@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Enums;
@@ -21,6 +22,8 @@ namespace CliqFlip.Infrastructure.Repositories
     public class InterestRepository : LinqRepository<Interest>, IInterestRepository
     {
         private readonly IGraphClient _graphClient;
+        
+        static int _maxHopsInverter = int.Parse(Constants.INTEREST_MAX_HOPS)+1;
 
         public InterestRepository(IGraphClient graphClient)
         {
@@ -35,14 +38,11 @@ namespace CliqFlip.Infrastructure.Repositories
             return FindAll(adHoc);
         }
 
-        public IQueryable<string> GetSlugAndParentSlug(IList<string> slugs)
+        public IQueryable<RelatedDistanceInterestDto> GetRelatedInterests(IList<string> slugs)
         {
-            var interestsAndParentQuery = new AdHoc<Interest>(x => slugs.Contains(x.Slug) && x.ParentInterest != null);
-            IQueryable<string> interestandParents = FindAll(interestsAndParentQuery).Select(x => x.ParentInterest.Slug);
-
-             const string queryText = @"
+            const string queryText = @"
                 START n = node:interests({p0})
-                MATCH p = n-[r:INTEREST_RELATES_TO*0..3]-(x)
+                MATCH p = n-[r:INTEREST_RELATES_TO*0.." + Constants.INTEREST_MAX_HOPS + @"]-(x)
                 RETURN x.SqlId AS SqlId, x.Slug AS Slug, min(length(p)) AS Hops
                 ORDER BY x.Slug";
 
@@ -55,8 +55,12 @@ namespace CliqFlip.Infrastructure.Repositories
                 CypherResultMode.Projection);
 
             var relatedInterests = _graphClient.ExecuteGetCypherResults<NeoInterestRelatedDistanceGraphQuery>(query);
+            
+            var retVal = relatedInterests
+                .Select(x => new RelatedDistanceInterestDto(x.SqlId, _maxHopsInverter - x.Hops))
+                .AsQueryable();
 
-            return interestandParents;
+            return retVal;
         }
 
         public Interest GetByName(string name)

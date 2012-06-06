@@ -72,21 +72,20 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		public IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IList<string> interestAliases)
 		{
-			IList<string> subjAliasAndParent = _interestTasks.GetSlugAndParentSlug(interestAliases);
+			var relatedInterests = _interestTasks.GetRelatedInterests(interestAliases);
 
-			List<User> users = _userRepository.GetUsersByInterests(subjAliasAndParent).ToList();
+            List<User> users = _userRepository
+                .GetUsersByInterests(relatedInterests
+                    .Select(x=>x.Id)
+                    .ToList())
+                .ToList();
 
 			return users.Select(user => new UserSearchByInterestsDto
 			{
 				MatchCount = user.Interests.Sum(x =>
 				{
-					if (interestAliases.Contains(x.Interest.Slug))
-						return 10; //movies -> movies (same match)
-					if (x.Interest.ParentInterest != null && subjAliasAndParent.Contains(x.Interest.ParentInterest.Slug))
-						return 2; //movies -> tv shows (sibling match)
-					if (subjAliasAndParent.Contains(x.Interest.Slug))
-						return 1; //movies -> entertainment (parent match)
-					return 0;
+				    var foundInterest = relatedInterests.FirstOrDefault(y => y.Id == x.Interest.Id);
+				    return foundInterest != null ? foundInterest.Score : 0;
 				}),
 				UserDto = new UserDto(user)
 			}).OrderByDescending(x => x.MatchCount).ToList();

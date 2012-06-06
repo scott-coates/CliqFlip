@@ -41,13 +41,9 @@ namespace CliqFlip.Tasks.TaskImpl
             return retVal;
         }
 
-        public IList<string> GetSlugAndParentSlug(IList<string> slugs)
+        public IList<RelatedDistanceInterestDto> GetRelatedInterests(IList<string> slugs)
         {
-            var interestandParents = _interestRepository.GetSlugAndParentSlug(slugs).ToList();
-
-            interestandParents.AddRange(slugs);
-
-            return interestandParents.Distinct().ToList();
+            return _interestRepository.GetRelatedInterests(slugs).ToList();
         }
 
         public IList<RankedInterestDto> GetMostPopularInterests()

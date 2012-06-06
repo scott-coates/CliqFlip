@@ -12,7 +12,7 @@ namespace CliqFlip.Infrastructure.Repositories.Interfaces
 		// ReSharper disable ReturnTypeCanBeEnumerable.Global
 
 		User GetSuggestedUser(User user);
-		IQueryable<User> GetUsersByInterests(IList<string> interestAliases);
+		IQueryable<User> GetUsersByInterests(IList<int> interestIds);
 		User FindByNameOrEmail(string usernameOrEmail );
 		User FindByName(string username );
         bool IsUsernameOrEmailAvailable(string usernameOrEmail);
