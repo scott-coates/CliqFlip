@@ -171,6 +171,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			if (ModelState.IsValid)
 			{
+                //TODO: this should not be creating a userinterestdto - it's assigning the wrong id and is confusing
 				IEnumerable<UserInterestDto> interestDtos = addInterestsViewModel.UserInterests.Select(x => new UserInterestDto(x.Id, x.Name, x.CategoryId));
 
 				_userTasks.AddInterestsToUser(_principal.Identity.Name, interestDtos);
