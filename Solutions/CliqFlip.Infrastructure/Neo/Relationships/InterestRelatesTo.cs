@@ -1,4 +1,5 @@
-﻿using CliqFlip.Infrastructure.Neo.Entities;
+﻿using System;
+using CliqFlip.Infrastructure.Neo.Entities;
 using Neo4jClient;
 
 namespace CliqFlip.Infrastructure.Neo.Relationships
@@ -23,6 +24,10 @@ namespace CliqFlip.Infrastructure.Neo.Relationships
 			: base(targetNode, relatesToPayload)
 		{
 			Direction = RelationshipDirection.Outgoing;//point direction from source to target
+            if(relatesToPayload == null || relatesToPayload.Weight <= 0)
+            {
+                throw new ArgumentException("A weight greater than 0 is required", "relatesToPayload");
+            }
 		}
 	}
 }
