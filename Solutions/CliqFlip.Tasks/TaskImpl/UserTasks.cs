@@ -34,7 +34,7 @@ namespace CliqFlip.Tasks.TaskImpl
 		private readonly IFileUploadService _fileUploadService;
 		private readonly IWebContentService _webContentService;
 		private readonly IImageProcessor _imageProcessor;
-		private readonly IInterestTasks _interestTasks;
+		private readonly IInterestTasks _interestTasks; //TODO: consider if this should be here
 		private readonly IUserInterestTasks _userInterestTasks;
 		private readonly ILocationService _locationService;
 		private readonly IPageParsingService _pageParsingService;
