@@ -43,7 +43,7 @@ namespace CliqFlip.Infrastructure.Repositories
              const string queryText = @"
                 START n = node:interests({p0})
                 MATCH p = n-[r:INTEREST_RELATES_TO*0..3]-(x)
-                RETURN x.Slug AS Slug, min(length(p)) AS Hops, last(collect(extract(r in relationships(p) : r.Weight))) AS Weight
+                RETURN x.SqlId AS SqlId, x.Slug AS Slug, min(length(p)) AS Hops
                 ORDER BY x.Slug";
 
             var query = new CypherQuery(
@@ -55,8 +55,6 @@ namespace CliqFlip.Infrastructure.Repositories
                 CypherResultMode.Projection);
 
             var relatedInterests = _graphClient.ExecuteGetCypherResults<NeoInterestRelatedDistanceGraphQuery>(query);
-
-
 
             return interestandParents;
         }
