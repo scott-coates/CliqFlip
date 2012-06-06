@@ -39,6 +39,8 @@ namespace CliqFlip.Infrastructure.Repositories
             var interestsAndParentQuery = new AdHoc<Interest>(x => slugs.Contains(x.Slug) && x.ParentInterest != null);
             IQueryable<string> interestandParents = FindAll(interestsAndParentQuery).Select(x => x.ParentInterest.Slug);
 
+            var startingNodes = FindInterestNodesBySlugs(slugs);
+
             return interestandParents;
         }
 
@@ -177,18 +179,23 @@ namespace CliqFlip.Infrastructure.Repositories
         private Node<NeoInterest> FindInterestNodeBySqlId(int sqlId)
         {
             const string sqlid = "sqlid";
-            return FindInterestNode(sqlid, sqlId.ToString(CultureInfo.InvariantCulture));
+            return FindInterestNodes(sqlid, sqlId.ToString(CultureInfo.InvariantCulture)).First();
         }
 
         private Node<NeoInterest> FindInterestNodeBySlug(string interestSlug)
         {
-            const string slug = "slug";
-            return FindInterestNode(slug, interestSlug);
+            return FindInterestNodesBySlugs(new[] { interestSlug }).First();
         }
 
-        private Node<NeoInterest> FindInterestNode(string key, string value)
+        private IEnumerable<Node<NeoInterest>> FindInterestNodesBySlugs(IEnumerable<string> interestSlugs)
         {
-            return _graphClient.QueryIndex<NeoInterest>("interests", IndexFor.Node, string.Format("{0}:{1}", key, value)).First();
+            const string slug = "slug";
+            return FindInterestNodes(slug, string.Join(" ", interestSlugs));
+        }
+
+        private IEnumerable<Node<NeoInterest>> FindInterestNodes(string key, string value)
+        {
+            return _graphClient.QueryIndex<NeoInterest>("interests", IndexFor.Node, string.Format("{0}:({1})", key, value));
         }
     }
 }
