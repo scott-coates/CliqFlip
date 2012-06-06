@@ -5,6 +5,7 @@ namespace CliqFlip.Domain.Dtos
 {
 	public class UserInterestDto
 	{
+        //TODO: don't reuse this dto - make copies for specific purposes
 		public int Id { get; set; }
 		public string Name { get; set; }
 		public string Slug { get; set; }
