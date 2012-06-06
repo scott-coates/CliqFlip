@@ -176,19 +176,19 @@ namespace CliqFlip.Infrastructure.Repositories
 
         private Node<NeoInterest> FindInterestNodeBySqlId(int sqlId)
         {
-            const string slug = "sqlid";
-            return FindInterestNode(sqlId.ToString(CultureInfo.InvariantCulture), slug);
+            const string sqlid = "sqlid";
+            return FindInterestNode(sqlid, sqlId.ToString(CultureInfo.InvariantCulture));
         }
 
         private Node<NeoInterest> FindInterestNodeBySlug(string interestSlug)
         {
             const string slug = "slug";
-            return FindInterestNode(interestSlug, slug);
+            return FindInterestNode(slug, interestSlug);
         }
 
-        private Node<NeoInterest> FindInterestNode(string interestSlug, string key)
+        private Node<NeoInterest> FindInterestNode(string key, string value)
         {
-            return _graphClient.QueryIndex<NeoInterest>("interests", IndexFor.Node, string.Format("{0}:{1}", key, interestSlug)).First();
+            return _graphClient.QueryIndex<NeoInterest>("interests", IndexFor.Node, string.Format("{0}:{1}", key, value)).First();
         }
     }
 }
