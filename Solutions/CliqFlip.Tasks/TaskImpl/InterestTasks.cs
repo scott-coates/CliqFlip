@@ -60,6 +60,7 @@ namespace CliqFlip.Tasks.TaskImpl
                 retVal.Add(scoredInterest);
             }
 
+            //http://stackoverflow.com/a/4874031/173957
             var highestScoredInterests = retVal
                 .GroupBy(x => x.Id, (y, z) => z.Aggregate((a, x) => a.Score > x.Score ? a : x))
                 .OrderByDescending(x=>x.Score)
