@@ -8,6 +8,6 @@ namespace CliqFlip.Infrastructure.Neo.Queries
 	{
         public string Slug { get; set; }
         public int SqlId { get; set; }
-        public int Hops { get; set; }
+        public List<float> Weight { get; set; }
 	}
 }

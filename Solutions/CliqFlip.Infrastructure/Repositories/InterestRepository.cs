@@ -36,12 +36,12 @@ namespace CliqFlip.Infrastructure.Repositories
             return FindAll(adHoc);
         }
 
-        public IQueryable<RelatedDistanceInterestDto> GetRelatedInterests(IList<string> slugs)
+        public IQueryable<WeightedRelatedInterestDto> GetRelatedInterests(IList<string> slugs)
         {
             const string queryText = @"
                 START n = node:interests({p0})
                 MATCH p = n-[r:INTEREST_RELATES_TO*0.." + Constants.INTEREST_MAX_HOPS + @"]-(x)
-                RETURN x.SqlId AS SqlId, x.Slug AS Slug, min(length(p)) AS Hops
+                RETURN x.SqlId AS SqlId, x.Slug AS Slug, extract(r in relationships(p) : r.Weight) AS Weight
                 ORDER BY x.Slug";
 
             var query = new CypherQuery(
@@ -55,7 +55,7 @@ namespace CliqFlip.Infrastructure.Repositories
             var relatedInterests = _graphClient.ExecuteGetCypherResults<NeoInterestRelatedDistanceGraphQuery>(query);
             
             var retVal = relatedInterests
-                .Select(x => new RelatedDistanceInterestDto(x.SqlId, x.Hops, x.Slug))
+                .Select(x => new WeightedRelatedInterestDto(x.SqlId,x.Weight,x.Slug))
                 .AsQueryable();
 
             return retVal;

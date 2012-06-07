@@ -1,12 +1,12 @@
 ﻿namespace CliqFlip.Domain.Dtos
 {
-    public class RelatedDistanceInterestDto
+    public class ScoredRelatedInterestDto
     {
         public int Id { get; set; }
-        public int Score { get; set; }
+        public float Score { get; set; }
         public string Slug { get; set; }
 
-        public RelatedDistanceInterestDto(int id, int score, string slug)
+        public ScoredRelatedInterestDto(int id, float score, string slug)
         {
             Id = id;
             Score = score;

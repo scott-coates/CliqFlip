@@ -19,8 +19,7 @@ namespace CliqFlip.Tasks.TaskImpl
     {
         private readonly IInterestRepository _interestRepository;
         private readonly IUserInterestRepository _userInterestRepository;
-        static readonly int _maxHopsInverter = int.Parse(Constants.INTEREST_MAX_HOPS) + 1;
-
+        private static readonly int _maxHopsInverter = int.Parse(Constants.INTEREST_MAX_HOPS) + 1;
 
         public InterestTasks(IInterestRepository interestRepository, IUserInterestRepository userInterestRepository)
         {
@@ -38,22 +37,35 @@ namespace CliqFlip.Tasks.TaskImpl
 
             if (subjs.Any())
             {
-                retVal.AddRange(subjs.OrderBy(subj => FuzzySearch.LevenshteinDistance(input, subj.Name)).Take(10).Select(subj => new InterestKeywordDto {Id = subj.Id, Slug = subj.Slug, Name = subj.Name, OriginalInput = input}));
+                retVal.AddRange(subjs.OrderBy(subj => FuzzySearch.LevenshteinDistance(input, subj.Name)).Take(10).Select(subj => new InterestKeywordDto { Id = subj.Id, Slug = subj.Slug, Name = subj.Name, OriginalInput = input }));
             }
 
             return retVal;
         }
 
-        public IList<RelatedDistanceInterestDto> GetRelatedInterests(IList<string> slugs)
+        public IList<ScoredRelatedInterestDto> GetRelatedInterests(IList<string> slugs)
         {
-            var retVal = _interestRepository.GetRelatedInterests(slugs).ToList();
+            var retVal = new List<ScoredRelatedInterestDto>();
+            var relatedInterestDtos = _interestRepository.GetRelatedInterests(slugs).ToList();
 
-            foreach(var ret in retVal)
+            foreach (var ret in relatedInterestDtos)
             {
-                ret.Score = (int)Math.Pow((_maxHopsInverter - ret.Score), 2);
+                var score = (float) Math.Pow((_maxHopsInverter - ret.Weight.Count), 2);
+                
+                if (ret.Weight.Any())
+                {
+                    score *= ret.Weight.Aggregate((f, f1) => f*f1);
+                }
+                var scoredInterest = new ScoredRelatedInterestDto(ret.Id, score, ret.Slug);
+                retVal.Add(scoredInterest);
             }
 
-            return retVal.OrderByDescending(x=>x.Score).ToList();
+            var highestScoredInterests = retVal
+                .GroupBy(x => x.Id, (y, z) => z.Aggregate((a, x) => a.Score > x.Score ? a : x))
+                .OrderByDescending(x=>x.Score)
+                .ToList();
+
+            return highestScoredInterests;
         }
 
         public IList<RankedInterestDto> GetMostPopularInterests()
@@ -127,7 +139,7 @@ namespace CliqFlip.Tasks.TaskImpl
                         x =>
                         {
                             string interestName1 = x[0].Value;
-                            var interest = _interestRepository.GetByName(interestName1) ?? Create(interestName1,null);
+                            var interest = _interestRepository.GetByName(interestName1) ?? Create(interestName1, null);
                             var dto1 = new RelatedInterestListDto.RelatedInterestDto(interest.Id, null, interest.Name, interest.Slug);
 
                             string interestName2 = x[1].Value;
@@ -156,7 +168,7 @@ namespace CliqFlip.Tasks.TaskImpl
                                 {
                                     new RelatedInterestListDto.WeightedRelatedInterestDto
                                     {
-                                        Interest = data.Interest2, 
+                                        Interest = data.Interest2,
                                         Weight = EnumExtensions.GetInterestRelationshipWeight(data.Weight)
                                     }
                                 }

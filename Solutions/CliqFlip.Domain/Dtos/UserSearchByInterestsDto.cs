@@ -9,6 +9,6 @@ namespace CliqFlip.Domain.Dtos
 	public class UserSearchByInterestsDto
 	{
 		public UserDto UserDto { get; set; }
-		public int MatchCount { get; set; }
+		public float MatchCount { get; set; }
 	}
 }
