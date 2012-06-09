@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Text;
 using RestSharp;
 
@@ -6,25 +7,20 @@ namespace CliqFlip.Web.Mvc.RestSharp
 {
     public class CliqFlipHttpFactory : IHttpFactory
     {
-        private readonly string _username;
-        private readonly string _password;
+        private readonly CredentialCache _credCache;
 
-        public CliqFlipHttpFactory(string username, string password)
+        public CliqFlipHttpFactory(string username, string password, Uri root)
         {
-            _username = username;
-            _password = password;
+            const string basic = "Basic";
+            var networkCredential = new NetworkCredential(username, password);
+            _credCache = new CredentialCache { { root, basic, networkCredential } };
         }
 
         #region IHttpFactory Members
 
         public IHttp Create()
         {
-            string str = Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("{0}:{1}", _username, _password)));
-            string str2 = string.Format("Basic {0}", str);
-
-            var http = new Http();
-
-            http.Headers.Add(new HttpHeader { Name = "Authorization", Value = str2 });
+            var http = new Http { Credentials = _credCache };
 
             return http;
         }

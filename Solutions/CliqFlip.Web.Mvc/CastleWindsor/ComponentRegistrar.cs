@@ -83,7 +83,7 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
                                     rootUri = new Uri(connectionString);
 
                                     string[] userInfos = userInfo.Split(':');
-                                    graphClient = new GraphClient(rootUri, new CliqFlipHttpFactory(userInfos[0], userInfos[1]));
+                                    graphClient = new GraphClient(rootUri, new CliqFlipHttpFactory(userInfos[0], userInfos[1], rootUri));
                                 }
 								graphClient.Connect();
 								return graphClient;
