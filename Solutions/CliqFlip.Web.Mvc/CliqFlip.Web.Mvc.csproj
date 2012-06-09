@@ -217,6 +217,7 @@
     <Compile Include="Queries\Interfaces\ILatestNotificationQuery.cs" />
     <Compile Include="Queries\InterestFeedQuery.cs" />
     <Compile Include="Queries\LatestNotificationQuery.cs" />
+    <Compile Include="RestSharp\CliqFlipHttpFactory.cs" />
     <Compile Include="Security\Attributes\AllowAnonymousAttribute.cs" />
     <Compile Include="Security\Attributes\BlockUnsupportedBrowsersAttribute.cs" />
     <Compile Include="Security\Attributes\FormsAuthReadUserDataAttribute.cs" />
