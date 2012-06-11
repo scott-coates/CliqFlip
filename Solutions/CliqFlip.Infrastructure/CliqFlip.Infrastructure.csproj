@@ -236,6 +236,7 @@
     <Compile Include="Repositories\NotificationRepository.cs" />
     <Compile Include="Repositories\UserInterestRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Search\FuzzySearch.cs" />
     <Compile Include="Syndication\FeedFinder.cs" />
     <Compile Include="Syndication\Interfaces\IFeedFinder.cs" />
     <Compile Include="Validation\UrlValidation.cs" />

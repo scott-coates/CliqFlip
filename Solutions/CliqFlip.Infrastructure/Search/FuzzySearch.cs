@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using CliqFlip.Domain.Extensions;
 
-namespace CliqFlip.Domain.Search
+namespace CliqFlip.Infrastructure.Search
 {
 	public static class FuzzySearch
 	{
-		//TODO: move this to infra - not business logic
 		public static int LevenshteinDistance(string src, string dest, bool scrub = true)
 		{
 			if (scrub)

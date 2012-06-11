@@ -119,7 +119,6 @@
     <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Interfaces\IHasImage.cs" />
-    <Compile Include="Search\FuzzySearch.cs" />
     <Compile Include="Entities\Location.cs" />
     <Compile Include="ValueObjects\LocationData.cs" />
     <Compile Include="ValueObjects\UserWebsite.cs" />

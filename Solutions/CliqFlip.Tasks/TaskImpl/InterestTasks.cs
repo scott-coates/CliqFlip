@@ -9,8 +9,8 @@ using CliqFlip.Domain.Dtos;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Exceptions;
 using CliqFlip.Domain.Extensions;
-using CliqFlip.Domain.Search;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
+using CliqFlip.Infrastructure.Search;
 using Utilities.FileFormats.CSV;
 
 namespace CliqFlip.Tasks.TaskImpl
