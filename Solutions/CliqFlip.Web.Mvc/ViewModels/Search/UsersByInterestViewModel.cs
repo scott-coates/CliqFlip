@@ -34,12 +34,12 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
             public IndividualResultViewModel(UserSearchByInterestsDto user, List<string> interests)
             {
                 ResultInterestViewModels = new List<IndividualResultInterestViewModel>();
-                Headline = user.UserDto.Headline;
-                Name = user.UserDto.Username;
-                Bio = user.UserDto.Bio;
-                ImageUrl = user.UserDto.ImageUrl;
+                Headline = user.User.Headline;
+                Name = user.User.Username;
+                Bio = user.User.Bio;
+                ImageUrl = user.User.ImageUrl;
 
-                ResultInterestViewModels = user.UserDto.InterestDtos
+                ResultInterestViewModels = user.User.InterestDtos
                     .Select(x => new IndividualResultInterestViewModel
                                     {
                                         InterestName = x.Name,

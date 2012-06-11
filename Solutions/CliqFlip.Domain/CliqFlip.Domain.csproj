@@ -88,6 +88,7 @@
     <Compile Include="Contracts\Tasks\INotificationTasks.cs" />
     <Compile Include="Contracts\Tasks\IInterestTasks.cs" />
     <Compile Include="Contracts\Tasks\IUserInterestTasks.cs" />
+    <Compile Include="Dtos\UserCreateDto.cs" />
     <Compile Include="Dtos\UserProfileIndexDto.cs" />
     <Compile Include="Dtos\WeightedRelatedInterestDto.cs" />
     <Compile Include="Dtos\ScoredRelatedInterestDto.cs" />
@@ -117,7 +118,6 @@
     <Compile Include="Dtos\UserSearchByInterestsDto.cs" />
     <Compile Include="Entities\UserInterest.cs" />
     <Compile Include="Entities\Interest.cs" />
-    <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Interfaces\IHasImage.cs" />
     <Compile Include="Entities\Location.cs" />

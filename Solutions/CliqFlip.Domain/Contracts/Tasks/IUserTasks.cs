@@ -13,7 +13,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		// ReSharper disable ReturnTypeCanBeEnumerable.Global
         IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IList<ScoredRelatedInterestDto> interests);
 
-		User Create(UserDto profileToCreate, LocationData location);
+		User Create(UserCreateDto profileToCreate, LocationData location);
 
 		void Login(User user, bool stayLoggedIn);
 		bool Login(string username, string password, bool stayLoggedIn);

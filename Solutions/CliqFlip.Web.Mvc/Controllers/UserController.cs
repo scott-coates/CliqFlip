@@ -65,7 +65,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var profileToCreate = new UserDto {Email = profile.Email, Password = profile.Password, Username = profile.Username};
+				var profileToCreate = new UserCreateDto {Email = profile.Email, Password = profile.Password, Username = profile.Username};
 
 				foreach (InterestCreate interest in profile.UserInterests)
 				{

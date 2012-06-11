@@ -6,9 +6,27 @@ using CliqFlip.Domain.Entities;
 
 namespace CliqFlip.Domain.Dtos
 {
-	public class UserSearchByInterestsDto
-	{
-		public UserDto UserDto { get; set; }
-		public float MatchCount { get; set; }
-	}
+    public class UserSearchByInterestsDto
+    {
+        public UserDto User { get; set; }
+        public float MatchCount { get; set; }
+
+        public class UserDto
+        {
+            public IList<UserInterestDto> InterestDtos { get; set; }
+            public string Username { get; set; }
+            public string Bio { get; set; }
+            public string Headline { get; set; }
+            public string ImageUrl { get; set; }
+
+            public UserDto(User user)
+            {
+                Username = user.Username;
+                InterestDtos = user.Interests.Select(x => new UserInterestDto(x)).ToList();
+                Bio = user.Bio;
+                Headline = user.Headline;
+                ImageUrl = user.ProfileImage != null ? user.ProfileImage.ImageData.MediumFileName : null;
+            }
+        }
+    }
 }

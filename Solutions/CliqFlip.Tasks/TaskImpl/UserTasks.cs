@@ -85,11 +85,11 @@ namespace CliqFlip.Tasks.TaskImpl
                     var foundInterest = interests.FirstOrDefault(y => y.Id == x.Interest.Id);
 				    return foundInterest != null ? foundInterest.Score : 0f;
 				}),
-				UserDto = new UserDto(user)
+				User = new UserSearchByInterestsDto.UserDto(user)
 			}).OrderByDescending(x => x.MatchCount).ToList();
 		}
 
-		public User Create(UserDto userToCreate, LocationData location)
+		public User Create(UserCreateDto userToCreate, LocationData location)
 		{
 			string salt = PasswordHelper.GenerateSalt(16); //TODO: should this be 32 - encapsulate this somehwere
 			string pHash = PasswordHelper.GetPasswordHash(userToCreate.Password, salt);
