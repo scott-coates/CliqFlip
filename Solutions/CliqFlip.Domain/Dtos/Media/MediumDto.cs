@@ -1,7 +1,7 @@
 ﻿using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Interfaces;
 
-namespace CliqFlip.Domain.Dtos
+namespace CliqFlip.Domain.Dtos.Media
 {
 	public class MediumDto
 	{

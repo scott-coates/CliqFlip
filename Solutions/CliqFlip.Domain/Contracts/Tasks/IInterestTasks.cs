@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using CliqFlip.Domain.Dtos;
+using CliqFlip.Domain.Dtos.Interest;
+using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Entities;
 
 namespace CliqFlip.Domain.Contracts.Tasks

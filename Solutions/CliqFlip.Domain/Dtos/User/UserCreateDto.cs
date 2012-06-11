@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CliqFlip.Domain.Entities;
+﻿using System.Collections.Generic;
 
-namespace CliqFlip.Domain.Dtos
+namespace CliqFlip.Domain.Dtos.User
 {
 	public class UserCreateDto
 	{

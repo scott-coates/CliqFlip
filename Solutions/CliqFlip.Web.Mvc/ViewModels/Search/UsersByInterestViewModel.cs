@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CliqFlip.Domain.Dtos.User;
 using MvcContrib.Pagination;
 using CliqFlip.Domain.Dtos;
 using System.Linq;

@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Dtos;
+using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Enums;
 using CliqFlip.Domain.Extensions;

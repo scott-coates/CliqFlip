@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace CliqFlip.Domain.Dtos
+namespace CliqFlip.Domain.Dtos.Media
 {
 	public class FileStreamDto
 	{

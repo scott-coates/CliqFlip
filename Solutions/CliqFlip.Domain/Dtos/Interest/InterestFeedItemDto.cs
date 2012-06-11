@@ -1,6 +1,7 @@
-﻿using CliqFlip.Domain.Entities;
+﻿using CliqFlip.Domain.Dtos.Media;
+using CliqFlip.Domain.Entities;
 
-namespace CliqFlip.Domain.Dtos
+namespace CliqFlip.Domain.Dtos.Interest
 {
 	public class InterestFeedItemDto
 	{

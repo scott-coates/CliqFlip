@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CliqFlip.Domain.Dtos
+namespace CliqFlip.Domain.Dtos.Interest
 {
 	public class RelatedInterestListDto
 	{

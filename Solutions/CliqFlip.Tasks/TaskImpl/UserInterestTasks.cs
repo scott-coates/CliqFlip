@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
+using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.ValueObjects;
 using CliqFlip.Infrastructure.Repositories.Interfaces;

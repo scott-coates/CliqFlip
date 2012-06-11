@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using CliqFlip.Domain.Dtos;
+using CliqFlip.Domain.Dtos.Media;
 
 namespace CliqFlip.Infrastructure.Images.Interfaces
 {

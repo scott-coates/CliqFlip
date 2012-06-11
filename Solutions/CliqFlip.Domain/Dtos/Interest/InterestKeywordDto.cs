@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CliqFlip.Domain.Dtos
+﻿namespace CliqFlip.Domain.Dtos.Interest
 {
 	public class InterestKeywordDto
 	{

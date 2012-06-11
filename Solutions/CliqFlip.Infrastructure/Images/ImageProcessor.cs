@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using CliqFlip.Domain.Dtos;
+using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Exceptions;
 using CliqFlip.Infrastructure.Images.Interfaces;
 

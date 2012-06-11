@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CliqFlip.Domain.Dtos;
+using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Web.Mvc.ViewModels.Media;
 using CliqFlip.Web.Mvc.ViewModels.User;

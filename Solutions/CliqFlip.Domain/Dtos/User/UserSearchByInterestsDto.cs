@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using CliqFlip.Domain.Entities;
 
-namespace CliqFlip.Domain.Dtos
+namespace CliqFlip.Domain.Dtos.User
 {
     public class UserSearchByInterestsDto
     {
@@ -19,7 +17,7 @@ namespace CliqFlip.Domain.Dtos
             public string Headline { get; set; }
             public string ImageUrl { get; set; }
 
-            public UserDto(User user)
+            public UserDto(Entities.User user)
             {
                 Username = user.Username;
                 InterestDtos = user.Interests.Select(x => new UserInterestDto(x)).ToList();

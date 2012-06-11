@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
+using CliqFlip.Domain.Dtos.User;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Search;
 using MvcContrib.Pagination;

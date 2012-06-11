@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos;
+using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Enums;
 using CliqFlip.Domain.Extensions;
 using CliqFlip.Web.Mvc.Areas.Admin.Queries.Interfaces;

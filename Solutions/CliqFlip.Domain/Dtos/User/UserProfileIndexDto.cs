@@ -1,4 +1,4 @@
-﻿namespace CliqFlip.Domain.Dtos
+﻿namespace CliqFlip.Domain.Dtos.User
 {
 	public class UserProfileIndexDto
 	{
