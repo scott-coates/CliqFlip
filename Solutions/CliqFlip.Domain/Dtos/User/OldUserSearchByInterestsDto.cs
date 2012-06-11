@@ -4,7 +4,7 @@ using CliqFlip.Domain.Entities;
 
 namespace CliqFlip.Domain.Dtos.User
 {
-    public class UserSearchByInterestsDto
+    public class OldUserSearchByInterestsDto
     {
         public UserDto User { get; set; }
         public float MatchCount { get; set; }

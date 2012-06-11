@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Security.Principal;
 using CliqFlip.Domain.Common;
-using CliqFlip.Domain.Dtos;
+
 using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Dtos.User;
 using CliqFlip.Domain.Entities;

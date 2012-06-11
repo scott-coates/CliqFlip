@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using CliqFlip.Domain.Dtos.User;
 using MvcContrib.Pagination;
-using CliqFlip.Domain.Dtos;
+
 using System.Linq;
 
 namespace CliqFlip.Web.Mvc.ViewModels.Search
@@ -32,15 +32,15 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
 				ResultInterestViewModels = new List<IndividualResultInterestViewModel>();
 			}
 
-            public IndividualResultViewModel(UserSearchByInterestsDto user, List<string> interests)
+            public IndividualResultViewModel(OldUserSearchByInterestsDto oldUser, List<string> interests)
             {
                 ResultInterestViewModels = new List<IndividualResultInterestViewModel>();
-                Headline = user.User.Headline;
-                Name = user.User.Username;
-                Bio = user.User.Bio;
-                ImageUrl = user.User.ImageUrl;
+                Headline = oldUser.User.Headline;
+                Name = oldUser.User.Username;
+                Bio = oldUser.User.Bio;
+                ImageUrl = oldUser.User.ImageUrl;
 
-                ResultInterestViewModels = user.User.InterestDtos
+                ResultInterestViewModels = oldUser.User.InterestDtos
                     .Select(x => new IndividualResultInterestViewModel
                                     {
                                         InterestName = x.Name,

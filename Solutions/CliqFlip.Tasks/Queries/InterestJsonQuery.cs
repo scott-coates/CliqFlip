@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using CliqFlip.Domain.Contracts.Queries;
-using CliqFlip.Domain.Dtos;
+
 using CliqFlip.Domain.Entities;
 using NHibernate.Linq;
 using SharpArch.Domain.PersistenceSupport;

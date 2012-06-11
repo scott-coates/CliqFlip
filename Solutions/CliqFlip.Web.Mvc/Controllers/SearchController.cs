@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Principal;
 using System.Threading;
 using CliqFlip.Domain.Contracts.Tasks;
-using CliqFlip.Domain.Dtos;
+
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.Security.Attributes;

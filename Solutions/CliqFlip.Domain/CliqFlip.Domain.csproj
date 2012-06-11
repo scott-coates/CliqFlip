@@ -85,10 +85,11 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Common\Constants.cs" />
-    <Compile Include="Contracts\Pipelines\IUserSearchPipeline.cs" />
+    <Compile Include="Contracts\Pipelines\UserSearch\IUserSearchPipeline.cs" />
     <Compile Include="Contracts\Tasks\INotificationTasks.cs" />
     <Compile Include="Contracts\Tasks\IInterestTasks.cs" />
     <Compile Include="Contracts\Tasks\IUserInterestTasks.cs" />
+    <Compile Include="Dtos\User\UserSearchPipelineResult.cs" />
     <Compile Include="Dtos\User\UserAddInterestDto.cs" />
     <Compile Include="Dtos\User\UserCreateDto.cs" />
     <Compile Include="Dtos\User\UserProfileIndexDto.cs" />
@@ -116,7 +117,7 @@
     <Compile Include="Contracts\Queries\IUsersByInterestsQuery.cs" />
     <Compile Include="Contracts\Tasks\IUserTasks.cs" />
     <Compile Include="Dtos\Interest\InterestKeywordDto.cs" />
-    <Compile Include="Dtos\User\UserSearchByInterestsDto.cs" />
+    <Compile Include="Dtos\User\OldUserSearchByInterestsDto.cs" />
     <Compile Include="Entities\UserInterest.cs" />
     <Compile Include="Entities\Interest.cs" />
     <Compile Include="Entities\User.cs" />
@@ -148,6 +149,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Contracts\Pipelines\UserSearch\Filters\" />
     <Folder Include="Filters\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

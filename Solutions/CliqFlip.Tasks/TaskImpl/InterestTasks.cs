@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading;
 using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Tasks;
-using CliqFlip.Domain.Dtos;
+
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Entities;

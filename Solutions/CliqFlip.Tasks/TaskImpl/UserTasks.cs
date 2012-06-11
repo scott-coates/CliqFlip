@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using CliqFlip.Domain.Contracts.Tasks;
-using CliqFlip.Domain.Dtos;
+
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Dtos.User;
@@ -73,7 +73,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		#region IUserTasks Members
 
-        public IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IList<ScoredRelatedInterestDto> interests)
+        public IList<OldUserSearchByInterestsDto> GetUsersByInterestsDtos(IList<ScoredRelatedInterestDto> interests)
 		{
             List<User> users = _userRepository
                 .GetUsersByInterests(interests
@@ -81,14 +81,14 @@ namespace CliqFlip.Tasks.TaskImpl
                     .ToList())
                 .ToList();
 
-			return users.Select(user => new UserSearchByInterestsDto
+			return users.Select(user => new OldUserSearchByInterestsDto
 			{
 				MatchCount = user.Interests.Sum(x =>
 				{
                     var foundInterest = interests.FirstOrDefault(y => y.Id == x.Interest.Id);
 				    return foundInterest != null ? foundInterest.Score : 0f;
 				}),
-				User = new UserSearchByInterestsDto.UserDto(user)
+				User = new OldUserSearchByInterestsDto.UserDto(user)
 			}).OrderByDescending(x => x.MatchCount).ToList();
 		}
 

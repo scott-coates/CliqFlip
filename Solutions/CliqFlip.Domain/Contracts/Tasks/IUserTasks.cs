@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Web;
-using CliqFlip.Domain.Dtos;
+
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Dtos.User;
@@ -14,7 +14,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 	public interface  IUserTasks
 	{
 		// ReSharper disable ReturnTypeCanBeEnumerable.Global
-        IList<UserSearchByInterestsDto> GetUsersByInterestsDtos(IList<ScoredRelatedInterestDto> interests);
+        IList<OldUserSearchByInterestsDto> GetUsersByInterestsDtos(IList<ScoredRelatedInterestDto> interests);
 
 		User Create(UserCreateDto profileToCreate, LocationData location);
 

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CliqFlip.Domain.Contracts.Tasks;
-using CliqFlip.Domain.Dtos;
+
 using CliqFlip.Domain.Dtos.User;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Search;
@@ -38,9 +38,9 @@ namespace CliqFlip.Web.Mvc.Queries
 
             var relatedInterests = _interestTasks.GetRelatedInterests(aliasCollection);
 
-            IList<UserSearchByInterestsDto> users = _userTasks.GetUsersByInterestsDtos(relatedInterests);
+            IList<OldUserSearchByInterestsDto> users = _userTasks.GetUsersByInterestsDtos(relatedInterests);
 			var retVal = new UsersByInterestViewModel();
-			foreach (UserSearchByInterestsDto user in users)
+			foreach (OldUserSearchByInterestsDto user in users)
 			{
                 var indvResultViewModel = new UsersByInterestViewModel.IndividualResultViewModel(user, relatedInterests.Select(x=>x.Slug).ToList());
                 if (indvResultViewModel.ImageUrl == null)

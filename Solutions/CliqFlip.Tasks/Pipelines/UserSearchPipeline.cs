@@ -1,4 +1,7 @@
+using System.Collections.Generic;
 using CliqFlip.Domain.Contracts.Pipelines;
+using CliqFlip.Domain.Contracts.Pipelines.UserSearch;
+using CliqFlip.Domain.Dtos.User;
 
 namespace CliqFlip.Tasks.Pipelines
 {
@@ -9,5 +12,9 @@ namespace CliqFlip.Tasks.Pipelines
         //either inspect the current user or a list of search terms
 
         //
+        public IEnumerable<UserSearchPipelineResult> Execute()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

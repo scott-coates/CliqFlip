@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Amazon.EC2.Model;
-using CliqFlip.Domain.Dtos;
+
 using CliqFlip.Domain.Entities;
 using SharpArch.Domain.PersistenceSupport;
 
