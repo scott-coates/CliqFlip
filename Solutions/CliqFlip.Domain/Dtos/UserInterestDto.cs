@@ -23,18 +23,6 @@ namespace CliqFlip.Domain.Dtos
 			RelatedTo = relatedTo;
 		}
 
-		public UserInterestDto(int id, string name, string slug, int? relatedTo, int? sociality, float? passion, float? xAxis, float? yAxis)
-		{
-			Id = id;
-			Name = name;
-			Slug = slug;
-			RelatedTo = relatedTo;
-			Sociality = sociality;
-			Passion = passion;
-			XAxis = xAxis;
-			YAxis = yAxis;
-		}
-
         public UserInterestDto(UserInterest interests)
         {
             Id = interests.Id;
