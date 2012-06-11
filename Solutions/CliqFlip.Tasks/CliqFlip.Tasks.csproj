@@ -98,6 +98,7 @@
     <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Pipelines\UserSearchPipeline.cs" />
     <Compile Include="Queries\InterestJsonQuery.cs" />
     <Compile Include="TaskImpl\InterestTasks.cs" />
     <Compile Include="TaskImpl\NotificationTasks.cs" />
