@@ -50,7 +50,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
             foreach (var ret in relatedInterestDtos)
             {
-                var score = (float) Math.Pow((_maxHopsInverter - ret.Weight.Count), 2);
+                var score = (float)_maxHopsInverter;
                 
                 if (ret.Weight.Any())
                 {
