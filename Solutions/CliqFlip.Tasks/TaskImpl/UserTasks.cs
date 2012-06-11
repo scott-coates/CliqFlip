@@ -329,10 +329,10 @@ namespace CliqFlip.Tasks.TaskImpl
 				throw new RulesException("InterestId", "An existing interest must be passed in");
 			}
 
-			ProcessUserInterests(user, new[] { new UserInterestDto(interestId, null, null) });
+			ProcessUserInterests(user, new[] { new UserAddInterestDto(interestId) });
 		}
 
-		public void AddInterestsToUser(string name, IEnumerable<UserInterestDto> interestDtos)
+		public void AddInterestsToUser(string name, IEnumerable<UserAddInterestDto> interestDtos)
 		{
 			User user = GetUser(name);
 			ProcessUserInterests(user, interestDtos);
@@ -526,9 +526,9 @@ namespace CliqFlip.Tasks.TaskImpl
 			}
 		}
 
-		private void ProcessUserInterests(User user, IEnumerable<UserInterestDto> interestDtos)
+		private void ProcessUserInterests(User user, IEnumerable<UserAddInterestDto> interestDtos)
 		{
-			foreach (UserInterestDto interestDto in interestDtos)
+            foreach (UserAddInterestDto interestDto in interestDtos)
 			{
 				Interest interest = interestDto.Id > 0 
 					? _interestTasks.Get(interestDto.Id) 

@@ -10,12 +10,12 @@ namespace CliqFlip.Domain.Dtos
 	{
         public string Email { get; set; }
         public string Password { get; set; }
-        public IList<UserInterestDto> InterestDtos { get; set; }
+        public IList<UserAddInterestDto> InterestDtos { get; set; }
 		public string Username { get; set; }
 
 		public UserCreateDto()
 		{
-			InterestDtos = new List<UserInterestDto>();
+            InterestDtos = new List<UserAddInterestDto>();
 		}
     }
 }

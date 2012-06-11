@@ -69,8 +69,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 				foreach (InterestCreate interest in profile.UserInterests)
 				{
-                    //TODO: don't reuse this userinterest dto - it's not clear as to which id is assigned and is confusing
-					var userInterest = new UserInterestDto(interest.Id, interest.Name, interest.CategoryId);
+					var userInterest = new UserAddInterestDto(interest.Id, interest.Name, interest.CategoryId);
 					profileToCreate.InterestDtos.Add(userInterest);
 				}
 
@@ -173,7 +172,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			if (ModelState.IsValid)
 			{
                 //TODO: this should not be creating a userinterestdto - it's assigning the wrong id and is confusing
-				IEnumerable<UserInterestDto> interestDtos = addInterestsViewModel.UserInterests.Select(x => new UserInterestDto(x.Id, x.Name, x.CategoryId));
+                IEnumerable<UserAddInterestDto> interestDtos = addInterestsViewModel.UserInterests.Select(x => new UserAddInterestDto(x.Id, x.Name, x.CategoryId));
 
 				_userTasks.AddInterestsToUser(_principal.Identity.Name, interestDtos);
 				return RedirectToAction("Interests", "User");

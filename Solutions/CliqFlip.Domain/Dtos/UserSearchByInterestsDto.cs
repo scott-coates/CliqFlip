@@ -28,5 +28,22 @@ namespace CliqFlip.Domain.Dtos
                 ImageUrl = user.ProfileImage != null ? user.ProfileImage.ImageData.MediumFileName : null;
             }
         }
+
+        public class UserInterestDto
+        {
+            public string Name { get; set; }
+            public string Slug { get; set; }
+            public float? Passion { get; set; }
+            public string DefaultImageUrl { get; set; }
+
+            public UserInterestDto(UserInterest interests)
+            {
+                Name = interests.Interest.Name;
+                Slug = interests.Interest.Slug;
+                Passion = interests.Options.Passion;
+                var defaultImage = interests.Media.FirstOrDefault() as Image;
+                DefaultImageUrl = defaultImage != null ? defaultImage.ImageData.MediumFileName : null;
+            }
+        }
     }
 }

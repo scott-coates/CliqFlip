@@ -34,7 +34,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		void RemoveMedium(User user, int mediumId);
 		void RemoveInterest(User user, int interestId);
 		void AddInterestToUser(User user, int interestId);
-		void AddInterestsToUser(string name, IEnumerable<UserInterestDto> interestDtos);
+		void AddInterestsToUser(string name, IEnumerable<UserAddInterestDto> interestDtos);
 		void StartConversation(string starter, string receiver, string messageText, string subject, string body);
 		Message ReplyToConversation(Conversation conversation, User sender,User receiver, string messageText,string subject, string body);
 
