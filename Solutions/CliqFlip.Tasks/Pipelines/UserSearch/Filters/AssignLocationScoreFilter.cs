@@ -6,7 +6,7 @@ using CliqFlip.Domain.Contracts.Pipelines.UserSearch.Filters;
 
 namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
 {
-    public class CalculateLocationScoreFilter : ICalculateLocationScoreFilter
+    public class AssignLocationScoreFilter : IAssignLocationScoreFilter
     {
         private const float _metersToMiles = 1609.344f;
 

@@ -5,7 +5,7 @@ using CliqFlip.Domain.Contracts.Pipelines.UserSearch.Filters;
 
 namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
 {
-    public class CalculateInterestCommonalityScoreFilter : ICalculateInterestCommonalityScoreFilter
+    public class AssignInterestCommonalityScoreFilter : IAssignInterestCommonalityScoreFilter
     {
         public void Filter(UserSearchPipelineResult pipelineResult, UserSearchPipelineRequest request)
         {

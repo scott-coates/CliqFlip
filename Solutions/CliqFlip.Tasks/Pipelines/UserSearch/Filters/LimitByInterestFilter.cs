@@ -15,12 +15,11 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
         public void Filter(UserSearchPipelineResult pipelineResult, UserSearchPipelineRequest request)
         {
             if (pipelineResult == null) throw new ArgumentNullException("pipelineResult");
-            if (pipelineResult.RelatedInterests == null) throw new ArgumentNullException("pipelineResult", "RelatedInterests is required");
+            if (pipelineResult.ScoredInterests == null) throw new ArgumentNullException("pipelineResult", "ScoredInterests is required");
 
             var interestIds = pipelineResult
-                .RelatedInterests
+                .ScoredInterests
                 .Select(x => x.Id)
-                .Distinct()
                 .ToList(); //this needs to be a list since it's used in a query expression
 
             pipelineResult.UserQuery =

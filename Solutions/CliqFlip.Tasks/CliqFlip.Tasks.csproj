@@ -99,13 +99,13 @@
     <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Pipelines\UserSearch\Filters\CalculateLocationScoreFilter.cs" />
+    <Compile Include="Pipelines\UserSearch\Filters\AssignLocationScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\FindRelatedInterestsFromKeywordSearchFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\FindTargetUsersRelatedInterestsFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\CalculateExplicitSearchInterestScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\CalculateRelatedInterestScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\LimitByInterestFilter.cs" />
-    <Compile Include="Pipelines\UserSearch\Filters\CalculateInterestCommonalityScoreFilter.cs" />
+    <Compile Include="Pipelines\UserSearch\Filters\AssignInterestCommonalityScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\CalculatedHighestScoredInterestFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\LimitByTargetUserFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\SortUserScoreFilter.cs" />

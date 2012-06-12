@@ -92,8 +92,8 @@
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\ICalculatedHighestScoredInterestFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\ICalculateExplicitSearchInterestScoreFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\IFindRelatedInterestsFromKeywordSearchFilter.cs" />
-    <Compile Include="Contracts\Pipelines\UserSearch\Filters\ICalculateLocationScoreFilter.cs" />
-    <Compile Include="Contracts\Pipelines\UserSearch\Filters\ICalculateInterestCommonalityScoreFilter.cs" />
+    <Compile Include="Contracts\Pipelines\UserSearch\Filters\IAssignLocationScoreFilter.cs" />
+    <Compile Include="Contracts\Pipelines\UserSearch\Filters\IAssignInterestCommonalityScoreFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\IFindTargetUsersRelatedInterestsFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\ICalculateRelatedInterestScoreFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\ILimitByInterestFilter.cs" />
