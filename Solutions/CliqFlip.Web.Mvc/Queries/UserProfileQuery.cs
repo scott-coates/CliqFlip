@@ -38,8 +38,8 @@ namespace CliqFlip.Web.Mvc.Queries
 
 				FillBaseProperties(retVal, user, requestingUser);
 
-                List<UserProfileIndexDto> interests =
-                    user.Interests.Select(interest => new UserProfileIndexDto(interest.Id, interest.Interest.Name.Replace(' ', '\n'), interest.Interest.Slug, null, null, interest.Options.Passion, interest.Options.XAxis, interest.Options.YAxis)).
+                List<UserProfileIndexInterestDto> interests =
+                    user.Interests.Select(interest => new UserProfileIndexInterestDto(interest.Id, interest.Interest.Name.Replace(' ', '\n'), interest.Interest.Slug, null, null, interest.Options.Passion, interest.Options.XAxis, interest.Options.YAxis)).
 						ToList();
 
 				retVal.InterestsJson = JsonConvert.SerializeObject(interests);

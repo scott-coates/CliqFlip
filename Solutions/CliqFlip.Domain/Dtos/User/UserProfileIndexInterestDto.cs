@@ -1,6 +1,6 @@
 ﻿namespace CliqFlip.Domain.Dtos.User
 {
-	public class UserProfileIndexDto
+	public class UserProfileIndexInterestDto
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }
@@ -11,7 +11,7 @@
 		public float? XAxis { get; set; }
 		public float? YAxis { get; set; }
 
-		public UserProfileIndexDto(int id, string name, string slug, int? relatedTo, int? sociality, float? passion, float? xAxis, float? yAxis)
+		public UserProfileIndexInterestDto(int id, string name, string slug, int? relatedTo, int? sociality, float? passion, float? xAxis, float? yAxis)
 		{
 			Id = id;
 			Name = name;

@@ -105,7 +105,7 @@
     <Compile Include="Contracts\Pipelines\UserSearch\UserSearchPipelineResult.cs" />
     <Compile Include="Dtos\User\UserAddInterestDto.cs" />
     <Compile Include="Dtos\User\UserCreateDto.cs" />
-    <Compile Include="Dtos\User\UserProfileIndexDto.cs" />
+    <Compile Include="Dtos\User\UserProfileIndexInterestDto.cs" />
     <Compile Include="Dtos\Interest\WeightedRelatedInterestDto.cs" />
     <Compile Include="Dtos\Interest\ScoredRelatedInterestDto.cs" />
     <Compile Include="Dtos\Interest\RelatedInterestListDto.cs" />
