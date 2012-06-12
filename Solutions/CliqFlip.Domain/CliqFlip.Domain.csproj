@@ -85,11 +85,14 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Contracts\Pipelines\UserSearch\Filters\IFindRelatedInterestFilter.cs" />
+    <Compile Include="Contracts\Pipelines\UserSearch\Filters\IScoreRelatedInterestFilter.cs" />
+    <Compile Include="Contracts\Pipelines\UserSearch\Filters\ILimitByInterestFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\IUserSearchPipeline.cs" />
     <Compile Include="Contracts\Tasks\INotificationTasks.cs" />
     <Compile Include="Contracts\Tasks\IInterestTasks.cs" />
     <Compile Include="Contracts\Tasks\IUserInterestTasks.cs" />
-    <Compile Include="Dtos\User\UserSearchPipelineResult.cs" />
+    <Compile Include="Contracts\Pipelines\UserSearch\UserSearchPipelineResult.cs" />
     <Compile Include="Dtos\User\UserAddInterestDto.cs" />
     <Compile Include="Dtos\User\UserCreateDto.cs" />
     <Compile Include="Dtos\User\UserProfileIndexDto.cs" />
@@ -101,6 +104,7 @@
     <Compile Include="Dtos\Interest\InterestFeedItemDto.cs" />
     <Compile Include="Dtos\Media\MediumDto.cs" />
     <Compile Include="Dtos\Interest\RankedInterestDto.cs" />
+    <Compile Include="Dtos\User\UserSearchResultDto.cs" />
     <Compile Include="Entities\Conversation.cs" />
     <Compile Include="Entities\Notification.cs" />
     <Compile Include="Entities\WebPage.cs" />
@@ -149,7 +153,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Contracts\Pipelines\UserSearch\Filters\" />
     <Folder Include="Filters\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

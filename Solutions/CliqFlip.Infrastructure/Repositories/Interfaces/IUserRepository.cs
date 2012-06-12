@@ -13,6 +13,7 @@ namespace CliqFlip.Infrastructure.Repositories.Interfaces
         //TODO: consider not returning IQueryable http://stackoverflow.com/a/694279/173957
 		User GetSuggestedUser(User user);
 		IQueryable<User> GetUsersByInterests(IList<int> interestIds);
+		IQueryable<User> FindAll();
 		User FindByNameOrEmail(string usernameOrEmail );
 		User FindByName(string username );
         bool IsUsernameOrEmailAvailable(string usernameOrEmail);
