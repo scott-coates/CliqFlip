@@ -85,6 +85,7 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Contracts\Pipelines\UserSearch\Filters\ILimitByTargetUserFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\IUserSearchPipeLineFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\UserSearchPipelineRequest.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\ISortUserScoreFilter.cs" />

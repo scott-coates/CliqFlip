@@ -14,6 +14,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
         private readonly IFindRelatedInterestsFromKeywordSearchFilter _findRelatedInterestsFromKeywordSearchFilter;
         private readonly IFindTargetUsersRelatedInterestsFilter _findTargetUsersRelatedInterestsFilter;
         private readonly ILimitByInterestFilter _limitByInterestFilter;
+        private readonly ILimitByTargetUserFilter _limitByTargetUserFilter;
         private readonly ISortUserScoreFilter _sortUserScoreFilter;
         private readonly ITransformUserToScoredUserFilter _transformUserToScoredUserFilter;
         private readonly IUserRepository _userRepository;
@@ -27,9 +28,9 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
                                   ICalculateLocationScoreFilter calculateLocationScoreFilter,
                                   IFindRelatedInterestsFromKeywordSearchFilter findRelatedInterestsFromKeywordSearchFilter,
                                   ICalculateExplicitSearchInterestScoreFilter calculateExplicitSearchInterestScoreFilter,
-                                  ICalculatedHighestScoredInterestFilter highestScoredInterestFilter,
                                   ICalculatedHighestScoredInterestFilter calculatedHighestScoredInterestFilter,
-                                  ISortUserScoreFilter sortUserScoreFilter)
+                                  ISortUserScoreFilter sortUserScoreFilter,
+                                  ILimitByTargetUserFilter limitByTargetUserFilter)
         {
             _userRepository = userRepository;
             _findTargetUsersRelatedInterestsFilter = findTargetUsersRelatedInterestsFilter;
@@ -42,7 +43,10 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
             _calculateExplicitSearchInterestScoreFilter = calculateExplicitSearchInterestScoreFilter;
             _calculatedHighestScoredInterestFilter = calculatedHighestScoredInterestFilter;
             _sortUserScoreFilter = sortUserScoreFilter;
+            _limitByTargetUserFilter = limitByTargetUserFilter;
         }
+
+        #region IUserSearchPipeline Members
 
         public UserSearchPipelineResult Execute(UserSearchPipelineRequest request)
         {
@@ -61,6 +65,9 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
 
             //filter users by interests and related
             _limitByInterestFilter.Filter(retVal, request);
+
+            //dont show the target user in results
+            _limitByTargetUserFilter.Filter(retVal,request);
 
             /************ Transform ******************/
 
@@ -90,5 +97,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
 
             return retVal;
         }
+
+        #endregion
     }
 }
