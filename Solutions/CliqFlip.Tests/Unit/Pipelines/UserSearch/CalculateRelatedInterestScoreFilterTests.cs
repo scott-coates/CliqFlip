@@ -22,10 +22,10 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
         }
 
         [Test]
-        [ExpectedException(typeof (ArgumentNullException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void NullInputReturnsError()
         {
-            _calculateRelatedInterestScoreFilter.Filter(null);
+            _calculateRelatedInterestScoreFilter.Filter(null, null);
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
                 }
             };
 
-            _calculateRelatedInterestScoreFilter.Filter(userSearchPipelineResult);
+            _calculateRelatedInterestScoreFilter.Filter(userSearchPipelineResult, null);
 
             Assert.That(userSearchPipelineResult.ScoredInterests.Single().Score, Is.EqualTo(_maxHopsInverter));
         }
@@ -58,7 +58,7 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
                 }
             };
 
-            _calculateRelatedInterestScoreFilter.Filter(userSearchPipelineResult);
+            _calculateRelatedInterestScoreFilter.Filter(userSearchPipelineResult, null);
 
             Assert.That(userSearchPipelineResult.ScoredInterests.Single().Score, Is.EqualTo(expectedScore));
         }

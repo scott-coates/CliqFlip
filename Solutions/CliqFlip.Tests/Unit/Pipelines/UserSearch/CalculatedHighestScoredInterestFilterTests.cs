@@ -35,7 +35,7 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
                 }
             };
 
-            _calculatedHighestScoredInterestFilter.Filter(userSearchPipelineResult);
+            _calculatedHighestScoredInterestFilter.Filter(userSearchPipelineResult, null);
 
             Assert.That(userSearchPipelineResult.ScoredInterests.Single(), Is.EqualTo(score2));
         }

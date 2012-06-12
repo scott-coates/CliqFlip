@@ -7,6 +7,6 @@ namespace CliqFlip.Domain.Contracts.Pipelines.UserSearch
 {
     public interface IUserSearchPipeline
     {
-        UserSearchPipelineResult Execute(User user = null, IList<string> additionalSearch = null, LocationData data = null);
+        UserSearchPipelineResult Execute(UserSearchPipelineRequest request);
     }
 }

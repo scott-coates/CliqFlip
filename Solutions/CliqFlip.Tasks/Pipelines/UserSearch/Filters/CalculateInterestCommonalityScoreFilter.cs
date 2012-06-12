@@ -7,7 +7,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
 {
     public class CalculateInterestCommonalityScoreFilter : ICalculateInterestCommonalityScoreFilter
     {
-        public void Filter(UserSearchPipelineResult pipelineResult)
+        public void Filter(UserSearchPipelineResult pipelineResult, UserSearchPipelineRequest request)
         {
             if (pipelineResult == null) throw new ArgumentNullException("pipelineResult");
 

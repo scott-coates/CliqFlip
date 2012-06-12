@@ -8,7 +8,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
 {
     public class CalculateExplicitSearchInterestScoreFilter : ICalculateExplicitSearchInterestScoreFilter
     {
-        public void Filter(UserSearchPipelineResult pipelineResult)
+        public void Filter(UserSearchPipelineResult pipelineResult, UserSearchPipelineRequest request)
         {
             if (pipelineResult == null) throw new ArgumentNullException("pipelineResult");
             if (pipelineResult.ScoredInterests == null) throw new ArgumentNullException("pipelineResult","Scored results should be provided");

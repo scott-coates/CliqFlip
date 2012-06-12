@@ -7,7 +7,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
 {
     public class SortUserScoreFilter : ISortUserScoreFilter
     {
-        public void Filter(UserSearchPipelineResult pipelineResult)
+        public void Filter(UserSearchPipelineResult pipelineResult, UserSearchPipelineRequest request)
         {
             if (pipelineResult == null) throw new ArgumentNullException("pipelineResult");
             if (pipelineResult.Users == null) throw new ArgumentNullException("pipelineResult", "Users must be provided");

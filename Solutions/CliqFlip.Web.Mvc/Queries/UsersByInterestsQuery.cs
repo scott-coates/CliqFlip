@@ -41,7 +41,14 @@ namespace CliqFlip.Web.Mvc.Queries
                 .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                 .ToList();
 
-            var userSearchPipelineResult = _userSearchPipeline.Execute(user, aliasCollection, user.Location.Data);
+            var request = new UserSearchPipelineRequest
+            {
+                User = user, 
+                InterestSearch = aliasCollection, 
+                LocationData = user.Location.Data
+            };
+
+            var userSearchPipelineResult = _userSearchPipeline.Execute(request);
 
             List<string> interests = userSearchPipelineResult.ScoredInterests.Select(x => x.Slug).ToList();
 

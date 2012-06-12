@@ -3,8 +3,7 @@ using CliqFlip.Domain.Entities;
 
 namespace CliqFlip.Domain.Contracts.Pipelines.UserSearch.Filters
 {
-    public interface ICalculateExplicitSearchInterestScoreFilter
+    public interface ICalculateExplicitSearchInterestScoreFilter : IUserSearchPipeLineFilter
     {
-        void Filter(UserSearchPipelineResult pipelineResult);
     }
 }

@@ -10,12 +10,13 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
     {
         private const float _metersToMiles = 1609.344f;
 
-        public void Filter(UserSearchPipelineResult pipelineResult)
+        public void Filter(UserSearchPipelineResult pipelineResult, UserSearchPipelineRequest request)
         {
             if (pipelineResult == null) throw new ArgumentNullException("pipelineResult");
-            if (pipelineResult.LocationData == null) throw new ArgumentNullException("pipelineResult", "Location data is required");
+            if (request == null) throw new ArgumentNullException("request", "Location data is required");
+            if (request.LocationData == null) throw new ArgumentNullException("request", "Location data is required");
 
-            var geo = new GeoCoordinate(pipelineResult.LocationData.Latitude, pipelineResult.LocationData.Longitude);
+            var geo = new GeoCoordinate(request.LocationData.Latitude, request.LocationData.Longitude);
 
             foreach (var user in pipelineResult.Users)
             {

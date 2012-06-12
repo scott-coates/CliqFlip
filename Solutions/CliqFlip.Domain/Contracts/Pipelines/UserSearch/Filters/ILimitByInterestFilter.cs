@@ -2,8 +2,8 @@
 
 namespace CliqFlip.Domain.Contracts.Pipelines.UserSearch.Filters
 {
-    public interface ILimitByInterestFilter
+    public interface ILimitByInterestFilter : IUserSearchPipeLineFilter
     {
-        void Filter(UserSearchPipelineResult pipelineResult);
+        
     }
 }

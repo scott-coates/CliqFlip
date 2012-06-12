@@ -12,7 +12,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
 {
     public class LimitByInterestFilter : ILimitByInterestFilter
     {
-        public void Filter(UserSearchPipelineResult pipelineResult)
+        public void Filter(UserSearchPipelineResult pipelineResult, UserSearchPipelineRequest request)
         {
             if (pipelineResult == null) throw new ArgumentNullException("pipelineResult");
             if (pipelineResult.RelatedInterests == null) throw new ArgumentNullException("pipelineResult", "RelatedInterests is required");

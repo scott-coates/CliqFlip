@@ -1,26 +1,22 @@
-using System.Collections.Generic;
-using System.Linq;
 using CliqFlip.Domain.Contracts.Pipelines.UserSearch;
 using CliqFlip.Domain.Contracts.Pipelines.UserSearch.Filters;
-using CliqFlip.Domain.Entities;
-using CliqFlip.Domain.ValueObjects;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
 
 namespace CliqFlip.Tasks.Pipelines.UserSearch
 {
     public class UserSearchPipeline : IUserSearchPipeline
     {
+        private readonly ICalculateExplicitSearchInterestScoreFilter _calculateExplicitSearchInterestScoreFilter;
         private readonly ICalculateInterestCommonalityScoreFilter _calculateInterestCommonalityScoreFilter;
         private readonly ICalculateLocationScoreFilter _calculateLocationScoreFilter;
+        private readonly ICalculateRelatedInterestScoreFilter _calculateRelatedInterestScoreFilter;
+        private readonly ICalculatedHighestScoredInterestFilter _calculatedHighestScoredInterestFilter;
         private readonly IFindRelatedInterestsFromKeywordSearchFilter _findRelatedInterestsFromKeywordSearchFilter;
         private readonly IFindTargetUsersRelatedInterestsFilter _findTargetUsersRelatedInterestsFilter;
         private readonly ILimitByInterestFilter _limitByInterestFilter;
-        private readonly ICalculateExplicitSearchInterestScoreFilter _calculateExplicitSearchInterestScoreFilter;
-        private readonly ICalculateRelatedInterestScoreFilter _calculateRelatedInterestScoreFilter;
-        private readonly ICalculatedHighestScoredInterestFilter _calculatedHighestScoredInterestFilter;
+        private readonly ISortUserScoreFilter _sortUserScoreFilter;
         private readonly ITransformUserToScoredUserFilter _transformUserToScoredUserFilter;
         private readonly IUserRepository _userRepository;
-        private readonly ISortUserScoreFilter _sortUserScoreFilter;
 
         public UserSearchPipeline(IUserRepository userRepository,
                                   IFindTargetUsersRelatedInterestsFilter findTargetUsersRelatedInterestsFilter,
@@ -48,55 +44,51 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
             _sortUserScoreFilter = sortUserScoreFilter;
         }
 
-        #region IUserSearchPipeline Members
-
-        public UserSearchPipelineResult Execute(User user = null, IList<string> additionalSearch = null, LocationData data = null)
+        public UserSearchPipelineResult Execute(UserSearchPipelineRequest request)
         {
             //start with list of users
-            var retVal = new UserSearchPipelineResult { UserQuery = _userRepository.FindAll(), LocationData = data };
+            var retVal = new UserSearchPipelineResult { UserQuery = _userRepository.FindAll() };
 
             /************ Find Dependent Data  ******************/
 
             //run filter to query potential interests based on the user's list of interests 
-            _findTargetUsersRelatedInterestsFilter.Filter(retVal, user);
+            _findTargetUsersRelatedInterestsFilter.Filter(retVal, request);
 
             //run filter to query potential interests based on what was explicitly searched for
-            _findRelatedInterestsFromKeywordSearchFilter.Filter(retVal, additionalSearch);
+            _findRelatedInterestsFromKeywordSearchFilter.Filter(retVal, request);
 
             /************ Limits/Constraints ******************/
 
             //filter users by interests and related
-            _limitByInterestFilter.Filter(retVal);
+            _limitByInterestFilter.Filter(retVal, request);
 
             /************ Transform ******************/
 
             //transform users to found dtos
-            _transformUserToScoredUserFilter.Filter(retVal);
+            _transformUserToScoredUserFilter.Filter(retVal, request);
 
             /************ Calculate Signal ******************/
 
             //score interests based on user
-            _calculateRelatedInterestScoreFilter.Filter(retVal);
+            _calculateRelatedInterestScoreFilter.Filter(retVal, request);
 
             //score interests based on explicit search
-            _calculateExplicitSearchInterestScoreFilter.Filter(retVal);
+            _calculateExplicitSearchInterestScoreFilter.Filter(retVal, request);
 
             //keep only the highest scored interests
-            _calculatedHighestScoredInterestFilter.Filter(retVal);
+            _calculatedHighestScoredInterestFilter.Filter(retVal, request);
 
             //sort users by interests points
-            _calculateInterestCommonalityScoreFilter.Filter(retVal);
+            _calculateInterestCommonalityScoreFilter.Filter(retVal, request);
 
-            _calculateLocationScoreFilter.Filter(retVal);
+            _calculateLocationScoreFilter.Filter(retVal, request);
 
             /************ Sort ******************/
 
             //order by scores
-            _sortUserScoreFilter.Filter(retVal);
+            _sortUserScoreFilter.Filter(retVal, request);
 
             return retVal;
         }
-
-        #endregion
     }
 }

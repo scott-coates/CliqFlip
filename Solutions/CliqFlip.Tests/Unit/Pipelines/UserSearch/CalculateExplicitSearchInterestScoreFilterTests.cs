@@ -33,7 +33,7 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
                 }
             };
 
-            _calculateExplicitSearchInterestScoreFilter.Filter(userSearchPipelineResult);
+            _calculateExplicitSearchInterestScoreFilter.Filter(userSearchPipelineResult, null);
 
             Assert.That(userSearchPipelineResult.ScoredInterests.Single().Score, Is.EqualTo(16));
         }

@@ -9,7 +9,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
 {
     public class TransformUserToScoredUserFilter : ITransformUserToScoredUserFilter
     {
-        public void Filter(UserSearchPipelineResult userSearchPipelineResult)
+        public void Filter(UserSearchPipelineResult userSearchPipelineResult, UserSearchPipelineRequest request)
         {
             if (userSearchPipelineResult == null) throw new ArgumentNullException("userSearchPipelineResult");
 
