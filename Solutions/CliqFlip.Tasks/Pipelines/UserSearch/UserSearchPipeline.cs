@@ -36,6 +36,8 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
             //start with list of users
             var retVal = new UserSearchPipelineResult { UserQuery = _userRepository.FindAll(), LocationData = data };
 
+            /************ Pre Filter ******************/
+
             //run filter to query potential interests based on the user's list of interests 
             _findTargetUsersRelatedInterestsFilter.Filter(retVal, user);
             
@@ -48,8 +50,12 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
             //filter users by interests and related
             _limitByInterestFilter.Filter(retVal);
 
+            /************ Transform ******************/
+
             //transform users to found dtos
             _userToScoredUserTransformFilter.Filter(retVal);
+
+            /************ Sort ******************/
 
             //sort users by interests points
             _addInterestCommonalityScoreFilter.Filter(retVal);
