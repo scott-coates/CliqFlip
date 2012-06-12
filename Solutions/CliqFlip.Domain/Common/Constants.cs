@@ -24,7 +24,7 @@ namespace CliqFlip.Domain.Common
 
         /*User Search Pipeline*/
         public const string INTEREST_MAX_HOPS = "3";
-        public const float EXPLICIT_SEARCH_INTEREST_MULTIPLIER = 4f;
+        public const float EXPLICIT_SEARCH_INTEREST_MULTIPLIER = 10f;
         public const float LOCATION_MILE_MULTIPLIER = .01f;
     }
 }
