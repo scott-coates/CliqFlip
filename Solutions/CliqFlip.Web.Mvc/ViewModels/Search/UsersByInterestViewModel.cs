@@ -40,10 +40,11 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
                         x => new IndividualResultInterestViewModel
                         {
                             InterestName = x.Name,
-                            IsMatch = interests.Contains(x.Slug.ToLower()),
+                            //assume interests is ordered smallest to highets
+                            MatchScore = interests.IndexOf(x.Slug.ToLower()), 
                             Passion = x.Passion,
                             DefaultImageUrl = x.DefaultImageUrl
-                        }).OrderByDescending(x => x.IsMatch).ThenByDescending(x => x.Passion).Take(5).ToList();
+                        }).OrderByDescending(x => x.MatchScore).ThenByDescending(x => x.Passion).Take(5).ToList();
             }
         }
 
@@ -52,7 +53,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
         public class IndividualResultInterestViewModel
         {
             public string InterestName { get; set; }
-            public bool IsMatch { get; set; }
+            public int MatchScore { get; set; }
             public float? Passion { get; set; }
             public string DefaultImageUrl { get; set; }
         }

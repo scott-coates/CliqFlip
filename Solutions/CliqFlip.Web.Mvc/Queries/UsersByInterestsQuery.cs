@@ -50,7 +50,12 @@ namespace CliqFlip.Web.Mvc.Queries
 
             var userSearchPipelineResult = _userSearchPipeline.Execute(request);
 
-            List<string> interests = userSearchPipelineResult.ScoredInterests.Select(x => x.Slug).ToList();
+            //assume interests is ordered highets to smallest
+            List<string> interests = userSearchPipelineResult
+                .ScoredInterests
+                .Select(x => x.Slug)
+                .Reverse()
+                .ToList();
 
             foreach (var foundUser in userSearchPipelineResult.Users)
             {
