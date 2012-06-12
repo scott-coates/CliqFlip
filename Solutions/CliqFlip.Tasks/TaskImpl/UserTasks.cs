@@ -302,8 +302,6 @@ namespace CliqFlip.Tasks.TaskImpl
 			DeleteImages(files.ToArray());
 
 			user.RemoveInterest(interest);
-
-			_userInterestTasks.Delete(interest);
 		}
 
 		public void AddInterestToUser(User user, int interestId)
@@ -518,8 +516,7 @@ namespace CliqFlip.Tasks.TaskImpl
 					? _interestTasks.Get(interestDto.Id) 
 					: _interestTasks.Create(interestDto.Name, interestDto.RelatedTo);
 
-				var userInterest = user.AddInterest(interest, null);
-				_userInterestTasks.SaveOrUpdate(userInterest);
+				user.AddInterest(interest, null);
 			}
 		}
 	}
