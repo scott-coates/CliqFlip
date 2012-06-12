@@ -35,10 +35,9 @@ namespace CliqFlip.Web.Mvc.Controllers
 		private readonly IPrincipal _principal;
 		private readonly IUserProfileQuery _userProfileQuery;
 		private readonly IUserTasks _userTasks;
-		private readonly IUserInterestTasks _userInterestTasks;
-		private readonly IViewRenderer _viewRenderer;
+	    private readonly IViewRenderer _viewRenderer;
 
-		public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IConversationQuery conversationQuery, IHttpContextProvider httpContextProvider, IViewRenderer viewRenderer, IUserInterestTasks userInterestTasks)
+		public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IConversationQuery conversationQuery, IHttpContextProvider httpContextProvider, IViewRenderer viewRenderer)
 		{
 			_userTasks = profileTasks;
 			_userProfileQuery = userProfileQuery;
@@ -46,7 +45,6 @@ namespace CliqFlip.Web.Mvc.Controllers
 			_conversationQuery = conversationQuery;
 			_httpContextProvider = httpContextProvider;
 			_viewRenderer = viewRenderer;
-			_userInterestTasks = userInterestTasks;
 		}
 
 		[BlockUnsupportedBrowsers]
@@ -468,9 +466,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		public ActionResult SaveMindMap(UserSaveMindMapViewModel userSaveMindMapViewModel)
 		{
 			User user = _userTasks.GetUser(_principal.Identity.Name);
-			var userInterest = user.UpdateInterest(userSaveMindMapViewModel.Id, new UserInterestOption(userSaveMindMapViewModel.Passion, userSaveMindMapViewModel.XAxis, userSaveMindMapViewModel.YAxis));
-
-			_userInterestTasks.SaveOrUpdate(userInterest);
+			user.UpdateInterest(userSaveMindMapViewModel.Id, new UserInterestOption(userSaveMindMapViewModel.Passion, userSaveMindMapViewModel.XAxis, userSaveMindMapViewModel.YAxis));
 			
 			return new EmptyResult();
 		}
