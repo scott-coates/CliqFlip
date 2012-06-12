@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using CliqFlip.Domain.Common;
+using CliqFlip.Domain.Contracts.Pipelines.UserSearch;
+using CliqFlip.Domain.Contracts.Pipelines.UserSearch.Filters;
+using CliqFlip.Domain.Dtos.Interest;
+using CliqFlip.Domain.Entities;
+using CliqFlip.Infrastructure.Repositories.Interfaces;
+using Utilities.DataTypes.ExtensionMethods;
+
+namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
+{
+    public class FindTargetUsersRelatedInterestsFilter : IFindTargetUsersRelatedInterestsFilter
+    {
+        private readonly IInterestRepository _interestRepository;
+
+        public FindTargetUsersRelatedInterestsFilter(IInterestRepository interestRepository)
+        {
+            _interestRepository = interestRepository;
+        }
+
+        public void Filter(UserSearchPipelineResult pipelineResult, User user)
+        {
+            if (pipelineResult == null) throw new ArgumentNullException("pipelineResult");
+            if (user == null) throw new ArgumentNullException("user");
+
+            var relatedInterestDtos = _interestRepository.GetRelatedInterests(user.Interests.Select(x => x.Interest.Slug).ToList()).ToList();
+
+            pipelineResult.RelatedInterests.AddRange(relatedInterestDtos);
+        }
+    }
+}

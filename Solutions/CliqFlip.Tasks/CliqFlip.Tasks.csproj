@@ -100,7 +100,8 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Pipelines\UserSearch\Filters\AddLocationScoreFilter.cs" />
-    <Compile Include="Pipelines\UserSearch\Filters\FindRelatedInterestFilter.cs" />
+    <Compile Include="Pipelines\UserSearch\Filters\FindRelatedInterestsFromKeywordSearchFilter.cs" />
+    <Compile Include="Pipelines\UserSearch\Filters\FindTargetUsersRelatedInterestsFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\ScoreRelatedInterestFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\LimitByInterestFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\AddInterestCommonalityScoreFilter.cs" />

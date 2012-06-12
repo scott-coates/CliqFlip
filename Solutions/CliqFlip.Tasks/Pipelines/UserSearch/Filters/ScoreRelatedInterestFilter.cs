@@ -28,6 +28,13 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
                 {
                     score *= ret.Weight.Aggregate((f, f1) => f * f1);
                 }
+
+                if(ret.ExplicitSearch)
+                {
+                    //if it was expclitly searched for, give it priority
+                    score *= _maxHopsInverter;
+                }
+
                 var scoredInterest = new ScoredRelatedInterestDto(ret.Id, score, ret.Slug);
                 scoredRelatedInterestDtos.Add(scoredInterest);
             }

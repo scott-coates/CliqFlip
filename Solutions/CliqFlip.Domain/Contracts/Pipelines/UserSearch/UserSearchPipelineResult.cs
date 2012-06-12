@@ -14,5 +14,10 @@ namespace CliqFlip.Domain.Contracts.Pipelines.UserSearch
         public IList<ScoredRelatedInterestDto> ScoredInterests { get; set; }
         public IList<WeightedRelatedInterestDto> RelatedInterests { get; set; }
         public LocationData LocationData { get; set; }
+
+        public UserSearchPipelineResult()
+        {
+            RelatedInterests = new List<WeightedRelatedInterestDto>();
+        }
     }
 }
