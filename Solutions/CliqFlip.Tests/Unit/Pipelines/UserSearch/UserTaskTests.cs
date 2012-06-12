@@ -62,5 +62,25 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
 
             Assert.That(userSearchPipelineResult.ScoredInterests.Single().Score, Is.EqualTo(expectedScore));
         }
+
+        [Test]
+        public void HighestInGroupIsReturned()
+        {
+            var weight1 = new WeightedRelatedInterestDto(0, new List<float> { .25f }, "weight1");
+            var weight2 = new WeightedRelatedInterestDto(0, new List<float> { .75f, .75f, .75f }, "weight2");
+
+            var userSearchPipelineResult = new UserSearchPipelineResult
+            {
+                RelatedInterests = new List<WeightedRelatedInterestDto>
+                {
+                    weight1,
+                    weight2
+                }
+            };
+
+            _scoreRelatedInterestFilter.Filter(userSearchPipelineResult);
+
+            Assert.That(userSearchPipelineResult.ScoredInterests.Single().Slug, Is.EqualTo(weight2.Slug));
+        }
     }
 }
