@@ -17,7 +17,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
             if (pipelineResult == null) throw new ArgumentNullException("pipelineResult");
             if (pipelineResult.ScoredInterests == null) throw new ArgumentNullException("pipelineResult", "Interests is required");
 
-            var interestIds = pipelineResult.ScoredInterests.Select(x => x.Id).ToList();
+            var interestIds = pipelineResult.ScoredInterests.Select(x => x.Id).ToList(); //this needs to be a list since it's used in a query expression
 
             pipelineResult.UserQuery =
                 pipelineResult
