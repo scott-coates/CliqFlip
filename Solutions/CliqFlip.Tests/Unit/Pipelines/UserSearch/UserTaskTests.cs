@@ -45,6 +45,8 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
         }
 
         [TestCase(0, new float[] { }, "", 4f)]
+        [TestCase(0, new[] { .25f, .75f }, "", .75f)]
+        [TestCase(0, new[] { .25f, .75f, .75f }, "", .5625f)]
         public void ScoreIsCalculatedCorrectly(int id, float[] weights, string slug, float expectedScore)
         {
             var constructedRelatedInterest = new WeightedRelatedInterestDto(id, weights.ToList(), slug);
