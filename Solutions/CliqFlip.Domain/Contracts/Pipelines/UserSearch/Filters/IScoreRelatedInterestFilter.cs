@@ -5,6 +5,6 @@ namespace CliqFlip.Domain.Contracts.Pipelines.UserSearch.Filters
 {
     public interface IScoreRelatedInterestFilter
     {
-        UserSearchPipelineResult Filter(UserSearchPipelineResult pipelineResult);
+        void Filter(UserSearchPipelineResult pipelineResult);
     }
 }

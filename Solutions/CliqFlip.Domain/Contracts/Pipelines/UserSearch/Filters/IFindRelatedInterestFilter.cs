@@ -5,6 +5,6 @@ namespace CliqFlip.Domain.Contracts.Pipelines.UserSearch.Filters
 {
     public interface IFindRelatedInterestFilter
     {
-        UserSearchPipelineResult Filter(UserSearchPipelineResult pipelineResult, User user = null, IList<string> additionalSearch = null);
+        void Filter(UserSearchPipelineResult pipelineResult, User user = null, IList<string> additionalSearch = null);
     }
 }

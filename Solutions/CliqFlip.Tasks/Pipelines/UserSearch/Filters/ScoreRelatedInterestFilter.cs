@@ -14,7 +14,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
     {
         private static readonly int _maxHopsInverter = int.Parse(Constants.INTEREST_MAX_HOPS) + 1;
 
-        public UserSearchPipelineResult Filter(UserSearchPipelineResult pipelineResult)
+        public void Filter(UserSearchPipelineResult pipelineResult)
         {
             if (pipelineResult == null) throw new ArgumentNullException("pipelineResult");
 
@@ -39,8 +39,6 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
                 .ToList();
 
             pipelineResult.ScoredInterests = highestScoredInterests;
-
-            return pipelineResult;
         }
     }
 }

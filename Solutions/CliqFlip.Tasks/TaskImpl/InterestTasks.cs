@@ -44,33 +44,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
             return retVal;
         }
-
-        public IList<ScoredRelatedInterestDto> GetRelatedInterests(IList<string> slugs)
-        {
-            var retVal = new List<ScoredRelatedInterestDto>();
-            var relatedInterestDtos = _interestRepository.GetRelatedInterests(slugs).ToList();
-
-            foreach (var ret in relatedInterestDtos)
-            {
-                var score = (float)_maxHopsInverter;
-                
-                if (ret.Weight.Any())
-                {
-                    score *= ret.Weight.Aggregate((f, f1) => f*f1);
-                }
-                var scoredInterest = new ScoredRelatedInterestDto(ret.Id, score, ret.Slug);
-                retVal.Add(scoredInterest);
-            }
-
-            //http://stackoverflow.com/a/4874031/173957
-            var highestScoredInterests = retVal
-                .GroupBy(x => x.Id, (y, z) => z.Aggregate((a, x) => a.Score > x.Score ? a : x))
-                .OrderByDescending(x=>x.Score)
-                .ToList();
-
-            return highestScoredInterests;
-        }
-
+        
         public IList<RankedInterestDto> GetMostPopularInterests()
         {
             return _userInterestRepository.GetMostPopularInterests();

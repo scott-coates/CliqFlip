@@ -85,9 +85,11 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Contracts\Pipelines\UserSearch\Filters\ISortByRelatedInterestFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\IFindRelatedInterestFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\IScoreRelatedInterestFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\ILimitByInterestFilter.cs" />
+    <Compile Include="Contracts\Pipelines\UserSearch\Filters\IUserToScoredUserTransformFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\IUserSearchPipeline.cs" />
     <Compile Include="Contracts\Tasks\INotificationTasks.cs" />
     <Compile Include="Contracts\Tasks\IInterestTasks.cs" />
@@ -121,7 +123,6 @@
     <Compile Include="Contracts\Queries\IUsersByInterestsQuery.cs" />
     <Compile Include="Contracts\Tasks\IUserTasks.cs" />
     <Compile Include="Dtos\Interest\InterestKeywordDto.cs" />
-    <Compile Include="Dtos\User\OldUserSearchByInterestsDto.cs" />
     <Compile Include="Entities\UserInterest.cs" />
     <Compile Include="Entities\Interest.cs" />
     <Compile Include="Entities\User.cs" />

@@ -19,21 +19,25 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
             _interestRepository = interestRepository;
         }
 
-        public UserSearchPipelineResult Filter(UserSearchPipelineResult pipelineResult, User user = null, IList<string> additionalSearch = null)
+        public void Filter(UserSearchPipelineResult pipelineResult, User user = null, IList<string> additionalSearch = null)
         {
             if (pipelineResult == null) throw new ArgumentNullException("pipelineResult");
-            if (user == null) throw new ArgumentNullException("user");
-            if (additionalSearch == null) throw new ArgumentNullException("additionalSearch");
 
             var slugList = new List<string>();
-            slugList.AddRange(user.Interests.Select(x => x.Interest.Slug));
-            slugList.AddRange(additionalSearch);
+
+            if (user != null && user.Interests != null)
+            {
+                slugList.AddRange(user.Interests.Select(x => x.Interest.Slug));
+            }
+
+            if (additionalSearch != null)
+            {
+                slugList.AddRange(additionalSearch);
+            }
 
             var relatedInterestDtos = _interestRepository.GetRelatedInterests(slugList).ToList();
 
             pipelineResult.RelatedInterests = relatedInterestDtos;
-
-            return pipelineResult;
         }
     }
 }

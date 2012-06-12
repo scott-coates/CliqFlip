@@ -6,7 +6,7 @@ namespace CliqFlip.Domain.Dtos.User
 {
     public class UserSearchResultDto
     {
-        public float MatchCount { get; set; }
+        public float Score { get; set; }
         public IList<UserInterestDto> InterestDtos { get; set; }
         public string Username { get; set; }
         public string Bio { get; set; }
@@ -28,14 +28,16 @@ namespace CliqFlip.Domain.Dtos.User
             public string Slug { get; set; }
             public float? Passion { get; set; }
             public string DefaultImageUrl { get; set; }
+            public int InterestId { get; set; }
 
-            public UserInterestDto(UserInterest interests)
+            public UserInterestDto(UserInterest interest)
             {
-                Name = interests.Interest.Name;
-                Slug = interests.Interest.Slug;
-                Passion = interests.Options.Passion;
-                var defaultImage = interests.Media.FirstOrDefault() as Image;
+                Name = interest.Interest.Name;
+                Slug = interest.Interest.Slug;
+                Passion = interest.Options.Passion;
+                var defaultImage = interest.Media.FirstOrDefault() as Image;
                 DefaultImageUrl = defaultImage != null ? defaultImage.ImageData.MediumFileName : null;
+                InterestId = interest.Interest.Id;
             }
         }
     }

@@ -101,6 +101,8 @@
     <Compile Include="Pipelines\UserSearch\Filters\FindRelatedInterestFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\ScoreRelatedInterestFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\LimitByInterestFilter.cs" />
+    <Compile Include="Pipelines\UserSearch\Filters\SortByRelatedInterestFilter.cs" />
+    <Compile Include="Pipelines\UserSearch\Filters\UserToScoredUserTransformFilter.cs" />
     <Compile Include="Pipelines\UserSearch\UserSearchPipeline.cs" />
     <Compile Include="Queries\InterestJsonQuery.cs" />
     <Compile Include="TaskImpl\InterestTasks.cs" />

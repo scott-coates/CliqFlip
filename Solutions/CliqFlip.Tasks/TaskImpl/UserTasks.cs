@@ -73,25 +73,6 @@ namespace CliqFlip.Tasks.TaskImpl
 
 		#region IUserTasks Members
 
-        public IList<OldUserSearchByInterestsDto> GetUsersByInterestsDtos(IList<ScoredRelatedInterestDto> interests)
-		{
-            List<User> users = _userRepository
-                .GetUsersByInterests(interests
-                    .Select(x=>x.Id)
-                    .ToList())
-                .ToList();
-
-			return users.Select(user => new OldUserSearchByInterestsDto
-			{
-				MatchCount = user.Interests.Sum(x =>
-				{
-                    var foundInterest = interests.FirstOrDefault(y => y.Id == x.Interest.Id);
-				    return foundInterest != null ? foundInterest.Score : 0f;
-				}),
-				User = new OldUserSearchByInterestsDto.UserDto(user)
-			}).OrderByDescending(x => x.MatchCount).ToList();
-		}
-
 		public User Create(UserCreateDto userToCreate, LocationData location)
 		{
 			string salt = PasswordHelper.GenerateSalt(16); //TODO: should this be 32 - encapsulate this somehwere

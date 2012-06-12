@@ -42,9 +42,10 @@ namespace CliqFlip.Web.Mvc.Controllers
 		}
 
 		[Transaction]
+        [Authorize]
 		public ActionResult Index(string q, int? page)
 		{
-			var viewModel = _usersByInterestsQuery.GetGetUsersByInterests(q, page);
+			var viewModel = _usersByInterestsQuery.GetGetUsersByInterests(q, page, _principal.Identity.Name);
 
 			return View(viewModel);
 		}

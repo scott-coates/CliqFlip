@@ -14,8 +14,6 @@ namespace CliqFlip.Domain.Contracts.Tasks
 	public interface  IUserTasks
 	{
 		// ReSharper disable ReturnTypeCanBeEnumerable.Global
-        IList<OldUserSearchByInterestsDto> GetUsersByInterestsDtos(IList<ScoredRelatedInterestDto> interests);
-
 		User Create(UserCreateDto profileToCreate, LocationData location);
 
 		void Login(User user, bool stayLoggedIn);
