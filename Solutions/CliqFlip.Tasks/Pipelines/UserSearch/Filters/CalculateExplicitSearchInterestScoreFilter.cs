@@ -17,9 +17,6 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
             {
                 scoredRelatedInterestDto.Score *= Constants.EXPLICIT_SEARCH_INTEREST_MULTIPLIER;
             }
-
-            var belowThreshold = pipelineResult.ScoredInterests.Where(x => x.Score < Constants.EXPLICIT_SEARCH_INTEREST_THRESHOLD).ToList();
-            belowThreshold.ForEach(x => pipelineResult.ScoredInterests.Remove(x));
         }
     }
 }

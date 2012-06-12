@@ -19,6 +19,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
         private readonly ITransformUserToScoredUserFilter _transformUserToScoredUserFilter;
         private readonly IUserRepository _userRepository;
 
+        private readonly ILimitByExplicitSearchScoreFilter _limitByExplicitSearchScoreFilter;
         public UserSearchPipeline(IUserRepository userRepository,
                                   IFindTargetUsersRelatedInterestsFilter findTargetUsersRelatedInterestsFilter,
                                   ILimitByInterestFilter limitByInterestFilter,
@@ -30,7 +31,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
                                   ICalculateExplicitSearchInterestScoreFilter calculateExplicitSearchInterestScoreFilter,
                                   ICalculatedHighestScoredInterestFilter calculatedHighestScoredInterestFilter,
                                   ISortUserScoreFilter sortUserScoreFilter,
-                                  ILimitByTargetUserFilter limitByTargetUserFilter)
+                                  ILimitByTargetUserFilter limitByTargetUserFilter, ILimitByExplicitSearchScoreFilter limitByExplicitSearchScoreFilter)
         {
             _userRepository = userRepository;
             _findTargetUsersRelatedInterestsFilter = findTargetUsersRelatedInterestsFilter;
@@ -44,6 +45,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
             _calculatedHighestScoredInterestFilter = calculatedHighestScoredInterestFilter;
             _sortUserScoreFilter = sortUserScoreFilter;
             _limitByTargetUserFilter = limitByTargetUserFilter;
+            _limitByExplicitSearchScoreFilter = limitByExplicitSearchScoreFilter;
         }
 
         #region IUserSearchPipeline Members
@@ -73,6 +75,9 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
             _calculatedHighestScoredInterestFilter.Filter(retVal, request);
 
             /************ Limits/Constraints ******************/
+
+            //if explicit search, hide less relevant interests
+            _limitByExplicitSearchScoreFilter.Filter(retVal, request);
 
             //filter users by interests and related
             _limitByInterestFilter.Filter(retVal, request);

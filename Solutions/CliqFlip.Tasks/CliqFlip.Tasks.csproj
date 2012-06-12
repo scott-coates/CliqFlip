@@ -104,6 +104,7 @@
     <Compile Include="Pipelines\UserSearch\Filters\FindTargetUsersRelatedInterestsFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\CalculateExplicitSearchInterestScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\CalculateRelatedInterestScoreFilter.cs" />
+    <Compile Include="Pipelines\UserSearch\Filters\LimitByExplicitSearchScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\LimitByInterestFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\AssignInterestCommonalityScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\CalculatedHighestScoredInterestFilter.cs" />
