@@ -99,15 +99,16 @@
     <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Pipelines\UserSearch\Filters\AddLocationScoreFilter.cs" />
+    <Compile Include="Pipelines\UserSearch\Filters\CalculateLocationScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\FindRelatedInterestsFromKeywordSearchFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\FindTargetUsersRelatedInterestsFilter.cs" />
-    <Compile Include="Pipelines\UserSearch\Filters\ScoreExplicitSearchInterestFilter.cs" />
-    <Compile Include="Pipelines\UserSearch\Filters\ScoreRelatedInterestFilter.cs" />
+    <Compile Include="Pipelines\UserSearch\Filters\CalculateExplicitSearchInterestScoreFilter.cs" />
+    <Compile Include="Pipelines\UserSearch\Filters\CalculateRelatedInterestScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\LimitByInterestFilter.cs" />
-    <Compile Include="Pipelines\UserSearch\Filters\AddInterestCommonalityScoreFilter.cs" />
-    <Compile Include="Pipelines\UserSearch\Filters\TakeHighestScoredInterestFilter.cs" />
-    <Compile Include="Pipelines\UserSearch\Filters\UserToScoredUserTransformFilter.cs" />
+    <Compile Include="Pipelines\UserSearch\Filters\CalculateInterestCommonalityScoreFilter.cs" />
+    <Compile Include="Pipelines\UserSearch\Filters\CalculatedHighestScoredInterestFilter.cs" />
+    <Compile Include="Pipelines\UserSearch\Filters\SortUserScoreFilter.cs" />
+    <Compile Include="Pipelines\UserSearch\Filters\TransformUserToScoredUserFilter.cs" />
     <Compile Include="Pipelines\UserSearch\UserSearchPipeline.cs" />
     <Compile Include="Queries\InterestJsonQuery.cs" />
     <Compile Include="TaskImpl\InterestTasks.cs" />

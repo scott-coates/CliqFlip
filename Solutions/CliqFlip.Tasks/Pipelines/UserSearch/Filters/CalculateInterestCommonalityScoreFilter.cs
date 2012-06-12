@@ -5,7 +5,7 @@ using CliqFlip.Domain.Contracts.Pipelines.UserSearch.Filters;
 
 namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
 {
-    public class AddInterestCommonalityScoreFilter : IAddInterestCommonalityScoreFilter
+    public class CalculateInterestCommonalityScoreFilter : ICalculateInterestCommonalityScoreFilter
     {
         public void Filter(UserSearchPipelineResult pipelineResult)
         {
@@ -16,7 +16,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
                 user.Score += user.InterestDtos.Sum(
                     x =>
                     {
-                        var foundInterest = pipelineResult.ScoredInterests.FirstOrDefault(y => y.Id == x.InterestId);
+                        var foundInterest = pipelineResult.ScoredInterests.SingleOrDefault(y => y.Id == x.InterestId);
                         return foundInterest != null ? foundInterest.Score : 0f;
                     });
             }

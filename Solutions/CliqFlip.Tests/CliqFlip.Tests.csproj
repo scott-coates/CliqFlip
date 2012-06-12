@@ -96,9 +96,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLocatorInitializer.cs" />
     <Compile Include="Unit\Location\LocationServiceTests.cs" />
-    <Compile Include="Unit\Pipelines\UserSearch\TakeHighestScoredInterestFilterTests.cs" />
-    <Compile Include="Unit\Pipelines\UserSearch\ScoreExplicitSearchInterestFilterTests.cs" />
-    <Compile Include="Unit\Pipelines\UserSearch\ScoreRelatedInterestFilterTests.cs" />
+    <Compile Include="Unit\Pipelines\UserSearch\CalculatedHighestScoredInterestFilterTests.cs" />
+    <Compile Include="Unit\Pipelines\UserSearch\CalculateExplicitSearchInterestScoreFilterTests.cs" />
+    <Compile Include="Unit\Pipelines\UserSearch\CalculateRelatedInterestScoreFilterTests.cs" />
     <Compile Include="Unit\Syndication\FeedFinderTests.cs" />
     <Compile Include="Unit\Tasks\UserTaskTests.cs" />
   </ItemGroup>

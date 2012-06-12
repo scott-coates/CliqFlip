@@ -11,9 +11,9 @@ using NUnit.Framework;
 namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
 {
     [TestFixture]
-    public class ScoreRelatedInterestFilterTests
+    public class CalculateRelatedInterestScoreFilterTests
     {
-        private readonly IScoreRelatedInterestFilter _scoreRelatedInterestFilter = new ScoreRelatedInterestFilter();
+        private readonly ICalculateRelatedInterestScoreFilter _calculateRelatedInterestScoreFilter = new CalculateRelatedInterestScoreFilter();
         private static readonly int _maxHopsInverter = int.Parse(Constants.INTEREST_MAX_HOPS) + 1;
 
         [SetUp]
@@ -25,7 +25,7 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
         [ExpectedException(typeof (ArgumentNullException))]
         public void NullInputReturnsError()
         {
-            _scoreRelatedInterestFilter.Filter(null);
+            _calculateRelatedInterestScoreFilter.Filter(null);
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
                 }
             };
 
-            _scoreRelatedInterestFilter.Filter(userSearchPipelineResult);
+            _calculateRelatedInterestScoreFilter.Filter(userSearchPipelineResult);
 
             Assert.That(userSearchPipelineResult.ScoredInterests.Single().Score, Is.EqualTo(_maxHopsInverter));
         }
@@ -58,7 +58,7 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
                 }
             };
 
-            _scoreRelatedInterestFilter.Filter(userSearchPipelineResult);
+            _calculateRelatedInterestScoreFilter.Filter(userSearchPipelineResult);
 
             Assert.That(userSearchPipelineResult.ScoredInterests.Single().Score, Is.EqualTo(expectedScore));
         }

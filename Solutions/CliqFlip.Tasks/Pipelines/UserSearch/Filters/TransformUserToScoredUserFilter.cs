@@ -7,7 +7,7 @@ using CliqFlip.Domain.Dtos.User;
 
 namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
 {
-    public class UserToScoredUserTransformFilter : IUserToScoredUserTransformFilter
+    public class TransformUserToScoredUserFilter : ITransformUserToScoredUserFilter
     {
         public void Filter(UserSearchPipelineResult userSearchPipelineResult)
         {

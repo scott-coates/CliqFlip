@@ -6,7 +6,7 @@ using CliqFlip.Domain.Contracts.Pipelines.UserSearch.Filters;
 
 namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
 {
-    public class TakeHighestScoredInterestFilter : ITakeHighestScoredInterestFilter
+    public class CalculatedHighestScoredInterestFilter : ICalculatedHighestScoredInterestFilter
     {
         public void Filter(UserSearchPipelineResult pipelineResult)
         {

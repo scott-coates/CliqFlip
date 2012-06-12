@@ -1,6 +1,6 @@
 namespace CliqFlip.Domain.Contracts.Pipelines.UserSearch.Filters
 {
-    public interface IUserToScoredUserTransformFilter
+    public interface ITransformUserToScoredUserFilter
     {
         void Filter(UserSearchPipelineResult userSearchPipelineResult);
     }

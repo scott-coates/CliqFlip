@@ -10,7 +10,7 @@ using CliqFlip.Infrastructure.Repositories.Interfaces;
 
 namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
 {
-    public class ScoreRelatedInterestFilter : IScoreRelatedInterestFilter
+    public class CalculateRelatedInterestScoreFilter : ICalculateRelatedInterestScoreFilter
     {
         private static readonly int _maxHopsInverter = int.Parse(Constants.INTEREST_MAX_HOPS) + 1;
 

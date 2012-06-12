@@ -11,9 +11,9 @@ using NUnit.Framework;
 namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
 {
     [TestFixture]
-    public class ScoreExplicitSearchInterestFilterTests
+    public class CalculatedHighestScoredInterestFilterTests
     {
-        private readonly IScoreExplicitSearchInterestFilter _scoreExplicitSearchInterestFilter = new ScoreExplicitSearchInterestFilter();
+        private readonly ICalculatedHighestScoredInterestFilter _calculatedHighestScoredInterestFilter = new CalculatedHighestScoredInterestFilter();
 
         [SetUp]
         public void Setup()
@@ -21,21 +21,23 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
         }
 
         [Test]
-        public void ExplicitSearchIncreasesScore()
+        public void HighestInGroupIsReturned()
         {
-            var score1 = new ScoredRelatedInterestDto(0, 4, "") { ExplicitSearch = true };
+            var score1 = new ScoredRelatedInterestDto(1, 4f, "");
+            var score2 = new ScoredRelatedInterestDto(1, 16f, "");
 
             var userSearchPipelineResult = new UserSearchPipelineResult
             {
                 ScoredInterests = new List<ScoredRelatedInterestDto>
                 {
-                    score1
+                    score1,
+                    score2
                 }
             };
 
-            _scoreExplicitSearchInterestFilter.Filter(userSearchPipelineResult);
+            _calculatedHighestScoredInterestFilter.Filter(userSearchPipelineResult);
 
-            Assert.That(userSearchPipelineResult.ScoredInterests.Single().Score, Is.EqualTo(16));
+            Assert.That(userSearchPipelineResult.ScoredInterests.Single(), Is.EqualTo(score2));
         }
     }
 }
