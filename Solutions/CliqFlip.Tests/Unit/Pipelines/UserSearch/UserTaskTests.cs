@@ -44,14 +44,21 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
             Assert.That(userSearchPipelineResult.ScoredInterests.Single().Score, Is.EqualTo(_maxHopsInverter));
         }
 
-        //[TestCase("http://somewebsite.com/")]
-        //[TestCase("www.somewebsite.com/", ExpectedException = typeof(RulesException))]
-        //[TestCase("fake site", ExpectedException = typeof(RulesException))]
-        //[TestCase("", ExpectedException = typeof(ArgumentNullException))]
-        //public void InvalidUrlNotAccepted(string url)
-        //{
-        //    _userTasks.SaveWebsite(_user, url);
-        //    Assert.Pass("Website Url");
-        //}
+        [TestCase(0, new float[] { }, "", 4f)]
+        public void ScoreIsCalculatedCorrectly(int id, float[] weights, string slug, float expectedScore)
+        {
+            var constructedRelatedInterest = new WeightedRelatedInterestDto(id, weights.ToList(), slug);
+            var userSearchPipelineResult = new UserSearchPipelineResult
+            {
+                RelatedInterests = new List<WeightedRelatedInterestDto>
+                {
+                    constructedRelatedInterest
+                }
+            };
+
+            _scoreRelatedInterestFilter.Filter(userSearchPipelineResult);
+
+            Assert.That(userSearchPipelineResult.ScoredInterests.Single().Score, Is.EqualTo(expectedScore));
+        }
     }
 }
