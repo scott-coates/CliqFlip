@@ -82,5 +82,23 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
 
             Assert.That(userSearchPipelineResult.ScoredInterests.Single().Slug, Is.EqualTo(weight2.Slug));
         }
+
+        [Test]
+        public void ExplicitSearchIncreasesScore()
+        {
+            var weight1 = new WeightedRelatedInterestDto(0, new List<float> { .25f }, "") { ExplicitSearch = true };
+
+            var userSearchPipelineResult = new UserSearchPipelineResult
+            {
+                RelatedInterests = new List<WeightedRelatedInterestDto>
+                {
+                    weight1
+                }
+            };
+
+            _scoreRelatedInterestFilter.Filter(userSearchPipelineResult);
+
+            Assert.That(userSearchPipelineResult.ScoredInterests.Single().Score, Is.EqualTo(4));
+        }
     }
 }
