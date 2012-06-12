@@ -29,23 +29,11 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
                     score *= ret.Weight.Aggregate((f, f1) => f * f1);
                 }
 
-                if(ret.ExplicitSearch)
-                {
-                    //if it was expclitly searched for, give it priority
-                    score *= _maxHopsInverter;
-                }
-
-                var scoredInterest = new ScoredRelatedInterestDto(ret.Id, score, ret.Slug);
+                var scoredInterest = new ScoredRelatedInterestDto(ret.Id, score, ret.Slug) { ExplicitSearch = ret.ExplicitSearch };
                 scoredRelatedInterestDtos.Add(scoredInterest);
             }
 
-            //http://stackoverflow.com/a/4874031/173957
-            var highestScoredInterests = scoredRelatedInterestDtos
-                .GroupBy(x => x.Id, (y, z) => z.Aggregate((a, x) => a.Score > x.Score ? a : x))
-                .OrderByDescending(x => x.Score)
-                .ToList();
-
-            pipelineResult.ScoredInterests = highestScoredInterests;
+            pipelineResult.ScoredInterests = scoredRelatedInterestDtos;
         }
     }
 }

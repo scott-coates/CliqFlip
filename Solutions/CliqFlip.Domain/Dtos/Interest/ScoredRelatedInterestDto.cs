@@ -5,6 +5,7 @@
         public int Id { get; set; }
         public float Score { get; set; }
         public string Slug { get; set; }
+        public bool ExplicitSearch { get; set; }
 
         public ScoredRelatedInterestDto(int id, float score, string slug)
         {

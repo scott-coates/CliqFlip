@@ -85,6 +85,8 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Contracts\Pipelines\UserSearch\Filters\ITakeHighestScoredInterestFilter.cs" />
+    <Compile Include="Contracts\Pipelines\UserSearch\Filters\IScoreExplicitSearchInterestFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\IFindRelatedInterestsFromKeywordSearchFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\IAddLocationScoreFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\IAddInterestCommonalityScoreFilter.cs" />

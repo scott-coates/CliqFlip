@@ -102,9 +102,11 @@
     <Compile Include="Pipelines\UserSearch\Filters\AddLocationScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\FindRelatedInterestsFromKeywordSearchFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\FindTargetUsersRelatedInterestsFilter.cs" />
+    <Compile Include="Pipelines\UserSearch\Filters\ScoreExplicitSearchInterestFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\ScoreRelatedInterestFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\LimitByInterestFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\AddInterestCommonalityScoreFilter.cs" />
+    <Compile Include="Pipelines\UserSearch\Filters\TakeHighestScoredInterestFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\UserToScoredUserTransformFilter.cs" />
     <Compile Include="Pipelines\UserSearch\UserSearchPipeline.cs" />
     <Compile Include="Queries\InterestJsonQuery.cs" />
