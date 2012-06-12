@@ -6,6 +6,11 @@
 
 	<Import Project="$(MigratorTasksPath)\Migrator.Targets" />
 
+    <ItemGroup Condition="'$(ConnectionString)'!=''">
+        <!--Convert property to item group-->
+        <ConnectionString Include="$(ConnectionString)" />
+    </ItemGroup>
+    
 	<Target Name="Migrate">
 
 		<CreateProperty Value="-1"  Condition="'$(SchemaVersion)'==''">
