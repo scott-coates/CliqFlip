@@ -3,7 +3,7 @@ using CliqFlip.Domain.Entities;
 
 namespace CliqFlip.Domain.Contracts.Pipelines.UserSearch.Filters
 {
-    public interface ISortByRelatedInterestFilter
+    public interface IAddLocationScoreFilter
     {
         void Filter(UserSearchPipelineResult pipelineResult);
     }

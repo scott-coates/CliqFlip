@@ -14,21 +14,19 @@ using CliqFlip.Domain.Common;
 
 namespace CliqFlip.Web.Mvc.Queries
 {
-	public class UsersByInterestsQuery : IUsersByInterestsQuery
-	{
-		private readonly IUserTasks _userTasks;
-	    private readonly IInterestTasks _interestTasks;
+    public class UsersByInterestsQuery : IUsersByInterestsQuery
+    {
+        private readonly IUserTasks _userTasks;
         private readonly IHttpContextProvider _httpProvider;
-	    private readonly IUserSearchPipeline _userSearchPipeline;
-		public UsersByInterestsQuery(IUserTasks userTasks, IHttpContextProvider httpProvider, IInterestTasks interestTasks, IUserSearchPipeline userSearchPipeline)
-		{
-			_userTasks = userTasks;
+        private readonly IUserSearchPipeline _userSearchPipeline;
+        public UsersByInterestsQuery(IUserTasks userTasks, IHttpContextProvider httpProvider, IUserSearchPipeline userSearchPipeline)
+        {
+            _userTasks = userTasks;
             _httpProvider = httpProvider;
-		    _interestTasks = interestTasks;
-		    _userSearchPipeline = userSearchPipeline;
-		}
+            _userSearchPipeline = userSearchPipeline;
+        }
 
-		#region IUsersByInterestsQuery Members
+        #region IUsersByInterestsQuery Members
 
         public UsersByInterestViewModel GetGetUsersByInterests(string slugs, int? page, string username)
         {
@@ -38,31 +36,30 @@ namespace CliqFlip.Web.Mvc.Queries
 
             //NOTE: The slug string was lowered cased because if someone changed 'software' to 'Software' in the query string
             //      no matches would be found.
-			List<string> aliasCollection = slugs
-				.ToLower()
-				.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-				.ToList();
+            List<string> aliasCollection = slugs
+                .ToLower()
+                .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .ToList();
 
-            var userSearchPipelineResult = _userSearchPipeline.Execute(user, aliasCollection);
+            var userSearchPipelineResult = _userSearchPipeline.Execute(user, aliasCollection, user.Location.Data);
 
             List<string> interests = userSearchPipelineResult.ScoredInterests.Select(x => x.Slug).ToList();
 
             foreach (var foundUser in userSearchPipelineResult.Users)
-			{
-			    var indvResultViewModel = new UsersByInterestViewModel.IndividualResultViewModel(foundUser, interests);
+            {
+                var indvResultViewModel = new UsersByInterestViewModel.IndividualResultViewModel(foundUser, interests);
                 if (indvResultViewModel.ImageUrl == null)
-	            
                 {
                     indvResultViewModel.ImageUrl = UrlHelper.GenerateContentUrl(Constants.DEFAULT_PROFILE_IMAGE, _httpProvider.Context);
-	            }
-			
+                }
+
                 retVal.Results.Add(indvResultViewModel);
-			}
+            }
 
-			retVal.PagedResults = retVal.Results.AsPagination(page ?? 1, 8);
-			return retVal;
-		}
+            retVal.PagedResults = retVal.Results.AsPagination(page ?? 1, 8);
+            return retVal;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

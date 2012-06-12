@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
 using CliqFlip.Domain.Contracts.Pipelines.UserSearch;
 using CliqFlip.Domain.Contracts.Pipelines.UserSearch.Filters;
 using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ValueObjects;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
 
 namespace CliqFlip.Tasks.Pipelines.UserSearch
@@ -13,22 +15,24 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
         private readonly ILimitByInterestFilter _limitByInterestFilter;
         private readonly IScoreRelatedInterestFilter _scoreRelatedInterestFilter;
         private readonly IUserToScoredUserTransformFilter _userToScoredUserTransformFilter;
-        private readonly ISortByRelatedInterestFilter _sortByRelatedInterestFilter;
+        private readonly IAddInterestCommonalityScoreFilter _addInterestCommonalityScoreFilter;
+        private readonly IAddLocationScoreFilter _addLocationScoreFilter;
 
-        public UserSearchPipeline(IUserRepository userRepository, IFindRelatedInterestFilter findRelatedInterestFilter, ILimitByInterestFilter limitByInterestFilter, IScoreRelatedInterestFilter scoreRelatedInterestFilter, IUserToScoredUserTransformFilter userToScoredUserTransformFilter, ISortByRelatedInterestFilter sortByRelatedInterestFilter)
+        public UserSearchPipeline(IUserRepository userRepository, IFindRelatedInterestFilter findRelatedInterestFilter, ILimitByInterestFilter limitByInterestFilter, IScoreRelatedInterestFilter scoreRelatedInterestFilter, IUserToScoredUserTransformFilter userToScoredUserTransformFilter, IAddInterestCommonalityScoreFilter addInterestCommonalityScoreFilter, IAddLocationScoreFilter addLocationScoreFilter)
         {
             _userRepository = userRepository;
             _findRelatedInterestFilter = findRelatedInterestFilter;
             _limitByInterestFilter = limitByInterestFilter;
             _scoreRelatedInterestFilter = scoreRelatedInterestFilter;
             _userToScoredUserTransformFilter = userToScoredUserTransformFilter;
-            _sortByRelatedInterestFilter = sortByRelatedInterestFilter;
+            _addInterestCommonalityScoreFilter = addInterestCommonalityScoreFilter;
+            _addLocationScoreFilter = addLocationScoreFilter;
         }
 
-        public UserSearchPipelineResult Execute(User user = null, IList<string> additionalSearch = null)
+        public UserSearchPipelineResult Execute(User user = null, IList<string> additionalSearch = null, LocationData data = null)
         {
             //start with list of users
-            var retVal = new UserSearchPipelineResult { UserQuery = _userRepository.FindAll() };
+            var retVal = new UserSearchPipelineResult { UserQuery = _userRepository.FindAll(), LocationData = data };
 
             //run filter to query potential interests 
             _findRelatedInterestFilter.Filter(retVal, user, additionalSearch);
@@ -43,7 +47,15 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
             _userToScoredUserTransformFilter.Filter(retVal);
 
             //sort users by interests points
-            _sortByRelatedInterestFilter.Filter(retVal);
+            _addInterestCommonalityScoreFilter.Filter(retVal);
+
+            _addLocationScoreFilter.Filter(retVal);
+
+            //order by scores
+            retVal.Users = retVal
+                .Users
+                .OrderByDescending(x => x.Score)
+                .ToList();
 
             return retVal;
         }

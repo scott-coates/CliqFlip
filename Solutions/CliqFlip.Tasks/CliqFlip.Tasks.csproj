@@ -82,6 +82,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -98,10 +99,11 @@
     <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Pipelines\UserSearch\Filters\AddLocationScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\FindRelatedInterestFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\ScoreRelatedInterestFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\LimitByInterestFilter.cs" />
-    <Compile Include="Pipelines\UserSearch\Filters\SortByRelatedInterestFilter.cs" />
+    <Compile Include="Pipelines\UserSearch\Filters\AddInterestCommonalityScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\UserToScoredUserTransformFilter.cs" />
     <Compile Include="Pipelines\UserSearch\UserSearchPipeline.cs" />
     <Compile Include="Queries\InterestJsonQuery.cs" />
