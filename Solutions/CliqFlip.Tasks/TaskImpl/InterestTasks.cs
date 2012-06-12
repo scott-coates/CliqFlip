@@ -21,7 +21,6 @@ namespace CliqFlip.Tasks.TaskImpl
     {
         private readonly IInterestRepository _interestRepository;
         private readonly IUserInterestRepository _userInterestRepository;
-        private static readonly int _maxHopsInverter = int.Parse(Constants.INTEREST_MAX_HOPS) + 1;
 
         public InterestTasks(IInterestRepository interestRepository, IUserInterestRepository userInterestRepository)
         {
@@ -120,10 +119,16 @@ namespace CliqFlip.Tasks.TaskImpl
                         x =>
                         {
                             string interestName1 = x[0].Value;
+                            
+                            if (string.IsNullOrWhiteSpace(interestName1)) throw new RulesException("Interest 1","Interest cannot be missing");
+
                             var interest = _interestRepository.GetByName(interestName1) ?? Create(interestName1, null);
                             var dto1 = new RelatedInterestListDto.RelatedInterestDto(interest.Id, null, interest.Name, interest.Slug);
 
                             string interestName2 = x[1].Value;
+
+                            if (string.IsNullOrWhiteSpace(interestName2)) throw new RulesException("Interest 2", "Interest cannot be missing");
+
                             interest = _interestRepository.GetByName(interestName2) ?? Create(interestName2, null);
                             var dto2 = new RelatedInterestListDto.RelatedInterestDto(interest.Id, null, interest.Name, interest.Slug);
 
