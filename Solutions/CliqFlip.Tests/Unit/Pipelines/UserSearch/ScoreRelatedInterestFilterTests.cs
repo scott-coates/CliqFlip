@@ -44,12 +44,12 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
             Assert.That(userSearchPipelineResult.ScoredInterests.Single().Score, Is.EqualTo(_maxHopsInverter));
         }
 
-        [TestCase(0, new float[] { }, "", 4f)]
-        [TestCase(0, new[] { .25f, .75f }, "", .75f)]
-        [TestCase(0, new[] { .25f, .75f, .75f }, "", .5625f)]
-        public void ScoreIsCalculatedCorrectly(int id, float[] weights, string slug, float expectedScore)
+        [TestCase(new float[] { }, 4f)]
+        [TestCase(new[] { .25f, .75f }, .75f)]
+        [TestCase(new[] { .25f, .75f, .75f }, .5625f)]
+        public void ScoreIsCalculatedCorrectly(float[] weights, float expectedScore)
         {
-            var constructedRelatedInterest = new WeightedRelatedInterestDto(id, weights.ToList(), slug);
+            var constructedRelatedInterest = new WeightedRelatedInterestDto(0, weights.ToList(), "");
             var userSearchPipelineResult = new UserSearchPipelineResult
             {
                 RelatedInterests = new List<WeightedRelatedInterestDto>

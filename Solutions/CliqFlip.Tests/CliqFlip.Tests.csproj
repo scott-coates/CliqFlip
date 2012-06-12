@@ -96,7 +96,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLocatorInitializer.cs" />
     <Compile Include="Unit\Location\LocationServiceTests.cs" />
-    <Compile Include="Unit\Pipelines\UserSearch\UserTaskTests.cs" />
+    <Compile Include="Unit\Pipelines\UserSearch\ScoreRelatedInterestFilterTests.cs" />
     <Compile Include="Unit\Syndication\FeedFinderTests.cs" />
     <Compile Include="Unit\Tasks\UserTaskTests.cs" />
   </ItemGroup>
