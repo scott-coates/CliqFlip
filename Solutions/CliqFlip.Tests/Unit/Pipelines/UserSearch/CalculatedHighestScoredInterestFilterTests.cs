@@ -23,8 +23,8 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
         [Test]
         public void HighestInGroupIsReturned()
         {
-            var score1 = new ScoredRelatedInterestDto(1, 4f, "", false);
-            var score2 = new ScoredRelatedInterestDto(1, 16f, "", false);
+            var score1 = new ScoredRelatedInterestDto(1, 4f, "", false, false);
+            var score2 = new ScoredRelatedInterestDto(1, 16f, "", false, false);
 
             var userSearchPipelineResult = new UserSearchPipelineResult
             {
