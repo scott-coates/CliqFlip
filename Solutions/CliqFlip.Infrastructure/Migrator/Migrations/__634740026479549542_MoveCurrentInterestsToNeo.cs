@@ -29,7 +29,7 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 						SqlId = int.Parse(reader["Id"].ToString()),
 						Slug = reader["Slug"].ToString(),
 						Description = reader["Description"].ToString(),
-						IsMainCategory = reader["IsMainCategory"].ToString() == "1"
+                        IsMainCategory = (bool)reader["IsMainCategory"]
 					};
 
 					var ixEntry = new IndexEntry
