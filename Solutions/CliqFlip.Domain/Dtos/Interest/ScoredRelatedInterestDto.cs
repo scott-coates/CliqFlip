@@ -8,11 +8,12 @@
         public bool ExplicitSearch { get; set; }
         public bool IsMainCategory { get; set; }
 
-        public ScoredRelatedInterestDto(int id, float score, string slug)
+        public ScoredRelatedInterestDto(int id, float score, string slug, bool isMainCategory)
         {
             Id = id;
             Score = score;
             Slug = slug;
+            IsMainCategory = isMainCategory;
         }
     }
 }

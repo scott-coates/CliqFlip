@@ -23,7 +23,7 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
         [Test]
         public void ExplicitSearchIncreasesScore()
         {
-            var score1 = new ScoredRelatedInterestDto(0, 4, "") { ExplicitSearch = true };
+            var score1 = new ScoredRelatedInterestDto(0, 4, "", false) { ExplicitSearch = true };
 
             var userSearchPipelineResult = new UserSearchPipelineResult
             {

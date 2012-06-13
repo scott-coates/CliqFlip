@@ -60,7 +60,7 @@ namespace CliqFlip.Infrastructure.Repositories
             var relatedInterests = _graphClient.ExecuteGetCypherResults<NeoInterestRelatedDistanceGraphQuery>(query);
 
             var retVal = relatedInterests
-                .Select(x => new WeightedRelatedInterestDto(x.SqlId, x.Weight, x.Slug, false))
+                .Select(x => new WeightedRelatedInterestDto(x.SqlId, x.Weight, x.Slug, x.IsMainCategory))
                 .AsQueryable();
 
             return retVal;
