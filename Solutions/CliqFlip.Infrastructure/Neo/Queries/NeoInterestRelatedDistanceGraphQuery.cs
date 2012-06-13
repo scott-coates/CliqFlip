@@ -9,5 +9,6 @@ namespace CliqFlip.Infrastructure.Neo.Queries
         public string Slug { get; set; }
         public int SqlId { get; set; }
         public List<float> Weight { get; set; }
+        public bool IsMainCategory { get; set; }
 	}
 }

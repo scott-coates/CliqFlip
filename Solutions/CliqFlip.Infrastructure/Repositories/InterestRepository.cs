@@ -23,7 +23,7 @@ namespace CliqFlip.Infrastructure.Repositories
     public class InterestRepository : LinqRepository<Interest>, IInterestRepository
     {
         private readonly IGraphClient _graphClient;
-        
+
         public InterestRepository(IGraphClient graphClient)
         {
             _graphClient = graphClient;
@@ -42,7 +42,11 @@ namespace CliqFlip.Infrastructure.Repositories
             const string queryText = @"
                 START n = node:interests({p0})
                 MATCH p = n-[r:INTEREST_RELATES_TO*0.." + Constants.INTEREST_MAX_HOPS + @"]-(x)
-                RETURN x.SqlId AS SqlId, x.Slug AS Slug, extract(r in relationships(p) : r.Weight) AS Weight
+                RETURN 
+                    x.SqlId AS SqlId,
+                    x.Slug AS Slug,
+                    x.IsMainCategory AS IsMainCategory,
+                    extract(r in relationships(p) : r.Weight) AS Weight
                 ORDER BY x.Slug";
 
             var query = new CypherQuery(
@@ -54,9 +58,9 @@ namespace CliqFlip.Infrastructure.Repositories
                 CypherResultMode.Projection);
 
             var relatedInterests = _graphClient.ExecuteGetCypherResults<NeoInterestRelatedDistanceGraphQuery>(query);
-            
+
             var retVal = relatedInterests
-                .Select(x => new WeightedRelatedInterestDto(x.SqlId,x.Weight,x.Slug))
+                .Select(x => new WeightedRelatedInterestDto(x.SqlId, x.Weight, x.Slug, false))
                 .AsQueryable();
 
             return retVal;

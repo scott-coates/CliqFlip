@@ -35,7 +35,7 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
             {
                 RelatedInterests = new List<WeightedRelatedInterestDto>
                 {
-                    new WeightedRelatedInterestDto(0, new List<float>(), "")
+                    new WeightedRelatedInterestDto(0, new List<float>(), "", false)
                 }
             };
 
@@ -49,7 +49,7 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
         [TestCase(new[] { .25f, .75f, .75f }, .5625f)]
         public void ScoreIsCalculatedCorrectly(float[] weights, float expectedScore)
         {
-            var constructedRelatedInterest = new WeightedRelatedInterestDto(0, weights.ToList(), "");
+            var constructedRelatedInterest = new WeightedRelatedInterestDto(0, weights.ToList(), "", false);
             var userSearchPipelineResult = new UserSearchPipelineResult
             {
                 RelatedInterests = new List<WeightedRelatedInterestDto>

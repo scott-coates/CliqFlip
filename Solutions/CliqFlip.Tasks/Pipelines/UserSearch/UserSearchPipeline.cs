@@ -18,6 +18,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
         private readonly ISortUserScoreFilter _sortUserScoreFilter;
         private readonly ITransformUserToScoredUserFilter _transformUserToScoredUserFilter;
         private readonly IUserRepository _userRepository;
+        private readonly ICalculateMainCategoryInterestScoreFilter _calculateMainCategoryInterestScoreFilter;
 
         private readonly ILimitByExplicitSearchScoreFilter _limitByExplicitSearchScoreFilter;
         public UserSearchPipeline(IUserRepository userRepository,
@@ -31,7 +32,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
                                   ICalculateExplicitSearchInterestScoreFilter calculateExplicitSearchInterestScoreFilter,
                                   ICalculatedHighestScoredInterestFilter calculatedHighestScoredInterestFilter,
                                   ISortUserScoreFilter sortUserScoreFilter,
-                                  ILimitByTargetUserFilter limitByTargetUserFilter, ILimitByExplicitSearchScoreFilter limitByExplicitSearchScoreFilter)
+                                  ILimitByTargetUserFilter limitByTargetUserFilter, ILimitByExplicitSearchScoreFilter limitByExplicitSearchScoreFilter, ICalculateMainCategoryInterestScoreFilter calculateMainCategoryInterestScoreFilter)
         {
             _userRepository = userRepository;
             _findTargetUsersRelatedInterestsFilter = findTargetUsersRelatedInterestsFilter;
@@ -46,6 +47,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
             _sortUserScoreFilter = sortUserScoreFilter;
             _limitByTargetUserFilter = limitByTargetUserFilter;
             _limitByExplicitSearchScoreFilter = limitByExplicitSearchScoreFilter;
+            _calculateMainCategoryInterestScoreFilter = calculateMainCategoryInterestScoreFilter;
         }
 
         #region IUserSearchPipeline Members
@@ -70,6 +72,9 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
 
             //score interests based on explicit search
             _calculateExplicitSearchInterestScoreFilter.Filter(retVal, request);
+
+            //main categories get less points - too vague
+            _calculateMainCategoryInterestScoreFilter.Filter(retVal, request);
 
             //keep only the highest scored interests
             _calculatedHighestScoredInterestFilter.Filter(retVal, request);
