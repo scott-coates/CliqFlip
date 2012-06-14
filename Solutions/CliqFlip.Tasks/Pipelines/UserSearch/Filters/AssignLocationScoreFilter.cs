@@ -20,15 +20,17 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
 
             foreach (var user in pipelineResult.Users)
             {
-                var distanceTo = (float) geo.GetDistanceTo(new GeoCoordinate(user.Latitude, user.Longitude));
+                var distanceTo = (float)geo.GetDistanceTo(new GeoCoordinate(user.Latitude, user.Longitude));
 
                 float miles = distanceTo / _metersToMiles;
 
-                var res = (int) Math.Round(miles, 0, MidpointRounding.AwayFromZero);
+                var res = (int)Math.Round(miles, 0, MidpointRounding.AwayFromZero);
 
-                float locationMultiplier = res * Constants.LOCATION_MILE_MULTIPLIER;
-
-                user.Score -= locationMultiplier;
+                float locationMultiplier = (Constants.LOCATION_MAX_MILES - res) * Constants.LOCATION_MILE_MULTIPLIER;
+                if(Math.Abs(locationMultiplier) > float.Epsilon) //float precision - if not 0
+                {
+                    user.Score *= locationMultiplier;
+                }
             }
         }
     }
