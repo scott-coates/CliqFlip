@@ -31,6 +31,10 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
                 {
                     user.Score *= locationMultiplier;
                 }
+                else
+                {
+                    user.Score *= float.Epsilon;
+                }
             }
         }
     }
