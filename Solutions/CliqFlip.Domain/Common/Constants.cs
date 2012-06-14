@@ -25,7 +25,7 @@ namespace CliqFlip.Domain.Common
         /*User Search Pipeline*/
         public const string INTEREST_MAX_HOPS = "3";
         public const float MAIN_CATEGORY_INTEREST_MULTIPLIER = .5f;
-        public static readonly float[] EXPLICIT_SEARCH_INTEREST_MULTIPLIER = new[]{ 3f, 1.5f };
+        public static readonly float[] EXPLICIT_SEARCH_INTEREST_MULTIPLIER = new[]{ 5f, 3f };
 
         //anything over INTEREST_MAX_HOPS + 1 will not allow an interest unless it was explicitly searched for
         public const float EXPLICIT_SEARCH_INTEREST_THRESHOLD = 4;
