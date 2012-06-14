@@ -29,7 +29,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
                     score *= ret.Weight.Aggregate((f, f1) => f * f1);
                 }
 
-                var scoredInterest = new ScoredRelatedInterestDto(ret.Id, score, ret.Slug, ret.IsMainCategory, ret.ExplicitSearch);
+                var scoredInterest = new ScoredRelatedInterestDto(ret.Id, score, ret.Slug, ret.IsMainCategory, ret.ExplicitSearch, ret.Weight.Count);
                 scoredRelatedInterestDtos.Add(scoredInterest);
             }
 

@@ -23,7 +23,7 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
         [Test]
         public void ExplicitSearchIncreasesScore()
         {
-            var score1 = new ScoredRelatedInterestDto(0, 4, "", false, true);
+            var score1 = new ScoredRelatedInterestDto(0, 4, "", false, true, 0);
 
             var userSearchPipelineResult = new UserSearchPipelineResult
             {
@@ -35,7 +35,7 @@ namespace CliqFlip.Tests.Unit.Pipelines.UserSearch
 
             _calculateExplicitSearchInterestScoreFilter.Filter(userSearchPipelineResult, null);
 
-            Assert.That(userSearchPipelineResult.ScoredInterests.Single().Score, Is.EqualTo(40f));
+            Assert.That(userSearchPipelineResult.ScoredInterests.Single().Score, Is.EqualTo(12f));
         }
     }
 }
