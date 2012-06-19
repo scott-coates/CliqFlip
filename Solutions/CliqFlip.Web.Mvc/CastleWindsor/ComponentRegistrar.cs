@@ -6,14 +6,12 @@ using Castle.Facilities.FactorySupport;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using CliqFlip.Domain.Common;
-using CliqFlip.Web.Mvc.RestSharp;
 using Neo4jClient;
 using SharpArch.Domain.Commands;
 using SharpArch.Domain.PersistenceSupport;
 using SharpArch.NHibernate;
 using SharpArch.NHibernate.Contracts.Repositories;
 using SharpArch.Web.Mvc.Castle;
-using CliqFlip.Infrastructure.Authentication;
 
 namespace CliqFlip.Web.Mvc.CastleWindsor
 {
@@ -67,24 +65,9 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
 							.For<IGraphClient>()
 							.LifeStyle.Singleton.UsingFactoryMethod(() =>
 							{
-							    GraphClient graphClient;
 							    string connectionString = WebConfigurationManager.ConnectionStrings[Constants.GRAPH_URL].ConnectionString;
 							    var rootUri = new Uri(connectionString);
-							    string userInfo = rootUri.UserInfo; //username/pass for basic auth
-							    if(string.IsNullOrWhiteSpace(userInfo))
-                                {
-                                    graphClient = new GraphClient(rootUri);
-                                }
-                                else
-                                {
-                                    //remove the @
-                                    connectionString = connectionString.Replace(userInfo + "@", "");
-
-                                    rootUri = new Uri(connectionString);
-
-                                    string[] userInfos = userInfo.Split(':');
-                                    graphClient = new GraphClient(rootUri, new CliqFlipHttpFactory(userInfos[0], userInfos[1], rootUri));
-                                }
+                                var graphClient = new GraphClient(rootUri);
 								graphClient.Connect();
 								return graphClient;
 							}));
