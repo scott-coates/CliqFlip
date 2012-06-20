@@ -42,6 +42,12 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return View();
 		}
 
+        [AllowAnonymous]
+        public ActionResult Bootstrap()
+        {
+            return View();
+        }
+
 		[AllowAnonymous]
 		public ActionResult Invite(string inviteKey)
 		{
