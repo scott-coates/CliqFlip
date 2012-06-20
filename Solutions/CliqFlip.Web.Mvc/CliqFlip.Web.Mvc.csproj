@@ -339,9 +339,28 @@
     <Content Include="Content\assets\js\admin\interest\interest.js" />
     <Content Include="Content\assets\js\bookmarklet\bookmarklet.js" />
     <Content Include="Content\assets\js\bookmarklet\bookmarklet.min.js" />
-    <Content Include="Content\assets\js\cliqFlip\template.js" />
-    <Content Include="Content\assets\js\cliqFlip\tos.js" />
-    <Content Include="Content\assets\js\cliqFlip\error-handler.js" />
+    <Content Include="Content\assets\js\cliqflip\admin\interest\interest.js" />
+    <Content Include="Content\assets\js\cliqflip\bookmarklet\bookmarklet.js" />
+    <Content Include="Content\assets\js\cliqflip\bookmarklet\bookmarklet.min.js" />
+    <Content Include="Content\assets\js\cliqflip\main\error-handler.js" />
+    <Content Include="Content\assets\js\cliqflip\main\login.js" />
+    <Content Include="Content\assets\js\cliqflip\main\template.js" />
+    <Content Include="Content\assets\js\cliqflip\main\tos.js" />
+    <Content Include="Content\assets\js\cliqflip\main\ui.js" />
+    <Content Include="Content\assets\js\cliqflip\main\validate.js" />
+    <Content Include="Content\assets\js\cliqflip\search\index.js" />
+    <Content Include="Content\assets\js\cliqflip\search\interest-search.js" />
+    <Content Include="Content\assets\js\cliqflip\user\account.js" />
+    <Content Include="Content\assets\js\cliqflip\user\add-interest.js" />
+    <Content Include="Content\assets\js\cliqflip\user\create.js" />
+    <Content Include="Content\assets\js\cliqflip\user\inbox.js" />
+    <Content Include="Content\assets\js\cliqflip\user\interests.js" />
+    <Content Include="Content\assets\js\cliqflip\user\landing.js" />
+    <Content Include="Content\assets\js\cliqflip\user\profile.js" />
+    <Content Include="Content\assets\js\cliqflip\user\socialmedia.js" />
+    <Content Include="Content\assets\js\cliqflip\user\thank-you.js" />
+    <Content Include="Content\assets\js\cliqflip\validation\jquery.validate.collection-not-empty.js" />
+    <Content Include="Content\assets\js\cliqflip\validation\jquery.validate.must-be-true.js" />
     <Content Include="Content\assets\js\hogan\hogan.js" />
     <Content Include="Content\assets\js\jquery\jquery.anythingslider.fx.js" />
     <Content Include="Content\assets\js\jquery\jquery.anythingslider.js" />
@@ -562,8 +581,6 @@
     <Content Include="Content\assets\img\twitter_icon57.png" />
     <Content Include="Content\assets\img\underline.png" />
     <Content Include="Content\assets\img\zoom.png" />
-    <Content Include="Content\assets\js\cliqFlip\ui.js" />
-    <Content Include="Content\assets\js\cliqFlip\validate.js" />
     <Content Include="Content\assets\js\colorbox\colorbox.css" />
     <Content Include="Content\assets\js\colorbox\images\border.png" />
     <Content Include="Content\assets\js\colorbox\images\controls.png" />
@@ -580,7 +597,6 @@
     <Content Include="Content\assets\js\colorbox\images\overlay.png" />
     <Content Include="Content\assets\js\colorbox\jquery.colorbox-min.js" />
     <Content Include="Content\assets\js\colorbox\jquery.colorbox.js" />
-    <Content Include="Content\assets\js\cliqFlip\login.js" />
     <Content Include="Content\assets\js\search\interest-search.js" />
     <Content Include="Content\assets\js\raphael\raphael.cliqFlip.js" />
     <Content Include="Content\assets\js\user\profile.js" />
@@ -597,15 +613,16 @@
     <Content Include="Content\assets\styles\skins\red-cScheme.css" />
     <Content Include="Content\assets\styles\skitter.styles.css" />
     <Content Include="Global.asax" />
-    <Content Include="Content\assets\js\raphael\raphael-min.js" />
-    <Content Include="Content\assets\js\raphael\raphael.js" />
     <Content Include="Scripts\backbone.js" />
-    <Content Include="Scripts\backbone.min.js" />
     <Content Include="Scripts\jquery-1.7.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.2.js" />
-    <Content Include="Scripts\jquery-1.7.2.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\raphael.js" />
     <Content Include="Scripts\underscore.js" />
-    <Content Include="Scripts\underscore.min.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -637,7 +654,9 @@
     <Folder Include="Content\app\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>

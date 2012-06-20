@@ -101,7 +101,6 @@
       <HintPath>..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib\Migrator.Providers.dll</HintPath>
     </Reference>
     <Reference Include="Neo4jClient, Version=1.0.0.369, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Packages\Neo4jClient.1.0.0.369\lib\Neo4jClient.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
