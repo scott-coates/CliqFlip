@@ -1,20 +1,25 @@
 ﻿@{
-    ViewBag.Title = "CliqFlip - Discover More";
+	ViewBag.Title = "CliqFlip - Discover More";
 }
-@{
-    Bundles.AddInlineScript("#user-register { display: inline; }");
+@section beforeHeadClose
+{
+	<style type="text/css">
+		#user-register
+		{
+			display: inline;
+		}
+	</style>
 }
-
 <!-- SLIDER TRYOUT START-->
 <div class="tryout" style="margin-bottom: 200px;">
-    <div class="header">
-        @Html.Raw(ViewBag.InviteMessage)
-    </div>
-    <div class="subheader">
-        @Html.Raw("Thank you for joining the " + ViewBag.InviteKey + " beta program!")
-        <br/>
-        <br/>
-        Click the "Register Now!" to get started!
-        @Html.ActionLink("Register Now!", "Create", "User", null, new { id = "user-register-now" })
-    </div>
+	<div class="header">
+		@Html.Raw(ViewBag.InviteMessage)
+	</div>
+	<div class="subheader">
+		@Html.Raw("Thank you for joining the " + ViewBag.InviteKey + " beta program!")
+		<br/>
+		<br/>
+		Click the "Register Now!" to get started!
+		@Html.ActionLink("Register Now!", "Create", "User", null, new { id = "user-register-now" })
+	</div>
 </div>

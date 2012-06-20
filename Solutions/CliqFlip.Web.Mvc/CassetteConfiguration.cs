@@ -21,14 +21,13 @@ namespace CliqFlip.Web.Mvc
 
             //put all of cliqflip in one file
             bundles.Add<ScriptBundle>("Content/assets/js/cliqflip", new FileSearch { Exclude = new Regex("js\\cliqflip\\error-handler.js") });
-            bundles.Add<ScriptBundle>("Content/assets/js/cliqflip/error-handler.js", bundle => bundle.PageLocation = "head");
+            bundles.Add<ScriptBundle>("Content/assets/js/cliqflip/main/error-handler.js", bundle => bundle.PageLocation = "head");
 
             //NuGet
             bundles.Add<ScriptBundle>("Scripts", new FileSearch { Exclude = new Regex("modernizr") });
 
             //only modernizr
-            //http://stackoverflow.com/questions/1153856/string-negation-using-regular-expressions
-            bundles.Add<ScriptBundle>("Scripts", new FileSearch { Exclude = new Regex("^(?!.*modernizr).*$") }, bundle => bundle.PageLocation = "head");
+            bundles.Add<ScriptBundle>("Scripts/modernizr-2.5.3.js", bundle => bundle.PageLocation = "head");
 
             //templates
             bundles.Add<HtmlTemplateBundle>("Content/assets/templates", bundle => bundle.Processor = new HoganPipeline());

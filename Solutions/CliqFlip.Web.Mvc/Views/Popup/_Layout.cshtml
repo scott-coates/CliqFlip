@@ -1,38 +1,43 @@
-@{
-    Bundles.Reference("Content/assets/styles");
-    Bundles.Reference("Scripts");
-    Bundles.Reference("Content/assets/js");
-}
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
-    <head runat="server">
-        <meta charset="UTF-8" />
-        <meta name="description" content="CliqFlip is a social platform that connects people
+	<head runat="server">
+		<meta charset="UTF-8" />
+		<meta name="description" content="CliqFlip is a social platform that connects people
 	on sociality, personality, and commonalitys" />
-        <meta name="keywords" content="cliqflip, sociality, personality, commonality" />
-        <link rel="shortcut icon" href="@Url.Content("/favicon.ico")" type="image/x-icon" />
-        <title>@ViewBag.Title</title>
-        <!-- Website Styles -->
-        @Bundles.RenderStylesheets()
-        @{
-            Bundles.AddPageData("window.logErrorUrl", Url.Action("LogJavaScriptError", "Error", new { area = "" }));
-        }
-        @Bundles.RenderScripts("head") @*check cassette config file*@
-        <!-- IE HTML5 Hack -->
-        <!--[if lt IE 9]>
-            <script src="//html5shim.googlecode.com/svn/trunk/html5.js"> </script>
-        <![endif]-->
-        <!-- Google Font -->
-        <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
-        <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet'type='text/css' />
-        @HtmlExtensions.GetAnalyticsHtmlIfAvailable()
-    </head>
-    <body>
-        <div id="main-container">
-            <div class="box">
-                @RenderBody()
-            </div>
-        </div>		
-        @Bundles.RenderScripts()
-    </body>
+		<meta name="keywords" content="cliqflip, sociality, personality, commonality" />
+		<link rel="shortcut icon" href="@Url.Content("/favicon.ico")" type="image/x-icon" />
+		<title>@ViewBag.Title</title>
+		<!-- Website Styles -->
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.ContentWithVersioning("/Content/assets/styles/skins/default-dark.css")" />
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.ContentWithVersioning("/Content/assets/styles/skins/blue-cScheme.css")" />
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/assets/styles/jquery-ui/jquery-ui-1.8.18.custom.css")" />
+		<!-- IE HTML5 Hack -->
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"> </script>
+		<![endif]-->
+		<!-- Google Font -->
+		<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
+		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet'
+			  type='text/css' />
+		<script type="text/javascript">
+			window.logErrorUrl = '@Url.Action("LogJavaScriptError", "Error", new {area = ""})';
+		</script>
+		<script type="text/javascript" src="@Url.Content("~/Content/assets/js/cliqflip/main/error-handler.js")"> </script>
+		@HtmlExtensions.GetAnalyticsHtmlIfAvailable()
+		@RenderSection("beforeHeadClose", false)
+	</head>
+	<body>
+		<div id="main-container">
+			<div class="box">
+			@RenderBody()
+			</div>
+		</div>		
+		<!-- Scripts -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"> </script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"> </script>
+		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"> </script>
+		@RenderSection("beforeBodyClose", false)
+	</body>
 </html>

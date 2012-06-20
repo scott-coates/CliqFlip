@@ -1,5 +1,5 @@
 ﻿@using CliqFlip.Web.Mvc.ViewModels.Search
-@model UsersByInterestViewModel
+@model CliqFlip.Web.Mvc.ViewModels.Search.UsersByInterestViewModel
 
 
 @helper GetCssClass(int interestsWithImages)
@@ -50,6 +50,11 @@
 	</div>
 }
 
+@section  beforeHeadClose
+{
+	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("~/Content/assets/styles/plugins/autoSuggest.css")" />
+}
+
 @if (Model.Results.Count > 0)
 {
 	<div id="userSearchResults">
@@ -97,10 +102,14 @@ else
 	</div>
 }
 
-
-@Bundles.RenderScripts(@<text>)
 @section beforeBodyClose
 {
+	<script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery.autoSuggest.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery.tagcloud.js")"> </script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery.anythingslider.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Content/assets/js/cliqflip/search/interest-search.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery.dotdotdot-1.2.1.js")"> </script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/cliqflip/search/index.js")"> </script>
 	
 	<script type="text/javascript">
 	    $(document).ready(function () {

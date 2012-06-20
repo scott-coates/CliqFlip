@@ -1,8 +1,3 @@
-@{
-    Bundles.Reference("Content/assets/styles");
-    Bundles.Reference("Scripts");
-    Bundles.Reference("Content/assets/js");
-}
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 	<head runat="server">
@@ -13,18 +8,22 @@
 		<link rel="shortcut icon" href="@Url.Content("/favicon.ico")" type="image/x-icon" />
 		<title>@ViewBag.Title</title>
 		<!-- Website Styles -->
-		@Bundles.RenderStylesheets()
-        @{
-            Bundles.AddPageData("window.logErrorUrl",Url.Action("LogJavaScriptError", "Error", new{area = ""}));
-        }
-        @Bundles.RenderScripts("head") @*check cassette config file*@
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.ContentWithVersioning("/Content/assets/styles/skins/default-dark.css")" />
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.ContentWithVersioning("/Content/assets/styles/skins/blue-cScheme.css")" />
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("~/Content/assets/styles/plugins/anythingslider-default1.css")" />
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("~/Content/assets/styles/plugins/colorbox.css")" />
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/assets/styles/jquery-ui/jquery-ui-1.8.18.custom.css")" />
 		<!-- IE HTML5 Hack -->
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"> </script>
 		<![endif]-->
 		<!-- Google Font -->
 		<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
-		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet'type='text/css' />
+		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet'
+			  type='text/css' />
+		<script type="text/javascript">
+			window.logErrorUrl = '@Url.Action("LogJavaScriptError", "Error", new{area = ""})';
+		</script>
 		<script type="text/javascript">
 			var uvOptions = {};
 			(function () {
@@ -33,7 +32,9 @@
 				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
 			})();
 		</script>
+		<script type="text/javascript" src="@Url.Content("~/Content/assets/js/cliqflip/main/error-handler.js")"> </script>
 		@HtmlExtensions.GetAnalyticsHtmlIfAvailable()
+		@RenderSection("beforeHeadClose", false)
 	</head>
 	<body>
 		<div id="main-container">
@@ -159,8 +160,18 @@
 			(Big Boy Terms of Service coming soon but this will be the gist of it.)</p>
 	</div>
 	
-        <!-- Scripts -->
-        @Bundles.RenderScripts()
+		<!-- Scripts -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"> </script>
+		<script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery.colorbox.js")"> </script>
+        <script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery.anythingslider.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery.anythingslider.fx.js")"> </script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"> </script>
+		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery.cookie.js")"> </script>
+		<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/assets/js/cliqflip/main/login.js")"> </script>
+		<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/assets/js/cliqflip/main/tos.js")"> </script>
 		@Flash.FlashMessage(TempData)
 		<script type="text/javascript">
 			$(document).ready(function() {
@@ -168,7 +179,7 @@
 				InitTOS();
 			});
 		</script>
-		@if(User.Identity.IsAuthenticated && Url.RequestContext.RouteData.Values["action"] == "Landing")
+		@if(User.Identity.IsAuthenticated && Url.RequestContext.RouteData.Values["action"].ToString() == "Landing")
 		{
 				/*TODO:if this wiill only 
 				 ever be on the landing page, move this to the landing page
@@ -176,5 +187,6 @@
 				 */
 				Html.RenderAction("Latest", "Notification", new {Area = ""});
 		}
+		@RenderSection("beforeBodyClose", false)
 	</body>
 </html>

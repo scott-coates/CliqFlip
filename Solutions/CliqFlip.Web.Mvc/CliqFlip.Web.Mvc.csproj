@@ -370,7 +370,7 @@
     <Content Include="Content\assets\js\jquery\jquery.notify.js" />
     <Content Include="Content\assets\js\jquery\jquery.tagcloud.js" />
     <Content Include="Content\assets\js\jquery\jquery.tmpl.js" />
-    <Content Include="Content\assets\js\jquery\jquery.zrssfeed.min.js" />
+    <Content Include="Content\assets\js\jquery\jquery.zrssfeed.js" />
     <Content Include="Content\assets\js\cliqflip\notification\notification.js" />
     <Content Include="Content\assets\js\raphael\dracula_graffle.js" />
     <Content Include="Content\assets\js\raphael\dracula_graph.js" />
@@ -593,7 +593,6 @@
     <Content Include="Content\assets\styles\skins\default-light.css" />
     <Content Include="Content\assets\styles\skins\green-cScheme.css" />
     <Content Include="Content\assets\styles\skins\red-cScheme.css" />
-    <Content Include="Content\assets\styles\plugins\skitter.styles.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\backbone.js" />
     <Content Include="Scripts\jquery-1.7.2-vsdoc.js" />

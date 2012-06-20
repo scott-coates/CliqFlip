@@ -2,12 +2,12 @@
 
 @{
 	ViewBag.Title = "Welcome " + Model.Username;
-	Bundles.Reference("Content/templates");
+	Bundles.Reference("Content/assets/templates");
 }
 
 @section  beforeHeadClose
 {
-	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/assets/styles/autoSuggest.css")" />
+	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("~/Content/assets/styles/plugins/autoSuggest.css")" />
 }
 <div class="divider"></div>
 
@@ -46,14 +46,14 @@
 
 @section beforeBodyClose
 {
-	<script type="text/javascript" src="@Url.Content("/Content/assets/js/jquery.autoSuggest.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/assets/js/jquery.tagcloud.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/assets/js/search/interest-search.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Scripts/underscore.min.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery.autoSuggest.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery.tagcloud.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Content/assets/js/cliqflip/search/interest-search.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Scripts/underscore.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Scripts/backbone.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/assets/js/hogan.js")"> </script>
-    <script type="text/javascript" src="@Url.ContentWithVersioning("/Content/assets/js/cliqFlip/template.js")"> </script>
-	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/assets/js/user/landing.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Content/assets/js/hogan/hogan.js")"> </script>
+    <script type="text/javascript" src="@Url.ContentWithVersioning("/Content/assets/js/cliqflip/main/template.js")"> </script>
+	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/assets/js/cliqflip/user/landing.js")"> </script>
 
 	@Bundles.RenderHtmlTemplates()
 

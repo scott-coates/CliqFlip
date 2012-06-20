@@ -3,6 +3,10 @@
 @{
 	ViewBag.Title = "CliqFlip - Discover More";
 }
+@section beforeHeadClose
+{
+	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("~/Content/assets/styles/plugins/autoSuggest.css")" />
+}
 <!-- SLIDER TRYOUT START-->
 <div class="tryout">
 	<div class="header">
@@ -44,3 +48,19 @@
 </div>
 <!-- SERVICES BOX END -->
 <div class="clear"></div>
+@section beforeBodyClose
+{
+	<script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery.autoSuggest.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery.tagcloud.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Content/assets/js/cliqflip/search/interest-search.js")"> </script>
+	<script type="text/javascript">
+		@*TODO: implement something without duplciation - http://stackoverflow.com/questions/5433531/using-sections-in-editor-display-templates/5433722#5433722 *@
+		$(function() {
+			InitAutoSuggest('@(Html.Raw(Url.Action("Interest","Search")))');
+
+			InitTagCloud();
+
+			ChangeSearchQueryParamName();
+		});
+	</script>
+}

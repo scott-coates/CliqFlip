@@ -125,11 +125,11 @@
 </div>
 @section beforeBodyClose
 {
-	<script type="text/javascript" src="@Url.Content("/Content/assets/js/raphael/raphael.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/raphael.js")"> </script>
 	<script type="text/javascript" src="@Url.Content("/Content/assets/js/raphael/raphael.cliqFlip.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/assets/js/user/profile.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/assets/js/cliqFlip/ui.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/assets/js/jquery.jeip.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Content/assets/js/cliqflip/user/profile.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Content/assets/js/cliqflip/main/ui.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery.jeip.js")"> </script>
 	<script type="text/javascript">
 		$(function() {
 			InitUser(@(Model.AuthenticatedProfileOwner.ToString(CultureInfo.InvariantCulture).ToLower()));
