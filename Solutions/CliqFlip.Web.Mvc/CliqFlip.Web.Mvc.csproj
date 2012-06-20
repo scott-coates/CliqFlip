@@ -103,9 +103,9 @@
     <Reference Include="MvcContrib">
       <HintPath>..\..\Packages\MvcContrib.2.0.95.0\lib\MvcContrib.dll</HintPath>
     </Reference>
-    <Reference Include="Neo4jClient, Version=1.0.0.368, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Neo4jClient, Version=1.0.0.369, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Neo4jClient.1.0.0.368\lib\Neo4jClient.dll</HintPath>
+      <HintPath>..\..\Packages\Neo4jClient.1.0.0.369\lib\Neo4jClient.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.0.8.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

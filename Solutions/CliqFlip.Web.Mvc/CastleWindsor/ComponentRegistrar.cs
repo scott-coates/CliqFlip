@@ -67,7 +67,7 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
 							{
 							    string connectionString = WebConfigurationManager.ConnectionStrings[Constants.GRAPH_URL].ConnectionString;
 							    var rootUri = new Uri(connectionString);
-                                var graphClient = new GraphClient(rootUri);
+							    var graphClient = new GraphClient(rootUri) { EnableSupportForNeo4jOnHeroku = true };
 								graphClient.Connect();
 								return graphClient;
 							}));
