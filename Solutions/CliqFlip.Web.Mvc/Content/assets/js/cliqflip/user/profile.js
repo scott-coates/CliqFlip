@@ -27,7 +27,7 @@ function InitMindMap(interests, saveUrl) {
 		var width = 130;
 		for (var interest in interests) {
 			if (interests[interest].Passion) {
-				_bubbles.push(r.cliqFlip.createMindMapBubble(interests[interest].Passion,
+			    _bubbles.push(r.cliqFlipCreateMindMapBubble(interests[interest].Passion,
 					interests[interest].XAxis,
 					interests[interest].YAxis,
 					cliqFlip.Ui.RandomHexColor(),
@@ -41,7 +41,7 @@ function InitMindMap(interests, saveUrl) {
 					rowAxis += 150;
 					space = 100;
 				}
-				_bubbles.push(r.cliqFlip.createMindMapBubble(2.5,
+				_bubbles.push(r.cliqFlipCreateMindMapBubble(2.5,
 					space,
 					rowAxis,
 					cliqFlip.Ui.RandomHexColor(),
@@ -73,8 +73,8 @@ function MindMapSave(mindMapObj) {
 function InitHeadline(saveUrl) {
 	var r = Raphael("profileHeadline", 559, 50);
 
-	r.cliqFlip.quotationMarks(14);
-	r.cliqFlip.quotationMarks(534);
+	r.cliqFlipQuotationMarks(14);
+	r.cliqFlipQuotationMarks(534);
 	if (_canEdit) {
 		var textTemplate = '<input type="text" id="edit-#{id}" class="#{editfield_class}" value="#{value}" maxlength="50" /> <br />';
 		$("#headlineText").eip(saveUrl, { select_text: false, text_form: textTemplate });
