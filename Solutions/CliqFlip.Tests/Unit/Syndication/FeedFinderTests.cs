@@ -511,12 +511,18 @@ addLoadEvent(function(){linktracker_init('19665306',0);});
 <link rel='wlwmanifest' type='application/wlwmanifest+xml' href='http://hiscotty.com/wordpress/wp-includes/wlwmanifest.xml' /> 
 <meta name='generator' content='WordPress 3.2.1' />
 <script type='text/javascript'>AC_FL_RunContent = 0;</script><script type='text/javascript' src='http://hiscotty.com/wordpress/wp-content/plugins/dynamic-headers/AC_RunActiveContent.js'></script><link rel='stylesheet' type='text/css' href='http://hiscotty.com/wordpress/wp-content/plugins/social-media-widget/social_widget.css' />
-<!-- BEGIN Hackadelic Sliding Notes 1.6.5 -->
-<style type='text/css'>
-.concealed { display: none }
-.block { display: block }
-</style>
-<!-- END Hackadelic Sliding Notes 1.6.5 -->
+<!-- BEGIN Hackadelic Sliding Notes 1.6.5 -->
+
+<style type='text/css'>
+
+.concealed { display: none }
+
+.block { display: block }
+
+</style>
+
+<!-- END Hackadelic Sliding Notes 1.6.5 -->
+
 </head>
 
 <body class='home page page-id-2 page-template-default'>
@@ -598,7 +604,7 @@ addLoadEvent(function(){linktracker_init('19665306',0);});
 		<div id='secondary' class='widget-area' role='complementary'>
 			<ul class='xoxo'>
 				<li id='text-3' class='widget-container widget_text'>			<div class='textwidget'><a href='http://hiscotty.com/CV'>
-<img src='http://careers.stackoverflow.com/Content/Img/logo-careers-2-so.png?31e238' width='208' height='58' alt='Need a smart programmer who gets things done?' title='Need a smart programmer who gets things done?'>
+<img src='http://careers.stackoverflow.com/Content/assets/img/logo-careers-2-so.png?31e238' width='208' height='58' alt='Need a smart programmer who gets things done?' title='Need a smart programmer who gets things done?'>
 </a>
 <a href='http://stackoverflow.com/users/173957/scoarescoare'>
 <img src='http://stackoverflow.com/users/flair/173957.png?theme=dark' width='208' height='58' alt='Stack Overflow profile for scoarescoare at Stack Overflow, Q&amp;A for professional and enthusiast programmers' title='Stack Overflow profile for scoarescoare at Stack Overflow, Q&amp;A for professional and enthusiast programmers'>
@@ -638,20 +644,34 @@ addLoadEvent(function(){linktracker_init('19665306',0);});
 			#region atomFirstRssLast
 
 			_htmlExamples["atomFirstRssLast"] =
-				@"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
-    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
-<html xmlns='http://www.w3.org/1999/xhtml'>
-	<head>
-		<!-- Page Info -->
-		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
-		<meta name='description' content='Blogs.Oracle.Com - I am jambay  -  James Bayer's Blog'>
-  <meta name='keywords' content='blogs, oracle, blogs.oracle, blogging, bloggers'>
-		            <title>Housekeeping &ndash; Please update your RSS/Atom URLs for this Blog (I am jambay  -  James Bayer's Blog)</title>
-                           <meta http-equiv='Content-Language' content='en-us' />
-<meta http-equiv='Content-Style-Type' content='text/css' />
-<meta http-equiv='Content-Script-Type' content='text/javascript' />
-<meta http-equiv='imagetoolbar' content='no' />
-
+				@"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+	<head>
+
+		<!-- Page Info -->
+
+		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+
+		<meta name='description' content='Blogs.Oracle.Com - I am jambay  -  James Bayer's Blog'>
+
+  <meta name='keywords' content='blogs, oracle, blogs.oracle, blogging, bloggers'>
+
+		            <title>Housekeeping &ndash; Please update your RSS/Atom URLs for this Blog (I am jambay  -  James Bayer's Blog)</title>
+
+                           <meta http-equiv='Content-Language' content='en-us' />
+
+<meta http-equiv='Content-Style-Type' content='text/css' />
+
+<meta http-equiv='Content-Script-Type' content='text/javascript' />
+
+<meta http-equiv='imagetoolbar' content='no' />
+
+
+
            <link rel='EditURI'   type='application/rsd+xml' title='RSD' href='https://blogs.oracle.com/jamesbayer/rsd'/>
         
             <link rel='alternate' type='application/atom+xml' title='Recent Entries (Atom)'  href='https://blogs.oracle.com/jamesbayer/feed/entries/atom' />
@@ -660,86 +680,158 @@ addLoadEvent(function(){linktracker_init('19665306',0);});
     <link rel='alternate' type='application/rss+xml'  title='Recent Comments (RSS)'  href='https://blogs.oracle.com/jamesbayer/feed/comments/rss' />
 
     
-    
-<!-- Stylesheets -->
-<link rel='stylesheet' href='https://blogs.oracle.com/jamesbayer/resource/oracle2col/theme.css' type='text/css' media='screen' />
-
-<!-- Favicon -->
-<link rel='shortcut icon' href='https://blogs.oracle.com/jamesbayer/resource/oracle2col/favicon.gif' />    	</head>
-	<body>
-		<div id='container' class='two-columns'> <!-- Note: Change the class from 'two-columns' to 'three-columns' if needed -->
-			
-			<!-- Header -->
-			<div id='header'>
-				<ul id='nav'>
-					<li id='logo'><h6><a href='http://www.oracle.com'>Oracle</a></h6></li>
-					<li class='current'><a href='/'>Blogs Home</a></li>
-					<li><a href='http://www.oracle.com/us/products/index.html'>Products &amp; Services</a></li>
-					<li><a href='http://www.oracle.com/technetwork/indexes/downloads/index.html'>Downloads</a></li>
-					<li><a href='http://www.oracle.com/us/support/index.html'>Support</a></li>
-					<li><a href='http://www.oracle.com/us/partnerships/index.html'>Partners</a></li>
-					<li><a href='http://www.oracle.com/us/community/index.html'>Communities</a></li>
-					<li><a href='http://www.oracle.com/us/corporate/index.html'>About</a></li>
-                                            <li id='signIn'><a href='/roller-ui/login-redirect.rol'>Login</a></li>
-                    				</ul>
-				<div id='jumbotron'>
-					<h4>Oracle Blog</h4>
-          <h5><a href='https://blogs.oracle.com/jamesbayer/'>I am jambay  -  James Bayer's Blog</a></h5>
-          <h5 class='subhead'>Mostly server-side Java</h5>
-				</div>
-                																										</div>
-			
-			<!-- Content -->
-			<div id='content'>
-                <div id='mainColumn'>
-                    
-                    <!-- Previous and Next Entries -->
-                    <div id='pager'>
+    
+
+<!-- Stylesheets -->
+
+<link rel='stylesheet' href='https://blogs.oracle.com/jamesbayer/resource/oracle2col/theme.css' type='text/css' media='screen' />
+
+
+
+<!-- Favicon -->
+
+<link rel='shortcut icon' href='https://blogs.oracle.com/jamesbayer/resource/oracle2col/favicon.gif' />    	</head>
+
+	<body>
+
+		<div id='container' class='two-columns'> <!-- Note: Change the class from 'two-columns' to 'three-columns' if needed -->
+
+			
+
+			<!-- Header -->
+
+			<div id='header'>
+
+				<ul id='nav'>
+
+					<li id='logo'><h6><a href='http://www.oracle.com'>Oracle</a></h6></li>
+
+					<li class='current'><a href='/'>Blogs Home</a></li>
+
+					<li><a href='http://www.oracle.com/us/products/index.html'>Products &amp; Services</a></li>
+
+					<li><a href='http://www.oracle.com/technetwork/indexes/downloads/index.html'>Downloads</a></li>
+
+					<li><a href='http://www.oracle.com/us/support/index.html'>Support</a></li>
+
+					<li><a href='http://www.oracle.com/us/partnerships/index.html'>Partners</a></li>
+
+					<li><a href='http://www.oracle.com/us/community/index.html'>Communities</a></li>
+
+					<li><a href='http://www.oracle.com/us/corporate/index.html'>About</a></li>
+
+                                            <li id='signIn'><a href='/roller-ui/login-redirect.rol'>Login</a></li>
+
+                    				</ul>
+
+				<div id='jumbotron'>
+
+					<h4>Oracle Blog</h4>
+
+          <h5><a href='https://blogs.oracle.com/jamesbayer/'>I am jambay  -  James Bayer's Blog</a></h5>
+
+          <h5 class='subhead'>Mostly server-side Java</h5>
+
+				</div>
+
+                																										</div>
+
+			
+
+			<!-- Content -->
+
+			<div id='content'>
+
+                <div id='mainColumn'>
+
+                    
+
+                    <!-- Previous and Next Entries -->
+
+                    <div id='pager'>
+
                                                     &laquo; <a href='https://blogs.oracle.com/jamesbayer/entry/weblogic_nodemanager_quick_sta'>WebLogic NodeManager...</a> |  
                 <a href='/jamesbayer/'>Main</a>
                 | <a href='https://blogs.oracle.com/jamesbayer/entry/work_manager_leash_for_slow_js'>Work Manager Leash...</a> &raquo;
-                        </div>
-
-                    <!-- Entries -->
+                        </div>
+
+
+
+                    <!-- Entries -->
+
 				    
-                <div class='day'>
-
-
-	<div class='entry' id='housekeeping_please_update_you'>
-
-	<h3 class='entry-title'>
-			Housekeeping &ndash; Please update your RSS/Atom URLs for this Blog
-	    </h3>
-
-    <h4 class='entry-meta'>By james.bayer on <a href='#'>Jan 08, 2010</a></h4>
-
-    <div class='entry-body'>
-                                        	<p><p>I only yesterday added <a href='http://www.google.com/analytics/'>Google Analytics</a> and <a href='http://feedburner.google.com'>Feedburner</a> to this blog so I can better understand what entries are most popular.  If you use RSS/Atom to subscribe to this blog, please use the new Feedburner feeds so I can track the traffic and write stuff more people want to read about.</p>  <p><a href='http://feeds.feedburner.com/JamesBayersBlog'>Atom Feed</a></p>  <p><a href='http://feeds.feedburner.com/JamesBayersBlogRSS'>RSS 2.0 Feed</a></p>  <p>I could definitely be more popular in Africa and South America :)</p>  <p><a href='http://blogs.oracle.com/jamesbayer/resource/WindowsLiveWriter-HousekeepingPleaseupdateyourRSSAtomURLsf_130E6/day2_2.jpg'><img style='border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px' title='day2' border='0' alt='day2' src='http://blogs.oracle.com/jamesbayer/resource/WindowsLiveWriter-HousekeepingPleaseupdateyourRSSAtomURLsf_130E6/day2_thumb.jpg' width='534' height='202' /></a> </p>  <p>Cheers, James</p></p>
-        
-    </div>
-
-    <div class='entry-footer'>
-        <p class='entry-category'>Category: Oracle</p>
-        <p class='entry-tags'>Tags:  none </p>
-        <p class='entry-links'>
-        <a href='https://blogs.oracle.com/jamesbayer/entry/housekeeping_please_update_you'>Permanent link to this entry</a>
-                        </p>
-    </div>
-
-	    
-	</div>
-
+                <div class='day'>
+
+
+
+
+
+	<div class='entry' id='housekeeping_please_update_you'>
+
+
+
+	<h3 class='entry-title'>
+
+			Housekeeping &ndash; Please update your RSS/Atom URLs for this Blog
+
+	    </h3>
+
+
+
+    <h4 class='entry-meta'>By james.bayer on <a href='#'>Jan 08, 2010</a></h4>
+
+
+
+    <div class='entry-body'>
+
+                                        	<p><p>I only yesterday added <a href='http://www.google.com/analytics/'>Google Analytics</a> and <a href='http://feedburner.google.com'>Feedburner</a> to this blog so I can better understand what entries are most popular.  If you use RSS/Atom to subscribe to this blog, please use the new Feedburner feeds so I can track the traffic and write stuff more people want to read about.</p>  <p><a href='http://feeds.feedburner.com/JamesBayersBlog'>Atom Feed</a></p>  <p><a href='http://feeds.feedburner.com/JamesBayersBlogRSS'>RSS 2.0 Feed</a></p>  <p>I could definitely be more popular in Africa and South America :)</p>  <p><a href='http://blogs.oracle.com/jamesbayer/resource/WindowsLiveWriter-HousekeepingPleaseupdateyourRSSAtomURLsf_130E6/day2_2.jpg'><img style='border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px' title='day2' border='0' alt='day2' src='http://blogs.oracle.com/jamesbayer/resource/WindowsLiveWriter-HousekeepingPleaseupdateyourRSSAtomURLsf_130E6/day2_thumb.jpg' width='534' height='202' /></a> </p>  <p>Cheers, James</p></p>
+
+        
+
+    </div>
+
+
+
+    <div class='entry-footer'>
+
+        <p class='entry-category'>Category: Oracle</p>
+
+        <p class='entry-tags'>Tags:  none </p>
+
+        <p class='entry-links'>
+
+        <a href='https://blogs.oracle.com/jamesbayer/entry/housekeeping_please_update_you'>Permanent link to this entry</a>
+
+                        </p>
+
+    </div>
+
+
+
+	    
+
+	</div>
+
+
+
 </div>    
-    
-          
-                    <!-- Previous and Next Entries -->
-                    <div id='pagerBottom'>
+    
+
+          
+
+                    <!-- Previous and Next Entries -->
+
+                    <div id='pagerBottom'>
+
                                                     &laquo; <a href='https://blogs.oracle.com/jamesbayer/entry/weblogic_nodemanager_quick_sta'>WebLogic NodeManager...</a> |  
                 <a href='/jamesbayer/'>Main</a>
                 | <a href='https://blogs.oracle.com/jamesbayer/entry/work_manager_leash_for_slow_js'>Work Manager Leash...</a> &raquo;
-                        </div> 
-                    
-                    <!-- Comments -->
+                        </div> 
+
+                    
+
+                    <!-- Comments -->
+
                                                 <a name='comments'></a>
     <div class='comments' id='comments'>
 
@@ -789,28 +881,50 @@ addLoadEvent(function(){linktracker_init('19665306',0);});
     <span class='status'>Comments are closed for this entry.</span>
 
     </div>
-                    				</div>
-
-                <!-- Sidebar -->
-                           <!-- Right Sidebar -->
-<div id='rightColumn'>
-
-<!-- About -->
-  <div id='aboutSection'>    
-    <h5 class='section-title'>About</h5>
-    <div class='section-body'>
-                  <p><img src='http://blogs.oracle.com/jamesbayer/resource/james_bayer.jpg' alt='James Bayer Image' width='174' height='228'/><br>
-I was formerly a Product Manager on the WebLogic Server team based out of Oracle HQ.  You can find my new blog at <a href='http://iamjambay.com'>http://iamjambay.com</a>.<br/>
-<a href='http://twitter.com/jambay'><img src='http://blogs.oracle.com/jamesbayer/resource/twitter.png' title='Follow Me on Twitter' alt='Follow Me on Twitter' /></a><br/>
-<a href='https://www.facebook.com/oracleweblogic' target='_TOP' style='font-family: &quot;lucida grande&quot;,tahoma,verdana,arial,sans-serif; font-size: 11px; font-variant: normal; font-style: normal; font-weight: normal; color: #3B5998; text-decoration: none;' title='Oracle WebLogic'>Oracle WebLogic<br/><img src='https://badge.facebook.com/badge/108253882590410.948.765215927.png' width='120' height='193' style='border: 0px;' /></a><br/></p>
-            </div>
-  </div>  
-<!-- End About -->
-
-<!-- Search -->
-  <div id='searchSection'>  
-    <h5 class='section-title'>Search</h5>
-    <div class='section-body'>
+                    				</div>
+
+
+
+                <!-- Sidebar -->
+
+                           <!-- Right Sidebar -->
+
+<div id='rightColumn'>
+
+
+
+<!-- About -->
+
+  <div id='aboutSection'>    
+
+    <h5 class='section-title'>About</h5>
+
+    <div class='section-body'>
+
+                  <p><img src='http://blogs.oracle.com/jamesbayer/resource/james_bayer.jpg' alt='James Bayer Image' width='174' height='228'/><br>
+
+I was formerly a Product Manager on the WebLogic Server team based out of Oracle HQ.  You can find my new blog at <a href='http://iamjambay.com'>http://iamjambay.com</a>.<br/>
+
+<a href='http://twitter.com/jambay'><img src='http://blogs.oracle.com/jamesbayer/resource/twitter.png' title='Follow Me on Twitter' alt='Follow Me on Twitter' /></a><br/>
+
+<a href='https://www.facebook.com/oracleweblogic' target='_TOP' style='font-family: &quot;lucida grande&quot;,tahoma,verdana,arial,sans-serif; font-size: 11px; font-variant: normal; font-style: normal; font-weight: normal; color: #3B5998; text-decoration: none;' title='Oracle WebLogic'>Oracle WebLogic<br/><img src='https://badge.facebook.com/badge/108253882590410.948.765215927.png' width='120' height='193' style='border: 0px;' /></a><br/></p>
+
+            </div>
+
+  </div>  
+
+<!-- End About -->
+
+
+
+<!-- Search -->
+
+  <div id='searchSection'>  
+
+    <h5 class='section-title'>Search</h5>
+
+    <div class='section-body'>
+
         <script type='text/javascript'>
     function prepareSearchForm() {
         document.getElementById('searchForm').searchQuery.name = 'oq';
@@ -862,52 +976,98 @@ I was formerly a Product Manager on the WebLogic Server team based out of Oracle
     </span>
 </form>
 <script type='text/javascript'>prepareSearchForm();</script>
-    </div>
-  </div>    
-<!-- End Search -->
-
-<!-- Recent Posts -->
-  <div id='recentSection'>  
-                <h5 class='section-title'>Recent Posts</h5>
-        <div class='section-body'>
-            <ul>
-                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/this_blog_has_moved'>This Blog has Moved</a></li>
-                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/coherence_web_with_weblogic_server'>Coherence*Web with WebLogic Server Simple Example and Troubleshooting Overview</a></li>
-                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/jrockit_flight_recorder_experimental_plugins'>JRockit Flight Recorder Plugin for WebLogic Tab Pack behind a Proxy</a></li>
-                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/wlstonweb_an_innovative_tool_for'>wlstonweb - An Innovative Tool for WebLogic Scripting</a></li>
-                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/create_weblogic_diagnostic_image_with'>Create WebLogic Diagnostic Image With Metric Thresholds</a></li>
-                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/weblogic_server_work_manager_demo'>WebLogic Server Work Manager Demo Recording and Slides</a></li>
-                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/weblogic_server_jms_wlst_script'>WebLogic Server JMS WLST Script – Who is Connected To My Server</a></li>
-                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/weblogic_server_use_the_execution'>WebLogic Server–Use the Execution Context ID in Applications–Lessons From Hansel and Gretel</a></li>
-                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/sharing_a_class_with_a'>Sharing a Class With a WebLogic Classloader Without Modifying Scripts</a></li>
-                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/exalogic_disaster_recovery_white_paper'>Exalogic Disaster Recovery White Paper Published</a></li>
-                            </ul>
-        </div>
-      </div>    
-<!-- End Recent Posts -->
-
-
-<!-- Top Tags -->
-  <div id='tagsSection'>  
-            <h5 class='section-title'>Top Tags</h5>
-    <div class='tags section-body'>
-        <ul class='tag-cloud'>
-                    <li><a href='https://blogs.oracle.com/jamesbayer/tags/coherence' title='1' class='weight-1'>coherence</a></li>
-                    <li><a href='https://blogs.oracle.com/jamesbayer/tags/exalogic' title='1' class='weight-1'>exalogic</a></li>
-                    <li><a href='https://blogs.oracle.com/jamesbayer/tags/jms' title='1' class='weight-1'>jms</a></li>
-                    <li><a href='https://blogs.oracle.com/jamesbayer/tags/jrockit' title='1' class='weight-1'>jrockit</a></li>
-                    <li><a href='https://blogs.oracle.com/jamesbayer/tags/weblogic' title='7' class='weight-5'>weblogic</a></li>
-                    <li><a href='https://blogs.oracle.com/jamesbayer/tags/wldf' title='1' class='weight-1'>wldf</a></li>
-                </ul>
-    </div>
-    </div>    
-<!-- End Top Tags -->
-    
-
-<!-- Categories -->
-  <div id='categoriesSection'>
-    <h5 class='section-title'>Categories</h5>
-    <div class='section-body'>
+    </div>
+
+  </div>    
+
+<!-- End Search -->
+
+
+
+<!-- Recent Posts -->
+
+  <div id='recentSection'>  
+
+                <h5 class='section-title'>Recent Posts</h5>
+
+        <div class='section-body'>
+
+            <ul>
+
+                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/this_blog_has_moved'>This Blog has Moved</a></li>
+
+                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/coherence_web_with_weblogic_server'>Coherence*Web with WebLogic Server Simple Example and Troubleshooting Overview</a></li>
+
+                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/jrockit_flight_recorder_experimental_plugins'>JRockit Flight Recorder Plugin for WebLogic Tab Pack behind a Proxy</a></li>
+
+                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/wlstonweb_an_innovative_tool_for'>wlstonweb - An Innovative Tool for WebLogic Scripting</a></li>
+
+                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/create_weblogic_diagnostic_image_with'>Create WebLogic Diagnostic Image With Metric Thresholds</a></li>
+
+                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/weblogic_server_work_manager_demo'>WebLogic Server Work Manager Demo Recording and Slides</a></li>
+
+                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/weblogic_server_jms_wlst_script'>WebLogic Server JMS WLST Script – Who is Connected To My Server</a></li>
+
+                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/weblogic_server_use_the_execution'>WebLogic Server–Use the Execution Context ID in Applications–Lessons From Hansel and Gretel</a></li>
+
+                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/sharing_a_class_with_a'>Sharing a Class With a WebLogic Classloader Without Modifying Scripts</a></li>
+
+                                    <li><a href='https://blogs.oracle.com/jamesbayer/entry/exalogic_disaster_recovery_white_paper'>Exalogic Disaster Recovery White Paper Published</a></li>
+
+                            </ul>
+
+        </div>
+
+      </div>    
+
+<!-- End Recent Posts -->
+
+
+
+
+
+<!-- Top Tags -->
+
+  <div id='tagsSection'>  
+
+            <h5 class='section-title'>Top Tags</h5>
+
+    <div class='tags section-body'>
+
+        <ul class='tag-cloud'>
+
+                    <li><a href='https://blogs.oracle.com/jamesbayer/tags/coherence' title='1' class='weight-1'>coherence</a></li>
+
+                    <li><a href='https://blogs.oracle.com/jamesbayer/tags/exalogic' title='1' class='weight-1'>exalogic</a></li>
+
+                    <li><a href='https://blogs.oracle.com/jamesbayer/tags/jms' title='1' class='weight-1'>jms</a></li>
+
+                    <li><a href='https://blogs.oracle.com/jamesbayer/tags/jrockit' title='1' class='weight-1'>jrockit</a></li>
+
+                    <li><a href='https://blogs.oracle.com/jamesbayer/tags/weblogic' title='7' class='weight-5'>weblogic</a></li>
+
+                    <li><a href='https://blogs.oracle.com/jamesbayer/tags/wldf' title='1' class='weight-1'>wldf</a></li>
+
+                </ul>
+
+    </div>
+
+    </div>    
+
+<!-- End Top Tags -->
+
+    
+
+
+
+<!-- Categories -->
+
+  <div id='categoriesSection'>
+
+    <h5 class='section-title'>Categories</h5>
+
+    <div class='section-body'>
+
                         <ul class='rCategory'>
                                                             <li><a href='https://blogs.oracle.com/jamesbayer/category/Oracle'>Oracle</a></li>
             <ul class='rCategory'>
@@ -922,29 +1082,51 @@ I was formerly a Product Manager on the WebLogic Server team based out of Oracle
                                                                                                             <li><a href='https://blogs.oracle.com/jamesbayer/category/Oracle/Workshop'>Workshop</a></li>
                                                                         </ul>
                                     </ul>
-        </div>
-  </div>
-<!-- End Categories -->
-
-
-<!-- Archives -->
-   <div id='archiveSection'>
-    <h5 class='section-title'>Archives</h5>
-    <div class='section-body'>
+        </div>
+
+  </div>
+
+<!-- End Categories -->
+
+
+
+
+
+<!-- Archives -->
+
+   <div id='archiveSection'>
+
+    <h5 class='section-title'>Archives</h5>
+
+    <div class='section-body'>
+
         <table cellspacing='0' border='0'  summary='Blog Archive Calendar' class='hCalendarTable'><tr><td colspan='7' align='center' class='hCalendarMonthYearRow'><a href='/jamesbayer/date/201110' title='Prev' class='hCalendarNavBar'>&laquo;</a> February 2012</td></tr><tr><th class='hCalendarDayNameRow' align='center'>Sun</th><th class='hCalendarDayNameRow' align='center'>Mon</th><th class='hCalendarDayNameRow' align='center'>Tue</th><th class='hCalendarDayNameRow' align='center'>Wed</th><th class='hCalendarDayNameRow' align='center'>Thu</th><th class='hCalendarDayNameRow' align='center'>Fri</th><th class='hCalendarDayNameRow' align='center'>Sat</th></tr><tr><td class='hCalendarDayNotInMonth'>&nbsp;</td><td class='hCalendarDayNotInMonth'>&nbsp;</td><td class='hCalendarDayNotInMonth'>&nbsp;</td><td class='hCalendarDay'><div class='hCalendarDayTitle'>1</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>2</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>3</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>4</div></td></tr><tr><td class='hCalendarDay'><div class='hCalendarDayTitle'>5</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>6</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>7</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>8</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>9</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>10</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>11</div></td></tr><tr><td class='hCalendarDay'><div class='hCalendarDayTitle'>12</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>13</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>14</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>15</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>16</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>17</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>18</div></td></tr><tr><td class='hCalendarDay'><div class='hCalendarDayTitle'>19</div></td><td class='hCalendarDayCurrent'><div class='hCalendarDayTitle'>20</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>21</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>22</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>23</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>24</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>25</div></td></tr><tr><td class='hCalendarDay'><div class='hCalendarDayTitle'>26</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>27</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>28</div></td><td class='hCalendarDay'><div class='hCalendarDayTitle'>29</div></td><td class='hCalendarDayNotInMonth'>&nbsp;</td><td class='hCalendarDayNotInMonth'>&nbsp;</td><td class='hCalendarDayNotInMonth'>&nbsp;</td></tr><tr><td class='hCalendarDayNotInMonth'>&nbsp;</td><td class='hCalendarDayNotInMonth'>&nbsp;</td><td class='hCalendarDayNotInMonth'>&nbsp;</td><td class='hCalendarDayNotInMonth'>&nbsp;</td><td class='hCalendarDayNotInMonth'>&nbsp;</td><td class='hCalendarDayNotInMonth'>&nbsp;</td><td class='hCalendarDayNotInMonth'>&nbsp;</td></tr><tr class='hCalendarNextPrev'><td colspan='7' align='center'><a href='/jamesbayer/' class='hCalendarNavBar'>Today</a></td></tr></table>
-    </div>
-  </div>
-<!-- End Archives -->
-
-<!-- Bookmarks -->
-   <div id='bookmarkSection'>
-              </div>    
-<!-- End Bookmarks -->
-
-<!-- Blog and Author Menu -->
-   <div id='menuSection'>
-    <h5 class='section-title'>Menu</h5>
-    <div class='section-body'>
+    </div>
+
+  </div>
+
+<!-- End Archives -->
+
+
+
+<!-- Bookmarks -->
+
+   <div id='bookmarkSection'>
+
+              </div>    
+
+<!-- End Bookmarks -->
+
+
+
+<!-- Blog and Author Menu -->
+
+   <div id='menuSection'>
+
+    <h5 class='section-title'>Menu</h5>
+
+    <div class='section-body'>
+
             <ul class='rNavigationBar'>
         <li class='rNavItem'>
             <a href='/'><span>Blogs Home</span></a>
@@ -956,45 +1138,68 @@ I was formerly a Product Manager on the WebLogic Server team based out of Oracle
                     <a href='/roller-ui/login-redirect.rol'><span>Login</span></a>
                 </li>
                         </ul>
-            </div>
-  </div>    
-<!-- End Blog and Author Menu -->
-
-    
-<!-- Feeds -->
-   <div id='feedsSection'>   
-    <h5 class='section-title'>Feeds</h5>
-    <div class='section-body'>
-        <b>RSS</b>
+            </div>
+
+  </div>    
+
+<!-- End Blog and Author Menu -->
+
+
+
+    
+
+<!-- Feeds -->
+
+   <div id='feedsSection'>   
+
+    <h5 class='section-title'>Feeds</h5>
+
+    <div class='section-body'>
+
+        <b>RSS</b>
+
             <ul class='rFeeds'>
     <li><a href='https://blogs.oracle.com/jamesbayer/feed/entries/rss'>All</a></li>
                         <li><a href='https://blogs.oracle.com/jamesbayer/feed/entries/rss?cat=%2FOracle'>/Oracle</a></li>
         <li><a href='https://blogs.oracle.com/jamesbayer/feed/comments/rss'>Comments</a></li>
     </ul>
-        <b>Atom</b>    
+        <b>Atom</b>    
+
             <ul class='rFeeds'>
     <li><a href='https://blogs.oracle.com/jamesbayer/feed/entries/atom'>All</a></li>
                         <li><a href='https://blogs.oracle.com/jamesbayer/feed/entries/atom?cat=%2FOracle'>/Oracle</a></li>
         <li><a href='https://blogs.oracle.com/jamesbayer/feed/comments/atom'>Comments</a></li>
     </ul>
-    </div>
-  </div>          
-<!-- End Feeds -->    
-    
-</div>    			</div>
-
-			<!-- Footer -->
-			<div id='footer'>
-				<p>The views expressed on this blog are those of the author and do not necessarily reflect the views of Oracle. <a href='http://www.oracle.com/html/terms.html'>Terms of Use</a> | <a href='http://www.oracle.com/html/privacy.html'>Your Privacy Rights</a></p>
-			</div>
+    </div>
+
+  </div>          
+
+<!-- End Feeds -->    
+
+    
+
+</div>    			</div>
+
+
+
+			<!-- Footer -->
+
+			<div id='footer'>
+
+				<p>The views expressed on this blog are those of the author and do not necessarily reflect the views of Oracle. <a href='http://www.oracle.com/html/terms.html'>Terms of Use</a> | <a href='http://www.oracle.com/html/privacy.html'>Your Privacy Rights</a></p>
+
+			</div>
+
 			<!-- Omniture Script --> 
 <!-- Start SiteCatalyst code -->
 
 <script language='JavaScript' src='/main/resource/resources/ora_blogs.js'></script>
 
 <!-- End SiteCatalyst code -->
-		</div>
-	</body>
+		</div>
+
+	</body>
+
 </html>";
 
 			#endregion

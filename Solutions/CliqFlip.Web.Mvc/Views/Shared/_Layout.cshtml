@@ -8,12 +8,12 @@
 		<link rel="shortcut icon" href="@Url.Content("/favicon.ico")" type="image/x-icon" />
 		<title>@ViewBag.Title</title>
 		<!-- Website Styles -->
-		<link rel="stylesheet" type="text/css" media="all" href="@Url.ContentWithVersioning("/Content/styles/skins/default-dark.css")" />
-		<link rel="stylesheet" type="text/css" media="all" href="@Url.ContentWithVersioning("/Content/styles/skins/blue-cScheme.css")" />
-		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/anythingslider-default1.css")" />
-		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/skitter.styles.css")" />
-		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/js/colorbox/colorbox.css")" />
-		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/jquery-ui/jquery-ui-1.8.18.custom.css")" />
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.ContentWithVersioning("/Content/assets/styles/skins/default-dark.css")" />
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.ContentWithVersioning("/Content/assets/styles/skins/blue-cScheme.css")" />
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/assets/styles/anythingslider-default1.css")" />
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/assets/styles/skitter.styles.css")" />
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/assets/js/colorbox/colorbox.css")" />
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/assets/styles/jquery-ui/jquery-ui-1.8.18.custom.css")" />
 		<!-- IE HTML5 Hack -->
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"> </script>
@@ -33,7 +33,7 @@
 				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
 			})();
 		</script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/cliqflip/error-handler.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("/Content/assets/js/cliqflip/error-handler.js")"> </script>
 		@HtmlExtensions.GetAnalyticsHtmlIfAvailable()
 		@RenderSection("beforeHeadClose", false)
 	</head>
@@ -44,7 +44,7 @@
 				<div class="inner">
 					<div class="logo">
 						<a href="/">
-							<img src="@Url.Content("/Content/img/CliqFlip-LogoMoto.png")" alt="CliqFlip logo"/>
+							<img src="@Url.Content("/Content/assets/img/CliqFlip-LogoMoto.png")" alt="CliqFlip logo"/>
 						</a>
 					</div>
 					<div class="motto">Discover <span>More</span>
@@ -163,16 +163,16 @@
 	
 		<!-- Scripts -->
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/colorbox/jquery.colorbox-min.js")"> </script>
-        <script type="text/javascript" src="@Url.Content("/Content/js/jquery.anythingslider.min.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.anythingslider.fx.min.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("/Content/assets/js/colorbox/jquery.colorbox-min.js")"> </script>
+        <script type="text/javascript" src="@Url.Content("/Content/assets/js/jquery.anythingslider.min.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("/Content/assets/js/jquery.anythingslider.fx.min.js")"> </script>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.unobtrusive-ajax.min.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.unobtrusive.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.cookie.js")"> </script>
-		<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/cliqflip/login.js")"> </script>
-		<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/js/cliqflip/tos.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("/Content/assets/js/jquery.unobtrusive-ajax.min.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("/Content/assets/js/jquery.validate.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("/Content/assets/js/jquery.validate.unobtrusive.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("/Content/assets/js/jquery.cookie.js")"> </script>
+		<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/assets/js/cliqflip/login.js")"> </script>
+		<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/assets/js/cliqflip/tos.js")"> </script>
 		@Flash.FlashMessage(TempData)
 		<script type="text/javascript">
 			$(document).ready(function() {

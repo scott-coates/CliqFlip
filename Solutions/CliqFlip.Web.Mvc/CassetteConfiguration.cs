@@ -25,7 +25,7 @@ namespace CliqFlip.Web.Mvc
 			// So you probably want to tweak these defaults!
 			bundles.AddPerIndividualFile<StylesheetBundle>("Content");
 			bundles.AddPerIndividualFile<ScriptBundle>("Scripts");
-			bundles.Add<HtmlTemplateBundle>("Content/templates", bundle => bundle.Processor = new HoganPipeline());
+			bundles.Add<HtmlTemplateBundle>("Content/assets/templates", bundle => bundle.Processor = new HoganPipeline());
 			// To combine files, try something like this instead:
 			//   bundles.Add<StylesheetBundle>("Content");
 			// In production mode, all of ~/Content will be combined into a single bundle.

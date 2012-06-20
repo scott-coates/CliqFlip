@@ -8,9 +8,9 @@
 		<link rel="shortcut icon" href="@Url.Content("/favicon.ico")" type="image/x-icon" />
 		<title>@ViewBag.Title</title>
 		<!-- Website Styles -->
-		<link rel="stylesheet" type="text/css" media="all" href="@Url.ContentWithVersioning("/Content/styles/skins/default-dark.css")" />
-		<link rel="stylesheet" type="text/css" media="all" href="@Url.ContentWithVersioning("/Content/styles/skins/blue-cScheme.css")" />
-		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/styles/jquery-ui/jquery-ui-1.8.18.custom.css")" />
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.ContentWithVersioning("/Content/assets/styles/skins/default-dark.css")" />
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.ContentWithVersioning("/Content/assets/styles/skins/blue-cScheme.css")" />
+		<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("/Content/assets/styles/jquery-ui/jquery-ui-1.8.18.custom.css")" />
 		<!-- IE HTML5 Hack -->
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"> </script>
@@ -22,7 +22,7 @@
 		<script type="text/javascript">
 			window.logErrorUrl = '@Url.Action("LogJavaScriptError", "Error", new {area = ""})';
 		</script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/cliqflip/error-handler.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("/Content/assets/js/cliqflip/error-handler.js")"> </script>
 		@HtmlExtensions.GetAnalyticsHtmlIfAvailable()
 		@RenderSection("beforeHeadClose", false)
 	</head>
@@ -35,9 +35,9 @@
 		<!-- Scripts -->
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"> </script>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.unobtrusive-ajax.min.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("/Content/js/jquery.validate.unobtrusive.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("/Content/assets/js/jquery.unobtrusive-ajax.min.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("/Content/assets/js/jquery.validate.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("/Content/assets/js/jquery.validate.unobtrusive.js")"> </script>
 		@RenderSection("beforeBodyClose", false)
 	</body>
 </html>

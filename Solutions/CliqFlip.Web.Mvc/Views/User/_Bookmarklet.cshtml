@@ -1,7 +1,7 @@
 ﻿@{
 	string bookmarkletPath = Context.IsDebuggingEnabled
-								? Url.Content("~/Content/js/bookmarklet/bookmarklet.min.js")
-								: Url.Content("~/Content/js/bookmarklet/bookmarklet.js");
+								? Url.Content("~/Content/assets/js/bookmarklet/bookmarklet.min.js")
+								: Url.Content("~/Content/assets/js/bookmarklet/bookmarklet.js");
 	string bookmarkEndpoint = Url.ToPublicUrl(Url.Action("BookmarkMedium", "Popup"));
 	string publicPath = Url.ToPublicUrl(bookmarkletPath);
 }
