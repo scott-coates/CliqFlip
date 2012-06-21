@@ -6,7 +6,7 @@
     Bundles.Reference("Scripts");
     Bundles.Reference("Content/assets/js/marionette");
     Bundles.Reference("Content/assets/js/hogan");
-        //COMING SOON Bundles.Reference("Content/app");
+    Bundles.Reference("Content/app");
 }
 <!doctype html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
@@ -67,7 +67,7 @@
         </div>
     </div>
     <div class="container">
-        @RenderBody()
+        <div id="content">@RenderBody()</div>
         <hr>
         <footer>
             <p><em>&copy; @DateTime.Now.Year <a href="/">CliqFlip</a> - All rights reserved.</em></p>

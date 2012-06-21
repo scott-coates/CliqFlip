@@ -13,6 +13,9 @@ namespace CliqFlip.Web.Mvc
     {
         public void Configure(BundleCollection bundles, CassetteSettings settings)
         {
+            //client-side logic 
+            bundles.Add<ScriptBundle>("Content/app");
+
             //css, less, sass
             bundles.AddPerSubDirectory<StylesheetBundle>("Content/assets/styles");
 
