@@ -325,8 +325,8 @@
     <Content Include="Content\assets\img\CliqFlip-LogoMoto.png" />
     <Content Include="Content\assets\img\feedback.png" />
     <Content Include="Content\assets\img\firefox.png" />
-    <Content Include="Content\assets\styles\bootstrap\images\glyphicons-halflings-white.png" />
-    <Content Include="Content\assets\styles\bootstrap\images\glyphicons-halflings.png" />
+    <Content Include="Content\assets\styles\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\assets\styles\img\glyphicons-halflings.png" />
     <Content Include="Content\assets\img\icon-close.png" />
     <Content Include="Content\assets\img\Icons.png" />
     <Content Include="Content\assets\img\ie.png" />
