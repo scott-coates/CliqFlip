@@ -19,5 +19,12 @@ var CliqFlip = (function(cliqFlip) {
         Backbone.history.start({ pushState: true });
     });
 
+    cliqFlip.Mvc.App.addInitializer(function() {
+        var that = this;
+        this.vent.on("feed:showList", function() {
+            that.appRouter.navigate("feed", { trigger: true });
+        });
+    });
+
     return cliqFlip;
 }(CliqFlip || { }));
