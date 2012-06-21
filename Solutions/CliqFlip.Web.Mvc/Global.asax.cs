@@ -123,7 +123,7 @@ namespace CliqFlip.Web.Mvc
 
 		private static void RegisterGlobalFilters(GlobalFilterCollection filters)
 		{
-			filters.Add(new RequireAuthenticationAttribute());
+			filters.Add(new AuthorizeAttribute());
 		}
 
 		/// <summary>
