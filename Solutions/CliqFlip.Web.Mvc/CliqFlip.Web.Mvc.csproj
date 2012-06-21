@@ -325,8 +325,8 @@
     <Content Include="Content\assets\img\CliqFlip-LogoMoto.png" />
     <Content Include="Content\assets\img\feedback.png" />
     <Content Include="Content\assets\img\firefox.png" />
-    <Content Include="Content\assets\img\glyphicons-halflings-white.png" />
-    <Content Include="Content\assets\img\glyphicons-halflings.png" />
+    <Content Include="Content\assets\styles\bootstrap\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\assets\styles\bootstrap\images\glyphicons-halflings.png" />
     <Content Include="Content\assets\img\icon-close.png" />
     <Content Include="Content\assets\img\Icons.png" />
     <Content Include="Content\assets\img\ie.png" />
@@ -402,6 +402,8 @@
     <Content Include="Content\assets\styles\jquery-ui\jquery-ui-1.8.18.custom.css" />
     <Content Include="Content\assets\styles\plugins\anythingslider-default1.css" />
     <Content Include="Content\assets\styles\site\Site.css" />
+    <Content Include="Content\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="favicon.ico" />
     <Content Include="Content\assets\img\close.png" />
     <Content Include="Content\assets\img\connect_sprite.png" />
@@ -605,6 +607,7 @@
     <Content Include="Content\assets\styles\skins\red-cScheme.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\backbone.js" />
+    <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\jquery-1.7.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.2.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
