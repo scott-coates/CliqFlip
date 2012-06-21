@@ -813,7 +813,6 @@
     <Content Include="Views\User\Account\_Email.cshtml" />
     <Content Include="Views\User\Account\_Password.cshtml" />
     <Content Include="Views\User\Account\_Location.cshtml" />
-    <Content Include="Views\Shared\_BootstrapLayout.cshtml" />
     <Content Include="Views\Home\Bootstrap.cshtml" />
     <None Include="Content\assets\templates\feed\feedItem.mustache" />
     <None Include="Content\assets\templates\feed\feedList.mustache" />
