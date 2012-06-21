@@ -6,6 +6,11 @@
         padding-top: 60px;
         padding-bottom: 40px;
     }
+
+    .navbar .brand {
+        width: 3%;
+        margin: 0 728px;
+    }
 }
 
     /*Feed*/
