@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using CliqFlip.Domain.Common;
 using CliqFlip.Web.Mvc.Security.Attributes;
+using CliqFlip.Web.Mvc.ViewModels.Home;
 using CliqFlip.Web.Mvc.ViewModels.Search;
 
 namespace CliqFlip.Web.Mvc.Controllers
@@ -42,10 +43,10 @@ namespace CliqFlip.Web.Mvc.Controllers
 			return View();
 		}
 
-        [AllowAnonymous]
         public ActionResult Bootstrap()
         {
-            return View();
+            var viewModel = new HomeUserViewModel { Username = _principal.Identity.Name };
+            return View(viewModel);
         }
 
 		[AllowAnonymous]
