@@ -24,7 +24,7 @@ namespace CliqFlip.Web.Mvc
             bundles.Add<ScriptBundle>("Content/assets/js/cliqflip/main/error-handler.js", bundle => bundle.PageLocation = "head");
 
             //NuGet
-            bundles.Add<ScriptBundle>("Scripts", new FileSearch { Exclude = new Regex("modernizr") });
+            bundles.Add<ScriptBundle>("Scripts", new FileSearch { Exclude = new Regex("modernizr|_references.js|-vsdoc\\.js$") });
 
             //only modernizr
             bundles.Add<ScriptBundle>("Scripts/modernizr-2.5.3.js", bundle => bundle.PageLocation = "head");
