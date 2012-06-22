@@ -16,7 +16,7 @@ var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.Mvc.App.addInitializer(function() {
         cliqFlip.Mvc.App.appRouter = new cliqFlip.Mvc.App.Routers.AppRouter();
-        Backbone.history.start({ pushState: true });
+        Backbone.history.start({ pushState: true, root: "/home/bootstrap/" });
     });
 
     cliqFlip.Mvc.App.addInitializer(function() {

@@ -18,7 +18,7 @@ var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.Mvc.App.Routers.AppRouter = Backbone.Marionette.AppRouter.extend({
         appRoutes: {
-            "home/bootstrap": "index",
+            "": "index",
             "feed": "feed"
         },
         controller: appController
