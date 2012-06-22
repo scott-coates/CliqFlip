@@ -107,11 +107,9 @@ namespace CliqFlip.Infrastructure.Images
 						newGraphic.SmoothingMode = SmoothingMode.HighQuality;
 						newGraphic.CompositingQuality = CompositingQuality.HighQuality;
 						newGraphic.PixelOffsetMode = PixelOffsetMode.HighQuality;
-						newGraphic.FillRectangle(Brushes.White, 0, 0, newWidth, newHeight);
 
 						newGraphic.DrawImage(image, 0, 0, newWidth, newHeight);
-
-						resizedBitmap.Save(retVal.Image, GetImageCodec(image.RawFormat), encoderParameters);
+                        resizedBitmap.Save(retVal.Image, GetImageCodec(image.RawFormat), encoderParameters);
 
 						//Stream is NOT disposed here - it is sent back as an open stream
 						retVal.Image.Position = 0;
