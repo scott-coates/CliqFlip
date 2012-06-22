@@ -818,9 +818,9 @@
     <Content Include="Views\User\Account\_Password.cshtml" />
     <Content Include="Views\User\Account\_Location.cshtml" />
     <Content Include="Views\Home\Bootstrap.cshtml" />
-    <None Include="Content\assets\templates\feed\feedItem.mustache" />
-    <None Include="Content\assets\templates\feed\feedList.mustache" />
-    <None Include="Content\assets\templates\home\content.mustache" />
+    <Content Include="Content\assets\templates\feed\feedItem.mustache" />
+    <Content Include="Content\assets\templates\feed\feedList.mustache" />
+    <Content Include="Content\assets\templates\home\content.mustache" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
