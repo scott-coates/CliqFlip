@@ -30,7 +30,7 @@ function InitMindMap(interests, saveUrl) {
 			    _bubbles.push(r.cliqFlipCreateMindMapBubble(interests[interest].Passion,
 					interests[interest].XAxis,
 					interests[interest].YAxis,
-					cliqFlip.Ui.RandomHexColor(),
+					CliqFlip.Ui.RandomHexColor(),
 					interests[interest].Name,
 					interests[interest].Id,
 					_canEdit,
@@ -44,7 +44,7 @@ function InitMindMap(interests, saveUrl) {
 				_bubbles.push(r.cliqFlipCreateMindMapBubble(2.5,
 					space,
 					rowAxis,
-					cliqFlip.Ui.RandomHexColor(),
+					CliqFlip.Ui.RandomHexColor(),
 					interests[interest].Name,
 					interests[interest].Id,
 					_canEdit,
@@ -66,7 +66,7 @@ function MindMapSave(mindMapObj) {
 
 	$.post(_mindMapSaveUrl, interest, function (data) {
 		var jqObj = $("#saveMindMapText");
-		cliqFlip.Ui.Blink(jqObj);
+		CliqFlip.Ui.Blink(jqObj);
 	}, "json");
 }
 

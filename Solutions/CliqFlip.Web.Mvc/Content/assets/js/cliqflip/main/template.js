@@ -1,8 +1,8 @@
 ﻿//http://stackoverflow.com/questions/2504568/javascript-namespace-declaration
-var cliqFlip = (function(cliqFlip) {
+var CliqFlip = (function(cliqFlip) {
 	cliqFlip.Template = { };
 
-	cliqFlip.Template.applyTemplateFix = function () {
+	cliqFlip.Template.ApplyTemplateFix = function () {
 	    //so Cassette assigns the compiled output to the 'render' property
 	    //of the hogan template object instead of the 'r' property like it should.
 
@@ -14,10 +14,10 @@ var cliqFlip = (function(cliqFlip) {
 	    //a fix has been submitted
 	    
 	    //fix all the hogan templates
-	    _.each(window.JST, function (template, name) {
+	    _.each(window.JST, function (template) {
 	        template.r = template.render;
 	        template.render = HoganTemplate.prototype.render;
 	    });
 	};
 	return cliqFlip;
-}(cliqFlip || { }));
+} (CliqFlip || {}));

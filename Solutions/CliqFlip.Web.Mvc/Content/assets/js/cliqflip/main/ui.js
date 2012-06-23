@@ -1,5 +1,5 @@
 ﻿//http://stackoverflow.com/questions/2504568/javascript-namespace-declaration
-var cliqFlip = (function(cliqFlip) {
+var CliqFlip = (function(cliqFlip) {
 	cliqFlip.Ui = { };
 
 	cliqFlip.Ui.RandomHexColor = function() {
@@ -20,4 +20,4 @@ var cliqFlip = (function(cliqFlip) {
 		}
 	};
 	return cliqFlip;
-}(cliqFlip || { }));
+}(CliqFlip || { }));

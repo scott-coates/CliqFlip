@@ -1,3 +1,4 @@
+using System.IO;
 using System.Text.RegularExpressions;
 using Cassette.Configuration;
 using Cassette.HtmlTemplates;
@@ -23,7 +24,7 @@ namespace CliqFlip.Web.Mvc
             bundles.AddPerSubDirectory<ScriptBundle>("Content/assets/js", new FileSearch { Exclude = new Regex("js\\cliqflip") });
 
             //put all of cliqflip in one file
-            bundles.Add<ScriptBundle>("Content/assets/js/cliqflip", new FileSearch { Exclude = new Regex("js\\cliqflip\\error-handler.js") });
+            bundles.Add<ScriptBundle>("Content/assets/js/cliqflip", new FileSearch { SearchOption = SearchOption.AllDirectories, Exclude = new Regex("error-handler.js|bookmarklet") });
             bundles.Add<ScriptBundle>("Content/assets/js/cliqflip/main/error-handler.js", bundle => bundle.PageLocation = "head");
 
             //NuGet
