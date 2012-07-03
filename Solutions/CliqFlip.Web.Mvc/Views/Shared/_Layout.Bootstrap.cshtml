@@ -2,8 +2,8 @@
 @{
     Layout = "";
     ViewBag.Title = "CliqFlip - Discover More";
-    Bundles.Reference("Content/assets/styles/bootstrap");
     Bundles.Reference("Content/assets/styles/site");
+    Bundles.Reference("Content/assets/styles/bootstrap");
     Bundles.Reference("Content/assets/templates");
     Bundles.Reference("Scripts/modernizr-2.5.3.js", "head");
     Bundles.Reference("Scripts");
@@ -29,51 +29,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @Bundles.RenderStylesheets()
     @Bundles.RenderScripts("head")
+
+    <style type="text/css">
+        #btn-search
+        {
+            margin-left: -4px;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
+                
                 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a class="brand" href="#">CliqFlip</a>
-                <div class="nav-collapse">
-                    <ul class="nav nav-pill pull-right">
-                        <li class="active">
-                            <a href="#contact">Home</a>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Feed<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#contact"><i class="icon-check"></i>Friends</a></li>
-                                <li><a href="#contact">All Users</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Search<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#contact"><i class="icon-check"></i>Suggested</a></li>
-                                <li><a href="#contact">Custom</a></li>
-                                <li><a href="#contact">Random</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#contact">+Share</a></li>
+                <a class="brand span1" href="#">CliqFlip</a>
+                <div class="offset2 span5">
+                    <div class="input-append">
+                        <input class="span4" id="appendedInputButton" size="16" type="text">
+                        <button id="btn-search" class="btn" type="button">Go!</button>
+                    </div>
+                </div>
+                <div class="nav-collapse collapse pull-right">
+                    <ul class="nav">
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">@Model.Username<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#contact">Profile</a></li>
                                 <li><a href="#contact">Account</a></li>
+                                <li><a href="#contact">Logout</a></li>
                             </ul>
                         </li>
                     </ul>
-                    <ul class="nav pull-right">
-                        <li><a href="#contact">Notifications (1)</a></li>
-                    </ul>
                 </div>
-                <!--/.nav-collapse -->
+
             </div>
         </div>
     </div>
@@ -81,7 +74,6 @@
     </div>*@
     <div class="container">
             @RenderBody()
-        
     </div>
     <footer style="text-align: center;">
         <p><em>&copy; @DateTime.Now.Year <a href="/">CliqFlip</a> - All rights reserved.</em></p>

@@ -4,14 +4,16 @@
 
 /* Body */
 
-@media (min-width: 980px)
+body
 {
-    body
-    {
-        padding-top: 60px;
-        padding-bottom: 40px;
-    }
+    padding-top: 60px;
+    padding-bottom: 40px;
 }
+
+
+
+
+
 
 /* Subnav http://twitter.github.com/bootstrap/assets/css/docs.css */
 
