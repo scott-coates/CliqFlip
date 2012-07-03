@@ -2,8 +2,8 @@
 @{
     Layout = "";
     ViewBag.Title = "CliqFlip - Discover More";
-    Bundles.Reference("Content/assets/styles/site");
     Bundles.Reference("Content/assets/styles/bootstrap");
+    Bundles.Reference("Content/assets/styles/site");
     Bundles.Reference("Content/assets/templates");
     Bundles.Reference("Scripts/modernizr-2.5.3.js", "head");
     Bundles.Reference("Scripts");
@@ -35,6 +35,22 @@
         {
             margin-left: -4px;
         }
+        
+        body
+        {
+            background-color: #E7EEF1;
+        }
+        
+        #main-content
+        {
+            background-color: White;
+            padding-top: 65px;
+        }
+        #toggle-settings-menu {
+            display: inline-block;
+        }
+        
+        
     </style>
 </head>
 <body>
@@ -48,16 +64,21 @@
                     <span class="icon-bar"></span>
                 </a>
                 <a class="brand span1" href="#">CliqFlip</a>
-                <div class="offset2 span5">
-                    <div class="input-append">
-                        <input class="span4" id="appendedInputButton" size="16" type="text">
-                        <button id="btn-search" class="btn" type="button">Go!</button>
+                
+                <div class="nav-collapse collapse">
+                    <div class="offset2 span7">
+                        <div class="input-append">
+                            <input class="span4" id="appendedInputButton" size="16" type="text">
+                            <button id="btn-search" class="btn" type="button">Search</button>
+                        </div>
                     </div>
-                </div>
-                <div class="nav-collapse collapse pull-right">
-                    <ul class="nav">
+                    <ul class="nav pull-right">
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">@Model.Username<b class="caret"></b></a>
+                            <img height="35px" class="dropdown-toggle" data-toggle="dropdown" src="@Url.Content("~/Content/assets/img/empty-avatar.jpg")" />
+                            <a id="toggle-settings-menu" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                @Model.Username
+                                <b class="caret"></b>
+                            </a>
                             <ul class="dropdown-menu">
                                 <li><a href="#contact">Profile</a></li>
                                 <li><a href="#contact">Account</a></li>
@@ -72,8 +93,8 @@
     </div>
     @*<div class="subnav subnav-fixed">
     </div>*@
-    <div class="container">
-            @RenderBody()
+    <div id="main-content" class="container">
+        @RenderBody()
     </div>
     <footer style="text-align: center;">
         <p><em>&copy; @DateTime.Now.Year <a href="/">CliqFlip</a> - All rights reserved.</em></p>
