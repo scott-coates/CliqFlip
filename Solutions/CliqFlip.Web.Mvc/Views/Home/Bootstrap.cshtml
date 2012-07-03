@@ -1,94 +1,41 @@
 ﻿@model CliqFlip.Web.Mvc.ViewModels.Home.HomeUserViewModel
+
 @{
-    Layout = "";
-    ViewBag.Title = "CliqFlip - Discover More";
-    Bundles.Reference("Content/assets/styles/bootstrap");
-    Bundles.Reference("Content/assets/styles/site");
-    Bundles.Reference("Content/assets/templates");
-    Bundles.Reference("Scripts/modernizr-2.5.3.js", "head");
-    Bundles.Reference("Scripts");
-    Bundles.Reference("Content/assets/js/marionette");
-    Bundles.Reference("Content/assets/js/hogan");
-    Bundles.Reference("Content/assets/js/jquery");
-    Bundles.Reference("Content/assets/js/cliqflip");
-    Bundles.Reference("Content/app");
+    Layout = "~/Views/Shared/_Layout.Bootstrap.cshtml";
 }
-<!doctype html>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en">
-<!--<![endif]-->
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>@ViewBag.Title</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @Bundles.RenderStylesheets()
-    @Bundles.RenderScripts("head")
-</head>
-<body>
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
-                                                                                                 class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-                </a><a class="brand" href="#">CliqFlip</a>
-                <div class="nav-collapse">
-                    <ul class="nav nav-pill pull-right">
-                        <li class="active"><a href="#contact">Home</a></li>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                                 Feed <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#contact"><i class="icon-check"></i>Friends</a></li>
-                                <li><a href="#contact">All Users</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Search
-                                                 <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#contact"><i class="icon-check"></i>Suggested</a></li>
-                                <li><a href="#contact">Custom</a></li>
-                                <li><a href="#contact">Random</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#contact">+Share</a></li>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">@Model.Username
-                                                 <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#contact">Profile</a></li>
-                                <li><a href="#contact">Account</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul class="nav pull-right">
-                        <li><a href="#contact">Notifications (1)</a></li>
-                    </ul>
-                </div>
-                <!--/.nav-collapse -->
+
+<style type="text/css">
+    .gray-rounded-border
+    {
+        border: 1px solid #DDD;
+        -webkit-border-radius: 4px; /* Saf3-4, iOS 1-3.2, Android ≤1.6 */
+        border-radius: 4px; /* Opera 10.5, IE9, Saf5, Chrome, FF4+, iOS 4, Android 2.1+ */
+
+        /* useful if you don't want a bg color from leaking outside the border: */
+        -moz-background-clip: padding; 
+        -webkit-background-clip: padding-box; 
+        background-clip: padding-box;
+    }
+</style>
+
+
+<div class="row-fluid">
+    <div class="span3">
+        <div class="row">
+            <div class="span12">
+                This is where the users picture goes
+            </div>
+            <div class="span12">
+                <ul class="nav nav-pills nav-stacked gray-rounded-border">
+                    <li class="active"><a>Your Feed</a></li>
+                    <li><a>Search</a></li>
+                    <li><a>Inbox</a></li>
+                    <li><a>Settings</a></li>
+                </ul>
             </div>
         </div>
     </div>
-    <div class="subnav subnav-fixed">
-  </div>
-    <div class="container">
-        <div id="content">
-        </div>
-        <hr>
-        <footer>
-            <p><em>&copy; @DateTime.Now.Year <a href="/">CliqFlip</a> - All rights reserved.</em></p>
-        </footer>
+    <div class="span9">
+        This is the right section
     </div>
-    <!-- /container -->
-    @Bundles.RenderScripts()
-    @Bundles.RenderHtmlTemplates()
-    <script type="text/javascript" language="javascript">
-        $(function() {
-            CliqFlip.Mvc.App.start();
-        });
-    </script>
-</body>
-</html>
+</div>
