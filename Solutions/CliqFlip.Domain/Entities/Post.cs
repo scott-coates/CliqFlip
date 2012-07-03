@@ -1,33 +1,36 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using CliqFlip.Domain.ValueObjects;
+using Iesi.Collections.Generic;
 using SharpArch.Domain.DomainModel;
 
 namespace CliqFlip.Domain.Entities
 {
-	public class Post : Entity
-	{
-		public virtual UserInterest UserInterest { get; set; }
+    public class Post : Entity
+    {
+        private readonly Iesi.Collections.Generic.ISet<Comment> _comments;
 
-		public virtual Medium Medium { get; set; }
-		
-		public virtual string Description { get; set; }
+        public virtual UserInterest UserInterest { get; set; }
 
-		public virtual DateTime CreateDate { get; set; }
+        public virtual Medium Medium { get; set; }
 
-		public virtual int? InterestPostOrder
-		{
-			get
-			{
-				int? fieldOrder = null;
+        public virtual string Description { get; set; }
 
-				if (UserInterest != null && UserInterest.Posts.Contains(this))
-				{
-                    fieldOrder = UserInterest.Posts.ToList().IndexOf(this) + 1; //why not
-				}
+        public virtual DateTime CreateDate { get; set; }
 
-				return fieldOrder;
-			}
-		}
-	}
+        public virtual int InterestPostOrder
+        {
+            get { return UserInterest.Posts.ToList().IndexOf(this) + 1; }
+        }
+
+        public virtual IEnumerable<Comment> Comments
+        {
+            get { return new List<Comment>(_comments).AsReadOnly(); }
+        }
+
+        public Post()
+        {
+            _comments = new HashedSet<Comment>();
+        }
+    }
 }
