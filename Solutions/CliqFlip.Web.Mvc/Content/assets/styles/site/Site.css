@@ -13,17 +13,6 @@
     }
 }
 
-/* Nav */
-
-@media (min-width: 980px)
-{
-    .navbar .brand
-    {
-        display: inline-block;
-        margin-left: 45%;
-    }
-}
-
 /* Subnav http://twitter.github.com/bootstrap/assets/css/docs.css */
 
 .subnav

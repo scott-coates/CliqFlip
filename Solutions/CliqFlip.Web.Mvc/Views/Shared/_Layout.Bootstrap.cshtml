@@ -34,11 +34,11 @@
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
-                @*<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </a>*@
+                </a>
                 <a class="brand" href="#">CliqFlip</a>
                 <div class="nav-collapse">
                     <ul class="nav nav-pill pull-right">
@@ -77,17 +77,15 @@
             </div>
         </div>
     </div>
-    <div class="subnav subnav-fixed">
-    </div>
+    @*<div class="subnav subnav-fixed">
+    </div>*@
     <div class="container">
-        <div id="content">
             @RenderBody()
-        </div>
-        <hr>
-        <footer>
-            <p><em>&copy; @DateTime.Now.Year <a href="/">CliqFlip</a> - All rights reserved.</em></p>
-        </footer>
+        
     </div>
+    <footer style="text-align: center;">
+        <p><em>&copy; @DateTime.Now.Year <a href="/">CliqFlip</a> - All rights reserved.</em></p>
+    </footer>
     <!-- /container -->
     @Bundles.RenderScripts()
     @Bundles.RenderHtmlTemplates()
