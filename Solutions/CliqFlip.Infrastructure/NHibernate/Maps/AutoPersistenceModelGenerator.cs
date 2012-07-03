@@ -26,6 +26,7 @@ namespace CliqFlip.Infrastructure.NHibernate.Maps
 			mappings.IgnoreBase(typeof(EntityWithTypedId<>));
 			mappings.Conventions.Setup(GetConventions());
 			mappings.UseOverridesFromAssemblyOf<AutoPersistenceModelGenerator>();
+		    mappings.WriteMappingsTo("C:\\temp");
 
 			return mappings;
 		}

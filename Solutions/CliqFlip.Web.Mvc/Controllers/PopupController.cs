@@ -21,20 +21,20 @@ namespace CliqFlip.Web.Mvc.Controllers
 		}
 
 		[Authorize]
-		public ActionResult BookmarkMedium(string mediumUrl)
+		public ActionResult CreatePost(string mediumUrl)
 		{
 			if (string.IsNullOrWhiteSpace(mediumUrl))
 			{
 				throw new HttpException((int)HttpStatusCode.NotFound, "Not found");
 			}
-			var viewModel = new BookmarkMediumViewModel { Username = _principal.Identity.Name, MediumUrl = mediumUrl };
+			var viewModel = new CreatePostViewModel { Username = _principal.Identity.Name, MediumUrl = mediumUrl };
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 			viewModel
 				.Interests
 				.AddRange(user
 							.Interests
 							.OrderBy(x => x.Interest.Name)
-							.Select(x => new BookmarkMediumViewModel.InterestsViewModel
+							.Select(x => new CreatePostViewModel.InterestsViewModel
 							{
 								UserInterestId = x.Id,
 								InterestName = x.Interest.Name

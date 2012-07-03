@@ -239,15 +239,15 @@
     <Compile Include="ViewModels\Home\HomeUserViewModel.cs" />
     <Compile Include="ViewModels\Jeip\JeipSaveResponseViewModel.cs" />
     <Compile Include="ViewModels\Jeip\JeipSaveTextViewModel.cs" />
-    <Compile Include="ViewModels\Media\InterestMediumViewModel.cs" />
+    <Compile Include="ViewModels\Media\InterestPostViewModel.cs" />
     <Compile Include="ViewModels\Notification\LatestNotificationViewModel.cs" />
-    <Compile Include="ViewModels\Popup\BookmarkMediumViewModel.cs" />
+    <Compile Include="ViewModels\Popup\CreatePostViewModel.cs" />
     <Compile Include="ViewModels\Search\InterestsFeedViewModel.cs" />
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
     <Compile Include="ViewModels\Search\InterestSearchViewModel.cs" />
     <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
     <Compile Include="ViewModels\User\UserAccountViewModel.cs" />
-    <Compile Include="ViewModels\User\UserSaveInterestMediumFromUrlViewModel.cs" />
+    <Compile Include="ViewModels\User\UserCreatePostFromUrlViewModel.cs" />
     <Compile Include="ViewModels\User\UserSaveInterestWebPageViewModel.cs" />
     <Compile Include="ViewModels\User\UserSaveInterestVideoViewModel.cs" />
     <Compile Include="ViewModels\User\ThankYouViewModel.cs" />
@@ -804,7 +804,6 @@
     <Content Include="Views\User\DisplayTemplates\Video.cshtml" />
     <Content Include="Views\User\DisplayTemplates\WebPage.cshtml" />
     <Content Include="Views\User\DisplayTemplates\WebPageNoImage.cshtml" />
-    <Content Include="Views\Popup\BookmarkMedium.cshtml" />
     <Content Include="Views\Popup\_Layout.cshtml" />
     <Content Include="Views\User\_Bookmarklet.cshtml" />
     <Content Include="Views\Notification\Latest.cshtml" />
@@ -821,6 +820,7 @@
     <Content Include="Content\assets\templates\feed\feedItem.mustache" />
     <Content Include="Content\assets\templates\feed\feedList.mustache" />
     <Content Include="Content\assets\templates\home\content.mustache" />
+    <Content Include="Views\Popup\CreatePost.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

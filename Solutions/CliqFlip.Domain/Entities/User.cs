@@ -166,21 +166,21 @@ namespace CliqFlip.Domain.Entities
             UpdateLastActivity();
         }
 
-        public virtual void MakeInterestMediumDefault(int mediumId)
+        public virtual void MakeInterestPostDefault(int postId)
         {
-            Medium medium = GetMedium(mediumId);
-            medium.UserInterest.MakeMediumDefault(medium);
+            Post post = GetPost(postId);
+            post.UserInterest.MakePostDefault(post);
             UpdateLastActivity();
         }
 
-        public virtual Medium GetMedium(int mediumId)
+        public virtual Post GetPost(int postId)
         {
-            return _interests.SelectMany(x => x.Media).First(x => x.Id == mediumId);
+            return _interests.SelectMany(x => x.Posts).First(x => x.Id == postId);
         }
 
-        public virtual void RemoveInterestMedium(Medium medium)
+        public virtual void RemoveInterestPost(Post post)
         {
-            medium.UserInterest.RemoveInterestMedium(medium);
+            post.UserInterest.RemoveInterestPost(post);
             UpdateLastActivity();
         }
 

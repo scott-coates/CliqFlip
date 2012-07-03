@@ -3,7 +3,7 @@ using CliqFlip.Domain.Dtos.Media;
 
 namespace CliqFlip.Web.Mvc.ViewModels.Media
 {
-	public abstract class InterestMediumViewModel
+	public abstract class InterestPostViewModel
 	{
 		public int MediumId { get; set; }
 		public string MediumType { get; set; }
@@ -15,17 +15,17 @@ namespace CliqFlip.Web.Mvc.ViewModels.Media
 		public string WebSiteUrl { get; set; }
 		public string Title { get; set; }
 
-		protected InterestMediumViewModel(MediumDto medium)
+		protected InterestPostViewModel(PostDto post)
 		{
-			MediumId = medium.MediumId;
-			MediumType = medium.MediumType;
-			Description = medium.Description;
-			ThumbImage = medium.ThumbImage;
-			MediumImage = medium.MediumImage;
-			FullImage = medium.FullImage;
-			VideoUrl = medium.VideoUrl;
-			WebSiteUrl = medium.WebSiteUrl;
-			Title = medium.Title;
+			MediumId = post.MediumId;
+			MediumType = post.MediumType;
+			Description = post.Description;
+			ThumbImage = post.ThumbImage;
+			MediumImage = post.MediumImage;
+			FullImage = post.FullImage;
+			VideoUrl = post.VideoUrl;
+			WebSiteUrl = post.WebSiteUrl;
+			Title = post.Title;
 		}
 	}
 }

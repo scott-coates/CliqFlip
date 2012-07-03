@@ -8,6 +8,6 @@ namespace CliqFlip.Domain.Contracts.Tasks
 {
 	public interface IUserInterestTasks
 	{
-		IList<InterestFeedItemDto> GetMediaByInterests(IList<Interest> interests);
+		IList<InterestFeedItemDto> GetPostsByInterests(IList<Interest> interests);
 	}
 }

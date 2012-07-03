@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace CliqFlip.Web.Mvc.ViewModels.Popup
 {
-	public class BookmarkMediumViewModel
+	public class CreatePostViewModel
 	{
 		public string MediumUrl { get; set; }
 
@@ -16,7 +16,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.Popup
 
 		public string Username { get; set; }
 
-		public BookmarkMediumViewModel()
+		public CreatePostViewModel()
 		{
 			Interests = new List<InterestsViewModel>();
 		}

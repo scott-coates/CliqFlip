@@ -7,7 +7,7 @@ namespace CliqFlip.Domain.Entities
 {
 	public class UserInterest : Entity
 	{
-		private readonly Iesi.Collections.Generic.ISet<Medium> _media;
+		private readonly Iesi.Collections.Generic.ISet<Post> _posts;
 		private UserInterestOption _options;
 
 		public virtual User User { get; set; }
@@ -21,38 +21,38 @@ namespace CliqFlip.Domain.Entities
 			set { _options = value; }
 		}
 
-		public virtual IEnumerable<Medium> Media
+		public virtual IEnumerable<Post> Posts
 		{
-			get { return new List<Medium>(_media).AsReadOnly(); }
+            get { return new List<Post>(_posts).AsReadOnly(); }
 		}
 
 		public UserInterest()
 		{
-			_media = new HashedSet<Medium>();
+            _posts = new HashedSet<Post>();
 		}
 
 		//TODO: consider law of demeter violation - should we be working with user class instead of directly with userInterest??
 		//http://msdn.microsoft.com/en-us/magazine/cc947917.aspx#id0070040 - i think we can skip the law of demeter since we're working
 		//directly with user intersts
-		public virtual void AddMedium(Medium medium)
+		public virtual void AddPost(Post post)
 		{
-			medium.UserInterest = this;
+			post.UserInterest = this;
 
-			_media.Add(medium);
+			_posts.Add(post);
 		}
 
-		public virtual void MakeMediumDefault(Medium medium)
+        public virtual void MakePostDefault(Post post)
 		{
-			var temp = new List<Medium>(_media);
-			_media.Clear();
-			_media.Add(medium);
-			temp.Remove(medium);
-			_media.AddAll(temp);
+			var temp = new List<Post>(_posts);
+			_posts.Clear();
+			_posts.Add(post);
+			temp.Remove(post);
+			_posts.AddAll(temp);
 		}
 
-		public virtual void RemoveInterestMedium(Medium medium)
+		public virtual void RemoveInterestPost(Post post)
 		{
-			_media.Remove(medium);
+			_posts.Remove(post);
 		}
 	}
 }

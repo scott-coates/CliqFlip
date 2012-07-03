@@ -39,8 +39,13 @@ namespace CliqFlip.Domain.Dtos.User
                 Name = interest.Interest.Name;
                 Slug = interest.Interest.Slug;
                 Passion = interest.Options.Passion;
-                var defaultImage = interest.Media.FirstOrDefault() as Image;
-                DefaultImageUrl = defaultImage != null ? defaultImage.ImageData.MediumFileName : null;
+                Post firstPost = interest.Posts.FirstOrDefault();
+                if (firstPost != null)
+                {
+                    var defaultImage = firstPost.Medium as Image;
+                    DefaultImageUrl = defaultImage != null ? defaultImage.ImageData.MediumFileName : null;
+                }
+
                 InterestId = interest.Interest.Id;
             }
         }

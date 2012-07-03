@@ -32,11 +32,11 @@ namespace CliqFlip.Web.Mvc.Queries
 
 			User user = _userTasks.GetUser(userName);
 
-			IList<InterestFeedItemDto> mediumDtos = _userInterestTasks.GetMediaByInterests(user.Interests.Select(x => x.Interest).ToList());
-			retVal.Total = mediumDtos.Count;
-			retVal.InterestViewModels = mediumDtos
+			IList<InterestFeedItemDto> postDtos = _userInterestTasks.GetPostsByInterests(user.Interests.Select(x => x.Interest).ToList());
+			retVal.Total = postDtos.Count;
+			retVal.InterestViewModels = postDtos
 				.AsPagination( page ?? 1, Constants.FEED_LIMIT)
-				.Select(x => new InterestsFeedViewModel.FeedMediumViewModel(x) { UserPageUrl = url.Action("Index", "User", new { username = x.Username }) })
+				.Select(x => new InterestsFeedViewModel.FeedPostViewModel(x) { UserPageUrl = url.Action("Index", "User", new { username = x.Username }) })
 				.ToList();
 
 			//rank them in order then grab that page

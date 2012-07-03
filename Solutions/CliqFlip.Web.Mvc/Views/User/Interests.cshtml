@@ -42,11 +42,11 @@
 				}
 			</div>
 			<ul class="intereset-slider">
-				@foreach (UserInterestsViewModel.UserInterestMediumViewModel medium in interest.Media)
+				@foreach (UserInterestsViewModel.UserInterestPostViewModel post in interest.Posts)
 				{
 					<li>
 						<div class="interest-slider-panel-container">
-							@Html.DisplayFor(_ => medium, medium.MediumType)
+							@Html.DisplayFor(_ => post, post.MediumType)
 						</div>
 					</li>
 				}
