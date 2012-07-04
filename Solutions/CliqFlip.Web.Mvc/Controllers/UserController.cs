@@ -588,7 +588,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			UserInterestsViewModel user = _userProfileQuery.GetUserIntersets(username, _principal);
 			user.MakeDefaultUrl = "\"" + Url.Action("MakePostDefault", "User") + "\"";
-			user.RemoveImageUrl = "\"" + Url.Action("RemovePost", "User") + "\"";
+			user.RemovePostUrl = "\"" + Url.Action("RemovePost", "User") + "\"";
 
 			return View(user);
 		}

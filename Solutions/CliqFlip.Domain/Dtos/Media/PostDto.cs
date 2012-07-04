@@ -5,7 +5,7 @@ namespace CliqFlip.Domain.Dtos.Media
 {
 	public class PostDto
 	{
-		public int MediumId { get; set; }
+		public int PostId { get; set; }
 		public string MediumType { get; set; }
 		public string Description { get; set; }
 		public string ThumbImage { get; set; }
@@ -18,11 +18,11 @@ namespace CliqFlip.Domain.Dtos.Media
 		public PostDto(Post post)
 		{
             Description = post.Description;
+            PostId = post.Id;
 
 		    var medium = post.Medium;
 		    if (medium != null)
 		    {
-		        MediumId = medium.Id;
 		        MediumType = medium.GetType().Name;
 
 		        //set the preview images for media type that have images. Some medium's(website) wont have images all the time

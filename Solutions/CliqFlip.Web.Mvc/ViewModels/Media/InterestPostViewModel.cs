@@ -5,7 +5,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.Media
 {
 	public abstract class InterestPostViewModel
 	{
-		public int MediumId { get; set; }
+		public int PostId { get; set; }
 		public string MediumType { get; set; }
 		public string Description { get; set; }
 		public string ThumbImage { get; set; }
@@ -17,7 +17,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.Media
 
 		protected InterestPostViewModel(PostDto post)
 		{
-			MediumId = post.MediumId;
+			PostId = post.PostId;
 			MediumType = post.MediumType;
 			Description = post.Description;
 			ThumbImage = post.ThumbImage;

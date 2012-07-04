@@ -22,9 +22,9 @@
 					</a>
 					<div id="user-interest-add-text">
 						<strong>Add:</strong> 
-						<a href="javascript:void(0);" value="@interest.UserInterestId" class="user-interest-add-media user-interest-add-photo">Photo</a>
-						<a href="javascript:void(0);" value="@interest.UserInterestId" class="user-interest-add-media user-interest-add-video">Video</a>
-						<a href="javascript:void(0);" value="@interest.UserInterestId" class="user-interest-add-media user-interest-add-link">Link</a>
+						<a href="javascript:void(0);" value="@interest.UserInterestId" class="user-interest-add-post user-interest-add-photo">Photo</a>
+						<a href="javascript:void(0);" value="@interest.UserInterestId" class="user-interest-add-post user-interest-add-video">Video</a>
+						<a href="javascript:void(0);" value="@interest.UserInterestId" class="user-interest-add-post user-interest-add-link">Link</a>
 					</div>
 				}
 				else if (Model.AuthenticatedVisitor)
@@ -61,7 +61,7 @@
 		{
 			<h2>
 				Description:</h2>
-			@Html.TextArea("imageDescription", new {@class = "interest-upload-media-description"})
+			@Html.TextArea("imageDescription", new {@class = "interest-upload-post-description"})
 			//for some reason, the form would abruptly end when using fileuplaod BEFORe description
 			<h2>
 				Add a photo</h2>
@@ -74,7 +74,7 @@
 		@using (Html.BeginForm("SaveInterestVideo", "User", FormMethod.Post))
 		{
 			<h2>Video URL:</h2>
-			@Html.TextBox("videoUrl", "", new {@class = "interest-upload-media-description"})
+			@Html.TextBox("videoUrl", "", new {@class = "interest-upload-post-description"})
 			@Html.Hidden("userInterestId", null, new {@id = "userInterestIdVideo"})
 			<input type="submit" />
 		}
@@ -84,7 +84,7 @@
 		@using (Html.BeginForm("SaveInterestWebPage", "User", FormMethod.Post))
 		{
 			<h2>Link URL:</h2>
-			@Html.TextBox("linkUrl", "", new {@class = "interest-upload-media-description"})
+			@Html.TextBox("linkUrl", "", new {@class = "interest-upload-post-description"})
 			@Html.Hidden("userInterestId", null, new {@id = "userInterestIdLink"})
 			<input type="submit" />
 		}
@@ -106,8 +106,8 @@
 	<script type="text/javascript">
 		$(function() {
 			InitInterests(@(Model.AuthenticatedProfileOwner.ToString(CultureInfo.InvariantCulture).ToLower()));
-			InitSaveMedia();
-			InitShowMedia(@(Html.Raw(Model.MakeDefaultUrl)), @(Html.Raw(Model.RemoveImageUrl)));
+			InitSavePost();
+			InitShowPost(@(Html.Raw(Model.MakeDefaultUrl)), @(Html.Raw(Model.RemovePostUrl)));
 			@{
 				if (Model.AuthenticatedVisitor)
 				{
