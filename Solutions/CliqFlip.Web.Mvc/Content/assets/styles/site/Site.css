@@ -62,7 +62,12 @@
         display: block;
     }
     
-    
+    #user-share-something a
+    {
+        display: inline-block;
+        width: 20%;
+        margin-left: 4%;
+    }
     
     #large-profile-image
     {
