@@ -18,6 +18,13 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3698D2', endColorstr='#368FC5', GradientType=0);
 }
 
+@media (min-width: 1200px){
+        #left-column
+        {
+            max-width: 315px;
+        }
+    }
+
 @media (max-width: 979px){
     .navbar-fixed-top, .navbar-fixed-bottom
     {
@@ -25,13 +32,85 @@
     }
 }
 
-@media (max-width: 767px){
+@media (max-width: 767px)
+{
+    #profile-overview
+    {
+        position: relative;
+    }
+    
+    #profile-counts
+    {
+        position: absolute;
+        top: 100px;
+        right: 0px;
+    }
+    
+    #profile-counts .span4
+    {
+        display: inline-block;
+    }
+    
+    #profile-counts .span4:first-child
+    {
+        padding-left: 180px;
+    }
+    
+    #profile-counts .span4 strong
+    {
+        width: 100px;
+        display: block;
+    }
+    
+    
+    
+    #large-profile-image
+    {
+        float: left;
+        max-height: 200px;
+    }
     .navbar-fixed-top, .navbar-fixed-bottom {
         margin-right: auto;
         margin-left: auto;
     }
+    
+    #main-search-box
+    {
+        width: 75%;
+        margin-left: 3%;
+    }
 }
 
+
+@media (max-width: 530px)
+{
+    body
+    {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+    #profile-counts .span4 strong
+    {
+        width: 60px;
+    }
+    
+}
+
+@media (max-width: 370px)
+{
+    #large-profile-image
+    {
+        max-width: 125px;
+    }
+    
+    #profile-counts .span4:first-child {
+        padding-left: 135px;
+    }
+    
+    #profile-counts .span4 strong {
+        width: 55px;
+    }
+}
 
 /*Feed*/
 

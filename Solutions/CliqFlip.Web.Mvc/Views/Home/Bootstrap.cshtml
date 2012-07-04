@@ -63,11 +63,13 @@
     {
         padding-top: 20px;
     }
+    
+    
 </style>
 
 
 <div class="row-fluid">
-    <div class="span3">
+    <div id="left-column" class="span4">
         <div class="row-fluid">
             <div class="span1">
             </div>
@@ -76,9 +78,7 @@
             <div class="row-fluid">
             <div id="profile-overview" class="span12 gray-rounded-border">
                 <div id="profile-user" class="row-fluid">
-                    <div class="span4">
-                        <img src="@Url.Content("~/Content/assets/img/empty-avatar.jpg")" />
-                    </div>
+                    <img id="large-profile-image" src="@Url.Content("~/Content/assets/img/empty-avatar.jpg")" class="span4" />
                     <div class="span8" style="font-size: 20px;line-height: 36px;">
                         <div class="row-fluid">
                             <div class="span12">
@@ -120,7 +120,7 @@
             </div>
         </div>
     </div>
-    <div class="span9">
+    <div class="span8">
         <div class="row-fluid">
             <div class="span8">
                 <div class="row-fluid">
