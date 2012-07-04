@@ -821,6 +821,7 @@
     <Content Include="Content\assets\templates\feed\feedList.mustache" />
     <Content Include="Content\assets\templates\home\content.mustache" />
     <Content Include="Views\Popup\CreatePost.cshtml" />
+    <Content Include="Views\Shared\_Layout.Bootstrap.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
