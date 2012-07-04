@@ -2,140 +2,245 @@
    Author:
    ========================================================================== */
 
-/* Body */
 
-@media (min-width: 980px)
+        
+body
 {
-    body
+    background-color: #E7EEF1;
+}
+        
+#main-content
+{
+    background-color: White;
+    padding-top: 65px;
+}
+#toggle-settings-menu {
+    display: inline-block;
+}
+
+
+/* Nav bar */
+
+/* background color override */
+.navbar .navbar-inner {
+  background-color: #3f9fd9;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3698D2), color-stop(90%, #3698D2), to(#368FC5));
+  background-image: -webkit-linear-gradient(#3698D2, #3698D2 90%, #368FC5);
+  background-image: -moz-linear-gradient(top, #3698D2, #3698D2 90%, #368FC5);
+  background-image: -ms-linear-gradient(#3698D2, #3698D2 90%, #368FC5);
+  background-image: -o-linear-gradient(#3698D2, #3698D2 90%, #368FC5);
+  background-image: linear-gradient(#3698D2, #3698D2 90%, #368FC5);
+  background-repeat: no-repeat;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3698D2', endColorstr='#368FC5', GradientType=0);
+}
+
+
+#btn-search
+{
+    margin-left: -4px;
+}
+
+
+#content-area
+{
+    padding-top: 20px;
+}
+
+
+/* Add video, link, image */
+#user-interest-add-text {
+    text-align: left;	
+}
+
+#user-share-something a
+{
+    height: 50px;
+    padding-top: 35px;
+}
+.user-interest-add-photo {
+	background-image: url('/Content/assets/img/photoICON.png');
+	background-repeat: no-repeat;
+}
+
+.user-interest-add-video {
+	background-image: url('/Content/assets/img/YouTube_Icon.png');
+	background-repeat: no-repeat;
+}
+
+.user-interest-add-link {
+	background-image: url('/Content/assets/img/icons.png');
+	background-repeat: no-repeat;
+}
+
+
+/* profile */
+#profile-overview
+{
+    padding: 10px;
+    margin-bottom: 10px;
+}
+    
+#profile-user
+{
+    padding-bottom: 15px;
+}
+    
+#profile-counts div.span4
+{
+    text-align: center;
+}
+
+/*********HELPERS*********/
+.gray-rounded-border
+{
+    border: 1px solid #DDD;
+    -webkit-border-radius: 4px; /* Saf3-4, iOS 1-3.2, Android ≤1.6 */
+    border-radius: 4px; /* Opera 10.5, IE9, Saf5, Chrome, FF4+, iOS 4, Android 2.1+ */
+
+    /* useful if you don't want a bg color from leaking outside the border: */
+    -moz-background-clip: padding; 
+    -webkit-background-clip: padding-box; 
+    background-clip: padding-box;
+}
+/*********END OF HELPERS*********/
+
+
+
+/* MEDIA QUERIES */
+
+/* large screens */
+@media (min-width: 1200px)
+{
+    /* limit the width of the left area on large screens */
+    #left-column
     {
-        padding-top: 60px;
-        padding-bottom: 40px;
+        max-width: 315px;
     }
 }
 
-/* Nav */
-
-@media (min-width: 980px)
+/* normal screens */
+@media (max-width: 979px)
 {
-    .navbar .brand
-    {
-        display: inline-block;
-        margin-left: 45%;
-    }
-}
-
-/* Subnav http://twitter.github.com/bootstrap/assets/css/docs.css */
-
-.subnav
-{
-    width: 100%;
-    height: 16px;
-    background-color: #358FFF; /* Old browsers */
-    background-repeat: repeat-x; /* Repeat the gradient */
-    background-image: -moz-linear-gradient(top, #358FC5 0%, #358FFF 100%); /* FF3.6+ */
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #358FC5), color-stop(100%, #358FFF)); /* Chrome,Safari4+ */
-    background-image: -webkit-linear-gradient(top, #358FC5 0%, #358FFF 100%); /* Chrome 10+,Safari 5.1+ */
-    background-image: -ms-linear-gradient(top, #358FC5 0%, #358FFF 100%); /* IE10+ */
-    background-image: -o-linear-gradient(top, #358FC5 0%, #358FFF 100%); /* Opera 11.10+ */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#358FC5', endColorstr='#358FFF', GradientType=0); /* IE6-9 */
-    background-image: linear-gradient(top, #358FC5 0%, #358FFF 100%); /* W3C */
-    border: 1px solid #e5e5e5;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-}
-
-.subnav .nav
-{
-    margin-bottom: 0;
-}
-
-.subnav .nav > li > a
-{
-    margin: 0;
-    padding-top: 11px;
-    padding-bottom: 11px;
-    border-left: 1px solid #358FC5;
-    border-right: 1px solid #e5e5e5;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-}
-
-.subnav .nav > .active > a, .subnav .nav > .active > a:hover
-{
-    padding-left: 13px;
-    color: #777;
-    background-color: #e9e9e9;
-    border-right-color: #ddd;
-    border-left: 0;
-    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .05);
-    -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .05);
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .05);
-}
-
-.subnav .nav > .active > a .caret, .subnav .nav > .active > a:hover .caret
-{
-    border-top-color: #777;
-}
-
-.subnav .nav > li:first-child > a, .subnav .nav > li:first-child > a:hover
-{
-    border-left: 0;
-    padding-left: 12px;
-    -webkit-border-radius: 4px 0 0 4px;
-    -moz-border-radius: 4px 0 0 4px;
-    border-radius: 4px 0 0 4px;
-}
-
-.subnav .nav > li:last-child > a
-{
-    border-right: 0;
-}
-
-.subnav .dropdown-menu
-{
-    -webkit-border-radius: 0 0 4px 4px;
-    -moz-border-radius: 0 0 4px 4px;
-    border-radius: 0 0 4px 4px;
-}
-
-/* Fixed subnav on scroll, but only for 980px and up (sorry IE!) */
-
-@media (min-width: 980px)
-{
-    .subnav-fixed
+    /* removes extra bottom padding from top nav bar in small windows   */
+    .navbar-fixed-top, .navbar-fixed-bottom
     {
         position: fixed;
-        top: 40px;
-        left: 0;
-        right: 0;
-        z-index: 1020; /* 10 less than .navbar-fixed to prevent any overlap */
-        border-color: #d5d5d5;
-        border-width: 0 0 1px; /* drop the border on the fixed edges */
-        -webkit-border-radius: 0;
-        -moz-border-radius: 0;
-        border-radius: 0;
-        -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0, 0, 0, .1);
-        -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0, 0, 0, .1);
-        box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0, 0, 0, .1);
-        filter: progid:DXImageTransform.Microsoft.gradient(enabled=false); /* IE6-9 */
-    }
-
-    .subnav-fixed .nav
-    {
-        width: 938px;
-        margin: 0 auto;
-        padding: 0 1px;
-    }
-
-    .subnav .nav > li:first-child > a, .subnav .nav > li:first-child > a:hover
-    {
-        -webkit-border-radius: 0;
-        -moz-border-radius: 0;
-        border-radius: 0;
     }
 }
+
+/* small screens, landscape phones, protrait tablet  */
+@media (max-width: 767px)
+{
+    /* fixes the sides from being cuttoff(cliqflip logo and top right menu)  */
+    .navbar-fixed-top, .navbar-fixed-bottom {
+        margin-right: auto;
+        margin-left: auto;
+    }
+    
+    
+    #main-search-box
+    {
+        width: 75%;
+        margin-left: 3%;
+    }
+    
+    /* rearrange the main profile image, username, counts  */
+    #profile-overview
+    {
+        position: relative;
+    }
+    
+    #large-profile-image
+    {
+        float: left;
+        max-height: 200px;
+    }
+    
+    #profile-counts
+    {
+        position: absolute;
+        top: 100px;
+        right: 0px;
+    }
+    
+    #profile-counts .span4
+    {
+        display: inline-block;
+    }
+    
+    #profile-counts .span4:first-child
+    {
+        padding-left: 180px;
+    }
+    
+    #profile-counts .span4 strong
+    {
+        width: 100px;
+        display: block;
+    }
+    
+    
+    /* fix the sharing buttons  */
+    #user-share-something a
+    {
+        display: inline-block;
+        width: 20%;
+        margin-left: 4%;
+    }
+    
+    
+}
+
+/* landscape phones  */
+@media (max-width: 530px)
+{
+    /* mobile looks better w/o padding  */
+    body
+    {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+    
+    /* less padding between the numbers */
+    #profile-counts .span4 strong
+    {
+        width: 60px;
+    }
+    
+}
+
+/* portrait phones */
+@media (max-width: 370px)
+{
+    /* make main profile image smaller */
+    #large-profile-image
+    {
+        max-width: 125px;
+    }
+    
+    /* fix the profile counts */
+    #profile-counts .span4:first-child {
+        padding-left: 135px;
+    }
+    
+    #profile-counts .span4 strong {
+        width: 55px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*Feed*/
 
