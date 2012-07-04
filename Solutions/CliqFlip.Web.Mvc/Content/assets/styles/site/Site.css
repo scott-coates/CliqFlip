@@ -3,6 +3,22 @@
    ========================================================================== */
 
 
+        
+body
+{
+    background-color: #E7EEF1;
+}
+        
+#main-content
+{
+    background-color: White;
+    padding-top: 65px;
+}
+#toggle-settings-menu {
+    display: inline-block;
+}
+
+
 /* Nav bar */
 
 /* background color override */
@@ -18,25 +34,126 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3698D2', endColorstr='#368FC5', GradientType=0);
 }
 
-@media (min-width: 1200px){
-        #left-column
-        {
-            max-width: 315px;
-        }
-    }
 
-@media (max-width: 979px){
+#btn-search
+{
+    margin-left: -4px;
+}
+
+
+#content-area
+{
+    padding-top: 20px;
+}
+
+
+/* Add video, link, image */
+#user-interest-add-text {
+    text-align: left;	
+}
+
+#user-share-something a
+{
+    height: 50px;
+    padding-top: 35px;
+}
+.user-interest-add-photo {
+	background-image: url('/Content/assets/img/photoICON.png');
+	background-repeat: no-repeat;
+}
+
+.user-interest-add-video {
+	background-image: url('/Content/assets/img/YouTube_Icon.png');
+	background-repeat: no-repeat;
+}
+
+.user-interest-add-link {
+	background-image: url('/Content/assets/img/icons.png');
+	background-repeat: no-repeat;
+}
+
+
+/* profile */
+#profile-overview
+{
+    padding: 10px;
+    margin-bottom: 10px;
+}
+    
+#profile-user
+{
+    padding-bottom: 15px;
+}
+    
+#profile-counts div.span4
+{
+    text-align: center;
+}
+
+/*********HELPERS*********/
+.gray-rounded-border
+{
+    border: 1px solid #DDD;
+    -webkit-border-radius: 4px; /* Saf3-4, iOS 1-3.2, Android ≤1.6 */
+    border-radius: 4px; /* Opera 10.5, IE9, Saf5, Chrome, FF4+, iOS 4, Android 2.1+ */
+
+    /* useful if you don't want a bg color from leaking outside the border: */
+    -moz-background-clip: padding; 
+    -webkit-background-clip: padding-box; 
+    background-clip: padding-box;
+}
+/*********END OF HELPERS*********/
+
+
+
+/* MEDIA QUERIES */
+
+/* large screens */
+@media (min-width: 1200px)
+{
+    /* limit the width of the left area on large screens */
+    #left-column
+    {
+        max-width: 315px;
+    }
+}
+
+/* normal screens */
+@media (max-width: 979px)
+{
+    /* removes extra bottom padding from top nav bar in small windows   */
     .navbar-fixed-top, .navbar-fixed-bottom
     {
         position: fixed;
     }
 }
 
+/* small screens, landscape phones, protrait tablet  */
 @media (max-width: 767px)
 {
+    /* fixes the sides from being cuttoff(cliqflip logo and top right menu)  */
+    .navbar-fixed-top, .navbar-fixed-bottom {
+        margin-right: auto;
+        margin-left: auto;
+    }
+    
+    
+    #main-search-box
+    {
+        width: 75%;
+        margin-left: 3%;
+    }
+    
+    /* rearrange the main profile image, username, counts  */
     #profile-overview
     {
         position: relative;
+    }
+    
+    #large-profile-image
+    {
+        float: left;
+        max-height: 200px;
     }
     
     #profile-counts
@@ -62,6 +179,8 @@
         display: block;
     }
     
+    
+    /* fix the sharing buttons  */
     #user-share-something a
     {
         display: inline-block;
@@ -69,31 +188,20 @@
         margin-left: 4%;
     }
     
-    #large-profile-image
-    {
-        float: left;
-        max-height: 200px;
-    }
-    .navbar-fixed-top, .navbar-fixed-bottom {
-        margin-right: auto;
-        margin-left: auto;
-    }
     
-    #main-search-box
-    {
-        width: 75%;
-        margin-left: 3%;
-    }
 }
 
-
+/* landscape phones  */
 @media (max-width: 530px)
 {
+    /* mobile looks better w/o padding  */
     body
     {
         padding-right: 0px;
         padding-left: 0px;
     }
+    
+    /* less padding between the numbers */
     #profile-counts .span4 strong
     {
         width: 60px;
@@ -101,13 +209,16 @@
     
 }
 
+/* portrait phones */
 @media (max-width: 370px)
 {
+    /* make main profile image smaller */
     #large-profile-image
     {
         max-width: 125px;
     }
     
+    /* fix the profile counts */
     #profile-counts .span4:first-child {
         padding-left: 135px;
     }
@@ -116,6 +227,20 @@
         width: 55px;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*Feed*/
 
