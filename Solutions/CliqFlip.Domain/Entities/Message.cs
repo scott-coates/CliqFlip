@@ -13,7 +13,7 @@ namespace CliqFlip.Domain.Entities
         public virtual User Sender { get; set; }
         public virtual Conversation Conversation { get; set; }
         
-        public Message()
+        public Message() //todo: make private ctor
         {
         }
 

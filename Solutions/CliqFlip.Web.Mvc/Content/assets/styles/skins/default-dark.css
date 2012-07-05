@@ -1397,7 +1397,7 @@ color: white;
 text-align: left;	
 }
 
-.user-interest-add-media {
+.user-interest-add-post {
 	display: inline-block; 
 	margin-left:33px;
 	background-repeat: no-repeat;
@@ -1433,7 +1433,7 @@ text-align: left;
 	border-bottom: none;
 }
 
-.interest-upload-media-description {
+.interest-upload-post-description {
 	width: 400px;
 }
 

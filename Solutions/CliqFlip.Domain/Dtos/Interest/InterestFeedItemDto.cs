@@ -8,14 +8,14 @@ namespace CliqFlip.Domain.Dtos.Interest
 		public string Username { get; set; }
 		public string ImageUrl { get; set; }
 		public string Interest { get; set; }
-		public MediumDto Medium { get; set; }
+		public PostDto Post { get; set; }
 
-		public InterestFeedItemDto(Medium medium)
+		public InterestFeedItemDto(Post post)
 		{
-			Medium = new MediumDto(medium);
-			Username = medium.UserInterest.User.Username;
-			ImageUrl = medium.UserInterest.User.ProfileImage != null ? medium.UserInterest.User.ProfileImage.ImageData.MediumFileName : null;
-			Interest = medium.UserInterest.Interest.Name;
+			Post = new PostDto(post);
+			Username = post.UserInterest.User.Username;
+			ImageUrl = post.UserInterest.User.ProfileImage != null ? post.UserInterest.User.ProfileImage.ImageData.MediumFileName : null;
+			Interest = post.UserInterest.Interest.Name;
 		}
 	}
 }

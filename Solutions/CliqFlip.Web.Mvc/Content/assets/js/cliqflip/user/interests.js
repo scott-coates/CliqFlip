@@ -8,7 +8,7 @@ function InitInterests(canEdit) {
 	_canEdit = canEdit;
 }
 
-function InitSaveMedia() {
+function InitSavePost() {
 	if (_canEdit) {
 		_addPhotoDialog = $("#add-photo").dialog({
 			autoOpen: false,
@@ -60,7 +60,7 @@ function InitSaveMedia() {
 	}
 }
 
-function InitShowMedia(makeDefaultUrl, removeMediaUrl) {
+function InitShowPost(makeDefaultUrl, removePostUrl) {
     $('.intereset-slider').anythingSlider(
 		{
 		    hashTags: false,
@@ -79,7 +79,7 @@ function InitShowMedia(makeDefaultUrl, removeMediaUrl) {
 		.show()
 		.find('.panel:not(.cloned) a') // ignore the cloned panels
 		.colorbox({
-			current: "Media {current} of {total}",
+			current: "Post {current} of {total}",
 		    iframe: function () {
 		        //if the medium is an image, don't show it in an iframe
 		        //everything else show in an iframe
@@ -93,9 +93,9 @@ function InitShowMedia(makeDefaultUrl, removeMediaUrl) {
 
 		        if (_canEdit) {
 		            title = title
-						+ " <a href=" + makeDefaultUrl + "/?mediumId=" + $(this).attr('value') + " title='make default'>make default</a>"
-							+ " <a href=" + removeMediaUrl + "/?mediumId=" + $(this).attr('value')
-								+ " title='remove media' onclick='return RemoveMedium();'>remove media</a>";
+						+ " <a href=" + makeDefaultUrl + "/?postId=" + $(this).attr('value') + " title='make default'>make default</a>"
+							+ " <a href=" + removePostUrl + "/?postId=" + $(this).attr('value')
+								+ " title='remove post' onclick='return RemovePost();'>remove post</a>";
 		        }
 
 		        return title;
@@ -109,8 +109,8 @@ function AddInterestToVisitorProfile() {
 	});
 }
 
-function RemoveMedium() {
-	return confirm("Are you sure you want to remove this media? This cannot be undone.");
+function RemovePost() {
+	return confirm("Are you sure you want to remove this post? This cannot be undone.");
 }
 
 function RemoveInterest() {

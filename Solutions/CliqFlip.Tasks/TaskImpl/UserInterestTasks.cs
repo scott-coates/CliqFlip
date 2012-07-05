@@ -20,7 +20,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			_userInterestRepository = userInterestRepository;
 		}
 
-		public IList<InterestFeedItemDto> GetMediaByInterests(IList<Interest> interests)
+		public IList<InterestFeedItemDto> GetPostsByInterests(IList<Interest> interests)
 		{
 			//get user interests
 			//get sibling and parent interests
@@ -33,7 +33,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			var userIntersts = _userInterestRepository.GetUserInterestsByInterestTypes(interestAndParentInterests).ToList();
 
 			//get all media with any matching interests order by date desc limit by 100
-			var recentMedia = userIntersts.SelectMany(x => x.Media).OrderByDescending(x => x.CreateDate).Take(100);
+			var recentPosts = userIntersts.SelectMany(x => x.Posts).OrderByDescending(x => x.CreateDate).Take(100);
 
 			/*
 			 * my thinking is take the last 100 because a user probably won't read past that..
@@ -42,23 +42,23 @@ namespace CliqFlip.Tasks.TaskImpl
 			 * slightly older
 			 */
 
-			return recentMedia.Select(medium =>
+			return recentPosts.Select(post =>
 			{
 				int rank = 0;
 
 				//we know the medium has a userInterest tied to it
-				if (interests.Contains(medium.UserInterest.Interest))
+				if (interests.Contains(post.UserInterest.Interest))
 					rank = 10;
-				else if (medium.UserInterest.Interest.ParentInterest != null && interestAndParentInterests.Contains(medium.UserInterest.Interest.ParentInterest))
+				else if (post.UserInterest.Interest.ParentInterest != null && interestAndParentInterests.Contains(post.UserInterest.Interest.ParentInterest))
 					rank = 2;
-				else if (interestAndParentInterests.Contains(medium.UserInterest.Interest))
+				else if (interestAndParentInterests.Contains(post.UserInterest.Interest))
 					rank = 1;
 
-				int daysSinceMediumCreated = (DateTime.UtcNow - medium.CreateDate).Days;
+				int daysSinceMediumCreated = (DateTime.UtcNow - post.CreateDate).Days;
 
 				rank -= daysSinceMediumCreated;
 
-				return new { Rank = rank, FeedItem = new InterestFeedItemDto(medium) };
+				return new { Rank = rank, FeedItem = new InterestFeedItemDto(post) };
 
 			}).OrderByDescending(x => x.Rank).Select(x => x.FeedItem).ToList();
 		}

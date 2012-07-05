@@ -32,7 +32,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		void SaveLocation(User user, LocationData locationData);
 
 		void Logout(string name);
-		void RemoveMedium(User user, int mediumId);
+		void RemovePost(User user, int postId);
 		void RemoveInterest(User user, int interestId);
 		void AddInterestToUser(User user, int interestId);
 		void AddInterestsToUser(string name, IEnumerable<UserAddInterestDto> interestDtos);

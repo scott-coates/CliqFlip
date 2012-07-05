@@ -14,21 +14,21 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
 		public int Total { get; set; }
 
 		[JsonProperty("data")]
-		public IList<FeedMediumViewModel> InterestViewModels { get; set; }
+		public IList<FeedPostViewModel> InterestViewModels { get; set; }
 
 		public InterestsFeedViewModel()
 		{
-			InterestViewModels = new List<FeedMediumViewModel>();
+			InterestViewModels = new List<FeedPostViewModel>();
 		}
 
-		public class FeedMediumViewModel : InterestMediumViewModel
+		public class FeedPostViewModel : InterestPostViewModel
 		{
 			public string Username { get; set; }
 			public string UserPageUrl { get; set; }
 			public string ImageUrl { get; set; }
 			public string Interest { get; set; }
 
-			public FeedMediumViewModel(InterestFeedItemDto feedItemDto) : base(feedItemDto.Medium)
+			public FeedPostViewModel(InterestFeedItemDto feedItemDto) : base(feedItemDto.Post)
 			{
 				Username = feedItemDto.Username;
 				ImageUrl = feedItemDto.ImageUrl;

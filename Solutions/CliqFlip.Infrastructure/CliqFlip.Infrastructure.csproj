@@ -167,6 +167,9 @@
     <Compile Include="Logging\Interfaces\ILogger.cs" />
     <Compile Include="Migrator\ConditionalMigration.cs" />
     <Compile Include="Migrator\MigrationConstants.cs" />
+    <Compile Include="Migrator\Migrations\__634768505104158093_AddCommentsTable.cs" />
+    <Compile Include="Migrator\Migrations\__634768503080352338_AddLikesTable.cs" />
+    <Compile Include="Migrator\Migrations\__634768408583037511_AddPostsTable.cs" />
     <Compile Include="Migrator\Migrations\__634741868884803728_MoveCurrentUserInterestsToNeo.cs" />
     <Compile Include="Migrator\Migrations\__634741836478400188_MoveCurrentUserToNeo.cs" />
     <Compile Include="Migrator\Migrations\__634741828846663678_CreateUserIndex.cs" />
@@ -220,10 +223,11 @@
     <Compile Include="NHibernate\Maps\Overrides\ConversationMappingOverride.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="NHibernate\Maps\Overrides\CommentMappingOverride.cs" />
     <Compile Include="NHibernate\Maps\Overrides\WebPageMappingOverride.cs" />
     <Compile Include="NHibernate\Maps\Overrides\VideoMappingOverride.cs" />
     <Compile Include="NHibernate\Maps\Overrides\ImageMappingOverride.cs" />
-    <Compile Include="NHibernate\Maps\Overrides\MediumMappingOverride.cs" />
+    <Compile Include="NHibernate\Maps\Overrides\PostMappingOverride.cs" />
     <Compile Include="NHibernate\Maps\Overrides\UserInterestMappingOverride.cs" />
     <Compile Include="Repositories\ConversationRepository.cs" />
     <Compile Include="Repositories\Interfaces\INotificationRepository.cs" />

@@ -9,10 +9,10 @@ using System.Web.Mvc;
 
 namespace CliqFlip.Web.Mvc.ViewModels.User
 {
-	public class UserSaveInterestMediumFromUrlViewModel
+	public class UserCreatePostFromUrlViewModel
 	{
 		public int UserInterestId { get; set; }
-		public string MediumDescription { get; set; }
+		public string PostDescription { get; set; }
 		[Required]
 		public string MediumUrl { get; set; }
 	}

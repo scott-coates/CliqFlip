@@ -292,7 +292,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		[Authorize]
 		[HttpPost]
 		[Transaction]
-		public ActionResult SaveInterestMediumFromUrl(UserSaveInterestMediumFromUrlViewModel saveInterestMediumFromUrlViewModel)
+		public ActionResult CreatePostFromUrl(UserCreatePostFromUrlViewModel createPostFromUrlViewModel)
 		{
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 
@@ -300,7 +300,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				try
 				{
-					_userTasks.SaveInterestImage(user, saveInterestMediumFromUrlViewModel.UserInterestId, saveInterestMediumFromUrlViewModel.MediumDescription, saveInterestMediumFromUrlViewModel.MediumUrl);
+					_userTasks.SaveInterestImage(user, createPostFromUrlViewModel.UserInterestId, createPostFromUrlViewModel.PostDescription, createPostFromUrlViewModel.MediumUrl);
 				}
 				catch (RulesException e)
 				{
@@ -417,22 +417,22 @@ namespace CliqFlip.Web.Mvc.Controllers
 
 		[Authorize]
 		[Transaction]
-		public ActionResult MakeInterestMediumDefault(int mediumId)
+		public ActionResult MakePostDefault(int postId)
 		{
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 
-			user.MakeInterestMediumDefault(mediumId);
+			user.MakeInterestPostDefault(postId);
 
 			return RedirectToAction("Interests");
 		}
 
 		[Authorize]
 		[Transaction]
-		public ActionResult RemoveMedium(int mediumId)
+		public ActionResult RemovePost(int postId)
 		{
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 
-			_userTasks.RemoveMedium(user, mediumId);
+			_userTasks.RemovePost(user, postId);
 
 			return RedirectToAction("Interests");
 		}
@@ -587,8 +587,8 @@ namespace CliqFlip.Web.Mvc.Controllers
 		public ActionResult Interests(string username)
 		{
 			UserInterestsViewModel user = _userProfileQuery.GetUserIntersets(username, _principal);
-			user.MakeDefaultUrl = "\"" + Url.Action("MakeInterestMediumDefault", "User") + "\"";
-			user.RemoveImageUrl = "\"" + Url.Action("RemoveMedium", "User") + "\"";
+			user.MakeDefaultUrl = "\"" + Url.Action("MakePostDefault", "User") + "\"";
+			user.RemovePostUrl = "\"" + Url.Action("RemovePost", "User") + "\"";
 
 			return View(user);
 		}

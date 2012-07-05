@@ -99,10 +99,10 @@ namespace CliqFlip.Web.Mvc.Queries
 						UserInterestId = interest.Id,
 						InterestId = interest.Interest.Id,
 						VisitorSharesThisInterest = visitor != null && visitor.Interests.Any(x => x.Interest == interest.Interest),
-						Media = interest
-							.Media
+						Posts = interest
+							.Posts
 							.Select(x =>
-									new UserInterestsViewModel.UserInterestMediumViewModel(new MediumDto(x))).ToList()
+									new UserInterestsViewModel.UserInterestPostViewModel(new PostDto(x))).ToList()
 					};
 
 					retVal.Interests.Add(interestViewModel);

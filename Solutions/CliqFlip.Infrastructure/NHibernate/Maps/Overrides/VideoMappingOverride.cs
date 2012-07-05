@@ -8,7 +8,7 @@ namespace CliqFlip.Infrastructure.NHibernate.Maps.Overrides
 	{
 		public void Override(AutoMapping<Video> mapping)
 		{
-			mapping.Table("Videos");
+			mapping.Table("Videos"); //required because it's a subclass
 		}
 	}
 }
