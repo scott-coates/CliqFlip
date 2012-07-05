@@ -43,7 +43,7 @@
                 <a class="brand span1" href="#">CliqFlip</a>
                 
                 <div class="nav-collapse collapse">
-                    <div class="offset2 span7">
+                    <div class="offset2 span6">
                         <div class="input-append">
                             <input class="span4" id="main-search-box" size="16" type="text" >
                             <button id="btn-search" class="btn" type="button">Search</button>
@@ -70,7 +70,7 @@
     </div>
     @*<div class="subnav subnav-fixed">
     </div>*@
-    <div id="main-content" class="container">
+    <div id="main-content" class="container gray-rounded-border">
         @RenderBody()
     </div>
     <footer style="text-align: center;">
@@ -78,7 +78,7 @@
     </footer>
     <!-- /container -->
     @Bundles.RenderScripts()
-    @Bundles.RenderHtmlTemplates()
+    @Bundles.RenderHtmlTemplates() 
     <script type="text/javascript" language="javascript">
         $(function () {
             CliqFlip.Mvc.App.start();

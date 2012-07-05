@@ -12,7 +12,7 @@ body
 #main-content
 {
     background-color: White;
-    padding-top: 65px;
+    margin-top: 45px;
 }
 #toggle-settings-menu {
     display: inline-block;
@@ -140,7 +140,7 @@ body
     /* fixes the extra top padding */
     #main-content
     {
-        padding-top: 35px;
+        margin-top: 0;
     }
     
     #main-search-box
