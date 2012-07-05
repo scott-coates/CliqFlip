@@ -253,6 +253,11 @@ body
 
 
 /*Feed*/
+.showing-feed
+{
+    display: inline-block;
+    margin-top: 7px;
+}
 
 .feed-item
 {
