@@ -137,6 +137,11 @@ body
         margin-left: auto;
     }
     
+    /* fixes the extra top padding */
+    #main-content
+    {
+        padding-top: 35px;
+    }
     
     #main-search-box
     {
