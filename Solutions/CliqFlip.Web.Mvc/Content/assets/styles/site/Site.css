@@ -48,6 +48,11 @@ body
 
 
 /* Add video, link, image */
+.share-something
+{
+    margin-top: 10px;
+}
+
 #user-interest-add-text {
     text-align: left;	
 }
