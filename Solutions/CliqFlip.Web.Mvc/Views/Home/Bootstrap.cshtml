@@ -3,7 +3,8 @@
 @{
     Layout = "~/Views/Shared/_Layout.Bootstrap.cshtml";
     ViewBag.Title = "CliqFlip - Discover More";
-    Bundles.AddInlineScript("$(function(){CliqFlip.Mvc.App.start();});","inline");
+    //bootstrap our initial data - http://backbonejs.org/#FAQ-bootstrap
+    Bundles.AddInlineScript("$(function(){CliqFlip.Mvc.UserData = " + Json.Encode(Model) + "; CliqFlip.Mvc.App.start();});","inline");
 }
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">

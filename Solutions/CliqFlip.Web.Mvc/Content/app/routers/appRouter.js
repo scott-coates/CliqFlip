@@ -3,7 +3,9 @@
 var CliqFlip = (function(cliqFlip) {
     var appController = {
         landing: function() {
-            cliqFlip.Mvc.App.contentRegion.show(new cliqFlip.Mvc.App.Views.LandingView({model:new cliqFlip.Mvc.App.Models.LandingPage()}));
+            var landingModel = new cliqFlip.Mvc.App.Models.LandingPage();
+            landingModel.set(cliqFlip.Mvc.UserData);
+            cliqFlip.Mvc.App.contentRegion.show(new cliqFlip.Mvc.App.Views.LandingView({ model: landingModel }));
         },
         feed: function() {
             var feedList = new cliqFlip.Mvc.App.Collections.FeedList();
