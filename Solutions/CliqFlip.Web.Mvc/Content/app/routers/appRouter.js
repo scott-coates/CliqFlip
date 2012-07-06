@@ -3,7 +3,7 @@
 var CliqFlip = (function(cliqFlip) {
     var appController = {
         index: function() {
-            cliqFlip.Mvc.App.contentRegion.show(new cliqFlip.Mvc.App.Views.ContentView());
+            cliqFlip.Mvc.App.contentRegion.show(new cliqFlip.Mvc.App.Views.LandingView());
         },
         feed: function() {
             var feedList = new cliqFlip.Mvc.App.Collections.FeedList();
