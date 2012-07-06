@@ -2,8 +2,8 @@
 
 var CliqFlip = (function(cliqFlip) {
     var appController = {
-        index: function() {
-            cliqFlip.Mvc.App.contentRegion.show(new cliqFlip.Mvc.App.Views.LandingView());
+        landing: function() {
+            cliqFlip.Mvc.App.contentRegion.show(new cliqFlip.Mvc.App.Views.LandingView({model:new cliqFlip.Mvc.App.Models.LandingPage()}));
         },
         feed: function() {
             var feedList = new cliqFlip.Mvc.App.Collections.FeedList();
@@ -18,7 +18,7 @@ var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.Mvc.App.Routers.AppRouter = Backbone.Marionette.AppRouter.extend({
         appRoutes: {
-            "": "index",
+            "": "landing",
             "feed": "feed"
         },
         controller: appController
