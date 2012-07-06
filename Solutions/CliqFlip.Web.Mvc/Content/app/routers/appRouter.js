@@ -10,14 +10,13 @@ var CliqFlip = (function(cliqFlip) {
             var userLandingSummaryModel = new cliqFlip.Mvc.App.Models.UserLandingSummary();
             userLandingSummaryModel.set(cliqFlip.Mvc.UserData);
             var userLandingSummaryView = new cliqFlip.Mvc.App.Views.UserLandingSummaryView({ model: userLandingSummaryModel });
-            landingLayout.leftColumn.show(userLandingSummaryView);
-        },
-        feed: function() {
+            landingLayout.leftColumnRegion.show(userLandingSummaryView);
+
             var feedList = new cliqFlip.Mvc.App.Collections.FeedList();
 
             feedList.fetch({
                 success: function() {
-                    cliqFlip.Mvc.App.contentRegion.show(new cliqFlip.Mvc.App.Views.FeedListView({ collection: feedList }));
+                    landingLayout.contentAreaRegion.show(new cliqFlip.Mvc.App.Views.FeedListView({ collection: feedList }));
                 }
             });
         }

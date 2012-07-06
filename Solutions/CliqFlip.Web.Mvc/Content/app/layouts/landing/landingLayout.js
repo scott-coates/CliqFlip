@@ -4,8 +4,8 @@ var CliqFlip = (function(cliqFlip) {
         template: "landing-layout",
         className: "container gray-rounded-border",
         regions: {
-            leftColumn: "#left-column",
-            contentArea: "#content-area"
+            leftColumnRegion: "#left-column",
+            contentAreaRegion: "#content-area"
         }
     });
 
