@@ -1,9 +1,6 @@
 ﻿/* ===== Primary Styles ========================================================
    Author:
    ========================================================================== */
-
-
-        
 body
 {
     background-color: #E7EEF1;
@@ -14,10 +11,15 @@ body
     background-color: White;
     margin-top: 45px;
 }
+
 #toggle-settings-menu {
     display: inline-block;
 }
 
+footer
+{
+    text-align: center;
+}
 
 /* Nav bar */
 
@@ -237,20 +239,6 @@ body
         width: 55px;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*Feed*/
 .showing-feed
