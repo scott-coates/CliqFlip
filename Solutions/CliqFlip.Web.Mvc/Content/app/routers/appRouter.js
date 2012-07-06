@@ -3,9 +3,14 @@
 var CliqFlip = (function(cliqFlip) {
     var appController = {
         landing: function() {
-            var landingModel = new cliqFlip.Mvc.App.Models.LandingPage();
-            landingModel.set(cliqFlip.Mvc.UserData);
-            cliqFlip.Mvc.App.contentRegion.show(new cliqFlip.Mvc.App.Views.LandingView({ model: landingModel }));
+            var landingLayout = new cliqFlip.Mvc.App.Layouts.LandingLayout();
+           
+            cliqFlip.Mvc.App.mainContentRegion.show(landingLayout);
+
+            var userLandingSummaryModel = new cliqFlip.Mvc.App.Models.UserLandingSummary();
+            userLandingSummaryModel.set(cliqFlip.Mvc.UserData);
+            var userLandingSummaryView = new cliqFlip.Mvc.App.Views.UserLandingSummaryView({ model: userLandingSummaryModel });
+            landingLayout.leftColumn.show(userLandingSummaryView);
         },
         feed: function() {
             var feedList = new cliqFlip.Mvc.App.Collections.FeedList();
@@ -20,8 +25,7 @@ var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.Mvc.App.Routers.AppRouter = Backbone.Marionette.AppRouter.extend({
         appRoutes: {
-            "": "landing",
-            "feed": "feed"
+            "": "landing"
         },
         controller: appController
     });

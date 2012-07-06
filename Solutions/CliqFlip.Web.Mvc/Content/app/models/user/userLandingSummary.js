@@ -2,7 +2,7 @@
 
 var CliqFlip = (function (cliqFlip) {
 
-    cliqFlip.Mvc.App.Models.LandingPage = Backbone.Model.extend({
+    cliqFlip.Mvc.App.Models.UserLandingSummary = Backbone.Model.extend({
     });
 
     return cliqFlip;
