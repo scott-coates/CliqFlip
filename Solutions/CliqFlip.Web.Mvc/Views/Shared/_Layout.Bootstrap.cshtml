@@ -32,7 +32,9 @@
     @RenderBody()
     <footer class="navbar navbar-fixed-bottom">
         <div class="navbar-inner">
-            <p><em>&copy; @DateTime.Now.Year <a href="/">CliqFlip</a> - All rights reserved.</em></p>
+            <div class="container-fluid">
+                <p><em>&copy; @DateTime.Now.Year <a href="/">CliqFlip</a> - All rights reserved.</em></p>
+            </div>
         </div>
     </footer>
     @Bundles.RenderScripts()
