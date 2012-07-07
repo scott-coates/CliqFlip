@@ -118,7 +118,7 @@ footer.navbar > .navbar-inner a:hover
 
 .feed-item
 {
-    width: 15%;
+    width: 17%;
     margin: 5px;
     padding: 10px;
     float: left;
@@ -129,5 +129,6 @@ footer.navbar > .navbar-inner a:hover
 
 .feed-image
 {
-    text-align: center;
+    display: block;
+    margin: 0 auto;
 }
