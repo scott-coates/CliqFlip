@@ -414,6 +414,9 @@
     <Content Include="Content\assets\styles\jquery-ui\images\ui-icons_fcd113_256x240.png" />
     <Content Include="Content\assets\styles\jquery-ui\jquery-ui-1.8.18.custom.css" />
     <Content Include="Content\assets\styles\plugins\anythingslider-default1.css" />
+    <Content Include="Content\assets\styles\site\Masonry.css" />
+    <Content Include="Content\assets\styles\site\Helpers.css" />
+    <Content Include="Content\assets\styles\site\MediaQueries.css" />
     <Content Include="Content\assets\styles\site\Site.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
