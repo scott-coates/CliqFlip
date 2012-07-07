@@ -2,7 +2,7 @@ var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.Mvc.App.Layouts.LandingLayout = Backbone.Marionette.Layout.extend({
         template: "landing-layout",
-        className: "container-fluid gray-rounded-border",
+        className: "landing-layout container-fluid gray-rounded-border",
         regions: {
             leftColumnRegion: "#left-column",
             contentAreaRegion: "#content-area"
