@@ -149,8 +149,7 @@ footer.navbar > .navbar-inner a:hover
 
 .feed-comments .well
 {
-    padding-left: 2px;
-    padding-right: 2px;
+    padding: 19px 2px 8px;
     margin-bottom: 0;
 }
 
