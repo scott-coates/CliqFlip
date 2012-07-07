@@ -10,8 +10,7 @@ var CliqFlip = (function(cliqFlip) {
             var that = this;
             this.$el.imagesLoaded(function() {
                 that.$el.masonry({
-                    itemSelector: "." + that.itemView.prototype.className,
-                    columnWidth: 100
+                    itemSelector: "." + that.itemView.prototype.className
                 });
                 that.$el.removeClass("invisible");
             });
