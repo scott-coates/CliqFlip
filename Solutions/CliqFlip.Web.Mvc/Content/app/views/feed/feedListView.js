@@ -34,8 +34,7 @@ var CliqFlip = (function(cliqFlip) {
             var that = this;
             this.$el.imagesLoaded(function() {
                 that.$el.masonry({
-                    itemSelector: ".feed-item",
-                    columnWidth: 10
+                    itemSelector: ".feed-item"
                 });
                 that.$el.removeClass("invisible");
             });
