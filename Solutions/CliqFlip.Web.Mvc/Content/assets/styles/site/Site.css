@@ -118,12 +118,9 @@ footer.navbar > .navbar-inner a:hover
 
 .feed-item
 {
-    width: 180px;
+    width: 30%;
     margin: 5px;
-    padding: 5px;
-    background: #D8D5D2;
-    font-size: 11px;
-    line-height: 1.4em;
+    padding: 10px;
     float: left;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;

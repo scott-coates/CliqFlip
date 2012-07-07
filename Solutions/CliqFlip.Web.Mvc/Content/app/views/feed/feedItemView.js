@@ -6,7 +6,7 @@ var CliqFlip = (function(cliqFlip) {
             templates.push({ content: "media-Image" });
             return templates;
         },
-        className: 'feed-item'
+        className: 'feed-item gray-rounded-border'
     });
 
     return cliqFlip;

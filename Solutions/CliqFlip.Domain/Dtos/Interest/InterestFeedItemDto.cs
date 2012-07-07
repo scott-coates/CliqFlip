@@ -14,7 +14,7 @@ namespace CliqFlip.Domain.Dtos.Interest
 		{
 			Post = new PostDto(post);
 			Username = post.UserInterest.User.Username;
-			ImageUrl = post.UserInterest.User.ProfileImage != null ? post.UserInterest.User.ProfileImage.ImageData.MediumFileName : null;
+			ImageUrl = post.UserInterest.User.ProfileImage != null ? post.UserInterest.User.ProfileImage.ImageData.ThumbFileName : null;
 			Interest = post.UserInterest.Interest.Name;
 		}
 	}
