@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.Bootstrap.cshtml";
     ViewBag.Title = "CliqFlip - Discover More";
     //bootstrap our initial data - http://backbonejs.org/#FAQ-bootstrap
-    Bundles.AddInlineScript("$(function(){CliqFlip.Mvc.UserData = " + Json.Encode(Model) + "; CliqFlip.Mvc.App.start();});","inline");
+    Bundles.AddInlineScript("$(function(){CliqFlip.Mvc.UserData = " + Json.Encode(Model) + "; CliqFlip.Mvc.App.start();});", "inline");
 }
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
@@ -18,27 +18,30 @@
             <a class="brand span1" href="#">CliqFlip</a>
                 
             <div class="nav-collapse collapse">
-                <div class="offset6 span6">
-                    <form class="navbar-search pull-left">
-                        <input type="text" class="search-query span4" placeholder="Search">
-                    </form>
+                <div class="row-fluid">
+                    <div class="span3"></div>
+                    
+                    <div class="span3">
+                        <form class="navbar-search pull-left span12">
+                        <input type="text" class="search-query span12" placeholder="Search">
+                        </form>
+                    </div>
+                    <ul class="nav pull-right">
+                        <li class="dropdown">
+                            <img height="35px" class="dropdown-toggle" data-toggle="dropdown" src="@Url.Content("~/Content/assets/img/empty-avatar.jpg")" />
+                            <a id="toggle-settings-menu" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                @Model.Username
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#contact">Profile</a></li>
+                                <li><a href="#contact">Account</a></li>
+                                <li><a href="#contact">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
-                <ul class="nav pull-right">
-                    <li class="dropdown">
-                        <img height="35px" class="dropdown-toggle" data-toggle="dropdown" src="@Url.Content("~/Content/assets/img/empty-avatar.jpg")" />
-                        <a id="toggle-settings-menu" class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            @Model.Username
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#contact">Profile</a></li>
-                            <li><a href="#contact">Account</a></li>
-                            <li><a href="#contact">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
             </div>
-
         </div>
     </div>
 </div>
