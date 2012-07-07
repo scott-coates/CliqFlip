@@ -118,17 +118,49 @@ footer.navbar > .navbar-inner a:hover
 
 .feed-item
 {
-    width: 17%;
+    width: 19%;
     margin: 5px;
-    padding: 10px;
     float: left;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
 
+.feed-item .initial-preview
+{
+    padding: 10px 10px 2px;
+}
+
 .feed-image
 {
     display: block;
     margin: 0 auto;
+}
+
+.feed-simple-interact
+{
+    margin-top: 10px;
+}
+
+.feed-simple-interact .share
+{
+    float: right;
+}
+
+.feed-comments .well
+{
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-bottom: 0;
+}
+
+.feed-comments .comment
+{
+    margin-bottom: 2px;
+}
+
+.feed-comments button
+{
+    margin-top: 10px;
+    float: right;
 }

@@ -1,24 +1,64 @@
-<div class="row-fluid">
-    <div class="span3">
-        <img src="{{ProfileImageUrl}}" alt="{{Username}}"/>
-    </div>
-    <div class="span9">
-        <div class="row-fluid">
-            <div class="span12">
-                <span class="label label-info">
-                    {{Username}}
-                </span>
+<div class="initial-preview">
+    <div class="row-fluid">
+        <div class="span3">
+            <img src="{{ProfileImageUrl}}" alt="{{Username}}"/>
+        </div>
+        <div class="span9">
+            <div class="row-fluid">
+                <div class="span12">
+                    <span class="label label-info">
+                        {{Username}}
+                    </span>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span12">
+                    <h6>Posted in {{Interest}}</h6>
+                </div>
             </div>
         </div>
-        <div class="row-fluid">
-            <div class="span12">
-                <h6>Posted in {{Interest}}</h6>
-            </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <img class="feed-image" src="{{MediumImage}}" alt="{{Description}}"/>
+        </div>
+    </div>
+    <div class="row-fluid feed-simple-interact">
+        <div class="span3">
+            <i class="icon-thumbs-up"></i>
+            <b>Like</b>
+        </div>
+        <div class="span5">
+            <b>3 comments</b>
+        </div>
+        <div class="span3 share">
+            <b>share</b>
         </div>
     </div>
 </div>
-<div class="row-fluid">
-    <div class="span12">
-        <img class="feed-image" src="{{MediumImage}}" alt="{{Description}}"/>
+<div class="row-fluid feed-comments">
+    <div class="span12 well">
+        <div class="row-fluid comment">
+            <div class="span12">
+                <b>Scott Coates:</b> Here is atest Here is atest Here is atest Here is atest  vHere is atest
+            </div>
+        </div>
+        <div class="row-fluid comment">
+            <div class="span12">
+                <b>Jorge Cruz:</b> Here is atest Here is atest Here is atest Here is atest  vHere is atest
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="row-fluid">
+                <div class="span9">
+                    <form class="navbar-search pull-left" action="">
+                        <input type="text" class="search-query span12" placeholder="Search"/>
+                    </form>
+                </div>
+                <div class="span3">
+                    <button class="btn btn-mini btn-primary" href="#">send</button>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
