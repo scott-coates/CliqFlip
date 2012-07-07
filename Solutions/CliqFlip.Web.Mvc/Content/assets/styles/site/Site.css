@@ -16,9 +16,22 @@ body
     display: inline-block;
 }
 
-footer
+footer.navbar > .navbar-inner
 {
     text-align: center;
+    color: #666;
+    background-color: #222;
+    background-image: none;
+}
+
+footer.navbar > .navbar-inner a
+{
+    color: #999;
+}
+
+footer.navbar > .navbar-inner a:hover
+{
+    color: #efefef;
 }
 
 /* Nav bar */
