@@ -1,3 +1,4 @@
+@using CliqFlip.Domain.Common
 @model CliqFlip.Web.Mvc.ViewModels.User.UserProfileViewModel
 
 @{
@@ -64,8 +65,8 @@
 	<div class="blogdate">
 		@if (string.IsNullOrWhiteSpace(Model.ProfileImageUrl))
 		{
-			<img class="profile-image" alt="@Model.Username profile image" src="@Url.Content("/Content/assets/img/empty-avatar.jpg")"/>
-		}
+			<img class="profile-image" alt="@Model.Username profile image" src="@Url.Content(Constants.DEFAULT_PROFILE_IMAGE)"/>
+        }
 		else
 		{
 			<a id="profile-image-container" rel="profile-photo" title="@Model.Username profile image" href="@Model.FullProfileImageUrl">

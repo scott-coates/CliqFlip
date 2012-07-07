@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Web.Mvc.ViewModels.Media;
@@ -31,7 +31,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
 			public FeedPostViewModel(InterestFeedItemDto feedItemDto) : base(feedItemDto.Post)
 			{
 				Username = feedItemDto.Username;
-				ProfileImageUrl = feedItemDto.ImageUrl;
+                ProfileImageUrl = feedItemDto.ProfileImageUrl ?? Constants.DEFAULT_PROFILE_IMAGE;
 				Interest = feedItemDto.Interest;
 			}
 		}
