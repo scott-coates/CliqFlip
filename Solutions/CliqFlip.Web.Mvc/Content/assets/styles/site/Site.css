@@ -118,11 +118,15 @@ footer.navbar > .navbar-inner a:hover
 
 .feed-item
 {
-    width: 30%;
     margin: 5px;
     padding: 10px;
     float: left;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+}
+
+.feed-image
+{
+    text-align: center;
 }

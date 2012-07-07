@@ -33,7 +33,7 @@ namespace CliqFlip.Tasks.TaskImpl
 			var userIntersts = _userInterestRepository.GetUserInterestsByInterestTypes(interestAndParentInterests).ToList();
 
 			//get all media with any matching interests order by date desc limit by 100
-			var recentPosts = userIntersts.SelectMany(x => x.Posts).OrderByDescending(x => x.CreateDate).Take(100);
+			var recentPosts = userIntersts.SelectMany(x => x.Posts).OrderByDescending(x => x.CreateDate).Take(200);
 
 			/*
 			 * my thinking is take the last 100 because a user probably won't read past that..

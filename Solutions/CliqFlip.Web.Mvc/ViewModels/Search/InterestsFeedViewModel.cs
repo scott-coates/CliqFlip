@@ -25,13 +25,13 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
 		{
 			public string Username { get; set; }
 			public string UserPageUrl { get; set; }
-			public string ImageUrl { get; set; }
+			public string ProfileImageUrl { get; set; }
 			public string Interest { get; set; }
 
 			public FeedPostViewModel(InterestFeedItemDto feedItemDto) : base(feedItemDto.Post)
 			{
 				Username = feedItemDto.Username;
-				ImageUrl = feedItemDto.ImageUrl;
+				ProfileImageUrl = feedItemDto.ImageUrl;
 				Interest = feedItemDto.Interest;
 			}
 		}
