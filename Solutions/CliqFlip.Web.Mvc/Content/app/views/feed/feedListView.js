@@ -4,16 +4,19 @@ var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.Mvc.App.Views.FeedListView = Backbone.Marionette.CompositeView.extend({
         template: "feed-feedList",
-        className: 'feed-list',
+        className: 'feed-list invisible',
         itemView: cliqFlip.Mvc.App.Views.FeedItemView,
         onShow: function() {
             var that = this;
-            that.$el.masonry({
-                itemSelector: "." + that.itemView.prototype.className,
-                columnWidth: 100
+            this.$el.imagesLoaded(function() {
+                that.$el.masonry({
+                    itemSelector: "." + that.itemView.prototype.className,
+                    columnWidth: 100
+                });
+                that.$el.removeClass("invisible");
             });
         }
     });
 
     return cliqFlip;
-}(CliqFlip));
+} (CliqFlip));
