@@ -31,7 +31,7 @@ var CliqFlip = (function(cliqFlip) {
             });
         },
         onShow: function() {
-            $("span[rel=popover]", this.$el)
+            $(".user-info", this.$el)
                 .popover({
                     content: (function() {
                         return function() {
