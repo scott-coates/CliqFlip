@@ -1,7 +1,7 @@
 ﻿using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Interfaces;
 
-namespace CliqFlip.Domain.Dtos.Media
+namespace CliqFlip.Domain.Dtos.UserInterest
 {
 	public class PostDto
 	{

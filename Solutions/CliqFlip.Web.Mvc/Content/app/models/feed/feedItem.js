@@ -2,7 +2,7 @@
 
 var CliqFlip = (function (cliqFlip) {
 
-    cliqFlip.Mvc.App.Models.FeedItem = Backbone.Model.extend({});
+    cliqFlip.App.Mvc.Models.FeedItem = Backbone.Model.extend({});
 
     return cliqFlip;
 } (CliqFlip));

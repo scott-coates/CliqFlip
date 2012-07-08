@@ -5,6 +5,7 @@ using CliqFlip.Domain.Common;
 
 using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Dtos.User;
+using CliqFlip.Domain.Dtos.UserInterest;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.User;

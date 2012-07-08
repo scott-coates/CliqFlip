@@ -1,26 +1,25 @@
 // @reference ~/Content/assets/js/marionette/backbone.marionette.js
-// @reference ~/Content/app/config.js
 
 var CliqFlip = (function(cliqFlip) {
 
-    cliqFlip.Mvc = {};
-    cliqFlip.Mvc.App = new Backbone.Marionette.Application();
-    cliqFlip.Mvc.App.Models = {};
-    cliqFlip.Mvc.App.Views = {};
-    cliqFlip.Mvc.App.Layouts = {};
-    cliqFlip.Mvc.App.Collections = {};
-    cliqFlip.Mvc.App.Routers = {};
+    cliqFlip.App = {};
+    cliqFlip.App.Mvc = new Backbone.Marionette.Application();
+    cliqFlip.App.Mvc.Models = {};
+    cliqFlip.App.Mvc.Views = {};
+    cliqFlip.App.Mvc.Layouts = {};
+    cliqFlip.App.Mvc.Collections = {};
+    cliqFlip.App.Mvc.Routers = {};
 
-    cliqFlip.Mvc.App.addRegions({
+    cliqFlip.App.Mvc.addRegions({
         mainContentRegion: "#main-content"
     });
 
-    cliqFlip.Mvc.App.addInitializer(function() {
-        cliqFlip.Mvc.App.appRouter = new cliqFlip.Mvc.App.Routers.AppRouter();
+    cliqFlip.App.Mvc.addInitializer(function() {
+        cliqFlip.App.Mvc.appRouter = new cliqFlip.App.Mvc.Routers.AppRouter();
         Backbone.history.start({ pushState: true, root: "/home/bootstrap/" });
     });
 
-    cliqFlip.Mvc.App.addInitializer(function() {
+    cliqFlip.App.Mvc.addInitializer(function() {
         cliqFlip.Template.ApplyTemplateFix();
     });
 

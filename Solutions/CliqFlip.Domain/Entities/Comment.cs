@@ -11,6 +11,8 @@ namespace CliqFlip.Domain.Entities
 
         public virtual Post Post { get; set; }
 
+        public virtual string CommentText { get; set; }
+
         public virtual DateTime CreateDate { get; set; }
 
         public virtual int PostCommentOrder

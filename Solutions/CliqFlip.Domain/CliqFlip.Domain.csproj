@@ -105,6 +105,8 @@
     <Compile Include="Contracts\Tasks\IInterestTasks.cs" />
     <Compile Include="Contracts\Tasks\IUserInterestTasks.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\UserSearchPipelineResult.cs" />
+    <Compile Include="Dtos\UserInterest\CommentDto.cs" />
+    <Compile Include="Dtos\UserInterest\PostDtoWithComments.cs" />
     <Compile Include="Dtos\User\UserAddInterestDto.cs" />
     <Compile Include="Dtos\User\UserCreateDto.cs" />
     <Compile Include="Dtos\User\UserProfileIndexInterestDto.cs" />
@@ -114,7 +116,7 @@
     <Compile Include="Dtos\Media\FileStreamDto.cs" />
     <Compile Include="Dtos\Media\ImageFilenamesDto.cs" />
     <Compile Include="Dtos\Interest\InterestFeedItemDto.cs" />
-    <Compile Include="Dtos\Media\PostDto.cs" />
+    <Compile Include="Dtos\UserInterest\PostDto.cs" />
     <Compile Include="Dtos\Interest\RankedInterestDto.cs" />
     <Compile Include="Dtos\User\UserSearchResultDto.cs" />
     <Compile Include="Entities\Conversation.cs" />

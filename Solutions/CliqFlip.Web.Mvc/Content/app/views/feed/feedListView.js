@@ -2,11 +2,11 @@
 
 var CliqFlip = (function(cliqFlip) {
 
-    cliqFlip.Mvc.App.Views.FeedListView = Backbone.Marionette.CompositeView.extend({
+    cliqFlip.App.Mvc.Views.FeedListView = Backbone.Marionette.CompositeView.extend({
         template: "feed-feedList",
         className: 'feed-list invisible',
         triggerPoint: 200,
-        itemView: cliqFlip.Mvc.App.Views.FeedItemView,
+        itemView: cliqFlip.App.Mvc.Views.FeedItemView,
         initialize: function() {
             // isLoading is a useful flag to make sure we don't send off more than
             // one request at a time

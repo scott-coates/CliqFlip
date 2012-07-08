@@ -272,7 +272,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\app\collections\feed\feedList.js" />
-    <Content Include="Content\app\config.js" />
+    <Content Include="Content\assets\js\cliqflip\bundle.txt" />
+    <Content Include="Content\assets\js\cliqflip\view\templateRenderer.js" />
     <Content Include="Content\app\layouts\landing\landingLayout.js" />
     <Content Include="Content\app\main.js" />
     <Content Include="Content\app\models\user\userLandingSummary.js" />
@@ -336,6 +337,7 @@
     <Content Include="Content\assets\img\CliqFlip-LogoMoto.png" />
     <Content Include="Content\assets\img\feedback.png" />
     <Content Include="Content\assets\img\firefox.png" />
+    <Content Include="Content\assets\js\cliqflip\view\viewHelpers.js" />
     <Content Include="Content\assets\js\jquery\bundle.txt" />
     <Content Include="Content\assets\js\jquery\jquery-ui-1.8.11.js" />
     <Content Include="Content\assets\styles\img\glyphicons-halflings-white.png" />
@@ -357,9 +359,9 @@
     <Content Include="Content\assets\js\cliqflip\admin\interest\interest.js" />
     <Content Include="Content\assets\js\cliqflip\bookmarklet\bookmarklet.js" />
     <Content Include="Content\assets\js\cliqflip\bookmarklet\bookmarklet.min.js" />
-    <Content Include="Content\assets\js\cliqflip\main\error-handler.js" />
+    <Content Include="Content\assets\js\cliqflip\main\errorHandler.js" />
     <Content Include="Content\assets\js\cliqflip\main\login.js" />
-    <Content Include="Content\assets\js\cliqflip\main\template.js" />
+    <Content Include="Content\assets\js\cliqflip\view\templateFix.js" />
     <Content Include="Content\assets\js\cliqflip\main\tos.js" />
     <Content Include="Content\assets\js\cliqflip\main\ui.js" />
     <Content Include="Content\assets\js\cliqflip\main\validate.js" />

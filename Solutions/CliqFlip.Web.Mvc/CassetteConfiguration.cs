@@ -24,8 +24,8 @@ namespace CliqFlip.Web.Mvc
             bundles.AddPerSubDirectory<ScriptBundle>("Content/assets/js", new FileSearch { Exclude = new Regex("js\\cliqflip") });
 
             //put all of cliqflip in one file
-            bundles.Add<ScriptBundle>("Content/assets/js/cliqflip", new FileSearch { SearchOption = SearchOption.AllDirectories, Exclude = new Regex("error-handler.js|bookmarklet") });
-            bundles.Add<ScriptBundle>("Content/assets/js/cliqflip/main/error-handler.js", bundle => bundle.PageLocation = "head");
+            bundles.Add<ScriptBundle>("Content/assets/js/cliqflip", new FileSearch { SearchOption = SearchOption.AllDirectories, Exclude = new Regex("errorHandler.js|bookmarklet") });
+            bundles.Add<ScriptBundle>("Content/assets/js/cliqflip/main/errorHandler.js", bundle => bundle.PageLocation = "head");
 
             //NuGet
             bundles.Add<ScriptBundle>("Scripts", new FileSearch { Exclude = new Regex("modernizr|_references.js|-vsdoc\\.js$") });

@@ -3,26 +3,26 @@
 var CliqFlip = (function(cliqFlip) {
     var appController = {
         landing: function() {
-            var landingLayout = new cliqFlip.Mvc.App.Layouts.LandingLayout();
+            var landingLayout = new cliqFlip.App.Mvc.Layouts.LandingLayout();
            
-            cliqFlip.Mvc.App.mainContentRegion.show(landingLayout);
+            cliqFlip.App.Mvc.mainContentRegion.show(landingLayout);
 
-            var userLandingSummaryModel = new cliqFlip.Mvc.App.Models.UserLandingSummary();
-            userLandingSummaryModel.set(cliqFlip.Mvc.UserData);
-            var userLandingSummaryView = new cliqFlip.Mvc.App.Views.UserLandingSummaryView({ model: userLandingSummaryModel });
+            var userLandingSummaryModel = new cliqFlip.App.Mvc.Models.UserLandingSummary();
+            userLandingSummaryModel.set(cliqFlip.App.UserData);
+            var userLandingSummaryView = new cliqFlip.App.Mvc.Views.UserLandingSummaryView({ model: userLandingSummaryModel });
             landingLayout.leftColumnRegion.show(userLandingSummaryView);
 
-            var feedList = new cliqFlip.Mvc.App.Collections.FeedList();
+            var feedList = new cliqFlip.App.Mvc.Collections.FeedList();
 
             feedList.fetch({
                 success: function() {
-                    landingLayout.contentAreaRegion.show(new cliqFlip.Mvc.App.Views.FeedListView({ collection: feedList }));
+                    landingLayout.contentAreaRegion.show(new cliqFlip.App.Mvc.Views.FeedListView({ collection: feedList }));
                 }
             });
         }
     };
 
-    cliqFlip.Mvc.App.Routers.AppRouter = Backbone.Marionette.AppRouter.extend({
+    cliqFlip.App.Mvc.Routers.AppRouter = Backbone.Marionette.AppRouter.extend({
         appRoutes: {
             "": "landing"
         },

@@ -34,7 +34,7 @@ namespace CliqFlip.Domain.Dtos.User
             public string DefaultImageUrl { get; set; }
             public int InterestId { get; set; }
 
-            public UserInterestDto(UserInterest interest)
+            public UserInterestDto(Entities.UserInterest interest)
             {
                 Name = interest.Interest.Name;
                 Slug = interest.Interest.Slug;

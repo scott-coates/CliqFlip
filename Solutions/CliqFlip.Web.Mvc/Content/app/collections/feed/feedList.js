@@ -8,9 +8,9 @@ var CliqFlip = (function (cliqFlip) {
         this.page++;
     }
 
-    cliqFlip.Mvc.App.Collections.FeedList = Backbone.Collection.extend(
+    cliqFlip.App.Mvc.Collections.FeedList = Backbone.Collection.extend(
         {
-            model: cliqFlip.Mvc.App.Models.FeedItem,
+            model: cliqFlip.App.Mvc.Models.FeedItem,
             url: '/search/interestfeed',
             page: null,
             fetch: function(options) {

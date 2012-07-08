@@ -1,5 +1,6 @@
 ﻿
 using CliqFlip.Domain.Dtos.Media;
+using CliqFlip.Domain.Dtos.UserInterest;
 
 namespace CliqFlip.Web.Mvc.ViewModels.Media
 {
