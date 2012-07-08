@@ -33,11 +33,9 @@ var CliqFlip = (function(cliqFlip) {
         onShow: function() {
             $(".user-info", this.$el)
                 .popover({
-                    content: (function() {
-                        return function() {
-                            return "Hello " + $(this).data('userid');
-                        };
-                    })()
+                    content: function() {
+                        return "Hello " + $(this).data('userid');
+                    }
                 });
 
             var that = this;
