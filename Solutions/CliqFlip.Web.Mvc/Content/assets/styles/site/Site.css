@@ -132,6 +132,11 @@ footer.navbar > .navbar-inner a:hover
     padding: 10px 10px 2px;
 }
 
+.feed-item .initial-preview .post-description
+{
+    margin-top: 4px;
+}
+
 .feed-image
 {
     display: block;
