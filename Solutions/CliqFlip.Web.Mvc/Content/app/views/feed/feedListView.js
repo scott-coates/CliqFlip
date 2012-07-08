@@ -31,6 +31,15 @@ var CliqFlip = (function(cliqFlip) {
             });
         },
         onShow: function() {
+            $("span[rel=popover]", this.$el)
+                .popover({
+                    content: (function() {
+                        return function() {
+                            return "Hello " + $(this).data('userid');
+                        };
+                    })()
+                });
+
             var that = this;
             this.$el.imagesLoaded(function() {
                 that.$el.masonry({
