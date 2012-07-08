@@ -1,9 +1,5 @@
-﻿var cliqFlip = (function (cliqFlip) {
+﻿var CliqFlip = (function(cliqFlip) {
 	cliqFlip.Validate = {};
-
-	cliqFlip.Validate.AddClassRules = function (className, validateRuleObj) {
-		jQuery.validator.addClassRules(className, validateRuleObj);
-	};
 
 	cliqFlip.Validate.ShowLocationRemoteLocationValidation = function(form) {
 		var validator = form.data("validator");
@@ -28,4 +24,4 @@
 	};
 
 	return cliqFlip;
-} (cliqFlip || {}));
+} (CliqFlip || {}));

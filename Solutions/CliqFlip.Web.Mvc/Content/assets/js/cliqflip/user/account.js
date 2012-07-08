@@ -3,5 +3,5 @@
 function InitAccountSettings() {
 	_formLocation = $("#frmAccountLocation");
 
-	cliqFlip.Validate.ShowLocationRemoteLocationValidation(_formLocation);
+	CliqFlip.Validate.ShowLocationRemoteLocationValidation(_formLocation);
 }

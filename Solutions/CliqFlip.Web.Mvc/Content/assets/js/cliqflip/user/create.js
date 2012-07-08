@@ -85,5 +85,5 @@ function OnStepShown(event, data) {
 }
 
 function UpdateLocationRemoteValiation() {
-	cliqFlip.Validate.ShowLocationRemoteLocationValidation(_formProfileCreate);
+    CliqFlip.Validate.ShowLocationRemoteLocationValidation(_formProfileCreate);
 }

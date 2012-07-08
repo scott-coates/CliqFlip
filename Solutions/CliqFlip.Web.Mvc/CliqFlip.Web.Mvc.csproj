@@ -378,8 +378,8 @@
     <Content Include="Content\assets\js\cliqflip\user\profile.js" />
     <Content Include="Content\assets\js\cliqflip\user\socialmedia.js" />
     <Content Include="Content\assets\js\cliqflip\user\thank-you.js" />
-    <Content Include="Content\assets\js\cliqflip\validation\jquery.validate.collection-not-empty.js" />
-    <Content Include="Content\assets\js\cliqflip\validation\jquery.validate.must-be-true.js" />
+    <Content Include="Content\assets\js\cliqflip\jqueryValidation\jquery.validate.collection-not-empty.js" />
+    <Content Include="Content\assets\js\cliqflip\jqueryValidation\jquery.validate.must-be-true.js" />
     <Content Include="Content\assets\js\hogan\hogan.js" />
     <Content Include="Content\assets\js\jquery\jquery.anythingslider.fx.js" />
     <Content Include="Content\assets\js\jquery\jquery.anythingslider.js" />
