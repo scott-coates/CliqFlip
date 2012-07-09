@@ -3,7 +3,7 @@ using System.Linq;
 using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Entities;
-using CliqFlip.Web.Mvc.ViewModels.Media;
+using CliqFlip.Web.Mvc.ViewModels.Post;
 using CliqFlip.Web.Mvc.ViewModels.User;
 using Newtonsoft.Json;
 
@@ -15,11 +15,11 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
 		public int Total { get; set; }
 
 		[JsonProperty("data")]
-		public IList<FeedPostViewModel> InterestViewModels { get; set; }
+		public IList<FeedPostViewModel> Posts { get; set; }
 
 		public InterestsFeedViewModel()
 		{
-			InterestViewModels = new List<FeedPostViewModel>();
+			Posts = new List<FeedPostViewModel>();
 		}
 
 		public class FeedPostViewModel : InterestPostViewModel
@@ -28,6 +28,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
 			public string UserPageUrl { get; set; }
 			public string ProfileImageUrl { get; set; }
 			public string Interest { get; set; }
+			public string PostUrl { get; set; }
 			public int CommentCount { get; set; }
             public IList<FeedPostCommentViewModel> Comments { get; set; } 
 

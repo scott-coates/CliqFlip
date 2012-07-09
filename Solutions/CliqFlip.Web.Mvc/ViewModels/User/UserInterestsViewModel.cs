@@ -4,7 +4,7 @@ using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Dtos.UserInterest;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Interfaces;
-using CliqFlip.Web.Mvc.ViewModels.Media;
+using CliqFlip.Web.Mvc.ViewModels.Post;
 
 namespace CliqFlip.Web.Mvc.ViewModels.User
 {

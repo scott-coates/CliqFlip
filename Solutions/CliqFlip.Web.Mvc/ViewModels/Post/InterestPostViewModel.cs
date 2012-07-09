@@ -1,8 +1,6 @@
-﻿
-using CliqFlip.Domain.Dtos.Media;
-using CliqFlip.Domain.Dtos.UserInterest;
+﻿using CliqFlip.Domain.Dtos.UserInterest;
 
-namespace CliqFlip.Web.Mvc.ViewModels.Media
+namespace CliqFlip.Web.Mvc.ViewModels.Post
 {
 	public abstract class InterestPostViewModel
 	{

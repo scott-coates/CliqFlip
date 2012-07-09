@@ -37,8 +37,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		public JsonNetResult InterestFeed(int? page)
 		{
 			var viewModel = _interestFeedQuery.GetUsersByInterests(_principal.Identity.Name, page, Url);
-
-			return new JsonNetResult(viewModel.InterestViewModels);
+			return new JsonNetResult(viewModel.Posts);
 		}
 
 		[Transaction]

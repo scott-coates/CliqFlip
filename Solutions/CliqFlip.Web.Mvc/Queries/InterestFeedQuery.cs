@@ -6,7 +6,6 @@ using CliqFlip.Domain.Contracts.Tasks;
 
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Entities;
-using CliqFlip.Domain.ValueObjects;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Search;
 using MvcContrib.Pagination;
@@ -34,9 +33,13 @@ namespace CliqFlip.Web.Mvc.Queries
 
 			IList<InterestFeedItemDto> postDtos = _userInterestTasks.GetPostsByInterests(user.Interests.Select(x => x.Interest).ToList());
 			retVal.Total = postDtos.Count;
-			retVal.InterestViewModels = postDtos
+			retVal.Posts = postDtos
 				.AsPagination( page ?? 1, Constants.FEED_LIMIT)
-				.Select(x => new InterestsFeedViewModel.FeedPostViewModel(x) { UserPageUrl = url.Action("Index", "User", new { username = x.Username }) })
+				.Select(x => new InterestsFeedViewModel.FeedPostViewModel(x)
+				{
+				    UserPageUrl = url.Action("Index", "User", new { username = x.Username }),
+                    PostUrl = url.Action("Index","Post",new {post=x.Post.PostId})
+				})
 				.ToList();
 
 			//rank them in order then grab that page

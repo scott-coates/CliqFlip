@@ -239,7 +239,7 @@
     <Compile Include="ViewModels\Home\HomeUserViewModel.cs" />
     <Compile Include="ViewModels\Jeip\JeipSaveResponseViewModel.cs" />
     <Compile Include="ViewModels\Jeip\JeipSaveTextViewModel.cs" />
-    <Compile Include="ViewModels\Media\InterestPostViewModel.cs" />
+    <Compile Include="ViewModels\Post\InterestPostViewModel.cs" />
     <Compile Include="ViewModels\Notification\LatestNotificationViewModel.cs" />
     <Compile Include="ViewModels\Popup\CreatePostViewModel.cs" />
     <Compile Include="ViewModels\Search\InterestsFeedViewModel.cs" />
@@ -824,7 +824,9 @@
     <Content Include="Views\User\Account\_Password.cshtml" />
     <Content Include="Views\User\Account\_Location.cshtml" />
     <Content Include="Views\Home\Bootstrap.cshtml" />
-    <Content Include="Content\assets\templates\feed\feedItem.mustache" />
+    <Content Include="Content\assets\templates\feed\feedItem.mustache">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\assets\templates\feed\feedList.mustache" />
     <Content Include="Content\assets\templates\user\userLandingSummary.mustache" />
     <Content Include="Views\Popup\CreatePost.cshtml" />
