@@ -272,7 +272,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\app\collections\feed\feedList.js" />
-    <Content Include="Content\assets\js\cliqflip\bundle.txt" />
+    <Content Include="Content\app\bundle.txt" />
     <Content Include="Content\assets\js\cliqflip\view\templateRenderer.js" />
     <Content Include="Content\app\layouts\landing\landingLayout.js" />
     <Content Include="Content\app\main.js" />

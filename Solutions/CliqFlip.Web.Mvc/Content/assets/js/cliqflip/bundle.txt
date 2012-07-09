@@ -1,5 +1,0 @@
-﻿[references]
-~/Content/app
-
-[assets]
-*

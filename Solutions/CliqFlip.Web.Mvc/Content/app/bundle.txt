@@ -1,0 +1,5 @@
+﻿[references]
+~/Content/assets/js/cliqflip/
+
+[assets]
+*

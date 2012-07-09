@@ -7,7 +7,7 @@ var CliqFlip = (function(cliqFlip) {
             return templates;
         },
         className: 'feed-item gray-rounded-border',
-        templateHelpers: cliqFlip.App.Mvc.ViewHelpers
+        templateHelpers: cliqFlip.ViewHelpers
     });
 
     return cliqFlip;
