@@ -111,6 +111,11 @@ footer.navbar > .navbar-inner a:hover
 }
 
 /*Feed*/
+.feed-list .modal
+{
+    width: 50%;
+    margin-left: -25%; /*half of width: https://github.com/twitter/bootstrap/issues/675#issuecomment-2965567*/
+}
 .showing-feed
 {
     display: inline-block;
