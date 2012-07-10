@@ -116,6 +116,39 @@ footer.navbar > .navbar-inner a:hover
     width: 50%;
     margin-left: -25%; /*half of width: https://github.com/twitter/bootstrap/issues/675#issuecomment-2965567*/
 }
+
+.feed-list .modal-body
+{
+    max-height: none;
+}
+
+.feed-list .modal .close
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.feed-list .modal .activity
+{
+    width: 104%;
+    margin-left: -4%;
+}
+
+.feed-list .modal .activity .well
+{
+    padding-top: 0;
+}
+
+.feed-list .modal .activity .comment
+{
+    border-top:1px solid #FCFAFA;
+    border-bottom: 1px solid #D9D4D4;
+    background-color: #F2F0F0; 
+}
+
 .showing-feed
 {
     display: inline-block;
