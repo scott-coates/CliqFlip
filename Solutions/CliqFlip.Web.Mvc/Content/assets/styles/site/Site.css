@@ -1,11 +1,11 @@
 ﻿/* ===== Primary Styles ========================================================
    Author:
    ========================================================================== */
-html,body
+html, body
 {
-    height: 100%; 
+    height: 100%;
 }
-      
+
 #main-content
 {
     background-color: White;
@@ -27,16 +27,18 @@ html,body
 /* Nav bar */
 
 /* background color override */
-.navbar .navbar-inner {
-  background-color: #3f9fd9;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3698D2), color-stop(90%, #3698D2), to(#368FC5));
-  background-image: -webkit-linear-gradient(#3698D2, #3698D2 90%, #368FC5);
-  background-image: -moz-linear-gradient(top, #3698D2, #3698D2 90%, #368FC5);
-  background-image: -ms-linear-gradient(#3698D2, #3698D2 90%, #368FC5);
-  background-image: -o-linear-gradient(#3698D2, #3698D2 90%, #368FC5);
-  background-image: linear-gradient(#3698D2, #3698D2 90%, #368FC5);
-  background-repeat: no-repeat;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3698D2', endColorstr='#368FC5', GradientType=0);
+
+.navbar .navbar-inner
+{
+    background-color: #3f9fd9;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3698D2), color-stop(90%, #3698D2), to(#368FC5));
+    background-image: -webkit-linear-gradient(#3698D2, #3698D2 90%, #368FC5);
+    background-image: -moz-linear-gradient(top, #3698D2, #3698D2 90%, #368FC5);
+    background-image: -ms-linear-gradient(#3698D2, #3698D2 90%, #368FC5);
+    background-image: -o-linear-gradient(#3698D2, #3698D2 90%, #368FC5);
+    background-image: linear-gradient(#3698D2, #3698D2 90%, #368FC5);
+    background-repeat: no-repeat;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3698D2', endColorstr='#368FC5', GradientType=0);
 }
 
 footer.navbar > .navbar-inner
@@ -57,19 +59,22 @@ footer.navbar > .navbar-inner a:hover
     color: #efefef;
 }
 
-#toggle-settings-menu {
+#toggle-settings-menu
+{
     display: inline-block;
 }
 
 
 /* Add video, link, image */
+
 .share-something
 {
     margin-top: 10px;
 }
 
-#user-interest-add-text {
-    text-align: left;	
+#user-interest-add-text
+{
+    text-align: left;
 }
 
 #user-share-something a
@@ -77,40 +82,46 @@ footer.navbar > .navbar-inner a:hover
     height: 50px;
     padding-top: 35px;
 }
-.user-interest-add-photo {
-	background-image: url('/Content/assets/img/photoICON.png');
-	background-repeat: no-repeat;
+
+.user-interest-add-photo
+{
+    background-image: url('/Content/assets/img/photoICON.png');
+    background-repeat: no-repeat;
 }
 
-.user-interest-add-video {
-	background-image: url('/Content/assets/img/YouTube_Icon.png');
-	background-repeat: no-repeat;
+.user-interest-add-video
+{
+    background-image: url('/Content/assets/img/YouTube_Icon.png');
+    background-repeat: no-repeat;
 }
 
-.user-interest-add-link {
-	background-image: url('/Content/assets/img/icons.png');
-	background-repeat: no-repeat;
+.user-interest-add-link
+{
+    background-image: url('/Content/assets/img/icons.png');
+    background-repeat: no-repeat;
 }
 
 
 /* profile */
+
 #profile-overview
 {
     padding: 10px;
     margin-bottom: 10px;
 }
-    
+
 #profile-user
 {
     padding-bottom: 15px;
 }
-    
+
 #profile-counts div.span4
 {
     text-align: center;
 }
 
 /*Feed*/
+
 .feed-list .modal
 {
     width: 50%;
@@ -144,9 +155,9 @@ footer.navbar > .navbar-inner a:hover
 
 .feed-list .modal .activity .comment
 {
-    border-top:1px solid #FCFAFA;
+    border-top: 1px solid #FCFAFA;
     border-bottom: 1px solid #D9D4D4;
-    background-color: #F2F0F0; 
+    background-color: #F2F0F0;
 }
 
 .showing-feed
