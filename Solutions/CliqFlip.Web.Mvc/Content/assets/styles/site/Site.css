@@ -1,11 +1,6 @@
 ﻿/* ===== Primary Styles ========================================================
    Author:
    ========================================================================== */
-html, body
-{
-    height: 100%;
-}
-
 #main-content
 {
     background-color: White;
@@ -126,7 +121,7 @@ footer.navbar > .navbar-inner a:hover
 {
     width: 80%;
     margin-left: -50%; /*half of width: https://github.com/twitter/bootstrap/issues/675#issuecomment-2965567*/
-    height: 520px;
+    height: 560px;
     
     /*http://bootswatch.com/slate/bootstrap.css*/
     background-color: #32373c;
@@ -219,6 +214,13 @@ footer.navbar > .navbar-inner a:hover
 {
     max-width: 95%;
 }
+
+.feed-list .modal .media-content h4
+{
+    margin-top: 5px;
+    color: white;
+}
+
 
 .showing-feed
 {
