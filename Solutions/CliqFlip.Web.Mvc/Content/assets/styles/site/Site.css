@@ -151,6 +151,7 @@ footer.navbar > .navbar-inner a:hover
 .feed-list .modal .activity .well
 {
     padding-top: 0;
+    padding-right: 0;
 }
 
 .feed-list .modal .activity .comment
@@ -158,6 +159,17 @@ footer.navbar > .navbar-inner a:hover
     border-top: 1px solid #FCFAFA;
     border-bottom: 1px solid #D9D4D4;
     background-color: #F2F0F0;
+}
+
+.feed-list .modal .activity textarea
+{
+    height: 30px;
+    resize: none;
+}
+
+.feed-list .modal .activity button
+{
+    margin-top: 9px;
 }
 
 .showing-feed
