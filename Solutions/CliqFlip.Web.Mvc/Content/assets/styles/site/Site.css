@@ -121,7 +121,8 @@ footer.navbar > .navbar-inner a:hover
 {
     width: 80%;
     margin-left: -50%; /*half of width: https://github.com/twitter/bootstrap/issues/675#issuecomment-2965567*/
-    height: 560px;
+    height: 567px;
+    top: 40%;
     
     /*http://bootswatch.com/slate/bootstrap.css*/
     background-color: #32373c;
