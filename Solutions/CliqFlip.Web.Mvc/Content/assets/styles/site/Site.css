@@ -171,12 +171,13 @@ footer.navbar > .navbar-inner a:hover
 
 .feed-list .modal .activity
 {
-  
+    height: 364px;
 }
 
 .feed-list .modal .activity .well
 {
     padding-top: 0;
+    padding-bottom: 0;
     padding-right: 0;
     margin-bottom: 0;
 }
