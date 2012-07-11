@@ -204,6 +204,11 @@ footer.navbar > .navbar-inner a:hover
     background-color: #F2F0F0;
 }
 
+.feed-list .modal .activity .comment i
+{
+    margin-top: 1px;
+}
+
 .feed-list .modal .activity textarea
 {
     height: 30px;
