@@ -4,8 +4,8 @@ var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.View.PreventLinkClickDefault = function(router) {
         $(document).on('click', 'a:not([data-bypass])', function(evt) {
-            if(evt.isPropagationStopped()) {
-                //sometimes we want to cancel a link click (like if it's just a skeleton)
+            //sometimes we want to cancel a link click (even changing the url) (like if it's just a skeleton)
+            if(!evt.isPropagationStopped()) {
                 var href = $(this).attr('href');
                 var protocol = this.protocol + '//';
 
