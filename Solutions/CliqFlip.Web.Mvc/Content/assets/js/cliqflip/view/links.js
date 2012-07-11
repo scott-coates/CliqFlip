@@ -11,7 +11,7 @@ var CliqFlip = (function(cliqFlip) {
 
                 if(href.slice(protocol.length) !== protocol) {
                     evt.preventDefault();
-                    router.navigate(href, true);
+                    router.navigate(href, false);
                 }
 
                 //TODO: analytics dely - look into https://github.com/jorkas/jquery-analyticseventtracking-plugin/commit/4f8e23c38bdbd25e6a48a32c8e712295ad7eb846
