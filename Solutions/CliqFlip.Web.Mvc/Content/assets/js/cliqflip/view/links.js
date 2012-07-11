@@ -4,16 +4,18 @@ var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.View.PreventLinkClickDefault = function(router) {
         $(document).on('click', 'a:not([data-bypass])', function(evt) {
+            if (evt.isPropagationStopped()) {
+                //sometimes we want to cancel a link click (like if it's just a skeleton)
+                var href = $(this).attr('href');
+                var protocol = this.protocol + '//';
 
-            var href = $(this).attr('href');
-            var protocol = this.protocol + '//';
+                if (href.slice(protocol.length) !== protocol) {
+                    evt.preventDefault();
+                    router.navigate(href, true);
+                }
 
-            if (href.slice(protocol.length) !== protocol) {
-                evt.preventDefault();
-                router.navigate(href, true);
+                //TODO: analytics dely - look into https://github.com/jorkas/jquery-analyticseventtracking-plugin/commit/4f8e23c38bdbd25e6a48a32c8e712295ad7eb846
             }
-
-            //TODO: analytics dely - look into https://github.com/jorkas/jquery-analyticseventtracking-plugin/commit/4f8e23c38bdbd25e6a48a32c8e712295ad7eb846
         });
     };
 
@@ -30,6 +32,11 @@ var CliqFlip = (function(cliqFlip) {
             label: function() {
                 return $(this).data("label");
             }
+        });
+
+        $(document).on('click', '[data-category="skeleton"]', function(e) {
+            e.stopPropagation();
+            alert('what');
         });
     };
 
