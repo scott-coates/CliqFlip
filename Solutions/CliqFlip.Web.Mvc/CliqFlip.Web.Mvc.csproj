@@ -830,7 +830,9 @@
     <Content Include="Content\assets\templates\feed\feedItem.mustache">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\assets\templates\feed\feedList.mustache" />
+    <Content Include="Content\assets\templates\feed\feedList.mustache">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\assets\templates\user\userLandingSummary.mustache" />
     <Content Include="Views\Popup\CreatePost.cshtml" />
     <Content Include="Views\Shared\_Layout.Bootstrap.cshtml" />
