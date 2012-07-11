@@ -1,6 +1,6 @@
 ﻿//http://stackoverflow.com/questions/2504568/javascript-namespace-declaration
 var CliqFlip = (function(cliqFlip) {
-    cliqFlip.View = cliqFlip.View || {};
+    cliqFlip.View = cliqFlip.View || { };
 
     cliqFlip.View.PreventLinkClickDefault = function(router) {
         $(document).on('click', 'a:not([data-bypass])', function(evt) {
@@ -8,7 +8,7 @@ var CliqFlip = (function(cliqFlip) {
             var href = $(this).attr('href');
             var protocol = this.protocol + '//';
 
-            if(href.slice(protocol.length) !== protocol) {
+            if (href.slice(protocol.length) !== protocol) {
                 evt.preventDefault();
                 router.navigate(href, true);
             }
@@ -19,8 +19,19 @@ var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.View.HandleTracking = function() {
         window._gaq = window._gaq || [];
-        $("[data-track]").analyticsEventTracking({ delayed: false /*delayed because we don't want that lib to ever direct to href*/});
+        $("[data-track]").analyticsEventTracking({
+            delayed: false /*delayed because we don't want that lib to ever direct to href*/,
+            category: function() {
+                return $(this).data("category");
+            },
+            action: function() {
+                return $(this).data("action");
+            },
+            label: function() {
+                return $(this).data("label");
+            }
+        });
     };
 
     return cliqFlip;
-} (CliqFlip || {}));
+}(CliqFlip || { }));
