@@ -273,7 +273,7 @@
   <ItemGroup>
     <Content Include="Content\app\collections\feed\feedList.js" />
     <Content Include="Content\app\bundle.txt" />
-    <Content Include="Content\assets\js\cliqflip\view\preventDefault.js" />
+    <Content Include="Content\assets\js\cliqflip\view\links.js" />
     <Content Include="Content\assets\js\cliqflip\view\templateRenderer.js" />
     <Content Include="Content\app\layouts\landing\landingLayout.js" />
     <Content Include="Content\app\main.js" />
@@ -340,6 +340,7 @@
     <Content Include="Content\assets\img\firefox.png" />
     <Content Include="Content\assets\js\cliqflip\view\viewHelpers.js" />
     <Content Include="Content\assets\js\jquery\bundle.txt" />
+    <Content Include="Content\assets\js\jquery\jquery.analyticseventtracking.js" />
     <Content Include="Content\assets\js\jquery\jquery-ui-1.8.11.js" />
     <Content Include="Content\assets\styles\img\glyphicons-halflings-white.png" />
     <Content Include="Content\assets\styles\img\glyphicons-halflings.png" />
