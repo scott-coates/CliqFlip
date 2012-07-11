@@ -121,7 +121,7 @@ footer.navbar > .navbar-inner a:hover
 {
     width: 80%;
     margin-left: -50%; /*half of width: https://github.com/twitter/bootstrap/issues/675#issuecomment-2965567*/
-    height: 567px;
+    height: 580px;
     
     /*http://bootswatch.com/slate/bootstrap.css*/
     background-color: #32373c;
@@ -172,11 +172,6 @@ footer.navbar > .navbar-inner a:hover
 .feed-list .modal .post-details .user-details
 {
     padding: 15px;
-}
-
-.feed-list .modal .activity
-{
-    height: 364px;
 }
 
 .feed-list .modal .activity .well
