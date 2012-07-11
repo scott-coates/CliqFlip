@@ -35,7 +35,8 @@ var CliqFlip = (function(cliqFlip) {
         });
 
         $(document).on('click', '[data-category="skeleton"]', function(e) {
-            e.stopPropagation();
+            e.stopPropagation(); //the buck stops here - no one else shoudl pay attention to this event
+            e.preventDefault(); //don't change the address bar
             $("#comingSoonModal").modal();
         });
     };
