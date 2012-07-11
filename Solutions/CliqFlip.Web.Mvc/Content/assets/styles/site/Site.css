@@ -59,6 +59,10 @@ footer.navbar > .navbar-inner a:hover
     display: inline-block;
 }
 
+.coming-soon .alert
+{
+    margin-bottom: 0;
+}
 
 /* Add video, link, image */
 

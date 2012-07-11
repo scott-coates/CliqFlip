@@ -1,15 +1,15 @@
 ﻿//http://stackoverflow.com/questions/2504568/javascript-namespace-declaration
 var CliqFlip = (function(cliqFlip) {
-    cliqFlip.View = cliqFlip.View || { };
+    cliqFlip.View = cliqFlip.View || {};
 
     cliqFlip.View.PreventLinkClickDefault = function(router) {
         $(document).on('click', 'a:not([data-bypass])', function(evt) {
-            if (evt.isPropagationStopped()) {
+            if(evt.isPropagationStopped()) {
                 //sometimes we want to cancel a link click (like if it's just a skeleton)
                 var href = $(this).attr('href');
                 var protocol = this.protocol + '//';
 
-                if (href.slice(protocol.length) !== protocol) {
+                if(href.slice(protocol.length) !== protocol) {
                     evt.preventDefault();
                     router.navigate(href, true);
                 }
@@ -36,9 +36,9 @@ var CliqFlip = (function(cliqFlip) {
 
         $(document).on('click', '[data-category="skeleton"]', function(e) {
             e.stopPropagation();
-            alert('what');
+            $("#comingSoonModal").modal();
         });
     };
 
     return cliqFlip;
-}(CliqFlip || { }));
+} (CliqFlip || {}));
