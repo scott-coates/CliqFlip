@@ -218,6 +218,8 @@
     <Compile Include="Extensions\Request\ReuqestExtensions.cs" />
     <Compile Include="Extensions\Url\UrlExtensions.cs" />
     <Compile Include="Queries\ConversationQuery.cs" />
+    <Compile Include="Queries\FeedPostOverviewQuery.cs" />
+    <Compile Include="Queries\Interfaces\IFeedPostOverviewQuery.cs" />
     <Compile Include="Queries\Interfaces\IInterestFeedQuery.cs" />
     <Compile Include="Queries\Interfaces\IConversationQuery.cs" />
     <Compile Include="Queries\Interfaces\ILatestNotificationQuery.cs" />
@@ -243,6 +245,7 @@
     <Compile Include="ViewModels\Post\InterestPostViewModel.cs" />
     <Compile Include="ViewModels\Notification\LatestNotificationViewModel.cs" />
     <Compile Include="ViewModels\Popup\CreatePostViewModel.cs" />
+    <Compile Include="ViewModels\Search\FeedPostOverviewViewModel.cs" />
     <Compile Include="ViewModels\Search\InterestsFeedViewModel.cs" />
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
     <Compile Include="ViewModels\Search\InterestSearchViewModel.cs" />
@@ -274,6 +277,7 @@
   <ItemGroup>
     <Content Include="Content\app\collections\feed\feedList.js" />
     <Content Include="Content\app\bundle.txt" />
+    <Content Include="Content\app\models\feed\feedPostOverview.js" />
     <Content Include="Content\app\views\feed\feedPostOverviewView.js" />
     <Content Include="Content\assets\js\cliqflip\view\modalRegion.js" />
     <Content Include="Content\assets\js\cliqflip\view\links.js" />

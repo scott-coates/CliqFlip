@@ -21,6 +21,13 @@ var CliqFlip = (function(cliqFlip) {
             });
         },
         showPost: function(post) {
+            var postOverview = new cliqFlip.App.Mvc.Models.FeedPostOverview({ id: post.get('PostId') });
+            debugger;
+            postOverview.fetch({
+                success: function(parameters) {
+
+                }
+            });
             cliqFlip.App.Mvc.modalRegion.show(new cliqFlip.App.Mvc.Views.FeedPostOverviewView({ model: post }));
         }
     };
