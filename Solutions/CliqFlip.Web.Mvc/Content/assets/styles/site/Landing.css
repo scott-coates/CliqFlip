@@ -59,7 +59,7 @@
 
 /*Feed*/
 
-.feed-list .modal
+.post-overview-modal.modal
 {
     width: 80%;
     margin-left: -50%; /*half of width: https://github.com/twitter/bootstrap/issues/675#issuecomment-2965567*/
@@ -86,18 +86,18 @@
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1), 0 1px 0 rgba(255, 255, 255, .075);
 }
 
-.feed-list .modal.fade.in
+.post-overview-modal.modal.fade.in
 {
     top: 40%;    
 }
 
-.feed-list .modal-body
+.post-overview-modal .modal-body
 {
     max-height: none;
     padding: 0;
 }
 
-.feed-list .modal .close
+.post-overview-modal.modal .close
 {
     position: absolute;
     top: 0;
@@ -106,28 +106,28 @@
     margin-right: 5px;
 }
 
-.feed-list .modal .post-details
+.post-overview-modal.modal .post-details
 {
     background-color: white;
 }
 
-.feed-list .modal .post-details .user-details
+.post-overview-modal.modal .post-details .user-details
 {
     padding: 15px;
 }
 
-.feed-list .modal .post-details .user-details .be-friends
+.post-overview-modal.modal .post-details .user-details .be-friends
 {
     float: left;
 }
 
-.feed-list .modal .post-details .user-details .btn-group
+.post-overview-modal.modal .post-details .user-details .btn-group
 {
     float: left;
     margin-left: 2px;
 }
 
-.feed-list .modal .activity .well
+.post-overview-modal.modal .activity .well
 {
     padding-top: 0;
     padding-bottom: 0;
@@ -135,46 +135,46 @@
     margin-bottom: 0;
 }
 
-.feed-list .modal .activity .comment
+.post-overview-modal.modal .activity .comment
 {
     border-top: 1px solid #FCFAFA;
     border-bottom: 1px solid #D9D4D4;
     background-color: #F2F0F0;
 }
 
-.feed-list .modal .activity .comment i
+.post-overview-modal.modal .activity .comment i
 {
     margin-top: 1px;
 }
 
-.feed-list .modal .activity textarea
+.post-overview-modal.modal .activity textarea
 {
     height: 30px;
     resize: none;
 }
 
-.feed-list .modal .activity button
+.post-overview-modal.modal .activity button
 {
     margin-top: 9px;
 }
 
-.feed-list .modal .media-content
+.post-overview-modal.modal .media-content
 {
     margin-left: 1%;
 }
 
-.feed-list .modal .media-content b,
-.feed-list .modal .media-content b > a
+.post-overview-modal.modal .media-content b,
+.post-overview-modal.modal .media-content b > a
 {
     color: white;
 }
 
-.feed-list .modal .media-content img
+.post-overview-modal.modal .media-content img
 {
     max-width: 95%;
 }
 
-.feed-list .modal .media-content h4
+.post-overview-modal.modal .media-content h4
 {
     margin-top: 5px;
     color: white;

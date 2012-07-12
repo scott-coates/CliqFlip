@@ -274,7 +274,7 @@
   <ItemGroup>
     <Content Include="Content\app\collections\feed\feedList.js" />
     <Content Include="Content\app\bundle.txt" />
-    <Content Include="Content\app\views\feed\feedPostDetailView.js" />
+    <Content Include="Content\app\views\feed\feedPostOverviewView.js" />
     <Content Include="Content\assets\js\cliqflip\view\modalRegion.js" />
     <Content Include="Content\assets\js\cliqflip\view\links.js" />
     <Content Include="Content\assets\js\cliqflip\view\templateRenderer.js" />
@@ -840,7 +840,7 @@
     <Content Include="Views\Popup\CreatePost.cshtml" />
     <Content Include="Views\Shared\_Layout.Bootstrap.cshtml" />
     <Content Include="Content\assets\templates\landing\layout.mustache" />
-    <Content Include="Content\assets\templates\feed\feedPostDetail.mustache">
+    <Content Include="Content\assets\templates\feed\feedPostOverview.mustache">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

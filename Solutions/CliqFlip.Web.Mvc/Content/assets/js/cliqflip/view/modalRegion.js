@@ -23,15 +23,19 @@ var CliqFlip = (function(cliqFlip) {
         },
 
         open: function(view) {
-            this.$el.addClass(view.className + "-modal");
+            this.$el.addClass(this.firstClassName(view.className) + "-modal");
             Backbone.Marionette.Region.prototype.open.apply(this, arguments);
         },
 
         close: function() {
             var view = this.currentView;
             if(!view) { return; }
-            this.$el.removeClass(this.currentView.className + "-modal");
+            this.$el.removeClass(this.firstClassName(this.currentView.className) + "-modal");
             Backbone.Marionette.Region.prototype.close.apply(this, arguments);
+        },
+
+        firstClassName: function(className) {
+            return className.split(' ')[0];
         }
     });
 

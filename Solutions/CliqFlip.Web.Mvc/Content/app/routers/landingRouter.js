@@ -21,7 +21,7 @@ var CliqFlip = (function(cliqFlip) {
             });
         },
         showPost: function(post) {
-            cliqFlip.App.Mvc.modalRegion.show(new cliqFlip.App.Mvc.Views.FeedPostDetailView({ model: post }));
+            cliqFlip.App.Mvc.modalRegion.show(new cliqFlip.App.Mvc.Views.FeedPostOverviewView({ model: post }));
         }
     };
 
