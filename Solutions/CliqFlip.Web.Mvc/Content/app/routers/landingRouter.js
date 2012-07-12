@@ -3,6 +3,13 @@
 var CliqFlip = (function(cliqFlip) {
     var landingController = {
         landing: function() {
+            /*
+                look into filters:
+                https://github.com/angelo0000/backbone_filters/blob/master/backbone_filters.js
+                https://github.com/documentcloud/backbone/pull/299'
+                http://coenraets.org/blog/2012/01/backbone-js-lessons-learned-and-improved-sample-app/
+            */
+            cliqFlip.App.Mvc.modalRegion.hideModal();
             var landingLayout = new cliqFlip.App.Mvc.Layouts.LandingLayout();
 
             cliqFlip.App.Mvc.mainContentRegion.show(landingLayout);
