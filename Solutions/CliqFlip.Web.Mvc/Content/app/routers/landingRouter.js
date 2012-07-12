@@ -20,8 +20,8 @@ var CliqFlip = (function(cliqFlip) {
                 }
             });
         },
-        showPost: function() {
-            alert('post');
+        showPost: function(post) {
+            cliqFlip.App.Mvc.modalRegion.show(new cliqFlip.App.Mvc.Views.FeedPostDetailView({ model: post }));
         }
     };
 

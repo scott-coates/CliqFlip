@@ -12,7 +12,7 @@ var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.App.Mvc.addRegions({
         mainContentRegion: "#main-content",
-        modal: function() { return new cliqFlip.View.ModalRegion({ el: "#main-modal" }); }
+        modalRegion: function() { return new cliqFlip.View.ModalRegion({ el: "#main-modal" }); }
     });
 
     cliqFlip.App.Mvc.addInitializer(function() {

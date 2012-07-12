@@ -1,6 +1,6 @@
 ﻿//http://lostechies.com/derickbailey/2012/04/17/managing-a-modal-dialog-with-backbone-and-marionette/
 var CliqFlip = (function(cliqFlip) {
-    cliqFlip.View = cliqFlip.View || { };
+    cliqFlip.View = cliqFlip.View || {};
 
     cliqFlip.View.ModalRegion = Backbone.Marionette.Region.extend({
         constructor: function() {
@@ -10,12 +10,11 @@ var CliqFlip = (function(cliqFlip) {
 
         getEl: function(selector) {
             var $el = $(selector);
-            $el.on("hidden", this.close);
+            $el.on("hidden", _.bind(this.close, this));
             return $el;
         },
 
-        showModal: function(view) {
-            view.on("close", this.hideModal, this);
+        showModal: function() {
             this.$el.modal('show');
         },
 
@@ -25,4 +24,4 @@ var CliqFlip = (function(cliqFlip) {
     });
 
     return cliqFlip;
-}(CliqFlip || { }));
+} (CliqFlip || {}));
