@@ -20,6 +20,18 @@ var CliqFlip = (function(cliqFlip) {
 
         hideModal: function() {
             this.$el.modal('hide');
+        },
+
+        open: function(view) {
+            this.$el.addClass(view.className + "-modal");
+            Backbone.Marionette.Region.prototype.open.apply(this, arguments);
+        },
+
+        close: function() {
+            var view = this.currentView;
+            if(!view) { return; }
+            this.$el.removeClass(this.currentView.className + "-modal");
+            Backbone.Marionette.Region.prototype.close.apply(this, arguments);
         }
     });
 
