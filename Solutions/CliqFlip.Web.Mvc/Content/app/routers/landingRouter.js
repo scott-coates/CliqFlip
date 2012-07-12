@@ -1,7 +1,7 @@
 //https: //github.com/derickbailey/backbone.marionette/blob/master/docs/marionette.approuter.md
 
 var CliqFlip = (function(cliqFlip) {
-    var appController = {
+    var landingController = {
         landing: function() {
             var landingLayout = new cliqFlip.App.Mvc.Layouts.LandingLayout();
 
@@ -16,21 +16,17 @@ var CliqFlip = (function(cliqFlip) {
 
             feedList.fetch({
                 success: function() {
-                    var feedViewList = new cliqFlip.App.Mvc.Views.FeedListView({ collection: feedList });
-                    feedViewList.on("itemview:feedItem:selected", function(feedItemView) {
-                        alert(feedItemView);
-                    });
-                    landingLayout.contentAreaRegion.show(feedViewList);
+                    landingLayout.contentAreaRegion.show(new cliqFlip.App.Mvc.Views.FeedListView({ collection: feedList }));
                 }
             });
         }
     };
 
-    cliqFlip.App.Mvc.Routers.AppRouter = Backbone.Marionette.AppRouter.extend({
+    cliqFlip.App.Mvc.Routers.LandingRouter = Backbone.Marionette.AppRouter.extend({
         appRoutes: {
             "": "landing"
         },
-        controller: appController
+        controller: landingController
     });
 
     return cliqFlip;

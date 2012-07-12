@@ -16,7 +16,7 @@ var CliqFlip = (function(cliqFlip) {
     });
 
     cliqFlip.App.Mvc.addInitializer(function() {
-        cliqFlip.App.Mvc.appRouter = new cliqFlip.App.Mvc.Routers.AppRouter();
+        cliqFlip.App.Mvc.landingRouter = new cliqFlip.App.Mvc.Routers.LandingRouter();
         cliqFlip.View.HandleTracking();
         cliqFlip.View.PreventLinkClickDefault();
         Backbone.history.start({ pushState: true, root: "/home/bootstrap/" });

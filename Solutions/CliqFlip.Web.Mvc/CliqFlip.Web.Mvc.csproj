@@ -282,7 +282,7 @@
     <Content Include="Content\app\main.js" />
     <Content Include="Content\app\models\user\userLandingSummary.js" />
     <Content Include="Content\app\models\feed\feedItem.js" />
-    <Content Include="Content\app\routers\appRouter.js" />
+    <Content Include="Content\app\routers\landingRouter.js" />
     <Content Include="Content\app\views\feed\feedItemView.js" />
     <Content Include="Content\app\views\feed\feedListView.js" />
     <Content Include="Content\app\views\user\userLandingSummaryView.js" />

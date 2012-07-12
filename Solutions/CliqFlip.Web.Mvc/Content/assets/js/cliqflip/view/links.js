@@ -10,7 +10,8 @@
 
                 if(href.slice(protocol.length) !== protocol) {
                     evt.preventDefault();
-                    Backbone.history.navigate(href, false);
+                    Backbone.history.navigate(href, false); //safe to call just this obj http://stackoverflow.com/questions/11282145/multiple-routers-in-a-backbone-maybe-marionette-app
+                    //It is recommended that you divide your controller objects into smaller pieces of related functionality and have multiple routers / controllers, instead of just one giant router and controller. https://github.com/derickbailey/backbone.marionette/blob/master/docs/marionette.approuter.md
                 }
 
                 //TODO: analytics dely - look into https://github.com/jorkas/jquery-analyticseventtracking-plugin/commit/4f8e23c38bdbd25e6a48a32c8e712295ad7eb846
