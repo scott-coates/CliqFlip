@@ -4,7 +4,7 @@ var CliqFlip = (function(cliqFlip) {
     var appController = {
         landing: function() {
             var landingLayout = new cliqFlip.App.Mvc.Layouts.LandingLayout();
-           
+
             cliqFlip.App.Mvc.mainContentRegion.show(landingLayout);
 
             var userLandingSummaryModel = new cliqFlip.App.Mvc.Models.UserLandingSummary();
@@ -16,7 +16,11 @@ var CliqFlip = (function(cliqFlip) {
 
             feedList.fetch({
                 success: function() {
-                    landingLayout.contentAreaRegion.show(new cliqFlip.App.Mvc.Views.FeedListView({ collection: feedList }));
+                    var feedViewList = new cliqFlip.App.Mvc.Views.FeedListView({ collection: feedList });
+                    feedViewList.on("itemview:feedItem:selected", function(feedItemView) {
+                        alert(feedItemView);
+                    });
+                    landingLayout.contentAreaRegion.show(feedViewList);
                 }
             });
         }

@@ -11,7 +11,8 @@ var CliqFlip = (function(cliqFlip) {
     cliqFlip.App.Mvc.Routers = {};
 
     cliqFlip.App.Mvc.addRegions({
-        mainContentRegion: "#main-content"
+        mainContentRegion: "#main-content",
+        modal: function() { return new cliqFlip.View.ModalRegion({ el: "#main-modal" }); }
     });
 
     cliqFlip.App.Mvc.addInitializer(function() {

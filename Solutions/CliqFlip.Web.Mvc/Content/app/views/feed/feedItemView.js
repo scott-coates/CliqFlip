@@ -7,7 +7,10 @@ var CliqFlip = (function(cliqFlip) {
             return templates;
         },
         className: 'feed-item gray-rounded-border',
-        templateHelpers: cliqFlip.ViewHelpers
+        templateHelpers: cliqFlip.ViewHelpers,
+        triggers: {
+            "click .feed-image": "feedItem:selected"
+        }
     });
 
     return cliqFlip;
