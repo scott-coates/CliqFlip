@@ -12,7 +12,7 @@ var CliqFlip = (function(cliqFlip) {
             "click .feed-image": "feedItemSelected"
         },
         feedItemSelected: function() {
-            cliqFlip.App.vent.trigger("feedItem:selected");
+            cliqFlip.App.Mvc.vent.trigger("feedItem:selected");
             //look into triggers: http://lostechies.com/derickbailey/2012/05/15/workflow-in-backbone-apps-triggering-view-events-from-dom-events/
         }
     });

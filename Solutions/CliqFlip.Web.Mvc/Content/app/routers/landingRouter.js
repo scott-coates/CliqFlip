@@ -19,6 +19,9 @@ var CliqFlip = (function(cliqFlip) {
                     landingLayout.contentAreaRegion.show(new cliqFlip.App.Mvc.Views.FeedListView({ collection: feedList }));
                 }
             });
+        },
+        showPost: function() {
+            alert('post');
         }
     };
 
@@ -28,6 +31,9 @@ var CliqFlip = (function(cliqFlip) {
         },
         controller: landingController
     });
+
+    cliqFlip.App.Mvc.vent.bind("feedItem:selected", function(post) { landingController.showPost(post); });
+
 
     return cliqFlip;
 } (CliqFlip));
