@@ -22,6 +22,11 @@ namespace CliqFlip.Web.Mvc.Queries
             retVal.Username = post.UserInterest.User.Username;
             retVal.Headline = post.UserInterest.User.Headline;
             retVal.ImageDescription = post.Description;
+            var image = post.Medium as Image;
+            if(image != null)
+            {
+                retVal.ImageUrl = image.ImageData.FullFileName;
+            }
             return retVal;
         }
     }
