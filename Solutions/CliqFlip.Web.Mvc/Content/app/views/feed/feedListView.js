@@ -4,7 +4,7 @@ var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.App.Mvc.Views.FeedListView = Backbone.Marionette.CompositeView.extend({
         template: "feed-feedList",
-        className: 'feed-list invisible',
+        className: 'invisible',
         triggerPoint: 200,
         itemView: cliqFlip.App.Mvc.Views.FeedItemView,
         initialize: function() {
