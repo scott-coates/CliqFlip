@@ -1,8 +1,7 @@
-﻿//http://stackoverflow.com/questions/2504568/javascript-namespace-declaration
-var CliqFlip = (function(cliqFlip) {
+﻿var CliqFlip = (function(cliqFlip) {
     cliqFlip.View = cliqFlip.View || {};
 
-    cliqFlip.View.PreventLinkClickDefault = function(router) {
+    cliqFlip.View.PreventLinkClickDefault = function() {
         $(document).on('click', 'a:not([data-bypass])', function(evt) {
             //sometimes we want to cancel a link click (even changing the url) (like if it's just a skeleton)
             if(!evt.isPropagationStopped()) {
@@ -11,7 +10,7 @@ var CliqFlip = (function(cliqFlip) {
 
                 if(href.slice(protocol.length) !== protocol) {
                     evt.preventDefault();
-                    router.navigate(href, false);
+                    Backbone.history.navigate(href, false);
                 }
 
                 //TODO: analytics dely - look into https://github.com/jorkas/jquery-analyticseventtracking-plugin/commit/4f8e23c38bdbd25e6a48a32c8e712295ad7eb846
