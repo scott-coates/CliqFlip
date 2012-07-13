@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Web.Mvc;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
@@ -28,6 +29,15 @@ namespace CliqFlip.Web.Mvc.Queries
             {
                 retVal.ImageUrl = image.ImageData.FullFileName;
             }
+
+            retVal.Activity = post.Comments.Select(
+                x => new FeedPostOverviewViewModel.ActivityViewModel
+                {
+                    CommentText = x.CommentText,
+                    Username = x.User.Username,
+                    ProfileImageUrl = x.User.ProfileImage.ImageData.MediumFileName
+                }).ToList();
+
             return retVal;
         }
     }

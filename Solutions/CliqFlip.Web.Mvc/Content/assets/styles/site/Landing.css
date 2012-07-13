@@ -142,14 +142,14 @@
     margin-bottom: 0;
 }
 
-.post-overview-modal.modal .activity .comment
+.post-overview-modal.modal .activity .activity-item
 {
     border-top: 1px solid #FCFAFA;
     border-bottom: 1px solid #D9D4D4;
     background-color: #F2F0F0;
 }
 
-.post-overview-modal.modal .activity .comment i
+.post-overview-modal.modal .activity .activity-item i
 {
     margin-top: 1px;
 }
