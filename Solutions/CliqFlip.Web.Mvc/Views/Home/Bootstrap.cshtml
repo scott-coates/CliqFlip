@@ -6,7 +6,7 @@
     //bootstrap our initial data - http://backbonejs.org/#FAQ-bootstrap
     Bundles.AddInlineScript("$(function(){CliqFlip.App.UserData = " + Json.Encode(Model) + "; CliqFlip.App.Mvc.start();});", "inline");
 }
-<div class="navbar navbar-fixed-top">
+<div id="header" class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container-fluid">
                 
@@ -21,9 +21,9 @@
                 <div class="row-fluid">
                     <div class="span3"></div>
                     
-                    <div class="span3">
+                    <div id="search-container" class="span3">
                         <form class="navbar-search pull-left span12">
-                        <input type="text" class="search-query span12" placeholder="Search">
+                            <input id="search-box" type="text" class="search-query span12" placeholder="Search" />
                         </form>
                     </div>
                     <ul class="nav pull-right">
