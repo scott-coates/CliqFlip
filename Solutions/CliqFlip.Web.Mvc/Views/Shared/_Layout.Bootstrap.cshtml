@@ -27,6 +27,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @Bundles.RenderStylesheets()
     @Bundles.RenderScripts("head")
+    @HtmlExtensions.GetAnalyticsHtmlIfAvailable() @*TODO: Do not add if internal cliqflip is logged in*@
 </head>
 <body>
     @RenderBody()

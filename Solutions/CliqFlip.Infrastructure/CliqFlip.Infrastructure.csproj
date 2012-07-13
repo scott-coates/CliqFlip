@@ -230,12 +230,14 @@
     <Compile Include="NHibernate\Maps\Overrides\PostMappingOverride.cs" />
     <Compile Include="NHibernate\Maps\Overrides\UserInterestMappingOverride.cs" />
     <Compile Include="Repositories\ConversationRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IPostRepository.cs" />
     <Compile Include="Repositories\Interfaces\INotificationRepository.cs" />
     <Compile Include="Repositories\Interfaces\IConversationRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUserInterestRepository.cs" />
     <Compile Include="Repositories\Interfaces\IInterestRepository.cs" />
     <Compile Include="Repositories\InterestRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
+    <Compile Include="Repositories\PostRepository.cs" />
     <Compile Include="Repositories\NotificationRepository.cs" />
     <Compile Include="Repositories\UserInterestRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />

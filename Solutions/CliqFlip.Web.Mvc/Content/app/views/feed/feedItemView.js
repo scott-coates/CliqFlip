@@ -7,7 +7,14 @@ var CliqFlip = (function(cliqFlip) {
             return templates;
         },
         className: 'feed-item gray-rounded-border',
-        templateHelpers: cliqFlip.ViewHelpers
+        templateHelpers: cliqFlip.ViewHelpers,
+        events: {
+            "click .feed-image": "feedItemSelected"
+        },
+        feedItemSelected: function() {
+            cliqFlip.App.Mvc.vent.trigger("feedItem:selected", this.model);
+            //look into triggers: http://lostechies.com/derickbailey/2012/05/15/workflow-in-backbone-apps-triggering-view-events-from-dom-events/
+        }
     });
 
     return cliqFlip;

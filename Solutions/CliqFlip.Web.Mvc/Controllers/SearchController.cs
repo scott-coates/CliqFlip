@@ -24,21 +24,33 @@ namespace CliqFlip.Web.Mvc.Controllers
 		private readonly IInterestTasks _interestTasks;
 		private readonly IInterestFeedQuery _interestFeedQuery;
 		private readonly IPrincipal _principal;
+	    private readonly IFeedPostOverviewQuery _feedPostOverviewQuery;
 
-		public SearchController(IUsersByInterestsQuery usersByInterestsQuery, IInterestTasks interestTasks, IInterestFeedQuery interestFeedQuery, IPrincipal principal)
+		public SearchController(IUsersByInterestsQuery usersByInterestsQuery, IInterestTasks interestTasks, IInterestFeedQuery interestFeedQuery, IPrincipal principal, IFeedPostOverviewQuery feedPostOverviewQuery)
 		{
 			_usersByInterestsQuery = usersByInterestsQuery;
 			_interestTasks = interestTasks;
 			_interestFeedQuery = interestFeedQuery;
 			_principal = principal;
+		    _feedPostOverviewQuery = feedPostOverviewQuery;
 		}
 
 		[Transaction]
-		public JsonNetResult InterestFeed(int? page)
+        [Authorize]
+        public JsonNetResult InterestFeed(int? page)
 		{
 			var viewModel = _interestFeedQuery.GetUsersByInterests(_principal.Identity.Name, page, Url);
 			return new JsonNetResult(viewModel.Posts);
 		}
+
+
+        [Transaction]
+        [Authorize]
+        public JsonNetResult FeedPostOverview(int id)
+        {
+            var viewModel = _feedPostOverviewQuery.GetFeedPostOverview(id, Url);
+            return new JsonNetResult(viewModel);
+        }
 
 		[Transaction]
         [Authorize]

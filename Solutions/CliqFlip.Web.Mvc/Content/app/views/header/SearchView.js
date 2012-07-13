@@ -14,7 +14,7 @@ var CliqFlip = (function (cliqFlip) {
                 }
             });
 
-            mtypeahead.data('multitypeahead').$menu.attr("id", "search-suggestions");
+            mtypeahead.data('multitypeahead').$menu.attr("id", "search-suggestions").css("min-width", mtypeahead.width());
 
             return this;
         }

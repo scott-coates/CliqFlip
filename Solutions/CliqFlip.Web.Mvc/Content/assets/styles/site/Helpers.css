@@ -2,7 +2,6 @@
 @reference Site.css
 */
 
-/*********HELPERS*********/
 .gray-rounded-border
 {
     border: 1px solid #DDD;
@@ -14,4 +13,8 @@
     -webkit-background-clip: padding-box; 
     background-clip: padding-box;
 }
-/*********END OF HELPERS*********/
+
+.full-height
+{
+    height: 100%;
+}

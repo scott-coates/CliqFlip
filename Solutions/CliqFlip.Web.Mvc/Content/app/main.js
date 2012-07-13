@@ -11,13 +11,14 @@ var CliqFlip = (function (cliqFlip) {
     cliqFlip.App.Mvc.Routers = {};
 
     cliqFlip.App.Mvc.addRegions({
-        header: "#header",
-        mainContentRegion: "#main-content"
+        mainContentRegion: "#main-content",
+        modalRegion: function() { return new cliqFlip.View.ModalRegion({ el: "#main-modal" }); }
     });
 
     cliqFlip.App.Mvc.addInitializer(function () {
-        cliqFlip.App.Mvc.appRouter = new cliqFlip.App.Mvc.Routers.AppRouter();
-        cliqFlip.View.PreventDefault(cliqFlip.App.Mvc.appRouter);
+        cliqFlip.App.Mvc.landingRouter = new cliqFlip.App.Mvc.Routers.LandingRouter();
+        cliqFlip.View.HandleTracking();
+        cliqFlip.View.PreventLinkClickDefault();
         Backbone.history.start({ pushState: true, root: "/home/bootstrap/" });
     });
 
