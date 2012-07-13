@@ -41,6 +41,16 @@ html, body
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3698D2', endColorstr='#368FC5', GradientType=0);
 }
 
+.typeahead.dropdown-menu
+{
+    z-index: 2000;
+}
+
+#search-suggestions
+{
+    margin-top: -2px;
+}
+
 footer.navbar > .navbar-inner
 {
     text-align: center;
