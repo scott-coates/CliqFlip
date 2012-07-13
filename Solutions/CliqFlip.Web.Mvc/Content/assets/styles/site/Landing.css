@@ -149,6 +149,8 @@
 
 .post-overview-modal.modal .activity textarea
 {
+    line-height: 1em;
+    font-size: 11px;
     height: 30px;
     resize: none;
 }
@@ -242,6 +244,8 @@
 
 .feed-comments textarea
 {
+    line-height: 1em;
+    font-size: 11px;
     height: 30px;
     resize: none;
 }
