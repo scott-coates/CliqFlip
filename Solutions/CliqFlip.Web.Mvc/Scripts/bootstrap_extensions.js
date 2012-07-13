@@ -23,15 +23,19 @@
     "use strict"; // jshint ;_;
 
 
-    /* TYPEAHEAD PUBLIC CLASS DEFINITION
+    /* MULTITYPEAHEAD PUBLIC CLASS DEFINITION
     * ================================= */
 
     //start off by copying bootstrap typeahead
     var MultiTypeahead = $.fn.typeahead.Constructor;
-    //MultiTypeahead.prototype = $.fn.typeahead.Constructor.prototype;
 
     //overide a few methods
     MultiTypeahead.prototype.constructor = MultiTypeahead;
+
+    //when an item is selected, Typeahead will just replace the value
+    //of the textbox
+    //MultiTypeahead will instead append the selected item
+    //to the textbox
     MultiTypeahead.prototype.select = function () {
         var val = this.$menu.find('.active').attr('data-value');
 
@@ -49,15 +53,20 @@
         tokens.push("");
         var replacement = tokens.join(", ");
 
-        this.$element.val(this.updater(replacement)).change();
+        this.$element.val(replacement).change();
+        this.updater(val);
         return this.hide();
     };
+
+    //helper methods
     MultiTypeahead.prototype.split = function (val) {
         return val.split(/,\s*/);
     };
     MultiTypeahead.prototype.extractLast = function (term) {
         return this.split(term).pop();
     };
+
+
     MultiTypeahead.prototype.lookup = function (event) {
         var that = this, items, q;
 
@@ -69,17 +78,28 @@
 
         this.query = this.extractLast(this.$element.val());
 
-        items = $.grep(this.source, function (item) {
-            return that.matcher(item);
-        });
+        var renderItems = function (list) {
 
-        items = this.sorter(items);
+            list = that.sorter(list);
 
-        if (!items.length) {
-            return this.shown ? this.hide() : this;
+            if (!list.length) {
+                return that.shown ? that.hide() : that;
+            }
+
+            return that.render(list.slice(0, that.options.items)).show();
+        };
+
+        if (typeof this.source === "function") {
+            //execute the function to get the sources
+            this.source(this.query, renderItems);
+        } else {
+            //this should be an array
+            //we only need to use the matcher when working array sources
+            items = $.grep(items, function (item) {
+                return that.matcher(item);
+            });
+            renderItems(items);
         }
-
-        return this.render(items.slice(0, this.options.items)).show();
     };
 
 
