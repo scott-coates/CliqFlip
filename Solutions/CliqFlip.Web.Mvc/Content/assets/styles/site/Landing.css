@@ -38,6 +38,13 @@
     background-repeat: no-repeat;
 }
 
+/* Showing content - all/friends */
+
+.showing-feed
+{
+    display: inline-block;
+    margin-top: 7px;
+}
 
 /* profile */
 
@@ -183,12 +190,6 @@
 }
 
 
-.showing-feed
-{
-    display: inline-block;
-    margin-top: 7px;
-}
-
 .feed-item
 {
     width: 220px;
@@ -209,40 +210,40 @@
     margin-top: 4px;
 }
 
-.feed-image
+.feed-item .feed-image
 {
     display: block;
     margin: 0 auto;
 }
 
-.feed-simple-interact
+.feed-item .feed-simple-interact
 {
     margin-top: 10px;
 }
 
-.feed-simple-interact .share
+.feed-item .feed-simple-interact .share
 {
     float: right;
 }
 
-.feed-comments .well
+.feed-item .activity .well
 {
     padding: 19px 2px 8px;
     margin-bottom: 0;
 }
 
-.feed-comments .comment
+.feed-item .activity .comment
 {
     margin-bottom: 2px;
 }
 
-.feed-comments button
+.feed-item .activity button
 {
     margin-top: 9px;
     float: right;
 }
 
-.feed-comments textarea
+.feed-item .activity textarea
 {
     line-height: 1em;
     font-size: 11px;
