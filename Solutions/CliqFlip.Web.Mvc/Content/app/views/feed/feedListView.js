@@ -35,7 +35,8 @@ var CliqFlip = (function(cliqFlip) {
                 .popover({
                     content: function() {
                         return "Hello " + $(this).data('userid');
-                    }
+                    },
+                    delay:{hide:1000, show:250}
                 });
 
             var that = this;
