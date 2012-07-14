@@ -24,7 +24,7 @@ namespace CliqFlip.Web.Mvc.Queries
             var post = _postTasks.Get(postId);
             retVal.Username = post.UserInterest.User.Username;
             retVal.Headline = post.UserInterest.User.Headline;
-            retVal.AuthorImageUrl = post.UserInterest.User.ProfileImage.ImageData.FullFileName;
+            retVal.AuthorImageUrl = post.UserInterest.User.ProfileImage.ImageData.MediumFileName;
             retVal.ImageDescription = post.Description;
             var image = post.Medium as Image;
             if(image != null)

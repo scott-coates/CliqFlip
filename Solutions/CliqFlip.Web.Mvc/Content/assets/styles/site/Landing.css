@@ -123,6 +123,11 @@
     padding: 15px;
 }
 
+.post-overview-modal.modal .post-details .user-details img
+{
+    max-height: 142px;
+}
+
 .post-overview-modal.modal .post-details .user-details .be-friends
 {
     float: left;
