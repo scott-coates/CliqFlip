@@ -189,6 +189,11 @@
     color: white;
 }
 
+.post-overview-modal.modal #user-activity
+{
+    height: 255px;
+    overflow-y: auto;
+}
 
 .feed-item
 {
