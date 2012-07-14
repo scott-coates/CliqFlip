@@ -6,6 +6,7 @@ using System.Threading;
 using CliqFlip.Domain.Contracts.Tasks;
 
 using CliqFlip.Domain.Dtos.Interest;
+using CliqFlip.Domain.Dtos.Post;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.Security.Attributes;
 using CliqFlip.Web.Mvc.ViewModels.Search;
@@ -25,14 +26,18 @@ namespace CliqFlip.Web.Mvc.Controllers
 		private readonly IInterestFeedQuery _interestFeedQuery;
 		private readonly IPrincipal _principal;
 	    private readonly IFeedPostOverviewQuery _feedPostOverviewQuery;
+	    private readonly IUserTasks _userTasks;
+	    private readonly IPostTasks _postTasks;
 
-		public SearchController(IUsersByInterestsQuery usersByInterestsQuery, IInterestTasks interestTasks, IInterestFeedQuery interestFeedQuery, IPrincipal principal, IFeedPostOverviewQuery feedPostOverviewQuery)
+		public SearchController(IUsersByInterestsQuery usersByInterestsQuery, IInterestTasks interestTasks, IInterestFeedQuery interestFeedQuery, IPrincipal principal, IFeedPostOverviewQuery feedPostOverviewQuery, IUserTasks userTasks, IPostTasks postTasks)
 		{
 			_usersByInterestsQuery = usersByInterestsQuery;
 			_interestTasks = interestTasks;
 			_interestFeedQuery = interestFeedQuery;
 			_principal = principal;
 		    _feedPostOverviewQuery = feedPostOverviewQuery;
+		    _userTasks = userTasks;
+		    _postTasks = postTasks;
 		}
 
 		[Transaction]
@@ -56,8 +61,9 @@ namespace CliqFlip.Web.Mvc.Controllers
         [Authorize]
         public JsonNetResult FeedPostOverviewUserActivity(FeedPostActivityOverviewViewModel overviewViewModel)
         {
-
-            return new JsonNetResult(new { ProfileImageUrl = "http://assets.beta.cliqflip.com/Images/700e99e6-1e77-4b02-9d8e-3000eed14eae.jpg" });
+            var user = _userTasks.GetUser(_principal.Identity.Name);
+            _postTasks.SaveComment(new SavePostCommentDto{CommentText = overviewViewModel.CommentText,PostId = overviewViewModel.PostId},user);
+            return new JsonNetResult(new { ProfileImageUrl = user.ProfileImage.ImageData.ThumbFileName });
         }
 
 		[Transaction]
