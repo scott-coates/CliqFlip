@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Web.Mvc;
+using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
@@ -9,17 +10,17 @@ namespace CliqFlip.Web.Mvc.Queries
 {
     public class FeedPostOverviewQuery : IFeedPostOverviewQuery
     {
-        private readonly IPostRepository _postRepository;
+        private readonly IPostTasks _postTasks;
 
-        public FeedPostOverviewQuery(IPostRepository postRepository)
+        public FeedPostOverviewQuery(IPostTasks postTasks)
         {
-            _postRepository = postRepository;
+            _postTasks = postTasks;
         }
 
         public FeedPostOverviewViewModel GetFeedPostOverview(int postId, UrlHelper url)
         {
             var retVal = new FeedPostOverviewViewModel();
-            var post = _postRepository.Get(postId);
+            var post = _postTasks.Get(postId);
             retVal.Username = post.UserInterest.User.Username;
             retVal.Headline = post.UserInterest.User.Headline;
             retVal.AuthorImageUrl = post.UserInterest.User.ProfileImage.ImageData.FullFileName;

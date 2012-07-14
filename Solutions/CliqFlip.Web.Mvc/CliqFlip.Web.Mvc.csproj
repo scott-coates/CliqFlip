@@ -245,6 +245,7 @@
     <Compile Include="ViewModels\Post\InterestPostViewModel.cs" />
     <Compile Include="ViewModels\Notification\LatestNotificationViewModel.cs" />
     <Compile Include="ViewModels\Popup\CreatePostViewModel.cs" />
+    <Compile Include="ViewModels\Search\FeedPostActivityOverviewViewModel.cs" />
     <Compile Include="ViewModels\Search\FeedPostOverviewViewModel.cs" />
     <Compile Include="ViewModels\Search\InterestsFeedViewModel.cs" />
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
@@ -851,7 +852,7 @@
     <Content Include="Content\assets\templates\feed\feedPostOverview.mustache">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\assets\templates\feed\postOverviewUserAcitivty.mustache">
+    <Content Include="Content\assets\templates\feed\feedPostOverviewUserAcitivty.mustache">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

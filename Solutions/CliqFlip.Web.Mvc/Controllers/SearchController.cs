@@ -52,6 +52,14 @@ namespace CliqFlip.Web.Mvc.Controllers
             return new JsonNetResult(viewModel);
         }
 
+        [Transaction]
+        [Authorize]
+        public JsonNetResult FeedPostOverviewUserActivity(FeedPostActivityOverviewViewModel overviewViewModel)
+        {
+
+            return new JsonNetResult(new { ProfileImageUrl = "http://assets.beta.cliqflip.com/Images/700e99e6-1e77-4b02-9d8e-3000eed14eae.jpg" });
+        }
+
 		[Transaction]
         [Authorize]
 		public ActionResult Index(string q, int? page)

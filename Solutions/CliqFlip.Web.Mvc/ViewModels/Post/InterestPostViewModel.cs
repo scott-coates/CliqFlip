@@ -1,4 +1,4 @@
-﻿using CliqFlip.Domain.Dtos.UserInterest;
+﻿using CliqFlip.Domain.Dtos.Post;
 
 namespace CliqFlip.Web.Mvc.ViewModels.Post
 {

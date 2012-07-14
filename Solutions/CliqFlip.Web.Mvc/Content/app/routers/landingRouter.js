@@ -39,7 +39,7 @@ var CliqFlip = (function(cliqFlip) {
                     });
                     var postCollection = new cliqFlip.App.Mvc.Collections.FeedPostOverviewUserActivityList(activityModels);
                     var activityListView = new cliqFlip.App.Mvc.Views.PostOverviewUserAcitivtyListView({ collection: postCollection });
-                    debugger;
+                    
                     postOverviewLayout.userActivityRegion.show(activityListView);
                 }
             });

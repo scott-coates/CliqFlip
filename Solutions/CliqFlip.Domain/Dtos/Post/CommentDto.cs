@@ -1,6 +1,6 @@
 ﻿using CliqFlip.Domain.Entities;
 
-namespace CliqFlip.Domain.Dtos.UserInterest
+namespace CliqFlip.Domain.Dtos.Post
 {
     public class CommentDto
     {

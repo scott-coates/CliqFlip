@@ -39,7 +39,7 @@ namespace CliqFlip.Domain.Dtos.User
                 Name = interest.Interest.Name;
                 Slug = interest.Interest.Slug;
                 Passion = interest.Options.Passion;
-                Post firstPost = interest.Posts.FirstOrDefault();
+                Entities.Post firstPost = interest.Posts.FirstOrDefault();
                 if (firstPost != null)
                 {
                     var defaultImage = firstPost.Medium as Image;

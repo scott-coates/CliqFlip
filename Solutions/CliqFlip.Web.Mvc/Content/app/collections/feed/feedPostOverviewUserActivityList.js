@@ -1,7 +1,7 @@
 // @reference ~/Content/app/main.js
-// @reference ~/Content/app/models/feed/feedItem.js
+// @reference ~/Content/app/models/feed/feedPostOverviewUserActivity.js
 
-var CliqFlip = (function (cliqFlip) {
+var CliqFlip = (function(cliqFlip) {
     cliqFlip.App.Mvc.Collections.FeedPostOverviewUserActivityList = Backbone.Collection.extend(
         {
             model: cliqFlip.App.Mvc.Models.FeedPostOverviewUserActivity

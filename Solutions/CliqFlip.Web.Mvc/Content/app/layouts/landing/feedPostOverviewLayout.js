@@ -10,9 +10,16 @@ var CliqFlip = (function(cliqFlip) {
             "click #post-overview-comment-button": "addComment"
         },
         addComment: function(parameters) {
-            alert(parameters);
+            var commentElem = $("#post-overview-comment-content", this.$el);
+            var text = commentElem.val();
+            commentElem.val('');
+            this.userActivityRegion.currentView.collection.create({
+                CommentText: text,
+                PostId: this.model.id
+            },
+                { wait: true /*don't render the view till we get all the data back from the server*/ });
         }
     });
 
     return cliqFlip;
-}(CliqFlip));
+} (CliqFlip));
