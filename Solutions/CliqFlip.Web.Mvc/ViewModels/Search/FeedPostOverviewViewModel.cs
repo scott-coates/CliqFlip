@@ -11,12 +11,18 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
         public string ImageDescription { get; set; }
 
         public IList<ActivityViewModel> Activity { get; set; }
+        public IList<CommonInterestViewModel> CommonInterests { get; set; }
 
         public class ActivityViewModel
         {
             public string Username { get; set; }
             public string ProfileImageUrl { get; set; }
             public string CommentText { get; set; }
+        }
+
+        public class CommonInterestViewModel
+        {
+            public string Name { get; set; }
         }
 	}
 }

@@ -109,6 +109,7 @@
     <Compile Include="Dtos\Post\SavePostCommentDto.cs" />
     <Compile Include="Dtos\Post\CommentDto.cs" />
     <Compile Include="Dtos\Post\PostDtoWithComments.cs" />
+    <Compile Include="Dtos\UserInterest\InterestInCommonDto.cs" />
     <Compile Include="Dtos\User\UserAddInterestDto.cs" />
     <Compile Include="Dtos\User\UserCreateDto.cs" />
     <Compile Include="Dtos\User\UserProfileIndexInterestDto.cs" />

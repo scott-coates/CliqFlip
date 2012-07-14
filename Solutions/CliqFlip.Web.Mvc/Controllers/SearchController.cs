@@ -53,7 +53,7 @@ namespace CliqFlip.Web.Mvc.Controllers
         [Authorize]
         public JsonNetResult FeedPostOverview(int id)
         {
-            var viewModel = _feedPostOverviewQuery.GetFeedPostOverview(id, Url);
+            var viewModel = _feedPostOverviewQuery.GetFeedPostOverview(id, _userTasks.GetUser(_principal.Identity.Name));
             return new JsonNetResult(viewModel);
         }
 
