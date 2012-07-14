@@ -275,10 +275,14 @@
     <Compile Include="Views\StringViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\app\collections\feed\feedPostOverviewUserActivityList.js" />
     <Content Include="Content\app\collections\feed\feedList.js" />
     <Content Include="Content\app\bundle.txt" />
+    <Content Include="Content\app\layouts\landing\feedPostOverviewLayout.js" />
+    <Content Include="Content\app\models\feed\feedPostOverviewUserActivity.js" />
     <Content Include="Content\app\models\feed\feedPostOverview.js" />
-    <Content Include="Content\app\views\feed\feedPostOverviewView.js" />
+    <Content Include="Content\app\views\feed\postOverviewUserAcitivtyListView.js" />
+    <Content Include="Content\app\views\feed\postOverviewUserAcitivtyView.js" />
     <Content Include="Content\assets\js\cliqflip\view\modalRegion.js" />
     <Content Include="Content\assets\js\cliqflip\view\links.js" />
     <Content Include="Content\assets\js\cliqflip\view\templateRenderer.js" />
@@ -845,6 +849,9 @@
     <Content Include="Views\Shared\_Layout.Bootstrap.cshtml" />
     <Content Include="Content\assets\templates\landing\layout.mustache" />
     <Content Include="Content\assets\templates\feed\feedPostOverview.mustache">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\assets\templates\feed\postOverviewUserAcitivty.mustache">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

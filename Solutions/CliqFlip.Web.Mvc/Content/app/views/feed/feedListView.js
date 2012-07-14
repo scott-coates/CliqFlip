@@ -1,4 +1,4 @@
-// @reference ~/Content/app/views/feed/feedItemView.js
+// @reference feedItemView.js
 
 var CliqFlip = (function(cliqFlip) {
 
