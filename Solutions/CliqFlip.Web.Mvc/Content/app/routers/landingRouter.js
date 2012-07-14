@@ -10,22 +10,25 @@ var CliqFlip = (function(cliqFlip) {
             http://coenraets.org/blog/2012/01/backbone-js-lessons-learned-and-improved-sample-app/
             */
             cliqFlip.App.Mvc.modalRegion.hideModal();
-            var landingLayout = new cliqFlip.App.Mvc.Layouts.LandingLayout();
+            if(!cliqFlip.App.Mvc.mainContentRegion.currentView) {
 
-            cliqFlip.App.Mvc.mainContentRegion.show(landingLayout);
+                var landingLayout = new cliqFlip.App.Mvc.Layouts.LandingLayout();
 
-            var userLandingSummaryModel = new cliqFlip.App.Mvc.Models.UserLandingSummary(cliqFlip.App.UserData);
+                cliqFlip.App.Mvc.mainContentRegion.show(landingLayout);
 
-            var userLandingSummaryView = new cliqFlip.App.Mvc.Views.UserLandingSummaryView({ model: userLandingSummaryModel });
-            landingLayout.leftColumnRegion.show(userLandingSummaryView);
+                var userLandingSummaryModel = new cliqFlip.App.Mvc.Models.UserLandingSummary(cliqFlip.App.UserData);
 
-            var feedList = new cliqFlip.App.Mvc.Collections.FeedList();
+                var userLandingSummaryView = new cliqFlip.App.Mvc.Views.UserLandingSummaryView({ model: userLandingSummaryModel });
+                landingLayout.leftColumnRegion.show(userLandingSummaryView);
 
-            feedList.fetch({
-                success: function() {
-                    landingLayout.contentAreaRegion.show(new cliqFlip.App.Mvc.Views.FeedListView({ collection: feedList }));
-                }
-            });
+                var feedList = new cliqFlip.App.Mvc.Collections.FeedList();
+
+                feedList.fetch({
+                    success: function() {
+                        landingLayout.contentAreaRegion.show(new cliqFlip.App.Mvc.Views.FeedListView({ collection: feedList }));
+                    }
+                });
+            }
         },
         showPost: function(post) {
             var postOverview = new cliqFlip.App.Mvc.Models.FeedPostOverview({ id: post.get('PostId') });
@@ -39,7 +42,7 @@ var CliqFlip = (function(cliqFlip) {
                     });
                     var postCollection = new cliqFlip.App.Mvc.Collections.FeedPostOverviewUserActivityList(activityModels);
                     var activityListView = new cliqFlip.App.Mvc.Views.PostOverviewUserAcitivtyListView({ collection: postCollection });
-                    
+
                     postOverviewLayout.userActivityRegion.show(activityListView);
                 }
             });
