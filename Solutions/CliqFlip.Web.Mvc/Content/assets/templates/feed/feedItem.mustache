@@ -38,7 +38,7 @@
             <b>Like</b>
         </div>
         <div class="span6">
-            <b>{{CommentCount}} Comments</b>
+            <b>{{commentCountDescription}}</b>
         </div>
         <div class="span3 share">
             <b>Share</b>
@@ -54,6 +54,7 @@
             </div>
         </div>
         {{/Comments}}
+        {{#hasRemainingComments}}
         <div class="row-fluid">
             <div class="span4">
             </div>
@@ -61,6 +62,7 @@
                 <a href="#">See more</a>
             </div>
         </div>
+        {{/hasRemainingComments}}
         <div class="row-fluid">
             <div class="row-fluid">
                 <div class="span9">

@@ -7,7 +7,14 @@ var CliqFlip = (function(cliqFlip) {
             return templates;
         },
         className: 'feed-item gray-rounded-border',
-        templateHelpers: cliqFlip.ViewHelpers,
+        templateHelpers: _.extend(cliqFlip.ViewHelpers, {
+            hasRemainingComments: function() {
+                return this.CommentCount > this.Comments.length;
+            },
+            commentCountDescription: function() {
+                return this.CommentCount.toString() + " " + (this.CommentCount === 1 ? "Comment" : "Comments");
+            }
+        }),
         events: {
             "click .feed-image": "feedItemSelected" //TODO find a way to delegate from a parent (collection view) rather than each individual feed item view
         },

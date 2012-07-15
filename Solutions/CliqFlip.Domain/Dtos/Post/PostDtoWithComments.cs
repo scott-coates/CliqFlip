@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using CliqFlip.Domain.Entities;
 
 namespace CliqFlip.Domain.Dtos.Post
 {
@@ -10,8 +11,9 @@ namespace CliqFlip.Domain.Dtos.Post
 
         public PostDtoWithComments(Entities.Post post) : base(post)
         {
-            Comments = post.Comments.Take(2).Select(x => new CommentDto(x)).ToList();
-            CommentCount = Comments.Count;
+            var comments = post.Comments.ToList();
+            Comments = comments.Take(2).Select(x => new CommentDto(x)).ToList();
+            CommentCount = comments.Count;
         }
     }
 }
