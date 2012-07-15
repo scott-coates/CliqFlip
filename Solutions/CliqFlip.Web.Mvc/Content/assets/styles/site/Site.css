@@ -73,3 +73,17 @@ footer.navbar > .navbar-inner a:hover
 {
     margin-bottom: 0;
 }
+
+#post-content-region iframe.video
+{
+    width: 100%;
+    height: 75%;
+    margin-top: 5%;
+    border: none;
+}
+
+#post-content-region iframe.webpage
+{
+    width: 100%;
+    height: 90%;
+}

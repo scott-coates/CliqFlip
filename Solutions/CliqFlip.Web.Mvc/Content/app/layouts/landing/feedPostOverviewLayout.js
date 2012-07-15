@@ -4,7 +4,8 @@ var CliqFlip = (function(cliqFlip) {
         template: "feed-feedPostOverview",
         className: "post-overview full-height",
         regions: {
-            userActivityRegion: "#user-activity"
+            userActivityRegion: "#user-activity",
+            contentRegion: "#post-content-region"
         },
         events: {
             "click #post-overview-comment-button": "addComment"
