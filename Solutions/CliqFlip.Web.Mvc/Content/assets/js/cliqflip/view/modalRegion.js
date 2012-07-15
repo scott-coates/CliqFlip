@@ -19,9 +19,7 @@ var CliqFlip = (function(cliqFlip) {
         },
 
         hideModal: function() {
-            if(this.$el) {
-                this.$el.modal('hide');
-            }
+            this.$el.modal('hide');
         },
 
         open: function(view) {

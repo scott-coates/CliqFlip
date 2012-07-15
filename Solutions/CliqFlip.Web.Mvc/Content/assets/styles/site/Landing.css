@@ -38,6 +38,13 @@
     background-repeat: no-repeat;
 }
 
+/* Showing content - all/friends */
+
+.showing-feed
+{
+    display: inline-block;
+    margin-top: 7px;
+}
 
 /* profile */
 
@@ -116,6 +123,11 @@
     padding: 15px;
 }
 
+.post-overview-modal.modal .post-details .user-details img
+{
+    max-height: 142px;
+}
+
 .post-overview-modal.modal .post-details .user-details .be-friends
 {
     float: left;
@@ -135,20 +147,22 @@
     margin-bottom: 0;
 }
 
-.post-overview-modal.modal .activity .comment
+.post-overview-modal.modal .activity .activity-item
 {
     border-top: 1px solid #FCFAFA;
     border-bottom: 1px solid #D9D4D4;
     background-color: #F2F0F0;
 }
 
-.post-overview-modal.modal .activity .comment i
+.post-overview-modal.modal .activity .activity-item i
 {
     margin-top: 1px;
 }
 
 .post-overview-modal.modal .activity textarea
 {
+    line-height: 1em;
+    font-size: 11px;
     height: 30px;
     resize: none;
 }
@@ -180,11 +194,10 @@
     color: white;
 }
 
-
-.showing-feed
+.post-overview-modal.modal #user-activity
 {
-    display: inline-block;
-    margin-top: 7px;
+    height: 255px;
+    overflow-y: auto;
 }
 
 .feed-item
@@ -207,41 +220,43 @@
     margin-top: 4px;
 }
 
-.feed-image
+.feed-item .feed-image
 {
     display: block;
     margin: 0 auto;
 }
 
-.feed-simple-interact
+.feed-item .feed-simple-interact
 {
     margin-top: 10px;
 }
 
-.feed-simple-interact .share
+.feed-item .feed-simple-interact .share
 {
     float: right;
 }
 
-.feed-comments .well
+.feed-item .activity .well
 {
     padding: 19px 2px 8px;
     margin-bottom: 0;
 }
 
-.feed-comments .comment
+.feed-item .activity .comment
 {
     margin-bottom: 2px;
 }
 
-.feed-comments button
+.feed-item .activity button
 {
     margin-top: 9px;
     float: right;
 }
 
-.feed-comments textarea
+.feed-item .activity textarea
 {
+    line-height: 1em;
+    font-size: 11px;
     height: 30px;
     resize: none;
 }

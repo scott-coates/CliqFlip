@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using CliqFlip.Domain.Contracts.Tasks;
 
 using CliqFlip.Domain.Dtos.Interest;
+using CliqFlip.Domain.Dtos.UserInterest;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.ValueObjects;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
@@ -62,5 +63,10 @@ namespace CliqFlip.Tasks.TaskImpl
 
 			}).OrderByDescending(x => x.Rank).Select(x => x.FeedItem).ToList();
 		}
+
+	    public IList<InterestInCommonDto> GetInterestsInCommon(User viewingUser, User user)
+	    {
+	        return _userInterestRepository.GetInterestsInCommon(viewingUser, user).ToList();
+	    }
 	}
 }

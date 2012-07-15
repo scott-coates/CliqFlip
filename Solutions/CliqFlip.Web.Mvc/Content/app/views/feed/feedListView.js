@@ -1,4 +1,4 @@
-// @reference ~/Content/app/views/feed/feedItemView.js
+// @reference feedItemView.js
 
 var CliqFlip = (function(cliqFlip) {
 
@@ -35,7 +35,8 @@ var CliqFlip = (function(cliqFlip) {
                 .popover({
                     content: function() {
                         return "Hello " + $(this).data('userid');
-                    }
+                    },
+                    delay:{hide:1000, show:250}
                 });
 
             var that = this;

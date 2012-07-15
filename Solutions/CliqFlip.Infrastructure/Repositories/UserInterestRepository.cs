@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
-
+using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Dtos.Interest;
+using CliqFlip.Domain.Dtos.UserInterest;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Infrastructure.Neo.Entities;
 using CliqFlip.Infrastructure.Neo.Relationships;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
 using Neo4jClient;
+using Neo4jClient.Cypher;
 using Neo4jClient.Gremlin;
 using SharpArch.Domain.Specifications;
 using SharpArch.NHibernate;
@@ -24,7 +26,7 @@ namespace CliqFlip.Infrastructure.Repositories
 
 		#region IUserInterestRepository Members
 
-		public IList<RankedInterestDto> GetMostPopularInterests()
+        public IQueryable<RankedInterestDto> GetMostPopularInterests()
 		{
 			var popularInterests =
 				FindAll().ToList()
@@ -33,7 +35,7 @@ namespace CliqFlip.Infrastructure.Repositories
 					.OrderByDescending(x => x.Count)
 					.Take(10).ToList();
 
-			return popularInterests.Select(x => new RankedInterestDto(x.Key.Id, x.Key.Name, x.Key.Slug, x.Count)).ToList();
+			return popularInterests.Select(x => new RankedInterestDto(x.Key.Id, x.Key.Name, x.Key.Slug, x.Count)).AsQueryable();
 		}
 
 		public IQueryable<UserInterest> GetUserInterestsByInterestTypes(IList<Interest> interests)
@@ -45,7 +47,30 @@ namespace CliqFlip.Infrastructure.Repositories
 			return FindAll(query);
 		}
 
-		public override UserInterest SaveOrUpdate(UserInterest entity)
+	    public IQueryable<InterestInCommonDto> GetInterestsInCommon(User viewingUser, User user)
+	    {
+            const string queryText = @"
+                START n = node:users({p0})
+                MATCH (n)-[:USER_HAS_INTEREST]->(i)<-[:USER_HAS_INTEREST]-(u)
+                WHERE u.SqlId = {p1}
+                RETURN i.Name AS Name
+                LIMIT 5";
+
+            var query = new CypherQuery(
+                queryText,
+                new Dictionary<string, object>
+                {
+                    {"p0", string.Format("sqlid:({0})", viewingUser.Id)},
+                    {"p1", user.Id}
+                },
+                CypherResultMode.Projection);
+
+            var commonDtos = _graphClient.ExecuteGetCypherResults<InterestInCommonDto>(query);
+
+	        return commonDtos.AsQueryable();
+	    }
+
+	    public override UserInterest SaveOrUpdate(UserInterest entity)
 		{
 			bool @new = entity.Id == 0;
 

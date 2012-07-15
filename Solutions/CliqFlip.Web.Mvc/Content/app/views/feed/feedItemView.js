@@ -9,7 +9,7 @@ var CliqFlip = (function(cliqFlip) {
         className: 'feed-item gray-rounded-border',
         templateHelpers: cliqFlip.ViewHelpers,
         events: {
-            "click .feed-image": "feedItemSelected"
+            "click .feed-image": "feedItemSelected" //TODO find a way to delegate from a parent (collection view) rather than each individual feed item view
         },
         feedItemSelected: function() {
             cliqFlip.App.Mvc.vent.trigger("feedItem:selected", this.model);

@@ -1,7 +1,7 @@
 ﻿using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Interfaces;
 
-namespace CliqFlip.Domain.Dtos.UserInterest
+namespace CliqFlip.Domain.Dtos.Post
 {
 	public class PostDto
 	{
@@ -15,7 +15,7 @@ namespace CliqFlip.Domain.Dtos.UserInterest
 		public string WebSiteUrl { get; set; }
 		public string Title { get; set; }
 
-		public PostDto(Post post)
+		public PostDto(Entities.Post post)
 		{
             Description = post.Description;
             PostId = post.Id;

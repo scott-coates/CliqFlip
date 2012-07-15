@@ -1,5 +1,5 @@
 ﻿using CliqFlip.Domain.Dtos.Media;
-using CliqFlip.Domain.Dtos.UserInterest;
+using CliqFlip.Domain.Dtos.Post;
 using CliqFlip.Domain.Entities;
 
 namespace CliqFlip.Domain.Dtos.Interest
@@ -11,7 +11,7 @@ namespace CliqFlip.Domain.Dtos.Interest
 		public string Interest { get; set; }
         public PostDtoWithComments Post { get; set; }
 
-		public InterestFeedItemDto(Post post)
+		public InterestFeedItemDto(Entities.Post post)
 		{
             Post = new PostDtoWithComments(post);
 			Username = post.UserInterest.User.Username;

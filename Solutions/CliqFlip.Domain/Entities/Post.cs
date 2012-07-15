@@ -6,6 +6,10 @@ using SharpArch.Domain.DomainModel;
 
 namespace CliqFlip.Domain.Entities
 {
+    /*TODO: Post should not fall under the UserInterest Aggregate
+     * It makes sense for a post to exist if the user deltes an interest
+    */
+
     public class Post : Entity
     {
         private readonly Iesi.Collections.Generic.ISet<Comment> _comments;
@@ -31,6 +35,18 @@ namespace CliqFlip.Domain.Entities
         public Post()
         {
             _comments = new HashedSet<Comment>();
+        }
+
+        public virtual void AddComment(string commentText, User user)
+        {
+            _comments.Add(
+                new Comment
+                {
+                    CommentText = commentText,
+                    CreateDate = DateTime.UtcNow,
+                    Post = this,
+                    User = user
+                });
         }
     }
 }

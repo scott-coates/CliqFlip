@@ -245,6 +245,7 @@
     <Compile Include="ViewModels\Post\InterestPostViewModel.cs" />
     <Compile Include="ViewModels\Notification\LatestNotificationViewModel.cs" />
     <Compile Include="ViewModels\Popup\CreatePostViewModel.cs" />
+    <Compile Include="ViewModels\Search\FeedPostActivityOverviewViewModel.cs" />
     <Compile Include="ViewModels\Search\FeedPostOverviewViewModel.cs" />
     <Compile Include="ViewModels\Search\InterestsFeedViewModel.cs" />
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
@@ -275,11 +276,15 @@
     <Compile Include="Views\StringViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\app\collections\feed\feedPostOverviewUserActivityList.js" />
     <Content Include="Content\app\collections\feed\feedList.js" />
     <Content Include="Content\app\bundle.txt" />
+    <Content Include="Content\app\layouts\landing\feedPostOverviewLayout.js" />
+    <Content Include="Content\app\models\feed\feedPostOverviewUserActivity.js" />
     <Content Include="Content\app\models\feed\feedPostOverview.js" />
+    <Content Include="Content\app\views\feed\postOverviewUserAcitivtyListView.js" />
     <Content Include="Content\app\views\header\SearchView.js" />
-    <Content Include="Content\app\views\feed\feedPostOverviewView.js" />
+    <Content Include="Content\app\views\feed\postOverviewUserAcitivtyView.js" />
     <Content Include="Content\assets\js\cliqflip\view\modalRegion.js" />
     <Content Include="Content\assets\js\cliqflip\view\links.js" />
     <Content Include="Content\assets\js\cliqflip\view\templateRenderer.js" />
@@ -847,6 +852,9 @@
     <Content Include="Views\Shared\_Layout.Bootstrap.cshtml" />
     <Content Include="Content\assets\templates\landing\layout.mustache" />
     <Content Include="Content\assets\templates\feed\feedPostOverview.mustache">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\assets\templates\feed\feedPostOverviewUserAcitivty.mustache">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

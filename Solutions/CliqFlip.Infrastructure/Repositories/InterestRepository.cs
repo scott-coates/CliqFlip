@@ -42,7 +42,7 @@ namespace CliqFlip.Infrastructure.Repositories
             const string queryText = @"
                 START n = node:interests({p0})
                 MATCH p = n-[r:INTEREST_RELATES_TO*0.." + Constants.INTEREST_MAX_HOPS + @"]-(x)
-                RETURN 
+                RETURN DISTINCT
                     x.SqlId AS SqlId,
                     x.Slug AS Slug,
                     x.IsMainCategory AS IsMainCategory,
