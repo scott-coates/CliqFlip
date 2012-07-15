@@ -16,7 +16,8 @@ var CliqFlip = (function(cliqFlip) {
             }
         }),
         events: {
-            "click .feed-image": "feedItemSelected" //TODO find a way to delegate from a parent (collection view) rather than each individual feed item view
+            "click .feed-image": "feedItemSelected", //TODO find a way to delegate from a parent (collection view) rather than each individual feed item view
+            "click .see-more-button": "feedItemSelected" 
         },
         feedItemSelected: function() {
             cliqFlip.App.Mvc.vent.trigger("feedItem:selected", this.model);
