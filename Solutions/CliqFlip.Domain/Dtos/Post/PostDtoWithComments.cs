@@ -10,7 +10,7 @@ namespace CliqFlip.Domain.Dtos.Post
 
         public PostDtoWithComments(Entities.Post post) : base(post)
         {
-            Comments = post.Comments.Select(x => new CommentDto(x)).ToList();
+            Comments = post.Comments.Take(2).Select(x => new CommentDto(x)).ToList();
             CommentCount = Comments.Count;
         }
     }
