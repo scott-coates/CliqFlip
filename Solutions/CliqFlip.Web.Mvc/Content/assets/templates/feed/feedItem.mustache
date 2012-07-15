@@ -37,8 +37,8 @@
             <i class="icon-thumbs-up"></i>
             <b>Like</b>
         </div>
-        <div class="span5">
-            <b>{{CommentCount}} Comments</b>
+        <div class="span6">
+            <b>{{commentCountDescription}}</b>
         </div>
         <div class="span3 share">
             <b>Share</b>
@@ -47,23 +47,22 @@
 </div>
 <div class="row-fluid activity">
     <div class="span12 well">
+        {{#Comments}}
         <div class="row-fluid comment">
             <div class="span12">
-                <b>Scott Coates:</b> Here is atest Here is atest Here is atest Here is atest  vHere is atest
+                <b>{{Username}}:</b>{{CommentText}}
             </div>
         </div>
-        <div class="row-fluid comment">
-            <div class="span12">
-                <b>Jorge Cruz:</b> Here is atest Here is atest Here is atest Here is atest  vHere is atest
-            </div>
-        </div>
+        {{/Comments}}
+        {{#hasRemainingComments}}
         <div class="row-fluid">
             <div class="span4">
             </div>
             <div class="span8">
-                <a href="#">See more</a>
+                <a class="see-more-button" href="{{PostUrl}}" title="See {{commentCountDescription}}">See more</a>
             </div>
         </div>
+        {{/hasRemainingComments}}
         <div class="row-fluid">
             <div class="row-fluid">
                 <div class="span9">
