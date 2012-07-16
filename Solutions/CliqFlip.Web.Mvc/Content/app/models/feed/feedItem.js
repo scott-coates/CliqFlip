@@ -3,8 +3,9 @@
 var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.App.Mvc.Models.FeedItem = Backbone.Model.extend({
+        urlRoot: '/search/feeditem',
         like: function() {
-            this.set('Like', true);
+            this.save('Like', true);
         }
     });
 

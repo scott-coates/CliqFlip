@@ -13,6 +13,7 @@ namespace CliqFlip.Domain.Entities
     public class Post : Entity
     {
         private readonly Iesi.Collections.Generic.ISet<Comment> _comments;
+        private readonly Iesi.Collections.Generic.ISet<Like> _likes;
 
         public virtual UserInterest UserInterest { get; set; }
 
@@ -32,9 +33,15 @@ namespace CliqFlip.Domain.Entities
             get { return new List<Comment>(_comments).AsReadOnly(); }
         }
 
+        public virtual IEnumerable<Like> Likes
+        {
+            get { return new List<Like>(_likes).AsReadOnly(); }
+        }
+
         public Post()
         {
             _comments = new HashedSet<Comment>();
+            _likes = new HashedSet<Like>();
         }
 
         public virtual void AddComment(string commentText, User user)
@@ -47,6 +54,11 @@ namespace CliqFlip.Domain.Entities
                     Post = this,
                     User = user
                 });
+        }
+
+        public virtual void AddLike(User user)
+        {
+            _likes.Add(new Like { CreateDate = DateTime.UtcNow, Post = this, User = user });
         }
     }
 }

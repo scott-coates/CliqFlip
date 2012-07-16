@@ -2,7 +2,7 @@ var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.App.Mvc.Views.FeedItemView = Backbone.Marionette.ItemView.extend({
         initialize: function() {
-            this.bindTo(this.model, "change", function() {
+            this.bindTo(this.model, "sync", function() {
                 this.render();
             });
         },

@@ -68,6 +68,15 @@ namespace CliqFlip.Web.Mvc.Controllers
 
         [Transaction]
         [Authorize]
+        public JsonNetResult FeedItem(FeedItemViewModel feedItemViewModel)
+        {
+            var user = _userTasks.GetUser(_principal.Identity.Name);
+            _postTasks.SaveLike(feedItemViewModel.PostId, user);
+            return new JsonNetResult();
+        }
+
+        [Transaction]
+        [Authorize]
         public ActionResult Index(string q, int? page)
         {
             var viewModel = _usersByInterestsQuery.GetGetUsersByInterests(q, page, _principal.Identity.Name);

@@ -20,6 +20,12 @@ namespace CliqFlip.Tasks.TaskImpl
             post.AddComment(postCommentDto.CommentText, user);
         }
 
+        public void SaveLike(int postId, User user)
+        {
+            var post = _postRepository.Get(postId);
+            post.AddLike(user);
+        }
+
         public Post Get(int id)
         {
             return _postRepository.Get(id);

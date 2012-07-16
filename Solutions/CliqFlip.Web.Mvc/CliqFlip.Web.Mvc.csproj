@@ -246,6 +246,7 @@
     <Compile Include="ViewModels\Notification\LatestNotificationViewModel.cs" />
     <Compile Include="ViewModels\Popup\CreatePostViewModel.cs" />
     <Compile Include="ViewModels\Search\FeedPostActivityOverviewViewModel.cs" />
+    <Compile Include="ViewModels\Search\FeedItemViewModel.cs" />
     <Compile Include="ViewModels\Search\FeedPostOverviewViewModel.cs" />
     <Compile Include="ViewModels\Search\InterestsFeedViewModel.cs" />
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />

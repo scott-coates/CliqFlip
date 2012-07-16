@@ -10,6 +10,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 	public interface IPostTasks
 	{
 		void SaveComment(SavePostCommentDto postCommentDto, User user);
+		void SaveLike(int postId, User user);
 	    Post Get(int id);
 	}
 }
