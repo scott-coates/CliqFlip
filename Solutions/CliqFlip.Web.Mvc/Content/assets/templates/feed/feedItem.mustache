@@ -56,21 +56,10 @@
         {{/Comments}}
         {{#hasRemainingComments}}
         <div class="row-fluid">
-            <div class="span4">
-            </div>
-            <div class="span8">
-                <a class="see-more-button" href="{{PostUrl}}" title="See {{commentCountDescription}}">See more</a>
+            <div class="span12 see-more-comments">
+                <a class="see-more-button" href="{{PostUrl}}" title="See {{commentCountDescription}}">See more comments</a>
             </div>
         </div>
         {{/hasRemainingComments}}
-        <div class="row-fluid">
-            <div class="row-fluid">
-                <div class="span9">
-                    <textarea class="span12" rows="2" placeholder="Comment"></textarea>
-                </div>
-                <div class="span3">
-                    <button class="btn btn-mini btn-primary" href="#">Send</button>
-                </div>
-            </div>
-        </div>
+        <a class="btn btn-mini btn-primary add-comment-button" href="{{PostUrl}}">Add Comment</a>
     </div>

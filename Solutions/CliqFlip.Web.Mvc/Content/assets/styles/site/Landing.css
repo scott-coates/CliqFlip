@@ -247,10 +247,9 @@
     margin-bottom: 2px;
 }
 
-.feed-item .activity button
+.feed-item .activity .well
 {
-    margin-top: 9px;
-    float: right;
+    text-align: center;
 }
 
 .feed-item .activity textarea
@@ -259,4 +258,9 @@
     font-size: 11px;
     height: 30px;
     resize: none;
+}
+
+.see-more-comments
+{
+    text-align: center;
 }
