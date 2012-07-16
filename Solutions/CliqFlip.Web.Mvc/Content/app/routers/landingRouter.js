@@ -52,14 +52,7 @@ var CliqFlip = (function(cliqFlip) {
         }
     };
 
-    cliqFlip.App.Mvc.Routers.LandingRouter = Backbone.Marionette.AppRouter.extend({
-        appRoutes: {
-            "": "landing"
-        },
-        controller: landingController
-    });
-
-    cliqFlip.App.Mvc.vent.bind("feedItem:selected", function(post) { landingController.showPost(post); });
+   cliqFlip.App.Mvc.vent.bind("feedItem:selected", function(post) { landingController.showPost(post); });
     cliqFlip.App.Mvc.vent.bind("comment:posted", function(comment) {
         var retVal = cliqFlip.App.Mvc.modalRegion.currentView.userActivityRegion.currentView.collection.create({
                 CommentText: comment.text,
@@ -76,5 +69,13 @@ var CliqFlip = (function(cliqFlip) {
         cliqFlip.App.Mvc.landingRouter.navigate("");
     });
 
+
+    //Router
+    cliqFlip.App.Mvc.Routers.LandingRouter = Backbone.Marionette.AppRouter.extend({
+        appRoutes: {
+            "": "landing"
+        },
+        controller: landingController
+    });
     return cliqFlip;
 }(CliqFlip));
