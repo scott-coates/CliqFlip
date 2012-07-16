@@ -3,7 +3,7 @@ var CliqFlip = (function(cliqFlip) {
     cliqFlip.App.Mvc.Views.FeedItemView = Backbone.Marionette.ItemView.extend({
         template: function(model) {
             var templates = ["feed-feedItem"];
-//            templates.push({ content: model.MediumType });
+            //            templates.push({ content: model.MediumType });
             return templates;
         },
         className: 'feed-item gray-rounded-border',
@@ -16,11 +16,15 @@ var CliqFlip = (function(cliqFlip) {
             }
         }),
         events: {
-            "click a": "feedItemSelected" //TODO find a way to delegate from a parent (collection view) rather than each individual feed item view
+            "click .select-feed-item": "feedItemSelected", //TODO find a way to delegate from a parent (collection view) rather than each individual feed item view
+            "click .like-interest-button": "likeInterest"
         },
         feedItemSelected: function() {
             cliqFlip.App.Mvc.vent.trigger("feedItem:selected", this.model);
             //look into triggers: http://lostechies.com/derickbailey/2012/05/15/workflow-in-backbone-apps-triggering-view-events-from-dom-events/
+        },
+        likeInterest: function(parameters) {
+            alert('lik');
         }
     });
 
