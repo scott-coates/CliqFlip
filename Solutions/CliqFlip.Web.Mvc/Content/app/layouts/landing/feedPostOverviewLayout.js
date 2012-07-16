@@ -19,7 +19,6 @@ var CliqFlip = (function(cliqFlip) {
         },
         clearComment: function() {
             var commentElem = $("#post-overview-comment-content", this.$el);
-            alert('cleared out');
             commentElem.val('');
         },
         onClose: function() {
