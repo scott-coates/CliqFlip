@@ -1,7 +1,20 @@
-var CliqFlip = (function(cliqFlip) {
+var CliqFlip = (function (cliqFlip) {
 
     cliqFlip.App.Mvc.Layouts.FeedPostOverviewLayout = Backbone.Marionette.Layout.extend({
-        template: "feed-feedPostOverview",
+        //template: "feed-feedPostOverview",
+        template: function (model) {
+            var templates = ["feed-feedPostOverview"];
+
+            var contentTemplate = "media-Image"
+            if (model.VideoUrl) {
+                contentTemplate = "media-Video";
+            } else if (model.WebPageUrl) {
+                contentTemplate = "media-WebPage";
+            }
+
+            templates.push({ content: contentTemplate });
+            return templates;
+        },
         className: "post-overview full-height",
         regions: {
             userActivityRegion: "#user-activity",
@@ -10,7 +23,7 @@ var CliqFlip = (function(cliqFlip) {
         events: {
             "click #post-overview-comment-button": "addComment"
         },
-        addComment: function(parameters) {
+        addComment: function (parameters) {
             var commentElem = $("#post-overview-comment-content", this.$el);
             var text = commentElem.val();
             commentElem.val('');

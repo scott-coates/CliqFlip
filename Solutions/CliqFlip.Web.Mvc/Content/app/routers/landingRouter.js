@@ -47,22 +47,6 @@ var CliqFlip = (function (cliqFlip) {
                     var activityListView = new cliqFlip.App.Mvc.Views.PostOverviewUserAcitivtyListView({ collection: postCollection });
 
                     postOverviewLayout.userActivityRegion.show(activityListView);
-
-
-                    var contentTemplate = "media-Image"
-                    if (model.get("VideoUrl")) {
-                        contentTemplate = "media-Video";
-                    } else if (model.get("WebPageUrl")) {
-                        contentTemplate = "media-WebPage";
-                    }
-
-
-                    var postContentView = new cliqFlip.App.Mvc.Views.FeedItemContentView({
-                        model: model,
-                        template: contentTemplate
-                    });
-
-                    postOverviewLayout.contentRegion.show(postContentView);
                 }
             });
         }
