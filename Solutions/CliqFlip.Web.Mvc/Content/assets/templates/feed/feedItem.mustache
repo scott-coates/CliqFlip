@@ -37,11 +37,10 @@
             <i class="icon-thumbs-up"></i>
             <b>Like</b>
         </div>
-        <div class="span6">
-            <b>{{commentCountDescription}}</b>
+        <div class="span3">
         </div>
-        <div class="span3 share">
-            <b>Share</b>
+        <div class="span6 comment-count">
+            <b>{{commentCountDescription}}</b>
         </div>
     </div>
 </div>
@@ -61,5 +60,7 @@
             </div>
         </div>
         {{/hasRemainingComments}}
-        <a class="btn btn-mini btn-primary add-comment-button" href="{{PostUrl}}">Add Comment</a>
+        <div class="span12 see-more-comments add-comment-area">
+            <a class="btn btn-mini btn-primary add-comment-button" href="{{PostUrl}}">Add Comment</a>
+        </div>
     </div>

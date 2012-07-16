@@ -231,7 +231,7 @@
     margin-top: 10px;
 }
 
-.feed-item .feed-simple-interact .share
+.feed-item .feed-simple-interact .comment-count
 {
     float: right;
 }
@@ -247,7 +247,7 @@
     margin-bottom: 2px;
 }
 
-.feed-item .activity .well
+.feed-item .activity .add-comment-area
 {
     text-align: center;
 }
