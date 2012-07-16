@@ -3,7 +3,7 @@ var CliqFlip = (function(cliqFlip) {
     cliqFlip.App.Mvc.Views.FeedItemView = Backbone.Marionette.ItemView.extend({
         template: function(model) {
             var templates = ["feed-feedItem"];
-            templates.push({ content: model.MediumType });
+            templates.push({ content: "media-Image" });
             return templates;
         },
         className: 'feed-item gray-rounded-border',
