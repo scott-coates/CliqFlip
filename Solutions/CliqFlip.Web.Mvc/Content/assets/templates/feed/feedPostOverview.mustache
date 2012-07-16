@@ -1,5 +1,7 @@
 <div class="modal-body full-height">
     <div class="row-fluid full-height">
+
+        <!-- The left side.The user information and comments -->
         <div class="span4 post-details full-height">
             <div class="user-details">
                 <div class="row-fluid">
@@ -83,6 +85,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- The right side.The post -->
         <div class="span8 media-content">
             <div class="row-fluid">
                 <div class="span11">
@@ -96,9 +100,8 @@
                 </div>
             </div>
             <div class="row-fluid">
-                <div class="span12">
-                    <img src="{{ImageUrl}}"/>
-                    <h4>{{ImageDescription}}</h4>
+                <div id="post-content-region" class="span12">
+                    {{> content }}
                 </div>
             </div>
         </div>

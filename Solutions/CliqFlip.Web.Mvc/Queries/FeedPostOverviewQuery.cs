@@ -24,12 +24,19 @@ namespace CliqFlip.Web.Mvc.Queries
             var post = _postTasks.Get(postId);
             retVal.Username = post.UserInterest.User.Username;
             retVal.Headline = post.UserInterest.User.Headline;
-            retVal.AuthorImageUrl = post.UserInterest.User.ProfileImage.ImageData.MediumFileName;
+            retVal.AuthorImageUrl = post.UserInterest.User.ProfileImage != null ? post.UserInterest.User.ProfileImage.ImageData.MediumFileName : "/Content/assets/img/empty-avatar.jpg";
             retVal.ImageDescription = post.Description;
-            var image = post.Medium as Image;
-            if(image != null)
-            {
-                retVal.ImageUrl = image.ImageData.FullFileName;
+
+            if (post.Medium is Video)
+	        {
+                retVal.VideoUrl = (post.Medium as Video).VideoUrl;
+	        }
+            else if(post.Medium is WebPage){
+                retVal.WebPageUrl = (post.Medium as WebPage).LinkUrl;
+            }
+            else{
+                //this is an image
+                retVal.ImageUrl = (post.Medium as Image).ImageData.FullFileName;
             }
 
             retVal.Activity = post.Comments.Select(

@@ -8,7 +8,7 @@ var CliqFlip = (function(cliqFlip) {
         },
         template: function(model) {
             var templates = ["feed-feedItem"];
-            //            templates.push({ content: model.MediumType });
+            templates.push({ content: "media-Image" });
             return templates;
         },
         className: 'feed-item gray-rounded-border',

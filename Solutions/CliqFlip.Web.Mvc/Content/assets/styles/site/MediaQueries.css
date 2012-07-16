@@ -33,6 +33,11 @@
         margin-left: auto;
     }
     
+    #search-box
+    {
+        width: 85%;
+    }
+    
     /* fixes the extra top padding */
     #main-content
     {

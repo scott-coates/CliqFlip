@@ -36,6 +36,22 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3698D2', endColorstr='#368FC5', GradientType=0);
 }
 
+#btn-search
+{
+    margin-left: -4px;
+    margin-top: 6px;
+}
+
+.typeahead.dropdown-menu
+{
+    z-index: 2000;
+}
+
+#search-suggestions
+{
+    margin-top: -2px;
+}
+
 footer.navbar > .navbar-inner
 {
     text-align: center;
@@ -62,4 +78,18 @@ footer.navbar > .navbar-inner a:hover
 .coming-soon .alert
 {
     margin-bottom: 0;
+}
+
+#post-content-region iframe.video
+{
+    width: 100%;
+    height: 75%;
+    margin-top: 5%;
+    border: none;
+}
+
+#post-content-region iframe.webpage
+{
+    width: 100%;
+    height: 90%;
 }

@@ -283,7 +283,9 @@
     <Content Include="Content\app\layouts\landing\feedPostOverviewLayout.js" />
     <Content Include="Content\app\models\feed\feedPostOverviewUserActivity.js" />
     <Content Include="Content\app\models\feed\feedPostOverview.js" />
+    <Content Include="Content\app\views\feed\feedItemContentView.js" />
     <Content Include="Content\app\views\feed\postOverviewUserAcitivtyListView.js" />
+    <Content Include="Content\app\views\header\SearchView.js" />
     <Content Include="Content\app\views\feed\postOverviewUserAcitivtyView.js" />
     <Content Include="Content\assets\js\cliqflip\view\modalRegion.js" />
     <Content Include="Content\assets\js\cliqflip\view\links.js" />
@@ -643,6 +645,7 @@
     <Content Include="Scripts\backbone.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bundle.txt" />
+    <Content Include="Scripts\bootstrap_extensions.js" />
     <Content Include="Scripts\jquery-1.7.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.2.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />

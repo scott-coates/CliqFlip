@@ -7,6 +7,8 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
         public string Username { get; set; }
         public string Headline { get; set; }
         public string ImageUrl { get; set; }
+        public string VideoUrl { get; set; }
+        public string WebPageUrl { get; set; }
         public string AuthorImageUrl { get; set; }
         public string ImageDescription { get; set; }
 
@@ -24,5 +26,6 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
         {
             public string Name { get; set; }
         }
-	}
+
+    }
 }
