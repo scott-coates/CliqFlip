@@ -36,6 +36,12 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3698D2', endColorstr='#368FC5', GradientType=0);
 }
 
+#btn-search
+{
+    margin-left: -4px;
+    margin-top: 6px;
+}
+
 .typeahead.dropdown-menu
 {
     z-index: 2000;
