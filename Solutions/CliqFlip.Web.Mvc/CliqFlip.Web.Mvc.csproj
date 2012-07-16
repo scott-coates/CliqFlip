@@ -283,7 +283,6 @@
     <Content Include="Content\app\layouts\landing\feedPostOverviewLayout.js" />
     <Content Include="Content\app\models\feed\feedPostOverviewUserActivity.js" />
     <Content Include="Content\app\models\feed\feedPostOverview.js" />
-    <Content Include="Content\app\views\feed\feedItemContentView.js" />
     <Content Include="Content\app\views\feed\postOverviewUserAcitivtyListView.js" />
     <Content Include="Content\app\views\header\SearchView.js" />
     <Content Include="Content\app\views\feed\postOverviewUserAcitivtyView.js" />
