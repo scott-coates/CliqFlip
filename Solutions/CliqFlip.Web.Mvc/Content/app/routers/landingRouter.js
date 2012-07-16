@@ -9,11 +9,11 @@ var CliqFlip = (function(cliqFlip) {
             https://github.com/documentcloud/backbone/pull/299'
             http://coenraets.org/blog/2012/01/backbone-js-lessons-learned-and-improved-sample-app/
             */
-            if(cliqFlip.App.Mvc.modalRegion.currentView) {
+            if (cliqFlip.App.Mvc.modalRegion.currentView) {
                 cliqFlip.App.Mvc.modalRegion.hideModal();
             }
 
-            if(!cliqFlip.App.Mvc.mainContentRegion.currentView) {
+            if (!cliqFlip.App.Mvc.mainContentRegion.currentView) {
 
                 var landingLayout = new cliqFlip.App.Mvc.Layouts.LandingLayout();
 
@@ -60,10 +60,21 @@ var CliqFlip = (function(cliqFlip) {
     });
 
     cliqFlip.App.Mvc.vent.bind("feedItem:selected", function(post) { landingController.showPost(post); });
+    cliqFlip.App.Mvc.vent.bind("comment:posted", function(comment) {
+        var retVal = cliqFlip.App.Mvc.modalRegion.currentView.userActivityRegion.currentView.collection.create({
+                CommentText: comment.text,
+                PostId: comment.postId
+            },
+            {
+                wait: true /*wait for server confirmation before triggering 'add' event*/
+            });
+        if (retVal) {
+            cliqFlip.App.Mvc.vent.trigger("comment:posted:success");
+        }
+    });
     cliqFlip.App.Mvc.modalRegion.on("view:closed", function(view) {
         cliqFlip.App.Mvc.landingRouter.navigate("");
     });
 
-
     return cliqFlip;
-} (CliqFlip));
+}(CliqFlip));

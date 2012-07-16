@@ -1,6 +1,9 @@
 var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.App.Mvc.Layouts.FeedPostOverviewLayout = Backbone.Marionette.Layout.extend({
+        initialize: function() {
+            cliqFlip.App.Mvc.vent.bind("comment:posted:success", this.clearComment);
+        },
         template: "feed-feedPostOverview",
         className: "post-overview full-height",
         regions: {
@@ -9,15 +12,18 @@ var CliqFlip = (function(cliqFlip) {
         events: {
             "click #post-overview-comment-button": "addComment"
         },
-        addComment: function(parameters) {
+        addComment: function() {
             var commentElem = $("#post-overview-comment-content", this.$el);
             var text = commentElem.val();
+            cliqFlip.App.Mvc.vent.trigger("comment:posted", { text: text, postId: this.model.id });
+        },
+        clearComment: function() {
+            var commentElem = $("#post-overview-comment-content", this.$el);
+            alert('cleared out');
             commentElem.val('');
-            this.userActivityRegion.currentView.collection.create({
-                CommentText: text,
-                PostId: this.model.id
-            },
-                { wait: true /*don't render the view till we get all the data back from the server*/ });
+        },
+        onClose: function() {
+            cliqFlip.App.Mvc.vent.unbind("comment:posted:success", this.clearComment);
         }
     });
 
