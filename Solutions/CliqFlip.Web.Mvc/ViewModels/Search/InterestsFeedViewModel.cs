@@ -31,6 +31,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
 			public string PostUrl { get; set; }
 			public int CommentCount { get; set; }
             public IList<FeedPostCommentViewModel> Comments { get; set; } 
+            public bool IsLikedByUser { get; set; } 
 
 			public FeedPostViewModel(InterestFeedItemDto feedItemDto) : base(feedItemDto.Post)
 			{
@@ -39,7 +40,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
 				Interest = feedItemDto.Interest;
 
 			    CommentCount = feedItemDto.Post.CommentCount;
-			    Comments = feedItemDto.Post.Comments.Select(x => new FeedPostCommentViewModel
+                Comments = feedItemDto.Post.Comments.Take(2).Select(x => new FeedPostCommentViewModel
 			    {
 			        CommentText = x.CommentText, Username = x.Username
 			    }).ToList();

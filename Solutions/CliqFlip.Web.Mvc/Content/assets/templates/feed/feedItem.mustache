@@ -34,18 +34,18 @@
     </div>
     <div class="row-fluid feed-simple-interact">
         <div class="span4">
-            {{#Like}}
+            {{#IsLikedByUser}}
             <i class="icon-check"></i>
             <small>
                 Liked it
             </small>
-            {{/Like}}
-            {{^Like}}
+            {{/IsLikedByUser}}
+            {{^IsLikedByUser}}
             <a href="#" class="like-interest-button">
                 <i class="icon-thumbs-up"></i>
                 <b>Like</b>
             </a>
-            {{/Like}}
+            {{/IsLikedByUser}}
         </div>
         <div class="span2">
         </div>

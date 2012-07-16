@@ -106,9 +106,10 @@
     <Compile Include="Contracts\Tasks\IInterestTasks.cs" />
     <Compile Include="Contracts\Tasks\IUserInterestTasks.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\UserSearchPipelineResult.cs" />
+    <Compile Include="Dtos\Post\LikeDto.cs" />
     <Compile Include="Dtos\Post\SavePostCommentDto.cs" />
     <Compile Include="Dtos\Post\CommentDto.cs" />
-    <Compile Include="Dtos\Post\PostDtoWithComments.cs" />
+    <Compile Include="Dtos\Post\PostDtoWithActivity.cs" />
     <Compile Include="Dtos\UserInterest\InterestInCommonDto.cs" />
     <Compile Include="Dtos\User\UserAddInterestDto.cs" />
     <Compile Include="Dtos\User\UserCreateDto.cs" />

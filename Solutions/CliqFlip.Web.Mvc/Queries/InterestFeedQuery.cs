@@ -38,7 +38,8 @@ namespace CliqFlip.Web.Mvc.Queries
 				.Select(x => new InterestsFeedViewModel.FeedPostViewModel(x)
 				{
 				    UserPageUrl = url.Action("Index", "User", new { username = x.Username }),
-                    PostUrl = url.Action("Index","Post",new {post=x.Post.PostId})
+                    PostUrl = url.Action("Index","Post",new {post=x.Post.PostId}),
+                    IsLikedByUser = x.Post.Likes.Any(y=>y.UserId == user.Id)
 				})
 				.ToList();
 
