@@ -7,7 +7,7 @@ Backbone.Marionette.Renderer.render = (function() {
             return getTemplate(template).render(data);
         }
         else {
-            var templateArray = template();
+            var templateArray = template(data);
             var mainTemplateName = _.head(templateArray);
             var partialTemplateNames = _.tail(templateArray);
 

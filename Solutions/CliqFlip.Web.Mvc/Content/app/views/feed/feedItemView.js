@@ -1,9 +1,9 @@
 var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.App.Mvc.Views.FeedItemView = Backbone.Marionette.ItemView.extend({
-        template: function() {
+        template: function(model) {
             var templates = ["feed-feedItem"];
-            templates.push({ content: "media-Image" });
+            templates.push({ content: model.MediumType });
             return templates;
         },
         className: 'feed-item gray-rounded-border',
@@ -17,7 +17,7 @@ var CliqFlip = (function(cliqFlip) {
         }),
         events: {
             "click .feed-image": "feedItemSelected", //TODO find a way to delegate from a parent (collection view) rather than each individual feed item view
-            "click .see-more-button": "feedItemSelected" 
+            "click .see-more-button": "feedItemSelected"
         },
         feedItemSelected: function() {
             cliqFlip.App.Mvc.vent.trigger("feedItem:selected", this.model);
