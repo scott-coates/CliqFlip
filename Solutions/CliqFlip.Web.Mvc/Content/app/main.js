@@ -27,13 +27,7 @@ var CliqFlip = (function (cliqFlip) {
     });
 
     cliqFlip.App.Mvc.addInitializer(function () {
-        //var headerLayout = new cliqFlip.App.Mvc.Layouts.HeaderLayout();
-
-        var search = new cliqFlip.App.Mvc.Views.SearchView();
-
-        //headerLayout.searchRegion.show();
-        //cliqFlip.App.Mvc.header.show(search);
-
+        new cliqFlip.App.Mvc.Views.SearchView();
     });
 
 

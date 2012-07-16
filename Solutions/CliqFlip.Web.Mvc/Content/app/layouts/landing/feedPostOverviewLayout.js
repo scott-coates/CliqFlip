@@ -1,16 +1,16 @@
-var CliqFlip = (function (cliqFlip) {
+var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.App.Mvc.Layouts.FeedPostOverviewLayout = Backbone.Marionette.Layout.extend({
         initialize: function() {
             this.bindTo(cliqFlip.App.Mvc.vent, "comment:posted:success", this.clearComment); //bindTo will automatically be unbound on Close
         },
-   template: function (model) {
+        template: function(model) {
             var templates = ["feed-feedPostOverview"];
 
-            var contentTemplate = "media-Image"
-            if (model.VideoUrl) {
+            var contentTemplate = "media-Image";
+            if(model.VideoUrl) {
                 contentTemplate = "media-Video";
-            } else if (model.WebPageUrl) {
+            } else if(model.WebPageUrl) {
                 contentTemplate = "media-WebPage";
             }
 
