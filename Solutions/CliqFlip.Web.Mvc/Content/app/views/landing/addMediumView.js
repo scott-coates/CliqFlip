@@ -22,8 +22,9 @@ var CliqFlip = (function(cliqFlip) {
                     Url: url
                 },
                 {
-                    success: function(parameters) {
-                        alert('success');
+                    success: function() {
+                        cliqFlip.App.Mvc.Views.Helpers.alert({ type: 'success', header: 'success', message: 'medium added' });
+                        that.close();
                     },
                     error: function(model, error) {
                         that.$(".alert").text(error).removeClass("hide");

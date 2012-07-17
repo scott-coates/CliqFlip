@@ -290,6 +290,7 @@
     <Content Include="Content\app\views\landing\postOverviewUserAcitivtyListView.js" />
     <Content Include="Content\app\views\header\SearchView.js" />
     <Content Include="Content\app\views\landing\postOverviewUserAcitivtyView.js" />
+    <Content Include="Content\app\views\helpers.js" />
     <Content Include="Content\assets\js\cliqflip\view\modalRegion.js" />
     <Content Include="Content\assets\js\cliqflip\view\links.js" />
     <Content Include="Content\assets\js\cliqflip\view\templateRenderer.js" />
@@ -862,11 +863,12 @@
     <Content Include="Content\assets\templates\landing\feedPostOverviewUserAcitivty.mustache">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\assets\templates\header\layout.mustache" />
-    <Content Include="Content\assets\templates\header\search.mustache" />
+    <Content Include="Content\assets\templates\helpers\alert.mustache" />
     <Content Include="Content\assets\templates\landing\addMedium.mustache">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content\assets\templates\header\layout.mustache" />
+    <Content Include="Content\assets\templates\header\search.mustache" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
