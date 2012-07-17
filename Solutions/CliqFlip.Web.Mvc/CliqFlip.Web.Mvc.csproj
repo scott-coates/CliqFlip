@@ -280,9 +280,11 @@
     <Content Include="Content\app\collections\feed\feedPostOverviewUserActivityList.js" />
     <Content Include="Content\app\collections\feed\feedList.js" />
     <Content Include="Content\app\bundle.txt" />
+    <Content Include="Content\app\layouts\header\headerLayout.js" />
     <Content Include="Content\app\layouts\landing\feedPostOverviewLayout.js" />
     <Content Include="Content\app\models\feed\feedPostOverviewUserActivity.js" />
     <Content Include="Content\app\models\feed\feedPostOverview.js" />
+    <Content Include="Content\app\models\header\header.js" />
     <Content Include="Content\app\views\feed\postOverviewUserAcitivtyListView.js" />
     <Content Include="Content\app\views\header\SearchView.js" />
     <Content Include="Content\app\views\feed\postOverviewUserAcitivtyView.js" />
@@ -858,6 +860,8 @@
     <Content Include="Content\assets\templates\feed\feedPostOverviewUserAcitivty.mustache">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content\assets\templates\header\layout.mustache" />
+    <Content Include="Content\assets\templates\header\search.mustache" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

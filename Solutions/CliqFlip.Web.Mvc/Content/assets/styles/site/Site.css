@@ -23,6 +23,11 @@
 
 /* background color override */
 
+.header-profile-image
+{
+    max-height: 35px;
+}
+
 .navbar .navbar-inner
 {
     background-color: #3f9fd9;
