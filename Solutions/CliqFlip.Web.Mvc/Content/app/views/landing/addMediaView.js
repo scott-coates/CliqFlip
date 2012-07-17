@@ -4,16 +4,20 @@ var CliqFlip = (function(cliqFlip) {
         className: "add-media",
         template: "landing-addMedia",
         events: {
-            "click .btn.btn-primary": "saveMedium"
+            "click .btn.btn-primary": "saveMedium",
+            "click .dropdown-menu a": "selectDropdownItem"
         },
         onShow: function() {
             $("#photo-upload").html5_upload({
-                url:'/search/upload',
+                url: '/search/upload',
                 autostart: false //https://github.com/mihaild/jquery-html5-upload
             });
         },
-        saveMedium: function() {
-            this.$('#photo-upload').fileupload().submit();
+        saveMedium: function(e) {
+            $(e.target).attr("disabled", "disabled");
+        },
+        selectDropdownItem: function(e) {
+            this.$("#selected-interest-type").text($(e.target).text());
         }
     });
 

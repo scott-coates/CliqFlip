@@ -1,6 +1,6 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>Choose a {{Medium}} from a source:</h3>
+    <h3>Choose a {{MediumType}} from a source:</h3>
 </div>
 <div class="modal-body">
     <div class="row-fluid">
@@ -37,13 +37,22 @@
             </div>
             <div class="row-fluid">
                 <div class="span12">
-                    <textarea placeholder="Description"></textarea>
+                    <div class="btn-group">
+                        <a class="btn dropdown-toggle btn-mini" data-toggle="dropdown" href="#">
+                            <span id="selected-interest-type">Select Interest</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">Running</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <div class="modal-footer">
-    <a href="#" class="btn">Close</a>
-    <a href="#" class="btn btn-primary">Save changes</a>
+    <a href="#" class="btn btn-primary">Add {{MediumType}}</a>
 </div>
