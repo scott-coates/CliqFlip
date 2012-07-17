@@ -1,0 +1,5 @@
+﻿[references]
+~/Scripts/backbone.js
+
+[assets]
+*

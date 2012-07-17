@@ -1,6 +1,9 @@
 var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.App.Mvc.Views.AddMediumView = Backbone.Marionette.ItemView.extend({
+        initialize: function() {
+            Backbone.Validation.bind(this);
+        },
         className: "add-media",
         template: "landing-addMedium",
         events: {
@@ -15,18 +18,20 @@ var CliqFlip = (function(cliqFlip) {
             var that = this;
 
             $(e.target).addClass('disabled');
-
-            this.model.saveMedium({
+            this.model.set({
                 Description: description,
                 InterestId: interestId,
                 Url: url
-            },
+            }, { silent: true });
+
+            this.model.saveMedium(
                 {
                     success: function() {
                         cliqFlip.App.Mvc.Views.Helpers.alert({ type: 'success', header: 'success', message: that.model.get('MediumType') + ' added' });
                         that.trigger('medium:added');
                     },
                     error: function(model, error) {
+                        $(e.target).removeClass('disabled');
                         that.$(".alert").text(error).removeClass("hide");
                     }
                 });
@@ -41,11 +46,11 @@ var CliqFlip = (function(cliqFlip) {
             var file = fileUplad.files[0];
             var fileReader = new window.FileReader();
             fileReader.onload = function(theFile) {
-                that.model.set('ImageData', theFile.target.result);
+                that.model.set('ImageData', theFile.target.result, { silent: true });
             };
             fileReader.readAsBinaryString(file);
         }
     });
 
     return cliqFlip;
-} (CliqFlip));
+}(CliqFlip));

@@ -291,6 +291,7 @@
     <Content Include="Content\app\views\header\SearchView.js" />
     <Content Include="Content\app\views\landing\postOverviewUserAcitivtyView.js" />
     <Content Include="Content\app\views\helpers.js" />
+    <Content Include="Content\assets\js\backbonePlugins\backbone.validation.js" />
     <Content Include="Content\assets\js\cliqflip\view\modalRegion.js" />
     <Content Include="Content\assets\js\cliqflip\view\links.js" />
     <Content Include="Content\assets\js\cliqflip\view\templateRenderer.js" />
@@ -361,6 +362,7 @@
     <Content Include="Content\assets\js\jquery\bundle.txt" />
     <Content Include="Content\assets\js\jquery\jquery.analyticseventtracking.js" />
     <Content Include="Content\assets\js\jquery\jquery-ui-1.8.11.js" />
+    <Content Include="Content\assets\js\backbonePlugins\bundle.txt" />
     <Content Include="Content\assets\styles\img\glyphicons-halflings-white.png" />
     <Content Include="Content\assets\styles\img\glyphicons-halflings.png" />
     <Content Include="Content\assets\img\icon-close.png" />
@@ -386,7 +388,7 @@
     <Content Include="Content\assets\js\cliqflip\main\tos.js" />
     <Content Include="Content\assets\js\cliqflip\main\ui.js" />
     <Content Include="Content\assets\js\cliqflip\main\validate.js" />
-    <Content Include="Content\assets\js\marionette\backbone.marionette.js" />
+    <Content Include="Content\assets\js\backbonePlugins\backbone.marionette.js" />
     <Content Include="Content\assets\js\jquery\jquery.masonry.js" />
     <Content Include="Content\assets\js\cliqflip\search\index.js" />
     <Content Include="Content\assets\js\cliqflip\search\interest-search.js" />
@@ -863,7 +865,9 @@
     <Content Include="Content\assets\templates\landing\feedPostOverviewUserAcitivty.mustache">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\assets\templates\helpers\alert.mustache" />
+    <Content Include="Content\assets\templates\helpers\alert.mustache">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\assets\templates\landing\addMedium.mustache">
       <SubType>Designer</SubType>
     </Content>
