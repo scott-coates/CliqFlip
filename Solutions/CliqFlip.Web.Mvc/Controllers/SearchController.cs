@@ -77,7 +77,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
         [Transaction]
         [Authorize]
-        public JsonNetResult PhotoUpload()
+        public JsonNetResult AddMedium()
         {
             return new JsonNetResult();
         }

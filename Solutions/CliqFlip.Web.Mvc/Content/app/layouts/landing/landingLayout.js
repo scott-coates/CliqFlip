@@ -12,7 +12,7 @@ var CliqFlip = (function(cliqFlip) {
         },
         addMedium: function(e) {
             var addMediumModel = new cliqFlip.App.Mvc.Models.AddMedium(cliqFlip.App.UserData);
-            addMediumModel.set('MediumType', $(e.target).data('mediumType'),{silent:true});
+            addMediumModel.set('MediumType', $(e.target).data('mediumType'));
             var mediumView = new cliqFlip.App.Mvc.Views.AddMediumView({ model: addMediumModel });
             cliqFlip.App.Mvc.modalRegion.show(mediumView);
         }
