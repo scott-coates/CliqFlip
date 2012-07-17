@@ -77,6 +77,13 @@ namespace CliqFlip.Web.Mvc.Controllers
 
         [Transaction]
         [Authorize]
+        public JsonNetResult PhotoUpload()
+        {
+            return new JsonNetResult();
+        }
+
+        [Transaction]
+        [Authorize]
         public ActionResult Index(string q, int? page)
         {
             var viewModel = _usersByInterestsQuery.GetGetUsersByInterests(q, page, _principal.Identity.Name);

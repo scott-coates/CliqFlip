@@ -282,10 +282,11 @@
     <Content Include="Content\app\bundle.txt" />
     <Content Include="Content\app\layouts\header\headerLayout.js" />
     <Content Include="Content\app\layouts\landing\feedPostOverviewLayout.js" />
+    <Content Include="Content\app\models\landing\addMedium.js" />
     <Content Include="Content\app\models\landing\feedPostOverviewUserActivity.js" />
     <Content Include="Content\app\models\landing\feedPostOverview.js" />
     <Content Include="Content\app\models\header\header.js" />
-    <Content Include="Content\app\views\landing\addMediaView.js" />
+    <Content Include="Content\app\views\landing\addMediumView.js" />
     <Content Include="Content\app\views\landing\postOverviewUserAcitivtyListView.js" />
     <Content Include="Content\app\views\header\SearchView.js" />
     <Content Include="Content\app\views\landing\postOverviewUserAcitivtyView.js" />
@@ -294,12 +295,12 @@
     <Content Include="Content\assets\js\cliqflip\view\templateRenderer.js" />
     <Content Include="Content\app\layouts\landing\landingLayout.js" />
     <Content Include="Content\app\main.js" />
-    <Content Include="Content\app\models\user\userLandingSummary.js" />
+    <Content Include="Content\app\models\landing\userLandingSummary.js" />
     <Content Include="Content\app\models\landing\feedItem.js" />
     <Content Include="Content\app\routers\landingRouter.js" />
     <Content Include="Content\app\views\landing\feedItemView.js" />
     <Content Include="Content\app\views\landing\feedListView.js" />
-    <Content Include="Content\app\views\user\userLandingSummaryView.js" />
+    <Content Include="Content\app\views\landing\userLandingSummaryView.js" />
     <Content Include="Content\assets\img\chrome.png" />
     <Content Include="Content\assets\img\CliqFlip-Arrow.png" />
     <Content Include="Content\assets\img\empty-avatar.jpg" />
@@ -852,7 +853,7 @@
     <Content Include="Content\assets\templates\landing\feedList.mustache">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\assets\templates\user\userLandingSummary.mustache" />
+    <Content Include="Content\assets\templates\landing\userLandingSummary.mustache" />
     <Content Include="Views\Popup\CreatePost.cshtml" />
     <Content Include="Views\Shared\_Layout.Bootstrap.cshtml" />
     <Content Include="Content\assets\templates\landing\layout.mustache" />
@@ -864,7 +865,7 @@
     </Content>
     <Content Include="Content\assets\templates\header\layout.mustache" />
     <Content Include="Content\assets\templates\header\search.mustache" />
-    <Content Include="Content\assets\templates\landing\addMedia.mustache">
+    <Content Include="Content\assets\templates\landing\addMedium.mustache">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

@@ -54,10 +54,14 @@ namespace CliqFlip.Web.Mvc.Controllers
             {
                 Username = _principal.Identity.Name,
                 ProfileImageUrl = user.ProfileImage.ImageData.MediumFileName,
-                Friends = 0,
-                Interests = user.Interests.Count(),
-                Posts = user.Interests.SelectMany(x => x.Posts).Count()
+                FriendCount = 0,
+                PostCount = user.Interests.SelectMany(x => x.Posts).Count(),
+                Interests = user.Interests.Select(x => new HomeUserViewModel.InterestViewModel { Name = x.Interest.Name, Id = x.Id })
+                .OrderBy(x => x.Name)
+                .ToList()
             };
+
+            viewModel.InterestCount = viewModel.Interests.Count;
 
             return View(viewModel);
         }

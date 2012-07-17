@@ -8,10 +8,13 @@ var CliqFlip = (function(cliqFlip) {
             contentAreaRegion: "#content-area"
         },
         events: {
-            "click .user-interest-add-photo": "addPhoto"
+            "click a[class*='user-interest-add']": "addMedium"
         },
-        addPhoto: function(parameters) {
-            cliqFlip.App.Mvc.modalRegion.show(new cliqFlip.App.Mvc.Views.AddMediaView());
+        addMedium: function(e) {
+            var addMediumModel = new cliqFlip.App.Mvc.Models.AddMedium(cliqFlip.App.UserData);
+            addMediumModel.set('MediumType', $(e.target).data('mediumType'));
+            var mediumView = new cliqFlip.App.Mvc.Views.AddMediumView({ model: addMediumModel });
+            cliqFlip.App.Mvc.modalRegion.show(mediumView);
         }
     });
 

@@ -10,7 +10,9 @@
                     Computer
                 </div>
                 <div class="span6">
-                    <input id="photo-upload" type="file" name="files[]" data-url="/search/photoupload" accept="image/jpg, image/jpeg, image/gif, image/png"/>
+                    <form enctype="multipart/form-data">
+                        <input name="file" accept="image/jpg, image/jpeg, image/gif, image/png" type="file"/>
+                    </form>
                 </div>
             </div>
             <div class="row-fluid">
@@ -32,7 +34,7 @@
         <div class="span6">
             <div class="row-fluid">
                 <div class="span12">
-                    <textarea placeholder="Description"></textarea>
+                    <textarea id="medium-description" placeholder="Description"></textarea>
                 </div>
             </div>
             <div class="row-fluid">
@@ -43,9 +45,11 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
+                            {{#Interests}}
                             <li>
-                                <a href="#">Running</a>
+                                <a href="#" data-interest-id="{{Id}}">{{Name}}</a>
                             </li>
+                            {{/Interests}}
                         </ul>
                     </div>
                 </div>

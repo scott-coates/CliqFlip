@@ -1,7 +1,7 @@
 var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.App.Mvc.Views.UserLandingSummaryView = Backbone.Marionette.ItemView.extend({
-        template: "user-userLandingSummary"
+        template: "landing-userLandingSummary"
     });
 
     return cliqFlip;
