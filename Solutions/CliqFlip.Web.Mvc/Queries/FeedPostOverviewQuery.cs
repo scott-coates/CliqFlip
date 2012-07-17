@@ -50,6 +50,7 @@ namespace CliqFlip.Web.Mvc.Queries
 
             var commonInterests = _userInterestTasks.GetInterestsInCommon(viewingUser, post.UserInterest.User);
             retVal.CommonInterests = commonInterests.Select(x => new FeedPostOverviewViewModel.CommonInterestViewModel { Name = x.Name }).ToList();
+            retVal.HasCommonIntersts = commonInterests.Any();
             return retVal;
         }
     }

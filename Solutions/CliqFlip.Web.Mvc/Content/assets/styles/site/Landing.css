@@ -139,6 +139,12 @@
     margin-left: 2px;
 }
 
+.post-overview-modal.modal .post-details .user-details .alert
+{
+    margin-top: 1px;
+    margin-bottom: 0;
+}
+
 .post-overview-modal.modal .activity .well
 {
     padding-top: 0;

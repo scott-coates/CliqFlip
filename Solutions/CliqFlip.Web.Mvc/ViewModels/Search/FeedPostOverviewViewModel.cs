@@ -11,6 +11,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
         public string WebPageUrl { get; set; }
         public string AuthorImageUrl { get; set; }
         public string ImageDescription { get; set; }
+        public bool HasCommonIntersts { get; set; }
 
         public IList<ActivityViewModel> Activity { get; set; }
         public IList<CommonInterestViewModel> CommonInterests { get; set; }

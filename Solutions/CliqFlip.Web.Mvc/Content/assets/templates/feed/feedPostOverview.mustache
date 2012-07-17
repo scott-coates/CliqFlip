@@ -49,9 +49,19 @@
                 </div>
                 <div class="row-fluid">
                     <div class="span12">
-                        <h3>You and {{Username}} both like&hellip;</h3>
+                        {{#HasCommonIntersts}}
+                        <h3>
+                            <small>You and {{Username}} both like&hellip;</small>
+                        </h3>
+                        {{/HasCommonIntersts}}
+                        {{^HasCommonIntersts}}
+                        <div class="alert alert-error">
+                            You have no interests in common with {{Username}}
+                        </div>
+                        {{/HasCommonIntersts}}
                     </div>
                 </div>
+                {{#HasCommonIntersts}}
                 <div class="row-fluid">
                     <div class="span12 ">
                         {{#CommonInterests}}
@@ -59,6 +69,7 @@
                         {{/CommonInterests}}
                     </div>
                 </div>
+                {{/HasCommonIntersts}}
             </div>
             <div class="row-fluid activity">
                 <div class="span12 well">
@@ -66,7 +77,7 @@
                         <div class="span12">
                             <b>
                                 <a href="#">Like</a> -
-                                <a href="mailto:support@cliqflip.com">Report</a>
+                                <a data-bypass="true" href="mailto:support@cliqflip.com">Report</a>
                             </b>
                         </div>
                     </div>
