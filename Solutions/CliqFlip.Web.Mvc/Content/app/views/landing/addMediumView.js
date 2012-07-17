@@ -17,14 +17,14 @@ var CliqFlip = (function(cliqFlip) {
             $(e.target).addClass('disabled');
 
             this.model.saveMedium({
-                    Description: description,
-                    InterestId: interestId,
-                    Url: url
-                },
+                Description: description,
+                InterestId: interestId,
+                Url: url
+            },
                 {
                     success: function() {
                         cliqFlip.App.Mvc.Views.Helpers.alert({ type: 'success', header: 'success', message: that.model.get('MediumType') + ' added' });
-                        that.close();
+                        that.trigger('medium:added');
                     },
                     error: function(model, error) {
                         that.$(".alert").text(error).removeClass("hide");
@@ -48,4 +48,4 @@ var CliqFlip = (function(cliqFlip) {
     });
 
     return cliqFlip;
-}(CliqFlip));
+} (CliqFlip));
