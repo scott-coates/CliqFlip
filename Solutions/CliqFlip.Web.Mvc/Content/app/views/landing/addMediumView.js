@@ -23,7 +23,7 @@ var CliqFlip = (function(cliqFlip) {
                 },
                 {
                     success: function() {
-                        cliqFlip.App.Mvc.Views.Helpers.alert({ type: 'success', header: 'success', message: 'medium added' });
+                        cliqFlip.App.Mvc.Views.Helpers.alert({ type: 'success', header: 'success', message: that.model.get('MediumType') + ' added' });
                         that.close();
                     },
                     error: function(model, error) {

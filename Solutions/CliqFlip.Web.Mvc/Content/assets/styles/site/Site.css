@@ -13,15 +13,17 @@
     height: 100%;
 }
 
-
 #content-area
 {
     padding-top: 20px;
 }
 
-/* Nav bar */
+.action-alert
+{
+    margin-top: 8px;
+}
 
-/* background color override */
+/* Nav bar */
 
 .header-profile-image
 {
