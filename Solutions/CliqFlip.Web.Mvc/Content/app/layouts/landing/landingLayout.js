@@ -11,7 +11,7 @@ var CliqFlip = (function(cliqFlip) {
             "click .user-interest-add-photo": "addPhoto"
         },
         addPhoto: function(parameters) {
-            alert('add photo');
+            cliqFlip.App.Mvc.modalRegion.show(new cliqFlip.App.Mvc.Views.AddMediaView());
         }
     });
 
