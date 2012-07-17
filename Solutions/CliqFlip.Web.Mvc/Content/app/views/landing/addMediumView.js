@@ -5,7 +5,14 @@ var CliqFlip = (function(cliqFlip) {
             Backbone.Validation.bind(this);
         },
         className: "add-media",
-        template: "landing-addMedium",
+        template: function(arg) {
+            if(arg.MediumType === 'status') {
+                return ["landing-addStatus"];
+            }
+            else {
+                return ["landing-addMedium"];
+            }
+        },
         events: {
             "click .btn.btn-primary:not(.disabled)": "saveMedium",
             "click .dropdown-menu a": "selectDropdownItem",
@@ -54,4 +61,4 @@ var CliqFlip = (function(cliqFlip) {
     });
 
     return cliqFlip;
-}(CliqFlip));
+} (CliqFlip));

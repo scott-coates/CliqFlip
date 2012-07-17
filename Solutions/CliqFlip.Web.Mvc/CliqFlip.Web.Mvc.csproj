@@ -874,6 +874,9 @@
     </Content>
     <Content Include="Content\assets\templates\header\layout.mustache" />
     <Content Include="Content\assets\templates\header\search.mustache" />
+    <Content Include="Content\assets\templates\landing\addStatus.mustache">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
