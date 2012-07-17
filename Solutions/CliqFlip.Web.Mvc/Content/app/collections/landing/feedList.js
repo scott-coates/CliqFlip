@@ -1,5 +1,5 @@
 // @reference ~/Content/app/main.js
-// @reference ~/Content/app/models/feed/feedItem.js
+// @reference ~/Content/app/models/landing/feedItem.js
 
 var CliqFlip = (function (cliqFlip) {
 

@@ -6,8 +6,8 @@ var CliqFlip = (function(cliqFlip) {
                 this.render();
             });
         },
-        template: function(model) {
-            var templates = ["feed-feedItem"];
+        template: function() {
+            var templates = ["landing-feedItem"];
             templates.push({ content: "media-Image" });
             return templates;
         },

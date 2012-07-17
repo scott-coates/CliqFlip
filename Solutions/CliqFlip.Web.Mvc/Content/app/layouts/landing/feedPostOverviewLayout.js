@@ -5,7 +5,7 @@ var CliqFlip = (function(cliqFlip) {
             this.bindTo(cliqFlip.App.Mvc.vent, "comment:posted:success", this.clearComment); //bindTo will automatically be unbound on Close
         },
         template: function(model) {
-            var templates = ["feed-feedPostOverview"];
+            var templates = ["landing-feedPostOverview"];
 
             var contentTemplate = "media-Image";
             if(model.VideoUrl) {
