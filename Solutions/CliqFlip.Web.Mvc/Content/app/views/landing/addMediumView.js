@@ -8,12 +8,28 @@ var CliqFlip = (function(cliqFlip) {
             "click .dropdown-menu a": "selectDropdownItem"
         },
         saveMedium: function(e) {
-            $(e.target).addClass('disabled');
             var formData = new window.FormData(this.$('form')[0]);
             var description = this.$("#medium-description").val();
             var url = this.$("#medium-url").val();
             var interestId = this.$("#selected-interest-type").data('interestId');
-            this.model.saveMedium({ imageData: formData, description: description, interestId: interestId, url: url });
+            var that = this;
+            if(this.model.set(
+                {
+                    ImageData: formData,
+                    Description: description,
+                    InterestId: interestId,
+                    Url: url
+                },
+                {
+                    error: function(model, error) {
+                        that.$(".alert").text(error).removeClass("hide");
+                    }
+                })) {
+
+                $(e.target).addClass('disabled');
+                this.model.saveMedium();
+            }
+
         },
         selectDropdownItem: function(e) {
             var target = $(e.target);
@@ -22,4 +38,4 @@ var CliqFlip = (function(cliqFlip) {
     });
 
     return cliqFlip;
-}(CliqFlip));
+} (CliqFlip));
