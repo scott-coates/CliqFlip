@@ -325,7 +325,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		public ActionResult SaveInterestImage(UserSaveInterestImageViewModel userSaveInterestImageViewModel)
 		{
 			User user = _userTasks.GetUser(_principal.Identity.Name);
-			if (userSaveInterestImageViewModel.ProfileImage == null) //TODO: use required/not-null attribute instead of checking for null
+			if (userSaveInterestImageViewModel.InterestImage == null) //TODO: use required/not-null attribute instead of checking for null
 			{
 				ViewData.ModelState.AddModelError("Image", "You need to provide a file first... or don't. Have it your way.");
 				RouteData.Values["action"] = "Interests";
@@ -335,7 +335,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				try
 				{
-					var fileStreamDto = new FileStreamDto(userSaveInterestImageViewModel.ProfileImage.InputStream, userSaveInterestImageViewModel.ProfileImage.FileName);
+					var fileStreamDto = new FileStreamDto(userSaveInterestImageViewModel.InterestImage.InputStream, userSaveInterestImageViewModel.InterestImage.FileName);
 					_userTasks.SaveInterestImage(user, fileStreamDto, userSaveInterestImageViewModel.UserInterestId, userSaveInterestImageViewModel.ImageDescription);
 				}
 				catch (RulesException rex)
@@ -348,7 +348,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 				}
 				finally
 				{
-					userSaveInterestImageViewModel.ProfileImage.InputStream.Dispose();
+					userSaveInterestImageViewModel.InterestImage.InputStream.Dispose();
 				}
 			}
 

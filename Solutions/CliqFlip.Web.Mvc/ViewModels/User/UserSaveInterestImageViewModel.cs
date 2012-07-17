@@ -12,6 +12,6 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
 	{
 		public int UserInterestId { get; set; }
 		public string ImageDescription { get; set; }
-		public HttpPostedFileBase ProfileImage { get; set; }
+		public HttpPostedFileBase InterestImage { get; set; }
 	}
 }
