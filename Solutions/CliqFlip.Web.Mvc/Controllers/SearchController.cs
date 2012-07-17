@@ -10,6 +10,7 @@ using CliqFlip.Domain.Dtos.Post;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.Security.Attributes;
 using CliqFlip.Web.Mvc.ViewModels.Search;
+using CliqFlip.Web.Mvc.ViewModels.User;
 using Newtonsoft.Json;
 using SharpArch.NHibernate.Web.Mvc;
 using SharpArch.Web.Mvc.JsonNet;
@@ -77,11 +78,51 @@ namespace CliqFlip.Web.Mvc.Controllers
 
         [Transaction]
         [Authorize]
-        public JsonNetResult AddMedium()
+        [HttpPost]
+        public JsonNetResult AddMedium(UserSaveMediumViewModel saveMediumViewModel)
         {
+            byte[] bytes = new byte[saveMediumViewModel.FileData.Length * sizeof(char)]; //http://stackoverflow.com/questions/472906/net-string-to-byte-array-c-sharp
+            System.Buffer.BlockCopy(saveMediumViewModel.FileData.ToCharArray(), 0, bytes, 0, bytes.Length);
+            
             return new JsonNetResult();
         }
+        //[Authorize]
+        //[HttpPost]
+        //[Transaction]
+        //public ActionResult SaveInterestImage(UserSaveInterestImageViewModel userSaveInterestImageViewModel)
+        //{
+        //    User user = _userTasks.GetUser(_principal.Identity.Name);
+        //    if (userSaveInterestImageViewModel.InterestImage == null) //TODO: use required/not-null attribute instead of checking for null
+        //    {
+        //        ViewData.ModelState.AddModelError("Image", "You need to provide a file first... or don't. Have it your way.");
+        //        RouteData.Values["action"] = "Interests";
+        //        return Interests(_principal.Identity.Name);
+        //    }
+        //    else
+        //    {
+        //        try
+        //        {
+        //            var fileStreamDto = new FileStreamDto(userSaveInterestImageViewModel.InterestImage.InputStream, userSaveInterestImageViewModel.InterestImage.FileName);
+        //            _userTasks.SaveInterestImage(user, fileStreamDto, userSaveInterestImageViewModel.UserInterestId, userSaveInterestImageViewModel.ImageDescription);
+        //        }
+        //        catch (RulesException rex)
+        //        {
+        //            //TODO: Implement PRG pattern for post forms
+        //            //TODO: Log These exceptions in elmah
+        //            rex.AddModelStateErrors(ModelState);
+        //            RouteData.Values["action"] = "Interests";
+        //            return Interests(_principal.Identity.Name);
+        //        }
+        //        finally
+        //        {
+        //            userSaveInterestImageViewModel.InterestImage.InputStream.Dispose();
+        //        }
+        //    }
 
+        //    return RedirectToAction("Interests");
+        //}
+
+        [Authorize]
         [Transaction]
         [Authorize]
         public ActionResult Index(string q, int? page)
