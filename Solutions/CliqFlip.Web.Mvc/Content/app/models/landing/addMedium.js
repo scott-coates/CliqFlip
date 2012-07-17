@@ -6,6 +6,8 @@ var CliqFlip = (function(cliqFlip) {
         validate: function(attrs) {
             if (!attrs.InterestId) {
                 return 'interest is required';
+            }else if(!attrs.ImageData) {
+                return 'a file is required';                
             }
         },
         saveMedium: function(parameters) {

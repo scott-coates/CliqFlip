@@ -360,7 +360,6 @@
     <Content Include="Content\assets\js\jquery\bundle.txt" />
     <Content Include="Content\assets\js\jquery\jquery.analyticseventtracking.js" />
     <Content Include="Content\assets\js\jquery\jquery-ui-1.8.11.js" />
-    <Content Include="Content\assets\js\jquery\jquery.html5_upload.js" />
     <Content Include="Content\assets\styles\img\glyphicons-halflings-white.png" />
     <Content Include="Content\assets\styles\img\glyphicons-halflings.png" />
     <Content Include="Content\assets\img\icon-close.png" />

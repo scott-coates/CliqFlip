@@ -5,17 +5,18 @@ var CliqFlip = (function(cliqFlip) {
         template: "landing-addMedium",
         events: {
             "click .btn.btn-primary:not(.disabled)": "saveMedium",
-            "click .dropdown-menu a": "selectDropdownItem"
+            "click .dropdown-menu a": "selectDropdownItem",
+            "change #file-upload": "uploadFile"
         },
         saveMedium: function(e) {
-            var formData = new window.FormData(this.$('form')[0]);
+            var file = this.$("#file-upload")[0].files[0];
             var description = this.$("#medium-description").val();
             var url = this.$("#medium-url").val();
             var interestId = this.$("#selected-interest-type").data('interestId');
             var that = this;
-            if(this.model.set(
+            if (this.model.set(
                 {
-                    ImageData: formData,
+                    ImageData: file,
                     Description: description,
                     InterestId: interestId,
                     Url: url
@@ -34,8 +35,11 @@ var CliqFlip = (function(cliqFlip) {
         selectDropdownItem: function(e) {
             var target = $(e.target);
             this.$("#selected-interest-type").text(target.text()).data('interestId', target.data('interestId'));
+        },
+        uploadFile: function(parameters) {
+            var x = document.getElementById("file-upload")
         }
     });
 
     return cliqFlip;
-} (CliqFlip));
+}(CliqFlip));
