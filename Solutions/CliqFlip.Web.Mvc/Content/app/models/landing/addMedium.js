@@ -5,7 +5,7 @@ var CliqFlip = (function(cliqFlip) {
     cliqFlip.App.Mvc.Models.AddMedium = Backbone.Model.extend({
         urlRoot: '/search/addmedium',
         defaults: {
-            ImageData: undefined
+            FileData: undefined
         },
         saveMedium: function(options) {
             this.save(this.attributes, options);
@@ -15,9 +15,9 @@ var CliqFlip = (function(cliqFlip) {
                 required: true,
                 msg: 'Interest is required'
             },
-            ImageData: {
+            FileData: {
                 required: true,
-                msg: 'ImageData is required'
+                msg: 'A photo is required'
             }
         }
     });

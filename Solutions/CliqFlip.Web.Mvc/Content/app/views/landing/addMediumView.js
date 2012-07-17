@@ -44,9 +44,10 @@ var CliqFlip = (function(cliqFlip) {
             var that = this;
             var fileUplad = e.target;
             var file = fileUplad.files[0];
+            that.model.set('FileName', file.name, { silent: true });
             var fileReader = new window.FileReader();
             fileReader.onload = function(theFile) {
-                that.model.set('ImageData', theFile.target.result, { silent: true });
+                that.model.set('FileData', theFile.target.result, { silent: true });
             };
             fileReader.readAsBinaryString(file);
         }
