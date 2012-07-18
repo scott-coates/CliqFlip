@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Security.Principal;
 using System.Text;
 using System.Threading;
+using System.Web;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Dtos.Media;
@@ -97,16 +99,23 @@ namespace CliqFlip.Web.Mvc.Controllers
                 case "photo":
                     //thanks...i'm dumb http://forums.asp.net/post/4412044.aspx
 
-                    var removeDataPrefix = saveMediumViewModel.MediumData.Substring(saveMediumViewModel.MediumData.IndexOf(",", StringComparison.Ordinal) + 1);
-                    var bytearray = Convert.FromBase64String(removeDataPrefix);
-
-                    using (var memoryStream = new MemoryStream(bytearray))
+                    if (string.IsNullOrEmpty(saveMediumViewModel.FileName))
                     {
-                        _userTasks.SaveInterestImage(
-                            user,
-                            new FileStreamDto(memoryStream, saveMediumViewModel.FileName),
-                            saveMediumViewModel.InterestId,
-                            saveMediumViewModel.Description);
+                        _userTasks.SaveInterestImage(user, saveMediumViewModel.InterestId, saveMediumViewModel.Description, saveMediumViewModel.MediumData);
+                    }
+                    else
+                    {
+                        var removeDataPrefix = saveMediumViewModel.MediumData.Substring(saveMediumViewModel.MediumData.IndexOf(",", StringComparison.Ordinal) + 1);
+                        var bytearray = Convert.FromBase64String(removeDataPrefix);
+
+                        using (var memoryStream = new MemoryStream(bytearray))
+                        {
+                            _userTasks.SaveInterestImage(
+                                user,
+                                new FileStreamDto(memoryStream, saveMediumViewModel.FileName),
+                                saveMediumViewModel.InterestId,
+                                saveMediumViewModel.Description);
+                        }
                     }
                     break;
                 case "video":
@@ -117,6 +126,8 @@ namespace CliqFlip.Web.Mvc.Controllers
                     break;
                 case "status":
                     break;
+                default :
+                    throw new HttpException((int)HttpStatusCode.BadRequest, "A medium type is required");
             }
 
             return new JsonNetResult();
