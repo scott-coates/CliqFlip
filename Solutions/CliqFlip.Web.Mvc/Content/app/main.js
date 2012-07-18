@@ -1,4 +1,4 @@
-// @reference ~/Content/assets/js/marionette/backbone.marionette.js
+// @reference ~/Content/assets/js/backbonePlugins/backbone.marionette.js
 
 var CliqFlip = (function(cliqFlip) {
 
