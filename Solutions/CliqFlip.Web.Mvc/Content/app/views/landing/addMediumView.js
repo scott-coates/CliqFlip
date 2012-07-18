@@ -6,7 +6,7 @@ var CliqFlip = (function(cliqFlip) {
         },
         className: "add-media",
         template: function(arg) {
-            if(arg.MediumType === 'status') {
+            if (arg.MediumType === 'status') {
                 return ["landing-addStatus"];
             }
             else {
@@ -27,11 +27,15 @@ var CliqFlip = (function(cliqFlip) {
             var that = this;
 
             $(e.target).addClass('disabled');
+            
             this.model.set({
                 Description: description,
-                InterestId: interestId,
-                Url: url
+                InterestId: interestId
             }, { silent: true });
+
+            if (url) {
+                this.model.set("MediumData", url, { silent: true });
+            }
 
             this.model.saveMedium(
                 {
@@ -41,7 +45,7 @@ var CliqFlip = (function(cliqFlip) {
                     },
                     error: function(model, error) {
                         $(e.target).removeClass('disabled');
-                        that.$(".alert").text(error).removeClass("hide");
+                        that.$(".alert").text(error.statusText || error).removeClass("hide");
                     }
                 });
         },
@@ -56,11 +60,11 @@ var CliqFlip = (function(cliqFlip) {
             that.model.set('FileName', file.name, { silent: true });
             var fileReader = new window.FileReader();
             fileReader.onload = function(theFile) {
-                that.model.set('FileData', theFile.target.result, { silent: true });
+                that.model.set('MediumData', theFile.target.result, { silent: true });
             };
             fileReader.readAsDataURL(file);
         }
     });
 
     return cliqFlip;
-} (CliqFlip));
+}(CliqFlip));
