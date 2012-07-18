@@ -421,7 +421,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 		{
 			User user = _userTasks.GetUser(_principal.Identity.Name);
 
-			user.MakeInterestPostDefault(postId);
+		    user.MakePostDefault(postId);
 
 			return RedirectToAction("Interests");
 		}

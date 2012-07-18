@@ -15,7 +15,9 @@ namespace CliqFlip.Domain.Entities
         private readonly Iesi.Collections.Generic.ISet<Comment> _comments;
         private readonly Iesi.Collections.Generic.ISet<Like> _likes;
 
-        public virtual UserInterest UserInterest { get; set; }
+        public virtual User User { get; set; }
+
+        public virtual Interest Interest { get; set; }
 
         public virtual Medium Medium { get; set; }
 
@@ -25,7 +27,7 @@ namespace CliqFlip.Domain.Entities
 
         public virtual int InterestPostOrder
         {
-            get { return UserInterest.Posts.ToList().IndexOf(this) + 1; }
+            get { return User.Posts.Where(x => x.Interest == Interest).ToList().IndexOf(this) + 1; }
         }
 
         public virtual IEnumerable<Comment> Comments

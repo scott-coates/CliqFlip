@@ -9,6 +9,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 {
 	public interface IPostTasks
 	{
+        IList<InterestFeedItemDto> GetPostsByInterests(IList<Interest> interests);
 		void SaveComment(SavePostCommentDto postCommentDto, User user);
 		void SaveLike(int postId, User user);
 	    Post Get(int id);

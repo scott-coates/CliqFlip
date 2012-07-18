@@ -35,14 +35,5 @@ namespace CliqFlip.Tests.NHibernate
 		}
 
 		#endregion
-
-		[Test]
-		public void TestUserInterestImage()
-		{
-			var userint = new UserInterest();
-            userint.AddPost(new Post { Medium = new Image { ImageData = new ImageData(null, null, null, null) } });
-
-			NHibernateSession.Current.Save(userint);
-		}
 	}
 }

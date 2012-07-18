@@ -14,16 +14,16 @@ namespace CliqFlip.Web.Mvc.Queries
 {
 	public class InterestFeedQuery : IInterestFeedQuery
 	{
-		private readonly IUserInterestTasks _userInterestTasks;
 		private readonly IUserTasks _userTasks;
+	    private readonly IPostTasks _postTasks;
 
-		public InterestFeedQuery(IUserInterestTasks userInterestTasks, IUserTasks userTasks)
+		public InterestFeedQuery( IUserTasks userTasks, IPostTasks postTasks)
 		{
-			_userInterestTasks = userInterestTasks;
-			_userTasks = userTasks;
+		    _userTasks = userTasks;
+		    _postTasks = postTasks;
 		}
 
-		#region IInterestFeedQuery Members
+	    #region IInterestFeedQuery Members
 
 		public InterestsFeedViewModel GetUsersByInterests(string userName, int? page, UrlHelper url)
 		{
@@ -31,7 +31,7 @@ namespace CliqFlip.Web.Mvc.Queries
 
 			User user = _userTasks.GetUser(userName);
 
-			IList<InterestFeedItemDto> postDtos = _userInterestTasks.GetPostsByInterests(user.Interests.Select(x => x.Interest).ToList());
+            IList<InterestFeedItemDto> postDtos = _postTasks.GetPostsByInterests(user.Interests.Select(x => x.Interest).ToList());
 			retVal.Total = postDtos.Count;
 			retVal.Posts = postDtos
 				.AsPagination( page ?? 1, Constants.FEED_LIMIT)

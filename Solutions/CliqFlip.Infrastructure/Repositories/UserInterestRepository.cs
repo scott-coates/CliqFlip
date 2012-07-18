@@ -37,16 +37,7 @@ namespace CliqFlip.Infrastructure.Repositories
 
 			return popularInterests.Select(x => new RankedInterestDto(x.Key.Id, x.Key.Name, x.Key.Slug, x.Count)).AsQueryable();
 		}
-
-		public IQueryable<UserInterest> GetUserInterestsByInterestTypes(IList<Interest> interests)
-		{
-			var query = new AdHoc<UserInterest>(x => interests.Contains(x.Interest)
-													 ||
-													 interests.Contains(x.Interest.ParentInterest));
-
-			return FindAll(query);
-		}
-
+		
 	    public IQueryable<InterestInCommonDto> GetInterestsInCommon(User viewingUser, User user)
 	    {
             const string queryText = @"

@@ -1,4 +1,5 @@
 using System.Linq;
+using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
@@ -22,9 +23,9 @@ namespace CliqFlip.Web.Mvc.Queries
         {
             var retVal = new FeedPostOverviewViewModel();
             var post = _postTasks.Get(postId);
-            retVal.Username = post.UserInterest.User.Username;
-            retVal.Headline = post.UserInterest.User.Headline;
-            retVal.AuthorImageUrl = post.UserInterest.User.ProfileImage != null ? post.UserInterest.User.ProfileImage.ImageData.MediumFileName : "/Content/assets/img/empty-avatar.jpg";
+            retVal.Username = post.User.Username;
+            retVal.Headline = post.User.Headline;
+            retVal.AuthorImageUrl = post.User.ProfileImage != null ? post.User.ProfileImage.ImageData.MediumFileName : Constants.DEFAULT_PROFILE_IMAGE;
             retVal.ImageDescription = post.Description;
 
             if (post.Medium is Video)
@@ -48,7 +49,7 @@ namespace CliqFlip.Web.Mvc.Queries
                 }).ToList();
 
 
-            var commonInterests = _userInterestTasks.GetInterestsInCommon(viewingUser, post.UserInterest.User);
+            var commonInterests = _userInterestTasks.GetInterestsInCommon(viewingUser, post.User);
             retVal.CommonInterests = commonInterests.Select(x => new FeedPostOverviewViewModel.CommonInterestViewModel { Name = x.Name }).ToList();
             retVal.HasCommonIntersts = commonInterests.Any();
             return retVal;

@@ -13,6 +13,7 @@ namespace CliqFlip.Domain.Entities
     {
         private readonly Iesi.Collections.Generic.ISet<UserInterest> _interests;
         private readonly Iesi.Collections.Generic.ISet<Conversation> _conversations;
+        private readonly Iesi.Collections.Generic.ISet<Post> _posts;
 
         private UserWebsite _userWebsite;
 
@@ -24,6 +25,11 @@ namespace CliqFlip.Domain.Entities
         public virtual IEnumerable<Conversation> Conversations
         {
             get { return new List<Conversation>(_conversations).AsReadOnly(); }
+        }
+
+        public virtual IEnumerable<Post> Posts
+        {
+            get { return new List<Post>(_posts).AsReadOnly(); }
         }
 
         /*
@@ -64,6 +70,7 @@ namespace CliqFlip.Domain.Entities
         {
             _interests = new HashedSet<UserInterest>();
             _conversations = new HashedSet<Conversation>();
+            _posts = new HashedSet<Post>();
         }
 
         public User(string username, string email, string password, string salt)
@@ -165,23 +172,10 @@ namespace CliqFlip.Domain.Entities
             FacebookUsername = !string.IsNullOrWhiteSpace(fbid) ? fbid.Trim() : null;
             UpdateLastActivity();
         }
-
-        public virtual void MakeInterestPostDefault(int postId)
-        {
-            Post post = GetPost(postId);
-            post.UserInterest.MakePostDefault(post);
-            UpdateLastActivity();
-        }
-
+        
         public virtual Post GetPost(int postId)
         {
-            return _interests.SelectMany(x => x.Posts).First(x => x.Id == postId);
-        }
-
-        public virtual void RemoveInterestPost(Post post)
-        {
-            post.UserInterest.RemoveInterestPost(post);
-            UpdateLastActivity();
+            return _posts.First(x => x.Id == postId);
         }
 
         public virtual UserInterest GetInterest(int interestId)
@@ -248,6 +242,36 @@ namespace CliqFlip.Domain.Entities
         {
             Password = password;
             Salt = salt;
+            UpdateLastActivity();
+        }
+
+        //TODO: consider law of demeter violation - should we be working with user class instead of directly with userInterest??
+        //http://msdn.microsoft.com/en-us/magazine/cc947917.aspx#id0070040 - i think we can skip the law of demeter since we're working
+        //directly with user intersts
+        public virtual void AddPost(Post post, Interest interest)
+        {
+            post.User = this;
+            post.Interest = interest;
+            _posts.Add(post);
+            UpdateLastActivity();
+        }
+
+        public virtual void MakePostDefault(int postId)
+        {
+            throw new NotSupportedException("This is not supported");
+            //TODO is this even needed?
+            var post = _posts.First(x => x.Id == postId);
+            var temp = new List<Post>(_posts);
+            _posts.Clear();
+            _posts.Add(post);
+            temp.Remove(post);
+            _posts.AddAll(temp);
+            UpdateLastActivity();
+        }
+
+        public virtual void RemoveInterestPost(Post post)
+        {
+            _posts.Remove(post);
             UpdateLastActivity();
         }
     }

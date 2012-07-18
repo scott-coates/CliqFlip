@@ -7,5 +7,6 @@ namespace CliqFlip.Infrastructure.Repositories.Interfaces
 {
     public interface IPostRepository : IRepository<Post>
     {
+        IQueryable<Post> GetPostsByInterestTypes(IList<Interest> interests);
     }
 }

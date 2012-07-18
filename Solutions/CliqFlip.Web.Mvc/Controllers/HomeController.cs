@@ -55,7 +55,7 @@ namespace CliqFlip.Web.Mvc.Controllers
                 Username = _principal.Identity.Name,
                 ProfileImageUrl = user.ProfileImage.ImageData.MediumFileName,
                 FriendCount = 0,
-                PostCount = user.Interests.SelectMany(x => x.Posts).Count(),
+                PostCount = user.Posts.Count(),
                 Interests = user.Interests.Select(x => new HomeUserViewModel.InterestViewModel { Name = x.Interest.Name, Id = x.Id })
                 .OrderBy(x => x.Name)
                 .ToList()

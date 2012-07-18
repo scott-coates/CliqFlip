@@ -141,7 +141,7 @@ namespace CliqFlip.Tasks.TaskImpl
                 interestImage,
                 user.Username + "-Interest-Image-" + interest.Interest.Name,
                 imgFileNamesDto =>
-                interest.AddPost(
+                user.AddPost(
                     new Post
                     {
                         Description = description,
@@ -157,7 +157,7 @@ namespace CliqFlip.Tasks.TaskImpl
                                     , imgFileNamesDto.FullFilename),
                                 CreateDate = DateTime.UtcNow
                             }
-                    }));
+                    }, interest.Interest));
         }
 
         public void SaveInterestImage(User user, int userInterestId, string description, string imageUrl)
@@ -209,7 +209,7 @@ namespace CliqFlip.Tasks.TaskImpl
                 }
             }
 
-            interest.AddPost(post);
+            user.AddPost(post, interest.Interest);
         }
 
         public void SaveInterestWebPage(User user, int userInterestId, string linkUrl)
@@ -243,14 +243,14 @@ namespace CliqFlip.Tasks.TaskImpl
                 }
             }
 
-            interest.AddPost(post);
+            user.AddPost(post, interest.Interest);
         }
 
         public void SaveInterestPost(User user, int userInterestId, string description)
         {
             UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
-            var post = new Post { Description = description, CreateDate = DateTime.UtcNow};
-            interest.AddPost(post);
+            var post = new Post { Description = description, CreateDate = DateTime.UtcNow };
+            user.AddPost(post, interest.Interest);
         }
 
         public void SaveWebsite(User user, string siteUrl)
@@ -311,14 +311,6 @@ namespace CliqFlip.Tasks.TaskImpl
         public void RemoveInterest(User user, int interestId)
         {
             UserInterest interest = user.GetInterest(interestId);
-
-            List<Post> posts = interest.Posts.ToList();
-
-            var files = new List<ImageFileNamesDto>(posts.Count * 3);
-
-            files.AddRange(posts.Select(x => GetImageFileNamesDto(x.Medium)));
-
-            DeleteImages(files.ToArray());
 
             user.RemoveInterest(interest);
         }
