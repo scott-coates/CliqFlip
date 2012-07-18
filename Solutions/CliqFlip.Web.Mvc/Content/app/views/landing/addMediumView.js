@@ -10,7 +10,9 @@ var CliqFlip = (function(cliqFlip) {
                 return ["landing-addStatus"];
             }
             else {
-                return ["landing-addMedium"];
+                var template = ["landing-addMedium"];
+                template.push({ MediumType: "landing-add" + arg.MediumType[0].toUpperCase() + arg.MediumType.substring(1) });
+                return template;
             }
         },
         events: {
