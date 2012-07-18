@@ -164,7 +164,7 @@ namespace CliqFlip.Tasks.TaskImpl
         {
             imageUrl = imageUrl.FormatWebAddress();
 
-            //DRY this up..the formatWebAddress, the byte[], the streams (videos, iframe, etc)
+            //TODO: DRY this up..the formatWebAddress, the byte[], the streams (videos, iframe, etc)
             byte[] data = _webContentService.GetDataFromUrl(imageUrl);
 
             string fileName = Path.GetFileName(imageUrl);
