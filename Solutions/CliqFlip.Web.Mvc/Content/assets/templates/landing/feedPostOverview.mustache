@@ -75,10 +75,23 @@
                 <div class="span12 well">
                     <div class="row-fluid">
                         <div class="span12">
-                            <b>
-                                <a href="#">Like</a> -
-                                <a data-bypass="true" href="mailto:support@cliqflip.com">Report</a>
-                            </b>
+                            {{#IsLikedByUser}}
+                            <i class="icon-check"></i>
+                            <small>
+                                Liked it -
+                            </small>
+                            {{/IsLikedByUser}}
+                            {{^IsLikedByUser}}
+                            <a href="#" class="like-interest-button">
+                                <i class="icon-thumbs-up"></i>
+                                <b>Like</b>
+                            </a> -
+                            {{/IsLikedByUser}}
+                            <a data-bypass="true" href="mailto:support@cliqflip.com">
+                                <b>
+                                    Report
+                                </b>
+                            </a>
                         </div>
                     </div>
                     <div id="user-activity"></div>
@@ -101,10 +114,23 @@
         <div class="span8 media-content">
             <div class="row-fluid">
                 <div class="span11">
-                    <b>
-                        <a href="#">Like</a> -
-                        <a data-bypass="true" href="mailto:support@cliqflip.com">Report</a>
-                    </b>
+                    {{#IsLikedByUser}}
+                    <i class="icon-check"></i>
+                    <small>
+                        Liked it -
+                    </small>
+                    {{/IsLikedByUser}}
+                    {{^IsLikedByUser}}
+                    <a href="#" class="like-interest-button">
+                        <i class="icon-thumbs-up"></i>
+                        <b>Like</b>
+                    </a> -
+                    {{/IsLikedByUser}}
+                    <a data-bypass="true" href="mailto:support@cliqflip.com">
+                        <b>
+                            Report
+                        </b>
+                    </a>
                 </div>
                 <div class="span1">
                     <button type="button" class="close" data-dismiss="modal">×</button>

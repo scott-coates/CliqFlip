@@ -4,6 +4,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
 {
 	public class FeedPostOverviewViewModel
 	{
+        public int PostId { get; set; }
         public string Username { get; set; }
         public string Headline { get; set; }
         public string ImageUrl { get; set; }
@@ -12,6 +13,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
         public string AuthorImageUrl { get; set; }
         public string ImageDescription { get; set; }
         public bool HasCommonIntersts { get; set; }
+        public bool IsLikedByUser { get; set; } 
 
         public IList<ActivityViewModel> Activity { get; set; }
         public IList<CommonInterestViewModel> CommonInterests { get; set; }

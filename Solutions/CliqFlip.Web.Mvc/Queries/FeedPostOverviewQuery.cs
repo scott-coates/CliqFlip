@@ -23,10 +23,12 @@ namespace CliqFlip.Web.Mvc.Queries
         {
             var retVal = new FeedPostOverviewViewModel();
             var post = _postTasks.Get(postId);
+            retVal.PostId = post.Id;
             retVal.Username = post.User.Username;
             retVal.Headline = post.User.Headline;
             retVal.AuthorImageUrl = post.User.ProfileImage != null ? post.User.ProfileImage.ImageData.MediumFileName : Constants.DEFAULT_PROFILE_IMAGE;
             retVal.ImageDescription = post.Description;
+            retVal.IsLikedByUser = post.Likes.Any(x => x.User == viewingUser);
 
             if (post.Medium is Video)
 	        {

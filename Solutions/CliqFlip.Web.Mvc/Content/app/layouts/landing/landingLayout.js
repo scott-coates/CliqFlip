@@ -4,7 +4,7 @@ var CliqFlip = (function(cliqFlip) {
         template: "landing-layout",
         className: "landing-layout container-fluid gray-rounded-border",
         regions: {
-            leftColumnRegion: "#left-column",
+            userRegion: "#user-column",
             contentAreaRegion: "#content-area"
         },
         events: {

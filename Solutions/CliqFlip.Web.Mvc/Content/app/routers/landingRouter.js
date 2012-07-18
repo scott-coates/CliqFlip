@@ -22,7 +22,7 @@ var CliqFlip = (function(cliqFlip) {
                 var userLandingSummaryModel = new cliqFlip.App.Mvc.Models.UserLandingSummary(cliqFlip.App.UserData);
 
                 var userLandingSummaryView = new cliqFlip.App.Mvc.Views.UserLandingSummaryView({ model: userLandingSummaryModel });
-                landingLayout.leftColumnRegion.show(userLandingSummaryView);
+                landingLayout.userRegion.show(userLandingSummaryView);
 
                 var feedList = new cliqFlip.App.Mvc.Collections.FeedList();
 

@@ -3,6 +3,9 @@ var CliqFlip = (function(cliqFlip) {
     cliqFlip.App.Mvc.Layouts.FeedPostOverviewLayout = Backbone.Marionette.Layout.extend({
         initialize: function() {
             this.bindTo(cliqFlip.App.Mvc.vent, "comment:posted:success", this.clearComment); //bindTo will automatically be unbound on Close
+            this.bindTo(this.model, "sync", function() {
+                this.render();
+            });
         },
         template: function(model) {
             var templates = ["landing-feedPostOverview"];
@@ -24,7 +27,8 @@ var CliqFlip = (function(cliqFlip) {
             contentRegion: "#post-content-region"
         },
         events: {
-            "click #post-overview-comment-button": "addComment"
+            "click #post-overview-comment-button": "addComment",
+            "click .like-interest-button": "likeInterest"
         },
         addComment: function() {
             var commentElem = $("#post-overview-comment-content", this.$el);
@@ -34,6 +38,9 @@ var CliqFlip = (function(cliqFlip) {
         clearComment: function() {
             var commentElem = $("#post-overview-comment-content", this.$el);
             commentElem.val('');
+        },
+        likeInterest: function() {
+            this.model.like();
         }
     });
 
