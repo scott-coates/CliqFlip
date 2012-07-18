@@ -14,7 +14,8 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
     public class __634768408583037511_AddPostsTable : Migration
     {
         private const String FK_Posts_Media = "FK_Posts_Media";
-        private const String FK_Posts_UserInterests = "FK_Posts_UserInterests";
+        private const String FK_Posts_Users = "FK_Posts_Users";
+        private const String FK_Posts_Interests = "FK_Posts_Interests";
         private const String FK_Media_UsersInterests = "FK_Media_UsersInterests";
 
         public override void Up()
@@ -24,11 +25,12 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
                 "Posts", new[]
                 {
                     new Column("Id", DbType.Int32, ColumnProperty.PrimaryKeyWithIdentity),
-                    new Column("UserInterestId", DbType.Int32, ColumnProperty.NotNull),
+                    new Column("UserId", DbType.Int32, ColumnProperty.NotNull),
+                    new Column("InterestId", DbType.Int32, ColumnProperty.NotNull),
                     new Column("InterestPostOrder", DbType.Int32, ColumnProperty.NotNull),
                     new Column("Description", DbType.String, 1024, ColumnProperty.Null),
                     new Column("CreateDate", DbType.DateTime, ColumnProperty.NotNull),
-                    new Column("MediumId", DbType.Int32, ColumnProperty.NotNull)
+                    new Column("MediumId", DbType.Int32, ColumnProperty.Null)
                 });
 
             #region AddPostsFromMedia
@@ -38,11 +40,13 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
 INSERT INTO [Posts]
            ([InterestPostOrder]
            ,[Description]
-           ,[UserInterestId]
+           ,[UserId]
+           ,[InterestId]
            ,[CreateDate]
            ,[MediumId])
-     SELECT InterestMediumOrder, Description, UserInterestId, CreateDate, Id
-     FROM Media
+     SELECT m.InterestMediumOrder, m.Description, ui.UserId, ui.InterestId, m.CreateDate, m.Id
+     FROM Media m
+     INNER JOIN UserInterests ui on m.UserInterestId = ui.Id
      WHERE UserInterestId IS NOT NULL";
 
             #endregion
@@ -56,12 +60,14 @@ INSERT INTO [Posts]
             Database.RemoveColumn("Media", "UserInterestId");
 
             Database.AddForeignKey(FK_Posts_Media, "Posts", "MediumId", "Media", "Id");
-            Database.AddForeignKey(FK_Posts_UserInterests, "Posts", "UserInterestId", "UserInterests", "Id");
+            Database.AddForeignKey(FK_Posts_Users, "Posts", "UserId", "Users", "Id");
+            Database.AddForeignKey(FK_Posts_Interests, "Posts", "InterestId", "Interests", "Id");
         }
 
         public override void Down()
         {
-            Database.RemoveForeignKey("Posts", FK_Posts_UserInterests);
+            Database.RemoveForeignKey("Posts", FK_Posts_Users);
+            Database.RemoveForeignKey("Posts", FK_Posts_Media);
             Database.RemoveForeignKey("Posts", FK_Posts_Media);
 
             Database.AddColumn("Media", "UserInterestId", DbType.Int32, ColumnProperty.Null);
@@ -73,9 +79,10 @@ INSERT INTO [Posts]
             const string addMediaFromPosts =
                 @"
 UPDATE m
-     SET m.UserInterestId = p.UserInterestId, m.InterestMediumOrder = p.InterestPostOrder, m.Description = p.Description
+     SET m.UserInterestId = ui.Id, m.InterestMediumOrder = p.InterestPostOrder, m.Description = p.Description
      FROM Media m 
-     INNER JOIN Posts p on m.Id = p.MediumId";
+     INNER JOIN Posts p on m.Id = p.MediumId
+     INNER JOIN UserInterests ui on p.UserId = ui.UserId AND p.InterestId = ui.InterestId";
 
             #endregion
 

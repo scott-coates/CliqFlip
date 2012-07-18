@@ -30,16 +30,16 @@ namespace CliqFlip.Infrastructure.Migrator.Migrations
                     new Column("CreateDate", DbType.DateTime, ColumnProperty.NotNull)
                 });
 
-            Database.AddForeignKey(FK_Comments_Posts, "Likes", "PostId", "Posts", "Id");
-            Database.AddForeignKey(FK_Comments_Users, "Likes", "UserId", "Users", "Id");
+            Database.AddForeignKey(FK_Comments_Posts, "Comments", "PostId", "Posts", "Id");
+            Database.AddForeignKey(FK_Comments_Users, "Comments", "UserId", "Users", "Id");
         }
 
         public override void Down()
         {
-            Database.RemoveForeignKey("Likes", FK_Comments_Posts);
-            Database.RemoveForeignKey("Likes", FK_Comments_Users);
+            Database.RemoveForeignKey("Comments", FK_Comments_Posts);
+            Database.RemoveForeignKey("Comments", FK_Comments_Users);
 
-            Database.RemoveTable("Likes");
+            Database.RemoveTable("Comments");
         }
     }
 }
