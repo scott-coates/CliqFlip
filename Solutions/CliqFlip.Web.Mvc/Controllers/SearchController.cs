@@ -6,7 +6,6 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using CliqFlip.Domain.Contracts.Tasks;
-
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Dtos.Post;
@@ -33,7 +32,13 @@ namespace CliqFlip.Web.Mvc.Controllers
         private readonly IUserTasks _userTasks;
         private readonly IPostTasks _postTasks;
 
-        public SearchController(IUsersByInterestsQuery usersByInterestsQuery, IInterestTasks interestTasks, IInterestFeedQuery interestFeedQuery, IPrincipal principal, IFeedPostOverviewQuery feedPostOverviewQuery, IUserTasks userTasks, IPostTasks postTasks)
+        public SearchController(IUsersByInterestsQuery usersByInterestsQuery,
+                                IInterestTasks interestTasks,
+                                IInterestFeedQuery interestFeedQuery,
+                                IPrincipal principal,
+                                IFeedPostOverviewQuery feedPostOverviewQuery,
+                                IUserTasks userTasks,
+                                IPostTasks postTasks)
         {
             _usersByInterestsQuery = usersByInterestsQuery;
             _interestTasks = interestTasks;
@@ -51,7 +56,6 @@ namespace CliqFlip.Web.Mvc.Controllers
             var viewModel = _interestFeedQuery.GetUsersByInterests(_principal.Identity.Name, page, Url);
             return new JsonNetResult(viewModel.Posts);
         }
-
 
         [Transaction]
         [Authorize]
@@ -86,48 +90,21 @@ namespace CliqFlip.Web.Mvc.Controllers
         {
             var user = _userTasks.GetUser(_principal.Identity.Name);
 
-            var bytearray = Convert.FromBase64String(saveMediumViewModel.FileData.Substring(saveMediumViewModel.FileData.IndexOf(",") + 1));
-            _userTasks.SaveInterestImage(user, new FileStreamDto(new MemoryStream(bytearray), saveMediumViewModel.FileName), saveMediumViewModel.InterestId, saveMediumViewModel.Description);
-            byte[] bytes = new byte[saveMediumViewModel.FileData.Length * sizeof(char)]; //http://stackoverflow.com/questions/472906/net-string-to-byte-array-c-sharp
-            System.Buffer.BlockCopy(saveMediumViewModel.FileData.ToCharArray(), 0, bytes, 0, bytes.Length);
-            
+            //thanks...i'm dumb http://forums.asp.net/post/4412044.aspx
+            var removeDataPrefix = saveMediumViewModel.FileData.Substring(saveMediumViewModel.FileData.IndexOf(",", StringComparison.Ordinal) + 1);
+            var bytearray = Convert.FromBase64String(removeDataPrefix);
+
+            using (var memoryStream = new MemoryStream(bytearray))
+            {
+                _userTasks.SaveInterestImage(
+                    user,
+                    new FileStreamDto(memoryStream, saveMediumViewModel.FileName),
+                    saveMediumViewModel.InterestId,
+                    saveMediumViewModel.Description);
+            }
+
             return new JsonNetResult();
         }
-        //[Authorize]
-        //[HttpPost]
-        //[Transaction]
-        //public ActionResult SaveInterestImage(UserSaveInterestImageViewModel userSaveInterestImageViewModel)
-        //{
-        //    User user = _userTasks.GetUser(_principal.Identity.Name);
-        //    if (userSaveInterestImageViewModel.InterestImage == null) //TODO: use required/not-null attribute instead of checking for null
-        //    {
-        //        ViewData.ModelState.AddModelError("Image", "You need to provide a file first... or don't. Have it your way.");
-        //        RouteData.Values["action"] = "Interests";
-        //        return Interests(_principal.Identity.Name);
-        //    }
-        //    else
-        //    {
-        //        try
-        //        {
-        //            var fileStreamDto = new FileStreamDto(userSaveInterestImageViewModel.InterestImage.InputStream, userSaveInterestImageViewModel.InterestImage.FileName);
-        //            _userTasks.SaveInterestImage(user, fileStreamDto, userSaveInterestImageViewModel.UserInterestId, userSaveInterestImageViewModel.ImageDescription);
-        //        }
-        //        catch (RulesException rex)
-        //        {
-        //            //TODO: Implement PRG pattern for post forms
-        //            //TODO: Log These exceptions in elmah
-        //            rex.AddModelStateErrors(ModelState);
-        //            RouteData.Values["action"] = "Interests";
-        //            return Interests(_principal.Identity.Name);
-        //        }
-        //        finally
-        //        {
-        //            userSaveInterestImageViewModel.InterestImage.InputStream.Dispose();
-        //        }
-        //    }
-
-        //    return RedirectToAction("Interests");
-        //}
 
         [Authorize]
         [Transaction]
@@ -155,9 +132,9 @@ namespace CliqFlip.Web.Mvc.Controllers
             var retVal = new JsonNetResult(matchingKeywords)
             {
                 SerializerSettings =
-                {
-                    NullValueHandling = NullValueHandling.Include
-                }
+                    {
+                        NullValueHandling = NullValueHandling.Include
+                    }
             };
 
             return retVal;
@@ -175,13 +152,14 @@ namespace CliqFlip.Web.Mvc.Controllers
                 TagCloudInterests = _interestTasks
                     .GetMostPopularInterests()
                     .OrderBy(x => x.Name)
-                    .Select(x => new InterestSearchViewModel.TagCloudInterestsViewModel
+                    .Select(
+                        x => new InterestSearchViewModel.TagCloudInterestsViewModel
 
-                    {
-                        Name = x.Name,
-                        Slug = x.Slug,
-                        Weight = x.Count
-                    }).ToList()
+                        {
+                            Name = x.Name,
+                            Slug = x.Slug,
+                            Weight = x.Count
+                        }).ToList()
             };
 
             return PartialView(viewModel);

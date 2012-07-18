@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CliqFlip.Web.Mvc.ViewModels.User
 {
-	public class UserSaveMediumViewModel
-	{
+    public class UserSaveMediumViewModel
+    {
+        [Range(0, int.MaxValue)]
         public int InterestId { get; set; }
-		public string Description { get; set; }
+
+        public string Description { get; set; }
+
+        [Required]
         public string FileData { get; set; }
+
+        [Required]
         public string FileName { get; set; }
-		public HttpPostedFileBase InterestImage { get; set; }
-	}
+    }
 }
