@@ -246,6 +246,13 @@ namespace CliqFlip.Tasks.TaskImpl
             interest.AddPost(post);
         }
 
+        public void SaveInterestPost(User user, int userInterestId, string description)
+        {
+            UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
+            var post = new Post { Description = description, CreateDate = DateTime.UtcNow};
+            interest.AddPost(post);
+        }
+
         public void SaveWebsite(User user, string siteUrl)
         {
             if (string.IsNullOrWhiteSpace(siteUrl)) throw new ArgumentNullException("siteUrl");

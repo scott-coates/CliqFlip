@@ -125,6 +125,7 @@ namespace CliqFlip.Web.Mvc.Controllers
                     _userTasks.SaveInterestWebPage(user, savePostViewModel.InterestId, savePostViewModel.PostData);
                     break;
                 case "status":
+                    _userTasks.SaveInterestPost(user, savePostViewModel.InterestId, savePostViewModel.Description);
                     break;
                 default :
                     throw new HttpException((int)HttpStatusCode.BadRequest, "A medium type is required");

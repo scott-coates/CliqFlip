@@ -3,6 +3,22 @@
     <h3>Provide a status update:</h3>
 </div>
 <div class="modal-body">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="btn-group">
+                <a class="btn dropdown-toggle btn-mini" data-toggle="dropdown" href="#">
+                    <span id="selected-interest-type">Select Interest</span>
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    {{#Interests}}
+                    <li>
+                        <a href="#" data-interest-id="{{Id}}">{{Name}}</a>
+                    </li>
+                    {{/Interests}}
+                </ul>
+            </div>
+        </div>
     <textarea id="post-description" placeholder="Description"></textarea>
 </div>
 <div class="alert alert-error hide">
