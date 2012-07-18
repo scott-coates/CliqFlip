@@ -90,17 +90,33 @@ namespace CliqFlip.Web.Mvc.Controllers
         {
             var user = _userTasks.GetUser(_principal.Identity.Name);
 
-            //thanks...i'm dumb http://forums.asp.net/post/4412044.aspx
-            var removeDataPrefix = saveMediumViewModel.FileData.Substring(saveMediumViewModel.FileData.IndexOf(",", StringComparison.Ordinal) + 1);
-            var bytearray = Convert.FromBase64String(removeDataPrefix);
+            var mediumType = saveMediumViewModel.MediumType.ToLower();
 
-            using (var memoryStream = new MemoryStream(bytearray))
+            switch (mediumType)
             {
-                _userTasks.SaveInterestImage(
-                    user,
-                    new FileStreamDto(memoryStream, saveMediumViewModel.FileName),
-                    saveMediumViewModel.InterestId,
-                    saveMediumViewModel.Description);
+                case "photo":
+                    //thanks...i'm dumb http://forums.asp.net/post/4412044.aspx
+
+                    var removeDataPrefix = saveMediumViewModel.MediumData.Substring(saveMediumViewModel.MediumData.IndexOf(",", StringComparison.Ordinal) + 1);
+                    var bytearray = Convert.FromBase64String(removeDataPrefix);
+
+                    using (var memoryStream = new MemoryStream(bytearray))
+                    {
+                        _userTasks.SaveInterestImage(
+                            user,
+                            new FileStreamDto(memoryStream, saveMediumViewModel.FileName),
+                            saveMediumViewModel.InterestId,
+                            saveMediumViewModel.Description);
+                    }
+                    break;
+                case "video":
+                    _userTasks.SaveInterestVideo(user, saveMediumViewModel.InterestId, saveMediumViewModel.MediumData);
+                    break;
+                case "link":
+                    _userTasks.SaveInterestWebPage(user, saveMediumViewModel.InterestId, saveMediumViewModel.MediumData);
+                    break;
+                case "status":
+                    break;
             }
 
             return new JsonNetResult();

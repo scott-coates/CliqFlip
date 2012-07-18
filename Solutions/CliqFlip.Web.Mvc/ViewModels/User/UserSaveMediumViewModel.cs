@@ -10,9 +10,11 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
         public string Description { get; set; }
 
         [Required]
-        public string FileData { get; set; }
+        public string MediumData { get; set; }
 
         [Required]
+        public string MediumType { get; set; }
+
         public string FileName { get; set; }
     }
 }
