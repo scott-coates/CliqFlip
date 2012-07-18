@@ -126,15 +126,14 @@ namespace CliqFlip.Infrastructure.Images
 
 			string extension = Path.GetExtension(fileName);
 
-			if (string.IsNullOrWhiteSpace(extension))
-				throw new RulesException("image"
-				                         , "This file does not contain an extension. Uploaded images require extensions. Ex: myphoto.jpg");
-
-			extension = extension.Substring(1); //get rid of '.'
-
-			if (_acceptedExtensions.All(x => x != extension.ToLower().Trim()))
+			if (!string.IsNullOrWhiteSpace(extension))
 			{
-				throw new RulesException("image", "This is not a valid image type");
+			    extension = extension.Substring(1); //get rid of '.'
+
+			    if (_acceptedExtensions.All(x => x != extension.ToLower().Trim()))
+			    {
+			        throw new RulesException("image", "This is not a valid image type");
+			    }
 			}
 		}
 
