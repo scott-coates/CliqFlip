@@ -2,12 +2,12 @@
 
 var CliqFlip = (function(cliqFlip) {
 
-    cliqFlip.App.Mvc.Models.AddMedium = Backbone.Model.extend({
-        urlRoot: '/search/addmedium',
+    cliqFlip.App.Mvc.Models.AddPost = Backbone.Model.extend({
+        urlRoot: '/search/addpost',
         defaults: {
-            MediumData: undefined
+            PostData: undefined
         },
-        saveMedium: function(options) {
+        savePost: function(options) {
             this.save(this.attributes, options);
         },
         validation: {
@@ -15,12 +15,14 @@ var CliqFlip = (function(cliqFlip) {
                 required: true,
                 msg: 'Interest is required'
             },
-            MediumData: {
-                required: true,
+            PostData: {
+                required: function() {
+                    return this.get('PostType') !== 'status';
+                },
                 msg: 'A source is required'
             }
         }
     });
 
     return cliqFlip;
-}(CliqFlip));
+} (CliqFlip));

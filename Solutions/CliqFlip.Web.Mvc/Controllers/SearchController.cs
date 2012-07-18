@@ -88,41 +88,41 @@ namespace CliqFlip.Web.Mvc.Controllers
         [Transaction]
         [Authorize]
         [HttpPost]
-        public JsonNetResult AddMedium(UserSaveMediumViewModel saveMediumViewModel)
+        public JsonNetResult AddPost(UserSavePostViewModel savePostViewModel)
         {
             var user = _userTasks.GetUser(_principal.Identity.Name);
 
-            var mediumType = saveMediumViewModel.MediumType.ToLower();
+            var mediumType = savePostViewModel.PostType.ToLower();
 
             switch (mediumType)
             {
                 case "photo":
                     //thanks...i'm dumb http://forums.asp.net/post/4412044.aspx
 
-                    if (string.IsNullOrEmpty(saveMediumViewModel.FileName))
+                    if (string.IsNullOrEmpty(savePostViewModel.FileName))
                     {
-                        _userTasks.SaveInterestImage(user, saveMediumViewModel.InterestId, saveMediumViewModel.Description, saveMediumViewModel.MediumData);
+                        _userTasks.SaveInterestImage(user, savePostViewModel.InterestId, savePostViewModel.Description, savePostViewModel.PostData);
                     }
                     else
                     {
-                        var removeDataPrefix = saveMediumViewModel.MediumData.Substring(saveMediumViewModel.MediumData.IndexOf(",", StringComparison.Ordinal) + 1);
+                        var removeDataPrefix = savePostViewModel.PostData.Substring(savePostViewModel.PostData.IndexOf(",", StringComparison.Ordinal) + 1);
                         var bytearray = Convert.FromBase64String(removeDataPrefix);
 
                         using (var memoryStream = new MemoryStream(bytearray))
                         {
                             _userTasks.SaveInterestImage(
                                 user,
-                                new FileStreamDto(memoryStream, saveMediumViewModel.FileName),
-                                saveMediumViewModel.InterestId,
-                                saveMediumViewModel.Description);
+                                new FileStreamDto(memoryStream, savePostViewModel.FileName),
+                                savePostViewModel.InterestId,
+                                savePostViewModel.Description);
                         }
                     }
                     break;
                 case "video":
-                    _userTasks.SaveInterestVideo(user, saveMediumViewModel.InterestId, saveMediumViewModel.MediumData);
+                    _userTasks.SaveInterestVideo(user, savePostViewModel.InterestId, savePostViewModel.PostData);
                     break;
                 case "link":
-                    _userTasks.SaveInterestWebPage(user, saveMediumViewModel.InterestId, saveMediumViewModel.MediumData);
+                    _userTasks.SaveInterestWebPage(user, savePostViewModel.InterestId, savePostViewModel.PostData);
                     break;
                 case "status":
                     break;

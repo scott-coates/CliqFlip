@@ -252,7 +252,7 @@
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
     <Compile Include="ViewModels\Search\InterestSearchViewModel.cs" />
     <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
-    <Compile Include="ViewModels\User\UserSaveMediumViewModel.cs" />
+    <Compile Include="ViewModels\User\UserSavePostViewModel.cs" />
     <Compile Include="ViewModels\User\UserAccountViewModel.cs" />
     <Compile Include="ViewModels\User\UserCreatePostFromUrlViewModel.cs" />
     <Compile Include="ViewModels\User\UserSaveInterestWebPageViewModel.cs" />
@@ -283,11 +283,11 @@
     <Content Include="Content\app\bundle.txt" />
     <Content Include="Content\app\layouts\header\headerLayout.js" />
     <Content Include="Content\app\layouts\landing\feedPostOverviewLayout.js" />
-    <Content Include="Content\app\models\landing\addMedium.js" />
+    <Content Include="Content\app\models\landing\addPost.js" />
     <Content Include="Content\app\models\landing\feedPostOverviewUserActivity.js" />
     <Content Include="Content\app\models\landing\feedPostOverview.js" />
     <Content Include="Content\app\models\header\header.js" />
-    <Content Include="Content\app\views\landing\addMediumView.js" />
+    <Content Include="Content\app\views\landing\addPostView.js" />
     <Content Include="Content\app\views\landing\postOverviewUserAcitivtyListView.js" />
     <Content Include="Content\app\views\header\SearchView.js" />
     <Content Include="Content\app\views\landing\postOverviewUserAcitivtyView.js" />
@@ -869,7 +869,7 @@
     <Content Include="Content\assets\templates\helpers\alert.mustache">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\assets\templates\landing\addMedium.mustache">
+    <Content Include="Content\assets\templates\landing\addPost.mustache">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\assets\templates\header\layout.mustache" />

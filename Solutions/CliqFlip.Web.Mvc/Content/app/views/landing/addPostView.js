@@ -1,47 +1,47 @@
 var CliqFlip = (function(cliqFlip) {
 
-    cliqFlip.App.Mvc.Views.AddMediumView = Backbone.Marionette.ItemView.extend({
+    cliqFlip.App.Mvc.Views.AddPostView = Backbone.Marionette.ItemView.extend({
         initialize: function() {
             Backbone.Validation.bind(this);
         },
         className: "add-media",
         template: function(arg) {
-            if (arg.MediumType === 'status') {
+            if(arg.PostType === 'status') {
                 return ["landing-addStatus"];
             }
             else {
-                var template = ["landing-addMedium"];
-                template.push({ MediumType: "landing-add" + arg.MediumType[0].toUpperCase() + arg.MediumType.substring(1) });
+                var template = ["landing-addPost"];
+                template.push({ PostType: "landing-add" + arg.PostType[0].toUpperCase() + arg.PostType.substring(1) });
                 return template;
             }
         },
         events: {
-            "click .btn.btn-primary:not(.disabled)": "saveMedium",
+            "click .btn.btn-primary:not(.disabled)": "savePost",
             "click .dropdown-menu a": "selectDropdownItem",
             "change #file-upload": "uploadFile"
         },
-        saveMedium: function(e) {
-            var description = this.$("#medium-description").val();
-            var url = this.$("#medium-url").val();
+        savePost: function(e) {
+            var description = this.$("#post-description").val();
+            var url = this.$("#post-url").val();
             var interestId = this.$("#selected-interest-type").data('interestId');
             var that = this;
 
             $(e.target).addClass('disabled');
-            
+
             this.model.set({
                 Description: description,
                 InterestId: interestId
             }, { silent: true });
 
-            if (url) {
-                this.model.set("MediumData", url, { silent: true });
+            if(url) {
+                this.model.set("PostData", url, { silent: true });
             }
 
-            this.model.saveMedium(
+            this.model.savePost(
                 {
                     success: function() {
-                        cliqFlip.App.Mvc.Views.Helpers.alert({ type: 'success', header: 'success', message: that.model.get('MediumType') + ' added' });
-                        that.trigger('medium:added');
+                        cliqFlip.App.Mvc.Views.Helpers.alert({ type: 'success', header: 'success', message: that.model.get('PostType') + ' added' });
+                        that.trigger('post:added');
                     },
                     error: function(model, error) {
                         $(e.target).removeClass('disabled');
@@ -60,11 +60,11 @@ var CliqFlip = (function(cliqFlip) {
             that.model.set('FileName', file.name, { silent: true });
             var fileReader = new window.FileReader();
             fileReader.onload = function(theFile) {
-                that.model.set('MediumData', theFile.target.result, { silent: true });
+                that.model.set('PostData', theFile.target.result, { silent: true });
             };
             fileReader.readAsDataURL(file);
         }
     });
 
     return cliqFlip;
-}(CliqFlip));
+} (CliqFlip));

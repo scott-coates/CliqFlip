@@ -11,11 +11,11 @@ var CliqFlip = (function(cliqFlip) {
             "click a[class*='user-interest-add']": "addMedium"
         },
         addMedium: function(e) {
-            var addMediumModel = new cliqFlip.App.Mvc.Models.AddMedium(cliqFlip.App.UserData);
-            addMediumModel.set('MediumType', $(e.target).data('mediumType'));
-            var mediumView = new cliqFlip.App.Mvc.Views.AddMediumView({ model: addMediumModel });
+            var addMediumModel = new cliqFlip.App.Mvc.Models.AddPost(cliqFlip.App.UserData);
+            addMediumModel.set('PostType', $(e.target).data('postType'));
+            var mediumView = new cliqFlip.App.Mvc.Views.AddPostView({ model: addMediumModel });
             cliqFlip.App.Mvc.modalRegion.show(mediumView);
-            mediumView.on("medium:added", function() {
+            mediumView.on("post:added", function() {
                 cliqFlip.App.Mvc.modalRegion.hideModal();
             });
 

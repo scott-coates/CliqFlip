@@ -2,7 +2,7 @@
 
 namespace CliqFlip.Web.Mvc.ViewModels.User
 {
-    public class UserSaveMediumViewModel
+    public class UserSavePostViewModel
     {
         [Range(0, int.MaxValue)]
         public int InterestId { get; set; }
@@ -10,10 +10,10 @@ namespace CliqFlip.Web.Mvc.ViewModels.User
         public string Description { get; set; }
 
         [Required]
-        public string MediumData { get; set; }
+        public string PostData { get; set; }
 
         [Required]
-        public string MediumType { get; set; }
+        public string PostType { get; set; }
 
         public string FileName { get; set; }
     }
