@@ -56,7 +56,7 @@ var CliqFlip = (function(cliqFlip) {
             fileReader.onload = function(theFile) {
                 that.model.set('FileData', theFile.target.result, { silent: true });
             };
-            fileReader.readAsBinaryString(file);
+            fileReader.readAsDataURL(file);
         }
     });
 

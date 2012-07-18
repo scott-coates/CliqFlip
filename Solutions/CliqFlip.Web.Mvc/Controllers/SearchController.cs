@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Principal;
+using System.Text;
 using System.Threading;
 using CliqFlip.Domain.Contracts.Tasks;
 
 using CliqFlip.Domain.Dtos.Interest;
+using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Dtos.Post;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.Security.Attributes;
@@ -81,6 +84,10 @@ namespace CliqFlip.Web.Mvc.Controllers
         [HttpPost]
         public JsonNetResult AddMedium(UserSaveMediumViewModel saveMediumViewModel)
         {
+            var user = _userTasks.GetUser(_principal.Identity.Name);
+
+            var bytearray = Convert.FromBase64String(saveMediumViewModel.FileData.Substring(saveMediumViewModel.FileData.IndexOf(",") + 1));
+            _userTasks.SaveInterestImage(user, new FileStreamDto(new MemoryStream(bytearray), saveMediumViewModel.FileName), saveMediumViewModel.InterestId, saveMediumViewModel.Description);
             byte[] bytes = new byte[saveMediumViewModel.FileData.Length * sizeof(char)]; //http://stackoverflow.com/questions/472906/net-string-to-byte-array-c-sharp
             System.Buffer.BlockCopy(saveMediumViewModel.FileData.ToCharArray(), 0, bytes, 0, bytes.Length);
             
