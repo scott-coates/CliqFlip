@@ -111,8 +111,6 @@ namespace CliqFlip.Web.Mvc
 
 			ModelBinders.Binders.DefaultBinder = new SharpModelBinder();
 
-			ModelValidatorProviders.Providers.Add(new ClientDataTypeModelValidatorProvider());
-
 			InitializeServiceLocator();
 
 			AreaRegistration.RegisterAllAreas();
