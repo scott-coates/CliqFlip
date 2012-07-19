@@ -24,9 +24,11 @@ var CliqFlip = (function(cliqFlip) {
             this.isLoading = true;
             this.collection.fetch({
                 add: true,
-                success: function(models) {
+                success: function() {
                     that.isLoading = false;
-                    that.$el.masonry('reload');
+                    that.$el.imagesLoaded(function() {
+                        that.$el.masonry('reload');
+                    });
                 }
             });
         },
@@ -36,7 +38,7 @@ var CliqFlip = (function(cliqFlip) {
                     content: function() {
                         return "Hello " + $(this).data('userid');
                     },
-                    delay:{hide:1000, show:250}
+                    delay: { hide: 1000, show: 250 }
                 });
 
             var that = this;
