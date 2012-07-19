@@ -2,7 +2,7 @@
 using System.Security.Principal;
 using System.Web;
 using System.Web.Configuration;
-using Castle.Facilities.FactorySupport;
+using Castle.Facilities.TypedFactory;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using CliqFlip.Domain.Common;
@@ -31,7 +31,7 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
 
 		private static void AddFacilitiesTo(IWindsorContainer container)
 		{
-			container.AddFacility<FactorySupportFacility>();
+            container.AddFacility<TypedFactoryFacility>();
 		}
 
 		private static void AddUserTo(IWindsorContainer container)
@@ -75,11 +75,6 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
 
 		private static void AddGenericRepositoriesTo(IWindsorContainer container)
 		{
-			container.Register(
-				Component.For(typeof (IQuery<>))
-					.ImplementedBy(typeof (NHibernateQuery<>))
-					.Named("NHibernateQuery"));
-
 			container.Register(
 				Component.For(typeof (IEntityDuplicateChecker))
 					.ImplementedBy(typeof (EntityDuplicateChecker))
