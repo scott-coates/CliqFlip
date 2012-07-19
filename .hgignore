@@ -9,6 +9,7 @@ TestResults
 bin
 obj
 Bin
+Packages
 install
 Backup
 glob:.svn
