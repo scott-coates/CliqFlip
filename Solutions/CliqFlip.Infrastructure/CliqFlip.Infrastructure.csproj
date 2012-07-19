@@ -215,7 +215,6 @@
     <Compile Include="NHibernate\Maps\AutomappingConfiguration.cs" />
     <Compile Include="NHibernate\Maps\Conventions\ComponentConvention.cs" />
     <Compile Include="NHibernate\Maps\Conventions\ReferenceConvention.cs" />
-    <Compile Include="NHibernate\Maps\Conventions\PropertyConvention.cs" />
     <Compile Include="NHibernate\Maps\Conventions\CustomForeignKeyConvention.cs" />
     <Compile Include="NHibernate\Maps\Conventions\HasManyConvention.cs" />
     <Compile Include="NHibernate\Maps\Conventions\PrimaryKeyConvention.cs" />

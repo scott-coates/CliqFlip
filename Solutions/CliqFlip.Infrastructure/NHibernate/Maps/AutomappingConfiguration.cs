@@ -34,5 +34,10 @@ namespace CliqFlip.Infrastructure.NHibernate.Maps
 		{
 			return type.BaseType == typeof (ValueObject);
 		}
+
+        public override string GetComponentColumnPrefix(Member member)
+        {
+            return ""; //Don't do things like Address_City table names
+        }
 	}
 }
