@@ -1,7 +1,7 @@
-﻿using Castle.Windsor;
+﻿
+
+using Castle.Windsor;
 using CliqFlip.Domain.Entities;
-using CliqFlip.Infrastructure.Email;
-using CliqFlip.Infrastructure.Email.Interfaces;
 using CliqFlip.Infrastructure.Location.Interfaces;
 using CliqFlip.Infrastructure.NHibernate.Maps;
 using CliqFlip.Web.Mvc.CastleWindsor;
@@ -22,7 +22,7 @@ namespace CliqFlip.Tests.Integration.Location
 		[SetUp]
 		public void Setup()
 		{
-			_majorLocationRepo = new LinqRepository<MajorLocation>();
+			_majorLocationRepo = new NHibernateRepository<MajorLocation>();
 			_locationService = new YahooGeoLocationService(_majorLocationRepo);
 
 			IWindsorContainer container = new WindsorContainer();
