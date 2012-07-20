@@ -8,7 +8,7 @@
 		<MSBuildExtensionPack>..\..\ReferencedAssemblies\MSBuild\MSBuild.ExtensionPack.tasks</MSBuildExtensionPack>
 		<ExtensionTasksPath>..\..\ReferencedAssemblies\MSBuild\</ExtensionTasksPath>
 		<WebConfigDir>..\CliqFlip.Web.Mvc\Configuration</WebConfigDir>
-		<MigrationsConfigDir>..\CliqFlip.Migrations\Configuration</MigrationsConfigDir>
+		<MigrationConfigDir>..\CliqFlip.Migrations\Configuration</MigrationConfigDir>
 	</PropertyGroup>
 
 	<Import Project="$(MSBuildExtensionPack)"/>
@@ -18,12 +18,12 @@
 
 	<ItemGroup>
 		<WebConfigFiles Include="$(WebConfigDir)\Beta\*.*"/>
-		<InfraConfigFiles Include="$(MigrationsConfigDir)\Beta\*.*"/>
+		<MigrationConfigFiles Include="$(MigrationConfigDir)\Beta\*.*"/>
 	</ItemGroup>
 
 
 	<Target Name="Build">
 		<Copy SourceFiles="@(WebConfigFiles)" DestinationFolder="$(WebConfigDir)"/>
-		<Copy SourceFiles="@(InfraConfigFiles)" DestinationFolder="$(MigrationsConfigDir)"/>
+		<Copy SourceFiles="@(MigrationConfigFiles)" DestinationFolder="$(MigrationConfigDir)"/>
 	</Target>
 </Project>
