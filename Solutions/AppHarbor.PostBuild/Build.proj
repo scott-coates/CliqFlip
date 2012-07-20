@@ -30,7 +30,7 @@
 	</Choose>
 
 	<Target Name="Build">
-		<MSBuild Projects="..\CliqFlip.Infrastructure\Migrator\CliqFlip.targets" Targets="Migrate" Properties="OutDir=$(OutputProperDir)"/>
+		<MSBuild Projects="..\CliqFlip.Migrations\Migrator\CliqFlip.targets" Targets="Migrate" Properties="OutDir=$(OutputProperDir)"/>
 
 		<!--AppSettings-->
 		<XmlPeek XmlInputPath="$(ConfigDir)/CliqFlip.Web.Mvc/Configuration/AppSettings.config" Query="/appSettings/add">

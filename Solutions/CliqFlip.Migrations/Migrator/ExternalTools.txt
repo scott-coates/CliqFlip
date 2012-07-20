@@ -1,0 +1,17 @@
+﻿Title:				Migrate Up
+Command:			C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe
+Arguments:			CliqFlip.targets /t:Migrate /p:Configuration="THIS IS OPTIONAL -> Default: Debug"
+Initial Directory:	$(SolutionDir)\CliqFlip.Migrations\Migrator
+[X] Use output window
+
+
+
+Title:				Migrate To
+Command:			C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe
+Arguments:			CliqFlip.targets /t:Migrate /p:SchemaVersion=0 /p:Configuration="THIS IS OPTIONAL -> Default: Debug"
+Initial Directory:	$(SolutionDir)\CliqFlip.Migrations\Migrator
+[X] Use output window
+[X] Prompt for arguments
+
+
+The connection string property now points to your configuration the MVC Project

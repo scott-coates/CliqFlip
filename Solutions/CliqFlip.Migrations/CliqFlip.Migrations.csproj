@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{212C165D-297B-4263-BE08-9210B5B758CC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CliqFlip.Migrations</RootNamespace>
+    <AssemblyName>CliqFlip.Migrations</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Migrator">
+      <HintPath>..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib\Migrator.dll</HintPath>
+    </Reference>
+    <Reference Include="Migrator.Framework">
+      <HintPath>..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib\Migrator.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Migrator.Providers">
+      <HintPath>..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib\Migrator.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="Neo4jClient">
+      <HintPath>..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib\Neo4jClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\..\ReferencedAssemblies\migratordotnet-0.8.0\lib\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Migrator\ConditionalMigration.cs" />
+    <Compile Include="Migrator\MigrationConstants.cs" />
+    <Compile Include="Migrator\Migrations\__634630300299264851_CreateUserTable.cs" />
+    <Compile Include="Migrator\Migrations\__634630303075533644_CreateInterestTable.cs" />
+    <Compile Include="Migrator\Migrations\__634630305581406972_CreateUserInterestTable.cs" />
+    <Compile Include="Migrator\Migrations\__634632043311428388_T_AddInterests.cs" />
+    <Compile Include="Migrator\Migrations\__634648573656461674_AddTwitterAndYouTubeUsernames.cs" />
+    <Compile Include="Migrator\Migrations\__634652064167379291_AddProfileImage.cs" />
+    <Compile Include="Migrator\Migrations\__634653560469431604_AddBlogUrls.cs" />
+    <Compile Include="Migrator\Migrations\__634653694060482576_AddActivity.cs" />
+    <Compile Include="Migrator\Migrations\__634654274650150024_AddFacebookUsername.cs" />
+    <Compile Include="Migrator\Migrations\__634662457651019146_AddElmahDDL.cs" />
+    <Compile Include="Migrator\Migrations\__634666644898137456_CreateInterestImagesTable.cs" />
+    <Compile Include="Migrator\Migrations\__634667528865456789_CreateConversationTables.cs" />
+    <Compile Include="Migrator\Migrations\__634678604731617023_CreateLocationsTables.cs" />
+    <Compile Include="Migrator\Migrations\__634685005560831821_AddRoleColumn.cs" />
+    <Compile Include="Migrator\Migrations\__634696078341536810_AddIsMainCategoryColumn.cs" />
+    <Compile Include="Migrator\Migrations\__634697008349413565_AddMainCategoryInterests.cs" />
+    <Compile Include="Migrator\Migrations\__634709500038974205_AddMediaTable.cs" />
+    <Compile Include="Migrator\Migrations\__634709905194637407_T_AddTestAdmin.cs" />
+    <Compile Include="Migrator\Migrations\__634709922386830512_RemoveOldImageColumns.cs" />
+    <Compile Include="Migrator\Migrations\__634709972901148238_AddVideoTable.cs" />
+    <Compile Include="Migrator\Migrations\__634710315997405844_AddWebPageTable.cs" />
+    <Compile Include="Migrator\Migrations\__634721196754376007_AddNotificationsTable.cs" />
+    <Compile Include="Migrator\Migrations\__634730337103520104_AddMediaCreateDate.cs" />
+    <Compile Include="Migrator\Migrations\__634738636074216034_AddInterestIndex.cs" />
+    <Compile Include="Migrator\Migrations\__634739801458549631_TrimInterestNames.cs" />
+    <Compile Include="Migrator\Migrations\__634739921452161339_AddDateToInterest.cs" />
+    <Compile Include="Migrator\Migrations\__634740026479549542_MoveCurrentInterestsToNeo.cs" />
+    <Compile Include="Migrator\Migrations\__634741828846663678_CreateUserIndex.cs" />
+    <Compile Include="Migrator\Migrations\__634741836478400188_MoveCurrentUserToNeo.cs" />
+    <Compile Include="Migrator\Migrations\__634741868884803728_MoveCurrentUserInterestsToNeo.cs" />
+    <Compile Include="Migrator\Migrations\__634768408583037511_AddPostsTable.cs" />
+    <Compile Include="Migrator\Migrations\__634768503080352338_AddLikesTable.cs" />
+    <Compile Include="Migrator\Migrations\__634768505104158093_AddCommentsTable.cs" />
+    <Compile Include="Migrator\Migrations\__634780366215667769_AddLikesUniqueConstraint.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Configuration\Alpha\AppSettings.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\AppSettings.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Beta\AppSettings.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Migrator\CliqFlip.targets">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Migrator\ExternalTools.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
