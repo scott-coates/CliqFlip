@@ -241,7 +241,7 @@
     <Compile Include="Areas\Admin\ViewModels\Test\SimpleSendEmailViewModel.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Models\Post\PostApiModel.cs" />
-    <Compile Include="Areas\Api\Models\Post\PostCollectionApiModel.cs" />
+    <Compile Include="Areas\Api\Models\Post\UserPostApiModel.cs" />
     <Compile Include="Areas\Api\Queries\PostCollectionQuery.cs" />
     <Compile Include="Areas\Api\Queries\Interfaces\IPostCollectionQuery.cs" />
     <Compile Include="CassetteConfiguration.cs" />
@@ -259,6 +259,8 @@
     <Compile Include="Extensions\Html\HtmlExtensions.cs" />
     <Compile Include="Extensions\Request\ReuqestExtensions.cs" />
     <Compile Include="Extensions\Url\UrlExtensions.cs" />
+    <Compile Include="Helpers\Url\Interfaces\IMvcUrlHelperProvider.cs" />
+    <Compile Include="Helpers\Url\MvcUrlHelperProvider.cs" />
     <Compile Include="Queries\ConversationQuery.cs" />
     <Compile Include="Queries\FeedPostOverviewQuery.cs" />
     <Compile Include="Queries\Interfaces\IFeedPostOverviewQuery.cs" />

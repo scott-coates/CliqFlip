@@ -1,17 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using System.Security.Principal;
 using System.Web.Http;
+using System.Web.Http.Filters;
 using CliqFlip.Web.Mvc.Areas.Api.Models.Post;
 using CliqFlip.Web.Mvc.Areas.Api.Queries.Interfaces;
+using Microsoft.Practices.ServiceLocation;
 
 namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
 {
     [Authorize]
     public class PostController : ApiController
     {
-        private readonly IPrincipal _principal;        
+        private readonly IPrincipal _principal;
         private readonly IPostCollectionQuery _postCollectionQuery;
 
+        public PostController() : this(ServiceLocator.Current.GetInstance<IPrincipal>(), ServiceLocator.Current.GetInstance<IPostCollectionQuery>())
+        {
+        }
 
         public PostController(IPrincipal principal, IPostCollectionQuery postCollectionQuery)
         {
@@ -20,9 +25,10 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
         }
 
         // GET /api/feed
-        public PostCollectionApiModel Get(int? page)
+        [Queryable]
+        public IQueryable<UserPostApiModel> Get(int? page)
         {
-            return _postCollectionQuery.GetPostCollection(_principal.Identity.Name, page, Url);
+            return _postCollectionQuery.GetPostCollection(_principal.Identity.Name, page);
         }
 
         //// GET /api/feed/5

@@ -1,10 +1,10 @@
-﻿using System.Web.Http.Routing;
+﻿using System.Linq;
 using CliqFlip.Web.Mvc.Areas.Api.Models.Post;
 
 namespace CliqFlip.Web.Mvc.Areas.Api.Queries.Interfaces
 {
 	public interface IPostCollectionQuery
 	{
-        PostCollectionApiModel GetPostCollection(string userName, int? page, UrlHelper url);
+        IQueryable<UserPostApiModel> GetPostCollection(string userName, int? page);
 	}
 }

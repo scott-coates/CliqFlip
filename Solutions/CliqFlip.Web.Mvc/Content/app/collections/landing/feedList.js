@@ -11,7 +11,7 @@ var CliqFlip = (function (cliqFlip) {
     cliqFlip.App.Mvc.Collections.FeedList = Backbone.Collection.extend(
         {
             model: cliqFlip.App.Mvc.Models.FeedItem,
-            url: '/search/interestfeed',
+            url: '/api/post',
             page: null,
             fetch: function(options) {
                 options = options || {};
