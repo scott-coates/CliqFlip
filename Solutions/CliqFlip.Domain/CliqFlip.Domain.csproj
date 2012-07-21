@@ -119,6 +119,7 @@
     <Compile Include="Dtos\Post\SavePostCommentDto.cs" />
     <Compile Include="Dtos\Post\CommentDto.cs" />
     <Compile Include="Dtos\Post\PostDtoWithActivity.cs" />
+    <Compile Include="Dtos\Post\UserPostDto.cs" />
     <Compile Include="Dtos\UserInterest\InterestInCommonDto.cs" />
     <Compile Include="Dtos\User\UserAddInterestDto.cs" />
     <Compile Include="Dtos\User\UserCreateDto.cs" />
@@ -128,7 +129,6 @@
     <Compile Include="Dtos\Interest\RelatedInterestListDto.cs" />
     <Compile Include="Dtos\Media\FileStreamDto.cs" />
     <Compile Include="Dtos\Media\ImageFilenamesDto.cs" />
-    <Compile Include="Dtos\Interest\InterestFeedItemDto.cs" />
     <Compile Include="Dtos\Post\PostDto.cs" />
     <Compile Include="Dtos\Interest\RankedInterestDto.cs" />
     <Compile Include="Dtos\User\UserSearchResultDto.cs" />

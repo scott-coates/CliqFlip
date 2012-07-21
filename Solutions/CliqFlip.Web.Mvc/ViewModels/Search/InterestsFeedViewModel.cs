@@ -2,6 +2,7 @@
 using System.Linq;
 using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Dtos.Interest;
+using CliqFlip.Domain.Dtos.Post;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Web.Mvc.ViewModels.Post;
 using CliqFlip.Web.Mvc.ViewModels.User;
@@ -33,7 +34,7 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
             public IList<FeedPostCommentViewModel> Comments { get; set; } 
             public bool IsLikedByUser { get; set; } 
 
-			public FeedPostViewModel(InterestFeedItemDto feedItemDto) : base(feedItemDto.Post)
+			public FeedPostViewModel(UserPostDto feedItemDto) : base(feedItemDto.Post)
 			{
 				Username = feedItemDto.Username;
                 ProfileImageUrl = feedItemDto.ProfileImageUrl ?? Constants.DEFAULT_PROFILE_IMAGE;

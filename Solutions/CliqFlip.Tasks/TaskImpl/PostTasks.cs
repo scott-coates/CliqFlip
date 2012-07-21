@@ -18,7 +18,7 @@ namespace CliqFlip.Tasks.TaskImpl
             _postRepository = postRepository;
         }
 
-        public IList<InterestFeedItemDto> GetPostsByInterests(IList<Interest> interests)
+        public IList<UserPostDto> GetPostsByInterests(IList<Interest> interests)
         {
             //get user interests
             //get sibling and parent interests
@@ -57,7 +57,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
                     rank -= daysSinceMediumCreated;
 
-                    return new { Rank = rank, FeedItem = new InterestFeedItemDto(post) };
+                    return new { Rank = rank, FeedItem = new UserPostDto(post) };
                 }).OrderByDescending(x => x.Rank).Select(x => x.FeedItem).ToList();
         }
 

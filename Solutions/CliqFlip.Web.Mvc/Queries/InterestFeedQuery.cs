@@ -5,6 +5,7 @@ using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Tasks;
 
 using CliqFlip.Domain.Dtos.Interest;
+using CliqFlip.Domain.Dtos.Post;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Search;
@@ -31,7 +32,7 @@ namespace CliqFlip.Web.Mvc.Queries
 
 			User user = _userTasks.GetUser(userName);
 
-            IList<InterestFeedItemDto> postDtos = _postTasks.GetPostsByInterests(user.Interests.Select(x => x.Interest).ToList());
+            IList<UserPostDto> postDtos = _postTasks.GetPostsByInterests(user.Interests.Select(x => x.Interest).ToList());
 			retVal.Total = postDtos.Count;
 			retVal.Posts = postDtos
 				.AsPagination( page ?? 1, Constants.FEED_LIMIT)
