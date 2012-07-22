@@ -5,7 +5,7 @@ var CliqFlip = (function (cliqFlip) {
         onShow: function () {
             var mtypeahead = this.$("input").multitypeahead({
                 source: function (term, response) {
-                    $.getJSON("/Search/Interest?input=" + term, function (data) {
+                    $.getJSON("/api/Interest?interestName=" + term, function (data) {
                         response(_.pluck(data, 'Name'));
                     });
                 }

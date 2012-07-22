@@ -240,6 +240,7 @@
     <Compile Include="Areas\Admin\ViewModels\Interest\InterestListViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Test\SimpleSendEmailViewModel.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\InterestController.cs" />
     <Compile Include="Areas\Api\Models\Feed\FeedListApiModel.cs" />
     <Compile Include="Areas\Api\Models\Feed\UserFeedItemApiModel.cs" />
     <Compile Include="Areas\Api\Models\Feed\PostFeedItemApiModel.cs" />
