@@ -1,5 +1,6 @@
 ﻿using System.Security.Principal;
 using System.Web.Http;
+using CliqFlip.Web.Mvc.Areas.Api.Models.Feed;
 using CliqFlip.Web.Mvc.Areas.Api.Queries.Interfaces;
 using Microsoft.Practices.ServiceLocation;
 
@@ -22,7 +23,7 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
         }
 
         // GET /api/feed
-        public dynamic Get(int? page)
+        public FeedListApiModel Get(int? page)
         {
             return _feedListQuery.GetFeedList(_principal.Identity.Name, page);
         }
