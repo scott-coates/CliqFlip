@@ -1,34 +1,30 @@
-﻿using System.Linq;
-using System.Security.Principal;
+﻿using System.Security.Principal;
 using System.Web.Http;
-using System.Web.Http.Filters;
-using CliqFlip.Web.Mvc.Areas.Api.Models.Post;
 using CliqFlip.Web.Mvc.Areas.Api.Queries.Interfaces;
 using Microsoft.Practices.ServiceLocation;
 
 namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
 {
     [Authorize]
-    public class PostController : ApiController
+    public class FeedController : ApiController
     {
         private readonly IPrincipal _principal;
-        private readonly IPostCollectionQuery _postCollectionQuery;
+        private readonly IFeedListQuery _feedListQuery;
 
-        public PostController() : this(ServiceLocator.Current.GetInstance<IPrincipal>(), ServiceLocator.Current.GetInstance<IPostCollectionQuery>())
+        public FeedController() : this(ServiceLocator.Current.GetInstance<IPrincipal>(), ServiceLocator.Current.GetInstance<IFeedListQuery>())
         {
         }
 
-        public PostController(IPrincipal principal, IPostCollectionQuery postCollectionQuery)
+        public FeedController(IPrincipal principal, IFeedListQuery feedListQuery)
         {
             _principal = principal;
-            _postCollectionQuery = postCollectionQuery;
+            _feedListQuery = feedListQuery;
         }
 
         // GET /api/feed
-        [Queryable]
-        public IQueryable<UserPostApiModel> Get(int? page)
+        public dynamic Get(int? page)
         {
-            return _postCollectionQuery.GetPostCollection(_principal.Identity.Name, page);
+            return _feedListQuery.GetFeedList(_principal.Identity.Name, page);
         }
 
         //// GET /api/feed/5

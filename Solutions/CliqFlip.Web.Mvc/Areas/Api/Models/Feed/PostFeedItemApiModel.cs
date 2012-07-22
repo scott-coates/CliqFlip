@@ -2,11 +2,10 @@
 using System.Linq;
 using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Dtos.Post;
-using Newtonsoft.Json;
 
-namespace CliqFlip.Web.Mvc.Areas.Api.Models.Post
+namespace CliqFlip.Web.Mvc.Areas.Api.Models.Feed
 {
-    public class UserPostApiModel : PostApiModel
+    public class PostFeedItemApiModel
     {
         public string Username { get; set; }
         public string UserPageUrl { get; set; }
@@ -16,10 +15,27 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Models.Post
         public int CommentCount { get; set; }
         public IList<PostCommentApiModel> Comments { get; set; }
         public bool IsLikedByUser { get; set; }
+        public int PostId { get; set; }
+        public string MediumType { get; set; }
+        public string Description { get; set; }
+        public string ThumbImage { get; set; }
+        public string MediumImage { get; set; }
+        public string FullImage { get; set; }
+        public string VideoUrl { get; set; }
+        public string WebSiteUrl { get; set; }
+        public string Title { get; set; }
 
-        public UserPostApiModel(UserPostDto userPostDto)
-            : base(userPostDto.Post)
+        public PostFeedItemApiModel(UserPostDto userPostDto)
         {
+            PostId = userPostDto.Post.PostId;
+            MediumType = userPostDto.Post.MediumType;
+            Description = userPostDto.Post.Description;
+            ThumbImage = userPostDto.Post.ThumbImage;
+            MediumImage = userPostDto.Post.MediumImage;
+            FullImage = userPostDto.Post.FullImage;
+            VideoUrl = userPostDto.Post.VideoUrl;
+            WebSiteUrl = userPostDto.Post.WebSiteUrl;
+            Title = userPostDto.Post.Title;
             Username = userPostDto.Username;
             ProfileImageUrl = userPostDto.ProfileImageUrl ?? Constants.DEFAULT_PROFILE_IMAGE;
             Interest = userPostDto.Interest;

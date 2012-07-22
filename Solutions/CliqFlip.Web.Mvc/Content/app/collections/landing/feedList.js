@@ -1,7 +1,7 @@
 // @reference ~/Content/app/main.js
 // @reference ~/Content/app/models/landing/feedItem.js
 
-var CliqFlip = (function (cliqFlip) {
+var CliqFlip = (function(cliqFlip) {
 
     function incrementPage() {
         this.page = this.page || 1;
@@ -11,7 +11,7 @@ var CliqFlip = (function (cliqFlip) {
     cliqFlip.App.Mvc.Collections.FeedList = Backbone.Collection.extend(
         {
             model: cliqFlip.App.Mvc.Models.FeedItem,
-            url: '/api/post',
+            url: '/api/feed',
             page: null,
             fetch: function(options) {
                 options = options || {};
@@ -21,6 +21,9 @@ var CliqFlip = (function (cliqFlip) {
                 }
                 incrementPage.call(this);
                 return Backbone.Collection.prototype.fetch.call(this, options);
+            },
+            parse: function(response) {
+                return response.data;
             }
         });
 

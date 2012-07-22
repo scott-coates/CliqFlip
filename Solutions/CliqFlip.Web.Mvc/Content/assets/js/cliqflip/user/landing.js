@@ -39,24 +39,24 @@ function InitFeed(feedUrl) {
             // isLoading is a useful flag to make sure we don't send off more than
             // one request at a time
 //            http: //stackoverflow.com/questions/9110060/how-do-i-add-a-resize-event-to-the-window-in-a-view-using-backbone
-            this.isLoading = false;
+            this.preventLoading = false;
             $(window).bind("scroll", null, _.bind(this.checkScroll, this));
         },
         loadResults: function () {
             var that = this;
-            this.isLoading = true;
+            this.preventLoading = true;
             this.collection.fetch({
                 success: function (models) {
                     _.each(that.collection.models, function (model) {
                         that.$el.append(new CliqFlipMVC.Views.Feed.InterestFeedItem({ model: model }).render().el);
                     });
-                    that.isLoading = false;
+                    that.preventLoading = false;
                 }
             });
         },
         checkScroll: function () {
             var triggerPoint = 400;
-            if (!this.isLoading && ($(window).scrollTop() >= $(document).height() - $(window).height() - triggerPoint)) {
+            if (!this.preventLoading && ($(window).scrollTop() >= $(document).height() - $(window).height() - triggerPoint)) {
                 this.loadResults();
             }
         },
