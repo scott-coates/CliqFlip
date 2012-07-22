@@ -23,7 +23,7 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Queries
             _mvcUrlHelperProvider = mvcUrlHelperProvider;
         }
 
-        public FeedListApiModel GetFeedList(string userName, int? page)
+        public FeedListApiModel GetFeedList(string userName, int? page, string search)
         {
             var retVal = new FeedListApiModel();
             var urlHelper = _mvcUrlHelperProvider.ProvideUrlHelper();
@@ -40,7 +40,7 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Queries
                         IsLikedByUser = x.Post.Likes.Any(y => y.UserId == user.Id)
                     }).Skip(((page ?? 1) - 1) * Constants.FEED_LIMIT).Take(Constants.FEED_LIMIT)
                     .ToList();
-
+            
             retVal.FeedItems.AddRange(dtos);
             retVal.Total = postDtos.Count;
             retVal.TotalReturned = dtos.Count;
