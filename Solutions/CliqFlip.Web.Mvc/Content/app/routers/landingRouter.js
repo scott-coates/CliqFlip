@@ -52,7 +52,7 @@ var CliqFlip = (function(cliqFlip) {
         }
     };
 
-   cliqFlip.App.Mvc.vent.bind("feedItem:selected", function(post) { landingController.showPost(post); });
+    cliqFlip.App.Mvc.vent.bind("feedItem:selected", function(post) { landingController.showPost(post); });
     cliqFlip.App.Mvc.vent.bind("comment:posted", function(comment) {
         var retVal = cliqFlip.App.Mvc.modalRegion.currentView.userActivityRegion.currentView.collection.create({
                 CommentText: comment.text,
@@ -68,7 +68,6 @@ var CliqFlip = (function(cliqFlip) {
     cliqFlip.App.Mvc.modalRegion.on("view:closed", function(view) {
         cliqFlip.App.Mvc.landingRouter.navigate("");
     });
-
 
     //Router
     cliqFlip.App.Mvc.Routers.LandingRouter = Backbone.Marionette.AppRouter.extend({

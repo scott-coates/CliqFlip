@@ -333,6 +333,7 @@
     <Content Include="Content\app\models\landing\feedPostOverviewUserActivity.js" />
     <Content Include="Content\app\models\landing\feedPostOverview.js" />
     <Content Include="Content\app\models\header\header.js" />
+    <Content Include="Content\app\routers\searchRouter.js" />
     <Content Include="Content\app\views\landing\addPostView.js" />
     <Content Include="Content\app\views\landing\postOverviewUserAcitivtyListView.js" />
     <Content Include="Content\app\views\header\SearchView.js" />
