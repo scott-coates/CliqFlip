@@ -3,26 +3,23 @@
 var CliqFlip = (function(cliqFlip) {
     var searchController = {
         doSearch: function(search) {
-            var feedList = new cliqFlip.App.Mvc.Collections.FeedList();
-            if($.trim(search).length > 0)
-            {
-                feedList.fetch({
-                    data: { q: search },
-                    success: function() {
-                        cliqFlip.App.Mvc.vent.trigger("feedlist:retrieved", feedList);
-                    }
-                });
-            }
+            cliqFlip.App.Mvc.vent.trigger("interest:searched:keyword", search);
         }
     };
 
-    cliqFlip.App.Mvc.vent.bind("interest:searched", function(search) { searchController.doSearch(search); });
+    cliqFlip.App.Mvc.vent.bind("interest:searched", function(search) {
+        if ($.trim(search).length > 0) {
+            searchController.doSearch(search);
+            cliqFlip.App.Mvc.searchRouter.navigate("search", search);
+        }
+    });
 
     //Router
     cliqFlip.App.Mvc.Routers.SearchRouter = Backbone.Marionette.AppRouter.extend({
         appRoutes: {
+                        
         },
         controller: searchController
     });
     return cliqFlip;
-} (CliqFlip));
+}(CliqFlip));

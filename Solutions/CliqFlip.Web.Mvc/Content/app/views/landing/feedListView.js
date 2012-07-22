@@ -13,9 +13,10 @@ var CliqFlip = (function(cliqFlip) {
             //            http: //stackoverflow.com/questions/9110060/how-do-i-add-a-resize-event-to-the-window-in-a-view-using-backbone
             this.preventLoading = false;
             $(window).bind("scroll", null, _.bind(this.checkScroll, this));
+            cliqFlip.App.Mvc.vent.bind("interest:searched:keyword", _.bind(this.doSearch,this));
         },
         checkScroll: function() {
-            if(!this.preventLoading && ($(window).scrollTop() >= $(document).height() - $(window).height() - this.triggerPoint)) {
+            if (!this.preventLoading && ($(window).scrollTop() >= $(document).height() - $(window).height() - this.triggerPoint)) {
                 this.loadResults();
             }
         },
@@ -25,7 +26,7 @@ var CliqFlip = (function(cliqFlip) {
             this.collection.fetch({
                 add: true,
                 success: function(collection, data) {
-                    if(data.returned > 0) {
+                    if (data.returned > 0) {
                         that.preventLoading = false;
                         that.$el.imagesLoaded(function() {
                             that.$el.masonry('reload');
@@ -50,8 +51,16 @@ var CliqFlip = (function(cliqFlip) {
                 });
                 that.$el.removeClass("invisible");
             });
+        },
+        doSearch: function(search) {
+            this.collection.fetch({
+                data: { q: search },
+                success: function() {
+                    debugger;
+                }
+            });
         }
     });
 
     return cliqFlip;
-} (CliqFlip));
+}(CliqFlip));
