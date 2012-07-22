@@ -14,11 +14,9 @@ var CliqFlip = (function(cliqFlip) {
             url: '/api/feed',
             page: null,
             fetch: function(options) {
-                options = options || {};
-                if(this.page) {
-                    options.data = options.data || {};
-                    options.data.page = this.page;
-                }
+                options = options || { };
+                options.data = options.data || { };
+                if (this.page) options.data.page = this.page;
                 incrementPage.call(this);
                 return Backbone.Collection.prototype.fetch.call(this, options);
             },
@@ -28,4 +26,4 @@ var CliqFlip = (function(cliqFlip) {
         });
 
     return cliqFlip;
-} (CliqFlip));
+}(CliqFlip));

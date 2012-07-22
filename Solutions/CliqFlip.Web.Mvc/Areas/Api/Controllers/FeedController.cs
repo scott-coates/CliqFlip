@@ -23,7 +23,7 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
         }
 
         // GET /api/feed
-        public FeedListApiModel Get(int? page)
+        public FeedListApiModel Get(int? page, string q)
         {
             return _feedListQuery.GetFeedList(_principal.Identity.Name, page);
         }
