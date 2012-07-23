@@ -22,6 +22,9 @@ var CliqFlip = (function(cliqFlip) {
             },
             parse: function(response) {
                 return response.data;
+            },
+            resetPage: function () {
+                this.page = null;
             }
         });
 
