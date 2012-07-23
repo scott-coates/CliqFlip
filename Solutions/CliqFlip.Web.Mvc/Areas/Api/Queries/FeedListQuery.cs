@@ -9,6 +9,7 @@ using CliqFlip.Domain.Entities;
 using CliqFlip.Web.Mvc.Areas.Api.Models.Feed;
 using CliqFlip.Web.Mvc.Areas.Api.Queries.Interfaces;
 using CliqFlip.Web.Mvc.Helpers.Url.Interfaces;
+using CliqFlip.Infrastructure.Extensions;
 
 namespace CliqFlip.Web.Mvc.Areas.Api.Queries
 {
@@ -62,6 +63,22 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Queries
             }
             else
             {
+                var request = new UserSearchPipelineRequest
+                {
+                    User = user,
+                    LocationData = user.Location.Data
+                };
+                
+                var result = _userSearchPipeline.Execute(request);
+                retVal.FeedItems.AddRange(
+                    result.Users.Select(
+                        x => new UserFeedItemApiModel
+                        {
+                            ProfileImageUrl = x.ImageUrl,
+                            Username = x.Username,
+                            UserPageUrl = urlHelper.Action("Index", "User", new { username = x.Username })
+                        }).Skip(((page ?? 1) - 1) * Constants.FEED_LIMIT).Take(Constants.FEED_LIMIT));
+
                 IList<UserPostDto> postDtos = _postTasks.GetPostsByInterests(user.Interests.Select(x => x.Interest).ToList());
                 var dtos = postDtos
                     .Select(
@@ -70,12 +87,12 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Queries
                             UserPageUrl = urlHelper.Action("Index", "User", new { username = x.Username }),
                             PostUrl = urlHelper.Action("Index", "Post", new { post = x.Post.PostId }),
                             IsLikedByUser = x.Post.Likes.Any(y => y.UserId == user.Id)
-                        }).Skip(((page ?? 1) - 1) * Constants.FEED_LIMIT).Take(Constants.FEED_LIMIT)
-                    .ToList();
+                        }).Skip(((page ?? 1) - 1) * Constants.FEED_LIMIT).Take(Constants.FEED_LIMIT);
 
                 retVal.FeedItems.AddRange(dtos);
-                retVal.Total = postDtos.Count;
-                retVal.TotalReturned = dtos.Count;
+                retVal.Total = postDtos.Count + result.Users.Count;
+                retVal.TotalReturned = retVal.FeedItems.Count;
+                retVal.FeedItems = retVal.FeedItems.Randomize().ToList();
             }
             return retVal;
         }

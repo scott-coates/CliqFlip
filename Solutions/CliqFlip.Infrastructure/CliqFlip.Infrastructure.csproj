@@ -141,6 +141,7 @@
     <Compile Include="Exceptions\CriticalException.cs" />
     <Compile Include="Exceptions\LocationException.cs" />
     <Compile Include="Exceptions\JavaScriptException.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Images\ResizedImage.cs" />
     <Compile Include="Images\ImageProcessResult.cs" />

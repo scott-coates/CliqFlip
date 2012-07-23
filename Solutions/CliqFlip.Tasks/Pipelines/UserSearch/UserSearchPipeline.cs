@@ -63,7 +63,10 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
             _findTargetUsersRelatedInterestsFilter.Filter(retVal, request);
 
             //run filter to query potential interests based on what was explicitly searched for
-            _findRelatedInterestsFromKeywordSearchFilter.Filter(retVal, request);
+            if(request.InterestSearch != null)
+            {
+                _findRelatedInterestsFromKeywordSearchFilter.Filter(retVal, request);
+            }
 
             /************ Calculate Signal Data ******************/
 
