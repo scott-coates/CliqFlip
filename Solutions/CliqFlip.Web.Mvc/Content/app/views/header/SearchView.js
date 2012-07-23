@@ -1,5 +1,8 @@
 var CliqFlip = (function(cliqFlip) {
     cliqFlip.App.Mvc.Views.SearchView = Backbone.Marionette.ItemView.extend({
+        initialize: function() {
+            this.bindTo(cliqFlip.App.Mvc.vent, "user:selection:changed", this.clearSearch);
+        },
         template: "header-search",
         className: "offset2 span7",
         onShow: function() {
@@ -20,6 +23,9 @@ var CliqFlip = (function(cliqFlip) {
         },
         search: function() {
             cliqFlip.App.Mvc.vent.trigger("interest:searched", this.$("#search-box").val());
+        },
+        clearSearch: function() {
+            this.$("#search-box").val('');
         }
     });
 

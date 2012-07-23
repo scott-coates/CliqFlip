@@ -15,6 +15,8 @@ var CliqFlip = (function(cliqFlip) {
 
             if (!cliqFlip.App.Mvc.mainContentRegion.currentView) {
 
+                cliqFlip.App.Mvc.vent.trigger("user:selection:changed", "feed");
+
                 var landingLayout = new cliqFlip.App.Mvc.Layouts.LandingLayout();
 
                 cliqFlip.App.Mvc.mainContentRegion.show(landingLayout);

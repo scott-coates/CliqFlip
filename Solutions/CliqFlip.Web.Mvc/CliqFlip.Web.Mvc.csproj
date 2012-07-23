@@ -336,7 +336,7 @@
     <Content Include="Content\app\routers\searchRouter.js" />
     <Content Include="Content\app\views\landing\addPostView.js" />
     <Content Include="Content\app\views\landing\postOverviewUserAcitivtyListView.js" />
-    <Content Include="Content\app\views\header\SearchView.js" />
+    <Content Include="Content\app\views\header\searchView.js" />
     <Content Include="Content\app\views\landing\postOverviewUserAcitivtyView.js" />
     <Content Include="Content\app\views\helpers.js" />
     <Content Include="Content\assets\js\backbonePlugins\backbone.validation.js" />
