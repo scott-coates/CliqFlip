@@ -8,18 +8,19 @@ var CliqFlip = (function(cliqFlip) {
     };
 
     cliqFlip.App.Mvc.vent.bind("interest:searched", function(search) {
-        if ($.trim(search).length > 0) {
+        if($.trim(search).length > 0) {
             searchController.doSearch(search);
             cliqFlip.App.Mvc.searchRouter.navigate("search?q=" + search);
+            cliqFlip.App.Mvc.vent.trigger("user:selection:changed", "search");
         }
     });
 
     //Router
     cliqFlip.App.Mvc.Routers.SearchRouter = Backbone.Marionette.AppRouter.extend({
         appRoutes: {
-                        
+
         },
         controller: searchController
     });
     return cliqFlip;
-}(CliqFlip));
+} (CliqFlip));
