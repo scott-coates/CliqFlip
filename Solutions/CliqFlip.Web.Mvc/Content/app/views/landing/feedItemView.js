@@ -6,9 +6,17 @@ var CliqFlip = (function(cliqFlip) {
                 this.render();
             });
         },
-        template: function() {
-            var templates = ["landing-feedItem"];
-            templates.push({ content: "media-Image" });
+        template: function(model) {
+            var templates;            
+            
+            if(model.FeedItemType === 'User') {
+                templates = ["landing-userFeedItem"];                
+            }
+            else {
+                templates = ["landing-feedItem"];
+                templates.push({ content: "media-Image" });    
+            }
+            
             return templates;
         },
         className: 'feed-item gray-rounded-border',

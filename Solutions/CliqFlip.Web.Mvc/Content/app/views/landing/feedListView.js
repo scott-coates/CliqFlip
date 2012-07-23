@@ -56,7 +56,6 @@ var CliqFlip = (function(cliqFlip) {
             this.collection.fetch({
                 data: { q: search },
                 success: function() {
-                    debugger;
                 }
             });
         }
