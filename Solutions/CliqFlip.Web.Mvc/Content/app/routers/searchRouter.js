@@ -10,7 +10,7 @@ var CliqFlip = (function(cliqFlip) {
     cliqFlip.App.Mvc.vent.bind("interest:searched", function(search) {
         if ($.trim(search).length > 0) {
             searchController.doSearch(search);
-            cliqFlip.App.Mvc.searchRouter.navigate("search", search);
+            cliqFlip.App.Mvc.searchRouter.navigate("search?q=" + search);
         }
     });
 
