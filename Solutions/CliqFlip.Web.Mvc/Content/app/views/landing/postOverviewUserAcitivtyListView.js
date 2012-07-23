@@ -3,7 +3,7 @@ var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.App.Mvc.Views.PostOverviewUserAcitivtyListView = Backbone.Marionette.CollectionView.extend({
         initialize: function() {
-            cliqFlip.App.Mvc.vent.bind("comment:posted", _.bind(this.postComment, this));
+            this.bindTo(cliqFlip.App.Mvc.vent, "comment:posted", this.postComment);
         },
         itemView: cliqFlip.App.Mvc.Views.PostOverviewUserAcitivtyView,
         postComment: function(comment) {
