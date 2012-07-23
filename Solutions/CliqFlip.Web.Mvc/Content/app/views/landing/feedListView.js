@@ -14,7 +14,7 @@ var CliqFlip = (function(cliqFlip) {
             //            http: //stackoverflow.com/questions/9110060/how-do-i-add-a-resize-event-to-the-window-in-a-view-using-backbone
             this.preventLoading = false;
             $(window).bind("scroll", null, _.bind(this.checkScroll, this));
-            this.bindTo(cliqFlip.App.Mvc.vent, "interest:searched:keyword", this.doSearch);
+            this.bindTo(cliqFlip.App.Mvc.vent, "interest:searched:validated", this.doSearch);
             this.bindTo(cliqFlip.App.Mvc.vent, "user:selection:changing:feed", this.showFeedList);
         },
         checkScroll: function() {
