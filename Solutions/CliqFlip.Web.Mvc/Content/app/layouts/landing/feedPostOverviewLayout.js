@@ -8,7 +8,7 @@ var CliqFlip = (function(cliqFlip) {
             });
         },
         template: function(model) {
-            var templates = ["landing-feedPostOverview"];
+            var templates = ["feed-feedPostOverview"];
 
             var contentTemplate = "media-Image";
             if(model.VideoUrl) {

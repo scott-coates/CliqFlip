@@ -898,20 +898,20 @@
     <Content Include="Views\User\Account\_Password.cshtml" />
     <Content Include="Views\User\Account\_Location.cshtml" />
     <Content Include="Views\Home\Bootstrap.cshtml" />
-    <Content Include="Content\assets\templates\landing\feedItem.mustache">
+    <Content Include="Content\assets\templates\feed\postFeedItem.mustache">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\assets\templates\landing\feedList.mustache">
+    <Content Include="Content\assets\templates\feed\feedList.mustache">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\assets\templates\landing\userLandingSummary.mustache" />
     <Content Include="Views\Popup\CreatePost.cshtml" />
     <Content Include="Views\Shared\_Layout.Bootstrap.cshtml" />
     <Content Include="Content\assets\templates\landing\layout.mustache" />
-    <Content Include="Content\assets\templates\landing\feedPostOverview.mustache">
+    <Content Include="Content\assets\templates\feed\feedPostOverview.mustache">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\assets\templates\landing\feedPostOverviewUserAcitivty.mustache">
+    <Content Include="Content\assets\templates\feed\feedPostOverviewUserAcitivty.mustache">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\assets\templates\helpers\alert.mustache">
@@ -934,7 +934,7 @@
     <Content Include="Content\assets\templates\landing\addLink.mustache">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\assets\templates\landing\userFeedItem.mustache">
+    <Content Include="Content\assets\templates\feed\userFeedItem.mustache">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

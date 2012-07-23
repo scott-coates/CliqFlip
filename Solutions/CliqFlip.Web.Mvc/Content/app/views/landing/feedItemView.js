@@ -10,10 +10,10 @@ var CliqFlip = (function(cliqFlip) {
             var templates;            
             
             if(model.FeedItemType === 'User') {
-                templates = ["landing-userFeedItem"];                
+                templates = ["feed-userFeedItem"];                
             }
             else {
-                templates = ["landing-feedItem"];
+                templates = ["feed-postFeedItem"];
                 templates.push({ content: "media-Image" });    
             }
             
