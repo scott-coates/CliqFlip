@@ -7,7 +7,7 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Models.Feed
 {
     public class PostFeedItemApiModel
     {
-        public string FeedItemType
+        public string FeedItemType //TODO:look into static property - json.net isn't serializing for some reason
         {
             get { return "Post"; }
         }
