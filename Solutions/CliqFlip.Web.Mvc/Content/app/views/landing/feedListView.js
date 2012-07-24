@@ -28,10 +28,10 @@ var CliqFlip = (function(cliqFlip) {
                 add: true,
                 success: function(collection, data) {
                     if(data.returned > 0) {
-                        that.preventLoading = false;
                         that.$el.imagesLoaded(function() {
                             that.$el.masonry('reload');
                             that.$(".invisible").removeClass("invisible");
+                            that.preventLoading = false;                            
                         });
                     }
                 }
