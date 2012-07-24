@@ -56,6 +56,7 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Queries
                         {
                             ProfileImageUrl = x.ImageUrl,
                             Username = x.Username,
+                            MajorLocationName = x.MajorLocationName,
                             UserPageUrl = urlHelper.Action("Index", "User", new { username = x.Username })
                         }).Skip(((page ?? 1) - 1) * Constants.FEED_LIMIT).Take(Constants.FEED_LIMIT));
 
@@ -76,6 +77,7 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Queries
                         {
                             ProfileImageUrl = x.ImageUrl,
                             Username = x.Username,
+                            MajorLocationName = x.MajorLocationName,
                             UserPageUrl = urlHelper.Action("Index", "User", new { username = x.Username })
                         }).Skip(((page ?? 1) - 1) * Constants.FEED_LIMIT).Take(Constants.FEED_LIMIT));
 

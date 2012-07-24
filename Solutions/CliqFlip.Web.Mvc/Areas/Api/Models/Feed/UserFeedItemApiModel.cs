@@ -10,5 +10,6 @@
         public string Username { get; set; }
         public string UserPageUrl { get; set; }
         public string ProfileImageUrl { get; set; }
+        public string MajorLocationName { get; set; }
     }
 }

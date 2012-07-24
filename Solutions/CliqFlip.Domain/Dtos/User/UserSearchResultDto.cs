@@ -12,6 +12,7 @@ namespace CliqFlip.Domain.Dtos.User
         public string Bio { get; set; }
         public string Headline { get; set; }
         public string ImageUrl { get; set; }
+        public string MajorLocationName { get; set; }
         public float Latitude { get; set; }
         public float Longitude { get; set; }
 
@@ -24,6 +25,7 @@ namespace CliqFlip.Domain.Dtos.User
             ImageUrl = user.ProfileImage != null ? user.ProfileImage.ImageData.MediumFileName : null;
             Latitude = user.Location.Data.Latitude;
             Longitude = user.Location.Data.Longitude;
+            MajorLocationName = user.Location.MajorLocation.Name;
         }
 
         public class UserInterestDto
