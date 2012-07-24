@@ -53,7 +53,7 @@ namespace CliqFlip.Web.Mvc.Controllers
             var viewModel = new HomeUserViewModel
             {
                 Username = _principal.Identity.Name,
-                ProfileImageUrl = user.ProfileImage.ImageData.MediumFileName,
+                ProfileImageUrl = user.ProfileImage != null ? user.ProfileImage.ImageData.MediumFileName : "/Content/assets/img/empty-avatar.jpg",
                 FriendCount = 0,
                 PostCount = user.Posts.Count(),
                 Interests = user.Interests.Select(x => new HomeUserViewModel.InterestViewModel { Name = x.Interest.Name, Id = x.Id })
