@@ -1,5 +1,5 @@
 <div class="initial-preview">
-    <div class="row-fluid">
+    <div class="row-fluid user-details">
         <div class="span3">
             <img src="{{ProfileImageUrl}}" alt="{{Username}}"/>
         </div>
@@ -20,16 +20,20 @@
             </div>
         </div>
     </div>
+    
+    
     {{#Title}}
-    <div class="row-fluid">
+    <div class="row-fluid expand-post">
         <div class="span12">
-            {{Title}}
+            <label class="post-title">
+                {{Title}}
+            </label>
         </div>
     </div>
     {{/Title}}
     
     {{#MediumImage}}
-    <div class="row-fluid">
+    <div class="row-fluid expand-post">
         <div style="position:relative;" class="span12">
             <a class="select-feed-item" href="{{PostUrl}}" title="{{Description}}">
                 <img class="feed-image" src="{{MediumImage}}" alt="{{Description}}"/>
@@ -44,7 +48,7 @@
 
     {{^WebSiteUrl}}
     {{^VideoUrl}}
-    <div class="row-fluid">
+    <div class="row-fluid expand-post">
         <div class="span12 post-description">
             <p>{{Description}}</p>
         </div>

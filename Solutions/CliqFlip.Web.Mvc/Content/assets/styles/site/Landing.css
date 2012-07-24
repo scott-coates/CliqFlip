@@ -216,6 +216,11 @@
     border-radius: 5px;
 }
 
+.feed-item .expand-post
+{
+    cursor: pointer;
+}
+
 .feed-item .initial-preview
 {
     padding: 10px 10px 2px;
@@ -224,6 +229,17 @@
 .feed-item .initial-preview .post-description
 {
     margin-top: 4px;
+}
+
+.feed-item .user-details
+{
+    margin-bottom: 5px;
+}
+
+.feed-item .post-title
+{
+    text-align: center;
+    cursor: pointer;
 }
 
 .feed-item .feed-image
