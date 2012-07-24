@@ -23,17 +23,17 @@
     
     
     {{#Title}}
-    <div class="row-fluid expand-post">
+    <div class="row-fluid select-feed-item">
         <div class="span12">
-            <label class="post-title">
+            <a href="{{PostUrl}}" class="post-title" title="{{Description}}">
                 {{Title}}
-            </label>
+            </a>
         </div>
     </div>
     {{/Title}}
     
     {{#MediumImage}}
-    <div class="row-fluid expand-post">
+    <div class="row-fluid">
         <div style="position:relative;" class="span12">
             <a class="select-feed-item" href="{{PostUrl}}" title="{{Description}}">
                 <img class="feed-image" src="{{MediumImage}}" alt="{{Description}}"/>
@@ -48,7 +48,7 @@
 
     {{^WebSiteUrl}}
     {{^VideoUrl}}
-    <div class="row-fluid expand-post">
+    <div class="row-fluid">
         <div class="span12 post-description">
             <p>{{Description}}</p>
         </div>

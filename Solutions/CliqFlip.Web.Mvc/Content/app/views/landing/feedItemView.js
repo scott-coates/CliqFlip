@@ -29,7 +29,7 @@ var CliqFlip = (function(cliqFlip) {
             }
         }),
         events: {
-            "click .expand-post": "feedItemSelected", //TODO find a way to delegate from a parent (collection view) rather than each individual feed item view
+            "click .select-feed-item": "feedItemSelected", //TODO find a way to delegate from a parent (collection view) rather than each individual feed item view
             "click .like-interest-button": "likeInterest"
         },
         feedItemSelected: function() {
