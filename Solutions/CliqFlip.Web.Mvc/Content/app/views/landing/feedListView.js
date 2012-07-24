@@ -2,9 +2,7 @@
 
 var CliqFlip = (function(cliqFlip) {
 
-    cliqFlip.App.Mvc.Views.FeedListView = Backbone.Marionette.CompositeView.extend({
-        template: "feed-feedList",
-        className: 'invisible',
+    cliqFlip.App.Mvc.Views.FeedListView = Backbone.Marionette.CollectionView.extend({
         triggerPoint: 200,
         data: null,
         itemView: cliqFlip.App.Mvc.Views.FeedItemView,
@@ -14,7 +12,7 @@ var CliqFlip = (function(cliqFlip) {
             //            http: //stackoverflow.com/questions/9110060/how-do-i-add-a-resize-event-to-the-window-in-a-view-using-backbone
             this.preventLoading = false;
             $(window).bind("scroll", null, _.bind(this.checkScroll, this));
-            this.bindTo(cliqFlip.App.Mvc.vent, "interest:searched:validated", this.doSearch);
+            this.bindTo(cliqFlip.App.Mvc.vent, "interest:searched:query", this.doSearch);
             this.bindTo(cliqFlip.App.Mvc.vent, "user:selection:changing:feed", this.showFeedList);
         },
         checkScroll: function() {
@@ -39,20 +37,9 @@ var CliqFlip = (function(cliqFlip) {
             });
         },
         onShow: function() {
-            $(".user-info", this.$el)
-                .popover({
-                    content: function() {
-                        return "Hello " + $(this).data('userid');
-                    },
-                    delay: { hide: 1000, show: 250 }
-                });
-
-            var that = this;
-            this.$el.imagesLoaded(function() {
-                that.$el.masonry({
-                    itemSelector: ".feed-item"
-                });
-                that.$el.removeClass("invisible");
+            //masonry needs to be invoked only after the container is on the page as masonry needs the dimensions
+            this.$el.masonry({
+                itemSelector: ".feed-item"
             });
         },
         doSearch: function(search) {
@@ -63,7 +50,7 @@ var CliqFlip = (function(cliqFlip) {
         },
         showFeedList: function() {
             this.data = null;
-            this.collection.reset();           
+            this.collection.reset();
             this.collection.resetPage();
             this.loadResults();
         }

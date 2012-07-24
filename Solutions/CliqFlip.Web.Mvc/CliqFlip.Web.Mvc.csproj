@@ -901,9 +901,6 @@
     <Content Include="Content\assets\templates\feed\postFeedItem.mustache">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\assets\templates\feed\feedList.mustache">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Content\assets\templates\landing\userLandingSummary.mustache" />
     <Content Include="Views\Popup\CreatePost.cshtml" />
     <Content Include="Views\Shared\_Layout.Bootstrap.cshtml" />
@@ -921,7 +918,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\assets\templates\header\layout.mustache" />
-    <Content Include="Content\assets\templates\header\search.mustache" />
+    <Content Include="Content\assets\templates\header\search.mustache">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\assets\templates\landing\addStatus.mustache">
       <SubType>Designer</SubType>
     </Content>

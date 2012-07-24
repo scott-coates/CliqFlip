@@ -2,7 +2,10 @@
 
 var CliqFlip = (function(cliqFlip) {
     var landingController = {
-        landing: function() {
+        index: function() {
+            this.showLanding(true);
+        },
+        showLanding: function(showFeedList) {
             /*
             look into filters:
             https://github.com/angelo0000/backbone_filters/blob/master/backbone_filters.js
@@ -17,6 +20,8 @@ var CliqFlip = (function(cliqFlip) {
 
             if(!cliqFlip.App.Mvc.mainContentRegion.currentView) {
 
+                this.shouldRefreshLanding = false;
+
                 var landingLayout = new cliqFlip.App.Mvc.Layouts.LandingLayout();
 
                 cliqFlip.App.Mvc.mainContentRegion.show(landingLayout);
@@ -27,12 +32,9 @@ var CliqFlip = (function(cliqFlip) {
                 landingLayout.userRegion.show(userLandingSummaryView);
 
                 var feedList = new cliqFlip.App.Mvc.Collections.FeedList();
-
-                feedList.fetch({
-                    success: function() {
-                        landingLayout.contentAreaRegion.show(new cliqFlip.App.Mvc.Views.FeedListView({ collection: feedList }));
-                    }
-                });
+                var feedListView = new cliqFlip.App.Mvc.Views.FeedListView({ collection: feedList });
+                landingLayout.contentAreaRegion.show(feedListView);
+                if(showFeedList) feedListView.showFeedList();
             }
         },
         showPost: function(post) {
@@ -54,8 +56,13 @@ var CliqFlip = (function(cliqFlip) {
         }
     };
 
+    cliqFlip.App.Mvc.vent.bind("interest:searched:validated", function(search) {
+        landingController.showLanding(false);
+        cliqFlip.App.Mvc.vent.trigger("interest:searched:query", search);
+    });
+
     cliqFlip.App.Mvc.vent.bind("feedItem:selected", function(post) { landingController.showPost(post); });
-    cliqFlip.App.Mvc.vent.bind("user:selection:changing:feed", function() { landingController.landing(); });
+    cliqFlip.App.Mvc.vent.bind("user:selection:changing:feed", function() { cliqFlip.App.Mvc.vent.trigger("user:selection:changed", "feed"); });
     cliqFlip.App.Mvc.modalRegion.on("view:closed", function() {
         cliqFlip.App.Mvc.landingRouter.navigate("");
     });
@@ -63,7 +70,7 @@ var CliqFlip = (function(cliqFlip) {
     //Router
     cliqFlip.App.Mvc.Routers.LandingRouter = Backbone.Marionette.AppRouter.extend({
         appRoutes: {
-            "": "landing"
+            "": "index"
         },
         controller: landingController
     });
