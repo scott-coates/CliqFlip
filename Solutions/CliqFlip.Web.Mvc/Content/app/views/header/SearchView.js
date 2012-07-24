@@ -19,9 +19,10 @@ var CliqFlip = (function(cliqFlip) {
             return this;
         },
         events: {
-            "click #btn-search": "search"
+            "submit form": "search"
         },
-        search: function() {
+        search: function(e) {
+            e.preventDefault();
             cliqFlip.App.Mvc.vent.trigger("interest:searched", this.$("#search-box").val());
         },
         clearSearch: function() {
@@ -30,4 +31,4 @@ var CliqFlip = (function(cliqFlip) {
     });
 
     return cliqFlip;
-}(CliqFlip));
+} (CliqFlip));

@@ -2,24 +2,25 @@ var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.App.Mvc.Views.FeedItemView = Backbone.Marionette.ItemView.extend({
         initialize: function() {
+            this.$el.addClass(this.model.get('FeedItemType').toLowerCase() + "-feed-item");
             this.bindTo(this.model, "sync", function() {
                 this.render();
             });
         },
         template: function(model) {
-            var templates;            
-            
+            var templates;
+
             if(model.FeedItemType === 'User') {
-                templates = ["feed-userFeedItem"];                
+                templates = ["feed-userFeedItem"];
             }
             else {
                 templates = ["feed-postFeedItem"];
-                templates.push({ content: "media-Image" });    
+                templates.push({ content: "media-Image" });
             }
-            
+
             return templates;
         },
-        className: 'feed-item gray-rounded-border',
+        className: 'feed-item gray-rounded-border invisible',        
         templateHelpers: _.extend(cliqFlip.ViewHelpers, {
             hasRemainingComments: function() {
                 return this.CommentCount > this.Comments.length;
