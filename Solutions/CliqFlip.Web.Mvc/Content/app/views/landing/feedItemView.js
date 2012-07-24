@@ -19,7 +19,7 @@ var CliqFlip = (function(cliqFlip) {
             
             return templates;
         },
-        className: 'feed-item gray-rounded-border',
+        className: 'feed-item gray-rounded-border invisible',
         templateHelpers: _.extend(cliqFlip.ViewHelpers, {
             hasRemainingComments: function() {
                 return this.CommentCount > this.Comments.length;

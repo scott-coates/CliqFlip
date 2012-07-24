@@ -31,6 +31,7 @@ var CliqFlip = (function(cliqFlip) {
                         that.preventLoading = false;
                         that.$el.imagesLoaded(function() {
                             that.$el.masonry('reload');
+                            that.$(".invisible").removeClass("invisible");
                         });
                     }
                 }
