@@ -40,7 +40,8 @@ var CliqFlip = (function(cliqFlip) {
         onShow: function() {
             //masonry needs to be invoked only after the container is on the page as masonry needs the dimensions
             this.$el.masonry({
-                itemSelector: ".feed-item"
+                itemSelector: ".feed-item",
+                columnWidth:115
             });
         },
         doSearch: function(search) {

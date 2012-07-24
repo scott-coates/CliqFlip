@@ -208,12 +208,21 @@
 
 .feed-item
 {
-    width: 220px;
     margin: 5px 5px 5px 0;
     float: left;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+}
+
+.feed-item.user-feed-item
+{
+    width: 430px;
+}
+
+.feed-item.post-feed-item
+{
+    width: 220px;
 }
 
 .feed-item .initial-preview
