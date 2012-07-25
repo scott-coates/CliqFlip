@@ -28,6 +28,7 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
         }
 
         [HttpPost]
+        [HttpPut]
         [Transaction]
         public HttpResponseMessage Post(SaveLikeApiModel model)
         {
