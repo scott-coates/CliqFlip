@@ -5,10 +5,9 @@ using System.Web.Http;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Web.Mvc.Areas.Api.Models.Feed;
+using CliqFlip.Web.Mvc.Data.Attributes;
 using Microsoft.Practices.ServiceLocation;
 using Newtonsoft.Json;
-using SharpArch.NHibernate.Web.Mvc;
-using SharpArch.Web.Mvc.JsonNet;
 
 namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
 {

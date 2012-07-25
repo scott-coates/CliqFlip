@@ -1,21 +1,12 @@
-﻿using System;
-using System.IO;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Security.Principal;
-using System.Web;
 using System.Web.Http;
 using CliqFlip.Domain.Contracts.Tasks;
-using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Dtos.Post;
-using CliqFlip.Web.Mvc.Areas.Api.Models.Feed;
 using CliqFlip.Web.Mvc.Areas.Api.Models.Post;
-using CliqFlip.Web.Mvc.Areas.Api.Queries.Interfaces;
-using CliqFlip.Web.Mvc.ViewModels.Search;
+using CliqFlip.Web.Mvc.Data.Attributes;
 using Microsoft.Practices.ServiceLocation;
-using SharpArch.NHibernate.Web.Mvc;
-using CliqFlip.Infrastructure.Extensions;
-using SharpArch.Web.Mvc.JsonNet;
 
 namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
 {
