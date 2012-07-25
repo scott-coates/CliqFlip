@@ -41,8 +41,6 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
             switch (mediumType)
             {
                 case "photo":
-                    //thanks...i'm dumb http://forums.asp.net/post/4412044.aspx
-
                     if (string.IsNullOrEmpty(model.FileName))
                     {
                         _userTasks.PostImage(user, model.InterestId, model.Description, model.PostData);
