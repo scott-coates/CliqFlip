@@ -7,6 +7,7 @@ using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Web.Mvc.Areas.Api.Models.Feed;
 using Microsoft.Practices.ServiceLocation;
 using Newtonsoft.Json;
+using SharpArch.NHibernate.Web.Mvc;
 using SharpArch.Web.Mvc.JsonNet;
 
 namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
@@ -26,7 +27,8 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
             _interestTasks = interestTasks;
         }
 
-        // GET /api/feed
+        [HttpGet]
+        [Transaction]
         public IList<InterestKeywordDto> Get(string interestName)
         {
             //TODO: put this in a view model query
@@ -39,27 +41,6 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
             }
 
             return matchingKeywords;
-        }
-
-        //// GET /api/feed/5
-        //public string Get(int page)
-        //{
-        //    return "value";
-        //}
-
-        // POST /api/feed
-        public void Post(string value)
-        {
-        }
-
-        // PUT /api/feed/5
-        public void Put(int id, string value)
-        {
-        }
-
-        // DELETE /api/feed/5
-        public void Delete(int id)
-        {
         }
     }
 }

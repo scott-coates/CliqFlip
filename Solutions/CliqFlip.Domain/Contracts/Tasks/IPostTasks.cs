@@ -13,5 +13,6 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		void SaveComment(SavePostCommentDto postCommentDto, User user);
 		void SaveLike(int postId, User user);
 	    Post Get(int id);
+	    void Save(Post post);
 	}
 }

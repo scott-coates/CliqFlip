@@ -37,7 +37,6 @@ namespace CliqFlip.Tasks.TaskImpl
         private readonly IWebContentService _webContentService;
         private readonly IImageProcessor _imageProcessor;
         private readonly IInterestTasks _interestTasks; //TODO: consider if this should be here
-        private readonly IUserInterestTasks _userInterestTasks;
         private readonly ILocationService _locationService;
         private readonly IPageParsingService _pageParsingService;
         private readonly IUserAuthentication _userAuthentication;
@@ -54,8 +53,7 @@ namespace CliqFlip.Tasks.TaskImpl
             IEmailService emailService,
             ILocationService locationService,
             IUserRepository userRepository,
-            IPageParsingService pageParsingService,
-            IUserInterestTasks userInterestTasks)
+            IPageParsingService pageParsingService)
         {
             _interestTasks = interestTasks;
             _imageProcessor = imageProcessor;
@@ -68,7 +66,6 @@ namespace CliqFlip.Tasks.TaskImpl
             _locationService = locationService;
             _userRepository = userRepository;
             _pageParsingService = pageParsingService;
-            _userInterestTasks = userInterestTasks;
         }
 
         #region IUserTasks Members
@@ -134,7 +131,7 @@ namespace CliqFlip.Tasks.TaskImpl
             return _userRepository.GetSuggestedUser(user);
         }
 
-        public void SaveInterestImage(User user, FileStreamDto interestImage, int userInterestId, string description)
+        public void PostImage(User user, FileStreamDto interestImage, int userInterestId, string description)
         {
             UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
             SaveImageForUser(
@@ -160,7 +157,7 @@ namespace CliqFlip.Tasks.TaskImpl
                     }, interest.Interest));
         }
 
-        public void SaveInterestImage(User user, int userInterestId, string description, string imageUrl)
+        public void PostImage(User user, int userInterestId, string description, string imageUrl)
         {
             imageUrl = imageUrl.FormatWebAddress();
 
@@ -171,11 +168,11 @@ namespace CliqFlip.Tasks.TaskImpl
 
             using (var memoryStream = new MemoryStream(data))
             {
-                SaveInterestImage(user, new FileStreamDto(memoryStream, fileName), userInterestId, description);
+                PostImage(user, new FileStreamDto(memoryStream, fileName), userInterestId, description);
             }
         }
 
-        public void SaveInterestVideo(User user, int userInterestId, string videoUrl)
+        public void PostVideo(User user, int userInterestId, string videoUrl)
         {
             UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
 
@@ -212,7 +209,7 @@ namespace CliqFlip.Tasks.TaskImpl
             user.AddPost(post, interest.Interest);
         }
 
-        public void SaveInterestWebPage(User user, int userInterestId, string linkUrl)
+        public void PostWebPage(User user, int userInterestId, string linkUrl)
         {
             UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
 
@@ -246,7 +243,7 @@ namespace CliqFlip.Tasks.TaskImpl
             user.AddPost(post, interest.Interest);
         }
 
-        public void SaveInterestPost(User user, int userInterestId, string description)
+        public void PostStatus(User user, int userInterestId, string description)
         {
             UserInterest interest = user.Interests.First(x => x.Id == userInterestId);
             var post = new Post { Description = description, CreateDate = DateTime.UtcNow };

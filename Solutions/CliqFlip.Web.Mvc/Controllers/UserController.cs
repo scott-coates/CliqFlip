@@ -300,7 +300,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				try
 				{
-					_userTasks.SaveInterestImage(user, createPostFromUrlViewModel.UserInterestId, createPostFromUrlViewModel.PostDescription, createPostFromUrlViewModel.MediumUrl);
+					_userTasks.PostImage(user, createPostFromUrlViewModel.UserInterestId, createPostFromUrlViewModel.PostDescription, createPostFromUrlViewModel.MediumUrl);
 				}
 				catch (RulesException e)
 				{
@@ -336,7 +336,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 				try
 				{
 					var fileStreamDto = new FileStreamDto(userSaveInterestImageViewModel.InterestImage.InputStream, userSaveInterestImageViewModel.InterestImage.FileName);
-					_userTasks.SaveInterestImage(user, fileStreamDto, userSaveInterestImageViewModel.UserInterestId, userSaveInterestImageViewModel.ImageDescription);
+					_userTasks.PostImage(user, fileStreamDto, userSaveInterestImageViewModel.UserInterestId, userSaveInterestImageViewModel.ImageDescription);
 				}
 				catch (RulesException rex)
 				{
@@ -366,7 +366,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				try
 				{
-					_userTasks.SaveInterestVideo(user, userSaveInterestImageViewModel.UserInterestId, userSaveInterestImageViewModel.VideoURL);
+					_userTasks.PostVideo(user, userSaveInterestImageViewModel.UserInterestId, userSaveInterestImageViewModel.VideoURL);
 				}
 				catch (RulesException e)
 				{
@@ -396,7 +396,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 			{
 				try
 				{
-					_userTasks.SaveInterestWebPage(user, userSaveInterestWebPageViewModel.UserInterestId, userSaveInterestWebPageViewModel.LinkUrl);
+					_userTasks.PostWebPage(user, userSaveInterestWebPageViewModel.UserInterestId, userSaveInterestWebPageViewModel.LinkUrl);
 				}
 				catch (RulesException e)
 				{

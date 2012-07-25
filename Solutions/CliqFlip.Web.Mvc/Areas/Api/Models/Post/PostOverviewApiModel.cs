@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace CliqFlip.Web.Mvc.ViewModels.Search
+namespace CliqFlip.Web.Mvc.Areas.Api.Models.Post
 {
-	public class FeedPostOverviewViewModel
+	public class PostOverviewApiModel
 	{
         public int PostId { get; set; }
         public string Username { get; set; }

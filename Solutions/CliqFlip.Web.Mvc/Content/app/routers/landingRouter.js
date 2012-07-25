@@ -38,16 +38,16 @@ var CliqFlip = (function(cliqFlip) {
             }
         },
         showPost: function(post) {
-            var postOverview = new cliqFlip.App.Mvc.Models.FeedPostOverview({ id: post.get('PostId') });
+            var postOverview = new cliqFlip.App.Mvc.Models.PostOverview({ id: post.get('PostId') });
             postOverview.fetch({
                 success: function(model) {
-                    var postOverviewLayout = new cliqFlip.App.Mvc.Layouts.FeedPostOverviewLayout({ model: model });
+                    var postOverviewLayout = new cliqFlip.App.Mvc.Layouts.PostOverviewLayout({ model: model });
                     cliqFlip.App.Mvc.modalRegion.show(postOverviewLayout);
 
                     var activityModels = _.map(model.get('Activity'), function(parameters) {
-                        return new cliqFlip.App.Mvc.Models.FeedPostOverviewUserActivity(parameters);
+                        return new cliqFlip.App.Mvc.Models.PostOverviewUserActivity(parameters);
                     });
-                    var postCollection = new cliqFlip.App.Mvc.Collections.FeedPostOverviewUserActivityList(activityModels);
+                    var postCollection = new cliqFlip.App.Mvc.Collections.PostOverviewUserActivityList(activityModels);
                     var activityListView = new cliqFlip.App.Mvc.Views.PostOverviewUserAcitivtyListView({ collection: postCollection });
 
                     postOverviewLayout.userActivityRegion.show(activityListView);

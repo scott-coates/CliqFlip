@@ -240,6 +240,9 @@
     <Compile Include="Areas\Admin\ViewModels\Interest\InterestListViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Test\SimpleSendEmailViewModel.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\CommentController.cs" />
+    <Compile Include="Areas\Api\Controllers\LikeController.cs" />
+    <Compile Include="Areas\Api\Controllers\PostController.cs" />
     <Compile Include="Areas\Api\Controllers\InterestController.cs" />
     <Compile Include="Areas\Api\Models\Feed\FeedListApiModel.cs" />
     <Compile Include="Areas\Api\Models\Feed\UserFeedItemApiModel.cs" />
@@ -264,8 +267,8 @@
     <Compile Include="Helpers\Url\Interfaces\IMvcUrlHelperProvider.cs" />
     <Compile Include="Helpers\Url\MvcUrlHelperProvider.cs" />
     <Compile Include="Queries\ConversationQuery.cs" />
-    <Compile Include="Queries\FeedPostOverviewQuery.cs" />
-    <Compile Include="Queries\Interfaces\IFeedPostOverviewQuery.cs" />
+    <Compile Include="Areas\Api\Queries\PostOverviewQuery.cs" />
+    <Compile Include="Areas\Api\Queries\Interfaces\IPostOverviewQuery.cs" />
     <Compile Include="Queries\Interfaces\IInterestFeedQuery.cs" />
     <Compile Include="Queries\Interfaces\IConversationQuery.cs" />
     <Compile Include="Queries\Interfaces\ILatestNotificationQuery.cs" />
@@ -291,14 +294,14 @@
     <Compile Include="ViewModels\Post\InterestPostViewModel.cs" />
     <Compile Include="ViewModels\Notification\LatestNotificationViewModel.cs" />
     <Compile Include="ViewModels\Popup\CreatePostViewModel.cs" />
-    <Compile Include="ViewModels\Search\FeedPostActivityOverviewViewModel.cs" />
-    <Compile Include="ViewModels\Search\FeedItemViewModel.cs" />
-    <Compile Include="ViewModels\Search\FeedPostOverviewViewModel.cs" />
+    <Compile Include="Areas\Api\Models\Post\CommentApiModel.cs" />
+    <Compile Include="Areas\Api\Models\Post\SaveLikeApiModel.cs" />
+    <Compile Include="Areas\Api\Models\Post\PostOverviewApiModel.cs" />
     <Compile Include="ViewModels\Search\InterestsFeedViewModel.cs" />
     <Compile Include="ViewModels\Search\UsersByInterestViewModel.cs" />
     <Compile Include="ViewModels\Search\InterestSearchViewModel.cs" />
     <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
-    <Compile Include="ViewModels\User\UserSavePostViewModel.cs" />
+    <Compile Include="Areas\Api\Models\Post\SavePostApiModel.cs" />
     <Compile Include="ViewModels\User\UserAccountViewModel.cs" />
     <Compile Include="ViewModels\User\UserCreatePostFromUrlViewModel.cs" />
     <Compile Include="ViewModels\User\UserSaveInterestWebPageViewModel.cs" />
@@ -324,20 +327,20 @@
     <Compile Include="Views\StringViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\app\collections\landing\feedPostOverviewUserActivityList.js" />
-    <Content Include="Content\app\collections\landing\feedList.js" />
+    <Content Include="Content\app\collections\feed\postOverviewUserActivityList.js" />
+    <Content Include="Content\app\collections\feed\feedList.js" />
     <Content Include="Content\app\bundle.txt" />
     <Content Include="Content\app\layouts\header\headerLayout.js" />
-    <Content Include="Content\app\layouts\landing\feedPostOverviewLayout.js" />
-    <Content Include="Content\app\models\landing\addPost.js" />
-    <Content Include="Content\app\models\landing\feedPostOverviewUserActivity.js" />
-    <Content Include="Content\app\models\landing\feedPostOverview.js" />
+    <Content Include="Content\app\layouts\feed\postOverviewLayout.js" />
+    <Content Include="Content\app\models\feed\post.js" />
+    <Content Include="Content\app\models\feed\postOverviewUserActivity.js" />
+    <Content Include="Content\app\models\feed\postOverview.js" />
     <Content Include="Content\app\models\header\header.js" />
     <Content Include="Content\app\routers\searchRouter.js" />
-    <Content Include="Content\app\views\landing\addPostView.js" />
-    <Content Include="Content\app\views\landing\postOverviewUserAcitivtyListView.js" />
+    <Content Include="Content\app\views\feed\addPostView.js" />
+    <Content Include="Content\app\views\feed\postOverviewUserAcitivtyListView.js" />
     <Content Include="Content\app\views\header\searchView.js" />
-    <Content Include="Content\app\views\landing\postOverviewUserAcitivtyView.js" />
+    <Content Include="Content\app\views\feed\postOverviewUserAcitivtyView.js" />
     <Content Include="Content\app\views\helpers.js" />
     <Content Include="Content\assets\js\backbonePlugins\backbone.validation.js" />
     <Content Include="Content\assets\js\cliqflip\view\modalRegion.js" />
@@ -346,10 +349,10 @@
     <Content Include="Content\app\layouts\landing\landingLayout.js" />
     <Content Include="Content\app\main.js" />
     <Content Include="Content\app\models\landing\userLandingSummary.js" />
-    <Content Include="Content\app\models\landing\feedItem.js" />
+    <Content Include="Content\app\models\feed\feedItem.js" />
     <Content Include="Content\app\routers\landingRouter.js" />
-    <Content Include="Content\app\views\landing\feedItemView.js" />
-    <Content Include="Content\app\views\landing\feedListView.js" />
+    <Content Include="Content\app\views\feed\feedItemView.js" />
+    <Content Include="Content\app\views\feed\feedListView.js" />
     <Content Include="Content\app\views\landing\userLandingSummaryView.js" />
     <Content Include="Content\assets\img\chrome.png" />
     <Content Include="Content\assets\img\CliqFlip-Arrow.png" />
@@ -905,10 +908,10 @@
     <Content Include="Views\Popup\CreatePost.cshtml" />
     <Content Include="Views\Shared\_Layout.Bootstrap.cshtml" />
     <Content Include="Content\assets\templates\landing\layout.mustache" />
-    <Content Include="Content\assets\templates\feed\feedPostOverview.mustache">
+    <Content Include="Content\assets\templates\feed\postOverview.mustache">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\assets\templates\feed\feedPostOverviewUserAcitivty.mustache">
+    <Content Include="Content\assets\templates\feed\postOverviewUserAcitivty.mustache">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\assets\templates\helpers\alert.mustache">

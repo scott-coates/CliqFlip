@@ -77,5 +77,10 @@ namespace CliqFlip.Tasks.TaskImpl
         {
             return _postRepository.Get(id);
         }
+
+        public void Save(Post post)
+        {
+            _postRepository.SaveOrUpdate(post);
+        }
     }
 }

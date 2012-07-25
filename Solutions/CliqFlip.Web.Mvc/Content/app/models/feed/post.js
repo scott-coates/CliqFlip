@@ -2,8 +2,8 @@
 
 var CliqFlip = (function(cliqFlip) {
 
-    cliqFlip.App.Mvc.Models.AddPost = Backbone.Model.extend({
-        urlRoot: '/search/addpost',
+    cliqFlip.App.Mvc.Models.Post = Backbone.Model.extend({
+        urlRoot: '/api/post',
         defaults: {
             PostData: undefined
         },

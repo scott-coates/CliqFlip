@@ -11,6 +11,8 @@ using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Dtos.Post;
+using CliqFlip.Web.Mvc.Areas.Api.Models.Post;
+using CliqFlip.Web.Mvc.Areas.Api.Queries.Interfaces;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.Security.Attributes;
 using CliqFlip.Web.Mvc.ViewModels.Search;
@@ -30,25 +32,16 @@ namespace CliqFlip.Web.Mvc.Controllers
         private readonly IInterestTasks _interestTasks;
         private readonly IInterestFeedQuery _interestFeedQuery;
         private readonly IPrincipal _principal;
-        private readonly IFeedPostOverviewQuery _feedPostOverviewQuery;
-        private readonly IUserTasks _userTasks;
-        private readonly IPostTasks _postTasks;
 
         public SearchController(IUsersByInterestsQuery usersByInterestsQuery,
                                 IInterestTasks interestTasks,
                                 IInterestFeedQuery interestFeedQuery,
-                                IPrincipal principal,
-                                IFeedPostOverviewQuery feedPostOverviewQuery,
-                                IUserTasks userTasks,
-                                IPostTasks postTasks)
+                                IPrincipal principal)
         {
             _usersByInterestsQuery = usersByInterestsQuery;
             _interestTasks = interestTasks;
             _interestFeedQuery = interestFeedQuery;
             _principal = principal;
-            _feedPostOverviewQuery = feedPostOverviewQuery;
-            _userTasks = userTasks;
-            _postTasks = postTasks;
         }
 
         [Transaction]
@@ -57,81 +50,6 @@ namespace CliqFlip.Web.Mvc.Controllers
         {
             var viewModel = _interestFeedQuery.GetUsersByInterests(_principal.Identity.Name, page, Url);
             return new JsonNetResult(viewModel.Posts);
-        }
-
-        [Transaction]
-        [Authorize]
-        public JsonNetResult FeedPostOverview(int id)
-        {
-            var viewModel = _feedPostOverviewQuery.GetFeedPostOverview(id, _userTasks.GetUser(_principal.Identity.Name));
-            return new JsonNetResult(viewModel);
-        }
-
-        [Transaction]
-        [Authorize]
-        public JsonNetResult FeedPostOverviewUserActivity(FeedPostActivityOverviewViewModel overviewViewModel)
-        {
-            var user = _userTasks.GetUser(_principal.Identity.Name);
-            _postTasks.SaveComment(new SavePostCommentDto { CommentText = overviewViewModel.CommentText, PostId = overviewViewModel.PostId }, user);
-            return new JsonNetResult(new { ProfileImageUrl = user.ProfileImage.ImageData.ThumbFileName, user.Username });
-        }
-
-        [Transaction]
-        [Authorize]
-        public JsonNetResult FeedItem(FeedItemViewModel feedItemViewModel)
-        {
-            var user = _userTasks.GetUser(_principal.Identity.Name);
-            _postTasks.SaveLike(feedItemViewModel.PostId, user);
-            return new JsonNetResult();
-        }
-
-        [Transaction]
-        [Authorize]
-        [HttpPost]
-        public JsonNetResult AddPost(UserSavePostViewModel savePostViewModel)
-        {
-            var user = _userTasks.GetUser(_principal.Identity.Name);
-
-            var mediumType = savePostViewModel.PostType.ToLower();
-
-            switch (mediumType)
-            {
-                case "photo":
-                    //thanks...i'm dumb http://forums.asp.net/post/4412044.aspx
-
-                    if (string.IsNullOrEmpty(savePostViewModel.FileName))
-                    {
-                        _userTasks.SaveInterestImage(user, savePostViewModel.InterestId, savePostViewModel.Description, savePostViewModel.PostData);
-                    }
-                    else
-                    {
-                        var removeDataPrefix = savePostViewModel.PostData.Substring(savePostViewModel.PostData.IndexOf(",", StringComparison.Ordinal) + 1);
-                        var bytearray = Convert.FromBase64String(removeDataPrefix);
-
-                        using (var memoryStream = new MemoryStream(bytearray))
-                        {
-                            _userTasks.SaveInterestImage(
-                                user,
-                                new FileStreamDto(memoryStream, savePostViewModel.FileName),
-                                savePostViewModel.InterestId,
-                                savePostViewModel.Description);
-                        }
-                    }
-                    break;
-                case "video":
-                    _userTasks.SaveInterestVideo(user, savePostViewModel.InterestId, savePostViewModel.PostData);
-                    break;
-                case "link":
-                    _userTasks.SaveInterestWebPage(user, savePostViewModel.InterestId, savePostViewModel.PostData);
-                    break;
-                case "status":
-                    _userTasks.SaveInterestPost(user, savePostViewModel.InterestId, savePostViewModel.Description);
-                    break;
-                default :
-                    throw new HttpException((int)HttpStatusCode.BadRequest, "A medium type is required");
-            }
-
-            return new JsonNetResult();
         }
 
         [Authorize]

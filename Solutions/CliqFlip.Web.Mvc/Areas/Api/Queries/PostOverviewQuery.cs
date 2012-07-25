@@ -2,26 +2,25 @@ using System.Linq;
 using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Entities;
-using CliqFlip.Infrastructure.Repositories.Interfaces;
-using CliqFlip.Web.Mvc.Queries.Interfaces;
-using CliqFlip.Web.Mvc.ViewModels.Search;
+using CliqFlip.Web.Mvc.Areas.Api.Models.Post;
+using CliqFlip.Web.Mvc.Areas.Api.Queries.Interfaces;
 
-namespace CliqFlip.Web.Mvc.Queries
+namespace CliqFlip.Web.Mvc.Areas.Api.Queries
 {
-    public class FeedPostOverviewQuery : IFeedPostOverviewQuery
+    public class PostOverviewQuery : IPostOverviewQuery
     {
         private readonly IPostTasks _postTasks;
         private readonly IUserInterestTasks _userInterestTasks;
 
-        public FeedPostOverviewQuery(IPostTasks postTasks, IUserInterestTasks userInterestTasks)
+        public PostOverviewQuery(IPostTasks postTasks, IUserInterestTasks userInterestTasks)
         {
             _postTasks = postTasks;
             _userInterestTasks = userInterestTasks;
         }
 
-        public FeedPostOverviewViewModel GetFeedPostOverview(int postId, User viewingUser)
+        public PostOverviewApiModel GetPostOverview(int postId, User viewingUser)
         {
-            var retVal = new FeedPostOverviewViewModel();
+            var retVal = new PostOverviewApiModel();
             var post = _postTasks.Get(postId);
             retVal.PostId = post.Id;
             retVal.Username = post.User.Username;
@@ -32,18 +31,18 @@ namespace CliqFlip.Web.Mvc.Queries
 
             if (post.Medium is Video)
 	        {
-                retVal.VideoUrl = (post.Medium as Video).VideoUrl;
+                retVal.VideoUrl = ((Video)post.Medium).VideoUrl;
 	        }
             else if(post.Medium is WebPage){
-                retVal.WebPageUrl = (post.Medium as WebPage).LinkUrl;
+                retVal.WebPageUrl = ((WebPage)post.Medium).LinkUrl;
             }
             else{
                 //this is an image
-                retVal.ImageUrl = (post.Medium as Image).ImageData.FullFileName;
+                retVal.ImageUrl = ((Image)post.Medium).ImageData.FullFileName;
             }
 
             retVal.Activity = post.Comments.Select(
-                x => new FeedPostOverviewViewModel.ActivityViewModel
+                x => new PostOverviewApiModel.ActivityViewModel
                 {
                     CommentText = x.CommentText,
                     Username = x.User.Username,
@@ -52,7 +51,7 @@ namespace CliqFlip.Web.Mvc.Queries
 
 
             var commonInterests = _userInterestTasks.GetInterestsInCommon(viewingUser, post.User);
-            retVal.CommonInterests = commonInterests.Select(x => new FeedPostOverviewViewModel.CommonInterestViewModel { Name = x.Name }).ToList();
+            retVal.CommonInterests = commonInterests.Select(x => new PostOverviewApiModel.CommonInterestViewModel { Name = x.Name }).ToList();
             retVal.HasCommonIntersts = commonInterests.Any();
             return retVal;
         }

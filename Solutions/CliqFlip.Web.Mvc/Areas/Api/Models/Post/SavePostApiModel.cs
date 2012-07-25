@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CliqFlip.Web.Mvc.ViewModels.User
+namespace CliqFlip.Web.Mvc.Areas.Api.Models.Post
 {
-    public class UserSavePostViewModel
+    public class SavePostApiModel
     {
         [Range(0, int.MaxValue)]
         public int InterestId { get; set; }

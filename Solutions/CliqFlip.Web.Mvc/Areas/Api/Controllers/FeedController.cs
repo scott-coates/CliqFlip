@@ -1,8 +1,10 @@
 ﻿using System.Security.Principal;
 using System.Web.Http;
+using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Web.Mvc.Areas.Api.Models.Feed;
 using CliqFlip.Web.Mvc.Areas.Api.Queries.Interfaces;
 using Microsoft.Practices.ServiceLocation;
+using SharpArch.NHibernate.Web.Mvc;
 
 namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
 {
@@ -22,31 +24,11 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
             _feedListQuery = feedListQuery;
         }
 
-        // GET /api/feed
+        [HttpGet]
+        [Transaction]
         public FeedListApiModel Get(int? page, string q)
         {
             return _feedListQuery.GetFeedList(_principal.Identity.Name, page, q);
-        }
-
-        //// GET /api/feed/5
-        //public string Get(int page)
-        //{
-        //    return "value";
-        //}
-
-        // POST /api/feed
-        public void Post(string value)
-        {
-        }
-
-        // PUT /api/feed/5
-        public void Put(int id, string value)
-        {
-        }
-
-        // DELETE /api/feed/5
-        public void Delete(int id)
-        {
         }
     }
 }
