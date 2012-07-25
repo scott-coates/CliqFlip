@@ -259,6 +259,7 @@
     <Compile Include="Controllers\PopupController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Data\Attributes\TransactionAttribute.cs" />
     <Compile Include="Extensions\Controller\ControllerExtensions.cs" />
     <Compile Include="Extensions\Exceptions\RulesExceptionExtensions.cs" />
     <Compile Include="Extensions\Html\HtmlExtensions.cs" />
@@ -327,6 +328,7 @@
     <Compile Include="Views\StringViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Api\ApiNotes.txt" />
     <Content Include="Content\app\collections\feed\postOverviewUserActivityList.js" />
     <Content Include="Content\app\collections\feed\feedList.js" />
     <Content Include="Content\app\bundle.txt" />

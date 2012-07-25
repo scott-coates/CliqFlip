@@ -1,0 +1,3 @@
+﻿No IoC for Castle Windsor. Look into IDependencyResolver
+
+Had to create a custom Transaction Attribute

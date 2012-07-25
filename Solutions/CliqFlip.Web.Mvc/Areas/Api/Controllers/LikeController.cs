@@ -4,8 +4,8 @@ using System.Security.Principal;
 using System.Web.Http;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Web.Mvc.Areas.Api.Models.Post;
+using CliqFlip.Web.Mvc.Data.Attributes;
 using Microsoft.Practices.ServiceLocation;
-using SharpArch.NHibernate.Web.Mvc;
 
 namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
 {
