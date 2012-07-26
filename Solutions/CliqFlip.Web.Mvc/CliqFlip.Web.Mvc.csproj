@@ -52,6 +52,18 @@
     <Reference Include="Arachnophobia.IIS">
       <HintPath>..\..\Packages\Arachnophobia.1.0\lib\net20\Arachnophobia.IIS.dll</HintPath>
     </Reference>
+    <Reference Include="AttributeRouting">
+      <HintPath>..\..\Packages\AttributeRouting.WebApi.2.4.0.0\lib\net40\AttributeRouting.dll</HintPath>
+    </Reference>
+    <Reference Include="AttributeRouting.Web">
+      <HintPath>..\..\Packages\AttributeRouting.WebApi.2.4.0.0\lib\net40\AttributeRouting.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="AttributeRouting.Web.Http">
+      <HintPath>..\..\Packages\AttributeRouting.WebApi.2.4.0.0\lib\net40\AttributeRouting.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="AttributeRouting.Web.Http.WebHost">
+      <HintPath>..\..\Packages\AttributeRouting.WebApi.2.4.0.0\lib\net40\AttributeRouting.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="AWSSDK, Version=1.4.2.0, Culture=neutral, PublicKeyToken=cd2d24cd2bace800, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Packages\AWSSDK.1.4.2.0\lib\AWSSDK.dll</HintPath>
@@ -224,6 +236,7 @@
     <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="App_Start\AttributeRoutingHttp.cs" />
     <Compile Include="App_Start\MagicalUnicornCustomErrorHandling.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\InterestController.cs" />
