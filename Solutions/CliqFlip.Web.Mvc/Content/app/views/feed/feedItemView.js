@@ -3,7 +3,7 @@ var CliqFlip = (function(cliqFlip) {
     cliqFlip.App.Mvc.Views.FeedItemView = Backbone.Marionette.ItemView.extend({
         initialize: function() {
             this.$el.addClass(this.model.get('FeedItemType').toLowerCase() + "-feed-item");
-            this.bindTo(this.model, "sync", function() {
+            this.bindTo(this.model, "like", function() {
                 this.render();
             });
         },
@@ -35,7 +35,7 @@ var CliqFlip = (function(cliqFlip) {
         },
         feedItemSelected: function() {
             cliqFlip.App.Mvc.vent.trigger("feedItem:selected", this.model);
-            //look into triggers: http://lostechies.com/derickbailey/2012/05/15/workflow-in-backbone-apps-triggering-view-events-from-dom-events/
+            //TODO look into triggers: http://lostechies.com/derickbailey/2012/05/15/workflow-in-backbone-apps-triggering-view-events-from-dom-events/
         },
         likeInterest: function() {
             this.model.like();

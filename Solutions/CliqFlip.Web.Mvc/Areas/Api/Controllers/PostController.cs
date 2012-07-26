@@ -4,6 +4,7 @@ using System.Security.Principal;
 using System.Web.Http;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos.Media;
+using CliqFlip.Domain.Dtos.Post;
 using CliqFlip.Web.Mvc.Areas.Api.Models.Post;
 using CliqFlip.Web.Mvc.Areas.Api.Queries.Interfaces;
 using CliqFlip.Web.Mvc.Data.Attributes;
@@ -18,16 +19,19 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
         private readonly IPrincipal _principal;
         private readonly IUserTasks _userTasks;
         private readonly IPostOverviewQuery _postOverviewQuery;
+        private readonly IPostTasks _postTasks;
 
-        public PostController() : this(ServiceLocator.Current.GetInstance<IPrincipal>(), ServiceLocator.Current.GetInstance<IUserTasks>(), ServiceLocator.Current.GetInstance<IPostOverviewQuery>())
+        public PostController()
+            : this(ServiceLocator.Current.GetInstance<IPrincipal>(), ServiceLocator.Current.GetInstance<IUserTasks>(), ServiceLocator.Current.GetInstance<IPostOverviewQuery>(), ServiceLocator.Current.GetInstance<IPostTasks>())
         {
         }
 
-        public PostController(IPrincipal principal, IUserTasks userTasks, IPostOverviewQuery postOverviewQuery)
+        public PostController(IPrincipal principal, IUserTasks userTasks, IPostOverviewQuery postOverviewQuery, IPostTasks postTasks)
         {
             _principal = principal;
             _userTasks = userTasks;
             _postOverviewQuery = postOverviewQuery;
+            _postTasks = postTasks;
         }
 
         [HttpPost]
@@ -80,6 +84,26 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
         {
             var viewModel = _postOverviewQuery.GetPostOverview(id, _userTasks.GetUser(_principal.Identity.Name));
             return viewModel;
+        }
+
+
+        [HttpPost]
+        [Transaction]
+        public HttpResponseMessage Like(SaveLikeApiModel model)
+        {
+            var user = _userTasks.GetUser(_principal.Identity.Name);
+            _postTasks.SaveLike(model.PostId, user);
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+
+        [Transaction]
+        [HttpPost]
+        public HttpResponseMessage Comment(CommentApiModel comment)
+        {
+            var user = _userTasks.GetUser(_principal.Identity.Name);
+            _postTasks.SaveComment(new SavePostCommentDto { CommentText = comment.CommentText, PostId = comment.PostId }, user);
+            return Request.CreateResponse(HttpStatusCode.OK, new { ProfileImageUrl = user.ProfileImage.ImageData.ThumbFileName, user.Username });
         }
     }
 }
