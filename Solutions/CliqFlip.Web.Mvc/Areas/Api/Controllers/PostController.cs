@@ -99,7 +99,7 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
 
 
         [Transaction]
-        [HttpPost]
+        [POST("/api/post/{id}/comment")]
         public HttpResponseMessage Comment(CommentApiModel comment)
         {
             var user = _userTasks.GetUser(_principal.Identity.Name);

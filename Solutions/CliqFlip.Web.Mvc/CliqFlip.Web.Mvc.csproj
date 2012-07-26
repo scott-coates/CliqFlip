@@ -345,6 +345,7 @@
     <Content Include="Content\app\bundle.txt" />
     <Content Include="Content\app\layouts\header\headerLayout.js" />
     <Content Include="Content\app\layouts\feed\postOverviewLayout.js" />
+    <Content Include="Content\app\models\post\comment.js" />
     <Content Include="Content\app\models\post\like.js" />
     <Content Include="Content\app\models\post\post.js" />
     <Content Include="Content\app\models\post\postOverviewUserActivity.js" />

@@ -2,11 +2,12 @@
 
 var CliqFlip = (function(cliqFlip) {
     cliqFlip.App.Mvc.Models.PostOverviewUserActivity = Backbone.Model.extend({
-        urlRoot: '/api/comment',
+        urlRoot: function() { return "/api/post/" + this.get('PostId') + "/comment/"; },
         validate: function(attrs) {
             if(attrs.CommentText.length <= 0) {
                 return 'comment is required';
             }
+            return false;
         }
     });
 
