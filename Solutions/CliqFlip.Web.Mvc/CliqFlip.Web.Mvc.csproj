@@ -334,9 +334,9 @@
     <Content Include="Content\app\bundle.txt" />
     <Content Include="Content\app\layouts\header\headerLayout.js" />
     <Content Include="Content\app\layouts\feed\postOverviewLayout.js" />
-    <Content Include="Content\app\models\feed\post.js" />
-    <Content Include="Content\app\models\feed\postOverviewUserActivity.js" />
-    <Content Include="Content\app\models\feed\postOverview.js" />
+    <Content Include="Content\app\models\post\post.js" />
+    <Content Include="Content\app\models\post\postOverviewUserActivity.js" />
+    <Content Include="Content\app\models\post\postOverview.js" />
     <Content Include="Content\app\models\header\header.js" />
     <Content Include="Content\app\routers\searchRouter.js" />
     <Content Include="Content\app\views\feed\addPostView.js" />
@@ -909,7 +909,9 @@
     <Content Include="Content\assets\templates\landing\userLandingSummary.mustache" />
     <Content Include="Views\Popup\CreatePost.cshtml" />
     <Content Include="Views\Shared\_Layout.Bootstrap.cshtml" />
-    <Content Include="Content\assets\templates\landing\layout.mustache" />
+    <Content Include="Content\assets\templates\landing\layout.mustache">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\assets\templates\feed\postOverview.mustache">
       <SubType>Designer</SubType>
     </Content>
