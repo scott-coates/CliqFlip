@@ -3,7 +3,7 @@ var CliqFlip = (function(cliqFlip) {
     cliqFlip.App.Mvc.Layouts.PostOverviewLayout = Backbone.Marionette.Layout.extend({
         initialize: function() {
             this.bindTo(cliqFlip.App.Mvc.vent, "comment:posted:success", this.clearComment); //bindTo will automatically be unbound on Close
-            this.bindTo(this.model, "like", function() {
+            this.bindTo(this.model, "change", function() {
                 cliqFlip.App.Mvc.vent.trigger("feedItem:selected", this.model);
             });
         },

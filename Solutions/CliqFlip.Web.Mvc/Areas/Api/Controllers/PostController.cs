@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Security.Principal;
 using System.Web.Http;
+using AttributeRouting.Web.Http;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Dtos.Post;
@@ -87,7 +88,7 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
         }
 
 
-        [HttpPost]
+        [POST("/api/post/{id}/like")]
         [Transaction]
         public HttpResponseMessage Like(SaveLikeApiModel model)
         {

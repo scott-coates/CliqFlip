@@ -3,7 +3,7 @@ var CliqFlip = (function(cliqFlip) {
     cliqFlip.App.Mvc.Views.FeedItemView = Backbone.Marionette.ItemView.extend({
         initialize: function() {
             this.$el.addClass(this.model.get('FeedItemType').toLowerCase() + "-feed-item");
-            this.bindTo(this.model, "like", function() {
+            this.bindTo(this.model, "change", function() {
                 this.render();
             });
         },
