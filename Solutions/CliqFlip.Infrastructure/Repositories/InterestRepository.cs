@@ -41,12 +41,12 @@ namespace CliqFlip.Infrastructure.Repositories
         {
             const string queryText = @"
                 START n = node:interests({p0})
-                MATCH p = n-[:INTEREST_RELATES_TO*0.." + Constants.INTEREST_MAX_HOPS + @"]-(x)
+                MATCH n-[r:INTEREST_RELATES_TO*0.." + Constants.INTEREST_MAX_HOPS + @"]-(x)
                 RETURN DISTINCT
                     x.SqlId AS SqlId,
                     x.Slug AS Slug,
                     x.IsMainCategory AS IsMainCategory,
-                    extract(r in relationships(p) : r.Weight) AS Weight
+                    extract(p in r : p.Weight) AS Weight
                 ORDER BY x.Slug";
 
             var query = new CypherQuery(
