@@ -18,13 +18,14 @@ var CliqFlip = (function(cliqFlip) {
 
             cliqFlip.App.Mvc.vent.trigger("user:selection:changed", "feed");
 
-            if(!cliqFlip.App.Mvc.mainContentRegion.currentView) {
+            if(!cliqFlip.App.Mvc.landingRegion.currentView) {
 
                 this.shouldRefreshLanding = false;
 
                 var landingLayout = new cliqFlip.App.Mvc.Layouts.LandingLayout();
 
-                cliqFlip.App.Mvc.mainContentRegion.show(landingLayout);
+                cliqFlip.App.Mvc.landingRegion.show(landingLayout);
+                $(cliqFlip.App.Mvc.userRegion.el).hide();
 
                 var userLandingSummaryModel = new cliqFlip.App.Mvc.Models.UserLandingSummary(cliqFlip.App.UserData);
 
@@ -61,7 +62,7 @@ var CliqFlip = (function(cliqFlip) {
         cliqFlip.App.Mvc.vent.trigger("interest:searched:query", search);
     });
 
-    cliqFlip.App.Mvc.vent.bind("feedItem:selected", function(post) { landingController.showPost(post); });
+    cliqFlip.App.Mvc.vent.bind("postItem:selected", function(post) { landingController.showPost(post); });
     cliqFlip.App.Mvc.vent.bind("user:selection:changing:feed", function() { cliqFlip.App.Mvc.vent.trigger("user:selection:changed", "feed"); });
     cliqFlip.App.Mvc.modalRegion.on("view:closed", function() {
         cliqFlip.App.Mvc.landingRouter.navigate("");

@@ -4,7 +4,7 @@ var CliqFlip = (function(cliqFlip) {
         initialize: function() {
             this.bindTo(cliqFlip.App.Mvc.vent, "comment:posted:success", this.clearComment); //bindTo will automatically be unbound on Close
             this.bindTo(this.model, "change", function() {
-                cliqFlip.App.Mvc.vent.trigger("feedItem:selected", this.model);
+                cliqFlip.App.Mvc.vent.trigger("postItem:selected", this.model);
             });
         },
         template: function(model) {

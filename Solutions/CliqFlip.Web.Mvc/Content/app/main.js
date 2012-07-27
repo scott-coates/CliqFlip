@@ -12,7 +12,8 @@ var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.App.Mvc.addRegions({
         headerRegion: "#header",
-        mainContentRegion: "#main-content",
+        landingRegion: "#landing-content",
+        userRegion: "#user-content",
         modalRegion: function() { return new cliqFlip.View.ModalRegion({ el: "#main-modal" }); }
     });
 
@@ -28,6 +29,7 @@ var CliqFlip = (function(cliqFlip) {
         //routers
         cliqFlip.App.Mvc.landingRouter = new cliqFlip.App.Mvc.Routers.LandingRouter();
         cliqFlip.App.Mvc.searchRouter = new cliqFlip.App.Mvc.Routers.SearchRouter();
+        cliqFlip.App.Mvc.userRouter = new cliqFlip.App.Mvc.Routers.UserRouter();
         Backbone.history.start({ pushState: true, root: "/home/bootstrap/" });
     });
 

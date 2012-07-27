@@ -20,7 +20,7 @@ var CliqFlip = (function(cliqFlip) {
 
             return templates;
         },
-        className: 'feed-item gray-rounded-border invisible',        
+        className: 'feed-item gray-rounded-border invisible',
         templateHelpers: _.extend(cliqFlip.ViewHelpers, {
             hasRemainingComments: function() {
                 return this.CommentCount > this.Comments.length;
@@ -30,15 +30,19 @@ var CliqFlip = (function(cliqFlip) {
             }
         }),
         events: {
-            "click .select-feed-item": "feedItemSelected", //TODO find a way to delegate from a parent (collection view) rather than each individual feed item view
-            "click .like-interest-button": "likeInterest"
+            "click .select-post-item": "postItemSelected", //TODO find a way to delegate from a parent (collection view) rather than each individual feed item view
+            "click .like-interest-button": "likeInterest",
+            "click .select-user-button": "userItemSelected"
         },
-        feedItemSelected: function() {
-            cliqFlip.App.Mvc.vent.trigger("feedItem:selected", this.model);
+        postItemSelected: function() {
+            cliqFlip.App.Mvc.vent.trigger("postItem:selected", this.model);
             //TODO look into triggers: http://lostechies.com/derickbailey/2012/05/15/workflow-in-backbone-apps-triggering-view-events-from-dom-events/
         },
         likeInterest: function() {
             this.model.like();
+        },
+        userItemSelected: function() {
+            cliqFlip.App.Mvc.vent.trigger("userItem:selected", this.model);
         }
     });
 

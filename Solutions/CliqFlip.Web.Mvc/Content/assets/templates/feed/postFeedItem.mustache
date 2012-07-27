@@ -23,7 +23,7 @@
     
     
     {{#Title}}
-    <div class="row-fluid select-feed-item">
+    <div class="row-fluid select-post-item">
         <div class="span12">
             <a href="{{PostUrl}}" class="post-title" title="{{Description}}">
                 {{Title}}
@@ -35,7 +35,7 @@
     {{#MediumImage}}
     <div class="row-fluid">
         <div style="position:relative;" class="span12">
-            <a class="select-feed-item" href="{{PostUrl}}" title="{{Description}}">
+            <a class="select-post-item" href="{{PostUrl}}" title="{{Description}}">
                 <img class="feed-image" src="{{MediumImage}}" alt="{{Description}}"/>
                 {{#VideoUrl}}
                 <img src="/Content/assets/img/video-play.png" style="position: absolute;top: 40%;left: 40%;" class="video-indicator" />
@@ -75,7 +75,7 @@
         </div>
         <div class="span6">
             <b>
-                <a class="select-feed-item" href="{{PostUrl}}" class="comment-count">{{commentCountDescription}}</a>
+                <a class="select-post-item" href="{{PostUrl}}" class="comment-count">{{commentCountDescription}}</a>
             </b>
         </div>
     </div>
@@ -92,12 +92,12 @@
         {{#hasRemainingComments}}
         <div class="row-fluid">
             <div class="span12 see-more-comments">
-                <a class="select-feed-item" href="{{PostUrl}}" title="See {{commentCountDescription}}">See more comments</a>
+                <a class="select-post-item" href="{{PostUrl}}" title="See {{commentCountDescription}}">See more comments</a>
             </div>
         </div>
         {{/hasRemainingComments}}
         <div class="span12 see-more-comments add-comment-area">
-            <a class="btn btn-mini btn-primary select-feed-item" href="{{PostUrl}}">Add Comment</a>
+            <a class="btn btn-mini btn-primary select-post-item" href="{{PostUrl}}">Add Comment</a>
         </div>
     </div>
 </div>

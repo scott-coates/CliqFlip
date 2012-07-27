@@ -351,6 +351,7 @@
     <Content Include="Content\app\models\post\postOverviewUserActivity.js" />
     <Content Include="Content\app\models\post\postOverview.js" />
     <Content Include="Content\app\models\header\header.js" />
+    <Content Include="Content\app\routers\userRouter.js" />
     <Content Include="Content\app\routers\searchRouter.js" />
     <Content Include="Content\app\views\feed\addPostView.js" />
     <Content Include="Content\app\views\feed\postOverviewUserAcitivtyListView.js" />

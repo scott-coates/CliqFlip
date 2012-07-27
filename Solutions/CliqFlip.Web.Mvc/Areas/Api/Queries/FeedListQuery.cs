@@ -33,6 +33,12 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Queries
             var retVal = new FeedListApiModel();
             User user = _userTasks.GetUser(userName);
             var urlHelper = _mvcUrlHelperProvider.ProvideUrlHelper();
+            var request = new UserSearchPipelineRequest
+            {
+                User = user,
+                LocationData = user.Location.Data
+            };
+
             if (!string.IsNullOrWhiteSpace(search))
             {
                 //NOTE: The slug string was lowered cased because if someone changed 'software' to 'Software' in the query string
@@ -41,61 +47,34 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Queries
                     .ToLower()
                     .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                     .ToList();
-
-                var request = new UserSearchPipelineRequest
-                {
-                    User = user,
-                    InterestSearch = aliasCollection,
-                    LocationData = user.Location.Data
-                };
-                var result = _userSearchPipeline.Execute(request);
-                retVal.Total = result.Users.Count;
-                retVal.FeedItems.AddRange(
-                    result.Users.Select(
-                        x => new UserFeedItemApiModel
-                        {
-                            ProfileImageUrl = x.ImageUrl,
-                            Username = x.Username,
-                            MajorLocationName = x.MajorLocationName,
-                            UserPageUrl = urlHelper.Action("Index", "User", new { username = x.Username })
-                        }).Skip(((page ?? 1) - 1) * Constants.FEED_LIMIT).Take(Constants.FEED_LIMIT));
-
-                retVal.TotalReturned = retVal.FeedItems.Count;
+                request.InterestSearch = aliasCollection;
             }
-            else
-            {
-                var request = new UserSearchPipelineRequest
-                {
-                    User = user,
-                    LocationData = user.Location.Data
-                };
-                
-                var result = _userSearchPipeline.Execute(request);
-                retVal.FeedItems.AddRange(
-                    result.Users.Select(
-                        x => new UserFeedItemApiModel
-                        {
-                            ProfileImageUrl = x.ImageUrl,
-                            Username = x.Username,
-                            MajorLocationName = x.MajorLocationName,
-                            UserPageUrl = urlHelper.Action("Index", "User", new { username = x.Username })
-                        }).Skip(((page ?? 1) - 1) * Constants.FEED_LIMIT).Take(Constants.FEED_LIMIT));
 
-                IList<UserPostDto> postDtos = _postTasks.GetPostsByInterests(user.Interests.Select(x => x.Interest).ToList());
-                var dtos = postDtos
-                    .Select(
-                        x => new PostFeedItemApiModel(x)
-                        {
-                            UserPageUrl = urlHelper.Action("Index", "User", new { username = x.Username }),
-                            PostUrl = urlHelper.Action("Index", "Post", new { post = x.Post.PostId }),
-                            IsLikedByUser = x.Post.Likes.Any(y => y.UserId == user.Id)
-                        }).Skip(((page ?? 1) - 1) * Constants.FEED_LIMIT).Take(Constants.FEED_LIMIT);
+            var result = _userSearchPipeline.Execute(request);
+            retVal.FeedItems.AddRange(
+                result.Users.Select(
+                    x => new UserFeedItemApiModel
+                    {
+                        ProfileImageUrl = x.ImageUrl,
+                        Username = x.Username,
+                        MajorLocationName = x.MajorLocationName,
+                        UserPageUrl = urlHelper.Action("Index", "User", new { username = x.Username })
+                    }).Skip(((page ?? 1) - 1) * Constants.FEED_LIMIT).Take(Constants.FEED_LIMIT));
 
-                retVal.FeedItems.AddRange(dtos);
-                retVal.Total = postDtos.Count + result.Users.Count;
-                retVal.TotalReturned = retVal.FeedItems.Count;
-                retVal.FeedItems = retVal.FeedItems.Randomize().ToList();
-            }
+            IList<UserPostDto> postDtos = _postTasks.GetPostsByInterests(user.Interests.Select(x => x.Interest).ToList());
+            var dtos = postDtos
+                .Select(
+                    x => new PostFeedItemApiModel(x)
+                    {
+                        UserPageUrl = urlHelper.Action("Index", "User", new { username = x.Username }),
+                        PostUrl = urlHelper.Action("Index", "Post", new { post = x.Post.PostId }),
+                        IsLikedByUser = x.Post.Likes.Any(y => y.UserId == user.Id)
+                    }).Skip(((page ?? 1) - 1) * Constants.FEED_LIMIT).Take(Constants.FEED_LIMIT);
+
+            retVal.FeedItems.AddRange(dtos);
+            retVal.Total = postDtos.Count + result.Users.Count;
+            retVal.TotalReturned = retVal.FeedItems.Count;
+            retVal.FeedItems = retVal.FeedItems.Randomize().ToList();
             return retVal;
         }
     }
