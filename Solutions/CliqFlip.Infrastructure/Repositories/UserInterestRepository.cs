@@ -5,6 +5,7 @@ using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Dtos.UserInterest;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Infrastructure.Neo.Entities;
+using CliqFlip.Infrastructure.Neo.Queries;
 using CliqFlip.Infrastructure.Neo.Relationships;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
 using Neo4jClient;
@@ -37,15 +38,19 @@ namespace CliqFlip.Infrastructure.Repositories
 
 			return popularInterests.Select(x => new RankedInterestDto(x.Key.Id, x.Key.Name, x.Key.Slug, x.Count)).AsQueryable();
 		}
-		
-	    public IQueryable<InterestInCommonDto> GetInterestsInCommon(User viewingUser, User user)
+
+        public IQueryable<WeightedRelatedInterestDto> GetInterestsInCommon(User viewingUser, User user)
 	    {
             const string queryText = @"
                 START n = node:users({p0})
-                MATCH (n)-[:USER_HAS_INTEREST]->(i)<-[:USER_HAS_INTEREST]-(u)
+                MATCH n-[:USER_HAS_INTEREST]->(i)-[r:INTEREST_RELATES_TO*0.." + Constants.INTEREST_MAX_HOPS + @"]-(x)<-[:USER_HAS_INTEREST]-(u)
                 WHERE u.SqlId = {p1}
-                RETURN i.Name AS Name
-                LIMIT 5";
+                RETURN DISTINCT
+                    x.SqlId AS SqlId,
+                    x.Slug AS Slug,
+                    x.IsMainCategory AS IsMainCategory,
+                    extract(p in r : p.Weight) AS Weight
+                ORDER BY x.Slug";
 
             var query = new CypherQuery(
                 queryText,
@@ -56,9 +61,13 @@ namespace CliqFlip.Infrastructure.Repositories
                 },
                 CypherResultMode.Projection);
 
-            var commonDtos = _graphClient.ExecuteGetCypherResults<InterestInCommonDto>(query);
+            var relatedInterests = _graphClient.ExecuteGetCypherResults<NeoInterestRelatedDistanceGraphQuery>(query);
 
-	        return commonDtos.AsQueryable();
+            var retVal = relatedInterests
+                .Select(x => new WeightedRelatedInterestDto(x.SqlId, x.Weight, x.Slug, x.IsMainCategory))
+                .AsQueryable();
+
+            return retVal;
 	    }
 
 	    public override UserInterest SaveOrUpdate(UserInterest entity)
