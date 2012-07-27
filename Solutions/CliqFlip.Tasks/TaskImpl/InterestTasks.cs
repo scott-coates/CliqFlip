@@ -19,6 +19,8 @@ namespace CliqFlip.Tasks.TaskImpl
 {
     public class InterestTasks : IInterestTasks
     {
+        private static readonly int _maxHopsInverter = int.Parse(Constants.INTEREST_MAX_HOPS) + 1;
+
         private readonly IInterestRepository _interestRepository;
         private readonly IUserInterestRepository _userInterestRepository;
 
@@ -165,6 +167,27 @@ namespace CliqFlip.Tasks.TaskImpl
                 {
                     throw new RulesException("Weight", "Every row needs to have a proper weight");
                 }
+            }
+
+            return retVal;
+        }
+
+        public IList<ScoredRelatedInterestDto> CalculateRelatedInterestScore(IList<WeightedRelatedInterestDto> relatedInterests)
+        {
+            var retVal = new List<ScoredRelatedInterestDto>();
+
+            foreach (var ret in relatedInterests)
+            {
+                var score = (float)_maxHopsInverter;
+
+                if (ret.Weight.Any())
+                {
+                    score *= ret.Weight.Aggregate((f, f1) => f * f1);
+                }
+
+                var scoredInterest = new ScoredRelatedInterestDto(ret.Id, score, ret.Slug, ret.IsMainCategory, ret.ExplicitSearch, ret.Weight.Count);
+
+                retVal.Add(scoredInterest);
             }
 
             return retVal;

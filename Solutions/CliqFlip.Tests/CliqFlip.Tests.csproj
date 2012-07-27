@@ -12,7 +12,7 @@
     <AssemblyName>CliqFlip.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-	<SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Solutions\</SolutionDir>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Solutions\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -101,6 +101,7 @@
     <Compile Include="Unit\Pipelines\UserSearch\CalculateExplicitSearchInterestScoreFilterTests.cs" />
     <Compile Include="Unit\Pipelines\UserSearch\CalculateRelatedInterestScoreFilterTests.cs" />
     <Compile Include="Unit\Syndication\FeedFinderTests.cs" />
+    <Compile Include="Unit\Tasks\InterestTaskTests.cs" />
     <Compile Include="Unit\Tasks\UserTaskTests.cs" />
   </ItemGroup>
   <ItemGroup>

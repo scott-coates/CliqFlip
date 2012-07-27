@@ -17,5 +17,6 @@ namespace CliqFlip.Domain.Contracts.Tasks
 		RelatedInterestListDto GetRelatedInterests(string interestSlug);
 		void CreateRelationships(RelatedInterestListDto relatedInterestListDto);
 	    int UploadInterests(FileStreamDto fileStream);
+        IList<ScoredRelatedInterestDto> CalculateRelatedInterestScore(IList<WeightedRelatedInterestDto> relatedInterests);
 	}
 }
