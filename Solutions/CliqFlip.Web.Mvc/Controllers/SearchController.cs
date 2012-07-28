@@ -1,26 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
 using System.Security.Principal;
-using System.Text;
 using System.Threading;
-using System.Web;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Dtos.Interest;
-using CliqFlip.Domain.Dtos.Media;
-using CliqFlip.Domain.Dtos.Post;
-using CliqFlip.Web.Mvc.Areas.Api.Models.Post;
-using CliqFlip.Web.Mvc.Areas.Api.Queries.Interfaces;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
-using CliqFlip.Web.Mvc.Security.Attributes;
 using CliqFlip.Web.Mvc.ViewModels.Search;
-using CliqFlip.Web.Mvc.ViewModels.User;
 using Newtonsoft.Json;
 using SharpArch.NHibernate.Web.Mvc;
 using SharpArch.Web.Mvc.JsonNet;
-using MvcContrib.Pagination;
 
 namespace CliqFlip.Web.Mvc.Controllers
 {
@@ -30,18 +19,20 @@ namespace CliqFlip.Web.Mvc.Controllers
     {
         private readonly IUsersByInterestsQuery _usersByInterestsQuery;
         private readonly IInterestTasks _interestTasks;
+        private readonly IUserInterestTasks _userInterestTasks;
         private readonly IInterestFeedQuery _interestFeedQuery;
         private readonly IPrincipal _principal;
 
         public SearchController(IUsersByInterestsQuery usersByInterestsQuery,
                                 IInterestTasks interestTasks,
                                 IInterestFeedQuery interestFeedQuery,
-                                IPrincipal principal)
+                                IPrincipal principal, IUserInterestTasks userInterestTasks)
         {
             _usersByInterestsQuery = usersByInterestsQuery;
             _interestTasks = interestTasks;
             _interestFeedQuery = interestFeedQuery;
             _principal = principal;
+            _userInterestTasks = userInterestTasks;
         }
 
         [Transaction]
@@ -95,7 +86,7 @@ namespace CliqFlip.Web.Mvc.Controllers
             var viewModel = new InterestSearchViewModel
             {
                 //TODO: Put this in a query - like how we do with the conversation controller
-                TagCloudInterests = _interestTasks
+                TagCloudInterests = _userInterestTasks
                     .GetMostPopularInterests()
                     .OrderBy(x => x.Name)
                     .Select(

@@ -9,6 +9,7 @@ namespace CliqFlip.Domain.Contracts.Tasks
 {
 	public interface IUserInterestTasks
 	{
+        IList<PopularInterestDto> GetMostPopularInterests();
         IList<InterestInCommonDto> GetInterestsInCommon(User viewingUser, User user);
 	}
 }

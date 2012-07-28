@@ -11,7 +11,7 @@ namespace CliqFlip.Infrastructure.Repositories.Interfaces
 	public interface IUserInterestRepository : IRepository<UserInterest>
 	{
 		//userInterestRepo is aggregate root - http://stackoverflow.com/a/5806356/173957
-        IQueryable<RankedInterestDto> GetMostPopularInterests();
+        IQueryable<PopularInterestDto> GetMostPopularInterests();
         IQueryable<WeightedRelatedInterestDto> GetInterestsInCommon(User viewingUser, User user);
 	}
 }

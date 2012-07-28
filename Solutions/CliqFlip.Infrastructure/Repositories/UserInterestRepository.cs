@@ -27,7 +27,7 @@ namespace CliqFlip.Infrastructure.Repositories
 
 		#region IUserInterestRepository Members
 
-        public IQueryable<RankedInterestDto> GetMostPopularInterests()
+        public IQueryable<PopularInterestDto> GetMostPopularInterests()
 		{
 			var popularInterests =
 				FindAll().ToList()
@@ -36,7 +36,7 @@ namespace CliqFlip.Infrastructure.Repositories
 					.OrderByDescending(x => x.Count)
 					.Take(10).ToList();
 
-			return popularInterests.Select(x => new RankedInterestDto(x.Key.Id, x.Key.Name, x.Key.Slug, x.Count)).AsQueryable();
+			return popularInterests.Select(x => new PopularInterestDto(x.Key.Id, x.Key.Name, x.Key.Slug, x.Count)).AsQueryable();
 		}
 
         public IQueryable<WeightedRelatedInterestDto> GetInterestsInCommon(User viewingUser, User user)

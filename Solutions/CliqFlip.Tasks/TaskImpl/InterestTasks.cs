@@ -45,11 +45,7 @@ namespace CliqFlip.Tasks.TaskImpl
 
             return retVal;
         }
-        
-        public IList<RankedInterestDto> GetMostPopularInterests()
-        {
-            return _userInterestRepository.GetMostPopularInterests().ToList();
-        }
+
 
         public Interest Create(string name, int? relatedTo)
         {

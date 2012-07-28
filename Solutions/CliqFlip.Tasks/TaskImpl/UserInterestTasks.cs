@@ -20,6 +20,12 @@ namespace CliqFlip.Tasks.TaskImpl
             _userInterestRepository = userInterestRepository;
         }
 
+
+        public IList<PopularInterestDto> GetMostPopularInterests()
+        {
+            return _userInterestRepository.GetMostPopularInterests().ToList();
+        }
+
         public IList<InterestInCommonDto> GetInterestsInCommon(User viewingUser, User user)
         {
             return _userInterestRepository.GetInterestsInCommon(viewingUser, user)
