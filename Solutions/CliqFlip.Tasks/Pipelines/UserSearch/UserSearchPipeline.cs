@@ -54,6 +54,9 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
 
         public UserSearchPipelineResult Execute(UserSearchPipelineRequest request)
         {
+            //set flags
+            var explicitSearch = request.InterestSearch != null;
+
             //start with list of users
             var retVal = new UserSearchPipelineResult { UserQuery = _userRepository.FindAll() };
 
@@ -63,7 +66,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
             _findTargetUsersRelatedInterestsFilter.Filter(retVal, request);
 
             //run filter to query potential interests based on what was explicitly searched for
-            if(request.InterestSearch != null)
+            if(explicitSearch)
             {
                 _findRelatedInterestsFromKeywordSearchFilter.Filter(retVal, request);
             }
@@ -85,7 +88,10 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
             /************ Limits/Constraints ******************/
 
             //if explicit search, hide less relevant interests
-            _limitByExplicitSearchScoreFilter.Filter(retVal, request);
+            if(explicitSearch)
+            {
+                _limitByExplicitSearchScoreFilter.Filter(retVal, request);
+            }
 
             //filter users by interests and related
             _limitByInterestFilter.Filter(retVal, request);
