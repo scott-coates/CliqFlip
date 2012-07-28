@@ -1,12 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
-
 using CliqFlip.Domain.Entities;
-using CliqFlip.Domain.ValueObjects;
 
-namespace CliqFlip.Domain.Contracts.Tasks
+namespace CliqFlip.Domain.Contracts.Tasks.Entities
 {
 	public interface  INotificationTasks
 	{

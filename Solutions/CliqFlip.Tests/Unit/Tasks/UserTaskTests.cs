@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CliqFlip.Domain.Contracts.Tasks;
+using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Exceptions;
 using CliqFlip.Infrastructure.Syndication.Interfaces;
 using CliqFlip.Infrastructure.Web.Interfaces;
-using CliqFlip.Tasks.TaskImpl;
+using CliqFlip.Tasks.Tasks.Entities;
 using Moq;
 using NUnit.Framework;
 

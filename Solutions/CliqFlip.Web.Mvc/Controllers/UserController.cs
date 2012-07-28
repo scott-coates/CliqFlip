@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Tasks;
-
+using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Dtos.User;
 using CliqFlip.Domain.Entities;

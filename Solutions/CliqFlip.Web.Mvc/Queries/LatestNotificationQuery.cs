@@ -1,5 +1,6 @@
 using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Tasks;
+using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Notification;

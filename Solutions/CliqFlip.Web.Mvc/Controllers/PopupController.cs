@@ -4,6 +4,7 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using CliqFlip.Domain.Contracts.Tasks;
+using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Web.Mvc.ViewModels.Popup;
 

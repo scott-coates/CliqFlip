@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CliqFlip.Domain.Contracts.Tasks;
+using CliqFlip.Domain.Contracts.Tasks.Entities;
 using SharpArch.Web.Mvc.JsonNet;
 using CliqFlip.Web.Mvc.Security.Attributes;
 

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Web.Http;
 using CliqFlip.Domain.Contracts.Tasks;
+using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Web.Mvc.Areas.Api.Models.Feed;
 using CliqFlip.Web.Mvc.Data.Attributes;

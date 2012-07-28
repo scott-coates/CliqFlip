@@ -42,7 +42,7 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
-	<SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Solutions\</SolutionDir>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Solutions\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -113,11 +113,11 @@
     <Compile Include="Pipelines\UserSearch\Filters\SortUserScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\TransformUserToScoredUserFilter.cs" />
     <Compile Include="Pipelines\UserSearch\UserSearchPipeline.cs" />
-    <Compile Include="TaskImpl\InterestTasks.cs" />
-    <Compile Include="TaskImpl\NotificationTasks.cs" />
-    <Compile Include="TaskImpl\PostTasks.cs" />
-    <Compile Include="TaskImpl\UserInterestTasks.cs" />
-    <Compile Include="TaskImpl\UserTasks.cs" />
+    <Compile Include="Tasks\Entities\InterestTasks.cs" />
+    <Compile Include="Tasks\Entities\NotificationTasks.cs" />
+    <Compile Include="Tasks\Entities\PostTasks.cs" />
+    <Compile Include="Tasks\Entities\UserInterestTasks.cs" />
+    <Compile Include="Tasks\Entities\UserTasks.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CliqFlip.Domain\CliqFlip.Domain.csproj">

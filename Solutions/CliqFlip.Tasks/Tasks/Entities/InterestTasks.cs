@@ -4,8 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using CliqFlip.Domain.Common;
-using CliqFlip.Domain.Contracts.Tasks;
-
+using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Entities;
@@ -15,7 +14,7 @@ using CliqFlip.Infrastructure.Repositories.Interfaces;
 using CliqFlip.Infrastructure.Search;
 using Utilities.FileFormats.CSV;
 
-namespace CliqFlip.Tasks.TaskImpl
+namespace CliqFlip.Tasks.Tasks.Entities
 {
     public class InterestTasks : IInterestTasks
     {

@@ -4,6 +4,7 @@ using System.Security.Principal;
 using System.Web.Http;
 using AttributeRouting.Web.Http;
 using CliqFlip.Domain.Contracts.Tasks;
+using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Dtos.Post;
 using CliqFlip.Web.Mvc.Areas.Api.Models.Post;

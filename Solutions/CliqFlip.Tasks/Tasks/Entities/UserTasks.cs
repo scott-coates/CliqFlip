@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
-using CliqFlip.Domain.Contracts.Tasks;
-using CliqFlip.Domain.Dtos.Interest;
+using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Dtos.User;
 using CliqFlip.Domain.Entities;
@@ -26,7 +24,7 @@ using CliqFlip.Infrastructure.Validation;
 using CliqFlip.Infrastructure.Web;
 using CliqFlip.Infrastructure.Web.Interfaces;
 
-namespace CliqFlip.Tasks.TaskImpl
+namespace CliqFlip.Tasks.Tasks.Entities
 {
     public class UserTasks : IUserTasks
     {

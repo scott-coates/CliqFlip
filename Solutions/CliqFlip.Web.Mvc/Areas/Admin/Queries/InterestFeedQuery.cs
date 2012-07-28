@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CliqFlip.Domain.Contracts.Tasks;
+using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Infrastructure.Search;
 using CliqFlip.Web.Mvc.Areas.Admin.Queries.Interfaces;

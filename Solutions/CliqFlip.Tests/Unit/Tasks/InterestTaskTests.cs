@@ -2,8 +2,9 @@
 using System.Linq;
 using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Tasks;
+using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Dtos.Interest;
-using CliqFlip.Tasks.TaskImpl;
+using CliqFlip.Tasks.Tasks.Entities;
 using NUnit.Framework;
 
 namespace CliqFlip.Tests.Unit.Tasks

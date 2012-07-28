@@ -110,10 +110,10 @@
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\ILimitByInterestFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\ITransformUserToScoredUserFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\IUserSearchPipeline.cs" />
-    <Compile Include="Contracts\Tasks\IPostTasks.cs" />
-    <Compile Include="Contracts\Tasks\INotificationTasks.cs" />
-    <Compile Include="Contracts\Tasks\IInterestTasks.cs" />
-    <Compile Include="Contracts\Tasks\IUserInterestTasks.cs" />
+    <Compile Include="Contracts\Tasks\Entities\IPostTasks.cs" />
+    <Compile Include="Contracts\Tasks\Entities\INotificationTasks.cs" />
+    <Compile Include="Contracts\Tasks\Entities\IInterestTasks.cs" />
+    <Compile Include="Contracts\Tasks\Entities\IUserInterestTasks.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\UserSearchPipelineResult.cs" />
     <Compile Include="Dtos\Post\LikeDto.cs" />
     <Compile Include="Dtos\Post\SavePostCommentDto.cs" />
@@ -148,7 +148,7 @@
     <Compile Include="Exceptions\RulesException.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Contracts\Tasks\IUserTasks.cs" />
+    <Compile Include="Contracts\Tasks\Entities\IUserTasks.cs" />
     <Compile Include="Dtos\Interest\InterestKeywordDto.cs" />
     <Compile Include="Entities\UserInterest.cs" />
     <Compile Include="Entities\Interest.cs" />

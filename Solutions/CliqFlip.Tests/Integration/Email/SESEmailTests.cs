@@ -6,7 +6,6 @@ using CliqFlip.Infrastructure.Email;
 using CliqFlip.Infrastructure.Email.Interfaces;
 using CliqFlip.Infrastructure.Syndication.Interfaces;
 using CliqFlip.Infrastructure.Web.Interfaces;
-using CliqFlip.Tasks.TaskImpl;
 using Moq;
 using NUnit.Framework;
 

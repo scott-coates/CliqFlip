@@ -5,6 +5,7 @@ using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Pipelines.UserSearch;
 using CliqFlip.Domain.Contracts.Pipelines.UserSearch.Filters;
 using CliqFlip.Domain.Contracts.Tasks;
+using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Infrastructure.Repositories.Interfaces;

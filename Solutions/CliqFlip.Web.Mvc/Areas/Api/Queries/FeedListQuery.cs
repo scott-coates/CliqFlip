@@ -4,6 +4,7 @@ using System.Linq;
 using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Pipelines.UserSearch;
 using CliqFlip.Domain.Contracts.Tasks;
+using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Dtos.Post;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Web.Mvc.Areas.Api.Models.Feed;

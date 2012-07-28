@@ -3,7 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Tasks;
-
+using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Dtos.Post;
 using CliqFlip.Domain.Entities;
