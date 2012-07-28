@@ -1,24 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CliqFlip.Domain.Common;
-using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Contracts.Tasks.Entities;
+using CliqFlip.Domain.Contracts.Tasks.InterestAggregation;
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Tasks.Tasks.Entities;
+using CliqFlip.Tasks.Tasks.InterestAggregation;
 using NUnit.Framework;
 
-namespace CliqFlip.Tests.Unit.Tasks
+namespace CliqFlip.Tests.Unit.Tasks.InterestAggregation
 {
 	[TestFixture]
-	public class InterestTaskTests
+	public class InterestScoreCalculatorTests
 	{
-	    private IInterestTasks _interestTasks;
+	    private IInterestScoreCalculator _interestScoreCalculator;
         private static readonly int _maxHopsInverter = int.Parse(Constants.INTEREST_MAX_HOPS) + 1;
 
 		[SetUp]
 		public void Setup()
 		{
-		    _interestTasks = new InterestTasks(null, null);
+		    _interestScoreCalculator = new InterestScoreCalculator();
 		}
 
 
@@ -30,7 +31,7 @@ namespace CliqFlip.Tests.Unit.Tasks
                 new WeightedRelatedInterestDto(0, new List<float>(), "", false)
             };
 
-            var result = _interestTasks.CalculateRelatedInterestScore(relatedInterests);
+            var result = _interestScoreCalculator.CalculateRelatedInterestScore(relatedInterests);
 
             Assert.That(result.Single().Score, Is.EqualTo(_maxHopsInverter));
         }
@@ -46,7 +47,7 @@ namespace CliqFlip.Tests.Unit.Tasks
                 constructedRelatedInterest
             };
 
-            var result = _interestTasks.CalculateRelatedInterestScore(relatedInterests);
+            var result = _interestScoreCalculator.CalculateRelatedInterestScore(relatedInterests);
 
             Assert.That(result.Single().Score, Is.EqualTo(expectedScore));
         }

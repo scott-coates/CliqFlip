@@ -115,6 +115,7 @@
     <Compile Include="Contracts\Tasks\Entities\IInterestTasks.cs" />
     <Compile Include="Contracts\Tasks\Entities\IUserInterestTasks.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\UserSearchPipelineResult.cs" />
+    <Compile Include="Contracts\Tasks\InterestAggregation\IInterestScoreCalculator.cs" />
     <Compile Include="Dtos\Post\LikeDto.cs" />
     <Compile Include="Dtos\Post\SavePostCommentDto.cs" />
     <Compile Include="Dtos\Post\CommentDto.cs" />

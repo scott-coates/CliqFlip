@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Exceptions;
@@ -12,7 +8,7 @@ using CliqFlip.Tasks.Tasks.Entities;
 using Moq;
 using NUnit.Framework;
 
-namespace CliqFlip.Tests.Unit.Tasks
+namespace CliqFlip.Tests.Unit.Tasks.Entities
 {
 	[TestFixture]
 	public class UserTaskTests

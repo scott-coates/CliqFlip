@@ -6,6 +6,7 @@ using CliqFlip.Domain.Contracts.Pipelines.UserSearch;
 using CliqFlip.Domain.Contracts.Pipelines.UserSearch.Filters;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Contracts.Tasks.Entities;
+using CliqFlip.Domain.Contracts.Tasks.InterestAggregation;
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
@@ -14,18 +15,18 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
 {
     public class CalculateRelatedInterestScoreFilter : ICalculateRelatedInterestScoreFilter
     {
-        private readonly IInterestTasks _interestTasks;
+        private readonly IInterestScoreCalculator _interestScoreCalculator;
 
-        public CalculateRelatedInterestScoreFilter(IInterestTasks interestTasks)
+        public CalculateRelatedInterestScoreFilter(IInterestScoreCalculator interestScoreCalculator)
         {
-            _interestTasks = interestTasks;
+            _interestScoreCalculator = interestScoreCalculator;
         }
 
         public void Filter(UserSearchPipelineResult pipelineResult, UserSearchPipelineRequest request)
         {
             if (pipelineResult == null) throw new ArgumentNullException("pipelineResult");
 
-            pipelineResult.ScoredInterests = _interestTasks.CalculateRelatedInterestScore(pipelineResult.RelatedInterests);
+            pipelineResult.ScoredInterests = _interestScoreCalculator.CalculateRelatedInterestScore(pipelineResult.RelatedInterests);
         }
     }
 }

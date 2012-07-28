@@ -101,8 +101,8 @@
     <Compile Include="Unit\Pipelines\UserSearch\CalculateExplicitSearchInterestScoreFilterTests.cs" />
     <Compile Include="Unit\Pipelines\UserSearch\CalculateRelatedInterestScoreFilterTests.cs" />
     <Compile Include="Unit\Syndication\FeedFinderTests.cs" />
-    <Compile Include="Unit\Tasks\InterestTaskTests.cs" />
-    <Compile Include="Unit\Tasks\UserTaskTests.cs" />
+    <Compile Include="Unit\Tasks\InterestAggregation\InterestScoreCalculatorTests.cs" />
+    <Compile Include="Unit\Tasks\Entities\UserTaskTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CliqFlip.Domain\CliqFlip.Domain.csproj">

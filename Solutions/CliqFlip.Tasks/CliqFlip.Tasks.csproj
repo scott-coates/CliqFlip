@@ -113,6 +113,7 @@
     <Compile Include="Pipelines\UserSearch\Filters\SortUserScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\TransformUserToScoredUserFilter.cs" />
     <Compile Include="Pipelines\UserSearch\UserSearchPipeline.cs" />
+    <Compile Include="Tasks\InterestAggregation\InterestScoreCalculator.cs" />
     <Compile Include="Tasks\Entities\InterestTasks.cs" />
     <Compile Include="Tasks\Entities\NotificationTasks.cs" />
     <Compile Include="Tasks\Entities\PostTasks.cs" />
