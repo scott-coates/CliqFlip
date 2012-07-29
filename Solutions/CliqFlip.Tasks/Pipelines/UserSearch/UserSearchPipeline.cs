@@ -92,13 +92,15 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
 
             /************ Limits/Constraints ******************/
 
-            //only keep 'close' interests
-            _limitByCloseInterestFilter.Filter(retVal, request);
-
             //if explicit search, hide less relevant interests
             if (explicitSearch)
             {
                 _limitByExplicitSearchScoreFilter.Filter(retVal, request);
+            }
+            else
+            {
+                //only keep 'close' interests
+                _limitByCloseInterestFilter.Filter(retVal, request);
             }
 
             //filter users by interests and related
