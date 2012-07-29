@@ -14,12 +14,14 @@ namespace CliqFlip.Tasks.Tasks.Entities
         private readonly IUserInterestRepository _userInterestRepository;
         private readonly IInterestScoreCalculator _interestScoreCalculator;
         private readonly IHighestScoreCalculator _highestScoreCalculator;
+        private readonly ICloseInterestLimiter _closeInterestLimiter;
 
-        public UserInterestTasks(IUserInterestRepository userInterestRepository, IInterestScoreCalculator interestScoreCalculator, IHighestScoreCalculator highestScoreCalculator)
+        public UserInterestTasks(IUserInterestRepository userInterestRepository, IInterestScoreCalculator interestScoreCalculator, IHighestScoreCalculator highestScoreCalculator, ICloseInterestLimiter closeInterestLimiter)
         {
             _userInterestRepository = userInterestRepository;
             _interestScoreCalculator = interestScoreCalculator;
             _highestScoreCalculator = highestScoreCalculator;
+            _closeInterestLimiter = closeInterestLimiter;
         }
 
         public IList<PopularInterestDto> GetMostPopularInterests()
@@ -32,10 +34,10 @@ namespace CliqFlip.Tasks.Tasks.Entities
             var interestsInCommon = _userInterestRepository.GetInterestsInCommon(viewingUser, user);
             var scoredInterests = _interestScoreCalculator.CalculateRelatedInterestScore(interestsInCommon.ToList());
             scoredInterests = _highestScoreCalculator.CalculateHighestScores(scoredInterests);
+            scoredInterests = _closeInterestLimiter.LimitCloseInterests(scoredInterests);
 
             return scoredInterests
                 .Select(x => new InterestInCommonDto { Name = x.Slug, Score = x.Score })
-                .Where(x => x.Score >= Constants.CLOSE_INTEREST_THRESHOLD)
                 .ToList();
         }
     }

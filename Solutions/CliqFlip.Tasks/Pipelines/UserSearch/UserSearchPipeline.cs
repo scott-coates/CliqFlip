@@ -19,8 +19,9 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
         private readonly ITransformUserToScoredUserFilter _transformUserToScoredUserFilter;
         private readonly IUserRepository _userRepository;
         private readonly ICalculateMainCategoryInterestScoreFilter _calculateMainCategoryInterestScoreFilter;
-
         private readonly ILimitByExplicitSearchScoreFilter _limitByExplicitSearchScoreFilter;
+        private readonly ILimitByCloseInterestFilter _limitByCloseInterestFilter;
+
         public UserSearchPipeline(IUserRepository userRepository,
                                   IFindTargetUsersRelatedInterestsFilter findTargetUsersRelatedInterestsFilter,
                                   ILimitByInterestFilter limitByInterestFilter,
@@ -32,7 +33,10 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
                                   ICalculateExplicitSearchInterestScoreFilter calculateExplicitSearchInterestScoreFilter,
                                   ICalculateHighestScoredInterestFilter calculateHighestScoredInterestFilter,
                                   ISortUserScoreFilter sortUserScoreFilter,
-                                  ILimitByTargetUserFilter limitByTargetUserFilter, ILimitByExplicitSearchScoreFilter limitByExplicitSearchScoreFilter, ICalculateMainCategoryInterestScoreFilter calculateMainCategoryInterestScoreFilter)
+                                  ILimitByTargetUserFilter limitByTargetUserFilter,
+                                  ILimitByExplicitSearchScoreFilter limitByExplicitSearchScoreFilter,
+                                  ICalculateMainCategoryInterestScoreFilter calculateMainCategoryInterestScoreFilter,
+                                  ILimitByCloseInterestFilter limitByCloseInterestFilter)
         {
             _userRepository = userRepository;
             _findTargetUsersRelatedInterestsFilter = findTargetUsersRelatedInterestsFilter;
@@ -48,6 +52,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
             _limitByTargetUserFilter = limitByTargetUserFilter;
             _limitByExplicitSearchScoreFilter = limitByExplicitSearchScoreFilter;
             _calculateMainCategoryInterestScoreFilter = calculateMainCategoryInterestScoreFilter;
+            _limitByCloseInterestFilter = limitByCloseInterestFilter;
         }
 
         #region IUserSearchPipeline Members
@@ -66,7 +71,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
             _findTargetUsersRelatedInterestsFilter.Filter(retVal, request);
 
             //run filter to query potential interests based on what was explicitly searched for
-            if(explicitSearch)
+            if (explicitSearch)
             {
                 _findRelatedInterestsFromKeywordSearchFilter.Filter(retVal, request);
             }
@@ -87,8 +92,11 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
 
             /************ Limits/Constraints ******************/
 
+            //only keep 'close' interests
+            _limitByCloseInterestFilter.Filter(retVal, request);
+
             //if explicit search, hide less relevant interests
-            if(explicitSearch)
+            if (explicitSearch)
             {
                 _limitByExplicitSearchScoreFilter.Filter(retVal, request);
             }

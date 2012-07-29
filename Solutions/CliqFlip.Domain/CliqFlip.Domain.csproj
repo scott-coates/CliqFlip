@@ -94,6 +94,7 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Contracts\Pipelines\UserSearch\Filters\ILimitByCloseInterestFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\ICalculateMainCategoryInterestScoreFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\ILimitByExplicitSearchScoreFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\ILimitByTargetUserFilter.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Contracts\Tasks\Entities\IInterestTasks.cs" />
     <Compile Include="Contracts\Tasks\Entities\IUserInterestTasks.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\UserSearchPipelineResult.cs" />
+    <Compile Include="Contracts\Tasks\InterestAggregation\ICloseInterestLimiter.cs" />
     <Compile Include="Contracts\Tasks\InterestAggregation\IHighestScoreCalculator.cs" />
     <Compile Include="Contracts\Tasks\InterestAggregation\IInterestScoreCalculator.cs" />
     <Compile Include="Dtos\Post\LikeDto.cs" />

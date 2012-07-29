@@ -105,6 +105,7 @@
     <Compile Include="Pipelines\UserSearch\Filters\FindTargetUsersRelatedInterestsFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\CalculateExplicitSearchInterestScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\CalculateRelatedInterestScoreFilter.cs" />
+    <Compile Include="Pipelines\UserSearch\Filters\LimitByCloseInterestFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\LimitByExplicitSearchScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\LimitByInterestFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\AssignInterestCommonalityScoreFilter.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Pipelines\UserSearch\Filters\SortUserScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\TransformUserToScoredUserFilter.cs" />
     <Compile Include="Pipelines\UserSearch\UserSearchPipeline.cs" />
+    <Compile Include="Tasks\InterestAggregation\CloseInterestLimiter.cs" />
     <Compile Include="Tasks\InterestAggregation\HighestScoreCalculator.cs" />
     <Compile Include="Tasks\InterestAggregation\InterestScoreCalculator.cs" />
     <Compile Include="Tasks\Entities\InterestTasks.cs" />
