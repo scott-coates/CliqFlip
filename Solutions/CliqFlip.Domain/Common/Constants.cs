@@ -29,6 +29,7 @@ namespace CliqFlip.Domain.Common
 
         //anything over INTEREST_MAX_HOPS + 1 will not allow an interest unless it was explicitly searched for
         public const float EXPLICIT_SEARCH_INTEREST_THRESHOLD = 4;
+        public const float CLOSE_INTEREST_THRESHOLD = 2.25f;
         public const float LOCATION_MILE_MULTIPLIER = .01f;
         public const int LOCATION_MAX_MILES = 100;
     }
