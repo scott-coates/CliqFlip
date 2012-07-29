@@ -82,7 +82,10 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
             _calculateRelatedInterestScoreFilter.Filter(retVal, request);
 
             //score interests based on explicit search
-            _calculateExplicitSearchInterestScoreFilter.Filter(retVal, request);
+            if (explicitSearch)
+            {
+                _calculateExplicitSearchInterestScoreFilter.Filter(retVal, request);
+            }
 
             //main categories get less points - too vague
             _calculateMainCategoryInterestScoreFilter.Filter(retVal, request);
