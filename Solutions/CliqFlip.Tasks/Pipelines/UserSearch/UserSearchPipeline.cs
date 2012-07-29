@@ -10,7 +10,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
         private readonly IAssignLocationScoreFilter _assignLocationScoreFilter;
         private readonly ICalculateExplicitSearchInterestScoreFilter _calculateExplicitSearchInterestScoreFilter;
         private readonly ICalculateRelatedInterestScoreFilter _calculateRelatedInterestScoreFilter;
-        private readonly ICalculatedHighestScoredInterestFilter _calculatedHighestScoredInterestFilter;
+        private readonly ICalculateHighestScoredInterestFilter _calculateHighestScoredInterestFilter;
         private readonly IFindRelatedInterestsFromKeywordSearchFilter _findRelatedInterestsFromKeywordSearchFilter;
         private readonly IFindTargetUsersRelatedInterestsFilter _findTargetUsersRelatedInterestsFilter;
         private readonly ILimitByInterestFilter _limitByInterestFilter;
@@ -30,7 +30,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
                                   IAssignLocationScoreFilter assignLocationScoreFilter,
                                   IFindRelatedInterestsFromKeywordSearchFilter findRelatedInterestsFromKeywordSearchFilter,
                                   ICalculateExplicitSearchInterestScoreFilter calculateExplicitSearchInterestScoreFilter,
-                                  ICalculatedHighestScoredInterestFilter calculatedHighestScoredInterestFilter,
+                                  ICalculateHighestScoredInterestFilter calculateHighestScoredInterestFilter,
                                   ISortUserScoreFilter sortUserScoreFilter,
                                   ILimitByTargetUserFilter limitByTargetUserFilter, ILimitByExplicitSearchScoreFilter limitByExplicitSearchScoreFilter, ICalculateMainCategoryInterestScoreFilter calculateMainCategoryInterestScoreFilter)
         {
@@ -43,7 +43,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
             _assignLocationScoreFilter = assignLocationScoreFilter;
             _findRelatedInterestsFromKeywordSearchFilter = findRelatedInterestsFromKeywordSearchFilter;
             _calculateExplicitSearchInterestScoreFilter = calculateExplicitSearchInterestScoreFilter;
-            _calculatedHighestScoredInterestFilter = calculatedHighestScoredInterestFilter;
+            _calculateHighestScoredInterestFilter = calculateHighestScoredInterestFilter;
             _sortUserScoreFilter = sortUserScoreFilter;
             _limitByTargetUserFilter = limitByTargetUserFilter;
             _limitByExplicitSearchScoreFilter = limitByExplicitSearchScoreFilter;
@@ -83,7 +83,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch
             _calculateMainCategoryInterestScoreFilter.Filter(retVal, request);
 
             //keep only the highest scored interests
-            _calculatedHighestScoredInterestFilter.Filter(retVal, request);
+            _calculateHighestScoredInterestFilter.Filter(retVal, request);
 
             /************ Limits/Constraints ******************/
 

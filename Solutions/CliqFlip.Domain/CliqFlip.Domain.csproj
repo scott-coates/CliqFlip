@@ -100,7 +100,7 @@
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\IUserSearchPipeLineFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\UserSearchPipelineRequest.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\ISortUserScoreFilter.cs" />
-    <Compile Include="Contracts\Pipelines\UserSearch\Filters\ICalculatedHighestScoredInterestFilter.cs" />
+    <Compile Include="Contracts\Pipelines\UserSearch\Filters\ICalculateHighestScoredInterestFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\ICalculateExplicitSearchInterestScoreFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\IFindRelatedInterestsFromKeywordSearchFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\IAssignLocationScoreFilter.cs" />
@@ -115,6 +115,7 @@
     <Compile Include="Contracts\Tasks\Entities\IInterestTasks.cs" />
     <Compile Include="Contracts\Tasks\Entities\IUserInterestTasks.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\UserSearchPipelineResult.cs" />
+    <Compile Include="Contracts\Tasks\InterestAggregation\IHighestScoreCalculator.cs" />
     <Compile Include="Contracts\Tasks\InterestAggregation\IInterestScoreCalculator.cs" />
     <Compile Include="Dtos\Post\LikeDto.cs" />
     <Compile Include="Dtos\Post\SavePostCommentDto.cs" />
