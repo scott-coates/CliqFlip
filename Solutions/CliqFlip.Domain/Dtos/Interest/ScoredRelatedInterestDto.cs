@@ -1,6 +1,8 @@
-﻿namespace CliqFlip.Domain.Dtos.Interest
+﻿using CliqFlip.Domain.Dtos.Interest.Interfaces;
+
+namespace CliqFlip.Domain.Dtos.Interest
 {
-    public class ScoredRelatedInterestDto
+    public class ScoredRelatedInterestDto : IScoredInterestDto
     {
         public int Id { get; set; }
         public float Score { get; set; }

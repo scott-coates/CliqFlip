@@ -3,6 +3,7 @@ using System.Linq;
 using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Contracts.Tasks.InterestAggregation;
+using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Dtos.UserInterest;
 using CliqFlip.Domain.Entities;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
@@ -37,14 +38,15 @@ namespace CliqFlip.Tasks.Tasks.Entities
 
         public IList<InterestInCommonDto> GetInterestsInCommon(User viewingUser, User user)
         {
-            var interestsInCommon = _userInterestRepository.GetInterestsInCommon(viewingUser, user);
-            var scoredInterests = _interestScoreCalculator.CalculateRelatedInterestScore(interestsInCommon.ToList());
-            scoredInterests = _highestScoreCalculator.CalculateHighestScores(scoredInterests);
+            var interestsInCommon = _userInterestRepository.GetInterestsInCommon(viewingUser, user).ToList();
+            _interestScoreCalculator.CalculateRelatedInterestScore(interestsInCommon);
+            var scoredInterests = interestsInCommon.Select(x => new ScoredInterestInCommonDto(x.Id, x.Score, x.Name, x.IsMainCategory)).ToList();
+            scoredInterests = _highestScoreCalculator.CalculateHighestScores(scoredInterests).Cast<ScoredInterestInCommonDto>().ToList();
             _mainCategoryScoreCalculator.CalculateMainCategoryScores(scoredInterests);
-            scoredInterests = _closeInterestLimiter.LimitCloseInterests(scoredInterests);
+            scoredInterests = _closeInterestLimiter.LimitCloseInterests(scoredInterests).Cast<ScoredInterestInCommonDto>().ToList();
 
             return scoredInterests
-                .Select(x => new InterestInCommonDto { Name = x.Slug, Score = x.Score })
+                .Select(x => new InterestInCommonDto { Name = x.Name, Score = x.Score })
                 .ToList();
         }
     }

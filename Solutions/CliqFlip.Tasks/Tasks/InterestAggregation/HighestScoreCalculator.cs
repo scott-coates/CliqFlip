@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using CliqFlip.Domain.Contracts.Tasks.InterestAggregation;
 using CliqFlip.Domain.Dtos.Interest;
+using CliqFlip.Domain.Dtos.Interest.Interfaces;
 
 namespace CliqFlip.Tasks.Tasks.InterestAggregation
 {
     public class HighestScoreCalculator : IHighestScoreCalculator
     {
-        public IList<ScoredRelatedInterestDto> CalculateHighestScores(IList<ScoredRelatedInterestDto> scoredInterests)
+        public IList<IScoredInterestDto> CalculateHighestScores<T>(IList<T> scoredInterests) where T : class, IScoredInterestDto
         {
             if (scoredInterests == null) throw new ArgumentNullException("scoredInterests");
 
@@ -16,7 +17,7 @@ namespace CliqFlip.Tasks.Tasks.InterestAggregation
             return scoredInterests
                 .GroupBy(x => x.Id, (y, z) => z.Aggregate((a, x) => a.Score > x.Score ? a : x))
                 .OrderByDescending(x => x.Score)
-                .ToList();
+                .ToList<IScoredInterestDto>();
         }
     }
 }

@@ -3,20 +3,19 @@ using CliqFlip.Domain.Dtos.Interest.Interfaces;
 
 namespace CliqFlip.Domain.Dtos.Interest
 {
-    public class WeightedRelatedInterestDto : IWeightedInterestDto
+    public class WeightedInterestInCommonDto : IWeightedInterestDto
     {
         public int Id { get; set; }
         public List<float> Weight { get; set; }
         public float Score { get; set; }
-        public string Slug { get; set; }
+        public string Name { get; set; }
         public bool IsMainCategory { get; set; }
-        public bool ExplicitSearch { get; set; }
 
-        public WeightedRelatedInterestDto(int id, List<float> weight, string slug, bool isMainCategory)
+        public WeightedInterestInCommonDto(int id, List<float> weight, string name, bool isMainCategory)
         {
             Id = id;
             Weight = weight;
-            Slug = slug;
+            Name = name;
             IsMainCategory = isMainCategory;
         }
     }

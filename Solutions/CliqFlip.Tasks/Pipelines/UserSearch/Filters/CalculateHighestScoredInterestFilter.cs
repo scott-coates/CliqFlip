@@ -4,6 +4,7 @@ using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Pipelines.UserSearch;
 using CliqFlip.Domain.Contracts.Pipelines.UserSearch.Filters;
 using CliqFlip.Domain.Contracts.Tasks.InterestAggregation;
+using CliqFlip.Domain.Dtos.Interest;
 
 namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
 {
@@ -21,7 +22,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
             if (pipelineResult == null) throw new ArgumentNullException("pipelineResult");
             if (pipelineResult.ScoredInterests == null) throw new ArgumentNullException("pipelineResult", "Scored results should be provided");
 
-            var highestScoredInterests = _highestScoreCalculator.CalculateHighestScores(pipelineResult.ScoredInterests);
+            var highestScoredInterests = _highestScoreCalculator.CalculateHighestScores(pipelineResult.ScoredInterests).Cast<ScoredRelatedInterestDto>().ToList();
 
             pipelineResult.ScoredInterests = highestScoredInterests;
         }

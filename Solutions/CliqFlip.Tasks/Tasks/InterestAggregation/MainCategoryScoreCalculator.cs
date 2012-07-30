@@ -4,12 +4,13 @@ using System.Linq;
 using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Tasks.InterestAggregation;
 using CliqFlip.Domain.Dtos.Interest;
+using CliqFlip.Domain.Dtos.Interest.Interfaces;
 
 namespace CliqFlip.Tasks.Tasks.InterestAggregation
 {
     public class MainCategoryScoreCalculator : IMainCategoryScoreCalculator
     {
-        public void CalculateMainCategoryScores(IList<ScoredRelatedInterestDto> scoredInterests)
+        public void CalculateMainCategoryScores<T>(IList<T> scoredInterests) where T : class, IScoredInterestDto
         {
             if (scoredInterests == null) throw new ArgumentNullException("scoredInterests");
 

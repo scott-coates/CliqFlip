@@ -26,7 +26,9 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
         {
             if (pipelineResult == null) throw new ArgumentNullException("pipelineResult");
 
-            pipelineResult.ScoredInterests = _interestScoreCalculator.CalculateRelatedInterestScore(pipelineResult.RelatedInterests);
+            _interestScoreCalculator.CalculateRelatedInterestScore(pipelineResult.RelatedInterests);
+
+            pipelineResult.ScoredInterests = pipelineResult.RelatedInterests.Select(x => new ScoredRelatedInterestDto(x.Id, x.Score, x.Slug, x.IsMainCategory, x.ExplicitSearch, x.Weight.Count)).ToList();
         }
     }
 }

@@ -31,9 +31,9 @@ namespace CliqFlip.Tests.Unit.Tasks.InterestAggregation
                 new WeightedRelatedInterestDto(0, new List<float>(), "", false)
             };
 
-            var result = _interestScoreCalculator.CalculateRelatedInterestScore(relatedInterests);
+            _interestScoreCalculator.CalculateRelatedInterestScore(relatedInterests);
 
-            Assert.That(result.Single().Score, Is.EqualTo(_maxHopsInverter));
+            Assert.That(relatedInterests.Single().Score, Is.EqualTo(_maxHopsInverter));
         }
 
         [TestCase(new float[] { }, 4f)]
@@ -47,9 +47,9 @@ namespace CliqFlip.Tests.Unit.Tasks.InterestAggregation
                 constructedRelatedInterest
             };
 
-            var result = _interestScoreCalculator.CalculateRelatedInterestScore(relatedInterests);
+            _interestScoreCalculator.CalculateRelatedInterestScore(relatedInterests);
 
-            Assert.That(result.Single().Score, Is.EqualTo(expectedScore));
+            Assert.That(relatedInterests.Single().Score, Is.EqualTo(expectedScore));
         }
 	}
 }

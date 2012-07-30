@@ -120,6 +120,10 @@
     <Compile Include="Contracts\Tasks\InterestAggregation\ICloseInterestLimiter.cs" />
     <Compile Include="Contracts\Tasks\InterestAggregation\IHighestScoreCalculator.cs" />
     <Compile Include="Contracts\Tasks\InterestAggregation\IInterestScoreCalculator.cs" />
+    <Compile Include="Dtos\Interest\ScoredInterestInCommonDto.cs" />
+    <Compile Include="Dtos\Interest\Interfaces\IWeightedInterestDto.cs" />
+    <Compile Include="Dtos\Interest\Interfaces\IScoredInterestDto.cs" />
+    <Compile Include="Dtos\Interest\WeightedInterestInCommonDto.cs" />
     <Compile Include="Dtos\Post\LikeDto.cs" />
     <Compile Include="Dtos\Post\SavePostCommentDto.cs" />
     <Compile Include="Dtos\Post\CommentDto.cs" />

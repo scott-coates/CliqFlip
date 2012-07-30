@@ -39,7 +39,7 @@ namespace CliqFlip.Infrastructure.Repositories
 			return popularInterests.Select(x => new PopularInterestDto(x.Key.Id, x.Key.Name, x.Key.Slug, x.Count)).AsQueryable();
 		}
 
-        public IQueryable<WeightedRelatedInterestDto> GetInterestsInCommon(User viewingUser, User user)
+        public IQueryable<WeightedInterestInCommonDto> GetInterestsInCommon(User viewingUser, User user)
 	    {
             const string queryText = @"
                 START n = node:users({p0})
@@ -47,10 +47,10 @@ namespace CliqFlip.Infrastructure.Repositories
                 WHERE u.SqlId = {p1}
                 RETURN DISTINCT
                     x.SqlId AS SqlId,
-                    x.Slug AS Slug,
+                    x.Name AS Name,
                     x.IsMainCategory AS IsMainCategory,
                     extract(p in r : p.Weight) AS Weight
-                ORDER BY x.Slug";
+                ORDER BY x.Name";
 
             var query = new CypherQuery(
                 queryText,
@@ -61,10 +61,10 @@ namespace CliqFlip.Infrastructure.Repositories
                 },
                 CypherResultMode.Projection);
 
-            var relatedInterests = _graphClient.ExecuteGetCypherResults<NeoInterestRelatedDistanceGraphQuery>(query);
+            var relatedInterests = _graphClient.ExecuteGetCypherResults<NeoCommonInterestDistanceGraphQuery>(query);
 
             var retVal = relatedInterests
-                .Select(x => new WeightedRelatedInterestDto(x.SqlId, x.Weight, x.Slug, x.IsMainCategory))
+                .Select(x => new WeightedInterestInCommonDto(x.SqlId, x.Weight, x.Name, x.IsMainCategory))
                 .AsQueryable();
 
             return retVal;

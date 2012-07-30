@@ -3,6 +3,7 @@ using System.Linq;
 using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Tasks.InterestAggregation;
 using CliqFlip.Domain.Dtos.Interest;
+using CliqFlip.Domain.Dtos.Interest.Interfaces;
 
 namespace CliqFlip.Tasks.Tasks.InterestAggregation
 {
@@ -10,11 +11,9 @@ namespace CliqFlip.Tasks.Tasks.InterestAggregation
     {
         private static readonly int _maxHopsInverter = int.Parse(Constants.INTEREST_MAX_HOPS) + 1;
 
-        public IList<ScoredRelatedInterestDto> CalculateRelatedInterestScore(IList<WeightedRelatedInterestDto> relatedInterests)
+        public void CalculateRelatedInterestScore<T>(IList<T> weightedInterests) where T : class, IWeightedInterestDto
         {
-            var retVal = new List<ScoredRelatedInterestDto>();
-
-            foreach (var ret in relatedInterests)
+            foreach (var ret in weightedInterests)
             {
                 var score = (float)_maxHopsInverter;
 
@@ -23,12 +22,8 @@ namespace CliqFlip.Tasks.Tasks.InterestAggregation
                     score *= ret.Weight.Aggregate((f, f1) => f * f1);
                 }
 
-                var scoredInterest = new ScoredRelatedInterestDto(ret.Id, score, ret.Slug, ret.IsMainCategory, ret.ExplicitSearch, ret.Weight.Count);
-
-                retVal.Add(scoredInterest);
+                ret.Score = score;
             }
-
-            return retVal;
         }
     }
 }
