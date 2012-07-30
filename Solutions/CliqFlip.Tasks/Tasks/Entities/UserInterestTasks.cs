@@ -15,13 +15,19 @@ namespace CliqFlip.Tasks.Tasks.Entities
         private readonly IInterestScoreCalculator _interestScoreCalculator;
         private readonly IHighestScoreCalculator _highestScoreCalculator;
         private readonly ICloseInterestLimiter _closeInterestLimiter;
+        private readonly IMainCategoryScoreCalculator _mainCategoryScoreCalculator;
 
-        public UserInterestTasks(IUserInterestRepository userInterestRepository, IInterestScoreCalculator interestScoreCalculator, IHighestScoreCalculator highestScoreCalculator, ICloseInterestLimiter closeInterestLimiter)
+        public UserInterestTasks(IUserInterestRepository userInterestRepository,
+                                 IInterestScoreCalculator interestScoreCalculator,
+                                 IHighestScoreCalculator highestScoreCalculator,
+                                 ICloseInterestLimiter closeInterestLimiter,
+                                 IMainCategoryScoreCalculator mainCategoryScoreCalculator)
         {
             _userInterestRepository = userInterestRepository;
             _interestScoreCalculator = interestScoreCalculator;
             _highestScoreCalculator = highestScoreCalculator;
             _closeInterestLimiter = closeInterestLimiter;
+            _mainCategoryScoreCalculator = mainCategoryScoreCalculator;
         }
 
         public IList<PopularInterestDto> GetMostPopularInterests()
@@ -34,6 +40,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
             var interestsInCommon = _userInterestRepository.GetInterestsInCommon(viewingUser, user);
             var scoredInterests = _interestScoreCalculator.CalculateRelatedInterestScore(interestsInCommon.ToList());
             scoredInterests = _highestScoreCalculator.CalculateHighestScores(scoredInterests);
+            _mainCategoryScoreCalculator.CalculateMainCategoryScores(scoredInterests);
             scoredInterests = _closeInterestLimiter.LimitCloseInterests(scoredInterests);
 
             return scoredInterests

@@ -122,6 +122,7 @@
     <Compile Include="Tasks\Entities\PostTasks.cs" />
     <Compile Include="Tasks\Entities\UserInterestTasks.cs" />
     <Compile Include="Tasks\Entities\UserTasks.cs" />
+    <Compile Include="Tasks\InterestAggregation\MainCategoryScoreCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CliqFlip.Domain\CliqFlip.Domain.csproj">
