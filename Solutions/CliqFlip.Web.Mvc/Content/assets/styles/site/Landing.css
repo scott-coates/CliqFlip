@@ -213,7 +213,7 @@
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    width: 320px;
+    width: 280px;
 }
 
 .feed-item .initial-preview
@@ -235,6 +235,12 @@
 .feed-item .initial-preview .post-description
 {
     margin-top: 4px;
+}
+
+.feed-item .initial-preview .common-interest-label
+{
+    width: 100%;
+    display: table;
 }
 
 .feed-item .feed-image
