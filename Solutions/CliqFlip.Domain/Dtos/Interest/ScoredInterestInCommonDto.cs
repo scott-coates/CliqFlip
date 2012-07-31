@@ -6,13 +6,15 @@ namespace CliqFlip.Domain.Dtos.Interest
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public bool IsExactMatch { get; private set; }
 
-        public ScoredInterestInCommonDto(int id, float score, string name, bool isMainCategory)
+        public ScoredInterestInCommonDto(int id, float score, string name, bool isMainCategory, bool isExactMatch)
         {
             Id = id;
             Score = score;
             Name = name;
             IsMainCategory = isMainCategory;
+            IsExactMatch = isExactMatch;
         }
 
         #region IScoredRelatedInterestDto Members

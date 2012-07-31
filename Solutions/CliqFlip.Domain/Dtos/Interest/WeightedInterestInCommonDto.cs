@@ -10,6 +10,7 @@ namespace CliqFlip.Domain.Dtos.Interest
         public float Score { get; set; }
         public string Name { get; set; }
         public bool IsMainCategory { get; set; }
+        public bool IsExactMatch { get; private set; }
 
         public WeightedInterestInCommonDto(int id, List<float> weight, string name, bool isMainCategory)
         {
@@ -17,6 +18,7 @@ namespace CliqFlip.Domain.Dtos.Interest
             Weight = weight;
             Name = name;
             IsMainCategory = isMainCategory;
+            IsExactMatch = weight.Count == 0;
         }
     }
 }

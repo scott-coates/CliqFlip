@@ -40,13 +40,13 @@ namespace CliqFlip.Tasks.Tasks.Entities
         {
             var interestsInCommon = _userInterestRepository.GetInterestsInCommon(viewingUser, user).ToList();
             _interestScoreCalculator.CalculateRelatedInterestScore(interestsInCommon);
-            var scoredInterests = interestsInCommon.Select(x => new ScoredInterestInCommonDto(x.Id, x.Score, x.Name, x.IsMainCategory)).ToList();
+            var scoredInterests = interestsInCommon.Select(x => new ScoredInterestInCommonDto(x.Id, x.Score, x.Name, x.IsMainCategory, x.IsExactMatch)).ToList();
             scoredInterests = _highestScoreCalculator.CalculateHighestScores(scoredInterests).Cast<ScoredInterestInCommonDto>().ToList();
             _mainCategoryScoreCalculator.CalculateMainCategoryScores(scoredInterests);
             scoredInterests = _closeInterestLimiter.LimitCloseInterests(scoredInterests).Cast<ScoredInterestInCommonDto>().ToList();
 
             return scoredInterests
-                .Select(x => new InterestInCommonDto { Name = x.Name, Score = x.Score })
+                .Select(x => new InterestInCommonDto(x.Name, x.Score, x.IsExactMatch))
                 .ToList();
         }
     }

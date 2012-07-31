@@ -26,6 +26,15 @@ var CliqFlip = (function(cliqFlip) {
             },
             commentCountDescription: function() {
                 return this.CommentCount.toString() + " " + (this.CommentCount === 1 ? "Comment" : "Comments");
+            },
+            interestCountDescription: function(interestCount, interestType) {
+                return interestCount.toString() + " " + interestType + " " + (interestCount === 1 ? "Interest" : "Interests");
+            },
+            commonInterestCountDescription: function() {
+                return this.interestCountDescription(this.CommonInterestCount, "Common");
+            },
+            relatedInterestCountDescription: function() {
+                return this.interestCountDescription(this.RelatedInterestCount, "Related");
             }
         }),
         events: {

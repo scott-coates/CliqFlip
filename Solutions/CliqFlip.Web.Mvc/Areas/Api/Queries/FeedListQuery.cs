@@ -20,13 +20,15 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Queries
         private readonly IPostTasks _postTasks;
         private readonly IMvcUrlHelperProvider _mvcUrlHelperProvider;
         private readonly IUserSearchPipeline _userSearchPipeline;
+        private readonly IUserInterestTasks _userInterestTasks;
 
-        public FeedListQuery(IUserTasks userTasks, IPostTasks postTasks, IMvcUrlHelperProvider mvcUrlHelperProvider, IUserSearchPipeline userSearchPipeline)
+        public FeedListQuery(IUserTasks userTasks, IPostTasks postTasks, IMvcUrlHelperProvider mvcUrlHelperProvider, IUserSearchPipeline userSearchPipeline, IUserInterestTasks userInterestTasks)
         {
             _userTasks = userTasks;
             _postTasks = postTasks;
             _mvcUrlHelperProvider = mvcUrlHelperProvider;
             _userSearchPipeline = userSearchPipeline;
+            _userInterestTasks = userInterestTasks;
         }
 
         public FeedListApiModel GetFeedList(string userName, int? page, string search)
@@ -52,15 +54,33 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Queries
             }
 
             var result = _userSearchPipeline.Execute(request);
-            retVal.FeedItems.AddRange(
-                result.Users.Select(
-                    x => new UserFeedItemApiModel
-                    {
-                        ProfileImageUrl = x.ImageUrl,
-                        Username = x.Username,
-                        MajorLocationName = x.MajorLocationName,
-                        UserPageUrl = urlHelper.Action("Index", "User", new { username = x.Username })
-                    }).Skip(((page ?? 1) - 1) * Constants.FEED_LIMIT).Take(Constants.FEED_LIMIT));
+            var userFeedItemApiModels = result.Users.Select(
+                x => new UserFeedItemApiModel
+                {
+                    ProfileImageUrl = x.ImageUrl,
+                    Username = x.Username,
+                    MajorLocationName = x.MajorLocationName,
+                    UserPageUrl = urlHelper.Action("Index", "User", new { username = x.Username })
+                }).Skip(((page ?? 1) - 1) * Constants.FEED_LIMIT).Take(Constants.FEED_LIMIT).ToList();
+
+            foreach (var userFeedItem in userFeedItemApiModels)
+            {
+                var commonInterest = _userInterestTasks.GetInterestsInCommon(user, _userTasks.GetUser(userFeedItem.Username));
+                userFeedItem.CommonInterestCount = commonInterest.Count(x => x.IsExactMatch);
+                userFeedItem.RelatedInterestCount = commonInterest.Count(x => !x.IsExactMatch);
+                userFeedItem.InterestsInCommon = commonInterest
+                    .OrderByDescending(x => x.Score)
+                    .Take(5)
+                    .Select(
+                        x => new UserFeedItemApiModel.InterestInCommonApiModel
+                        {
+                            Name = x.Name,
+                            IsExactMach = x.IsExactMatch
+                        })
+                    .ToList();
+            }
+
+            retVal.FeedItems.AddRange(userFeedItemApiModels);
 
             IList<UserPostDto> postDtos = _postTasks.GetPostsByInterests(user.Interests.Select(x => x.Interest).ToList());
             var dtos = postDtos
