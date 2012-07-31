@@ -21,7 +21,7 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Models.Feed
         public class InterestInCommonApiModel
         {
             public string Name { get; set; }
-            public bool IsExactMach { get; set; }
+            public bool IsExactMatch { get; set; }
         }
     }
 }

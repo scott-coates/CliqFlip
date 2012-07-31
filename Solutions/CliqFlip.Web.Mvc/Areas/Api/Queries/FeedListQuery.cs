@@ -57,7 +57,7 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Queries
             var userFeedItemApiModels = result.Users.Select(
                 x => new UserFeedItemApiModel
                 {
-                    ProfileImageUrl = x.ImageUrl,
+                    ProfileImageUrl = x.ImageUrl ?? Constants.DEFAULT_PROFILE_IMAGE,
                     Username = x.Username,
                     MajorLocationName = x.MajorLocationName,
                     UserPageUrl = urlHelper.Action("Index", "User", new { username = x.Username })
@@ -75,7 +75,7 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Queries
                         x => new UserFeedItemApiModel.InterestInCommonApiModel
                         {
                             Name = x.Name,
-                            IsExactMach = x.IsExactMatch
+                            IsExactMatch = x.IsExactMatch
                         })
                     .ToList();
             }

@@ -36,4 +36,20 @@
             </div>
         </div>
     </div>
+    {{#InterestsInCommon}}
+    <div class="row-fluid">
+        <div class="span12">
+            {{#IsExactMatch}}
+            <span class="label">
+                {{Name}}
+            </span>
+            {{/IsExactMatch}}
+            {{^IsExactMatch}}
+            <span class="label label-inverse">
+                {{Name}}
+            </span>
+            {{/IsExactMatch}}
+        </div>
+    </div>
+    {{/InterestsInCommon}}
 </div>
