@@ -35,8 +35,8 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
             _postOverviewQuery = postOverviewQuery;
             _postTasks = postTasks;
         }
-
-        [HttpPost]
+        
+        [POST("/api/post")]
         [Transaction]
         public HttpResponseMessage Post(SavePostApiModel model)
         {
