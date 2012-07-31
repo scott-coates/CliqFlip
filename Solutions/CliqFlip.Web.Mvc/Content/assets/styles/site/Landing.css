@@ -270,7 +270,7 @@
     margin-bottom: 2px;
 }
 
-.feed-item .activity .add-comment-area
+.feed-item .activity .see-more-comments
 {
     text-align: center;
 }
@@ -281,9 +281,4 @@
     font-size: 11px;
     height: 30px;
     resize: none;
-}
-
-.see-more-comments
-{
-    text-align: center;
 }
