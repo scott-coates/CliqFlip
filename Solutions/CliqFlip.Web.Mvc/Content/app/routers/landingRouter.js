@@ -37,6 +37,9 @@ var CliqFlip = (function(cliqFlip) {
                 landingLayout.contentAreaRegion.show(feedListView);
                 if(showFeedList) feedListView.showFeedList();
             }
+            else {
+                cliqFlip.App.Mvc.landingRegion.currentView.$el.show();
+            }
         },
         showPost: function(post) {
             var postOverview = new cliqFlip.App.Mvc.Models.PostOverview({ id: post.get('PostId') });

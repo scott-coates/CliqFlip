@@ -2,12 +2,14 @@
 
 var CliqFlip = (function(cliqFlip) {
     var userController = {
-        index: function(user) {
-            alert(user);
+        index: function() {
+            cliqFlip.App.Mvc.userRegion.show(new Backbone.Marionette.View());
         }
     };
 
-    cliqFlip.App.Mvc.vent.bind("userItem:selected", function(user) { userController.index(user); });
+    cliqFlip.App.Mvc.vent.bind("userItem:selected", function(user) {
+        userController.index(user);
+    });
 
     //Router
     cliqFlip.App.Mvc.Routers.UserRouter = Backbone.Marionette.AppRouter.extend({

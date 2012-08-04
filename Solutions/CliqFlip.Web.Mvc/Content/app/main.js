@@ -1,4 +1,4 @@
-// @reference ~/Content/assets/js/backbonePlugins/backbone.marionette.js
+// @reference ~/Content/assets/scripts/backbonePlugins/backbone.marionette.js
 
 var CliqFlip = (function(cliqFlip) {
 
@@ -12,8 +12,15 @@ var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.App.Mvc.addRegions({
         headerRegion: "#header",
-        landingRegion: "#landing-content",
-        userRegion: "#user-content",
+        landingRegion: Backbone.Marionette.Region.extend({
+            el: "#landing-content"
+        }),
+        userRegion: Backbone.Marionette.Region.extend({
+            el: "#user-content",
+            onShow: function() {
+                cliqFlip.App.Mvc.landingRegion.$el.hide();
+            }
+        }),
         modalRegion: function() { return new cliqFlip.View.ModalRegion({ el: "#main-modal" }); }
     });
 

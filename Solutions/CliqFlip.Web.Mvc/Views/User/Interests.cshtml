@@ -100,9 +100,9 @@
 }
 @section beforeBodyClose
 {
-	<script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery.tmpl.js")"> </script>
-	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/assets/js/cliqflip/user/interests.js")"> </script>
-	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/assets/js/cliqflip/user/add-interest.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Content/assets/scripts/jquery/jquery.tmpl.js")"> </script>
+	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/assets/scripts/cliqflip/user/interests.js")"> </script>
+	<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/assets/scripts/cliqflip/user/add-interest.js")"> </script>
 	<script type="text/javascript">
 		$(function() {
 			InitInterests(@(Model.AuthenticatedProfileOwner.ToString(CultureInfo.InvariantCulture).ToLower()));

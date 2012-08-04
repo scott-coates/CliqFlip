@@ -1407,15 +1407,15 @@ text-align: left;
 }
 
 .user-interest-add-photo {
-	background-image: url('/Content/assets/img/photoICON.png');
+	background-image: url('/Content/assets/images/photoICON.png');
 }
 
 .user-interest-add-video {
-	background-image: url('/Content/assets/img/YouTube_Icon.png');
+	background-image: url('/Content/assets/images/YouTube_Icon.png');
 }
 
 .user-interest-add-link {
-	background-image: url('/Content/assets/img/icons.png');
+	background-image: url('/Content/assets/images/icons.png');
 }
 
 .user-interest-add-single
@@ -1486,7 +1486,7 @@ text-align: left;
 }
 span.video-indicator
 { 
-	background-image: url("/Content/assets/img/video-play.png");
+	background-image: url("/Content/assets/images/video-play.png");
 	height: 26px;
     left: 40%;
     bottom: 40%;
@@ -1627,7 +1627,7 @@ span.video-indicator
 		}
 
 		#interestsList li a.remove-interest {
-			background: url(/Content/assets/img/close.png) no-repeat;
+			background: url(/Content/assets/images/close.png) no-repeat;
 			float: right;
 			height: 25px;
 			width: 25px;
@@ -1946,22 +1946,22 @@ div.conversation-reply input
 		}
 		
 		#landig-page-profile {
-			background-image: url('/Content/assets/img/profile.png');
+			background-image: url('/Content/assets/images/profile.png');
 			background-repeat:  no-repeat; 
 		}
 		
 		#landig-page-inbox {
-			background-image: url('/Content/assets/img/inbox.png');
+			background-image: url('/Content/assets/images/inbox.png');
 			background-repeat:  no-repeat; 
 		}
 		
 		#landig-page-suggested {
-			background-image: url('/Content/assets/img/suggested.png');
+			background-image: url('/Content/assets/images/suggested.png');
 			background-repeat:  no-repeat; 
 		}
 		
 		#landig-page-feedback {
-			background-image: url('/Content/assets/img/feedback.png');
+			background-image: url('/Content/assets/images/feedback.png');
 			background-repeat:  no-repeat; 
 		}
 

@@ -80,7 +80,7 @@
 		<ul>
 			<li>
 				<div id="facebook-connect" class="social-media-username-container">
-					<img src="@Url.Content("~/Content/assets/img/f_logo.png")" alt="Facebook" />
+					<img src="@Url.Content("~/Content/assets/images/f_logo.png")" alt="Facebook" />
 					<p class="facebookText social-media-text @Html.Raw(Model.AuthenticatedProfileOwner ? "editable" : "")" >
 						@if (String.IsNullOrWhiteSpace(Model.FacebookUsername))
 						{
@@ -126,10 +126,10 @@
 @section beforeBodyClose
 {
 	<script type="text/javascript" src="@Url.Content("~/Scripts/raphael.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("/Content/assets/js/raphael/raphael.cliqFlip.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("~/Content/assets/js/cliqflip/user/profile.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("~/Content/assets/js/cliqflip/main/ui.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery.jeip.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("/Content/assets/scripts/raphael/raphael.cliqFlip.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Content/assets/scripts/cliqflip/user/profile.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Content/assets/scripts/cliqflip/main/ui.js")"> </script>
+	<script type="text/javascript" src="@Url.Content("~/Content/assets/scripts/jquery/jquery.jeip.js")"> </script>
 	<script type="text/javascript">
 		$(function() {
 			InitUser(@(Model.AuthenticatedProfileOwner.ToString(CultureInfo.InvariantCulture).ToLower()));

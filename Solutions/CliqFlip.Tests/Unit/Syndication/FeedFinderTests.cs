@@ -604,7 +604,7 @@ addLoadEvent(function(){linktracker_init('19665306',0);});
 		<div id='secondary' class='widget-area' role='complementary'>
 			<ul class='xoxo'>
 				<li id='text-3' class='widget-container widget_text'>			<div class='textwidget'><a href='http://hiscotty.com/CV'>
-<img src='http://careers.stackoverflow.com/Content/assets/img/logo-careers-2-so.png?31e238' width='208' height='58' alt='Need a smart programmer who gets things done?' title='Need a smart programmer who gets things done?'>
+<img src='http://careers.stackoverflow.com/Content/assets/images/logo-careers-2-so.png?31e238' width='208' height='58' alt='Need a smart programmer who gets things done?' title='Need a smart programmer who gets things done?'>
 </a>
 <a href='http://stackoverflow.com/users/173957/scoarescoare'>
 <img src='http://stackoverflow.com/users/flair/173957.png?theme=dark' width='208' height='58' alt='Stack Overflow profile for scoarescoare at Stack Overflow, Q&amp;A for professional and enthusiast programmers' title='Stack Overflow profile for scoarescoare at Stack Overflow, Q&amp;A for professional and enthusiast programmers'>

@@ -22,7 +22,7 @@
 		<script type="text/javascript">
 			window.logErrorUrl = '@Url.Action("LogJavaScriptError", "Error", new {area = ""})';
 		</script>
-		<script type="text/javascript" src="@Url.Content("~/Content/assets/js/cliqflip/main/error-handler.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("~/Content/assets/scripts/cliqflip/main/error-handler.js")"> </script>
 		@HtmlExtensions.GetAnalyticsHtmlIfAvailable()
 		@RenderSection("beforeHeadClose", false)
 	</head>

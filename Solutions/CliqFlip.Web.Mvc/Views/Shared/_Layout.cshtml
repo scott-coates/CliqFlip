@@ -32,7 +32,7 @@
 				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
 			})();
 		</script>
-		<script type="text/javascript" src="@Url.Content("~/Content/assets/js/cliqflip/main/errorHandler.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("~/Content/assets/scripts/cliqflip/main/errorHandler.js")"> </script>
 		@HtmlExtensions.GetAnalyticsHtmlIfAvailable()
 		@RenderSection("beforeHeadClose", false)
 	</head>
@@ -43,7 +43,7 @@
 				<div class="inner">
 					<div class="logo">
 						<a href="/">
-							<img src="@Url.Content("/Content/assets/img/CliqFlip-LogoMoto.png")" alt="CliqFlip logo"/>
+							<img src="@Url.Content("/Content/assets/images/CliqFlip-LogoMoto.png")" alt="CliqFlip logo"/>
 						</a>
 					</div>
 					<div class="motto">Discover <span>More</span>
@@ -162,16 +162,16 @@
 	
 		<!-- Scripts -->
 		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.7.2.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery.colorbox.js")"> </script>
-        <script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery.anythingslider.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery.anythingslider.fx.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery-ui-1.8.11.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("~/Content/assets/scripts/jquery/jquery.colorbox.js")"> </script>
+        <script type="text/javascript" src="@Url.Content("~/Content/assets/scripts/jquery/jquery.anythingslider.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("~/Content/assets/scripts/jquery/jquery.anythingslider.fx.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("~/Content/assets/scripts/jquery/jquery-ui-1.8.11.js")"> </script>
 		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")"> </script>
 		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.js")"> </script>
 		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"> </script>
-		<script type="text/javascript" src="@Url.Content("~/Content/assets/js/jquery/jquery.cookie.js")"> </script>
-		<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/assets/js/cliqflip/main/login.js")"> </script>
-		<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/assets/js/cliqflip/main/tos.js")"> </script>
+		<script type="text/javascript" src="@Url.Content("~/Content/assets/scripts/jquery/jquery.cookie.js")"> </script>
+		<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/assets/scripts/cliqflip/main/login.js")"> </script>
+		<script type="text/javascript" src="@Url.ContentWithVersioning("/Content/assets/scripts/cliqflip/main/tos.js")"> </script>
 		@Flash.FlashMessage(TempData)
 		<script type="text/javascript">
 			$(document).ready(function() {
