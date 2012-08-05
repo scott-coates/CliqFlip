@@ -1,0 +1,26 @@
+﻿<div class="item-header" style="border-bottom: 1px solid #26ADE4;">
+<!--The person that posted it-->
+  <h4>
+    <a title="{{model.Username}}" href="{{model.UserPageUrl}}">{{model.Username}}</a>
+  </h4>
+  <a title="{{model.Username}}" href="{{model.UserPageUrl}}">
+    <img class="profile-image" src="{{model.ProfileImageUrl}}" alt="{{model.Username}}"/>
+  </a>
+
+  <strong>
+    {{model.Title}}
+  </strong>
+
+  <!--the interest it belongs to-->
+  <h5>
+    {{model.Interest}}
+  </h5>
+</div>
+
+<div class="item-content">
+  {{> content }}
+  <div class="clear"></div>
+</div>
+
+<div class="detailed-content">
+</div>

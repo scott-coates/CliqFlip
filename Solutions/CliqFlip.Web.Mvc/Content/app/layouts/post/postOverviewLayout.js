@@ -10,11 +10,11 @@ var CliqFlip = (function(cliqFlip) {
         template: function(model) {
             var templates = ["feed-postOverview"];
 
-            var contentTemplate = "media-Image";
+            var contentTemplate = "post-Image";
             if(model.VideoUrl) {
-                contentTemplate = "media-Video";
+                contentTemplate = "post-Video";
             } else if(model.WebPageUrl) {
-                contentTemplate = "media-WebPage";
+                contentTemplate = "post-WebPage";
             }
 
             templates.push({ content: contentTemplate });
