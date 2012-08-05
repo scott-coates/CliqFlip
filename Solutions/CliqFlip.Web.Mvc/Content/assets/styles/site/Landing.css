@@ -270,15 +270,18 @@
     margin-bottom: 2px;
 }
 
+.feed-item .view-profile .well
+{
+    padding: 19px 2px 8px;
+    margin-bottom: 0;
+}
+
 .feed-item .activity .see-more-comments
 {
     text-align: center;
 }
 
-.feed-item .activity textarea
+.feed-item .view-profile .see-profile
 {
-    line-height: 1em;
-    font-size: 11px;
-    height: 30px;
-    resize: none;
+    text-align: center;
 }
