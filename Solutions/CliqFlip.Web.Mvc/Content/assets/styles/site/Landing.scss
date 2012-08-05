@@ -1,0 +1,170 @@
+﻿/*
+@reference Site.css
+*/
+
+/* Add video, link, image */
+
+.share-something {
+  margin-top: 10px; }
+
+#user-interest-add-text {
+  text-align: left; }
+
+#user-share-something a {
+  height: 50px;
+  padding-top: 35px; }
+
+.user-interest-add-photo {
+  background-image: url('/Content/assets/images/photoICON.png');
+  background-repeat: no-repeat; }
+
+.user-interest-add-video {
+  background-image: url('/Content/assets/images/YouTube_Icon.png');
+  background-repeat: no-repeat; }
+
+.user-interest-add-link {
+  background-image: url('/Content/assets/images/icons.png');
+  background-repeat: no-repeat; }
+
+/* Showing content - all/friends */
+
+.showing-feed {
+  display: inline-block;
+  margin-top: 7px; }
+
+/* profile */
+
+#profile-overview {
+  padding: 10px;
+  margin-bottom: 10px; }
+
+#profile-user {
+  padding-bottom: 15px; }
+
+#profile-counts div.span4 {
+  text-align: center; }
+
+/*Feed*/
+
+.post-overview-modal {
+  &.modal {
+    width: 80%;
+    margin-left: -50%;
+    /*half of width: https://github.com/twitter/bootstrap/issues/675#issuecomment-2965567*/
+    height: 580px;
+    /*http://bootswatch.com/slate/bootstrap.css*/
+    background-color: #32373c;
+    background-image: -moz-linear-gradient(top, #3a3f44, #272b30);
+    background-image: -ms-linear-gradient(top, #3a3f44, #272b30);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3a3f44), to(#272b30));
+    background-image: -webkit-linear-gradient(top, #3a3f44, #272b30);
+    background-image: -o-linear-gradient(top, #3a3f44, #272b30);
+    background-image: linear-gradient(top, #3a3f44, #272b30);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3a3f44', endColorstr='#272b30', GradientType=0);
+    border-color: #272b30 #272b30 #050506;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    *background-color: #272b30;
+    /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.075);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.075);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.075);
+    &.fade.in {
+      top: 40%; } }
+  .modal-body {
+    max-height: none;
+    padding: 0; }
+  &.modal {
+    .close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: 5px;
+      margin-right: 5px; }
+    .post-details {
+      background-color: white;
+      .user-details {
+        padding: 15px;
+        img {
+          max-height: 142px; }
+        .be-friends {
+          float: left; }
+        .btn-group {
+          float: left;
+          margin-left: 2px; }
+        .alert {
+          margin-top: 1px;
+          margin-bottom: 0; } } }
+    .activity {
+      .well {
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-right: 0;
+        margin-bottom: 0; }
+      .activity-item {
+        border-top: 1px solid #FCFAFA;
+        border-bottom: 1px solid #D9D4D4;
+        background-color: #F2F0F0;
+        i {
+          margin-top: 1px; } }
+      textarea {
+        line-height: 1em;
+        font-size: 11px;
+        height: 30px;
+        resize: none; }
+      button {
+        margin-top: 9px; } }
+    .media-content {
+      margin-left: 1%;
+      b {
+        color: white;
+        > a {
+          color: white; } }
+      img {
+        max-width: 95%; }
+      h4 {
+        margin-top: 5px;
+        color: white; } }
+    #user-activity {
+      height: 255px;
+      overflow-y: auto; } } }
+
+.feed-item {
+  margin: 5px 5px 5px 0;
+  float: left;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  width: 280px;
+  .initial-preview {
+    padding: 10px 10px 2px; }
+  .user-details {
+    margin-bottom: 5px; }
+  .post-title {
+    text-align: center;
+    display: block; }
+  .initial-preview {
+    .post-description {
+      margin-top: 4px; }
+    .common-interest-label {
+      width: 100%;
+      display: table; } }
+  .feed-image {
+    display: block;
+    margin: 0 auto; }
+  .feed-simple-interact {
+    margin-top: 10px;
+    .comment-count {
+      float: right; } }
+  .activity {
+    .well {
+      padding: 19px 2px 8px;
+      margin-bottom: 0; }
+    .comment {
+      margin-bottom: 2px; } }
+  .view-profile .well {
+    padding: 19px 2px 8px;
+    margin-bottom: 0; }
+  .activity .see-more-comments, .view-profile .see-profile {
+    text-align: center; } }
