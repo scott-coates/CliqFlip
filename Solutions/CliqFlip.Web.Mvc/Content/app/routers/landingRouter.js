@@ -38,7 +38,7 @@ var CliqFlip = (function(cliqFlip) {
                 if(showFeedList) feedListView.showFeedList();
             }
             else {
-                cliqFlip.App.Mvc.landingRegion.currentView.$el.show();
+                cliqFlip.App.Mvc.landingRegion.$el.show();
             }
         },
         showPost: function(post) {
