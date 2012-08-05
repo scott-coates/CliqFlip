@@ -42,7 +42,6 @@ var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.App.Mvc.addInitializer(function() {
         //misc (fixes, global handling, etc)
-        cliqFlip.Template.ApplyTemplateFix();
         cliqFlip.View.HandleTracking();
         cliqFlip.View.PreventLinkClickDefault();
     });

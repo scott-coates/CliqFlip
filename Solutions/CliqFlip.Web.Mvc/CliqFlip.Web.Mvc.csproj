@@ -47,7 +47,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxMin">
-      <HintPath>..\..\Packages\AjaxMin.4.59.4576.13504\lib\net20\AjaxMin.dll</HintPath>
+      <HintPath>..\..\Packages\AjaxMin.4.51.4507.18296\lib\net20\AjaxMin.dll</HintPath>
     </Reference>
     <Reference Include="Arachnophobia.IIS">
       <HintPath>..\..\Packages\Arachnophobia.1.0\lib\net20\Arachnophobia.IIS.dll</HintPath>
@@ -68,14 +68,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Packages\AWSSDK.1.4.2.0\lib\AWSSDK.dll</HintPath>
     </Reference>
-    <Reference Include="Cassette, Version=1.2.1.30492, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Packages\Cassette.1.2.1\lib\net40-Client\Cassette.dll</HintPath>
+    <Reference Include="Cassette">
+      <HintPath>..\..\Packages\Cassette.2.0.0-beta5\lib\net40-client\Cassette.dll</HintPath>
+    </Reference>
+    <Reference Include="Cassette.Aspnet">
+      <HintPath>..\..\Packages\Cassette.Aspnet.2.0.0-beta5\lib\net40\Cassette.Aspnet.dll</HintPath>
+    </Reference>
+    <Reference Include="Cassette.Hogan">
+      <HintPath>..\..\Packages\Cassette.Hogan.2.0.0-beta5\lib\net40-client\Cassette.Hogan.dll</HintPath>
     </Reference>
     <Reference Include="Cassette.Views">
-      <HintPath>..\..\Packages\Cassette.Views.1.2.1\lib\net40\Cassette.Views.dll</HintPath>
-    </Reference>
-    <Reference Include="Cassette.Web">
-      <HintPath>..\..\Packages\Cassette.Web.1.2.1\lib\net40\Cassette.Web.dll</HintPath>
+      <HintPath>..\..\Packages\Cassette.Views.2.0.0-beta5\lib\net40\Cassette.Views.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -451,7 +454,6 @@
     <Content Include="Content\assets\scripts\cliqflip\bookmarklet\bookmarklet.min.js" />
     <Content Include="Content\assets\scripts\cliqflip\main\errorHandler.js" />
     <Content Include="Content\assets\scripts\cliqflip\main\login.js" />
-    <Content Include="Content\assets\scripts\cliqflip\view\templateFix.js" />
     <Content Include="Content\assets\scripts\cliqflip\main\tos.js" />
     <Content Include="Content\assets\scripts\cliqflip\main\ui.js" />
     <Content Include="Content\assets\scripts\cliqflip\main\validate.js" />

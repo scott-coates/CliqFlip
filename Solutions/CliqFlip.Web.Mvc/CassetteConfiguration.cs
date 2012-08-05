@@ -1,18 +1,21 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
-using Cassette.Configuration;
+using Cassette;
 using Cassette.HtmlTemplates;
 using Cassette.Scripts;
 using Cassette.Stylesheets;
+using Cassette.TinyIoC;
+using Castle.Core.Configuration;
 
 namespace CliqFlip.Web.Mvc
 {
     /// <summary>
     /// Configures the Cassette asset modules for the web application.
     /// </summary>
-    public class CassetteConfiguration : ICassetteConfiguration
+    public class CassetteConfiguration : IConfiguration<BundleCollection>
     {
-        public void Configure(BundleCollection bundles, CassetteSettings settings)
+        public void Configure(BundleCollection bundles)
         {
             //client-side logic 
             bundles.Add<ScriptBundle>("Content/app");
@@ -34,7 +37,15 @@ namespace CliqFlip.Web.Mvc
             bundles.Add<ScriptBundle>("Scripts/modernizr-2.5.3.js", bundle => bundle.PageLocation = "head");
 
             //templates
-            bundles.Add<HtmlTemplateBundle>("Content/assets/templates", bundle => bundle.Processor = new HoganPipeline());
+            bundles.Add<HtmlTemplateBundle>("Content/assets/templates");
+        }
+    }
+
+    public class HoganConfiguration:IConfiguration<HoganSettings>
+    {
+        public void Configure(HoganSettings configurable)
+        {
+            var x = configurable.JavaScriptVariableName.ToString();
         }
     }
 }
