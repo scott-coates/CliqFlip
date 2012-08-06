@@ -390,6 +390,7 @@
     <Content Include="Content\app\views\feed\postOverviewUserAcitivtyView.js" />
     <Content Include="Content\app\views\helpers.js" />
     <Content Include="Content\assets\scripts\backbonePlugins\backbone.validation.js" />
+    <Content Include="Content\assets\scripts\bootstrap\bundle.txt" />
     <Content Include="Content\assets\scripts\cliqflip\view\modalRegion.js" />
     <Content Include="Content\assets\scripts\cliqflip\view\links.js" />
     <Content Include="Content\assets\scripts\cliqflip\view\templateRenderer.js" />
@@ -818,9 +819,9 @@
     <Content Include="Global.asax" />
     <Content Include="README.txt" />
     <Content Include="Scripts\backbone.js" />
-    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Content\assets\scripts\bootstrap\bootstrap.js" />
     <Content Include="Scripts\bundle.txt" />
-    <Content Include="Scripts\bootstrap_extensions.js" />
+    <Content Include="Content\assets\scripts\bootstrap\bootstrap_extensions.js" />
     <Content Include="Scripts\jquery-1.7.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.2.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
