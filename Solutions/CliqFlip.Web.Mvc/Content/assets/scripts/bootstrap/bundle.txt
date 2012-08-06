@@ -1,3 +1,7 @@
-﻿bootstrap.js
+﻿[references]
+~/Scripts/
+
+[assets]
+bootstrap.js
 bootstrap_extensions.js
 *
