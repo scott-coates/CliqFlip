@@ -535,16 +535,39 @@
     <Content Include="Content\assets\styles\jquery-ui\images\ui-icons_fcd113_256x240.png" />
     <Content Include="Content\assets\styles\jquery-ui\jquery-ui-1.8.18.custom.css" />
     <Content Include="Content\assets\styles\plugins\anythingslider-default1.css" />
+    <Content Include="Content\assets\styles\site\Helpers.css">
+      <DependentUpon>Helpers.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\assets\styles\site\Helpers.scss">
+      <Compile>False</Compile>
+      <Minify>True</Minify>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
     <Content Include="Content\assets\styles\site\Landing.scss">
       <Compile>False</Compile>
       <Minify>True</Minify>
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>
-    <Content Include="Content\assets\styles\site\Masonry.css" />
-    <Content Include="Content\assets\styles\site\Helpers.css" />
-    <Content Include="Content\assets\styles\site\MediaQueries.css" />
-    <Content Include="Content\assets\styles\site\Site.css" />
+    <Content Include="Content\assets\styles\site\Masonry.scss">
+      <Compile>False</Compile>
+      <Minify>True</Minify>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
+    <Content Include="Content\assets\styles\site\MediaQueries.scss">
+      <Compile>False</Compile>
+      <Minify>True</Minify>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
+    <Content Include="Content\assets\styles\site\Site.scss">
+      <Compile>False</Compile>
+      <Minify>True</Minify>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="favicon.ico" />
