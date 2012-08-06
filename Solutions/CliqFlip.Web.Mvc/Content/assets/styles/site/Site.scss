@@ -1,4 +1,9 @@
-﻿@import "././bourbon/bourbon";
+﻿ /*somewhere between sass and ironRuby, the glob of a file
+    is truncated and the only way to make this work was to put
+    bourbon in a sub directory and prefix it with ./ but iron ruby removes that
+    yet cassette expects it so i needed to put in ././
+ */
+@import "././bourbon/bourbon";
 
 .main-region {
   background-color: White;
