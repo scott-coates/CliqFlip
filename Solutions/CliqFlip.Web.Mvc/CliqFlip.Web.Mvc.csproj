@@ -461,6 +461,49 @@
     <Content Include="Content\assets\scripts\jqueryPlugins\jquery.analyticseventtracking.js" />
     <Content Include="Content\assets\scripts\jqueryPlugins\jquery-ui-1.8.11.js" />
     <Content Include="Content\assets\scripts\backbonePlugins\bundle.txt" />
+    <Content Include="Content\assets\styles\site\bourbon\addons\_button.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\addons\_clearfix.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\addons\_font-face.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\addons\_font-family.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\addons\_hide-text.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\addons\_html5-input-types.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\addons\_position.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\addons\_timing-functions.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\bourbon.css">
+      <DependentUpon>_bourbon.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\assets\styles\site\bourbon\css3\_animation.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\css3\_appearance.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\css3\_background-image.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\css3\_background-size.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\css3\_background.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\css3\_border-image.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\css3\_border-radius.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\css3\_box-shadow.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\css3\_box-sizing.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\css3\_columns.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\css3\_flex-box.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\css3\_image-rendering.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\css3\_inline-block.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\css3\_linear-gradient.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\css3\_prefixer.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\css3\_radial-gradient.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\css3\_transform.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\css3\_transition.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\css3\_user-select.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\functions\deprecated-webkit-gradient.css">
+      <DependentUpon>_deprecated-webkit-gradient.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\assets\styles\site\bourbon\functions\_deprecated-webkit-gradient.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\functions\_flex-grid.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\functions\_grid-width.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\functions\_linear-gradient.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\functions\_modular-scale.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\functions\_radial-gradient.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\functions\_render-gradients.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\functions\_tint-shade.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\functions\_transition-property-name.scss" />
+    <Content Include="Content\assets\styles\site\bourbon\_bourbon.scss" />
     <Content Include="Content\assets\styles\img\glyphicons-halflings-white.png" />
     <Content Include="Content\assets\styles\img\glyphicons-halflings.png" />
     <Content Include="Content\assets\images\icon-close.png" />

@@ -1,6 +1,4 @@
-﻿/* ===== Primary Styles ========================================================
-   Author:
-   ========================================================================== */
+﻿@import "././bourbon/bourbon";
 
 .main-region {
   background-color: White;
@@ -23,14 +21,8 @@
 
 .navbar .navbar-inner {
   background-color: #3f9fd9;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3698d2), color-stop(90%, #3698d2), to(#368fc5));
-  background-image: -webkit-linear-gradient(#3698d2, #3698d2 90%, #368fc5);
-  background-image: -moz-linear-gradient(top, #3698d2, #3698d2 90%, #368fc5);
-  background-image: -ms-linear-gradient(#3698d2, #3698d2 90%, #368fc5);
-  background-image: -o-linear-gradient(#3698d2, #3698d2 90%, #368fc5);
-  background-image: linear-gradient(#3698d2, #3698d2 90%, #368fc5);
-  background-repeat: no-repeat;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3698D2', endColorstr='#368FC5', GradientType=0); }
+  @include linear-gradient(#3698d2, #3698d2 90%, #368fc5);
+}
 
 #btn-search {
   margin-left: -4px;
