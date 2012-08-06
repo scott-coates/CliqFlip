@@ -46,8 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxMin">
-      <HintPath>..\..\Packages\AjaxMin.4.51.4507.18296\lib\net20\AjaxMin.dll</HintPath>
+    <Reference Include="AjaxMin, Version=4.59.4576.13504, Culture=neutral, PublicKeyToken=21ef50ce11b5d80f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\AjaxMin.4.59.4576.13504\lib\net20\AjaxMin.dll</HintPath>
     </Reference>
     <Reference Include="Arachnophobia.IIS">
       <HintPath>..\..\Packages\Arachnophobia.1.0\lib\net20\Arachnophobia.IIS.dll</HintPath>
