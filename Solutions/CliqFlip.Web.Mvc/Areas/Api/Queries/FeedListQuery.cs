@@ -42,7 +42,9 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Queries
                 LocationData = user.Location.Data
             };
 
-            if (!string.IsNullOrWhiteSpace(search))
+            int total = 0;
+            var explicitSearch = !string.IsNullOrWhiteSpace(search);
+            if (explicitSearch)
             {
                 //NOTE: The slug string was lowered cased because if someone changed 'software' to 'Software' in the query string
                 //      no matches would be found.
@@ -80,20 +82,27 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Queries
                     .ToList();
             }
 
+            total += userFeedItemApiModels.Count;
             retVal.FeedItems.AddRange(userFeedItemApiModels);
 
-            IList<UserPostDto> postDtos = _postTasks.GetPostsByInterests(user.Interests.Select(x => x.Interest).ToList());
-            var dtos = postDtos
-                .Select(
-                    x => new PostFeedItemApiModel(x)
-                    {
-                        UserPageUrl = urlHelper.Action("Index", "User", new { username = x.Username }),
-                        PostUrl = urlHelper.Action("Index", "Post", new { post = x.Post.PostId }),
-                        IsLikedByUser = x.Post.Likes.Any(y => y.UserId == user.Id)
-                    }).TakeFeedPage(page);
+            if (!explicitSearch)
+            {
+                IList<UserPostDto> postDtos = _postTasks.GetPostsByInterests(user.Interests.Select(x => x.Interest).ToList());
+                var dtos = postDtos
+                    .Select(
+                        x => new PostFeedItemApiModel(x)
+                        {
+                            UserPageUrl = urlHelper.Action("Index", "User", new { username = x.Username }),
+                            PostUrl = urlHelper.Action("Index", "Post", new { post = x.Post.PostId }),
+                            IsLikedByUser = x.Post.Likes.Any(y => y.UserId == user.Id)
+                        }).TakeFeedPage(page).ToList();
 
-            retVal.FeedItems.AddRange(dtos);
-            retVal.Total = postDtos.Count + result.Users.Count;
+                retVal.FeedItems.AddRange(dtos);
+                
+                total += dtos.Count;
+            }
+
+            retVal.Total = total;
             retVal.TotalReturned = retVal.FeedItems.Count;
             retVal.FeedItems = retVal.FeedItems.Randomize().ToList();
             return retVal;
