@@ -470,9 +470,6 @@
     <Content Include="Content\assets\styles\site\bourbon\addons\_html5-input-types.scss" />
     <Content Include="Content\assets\styles\site\bourbon\addons\_position.scss" />
     <Content Include="Content\assets\styles\site\bourbon\addons\_timing-functions.scss" />
-    <Content Include="Content\assets\styles\site\bourbon\bourbon.css">
-      <DependentUpon>_bourbon.scss</DependentUpon>
-    </Content>
     <Content Include="Content\assets\styles\site\bourbon\css3\_animation.scss" />
     <Content Include="Content\assets\styles\site\bourbon\css3\_appearance.scss" />
     <Content Include="Content\assets\styles\site\bourbon\css3\_background-image.scss" />
@@ -580,9 +577,6 @@
     <Content Include="Content\assets\styles\jquery-ui\images\ui-icons_fcd113_256x240.png" />
     <Content Include="Content\assets\styles\jquery-ui\jquery-ui-1.8.18.custom.css" />
     <Content Include="Content\assets\styles\plugins\anythingslider-default1.css" />
-    <Content Include="Content\assets\styles\site\Helpers.css">
-      <DependentUpon>Helpers.scss</DependentUpon>
-    </Content>
     <Content Include="Content\assets\styles\site\Helpers.scss">
       <Compile>False</Compile>
       <Minify>True</Minify>
