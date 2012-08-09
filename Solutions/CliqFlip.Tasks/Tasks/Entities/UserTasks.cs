@@ -308,6 +308,8 @@ namespace CliqFlip.Tasks.Tasks.Entities
             UserInterest interest = user.GetInterest(interestId);
 
             user.RemoveInterest(interest);
+
+            //TODO: Remove from graph db
         }
 
         public void AddInterestToUser(User user, int interestId)
