@@ -21,7 +21,7 @@ namespace CliqFlip.Web.Mvc
             bundles.Add<ScriptBundle>("Content/app");
 
             //css, less, sass
-            bundles.AddPerSubDirectory<StylesheetBundle>("Content/assets/styles");
+            bundles.AddPerSubDirectory<StylesheetBundle>("Content/assets/styles", new FileSearch { Exclude = new Regex("^_.*scss") });
 
             //this dir is for plugins, site js, etc...ignore cliqflip stuff tho
             bundles.AddPerSubDirectory<ScriptBundle>("Content/assets/scripts", new FileSearch { Exclude = new Regex("js\\cliqflip") });
