@@ -61,7 +61,7 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Queries
                     Username = x.Username,
                     MajorLocationName = x.MajorLocationName,
                     UserPageUrl = urlHelper.Action("Index", "User", new { username = x.Username })
-                }).Skip(((page ?? 1) - 1) * Constants.FEED_LIMIT).Take(Constants.FEED_LIMIT).ToList();
+                }).TakeFeedPage(page).ToList();
 
             foreach (var userFeedItem in userFeedItemApiModels)
             {
@@ -90,7 +90,7 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Queries
                         UserPageUrl = urlHelper.Action("Index", "User", new { username = x.Username }),
                         PostUrl = urlHelper.Action("Index", "Post", new { post = x.Post.PostId }),
                         IsLikedByUser = x.Post.Likes.Any(y => y.UserId == user.Id)
-                    }).Skip(((page ?? 1) - 1) * Constants.FEED_LIMIT).Take(Constants.FEED_LIMIT);
+                    }).TakeFeedPage(page);
 
             retVal.FeedItems.AddRange(dtos);
             retVal.Total = postDtos.Count + result.Users.Count;
@@ -98,5 +98,7 @@ namespace CliqFlip.Web.Mvc.Areas.Api.Queries
             retVal.FeedItems = retVal.FeedItems.Randomize().ToList();
             return retVal;
         }
+
+
     }
 }

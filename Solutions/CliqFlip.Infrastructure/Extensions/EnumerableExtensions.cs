@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CliqFlip.Domain.Common;
 
 namespace CliqFlip.Infrastructure.Extensions
 {
@@ -10,6 +11,11 @@ namespace CliqFlip.Infrastructure.Extensions
         {
             var rnd = new Random();
             return source.OrderBy(item => rnd.Next());
+        }
+
+        public static IEnumerable<T> TakeFeedPage<T>(this IEnumerable<T> input, int? page)
+        {
+            return input.Skip(((page ?? 1) - 1) * Constants.FEED_LIMIT).Take(Constants.FEED_LIMIT);
         }
     }
 }
