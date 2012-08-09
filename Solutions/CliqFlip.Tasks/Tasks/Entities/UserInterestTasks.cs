@@ -49,5 +49,15 @@ namespace CliqFlip.Tasks.Tasks.Entities
                 .Select(x => new InterestInCommonDto(x.Name, x.Score, x.IsExactMatch))
                 .ToList();
         }
+
+        public void SaveUserInterest(UserInterest userInterest)
+        {
+            _userInterestRepository.SaveOrUpdate(userInterest);
+        }
+
+        public void DeleteUserInterest(UserInterest userInterest)
+        {
+            _userInterestRepository.Delete(userInterest);
+        }
     }
 }

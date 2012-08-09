@@ -8,5 +8,7 @@ namespace CliqFlip.Domain.Contracts.Tasks.Entities
 	{
         IList<PopularInterestDto> GetMostPopularInterests();
         IList<InterestInCommonDto> GetInterestsInCommon(User viewingUser, User user);
+	    void SaveUserInterest(UserInterest userInterest);
+	    void DeleteUserInterest(UserInterest userInterest);
 	}
 }

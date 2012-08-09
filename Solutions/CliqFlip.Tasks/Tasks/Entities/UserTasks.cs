@@ -39,6 +39,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
         private readonly IPageParsingService _pageParsingService;
         private readonly IUserAuthentication _userAuthentication;
         private readonly IUserRepository _userRepository;
+        private readonly IUserInterestTasks _userInterestTasks;
 
         public UserTasks(
             IInterestTasks interestTasks,
@@ -51,7 +52,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
             IEmailService emailService,
             ILocationService locationService,
             IUserRepository userRepository,
-            IPageParsingService pageParsingService)
+            IPageParsingService pageParsingService, IUserInterestTasks userInterestTasks)
         {
             _interestTasks = interestTasks;
             _imageProcessor = imageProcessor;
@@ -64,6 +65,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
             _locationService = locationService;
             _userRepository = userRepository;
             _pageParsingService = pageParsingService;
+            _userInterestTasks = userInterestTasks;
         }
 
         #region IUserTasks Members
@@ -309,7 +311,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
 
             user.RemoveInterest(interest);
 
-            //TODO: Remove from graph db
+            _userInterestTasks.DeleteUserInterest(interest);
         }
 
         public void AddInterestToUser(User user, int interestId)
@@ -525,7 +527,8 @@ namespace CliqFlip.Tasks.Tasks.Entities
                                         ? _interestTasks.Get(interestDto.Id)
                                         : _interestTasks.Create(interestDto.Name, interestDto.RelatedTo);
 
-                user.AddInterest(interest, null);
+                var userInterest = user.AddInterest(interest, null);
+                _userInterestTasks.SaveUserInterest(userInterest);
             }
         }
     }
