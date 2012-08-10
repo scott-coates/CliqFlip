@@ -2,7 +2,7 @@
 
 var CliqFlip = (function (cliqFlip) {
 
-    cliqFlip.App.Mvc.Models.Header = Backbone.Model.extend({
+    cliqFlip.App.Mvc.Models.HeaderModel = Backbone.Model.extend({
     });
 
     return cliqFlip;

@@ -27,7 +27,7 @@ var CliqFlip = (function(cliqFlip) {
                 cliqFlip.App.Mvc.landingRegion.show(landingLayout);
                 $(cliqFlip.App.Mvc.userRegion.el).hide();
 
-                var userLandingSummaryModel = new cliqFlip.App.Mvc.Models.UserLandingSummary(cliqFlip.App.UserData);
+                var userLandingSummaryModel = new cliqFlip.App.Mvc.Models.UserLandingSummaryModel(cliqFlip.App.UserData);
 
                 var userLandingSummaryView = new cliqFlip.App.Mvc.Views.UserLandingSummaryView({ model: userLandingSummaryModel });
                 landingLayout.userRegion.show(userLandingSummaryView);
@@ -42,14 +42,14 @@ var CliqFlip = (function(cliqFlip) {
             }
         },
         showPost: function(post) {
-            var postOverview = new cliqFlip.App.Mvc.Models.PostOverview({ id: post.get('PostId') });
+            var postOverview = new cliqFlip.App.Mvc.Models.PostOverviewModel({ id: post.get('PostId') });
             postOverview.fetch({
                 success: function(model) {
                     var postOverviewLayout = new cliqFlip.App.Mvc.Layouts.PostOverviewLayout({ model: model });
                     cliqFlip.App.Mvc.modalRegion.show(postOverviewLayout);
 
                     var activityModels = _.map(model.get('Activity'), function(parameters) {
-                        return new cliqFlip.App.Mvc.Models.PostOverviewUserActivity(parameters);
+                        return new cliqFlip.App.Mvc.Models.PostOverviewUserActivityModel(parameters);
                     });
                     var postCollection = new cliqFlip.App.Mvc.Collections.PostOverviewUserActivityList(activityModels);
                     var activityListView = new cliqFlip.App.Mvc.Views.PostOverviewUserAcitivtyListView({ collection: postCollection });

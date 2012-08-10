@@ -1,7 +1,7 @@
 // @reference ~/Content/app/main.js
 
 var CliqFlip = (function(cliqFlip) {
-    cliqFlip.App.Mvc.Models.PostOverviewUserActivity = Backbone.Model.extend({
+    cliqFlip.App.Mvc.Models.PostOverviewUserActivityModel = Backbone.Model.extend({
         urlRoot: function() { return "/api/post/" + this.get('PostId') + "/comment/"; },
         validate: function(attrs) {
             if(attrs.CommentText.length <= 0) {

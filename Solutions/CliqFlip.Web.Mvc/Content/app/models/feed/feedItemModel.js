@@ -2,9 +2,9 @@
 
 var CliqFlip = (function(cliqFlip) {
 
-    cliqFlip.App.Mvc.Models.FeedItem = Backbone.Model.extend({
+    cliqFlip.App.Mvc.Models.FeedItemModel = Backbone.Model.extend({
         like: function() {
-            new cliqFlip.App.Mvc.Models.Like({ PostId: this.get('PostId') }).save();
+            new cliqFlip.App.Mvc.Models.LikeModel({ PostId: this.get('PostId') }).save();
             this.set('IsLikedByUser', 'true');
         }
     });

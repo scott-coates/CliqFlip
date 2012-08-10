@@ -2,7 +2,7 @@
 
 var CliqFlip = (function(cliqFlip) {
 
-    cliqFlip.App.Mvc.Models.Post = Backbone.Model.extend({
+    cliqFlip.App.Mvc.Models.PostModel = Backbone.Model.extend({
         urlRoot: '/api/post',
         defaults: {
             PostData: undefined

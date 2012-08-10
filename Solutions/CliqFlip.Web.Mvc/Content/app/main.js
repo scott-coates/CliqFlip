@@ -26,7 +26,7 @@ var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.App.Mvc.addInitializer(function() {
         //header layout
-        var headerModel = new cliqFlip.App.Mvc.Models.Header(cliqFlip.App.UserData);
+        var headerModel = new cliqFlip.App.Mvc.Models.HeaderModel(cliqFlip.App.UserData);
         var headerLayout = new cliqFlip.App.Mvc.Layouts.HeaderLayout({ model: headerModel });
         cliqFlip.App.Mvc.headerRegion.show(headerLayout);
         headerLayout.searchRegion.show(new cliqFlip.App.Mvc.Views.SearchView());

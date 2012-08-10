@@ -11,7 +11,7 @@ var CliqFlip = (function(cliqFlip) {
             "click a[class*='user-interest-add']": "addPost"
         },
         addPost: function(e) {
-            var post = new cliqFlip.App.Mvc.Models.Post(cliqFlip.App.UserData);
+            var post = new cliqFlip.App.Mvc.Models.PostModel(cliqFlip.App.UserData);
             post.set('PostType', $(e.target).data('postType'));
             var postView = new cliqFlip.App.Mvc.Views.AddPostView({ model: post });
             cliqFlip.App.Mvc.modalRegion.show(postView);

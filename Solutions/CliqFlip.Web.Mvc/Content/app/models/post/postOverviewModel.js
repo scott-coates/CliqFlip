@@ -2,11 +2,11 @@
 
 var CliqFlip = (function(cliqFlip) {
 
-    cliqFlip.App.Mvc.Models.PostOverview = Backbone.Model.extend({
+    cliqFlip.App.Mvc.Models.PostOverviewModel = Backbone.Model.extend({
         urlRoot: '/api/post',
         like: function() {
             var that = this;
-            new cliqFlip.App.Mvc.Models.Like().save('PostId', this.get('PostId'), {
+            new cliqFlip.App.Mvc.Models.LikeModel().save('PostId', this.get('PostId'), {
                 success: function() {
                     that.set('IsLikedByUser', 'true');
                 }

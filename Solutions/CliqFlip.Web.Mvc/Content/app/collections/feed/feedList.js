@@ -1,5 +1,5 @@
 // @reference ~/Content/app/main.js
-// @reference ~/Content/app/models/feed/feedItem.js
+// @reference ~/Content/app/models/feed/feedItemModel.js
 
 var CliqFlip = (function(cliqFlip) {
 
@@ -10,7 +10,7 @@ var CliqFlip = (function(cliqFlip) {
 
     cliqFlip.App.Mvc.Collections.FeedList = Backbone.Collection.extend(
         {
-            model: cliqFlip.App.Mvc.Models.FeedItem,
+            model: cliqFlip.App.Mvc.Models.FeedItemModel,
             url: '/api/feed',
             page: null,
             fetch: function(options) {
