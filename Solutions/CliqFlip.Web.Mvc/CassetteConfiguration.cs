@@ -40,12 +40,4 @@ namespace CliqFlip.Web.Mvc
             bundles.Add<HtmlTemplateBundle>("Content/assets/templates");
         }
     }
-
-    public class HoganConfiguration:IConfiguration<HoganSettings>
-    {
-        public void Configure(HoganSettings configurable)
-        {
-            var x = configurable.JavaScriptVariableName.ToString();
-        }
-    }
 }
