@@ -963,6 +963,9 @@
     <Content Include="App_Code\Flash.cshtml" />
     <Content Include="Areas\Admin\Views\Interest\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Interest\Interest.cshtml" />
+    <Content Include="Areas\Admin\Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Content\assets\images\patterns\Thumbs.db" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
