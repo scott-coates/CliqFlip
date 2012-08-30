@@ -2,12 +2,7 @@
 @reference Site.scss
 */
 
- /*somewhere between sass and ironRuby, the glob of a file
-    is truncated and the only way to make this work was to put
-    bourbon in a sub directory and prefix it with ./ but iron ruby removes that
-    yet cassette expects it so i needed to put in ././
- */
-@import "././bourbon/bourbon";
+@import "Mixins";
 
 /* Add video, link, image */
 
@@ -60,7 +55,7 @@
     /*half of width: https://github.com/twitter/bootstrap/issues/675#issuecomment-2965567*/
     height: 580px;
     /*http://bootswatch.com/slate/bootstrap.css*/
-    @include linear-gradient(#3a3f44, #272b30);
+    @include gradient(#3a3f44, #272b30);
     background-repeat: repeat-x;
     border-color: #272b30 #272b30 #050506;
     @include box-shadow(inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.075));

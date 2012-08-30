@@ -1,9 +1,5 @@
-﻿ /*somewhere between sass and ironRuby, the glob of a file
-    is truncated and the only way to make this work was to put
-    bourbon in a sub directory and prefix it with ./ but iron ruby removes that
-    yet cassette expects it so i needed to put in ././
- */
-@import "././bourbon/bourbon";
+﻿
+@import "Mixins";
 
 .main-region {
   background-color: White;
@@ -25,8 +21,7 @@
   max-height: 35px; }
 
 .navbar .navbar-inner {
-/*TODO fix this*/
-  @include linear-gradient(#3698d2, #3698d2 90%, #368fc5);
+  @include gradient(#3698d2, #368fc5);
 }
 
 #btn-search {
