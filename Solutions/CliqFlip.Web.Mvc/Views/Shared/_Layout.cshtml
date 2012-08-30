@@ -17,7 +17,7 @@
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!-->
-    <html class="no-js" lang="en">
+<html class="no-js" lang="en">
 <!--<![endif]-->
 <head>
     <meta charset="utf-8">
@@ -31,6 +31,10 @@
     @HtmlExtensions.GetAnalyticsHtmlIfAvailable() @*TODO: Do not add if internal cliqflip is logged in*@
 </head>
 <body>
+    @{
+        Facebook.Initialize("195112700588724", "93c79e6ba9263c0ed59884f6aaa45195");
+    }
+    @Facebook.GetInitializationScripts()
     @RenderBody()
     <footer class="navbar navbar-fixed-bottom">
         <div class="navbar-inner">
@@ -40,7 +44,7 @@
         </div>
     </footer>
     @Bundles.RenderScripts()
-    @Bundles.RenderHtmlTemplates() 
+    @Bundles.RenderHtmlTemplates()
     @Bundles.RenderScripts("inline")
 </body>
 </html>
