@@ -39,11 +39,6 @@ namespace CliqFlip.Web.Mvc.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            if (_principal.Identity.IsAuthenticated)
-            {
-                return RedirectToRoute(Constants.ROUTE_LANDING_PAGE);
-            }
-
             return View();
         }
 

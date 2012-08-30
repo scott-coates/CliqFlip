@@ -984,7 +984,6 @@
     </Content>
     <Content Include="Content\assets\templates\landing\userLandingSummary.mustache" />
     <Content Include="Views\Popup\CreatePost.cshtml" />
-    <Content Include="Views\Shared\_Layout.Bootstrap.cshtml" />
     <Content Include="Content\assets\templates\landing\layout.mustache">
       <SubType>Designer</SubType>
     </Content>

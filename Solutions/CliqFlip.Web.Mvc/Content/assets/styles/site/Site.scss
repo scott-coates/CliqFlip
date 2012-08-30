@@ -2,38 +2,14 @@
 @import "Mixins";
 
 .main-region {
-  background-color: White;
-  padding-top: 45px;
+  padding-top: 145px;
   padding-bottom: 20px; }
 
-.landing-layout {
-  height: 100%; }
-
-#content-area {
-  padding-top: 20px; }
-
-.action-alert {
-  margin-top: 8px; }
-
 /* Nav bar */
-
-.header-profile-image {
-  max-height: 35px; }
 
 .navbar .navbar-inner {
   @include gradient(#3698d2, #368fc5);
 }
-
-#btn-search {
-  margin-left: -4px;
-  margin-top: 6px; }
-
-.typeahead.dropdown-menu {
-  z-index: 2000; }
-
-#search-suggestions {
-  margin-top: -2px; }
-
 footer.navbar .navbar-inner {
   text-align: center;
   color: #666;
@@ -43,19 +19,3 @@ footer.navbar .navbar-inner {
     color: #999;
     &:hover {
       color: #efefef; } } }
-
-#toggle-settings-menu {
-  display: inline-block; }
-
-.coming-soon .alert {
-  margin-bottom: 0; }
-
-#post-content-region iframe {
-  &.video {
-    width: 100%;
-    height: 75%;
-    margin-top: 5%;
-    border: none; }
-  &.webpage {
-    width: 100%;
-    height: 90%; } }

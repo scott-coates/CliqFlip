@@ -1,66 +1,21 @@
-﻿@using CliqFlip.Web.Mvc.ViewModels.Search
-@model InterestSearchViewModel
-@{
-	ViewBag.Title = "CliqFlip - Discover More";
-}
-@section beforeHeadClose
-{
-	<link rel="stylesheet" type="text/css" media="all" href="@Url.Content("~/Content/assets/styles/plugins/autoSuggest.css")" />
-}
-<!-- SLIDER TRYOUT START-->
-<div class="tryout">
-	<div class="header">
-		CliqFlip helps you discover other people with similar interests, social traits, and
-		personality.
-	</div>
-	<div class="subheader">
-		Why don't you give it a try?</div>
-	@{ Html.RenderAction("InterestSearch", "Search"); }
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+                                                                                             class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </a><a class="brand" href="#">CliqFlip</a>
+        </div>
+    </div>
 </div>
-<!-- SLIDER TRYOUT END-->
-<!-- SERVICES BOX START -->
-<div class="servicebox">
-	<div class="icon">
-		<img src="@Url.Content("/Content/assets/images/lower-1.png")" alt=""></div>
-	<div class="title">
-		You</div>
-	<div class="text-content">
-		Enter in your interest and instantly start browsing other people with similar or
-		complimentary interests.</div>
+<div id="landing-content" class="main-region">
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <h2 class="logo">
+                Meet new compatible people instantly!</h2>
+            <h5 class="logo">
+                People are making new friends online everyday.<span style="display: block;">
+                                                                  Find someone that shares interests with you right now!</span>
+            </h5>
+        </div>
+    </div>
 </div>
-<div class="servicebox">
-	<div class="icon">
-		<img src="@Url.Content("/Content/assets/images/lower-2.png")" alt=""></div>
-	<div class="title">
-		Them</div>
-	<div class="text-content">
-		Register and start building your profile so people can connect with you.
-	</div>
-</div>
-<div class="servicebox">
-	<div class="icon">
-		<img src="@Url.Content("/Content/assets/images/lower-3.png")" alt=""></div>
-	<div class="title">
-		Connect</div>
-	<div class="text-content">
-		Build real connections and start networking with people online.
-	</div>
-</div>
-<!-- SERVICES BOX END -->
-<div class="clear"></div>
-@section beforeBodyClose
-{
-	<script type="text/javascript" src="@Url.Content("~/Content/assets/scripts/jqueryPlugins/jquery.autoSuggest.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("~/Content/assets/scripts/jqueryPlugins/jquery.tagcloud.js")"> </script>
-	<script type="text/javascript" src="@Url.Content("~/Content/assets/scripts/cliqflip/search/interest-search.js")"> </script>
-	<script type="text/javascript">
-		@*TODO: implement something without duplciation - http://stackoverflow.com/questions/5433531/using-sections-in-editor-display-templates/5433722#5433722 *@
-		$(function() {
-			InitAutoSuggest('@(Html.Raw(Url.Action("Interest","Search")))');
-
-			InitTagCloud();
-
-			ChangeSearchQueryParamName();
-		});
-	</script>
-}
