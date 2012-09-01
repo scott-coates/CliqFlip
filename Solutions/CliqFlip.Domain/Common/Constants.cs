@@ -15,7 +15,7 @@ namespace CliqFlip.Domain.Common
         public const string DEFAULT_PROFILE_IMAGE = "/Content/assets/images/empty-avatar.jpg";
         public const string YAHOO_APP_ID = "YahooAppId";
         public const string LOCATION_SESSION_KEY = "LocationSessionKey";
-        public const string ROUTE_LANDING_PAGE = "User Landing Page";
+        public const string ROUTE_USER_HOME_PAGE = "User Home Page";
         public const string NOTIFICATION_COOKIE = "notification-id";
         public const int FEED_LIMIT = 10;
         public const string SUCCESS_TEMPDATA_KEY = "success";

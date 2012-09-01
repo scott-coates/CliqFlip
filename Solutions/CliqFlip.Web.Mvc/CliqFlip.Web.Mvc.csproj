@@ -954,7 +954,7 @@
     <Content Include="Views\User\ReplyToConversation.cshtml" />
     <Content Include="Views\User\Message.cshtml" />
     <Content Include="Views\User\ReadConversation.cshtml" />
-    <Content Include="Views\User\Landing.cshtml" />
+    <Content Include="Views\User\Home.cshtml" />
     <Content Include="Views\Search\InterestSearch.cshtml" />
     <Content Include="Views\User\_Login.cshtml" />
     <Content Include="Views\User\Login_Old.cshtml" />

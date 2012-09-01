@@ -84,7 +84,8 @@ namespace CliqFlip.Web.Mvc.Controllers
                 user = _userTasks.Create(id, location, likeNames);
             }
 
-            return new JsonNetResult(new { user.Username, Interests = user.Interests.Select(y => y.Interest.Name) });
+            _userTasks.Login(user, true);
+            return RedirectToRoute(Constants.ROUTE_USER_HOME_PAGE);
         }
 
         [AllowAnonymous]
@@ -233,7 +234,7 @@ namespace CliqFlip.Web.Mvc.Controllers
         {
             if (_principal.Identity.IsAuthenticated)
             {
-                return RedirectToRoute(Constants.ROUTE_LANDING_PAGE);
+                return RedirectToRoute(Constants.ROUTE_USER_HOME_PAGE);
             }
 
             ViewBag.ReturnUrl = _httpContextProvider.Request.QueryString[Constants.RETURN_URL];
@@ -721,15 +722,12 @@ namespace CliqFlip.Web.Mvc.Controllers
         [BlockUnsupportedBrowsers]
         [Authorize]
         [Transaction]
-        public ActionResult Landing()
+        public ActionResult Home()
         {
             string username = _principal.Identity.Name;
 
-            RouteData.Values["username"] = username;
-
-            var viewModel = new UserLandingPageViewModel { Username = username };
-
-            return View(viewModel);
+            var user = _userTasks.GetUser(username);
+            return new JsonNetResult(new { user.Username, Interests = user.Interests.Select(y => y.Interest.Name) });
         }
 
         [Authorize]

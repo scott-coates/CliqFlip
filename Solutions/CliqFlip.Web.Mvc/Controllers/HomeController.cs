@@ -41,6 +41,11 @@ namespace CliqFlip.Web.Mvc.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
+            if (_principal.Identity.IsAuthenticated)
+            {
+                return RedirectToRoute(Constants.ROUTE_USER_HOME_PAGE);
+            }
+            
             return View();
         }
 
@@ -51,7 +56,7 @@ namespace CliqFlip.Web.Mvc.Controllers
             var viewModel = new HomeUserViewModel
             {
                 Username = _principal.Identity.Name,
-                ProfileImageUrl = user.ProfileImage != null ? user.ProfileImage.ImageData.MediumFileName : "/Content/assets/images/empty-avatar.jpg",
+                ProfileImageUrl = user.ProfileImage != null ? user.ProfileImage.ImageData.MediumFileName : Constants.DEFAULT_PROFILE_IMAGE,
                 FriendCount = 0,
                 PostCount = user.Posts.Count(),
                 Interests = user.Interests.Select(x => new HomeUserViewModel.InterestViewModel { Name = x.Interest.Name, Id = x.Id })
@@ -69,7 +74,7 @@ namespace CliqFlip.Web.Mvc.Controllers
         {
             if (_principal.Identity.IsAuthenticated)
             {
-                return RedirectToRoute(Constants.ROUTE_LANDING_PAGE);
+                return RedirectToRoute(Constants.ROUTE_USER_HOME_PAGE);
             }
 
             inviteKey = inviteKey.ToLowerInvariant();
