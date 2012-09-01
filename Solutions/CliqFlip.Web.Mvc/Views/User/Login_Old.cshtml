@@ -1,7 +1,7 @@
 ﻿@model CliqFlip.Web.Mvc.ViewModels.User.UserLoginViewModel
 <div id="login-container">
 	<h1>Please login</h1>
-	@using (Html.BeginForm("Login", "User", new { ViewBag.ReturnUrl }))
+	@using (Html.BeginForm("Login_Old", "User", new { ViewBag.ReturnUrl }))
 	{
 		@Html.ValidationSummary(true)
 		<fieldset>

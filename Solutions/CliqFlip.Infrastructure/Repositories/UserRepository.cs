@@ -83,7 +83,7 @@ namespace CliqFlip.Infrastructure.Repositories
 
 		public User FindByName(string username)
 		{
-			var adhoc = new AdHoc<User>(x => x.Username == username);
+			var adhoc = new AdHoc<User>(x => x.Username == username || x.FacebookUsername == username);
 			return FindOne(adhoc);
 		}
 

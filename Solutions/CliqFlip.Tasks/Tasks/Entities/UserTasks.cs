@@ -19,6 +19,7 @@ using CliqFlip.Infrastructure.Images;
 using CliqFlip.Infrastructure.Images.Interfaces;
 using CliqFlip.Infrastructure.Location.Interfaces;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
+using CliqFlip.Infrastructure.Search;
 using CliqFlip.Infrastructure.Syndication.Interfaces;
 using CliqFlip.Infrastructure.Validation;
 using CliqFlip.Infrastructure.Web;
@@ -70,7 +71,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
 
         #region IUserTasks Members
 
-        public User Create(UserCreateDto userToCreate, LocationData location)
+        public User Create_Old(UserCreateDto userToCreate, LocationData location)
         {
             string salt = PasswordHelper.GenerateSalt(16); //TODO: should this be 32 - encapsulate this somehwere
             string pHash = PasswordHelper.GetPasswordHash(userToCreate.Password, salt);
@@ -93,6 +94,39 @@ namespace CliqFlip.Tasks.Tasks.Entities
             ProcessUserInterests(user, userToCreate.InterestDtos);
 
             return user;
+        }
+
+        public User Create(string username, string locationName, IEnumerable<string> interestNames)
+        {
+            var retVal = new User
+            {
+                Username = username,
+                FacebookUsername = username
+            };
+
+            retVal.UpdateCreateDate();
+            retVal.Password = PasswordHelper.GenerateSalt(32); //random password for now
+            retVal.Salt = PasswordHelper.GenerateSalt(32); //random password for now
+
+            var interests = _interestTasks.GetAll();
+
+            foreach (var interestName in interestNames)
+            {
+                var interest = interests.FirstOrDefault(x => FuzzySearch.LevenshteinDistance(x.Name, interestName) < 2);
+                if (interest == null)
+                {
+                    retVal.AddInterest(_interestTasks.Create(interestName, null), null);
+                }
+            }
+
+            var location = _locationService.GetLocation(locationName);
+            var majorLocation = _locationService.GetNearestMajorCity(location.Latitude, location.Longitude);
+
+            retVal.UpdateLocation(location, majorLocation);
+
+            _userRepository.SaveOrUpdate(retVal);
+
+            return retVal;
         }
 
         public void Login(User user, bool stayLoggedIn)
