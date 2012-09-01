@@ -81,10 +81,10 @@ namespace CliqFlip.Web.Mvc.Controllers
                     .Select(x => x.name)
                     .Cast<string>();
 
-                user = _userTasks.Create(id,location, likeNames);
+                user = _userTasks.Create(id, location, likeNames);
             }
 
-            return Content("");
+            return new JsonNetResult(new { user.Username, Interests = user.Interests.Select(y => y.Interest.Name) });
         }
 
         [AllowAnonymous]
