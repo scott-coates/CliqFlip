@@ -108,6 +108,13 @@ namespace CliqFlip.Tasks.Tasks.Entities
             retVal.Password = PasswordHelper.GenerateSalt(32); //random password for now
             retVal.Salt = PasswordHelper.GenerateSalt(32); //random password for now
 
+            var location = _locationService.GetLocation(locationName);
+            var majorLocation = _locationService.GetNearestMajorCity(location.Latitude, location.Longitude);
+
+            retVal.UpdateLocation(location, majorLocation);
+
+            _userRepository.SaveOrUpdate(retVal); //interests depend on a user already existing
+
             var interests = _interestTasks.GetAll();
 
             foreach (var interestName in interestNames)
@@ -115,14 +122,10 @@ namespace CliqFlip.Tasks.Tasks.Entities
                 var interest = interests.FirstOrDefault(x => FuzzySearch.LevenshteinDistance(x.Name, interestName) < 2);
                 if (interest == null)
                 {
-                    retVal.AddInterest(_interestTasks.Create(interestName, null), null);
+                    var interestEntity =_interestTasks.Create(interestName, null);
+                    AddInterestToUser(retVal, interestEntity.Id);
                 }
             }
-
-            var location = _locationService.GetLocation(locationName);
-            var majorLocation = _locationService.GetNearestMajorCity(location.Latitude, location.Longitude);
-
-            retVal.UpdateLocation(location, majorLocation);
 
             _userRepository.SaveOrUpdate(retVal);
 
