@@ -127,8 +127,6 @@ namespace CliqFlip.Tasks.Tasks.Entities
                 }
             }
 
-            _userRepository.SaveOrUpdate(retVal);
-
             return retVal;
         }
 
