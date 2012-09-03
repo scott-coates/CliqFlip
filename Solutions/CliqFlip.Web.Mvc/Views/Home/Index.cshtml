@@ -1,4 +1,28 @@
-﻿<div class="navbar navbar-inverse navbar-fixed-top">
+﻿@{
+    Microsoft.Web.Helpers.Facebook.Initialize("195112700588724", "93c79e6ba9263c0ed59884f6aaa45195");
+}
+@Microsoft.Web.Helpers.Facebook.GetInitializationScripts()
+@{
+    Bundles.AddInlineScript(@"
+    function loginToFacebook(parameters) {
+                var form = document.createElement('form');
+                var auth = FB.getAuthResponse();
+                form.setAttribute('method', 'post');
+                form.setAttribute('action', '/user/login');
+                var field = document.createElement('input');
+                field.setAttribute('type', 'hidden');
+                field.setAttribute('name', 'accessToken');
+                field.setAttribute('value', auth.accessToken);
+                form.appendChild(field);
+
+                document.body.appendChild(form);
+                form.submit();
+                
+                return false; //prevents facebook from rloading
+     }
+");
+}
+<div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
             <a class="brand" href="#">CliqFlip</a>
@@ -11,13 +35,13 @@
             <h2 class="logo">
                 Meet new compatible people instantly!</h2>
             <h5 class="logo">
-                People are making new friends online everyday.<span style="display: block;">Find someone
-                    that shares interests with you right now!</span>
+                There are people you want to know and there are those who are waiting to meet you.<span
+                    style="display: block;">Let's get to business.</span>
             </h5>
         </div>
         <div class="row-fluid login">
             <div style="display: inline-block;">
-                @Facebook.LoginButton("http://alpha.cliqflip.com/", buttonText: "Login", size: "large", extendedPermissions: "user_interests,user_likes,user_location,user_events,user_checkins,user_about_me,user_activities,user_education_history,user_groups,user_hometown,user_status,read_stream")
+                @Microsoft.Web.Helpers.Facebook.LoginButtonTagOnly("Login", onLogin: "loginToFacebook(this);", size: "medium",length:"long")
             </div>
         </div>
     </div>

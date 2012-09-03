@@ -6,6 +6,7 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using AttributeRouting.Web.Http;
 using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Contracts.Tasks.Entities;
@@ -79,19 +80,15 @@ namespace CliqFlip.Web.Mvc.Controllers
             {
                 var domainService = _serviceBus.GetEndpoint(new Uri("rabbitmq://localhost/Cliqflip.Service"));
                 domainService.Send(new CreateNewUserCommand(id));
-                //var likes = (JsonArray)result.likes["data"];
-
-                //string location = result.location.name;
-                //var likeNames = likes
-                //    .Cast<dynamic>()
-                //    .Select(x => x.name)
-                //    .Cast<string>();
-
-                //user = _userTasks.Create(id, location, likeNames);
+                return RedirectToAction("Registration");
             }
-            //_userTasks.Login(user, true);
-            return Content("success");
             return RedirectToRoute(Constants.ROUTE_USER_HOME_PAGE);
+        }
+
+        [AllowAnonymous]
+        public ActionResult Registration(string accessToken)
+        {
+            return View();
         }
 
         [AllowAnonymous]
