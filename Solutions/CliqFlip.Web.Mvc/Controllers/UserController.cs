@@ -80,7 +80,7 @@ namespace CliqFlip.Web.Mvc.Controllers
             {
                 var domainService = _serviceBus.GetEndpoint(new Uri("rabbitmq://localhost/Cliqflip.Service"));
                 domainService.Send(new CreateNewUserCommand(id));
-                return RedirectToAction("registration");
+                return RedirectToAction("registration", new { accessToken });
             }
             return RedirectToRoute(Constants.ROUTE_USER_HOME_PAGE);
         }
@@ -88,7 +88,24 @@ namespace CliqFlip.Web.Mvc.Controllers
         [AllowAnonymous]
         public ActionResult Registration(string accessToken)
         {
-            return View();
+            var client = new FacebookClient(accessToken);
+
+            dynamic result = client.Get("me", new { fields = "id,likes,location" });
+
+            var likes = (JsonArray)result.likes["data"];
+
+            string location = result.location.name;
+
+            var likeNames = likes
+                .Cast<dynamic>()
+                .Select(x => x.name)
+                .Cast<string>();
+
+            var user = _userTasks.Create(result.id, location, likeNames);
+
+            _userTasks.Login(user, true);
+
+            return Content("success");
         }
 
         [AllowAnonymous]
