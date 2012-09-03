@@ -99,6 +99,7 @@
     <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Commands\User\CreateNewUserCommand.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\AssignLocationScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\CalculateMainCategoryInterestScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\FindRelatedInterestsFromKeywordSearchFilter.cs" />
@@ -153,7 +154,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CommandHandlers\" />
-    <Folder Include="Commands\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

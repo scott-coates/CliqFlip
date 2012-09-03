@@ -6,6 +6,7 @@ using Castle.Facilities.TypedFactory;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using CliqFlip.Domain.Common;
+using MassTransit;
 using Neo4jClient;
 using SharpArch.Domain.Commands;
 using SharpArch.Domain.PersistenceSupport;
@@ -15,113 +16,128 @@ using SharpArch.Web.Mvc.Castle;
 
 namespace CliqFlip.Web.Mvc.CastleWindsor
 {
-	public class ComponentRegistrar
-	{
-		public static void AddComponentsTo(IWindsorContainer container)
-		{
-			//TODO:use xml config for environment-specific
-			AddFacilitiesTo(container);
-			AddGenericRepositoriesTo(container);
-			AddCustomRepositoriesTo(container);
-			AddQueryObjectsTo(container);
-			AddTasksTo(container);
-			AddCommandsTo(container);
-			AddUserTo(container);
-		}
+    public class ComponentRegistrar
+    {
+        public static void AddComponentsTo(IWindsorContainer container)
+        {
+            //TODO:use xml config for environment-specific
+            AddFacilitiesTo(container);
+            AddGenericRepositoriesTo(container);
+            AddCustomRepositoriesTo(container);
+            AddQueryObjectsTo(container);
+            AddMessagingTo(container);
+            AddTasksTo(container);
+            AddCommandsTo(container);
+            AddUserTo(container);
+        }
 
-		private static void AddFacilitiesTo(IWindsorContainer container)
-		{
+        private static void AddFacilitiesTo(IWindsorContainer container)
+        {
             container.AddFacility<TypedFactoryFacility>();
-		}
+        }
 
-		private static void AddUserTo(IWindsorContainer container)
-		{
-			//http://stackoverflow.com/a/1081803/173957
-			container.Register(Component.For<IPrincipal>()
-			                   	.LifeStyle.PerWebRequest
-			                   	.UsingFactoryMethod(() => HttpContext.Current.User));
-		}
+        private static void AddUserTo(IWindsorContainer container)
+        {
+            //http://stackoverflow.com/a/1081803/173957
+            container.Register(Component.For<IPrincipal>()
+                                .LifeStyle.PerWebRequest
+                                .UsingFactoryMethod(() => HttpContext.Current.User));
+        }
 
-		private static void AddTasksTo(IWindsorContainer container)
-		{
-			container.Register(
-				AllTypes
-					.FromAssemblyNamed("CliqFlip.Tasks")
-					.Pick()
-					.WithService.FirstNonGenericCoreInterface("CliqFlip.Domain"));
-		}
+        private static void AddTasksTo(IWindsorContainer container)
+        {
+            container.Register(
+                AllTypes
+                    .FromAssemblyNamed("CliqFlip.Tasks")
+                    .Pick()
+                    .WithService.FirstNonGenericCoreInterface("CliqFlip.Domain"));
+        }
 
-		private static void AddCustomRepositoriesTo(IWindsorContainer container)
-		{
-			container.Register(
-				AllTypes
-					.FromAssemblyNamed("CliqFlip.Infrastructure")
-					.Pick()
-					.WithService.FirstNonGenericCoreInterface("CliqFlip.Domain")
-					.WithService.FirstNonGenericCoreInterface("CliqFlip.Infrastructure"));
+        private static void AddCustomRepositoriesTo(IWindsorContainer container)
+        {
+            container.Register(
+                AllTypes
+                    .FromAssemblyNamed("CliqFlip.Infrastructure")
+                    .Pick()
+                    .WithService.FirstNonGenericCoreInterface("CliqFlip.Domain")
+                    .WithService.FirstNonGenericCoreInterface("CliqFlip.Infrastructure"));
 
-			container
-				.Register(Component
-							.For<IGraphClient>()
-							.LifeStyle.Singleton.UsingFactoryMethod(() =>
-							{
-							    string connectionString = WebConfigurationManager.ConnectionStrings[Constants.GRAPH_URL].ConnectionString;
-							    var rootUri = new Uri(connectionString);
-							    var graphClient = new GraphClient(rootUri) { EnableSupportForNeo4jOnHeroku = true };
-								graphClient.Connect();
-								return graphClient;
-							}));
-		}
+            container
+                .Register(Component
+                            .For<IGraphClient>()
+                            .LifeStyle.Singleton.UsingFactoryMethod(() =>
+                            {
+                                string connectionString = WebConfigurationManager.ConnectionStrings[Constants.GRAPH_URL].ConnectionString;
+                                var rootUri = new Uri(connectionString);
+                                var graphClient = new GraphClient(rootUri) { EnableSupportForNeo4jOnHeroku = true };
+                                graphClient.Connect();
+                                return graphClient;
+                            }));
+        }
 
-		private static void AddGenericRepositoriesTo(IWindsorContainer container)
-		{
-			container.Register(
-				Component.For(typeof (IEntityDuplicateChecker))
-					.ImplementedBy(typeof (EntityDuplicateChecker))
-					.Named("entityDuplicateChecker"));
+        private static void AddGenericRepositoriesTo(IWindsorContainer container)
+        {
+            container.Register(
+                Component.For(typeof(IEntityDuplicateChecker))
+                    .ImplementedBy(typeof(EntityDuplicateChecker))
+                    .Named("entityDuplicateChecker"));
 
-			container.Register(
-				Component.For(typeof (INHibernateRepository<>))
-					.ImplementedBy(typeof (NHibernateRepository<>))
-					.Named("nhibernateRepositoryType")
-					.Forward(typeof (IRepository<>)));
+            container.Register(
+                Component.For(typeof(INHibernateRepository<>))
+                    .ImplementedBy(typeof(NHibernateRepository<>))
+                    .Named("nhibernateRepositoryType")
+                    .Forward(typeof(IRepository<>)));
 
-			container.Register(
-				Component.For(typeof (INHibernateRepositoryWithTypedId<,>))
-					.ImplementedBy(typeof (NHibernateRepositoryWithTypedId<,>))
-					.Named("nhibernateRepositoryWithTypedId")
-					.Forward(typeof (IRepositoryWithTypedId<,>)));
+            container.Register(
+                Component.For(typeof(INHibernateRepositoryWithTypedId<,>))
+                    .ImplementedBy(typeof(NHibernateRepositoryWithTypedId<,>))
+                    .Named("nhibernateRepositoryWithTypedId")
+                    .Forward(typeof(IRepositoryWithTypedId<,>)));
 
-			container.Register(
-				Component.For(typeof (ILinqRepository<>))
-					.ImplementedBy(typeof (LinqRepository<>))
-					.Named("linqRepositoryType"));
+            container.Register(
+                Component.For(typeof(ILinqRepository<>))
+                    .ImplementedBy(typeof(LinqRepository<>))
+                    .Named("linqRepositoryType"));
 
-			container.Register(
-				Component.For(typeof (ISessionFactoryKeyProvider))
-					.ImplementedBy(typeof (DefaultSessionFactoryKeyProvider))
-					.Named("sessionFactoryKeyProvider"));
+            container.Register(
+                Component.For(typeof(ISessionFactoryKeyProvider))
+                    .ImplementedBy(typeof(DefaultSessionFactoryKeyProvider))
+                    .Named("sessionFactoryKeyProvider"));
 
-			container.Register(
-				Component.For(typeof (ICommandProcessor))
-					.ImplementedBy(typeof (CommandProcessor))
-					.Named("commandProcessor"));
-		}
+            container.Register(
+                Component.For(typeof(ICommandProcessor))
+                    .ImplementedBy(typeof(CommandProcessor))
+                    .Named("commandProcessor"));
+        }
 
-		private static void AddQueryObjectsTo(IWindsorContainer container)
-		{
-			container.Register(
-				AllTypes.FromAssemblyNamed("CliqFlip.Web.Mvc")
-					.Pick()
-					.WithService.FirstInterface());
-		}
+        private static void AddQueryObjectsTo(IWindsorContainer container)
+        {
+            container.Register(
+                AllTypes.FromAssemblyNamed("CliqFlip.Web.Mvc")
+                    .Pick()
+                    .WithService.FirstInterface());
+        }
 
-		private static void AddCommandsTo(IWindsorContainer container)
-		{
-			container.Register(
-				AllTypes.FromAssemblyNamed("CliqFlip.Tasks")
-					.Pick()
-					.WithService.FirstInterface());
-		}
-	}
+        private static void AddMessagingTo(IWindsorContainer container)
+        {
+            container.Register(
+                Component.For<IServiceBus>()
+                    .UsingFactoryMethod(
+                        () => ServiceBusFactory.New(
+                            sbc =>
+                            {
+                                sbc.ReceiveFrom("rabbitmq://localhost/Cliqflip.App");
+                                sbc.UseRabbitMqRouting();
+                                sbc.Subscribe(c => c.LoadFrom(container));
+                            })).LifeStyle.Singleton);
+        }
+
+        private static void AddCommandsTo(IWindsorContainer container)
+        {
+            container.Register(
+                AllTypes.FromAssemblyNamed("CliqFlip.Tasks")
+                    .Pick()
+                    .WithService.FirstInterface());
+        }
+    }
 }

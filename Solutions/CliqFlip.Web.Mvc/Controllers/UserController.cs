@@ -15,6 +15,7 @@ using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Exceptions;
 using CliqFlip.Domain.ValueObjects;
 using CliqFlip.Infrastructure.Web.Interfaces;
+using CliqFlip.Tasks.Commands.User;
 using CliqFlip.Web.Mvc.Extensions.Exceptions;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.Security.Attributes;
@@ -23,6 +24,7 @@ using CliqFlip.Web.Mvc.ViewModels.Jeip;
 using CliqFlip.Web.Mvc.ViewModels.User;
 using CliqFlip.Web.Mvc.Views.Interfaces;
 using Facebook;
+using MassTransit;
 using SharpArch.NHibernate.Web.Mvc;
 using SharpArch.Web.Mvc.JsonNet;
 using CliqFlip.Web.Mvc.Extensions.Controller;
@@ -37,8 +39,9 @@ namespace CliqFlip.Web.Mvc.Controllers
         private readonly IUserProfileQuery _userProfileQuery;
         private readonly IUserTasks _userTasks;
         private readonly IViewRenderer _viewRenderer;
+        private readonly IServiceBus _serviceBus;
 
-        public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IConversationQuery conversationQuery, IHttpContextProvider httpContextProvider, IViewRenderer viewRenderer)
+        public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IConversationQuery conversationQuery, IHttpContextProvider httpContextProvider, IViewRenderer viewRenderer, IServiceBus serviceBus)
         {
             _userTasks = profileTasks;
             _userProfileQuery = userProfileQuery;
@@ -46,6 +49,7 @@ namespace CliqFlip.Web.Mvc.Controllers
             _conversationQuery = conversationQuery;
             _httpContextProvider = httpContextProvider;
             _viewRenderer = viewRenderer;
+            _serviceBus = serviceBus;
         }
 
         [BlockUnsupportedBrowsers]
@@ -65,7 +69,7 @@ namespace CliqFlip.Web.Mvc.Controllers
         {
             var client = new FacebookClient(accessToken);
 
-            dynamic result = client.Get("me", new { fields = "id,likes,location" });
+            dynamic result = client.Get("me", new { fields = "id" });
 
             string id = result.id;
 
@@ -73,18 +77,20 @@ namespace CliqFlip.Web.Mvc.Controllers
 
             if (user == null)
             {
-                var likes = (JsonArray)result.likes["data"];
+                var domainService = _serviceBus.GetEndpoint(new Uri("rabbitmq://localhost/Cliqflip.Service"));
+                domainService.Send(new CreateNewUserCommand(id));
+                //var likes = (JsonArray)result.likes["data"];
 
-                string location = result.location.name;
-                var likeNames = likes
-                    .Cast<dynamic>()
-                    .Select(x => x.name)
-                    .Cast<string>();
+                //string location = result.location.name;
+                //var likeNames = likes
+                //    .Cast<dynamic>()
+                //    .Select(x => x.name)
+                //    .Cast<string>();
 
-                user = _userTasks.Create(id, location, likeNames);
+                //user = _userTasks.Create(id, location, likeNames);
             }
-
-            _userTasks.Login(user, true);
+            //_userTasks.Login(user, true);
+            return Content("success");
             return RedirectToRoute(Constants.ROUTE_USER_HOME_PAGE);
         }
 
