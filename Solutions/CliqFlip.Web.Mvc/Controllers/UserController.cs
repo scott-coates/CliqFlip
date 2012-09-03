@@ -80,7 +80,7 @@ namespace CliqFlip.Web.Mvc.Controllers
             {
                 var domainService = _serviceBus.GetEndpoint(new Uri("rabbitmq://localhost/Cliqflip.Service"));
                 domainService.Send(new CreateNewUserCommand(id));
-                return RedirectToAction("Registration");
+                return RedirectToAction("registration");
             }
             return RedirectToRoute(Constants.ROUTE_USER_HOME_PAGE);
         }
