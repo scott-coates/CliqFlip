@@ -12,6 +12,7 @@ namespace CliqFlip.Service
     {
         private static readonly LogWriter _log = HostLogger.Get<Service>();
         private readonly IWindsorContainer _container = new WindsorContainer();
+        private IServiceBus _bus;
 
         public bool Start(HostControl hostControl)
         {
@@ -25,7 +26,11 @@ namespace CliqFlip.Service
                 new TasksInstaller(),
                 new CommandsInstaller()
                 );
+
             _container.Resolve<IServiceBus>();
+            
+            _bus = _container.Resolve<IServiceBus>();
+
             return true;
         }
 
@@ -33,6 +38,7 @@ namespace CliqFlip.Service
         {
             _log.Info("Service Stopped");
 
+            _container.Release(_bus);
             _container.Dispose();
 
             return true;
