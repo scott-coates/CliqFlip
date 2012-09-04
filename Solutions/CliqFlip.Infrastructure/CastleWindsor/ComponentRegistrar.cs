@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Configuration;
@@ -67,7 +68,7 @@ namespace CliqFlip.Infrastructure.CastleWindsor
                             .For<IGraphClient>()
                             .LifeStyle.Singleton.UsingFactoryMethod(() =>
                             {
-                                string connectionString = WebConfigurationManager.ConnectionStrings[Constants.GRAPH_URL].ConnectionString;
+                                string connectionString = ConfigurationManager.ConnectionStrings[Constants.GRAPH_URL].ConnectionString;
                                 var rootUri = new Uri(connectionString);
                                 var graphClient = new GraphClient(rootUri) { EnableSupportForNeo4jOnHeroku = true };
                                 graphClient.Connect();
@@ -129,7 +130,7 @@ namespace CliqFlip.Infrastructure.CastleWindsor
                         () => ServiceBusFactory.New(
                             sbc =>
                             {
-                                sbc.ReceiveFrom("rabbitmq://localhost/Cliqflip.App");
+                                sbc.ReceiveFrom(ConfigurationManager.ConnectionStrings[Constants.RABBIT_MQ_URI].ConnectionString);
                                 sbc.UseRabbitMqRouting();
                                 sbc.Subscribe(c => c.LoadFrom(container));
                             })).LifeStyle.Singleton);

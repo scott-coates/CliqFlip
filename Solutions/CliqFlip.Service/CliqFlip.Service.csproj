@@ -61,6 +61,99 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <Content Include="Configuration\Alpha\AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Alpha\Compilation.config" />
+    <Content Include="Configuration\Alpha\ConnectionStrings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Alpha\ElmahErrorFilter.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Alpha\ElmahErrorLog.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Alpha\ElmahErrorMail.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Alpha\ElmahSecurity.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Alpha\Handlers.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Alpha\HttpErrors.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Alpha\Modules.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Alpha\NHibernate.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Beta\AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Beta\Compilation.config" />
+    <Content Include="Configuration\Beta\ConnectionStrings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Beta\ElmahErrorFilter.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Beta\ElmahErrorLog.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Beta\ElmahErrorMail.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Beta\ElmahSecurity.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Beta\Handlers.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Beta\HttpErrors.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Beta\Modules.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Beta\NHibernate.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Compilation.config" />
+    <Content Include="Configuration\ConnectionStrings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\ElmahErrorFilter.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\ElmahErrorLog.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\ElmahErrorMail.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\ElmahSecurity.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Handlers.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\HttpErrors.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\Modules.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\NHibernate.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
