@@ -17,10 +17,7 @@ namespace CliqFlip.Infrastructure.CastleWindsor
                 Component.For<IEndpointCache>()
                     .UsingFactoryMethod(
                         () => EndpointCacheFactory.New(
-                            x =>
-                            {
-                                x.UseRabbitMq();
-                            })).LifeStyle.Singleton);
+                            x => x.UseRabbitMq())).LifeStyle.Singleton);
 
             container.Register(
                 Component.For<IEndpoint>().UsingFactoryMethod(
