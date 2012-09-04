@@ -308,7 +308,6 @@
     <Compile Include="Areas\Api\Queries\FeedListQuery.cs" />
     <Compile Include="Areas\Api\Queries\Interfaces\IFeedListQuery.cs" />
     <Compile Include="CassetteConfiguration.cs" />
-    <Compile Include="CastleWindsor\ComponentRegistrar.cs" />
     <Compile Include="Areas\Api\Controllers\FeedController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

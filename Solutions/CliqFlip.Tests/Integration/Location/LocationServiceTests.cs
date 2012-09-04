@@ -2,9 +2,9 @@
 
 using Castle.Windsor;
 using CliqFlip.Domain.Entities;
+using CliqFlip.Infrastructure.CastleWindsor;
 using CliqFlip.Infrastructure.Location.Interfaces;
 using CliqFlip.Infrastructure.NHibernate.Maps;
-using CliqFlip.Web.Mvc.CastleWindsor;
 using CommonServiceLocator.WindsorAdapter;
 using Microsoft.Practices.ServiceLocation;
 using NUnit.Framework;

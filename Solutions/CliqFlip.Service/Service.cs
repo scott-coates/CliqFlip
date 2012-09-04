@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
+using Castle.Windsor;
+using CliqFlip.Infrastructure.CastleWindsor;
 using Topshelf;
 using Topshelf.Logging;
 
@@ -11,46 +10,36 @@ namespace CliqFlip.Service
     internal class Service : ServiceControl
     {
         private static readonly LogWriter _log = HostLogger.Get<Service>();
+        private readonly IWindsorContainer _container = new WindsorContainer();
 
         public bool Start(HostControl hostControl)
         {
-            _log.Info("SampleService Starting...");
+            _log.Info("Service Starting...");
 
-            hostControl.RequestAdditionalTime(TimeSpan.FromSeconds(10));
-
-            Thread.Sleep(1000);
-
-            ThreadPool.QueueUserWorkItem(
-                x =>
-                {
-                    Thread.Sleep(3000);
-
-                    _log.Info("Requesting stop");
-
-                    hostControl.Stop();
-                });
-            _log.Info("SampleService Started");
+            ComponentRegistrar.AddComponentsTo(_container);
 
             return true;
         }
 
         public bool Stop(HostControl hostControl)
         {
-            _log.Info("SampleService Stopped");
+            _log.Info("Service Stopped");
+
+            _container.Dispose();
 
             return true;
         }
 
         public bool Pause(HostControl hostControl)
         {
-            _log.Info("SampleService Paused");
+            _log.Info("Service Paused");
 
             return true;
         }
 
         public bool Continue(HostControl hostControl)
         {
-            _log.Info("SampleService Continued");
+            _log.Info("Service Continued");
 
             return true;
         }

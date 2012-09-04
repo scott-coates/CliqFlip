@@ -14,7 +14,7 @@ using SharpArch.NHibernate;
 using SharpArch.NHibernate.Contracts.Repositories;
 using SharpArch.Web.Mvc.Castle;
 
-namespace CliqFlip.Web.Mvc.CastleWindsor
+namespace CliqFlip.Infrastructure.CastleWindsor
 {
     public class ComponentRegistrar
     {
@@ -24,7 +24,7 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
             AddFacilitiesTo(container);
             AddGenericRepositoriesTo(container);
             AddCustomRepositoriesTo(container);
-            AddQueryObjectsTo(container);
+            AddWebComponents(container);
             AddMessagingTo(container);
             AddTasksTo(container);
             AddCommandsTo(container);
@@ -110,12 +110,15 @@ namespace CliqFlip.Web.Mvc.CastleWindsor
                     .Named("commandProcessor"));
         }
 
-        private static void AddQueryObjectsTo(IWindsorContainer container)
+        private static void AddWebComponents(IWindsorContainer container)
         {
-            container.Register(
-                AllTypes.FromAssemblyNamed("CliqFlip.Web.Mvc")
-                    .Pick()
-                    .WithService.FirstInterface());
+            if(HttpContext.Current != null)
+            {
+                container.Register(
+                    AllTypes.FromAssemblyNamed("CliqFlip.Web.Mvc")
+                        .Pick()
+                        .WithService.FirstInterface());
+            }
         }
 
         private static void AddMessagingTo(IWindsorContainer container)
