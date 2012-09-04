@@ -1,8 +1,14 @@
 ﻿using System;
 using System.Threading;
 using Castle.Windsor;
+using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Infrastructure.CastleWindsor;
+using CliqFlip.Infrastructure.NHibernate.Maps;
+using CliqFlip.Tasks.CommandHandlers.User;
+using CommonServiceLocator.WindsorAdapter;
 using MassTransit;
+using Microsoft.Practices.ServiceLocation;
+using SharpArch.NHibernate;
 using Topshelf;
 using Topshelf.Logging;
 
@@ -27,8 +33,15 @@ namespace CliqFlip.Service
                 new CommandsInstaller()
                 );
 
+            NHibernateSession.Init(
+               new SimpleSessionStorage(),
+                new[] { "CliqFlip.Infrastructure.dll" },
+                new AutoPersistenceModelGenerator().Generate(),
+                "Configuration/NHibernate.config");
+
+            ServiceLocator.SetLocatorProvider(() => new WindsorServiceLocator(_container));
             _container.Resolve<IServiceBus>();
-            
+
             _bus = _container.Resolve<IServiceBus>();
 
             return true;

@@ -4,6 +4,7 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using CliqFlip.Domain.Common;
 using MassTransit;
+using MassTransit.Log4NetIntegration;
 
 namespace CliqFlip.Infrastructure.CastleWindsor
 {
@@ -19,6 +20,7 @@ namespace CliqFlip.Infrastructure.CastleWindsor
                             {
                                 sbc.ReceiveFrom(ConfigurationManager.ConnectionStrings[Constants.RABBIT_MQ_URI].ConnectionString);
                                 sbc.UseRabbitMqRouting();
+                                sbc.UseLog4Net("log4net.xml");
                                 sbc.Subscribe(c => c.LoadFrom(container));
                             })).LifeStyle.Singleton);
         }

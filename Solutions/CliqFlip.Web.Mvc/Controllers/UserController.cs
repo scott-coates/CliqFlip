@@ -81,7 +81,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
             if (user == null)
             {
-                _endpoint.Send(new CreateNewUserCommand(id));
+                _endpoint.Send(new CreateNewUserCommand(accessToken));
                 retVal = RedirectToAction("registration");
             }
             else
