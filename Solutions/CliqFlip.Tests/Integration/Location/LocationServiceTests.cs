@@ -27,7 +27,13 @@ namespace CliqFlip.Tests.Integration.Location
 
 			IWindsorContainer container = new WindsorContainer();
 
-			ComponentRegistrar.AddComponentsTo(container);
+            container.Install(
+                new FacilityInstaller(),
+                new GenericRepositoriesInstaller(),
+                new CustomRepositoriesInstaller(),
+                new TasksInstaller(),
+                new CommandsInstaller()
+                );
 
 			ServiceLocator.SetLocatorProvider(() => new WindsorServiceLocator(container));
 

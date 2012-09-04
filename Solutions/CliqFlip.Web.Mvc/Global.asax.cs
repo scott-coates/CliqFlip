@@ -136,7 +136,17 @@ namespace CliqFlip.Web.Mvc
 			ControllerBuilder.Current.SetControllerFactory(new WindsorControllerFactory(container));
 
 			container.RegisterControllers(typeof (HomeController).Assembly);
-			ComponentRegistrar.AddComponentsTo(container);
+
+		    container.Install(
+		        new FacilityInstaller(),
+		        new GenericRepositoriesInstaller(),
+		        new CustomRepositoriesInstaller(),
+		        new WebComponentsInstaller(),
+		        new MessagingPublisherInstaller(),
+		        new TasksInstaller(),
+		        new CommandsInstaller(),
+		        new UserInstaller()
+		        );
 
 			ServiceLocator.SetLocatorProvider(() => new WindsorServiceLocator(container));
 		}

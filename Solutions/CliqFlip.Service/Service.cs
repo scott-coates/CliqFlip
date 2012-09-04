@@ -16,7 +16,14 @@ namespace CliqFlip.Service
         {
             _log.Info("Service Starting...");
 
-            ComponentRegistrar.AddComponentsTo(_container);
+            _container.Install(
+                new FacilityInstaller(),
+                new GenericRepositoriesInstaller(),
+                new CustomRepositoriesInstaller(),
+                new MessagingSubscriberInstaller(),
+                new TasksInstaller(),
+                new CommandsInstaller()
+                );
 
             return true;
         }
