@@ -82,6 +82,10 @@ namespace CliqFlip.Web.Mvc.Controllers
                 domainService.Send(new CreateNewUserCommand(id));
                 return RedirectToAction("registration", new { accessToken });
             }
+            else
+            {
+                _userTasks.Login(user, true);
+            }
             return RedirectToRoute(Constants.ROUTE_USER_HOME_PAGE);
         }
 
