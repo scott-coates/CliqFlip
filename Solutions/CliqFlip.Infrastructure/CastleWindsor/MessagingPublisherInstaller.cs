@@ -19,14 +19,14 @@ namespace CliqFlip.Infrastructure.CastleWindsor
                         () => EndpointCacheFactory.New(
                             x =>
                             {
-                                x.SetCreateMissingQueues(true);
                                 x.UseRabbitMq();
-                            })).LifeStyle.Singleton,
+                            })).LifeStyle.Singleton);
+
+            container.Register(
                 Component.For<IEndpoint>().UsingFactoryMethod(
                     (k, c) =>
                     k.Resolve<IEndpointCache>()
-                        .GetEndpoint(new Uri(ConfigurationManager.ConnectionStrings[Constants.RABBIT_MQ_URI].ConnectionString)))
-                    .LifeStyle.PerWebRequest);
+                        .GetEndpoint(new Uri(ConfigurationManager.ConnectionStrings[Constants.RABBIT_MQ_URI].ConnectionString))));
         }
     }
 }

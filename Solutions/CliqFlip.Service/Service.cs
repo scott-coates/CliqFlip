@@ -2,6 +2,7 @@
 using System.Threading;
 using Castle.Windsor;
 using CliqFlip.Infrastructure.CastleWindsor;
+using MassTransit;
 using Topshelf;
 using Topshelf.Logging;
 
@@ -24,7 +25,7 @@ namespace CliqFlip.Service
                 new TasksInstaller(),
                 new CommandsInstaller()
                 );
-
+            _container.Resolve<IServiceBus>();
             return true;
         }
 
