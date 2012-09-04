@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Security.Principal;
@@ -40,9 +41,9 @@ namespace CliqFlip.Web.Mvc.Controllers
         private readonly IUserProfileQuery _userProfileQuery;
         private readonly IUserTasks _userTasks;
         private readonly IViewRenderer _viewRenderer;
-        private readonly IServiceBus _serviceBus;
+        private readonly IEndpoint _endpoint;
 
-        public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IConversationQuery conversationQuery, IHttpContextProvider httpContextProvider, IViewRenderer viewRenderer, IServiceBus serviceBus)
+        public UserController(IUserTasks profileTasks, IUserProfileQuery userProfileQuery, IPrincipal principal, IConversationQuery conversationQuery, IHttpContextProvider httpContextProvider, IViewRenderer viewRenderer, IEndpoint endpoint)
         {
             _userTasks = profileTasks;
             _userProfileQuery = userProfileQuery;
@@ -50,7 +51,7 @@ namespace CliqFlip.Web.Mvc.Controllers
             _conversationQuery = conversationQuery;
             _httpContextProvider = httpContextProvider;
             _viewRenderer = viewRenderer;
-            _serviceBus = serviceBus;
+            _endpoint = endpoint;
         }
 
         [BlockUnsupportedBrowsers]
@@ -78,8 +79,7 @@ namespace CliqFlip.Web.Mvc.Controllers
 
             if (user == null)
             {
-                var domainService = _serviceBus.GetEndpoint(new Uri("rabbitmq://localhost/Cliqflip.Service"));
-                domainService.Send(new CreateNewUserCommand(id));
+                _endpoint.Send(new CreateNewUserCommand(id));
                 return RedirectToAction("registration", new { accessToken });
             }
             else
