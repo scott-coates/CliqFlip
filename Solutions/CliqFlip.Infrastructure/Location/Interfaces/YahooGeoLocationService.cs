@@ -5,7 +5,7 @@ using System.Net;
 using System.Web;
 using System.Xml.Linq;
 using CliqFlip.Domain.Common;
-using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ReadModels;
 using CliqFlip.Domain.ValueObjects;
 using CliqFlip.Infrastructure.Exceptions;
 using SharpArch.Domain.PersistenceSupport;

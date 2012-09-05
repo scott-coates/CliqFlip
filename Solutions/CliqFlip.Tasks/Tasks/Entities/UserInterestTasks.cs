@@ -5,7 +5,7 @@ using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Contracts.Tasks.InterestAggregation;
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Dtos.UserInterest;
-using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ReadModels;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
 
 namespace CliqFlip.Tasks.Tasks.Entities

@@ -2,7 +2,6 @@
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Dtos.Interest.Interfaces;
 using CliqFlip.Domain.Dtos.UserInterest;
-using CliqFlip.Domain.Entities;
 
 namespace CliqFlip.Domain.Contracts.Tasks.InterestAggregation
 {

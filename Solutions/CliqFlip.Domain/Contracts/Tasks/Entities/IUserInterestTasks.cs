@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using CliqFlip.Domain.Dtos.UserInterest;
-using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ReadModels;
 
 namespace CliqFlip.Domain.Contracts.Tasks.Entities
 {

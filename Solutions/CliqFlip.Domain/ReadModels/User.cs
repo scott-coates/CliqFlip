@@ -5,9 +5,8 @@ using System.Linq;
 using CliqFlip.Domain.ValueObjects;
 using Iesi.Collections.Generic;
 using SharpArch.Domain.DomainModel;
-using nh = Iesi.Collections.Generic;
 
-namespace CliqFlip.Domain.Entities
+namespace CliqFlip.Domain.ReadModels
 {
     public class User : Entity
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ReadModels;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.User;
 using NHibernate.Linq;

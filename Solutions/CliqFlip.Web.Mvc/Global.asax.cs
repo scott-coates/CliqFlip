@@ -6,7 +6,7 @@ using System.Web.Routing;
 using Amazon.S3;
 using Amazon.SimpleEmail;
 using Castle.Windsor;
-using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ReadModels;
 using CliqFlip.Infrastructure.CastleWindsor;
 using CliqFlip.Infrastructure.Exceptions;
 using CliqFlip.Infrastructure.NHibernate.Maps;

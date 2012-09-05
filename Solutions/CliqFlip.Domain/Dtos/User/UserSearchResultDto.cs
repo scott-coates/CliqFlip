@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ReadModels;
 
 namespace CliqFlip.Domain.Dtos.User
 {
@@ -16,7 +16,7 @@ namespace CliqFlip.Domain.Dtos.User
         public float Latitude { get; set; }
         public float Longitude { get; set; }
 
-        public UserSearchResultDto(Entities.User user)
+        public UserSearchResultDto(ReadModels.User user)
         {
             Username = user.Username;
             InterestDtos = user.Interests.Select(x => new UserInterestDto(x)).ToList();
@@ -36,12 +36,12 @@ namespace CliqFlip.Domain.Dtos.User
             public string DefaultImageUrl { get; set; }
             public int InterestId { get; set; }
 
-            public UserInterestDto(Entities.UserInterest interest)
+            public UserInterestDto(ReadModels.UserInterest interest)
             {
                 Name = interest.Interest.Name;
                 Slug = interest.Interest.Slug;
                 Passion = interest.Options.Passion;
-                Entities.Post firstPost = interest.User.Posts.FirstOrDefault(x => x.Interest.Id == interest.Interest.Id);
+                ReadModels.Post firstPost = interest.User.Posts.FirstOrDefault(x => x.Interest.Id == interest.Interest.Id);
                 if (firstPost != null)
                 {
                     var defaultImage = firstPost.Medium as Image;

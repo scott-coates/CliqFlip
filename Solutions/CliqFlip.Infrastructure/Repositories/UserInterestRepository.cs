@@ -3,7 +3,7 @@ using System.Linq;
 using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Dtos.UserInterest;
-using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ReadModels;
 using CliqFlip.Infrastructure.Neo.Entities;
 using CliqFlip.Infrastructure.Neo.Queries;
 using CliqFlip.Infrastructure.Neo.Relationships;

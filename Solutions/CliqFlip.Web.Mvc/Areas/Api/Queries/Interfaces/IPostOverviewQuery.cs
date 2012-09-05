@@ -1,4 +1,4 @@
-﻿using CliqFlip.Domain.Entities;
+﻿using CliqFlip.Domain.ReadModels;
 using CliqFlip.Web.Mvc.Areas.Api.Models.Post;
 using CliqFlip.Web.Mvc.ViewModels.Search;
 

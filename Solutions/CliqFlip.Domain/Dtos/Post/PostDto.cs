@@ -1,5 +1,5 @@
-﻿using CliqFlip.Domain.Entities;
-using CliqFlip.Domain.Interfaces;
+﻿using CliqFlip.Domain.Interfaces;
+using CliqFlip.Domain.ReadModels;
 
 namespace CliqFlip.Domain.Dtos.Post
 {
@@ -15,7 +15,7 @@ namespace CliqFlip.Domain.Dtos.Post
 		public string WebSiteUrl { get; set; }
 		public string Title { get; set; }
 
-		public PostDto(Entities.Post post)
+		public PostDto(ReadModels.Post post)
 		{
             Description = post.Description;
             PostId = post.Id;

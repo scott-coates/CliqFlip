@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Dtos.Post;
-using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ReadModels;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
 
 namespace CliqFlip.Tasks.Tasks.Entities

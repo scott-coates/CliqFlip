@@ -6,7 +6,7 @@ using CliqFlip.Domain.Contracts.Pipelines.UserSearch;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Dtos.Post;
-using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ReadModels;
 using CliqFlip.Web.Mvc.Areas.Api.Models.Feed;
 using CliqFlip.Web.Mvc.Areas.Api.Queries.Interfaces;
 using CliqFlip.Web.Mvc.Helpers.Url.Interfaces;

@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using CliqFlip.Domain.ValueObjects;
-using Iesi.Collections.Generic;
+﻿using CliqFlip.Domain.ValueObjects;
 using SharpArch.Domain.DomainModel;
 
-namespace CliqFlip.Domain.Entities
+namespace CliqFlip.Domain.ReadModels
 {
 	public class UserInterest : Entity
 	{

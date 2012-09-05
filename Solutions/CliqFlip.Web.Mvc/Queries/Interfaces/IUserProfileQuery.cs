@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
 using System.Web;
-using CliqFlip.Domain.Entities;
 using CliqFlip.Web.Mvc.ViewModels.Search;
 using CliqFlip.Web.Mvc.ViewModels.User;
 

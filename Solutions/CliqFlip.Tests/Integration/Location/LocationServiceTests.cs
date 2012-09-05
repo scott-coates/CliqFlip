@@ -1,7 +1,7 @@
 ﻿
 
 using Castle.Windsor;
-using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ReadModels;
 using CliqFlip.Infrastructure.CastleWindsor;
 using CliqFlip.Infrastructure.Location.Interfaces;
 using CliqFlip.Infrastructure.NHibernate.Maps;

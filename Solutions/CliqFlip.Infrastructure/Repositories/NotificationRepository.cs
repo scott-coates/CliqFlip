@@ -1,5 +1,5 @@
 using System.Linq;
-using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ReadModels;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
 using SharpArch.NHibernate;
 

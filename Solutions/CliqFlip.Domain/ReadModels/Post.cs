@@ -4,7 +4,7 @@ using System.Linq;
 using Iesi.Collections.Generic;
 using SharpArch.Domain.DomainModel;
 
-namespace CliqFlip.Domain.Entities
+namespace CliqFlip.Domain.ReadModels
 {
     /*TODO: Post should not fall under the UserInterest Aggregate
      * It makes sense for a post to exist if the user deltes an interest

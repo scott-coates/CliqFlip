@@ -1,6 +1,4 @@
-﻿using CliqFlip.Domain.Entities;
-
-namespace CliqFlip.Domain.Dtos.Post
+﻿namespace CliqFlip.Domain.Dtos.Post
 {
     public class LikeDto
     {

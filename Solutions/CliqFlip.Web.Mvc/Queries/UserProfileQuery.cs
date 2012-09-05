@@ -6,7 +6,7 @@ using CliqFlip.Domain.Common;
 using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Dtos.Post;
 using CliqFlip.Domain.Dtos.User;
-using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ReadModels;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.User;
 using NHibernate.Linq;

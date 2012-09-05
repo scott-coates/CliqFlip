@@ -6,7 +6,7 @@ using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Dtos.Post;
-using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ReadModels;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Search;
 using MvcContrib.Pagination;

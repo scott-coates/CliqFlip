@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
-using CliqFlip.Domain.ValueObjects;
 using SharpArch.Domain.DomainModel;
 
-namespace CliqFlip.Domain.Entities
+namespace CliqFlip.Domain.ReadModels
 {
     public class Comment : Entity
     {

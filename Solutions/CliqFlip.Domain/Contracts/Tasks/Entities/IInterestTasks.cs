@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Dtos.Media;
-using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ReadModels;
 
 namespace CliqFlip.Domain.Contracts.Tasks.Entities
 {

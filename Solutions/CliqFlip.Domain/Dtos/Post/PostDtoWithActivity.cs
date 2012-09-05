@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using CliqFlip.Domain.Entities;
 
 namespace CliqFlip.Domain.Dtos.Post
 {
@@ -10,7 +9,7 @@ namespace CliqFlip.Domain.Dtos.Post
         public IList<CommentDto> Comments { get; set; }
         public IList<LikeDto> Likes { get; set; }
 
-        public PostDtoWithActivity(Entities.Post post): base(post)
+        public PostDtoWithActivity(ReadModels.Post post): base(post)
         {
             var comments = post.Comments.ToList();
             var likes = post.Likes.ToList();

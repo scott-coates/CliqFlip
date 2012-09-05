@@ -2,7 +2,6 @@
 
 using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Dtos.Post;
-using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Interfaces;
 using CliqFlip.Web.Mvc.ViewModels.Post;
 

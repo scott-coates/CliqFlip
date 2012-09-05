@@ -3,7 +3,7 @@ using System.Linq;
 
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Dtos.UserInterest;
-using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ReadModels;
 using SharpArch.Domain.PersistenceSupport;
 
 namespace CliqFlip.Infrastructure.Repositories.Interfaces

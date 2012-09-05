@@ -1,4 +1,4 @@
-﻿using CliqFlip.Domain.Entities;
+﻿using CliqFlip.Domain.ReadModels;
 
 namespace CliqFlip.Domain.Dtos.Post
 {

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Common;
+using CliqFlip.Domain.ReadModels;
 
 namespace CliqFlip.Web.Mvc.ViewModels.User
 {

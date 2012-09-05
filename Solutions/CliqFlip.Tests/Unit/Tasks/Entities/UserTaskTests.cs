@@ -1,7 +1,7 @@
 ﻿using System;
 using CliqFlip.Domain.Contracts.Tasks.Entities;
-using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Exceptions;
+using CliqFlip.Domain.ReadModels;
 using CliqFlip.Infrastructure.Syndication.Interfaces;
 using CliqFlip.Infrastructure.Web.Interfaces;
 using CliqFlip.Tasks.Tasks.Entities;

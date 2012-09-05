@@ -1,4 +1,4 @@
-﻿using CliqFlip.Domain.Entities;
+﻿using CliqFlip.Domain.ReadModels;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;
 using FluentNHibernate.Mapping;

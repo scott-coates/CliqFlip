@@ -1,6 +1,6 @@
 ﻿using SharpArch.Domain.DomainModel;
 
-namespace CliqFlip.Domain.Entities
+namespace CliqFlip.Domain.ReadModels
 {
 	public class MajorLocation : Entity
 	{

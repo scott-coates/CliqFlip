@@ -1,8 +1,7 @@
 ﻿using System;
-using System.ComponentModel;
 using SharpArch.Domain.DomainModel;
 
-namespace CliqFlip.Domain.Entities
+namespace CliqFlip.Domain.ReadModels
 {
 	public class Notification : Entity
 	{

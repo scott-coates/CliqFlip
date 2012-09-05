@@ -1,7 +1,7 @@
 ﻿using CliqFlip.Domain.Interfaces;
 using CliqFlip.Domain.ValueObjects;
 
-namespace CliqFlip.Domain.Entities
+namespace CliqFlip.Domain.ReadModels
 {
 	public class Image : Medium, IHasImage
 	{

@@ -7,7 +7,7 @@ namespace CliqFlip.Domain.Dtos.Post
 		public string Interest { get; set; }
         public PostDtoWithActivity Post { get; set; }
 
-		public UserPostDto(Entities.Post post)
+		public UserPostDto(ReadModels.Post post)
 		{
             Post = new PostDtoWithActivity(post);
 			Username = post.User.Username;

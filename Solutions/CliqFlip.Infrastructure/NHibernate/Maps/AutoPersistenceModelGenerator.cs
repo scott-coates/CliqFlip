@@ -1,5 +1,5 @@
-﻿using CliqFlip.Domain.Entities;
-using System;
+﻿using System;
+using CliqFlip.Domain.ReadModels;
 using CliqFlip.Infrastructure.NHibernate.Maps.Conventions;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Conventions;

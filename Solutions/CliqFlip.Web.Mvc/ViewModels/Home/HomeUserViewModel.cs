@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Common;
 
 namespace CliqFlip.Web.Mvc.ViewModels.Home

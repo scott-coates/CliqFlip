@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using CliqFlip.Domain.Entities;
+using CliqFlip.Domain.ReadModels;
 using CliqFlip.Infrastructure.NHibernate.Extensions;
 using CliqFlip.Infrastructure.Neo.Entities;
 using CliqFlip.Infrastructure.Neo.Relationships;

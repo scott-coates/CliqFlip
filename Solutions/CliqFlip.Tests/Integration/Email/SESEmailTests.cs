@@ -1,6 +1,5 @@
 ﻿using System;
 using CliqFlip.Domain.Contracts.Tasks;
-using CliqFlip.Domain.Entities;
 using CliqFlip.Domain.Exceptions;
 using CliqFlip.Infrastructure.Email;
 using CliqFlip.Infrastructure.Email.Interfaces;

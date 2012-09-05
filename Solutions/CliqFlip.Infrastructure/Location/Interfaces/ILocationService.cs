@@ -1,4 +1,4 @@
-﻿using CliqFlip.Domain.Entities;
+﻿using CliqFlip.Domain.ReadModels;
 using CliqFlip.Domain.ValueObjects;
 
 namespace CliqFlip.Infrastructure.Location.Interfaces

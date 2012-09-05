@@ -3,7 +3,7 @@ using System.Linq;
 using Iesi.Collections.Generic;
 using SharpArch.Domain.DomainModel;
 
-namespace CliqFlip.Domain.Entities
+namespace CliqFlip.Domain.ReadModels
 {
     public class Conversation : Entity
     {
