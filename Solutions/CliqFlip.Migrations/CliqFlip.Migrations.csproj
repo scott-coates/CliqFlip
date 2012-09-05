@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Migrator\ConditionalMigration.cs" />
     <Compile Include="Migrator\MigrationConstants.cs" />
+    <Compile Include="Migrator\Migrations\__634824517287256366_DeleteEventStore.cs" />
     <Compile Include="Migrator\Migrations\__634630300299264851_CreateUserTable.cs" />
     <Compile Include="Migrator\Migrations\__634630303075533644_CreateInterestTable.cs" />
     <Compile Include="Migrator\Migrations\__634630305581406972_CreateUserInterestTable.cs" />
