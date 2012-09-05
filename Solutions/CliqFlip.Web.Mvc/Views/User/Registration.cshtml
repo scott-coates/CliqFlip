@@ -1,11 +1,11 @@
 ﻿<div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
-        <div class="container">
+        <div class="container-fluid">
             <a class="brand" href="#">CliqFlip</a>
         </div>
     </div>
 </div>
-<div id="landing-content" class="main-region">
+<div id="landing-content" class="header-region">
     <div class="container-fluid">
         <div class="row-fluid">
             <h2 class="logo">
@@ -17,14 +17,33 @@
         </div>
     </div>
 </div>
+<div id="registration-progress" class="hero-unit">
+    <div id="registration-feedback"></div>
+    <div class="progress progress-striped active">
+        <div class="bar">
+        </div>
+    </div>
+</div>
 @{
     Bundles.AddInlineScript(@"
     $(function () {
         var pusher = new Pusher('3aa270fd00dec97e5b04');
         var channel = pusher.subscribe('my-channel');
-        channel.bind('my-event', function(data) {
-            alert('An event was triggered with message: ' + data.message);
+        var regProgBox = $('#registration-progress');
+        var regProgFeedback = $('#registration-feedback');
+        var progBar = $('.bar');
+        channel.bind('reg-examine', function(data) {
+            regProgFeedback.html('<h4>Examinig Data</h4><h5>(Learning who you are)</h5>');
+            regProgBox.slideDown('slow','swing',function(){
+                progBar.css('width','25%');
+            });
+        });
+        channel.bind('reg-find-compat-people', function(data) {
+            progBar.css('width','50%');
+        });
+        channel.bind('reg-organizing', function(data) {
+            progBar.css('width','75%');
         });
      });
-","inline");
+", "inline");
 }

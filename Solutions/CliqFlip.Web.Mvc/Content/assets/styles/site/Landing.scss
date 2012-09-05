@@ -4,6 +4,10 @@
 
 @import "Mixins";
 
+.header-region {
+  padding-top: 100px;
+  padding-bottom: 20px; }
+
 .logo{
     text-align: center;
 }
@@ -13,3 +17,9 @@
     text-align: center;
     margin-top:25px;
 }
+
+#registration-progress{
+    display:none;
+    text-align:center;
+    width:400px;
+    margin: 30px auto 0;}
