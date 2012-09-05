@@ -38,6 +38,9 @@ namespace CliqFlip.Web.Mvc
 
             //templates
             bundles.Add<HtmlTemplateBundle>("Content/assets/templates");
+
+            //Pusher
+            bundles.AddUrlWithAlias("http://js.pusher.com/1.12/pusher.min.js", "Pusher");
         }
     }
 }
