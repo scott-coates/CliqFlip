@@ -2,7 +2,7 @@
 {
     public class CreateNewUserCommand
     {
-        public string FacebookAccessToken { get; set; }
+        public string FacebookAccessToken { get; private set; }
 
         public CreateNewUserCommand(string facebookAccessToken)
         {

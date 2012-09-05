@@ -26,6 +26,7 @@ namespace CliqFlip.Service
 
             _container.Install(
                 new FacilityInstaller(),
+                new EventStoreInstaller(),
                 new GenericRepositoriesInstaller(),
                 new CustomRepositoriesInstaller(),
                 new MessagingSubscriberInstaller(),

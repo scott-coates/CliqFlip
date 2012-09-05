@@ -3,6 +3,8 @@ using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using CliqFlip.Domain.Common;
+using CliqFlip.Infrastructure.EventSourcing;
+using EventStore.Dispatcher;
 using MassTransit;
 using MassTransit.Log4NetIntegration;
 
@@ -23,6 +25,11 @@ namespace CliqFlip.Infrastructure.CastleWindsor
                                 sbc.UseLog4Net("log4net.xml");
                                 sbc.Subscribe(c => c.LoadFrom(container));
                             })).LifeStyle.Singleton);
+
+            container.Register(
+                Component.For<IDispatchCommits>()
+                    .UsingFactoryMethod((k, c) => new MassTransitPublisher(k.Resolve<IServiceBus>()))
+                    .LifeStyle.Singleton);
         }
     }
 }
