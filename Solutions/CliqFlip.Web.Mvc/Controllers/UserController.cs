@@ -17,7 +17,7 @@ using CliqFlip.Domain.Exceptions;
 using CliqFlip.Domain.ReadModels;
 using CliqFlip.Domain.ValueObjects;
 using CliqFlip.Infrastructure.Web.Interfaces;
-using CliqFlip.Tasks.Commands.User;
+using CliqFlip.Messaging.Commands.User;
 using CliqFlip.Web.Mvc.Extensions.Exceptions;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.Security.Attributes;

@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using CliqFlip.Domain.Contracts.Tasks.Entities;
-using CliqFlip.Tasks.Commands.User;
+using CliqFlip.Messaging.Commands.User;
+using CommonDomain.Persistence;
 using Facebook;
+using Magnum;
 using MassTransit;
 using SharpArch.NHibernate;
 
@@ -9,35 +11,33 @@ namespace CliqFlip.Tasks.CommandHandlers.User
 {
     public class CreateNewUserCommandHander : Consumes<CreateNewUserCommand>.All
     {
-        private readonly IUserTasks _userTasks;
+        private readonly IRepository _repository;
 
-        public CreateNewUserCommandHander(IUserTasks userTasks)
+        public CreateNewUserCommandHander(IRepository repository)
         {
-            _userTasks = userTasks;
+            _repository = repository;
         }
 
         public void Consume(CreateNewUserCommand message)
         {
-            using (var tx = NHibernateSession.Current.Transaction)
-            {
-                tx.Begin();
-                var client = new FacebookClient(message.FacebookUserId);
+            var client = new FacebookClient(message.FacebookAccessToken);
 
-                dynamic result = client.Get("me", new { fields = "id,likes,location" });
+            dynamic result = client.Get("me", new { fields = "id,likes,location" });
 
-                var likes = (JsonArray)result.likes["data"];
+            string facebookId = result.id;
 
-                string location = result.location.name;
+            var likes = (JsonArray)result.likes["data"];
 
-                var likeNames = likes
-                    .Cast<dynamic>()
-                    .Select(x => x.name)
-                    .Cast<string>();
+            string location = result.location.name;
 
-                _userTasks.Create(result.id, location, likeNames);
+            var likeNames = likes
+                .Cast<dynamic>()
+                .Select(x => x.name)
+                .Cast<string>();
 
-                tx.Commit();
-            }
+            var user = new Domain.Entities.UserRoot.User(CombGuid.Generate(), facebookId, location, likeNames);
+
+            _repository.Save(user, CombGuid.Generate());
         }
     }
 }

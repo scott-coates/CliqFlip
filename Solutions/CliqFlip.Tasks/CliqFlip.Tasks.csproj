@@ -65,6 +65,12 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonDomain">
+      <HintPath>..\..\Packages\CommonDomain.1.4.0\lib\net40\CommonDomain.dll</HintPath>
+    </Reference>
+    <Reference Include="EventStore">
+      <HintPath>..\..\Packages\EventStore.3.0.11326.44\lib\net40\EventStore.dll</HintPath>
+    </Reference>
     <Reference Include="Facebook">
       <HintPath>..\..\Packages\Facebook.6.0.22\lib\net40-client\Facebook.dll</HintPath>
     </Reference>
@@ -124,7 +130,7 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="CommandHandlers\User\CreateNewUserCommandHander.cs" />
-    <Compile Include="Commands\User\CreateNewUserCommand.cs" />
+    <Compile Include="EventsHandlers\User\UserCreatedEventHandler.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\AssignLocationScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\CalculateMainCategoryInterestScoreFilter.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\FindRelatedInterestsFromKeywordSearchFilter.cs" />
@@ -159,6 +165,10 @@
       <Project>{9544D94B-9B6E-4B61-8A09-88382205BF86}</Project>
       <Name>CliqFlip.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CliqFlip.Messaging\CliqFlip.Messaging.csproj">
+      <Project>{D29D1692-8614-48A8-A984-CFF3844B9109}</Project>
+      <Name>CliqFlip.Messaging</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -177,8 +187,12 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Content Include="App_Readme\EventStore.license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App_Readme\EventStore - Architectural Overview.docx" />
+    <None Include="App_Readme\EventStore - Transactional Integrity.docx" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

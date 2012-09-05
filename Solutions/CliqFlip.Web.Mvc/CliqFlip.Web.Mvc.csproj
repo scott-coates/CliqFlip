@@ -824,6 +824,10 @@
       <Project>{9544D94B-9B6E-4B61-8A09-88382205BF86}</Project>
       <Name>CliqFlip.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CliqFlip.Messaging\CliqFlip.Messaging.csproj">
+      <Project>{D29D1692-8614-48A8-A984-CFF3844B9109}</Project>
+      <Name>CliqFlip.Messaging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CliqFlip.Tasks\CliqFlip.Tasks.csproj">
       <Project>{C9AAC14B-E695-4508-83B7-ACB8FC5A7284}</Project>
       <Name>CliqFlip.Tasks</Name>
