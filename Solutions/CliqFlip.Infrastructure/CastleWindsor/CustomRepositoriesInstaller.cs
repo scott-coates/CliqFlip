@@ -7,6 +7,7 @@ using Castle.Windsor;
 using CliqFlip.Domain.Common;
 using MassTransit;
 using Neo4jClient;
+using PusherRESTDotNet;
 using SharpArch.Web.Mvc.Castle;
 
 namespace CliqFlip.Infrastructure.CastleWindsor
@@ -34,6 +35,18 @@ namespace CliqFlip.Infrastructure.CastleWindsor
                                 var graphClient = new GraphClient(rootUri) { EnableSupportForNeo4jOnHeroku = true };
                                 graphClient.Connect();
                                 return graphClient;
+                            }));
+
+            container
+                .Register(
+                    Component
+                        .For<IPusherProvider>()
+                        .LifeStyle.Singleton.UsingFactoryMethod(
+                            () =>
+                            {
+                                var pusher = new PusherProvider(
+                                    ConfigurationManager.AppSettings[Constants.PUSHER_APP_ID], ConfigurationManager.AppSettings[Constants.PUSHER_APP_KEY], ConfigurationManager.AppSettings[Constants.PUSHER_APP_SECRET]);
+                                return pusher;
                             }));
         }
     }

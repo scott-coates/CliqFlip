@@ -11,14 +11,17 @@ namespace CliqFlip.Tasks.EventsHandlers.User
     public class UserCreatedEventHandler : Consumes<UserCreatedEvent>.All
     {
         private readonly IUserTasks _userTasks;
+        private readonly IServiceBus _serviceBus;
 
-        public UserCreatedEventHandler(IUserTasks userTasks)
+        public UserCreatedEventHandler(IUserTasks userTasks, IServiceBus serviceBus)
         {
             _userTasks = userTasks;
+            _serviceBus = serviceBus;
         }
 
         public void Consume(UserCreatedEvent message)
         {
+            _serviceBus.Publish(new UserExaminedEvent());
             using (var tx = NHibernateSession.Current.Transaction)
             {
                 tx.Begin();

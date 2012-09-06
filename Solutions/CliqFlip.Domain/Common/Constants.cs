@@ -22,6 +22,9 @@ namespace CliqFlip.Domain.Common
         public const string ERROR_TEMPDATA_KEY = "error";
         public const string GRAPH_URL = "graph";
         public const string RABBIT_MQ_URI = "queue";
+        public const string PUSHER_APP_ID = "PusherAppId";
+        public const string PUSHER_APP_KEY = "PusherAppKey";
+        public const string PUSHER_APP_SECRET = "PusherAppSecret";
 
         /*User Search Pipeline*/
         public const string INTEREST_MAX_HOPS = "3";

@@ -39,9 +39,11 @@
             });
         });
         channel.bind('reg-find-compat-people', function(data) {
+            regProgFeedback.html('<h4>Finding compatible people</h4>');
             progBar.css('width','50%');
         });
         channel.bind('reg-organizing', function(data) {
+            regProgFeedback.html('<h4>Organizing</h4>');
             progBar.css('width','75%');
         });
      });

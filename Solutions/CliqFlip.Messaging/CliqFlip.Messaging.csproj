@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\User\CreateNewUserCommand.cs" />
+    <Compile Include="Events\User\UserFoundInterestDataEvent.cs" />
+    <Compile Include="Events\User\UserFoundGeneralDataEvent.cs" />
+    <Compile Include="Events\User\UserExaminedEvent.cs" />
     <Compile Include="Events\User\UserCreatedEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

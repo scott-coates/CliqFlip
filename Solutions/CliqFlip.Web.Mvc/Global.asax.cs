@@ -14,6 +14,7 @@ using CliqFlip.Web.Mvc.Controllers;
 using CliqFlip.Web.Mvc.Security.Attributes;
 using CommonServiceLocator.WindsorAdapter;
 using Elmah;
+using MassTransit;
 using Microsoft.Practices.ServiceLocation;
 using NHibernate.Cfg;
 using SharpArch.NHibernate;
@@ -139,15 +140,14 @@ namespace CliqFlip.Web.Mvc
 
 		    container.Install(
 		        new FacilityInstaller(),
+                new MessagingPublisherInstaller(),
 		        new GenericRepositoriesInstaller(),
 		        new CustomRepositoriesInstaller(),
 		        new WebComponentsInstaller(),
-		        new MessagingPublisherInstaller(),
 		        new TasksInstaller(),
 		        new CommandsInstaller(),
 		        new UserInstaller()
 		        );
-
 			ServiceLocator.SetLocatorProvider(() => new WindsorServiceLocator(container));
 		}
 

@@ -24,6 +24,8 @@ using CliqFlip.Infrastructure.Syndication.Interfaces;
 using CliqFlip.Infrastructure.Validation;
 using CliqFlip.Infrastructure.Web;
 using CliqFlip.Infrastructure.Web.Interfaces;
+using CliqFlip.Messaging.Events.User;
+using MassTransit;
 
 namespace CliqFlip.Tasks.Tasks.Entities
 {
@@ -41,6 +43,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
         private readonly IUserAuthentication _userAuthentication;
         private readonly IUserRepository _userRepository;
         private readonly IUserInterestTasks _userInterestTasks;
+        private readonly IServiceBus _serviceBus;
 
         public UserTasks(
             IInterestTasks interestTasks,
@@ -53,7 +56,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
             IEmailService emailService,
             ILocationService locationService,
             IUserRepository userRepository,
-            IPageParsingService pageParsingService, IUserInterestTasks userInterestTasks)
+            IPageParsingService pageParsingService, IUserInterestTasks userInterestTasks, IServiceBus serviceBus)
         {
             _interestTasks = interestTasks;
             _imageProcessor = imageProcessor;
@@ -67,6 +70,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
             _userRepository = userRepository;
             _pageParsingService = pageParsingService;
             _userInterestTasks = userInterestTasks;
+            _serviceBus = serviceBus;
         }
 
         #region IUserTasks Members
@@ -115,6 +119,8 @@ namespace CliqFlip.Tasks.Tasks.Entities
 
             _userRepository.SaveOrUpdate(retVal); //interests depend on a user already existing
 
+            _serviceBus.Publish(new UserFoundGeneralDataEvent());
+
             var interests = _interestTasks.GetAll();
 
             foreach (var interestName in interestNames)
@@ -126,6 +132,8 @@ namespace CliqFlip.Tasks.Tasks.Entities
                     AddInterestToUser(retVal, interestEntity.Id);
                 }
             }
+
+            _serviceBus.Publish(new UserFoundInterestDataEvent());
 
             return retVal;
         }

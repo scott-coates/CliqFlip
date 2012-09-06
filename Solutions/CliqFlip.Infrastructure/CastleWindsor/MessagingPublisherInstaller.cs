@@ -4,6 +4,7 @@ using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using CliqFlip.Domain.Common;
+using CliqFlip.Infrastructure.ServiceBus;
 using MassTransit;
 using MassTransit.Transports;
 
@@ -24,6 +25,9 @@ namespace CliqFlip.Infrastructure.CastleWindsor
                     (k, c) =>
                     k.Resolve<IEndpointCache>()
                         .GetEndpoint(new Uri(ConfigurationManager.ConnectionStrings[Constants.RABBIT_MQ_URI].ConnectionString))));
+
+            container.Register(
+                Component.For<IServiceBus>().ImplementedBy<FakeServiceBus>());
         }
     }
 }
