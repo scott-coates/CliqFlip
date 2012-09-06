@@ -1,22 +1,20 @@
-﻿using CliqFlip.Domain.Entities.MajorLocationRoot;
-using CliqFlip.Domain.ValueObjects;
+﻿using System;
 
 namespace CliqFlip.Domain.Entities.UserRoot
 {
-	public class Location
-	{
-		private LocationData _data;
+    public class Location
+    {
+        public Guid MajorLocationId { get; set; }
+        public string LocationName { get; set; }
+        public float Latitude { get; set; }
+        public float Longitude { get; set; }
 
-		public LocationData Data
-		{
-			get
-			{
-				return _data ??
-				       new LocationData(null, null, null, null, null, 0, 0, null, null, null, null, null);
-			}
-			set { _data = value; }
-		}
-
-		public MajorLocation MajorLocation { get; set; }
-	}
+        public Location(Guid majorLocationId, string locationName, float latitude, float longitude)
+        {
+            MajorLocationId = majorLocationId;
+            LocationName = locationName;
+            Latitude = latitude;
+            Longitude = longitude;
+        }
+    }
 }

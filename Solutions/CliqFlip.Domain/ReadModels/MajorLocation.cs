@@ -1,4 +1,5 @@
-﻿using SharpArch.Domain.DomainModel;
+﻿using System;
+using SharpArch.Domain.DomainModel;
 
 namespace CliqFlip.Domain.ReadModels
 {
@@ -15,5 +16,6 @@ namespace CliqFlip.Domain.ReadModels
 		public virtual string NameSpecificSubset { get; set; }
 		public virtual string LatitudeSpecificSubset { get; set; }
 		public virtual string LongitudeSpecificSubset { get; set; }
+		public virtual string Guid { get; set; }
 	}
 }
