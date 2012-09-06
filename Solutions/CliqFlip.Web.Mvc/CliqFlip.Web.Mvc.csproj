@@ -360,6 +360,7 @@
     <Compile Include="ViewModels\Search\InterestSearchViewModel.cs" />
     <Compile Include="ViewModels\Search\PerformSearchViewModel.cs" />
     <Compile Include="Areas\Api\Models\Post\SavePostApiModel.cs" />
+    <Compile Include="ViewModels\User\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\User\UserAccountViewModel.cs" />
     <Compile Include="ViewModels\User\UserCreatePostFromUrlViewModel.cs" />
     <Compile Include="ViewModels\User\UserSaveInterestWebPageViewModel.cs" />

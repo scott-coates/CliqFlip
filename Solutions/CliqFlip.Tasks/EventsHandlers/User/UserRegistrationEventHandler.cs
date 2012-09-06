@@ -20,17 +20,17 @@ namespace CliqFlip.Tasks.EventsHandlers.User
 
         public void Consume(UserExaminedEvent message)
         {
-            _pusherProvider.Trigger(new SimplePusherRequest("my-channel", "reg-examine", ""));
+            _pusherProvider.Trigger(new SimplePusherRequest("registration-" + message.Username, "reg-examine", ""));
         }
 
         public void Consume(UserFoundGeneralDataEvent message)
         {
-            _pusherProvider.Trigger(new SimplePusherRequest("my-channel", "reg-find-compat-people", ""));
+            _pusherProvider.Trigger(new SimplePusherRequest("registration-" + message.Username, "reg-find-compat-people", ""));
         }
 
         public void Consume(UserFoundInterestDataEvent message)
         {
-            _pusherProvider.Trigger(new SimplePusherRequest("my-channel", "reg-organizing", ""));
+            _pusherProvider.Trigger(new SimplePusherRequest("registration-" + message.Username, "reg-organizing", ""));
         }
     }
 }

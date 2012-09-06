@@ -1,4 +1,6 @@
-﻿<div class="navbar navbar-inverse navbar-fixed-top">
+﻿@model CliqFlip.Web.Mvc.ViewModels.User.RegistrationViewModel
+
+<div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container-fluid">
             <a class="brand" href="#">CliqFlip</a>
@@ -29,7 +31,7 @@
     Bundles.AddInlineScript(@"
     $(function () {
         var pusher = new Pusher('3aa270fd00dec97e5b04');
-        var channel = pusher.subscribe('my-channel');
+        var channel = pusher.subscribe('registration-" + @Model.Username + @"');
         var regProgBox = $('#registration-progress');
         var regProgFeedback = $('#registration-feedback');
         var progBar = $('.bar');

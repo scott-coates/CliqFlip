@@ -16,6 +16,7 @@ namespace CliqFlip.Domain.Common
         public const string YAHOO_APP_ID = "YahooAppId";
         public const string LOCATION_SESSION_KEY = "LocationSessionKey";
         public const string FACEBOOK_AUTH_TOKEN_SESSION_KEY = "FacebookAuthToken";
+        public const string USERNAME_SESSION_KEY = "Username";
         public const string ROUTE_USER_HOME_PAGE = "User Home Page";
         public const string NOTIFICATION_COOKIE = "notification-id";
         public const int FEED_LIMIT = 10;

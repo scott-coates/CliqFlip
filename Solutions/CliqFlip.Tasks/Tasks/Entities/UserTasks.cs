@@ -119,7 +119,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
 
             _userRepository.SaveOrUpdate(retVal); //interests depend on a user already existing
 
-            _serviceBus.Publish(new UserFoundGeneralDataEvent());
+            _serviceBus.Publish(new UserFoundGeneralDataEvent(username));
 
             var interests = _interestTasks.GetAll();
 
@@ -133,7 +133,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
                 }
             }
 
-            _serviceBus.Publish(new UserFoundInterestDataEvent());
+            _serviceBus.Publish(new UserFoundInterestDataEvent(username));
 
             return retVal;
         }

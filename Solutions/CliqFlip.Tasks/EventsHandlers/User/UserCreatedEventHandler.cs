@@ -21,12 +21,12 @@ namespace CliqFlip.Tasks.EventsHandlers.User
 
         public void Consume(UserCreatedEvent message)
         {
-            _serviceBus.Publish(new UserExaminedEvent());
+            _serviceBus.Publish(new UserExaminedEvent(message.Username));
             using (var tx = NHibernateSession.Current.Transaction)
             {
                 tx.Begin();
 
-                _userTasks.Create(message.Username,message.Location,message.Interests);
+                _userTasks.Create(message.Username, message.Location, message.Interests);
 
                 tx.Commit();
             }

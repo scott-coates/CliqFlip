@@ -94,6 +94,7 @@ namespace CliqFlip.Web.Mvc.Controllers
             if (user == null)
             {
                 _endpoint.Send(new CreateNewUserCommand(accessToken));
+                _httpContextProvider.Session[Constants.USERNAME_SESSION_KEY] = id;
                 retVal = RedirectToAction("registration");
             }
             else
@@ -108,7 +109,8 @@ namespace CliqFlip.Web.Mvc.Controllers
         [AllowAnonymous]
         public ActionResult Registration()
         {
-            return View();
+            var vm = new RegistrationViewModel(_httpContextProvider.Session[Constants.USERNAME_SESSION_KEY].ToString());
+            return View(vm);
         }
 
         [AllowAnonymous]
