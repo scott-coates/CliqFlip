@@ -100,7 +100,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
             return user;
         }
 
-        public User Create(string username, string locationName, IEnumerable<string> interestNames)
+        public User Create(string username, string locationName, string email, IEnumerable<string> interestNames)
         {
             var retVal = new User
             {
@@ -111,6 +111,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
             retVal.UpdateCreateDate();
             retVal.Password = PasswordHelper.GenerateSalt(32); //random password for now
             retVal.Salt = PasswordHelper.GenerateSalt(32); //random password for now
+            retVal.Email = email;
 
             var location = _locationService.GetLocation(locationName);
             var majorLocation = _locationService.GetNearestMajorCity(location.Latitude, location.Longitude);

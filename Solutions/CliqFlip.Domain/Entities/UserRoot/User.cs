@@ -7,13 +7,14 @@ namespace CliqFlip.Domain.Entities.UserRoot
 {
     public class User : AggregateBase
     {
+        public string Email { get; private set; }
         public string Location { get; private set; }
         public string Username { get; private set; }
         public IEnumerable<string> Interests { get; private set; }
 
-        public User(Guid id, string username, string location, IEnumerable<string> interests)
+        public User(Guid id, string username, string location, string email, IEnumerable<string> interests)
         {
-            RaiseEvent(new UserCreatedEvent(id, username, location, interests));
+            RaiseEvent(new UserCreatedEvent(id, username, location, email, interests));
         }
 
         private void Apply(UserCreatedEvent @event)
@@ -22,7 +23,7 @@ namespace CliqFlip.Domain.Entities.UserRoot
             Location = @event.Location;
             Username = @event.Username;
             Interests = @event.Interests;
-
+            Email = @event.Email;
         }
     }
 }

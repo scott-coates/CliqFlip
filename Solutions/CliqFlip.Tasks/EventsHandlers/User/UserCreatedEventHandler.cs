@@ -26,7 +26,7 @@ namespace CliqFlip.Tasks.EventsHandlers.User
             {
                 tx.Begin();
 
-                _userTasks.Create(message.Username, message.Location, message.Interests);
+                _userTasks.Create(message.Username, message.Location, message.Email, message.Interests);
 
                 tx.Commit();
             }

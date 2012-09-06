@@ -29,6 +29,7 @@ namespace CliqFlip.Tasks.CommandHandlers.User
             var likes = (JsonArray)result.likes["data"];
 
             string location = result.location.name;
+            string email = result.email;
 
             var likeNames = likes
                 .Cast<dynamic>()
@@ -36,7 +37,7 @@ namespace CliqFlip.Tasks.CommandHandlers.User
                 .Cast<string>()
                 .Distinct();
 
-            var user = new Domain.Entities.UserRoot.User(CombGuid.Generate(), facebookId, location, likeNames);
+            var user = new Domain.Entities.UserRoot.User(CombGuid.Generate(), facebookId, location, email, likeNames);
 
             _repository.Save(user, CombGuid.Generate());
         }
