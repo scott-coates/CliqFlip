@@ -22,7 +22,7 @@ namespace CliqFlip.Tasks.CommandHandlers.User
         {
             var client = new FacebookClient(message.FacebookAccessToken);
 
-            dynamic result = client.Get("me", new { fields = "id,likes,location" });
+            dynamic result = client.Get("me", new { fields = "id,likes,location,email" });
 
             string facebookId = result.id;
 
