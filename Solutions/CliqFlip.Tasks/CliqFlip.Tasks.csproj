@@ -133,6 +133,7 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="CommandHandlers\User\CreateNewUserCommandHander.cs" />
+    <Compile Include="EventsHandlers\User\UserRequestedPeopleEventHandler.cs" />
     <Compile Include="EventsHandlers\User\UserRegistrationEventHandler.cs" />
     <Compile Include="EventsHandlers\User\UserCreatedEventHandler.cs" />
     <Compile Include="Pipelines\UserSearch\Filters\AssignLocationScoreFilter.cs" />

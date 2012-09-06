@@ -175,6 +175,11 @@ namespace CliqFlip.Tasks.Tasks.Entities
             return _userRepository.GetSuggestedUser(user);
         }
 
+        public void SaveSuggestedUsers(IList<UserSearchResultDto> users )
+        {
+            
+        }
+
         public void PostImage(User user, FileStreamDto interestImage, int userInterestId, string description)
         {
             UserInterest interest = user.Interests.First(x => x.Id == userInterestId);

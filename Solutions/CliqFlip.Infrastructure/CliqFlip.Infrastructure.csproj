@@ -253,6 +253,7 @@
     <Compile Include="NHibernate\Maps\Overrides\PostMappingOverride.cs" />
     <Compile Include="NHibernate\Maps\Overrides\UserMappingOverride.cs" />
     <Compile Include="Repositories\ConversationRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ISuggestedUserRepository.cs" />
     <Compile Include="Repositories\Interfaces\IPostRepository.cs" />
     <Compile Include="Repositories\Interfaces\INotificationRepository.cs" />
     <Compile Include="Repositories\Interfaces\IConversationRepository.cs" />
