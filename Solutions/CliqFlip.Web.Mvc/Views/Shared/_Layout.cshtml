@@ -31,7 +31,16 @@
     @HtmlExtensions.GetAnalyticsHtmlIfAvailable() @*TODO: Do not add if internal cliqflip is logged in*@
 </head>
 <body>
-    @RenderBody()
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="brand" href="#">CliqFlip</a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
     <footer class="navbar navbar-fixed-bottom">
         <div class="navbar-inner">
             <div class="container-fluid">
