@@ -69,6 +69,8 @@ namespace CliqFlip.Web.Mvc.Controllers
         [HttpPost]
         public ActionResult Login(string accessToken)
         {
+            accessToken = accessToken ?? _httpContextProvider.Session[Constants.FACEBOOK_AUTH_TOKEN_SESSION_KEY] as string;
+
             ActionResult retVal;
 
             var client = new FacebookClient(accessToken);

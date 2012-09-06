@@ -24,7 +24,10 @@
         </div>
     </div>
 </div>
+
 @{
+    var loginUrl = @Url.Action("Login");
+    
     Bundles.AddInlineScript(@"
     $(function () {
         var pusher = new Pusher('3aa270fd00dec97e5b04');
@@ -45,7 +48,13 @@
         channel.bind('reg-organizing', function(data) {
             regProgFeedback.html('<h4>Organizing</h4>');
             progBar.css('width','75%');
+            setTimeout(login, 1000);
         });
      });
+
+    function login()
+    {
+        location.href = '" + loginUrl + @"';
+    }
 ", "inline");
 }
