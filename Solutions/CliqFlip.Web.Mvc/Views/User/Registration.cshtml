@@ -40,8 +40,10 @@
             });
         });
         channel.bind('reg-find-compat-people', function(data) {
-            regProgFeedback.html('<h4>Finding compatible people</h4>');
-            progBar.css('width','50%');
+            setTimeout(function(){
+                regProgFeedback.html('<h4>Finding compatible people</h4>');
+                progBar.css('width','50%');
+            }, 2000);
         });
         channel.bind('reg-organizing', function(data) {
             regProgFeedback.html('<h4>Organizing</h4>');
