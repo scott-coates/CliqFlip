@@ -26,7 +26,9 @@ using CliqFlip.Web.Mvc.ViewModels.Jeip;
 using CliqFlip.Web.Mvc.ViewModels.User;
 using CliqFlip.Web.Mvc.Views.Interfaces;
 using Facebook;
+using Magnum;
 using MassTransit;
+using SharpArch.Domain;
 using SharpArch.NHibernate.Web.Mvc;
 using SharpArch.Web.Mvc.JsonNet;
 using CliqFlip.Web.Mvc.Extensions.Controller;
@@ -69,7 +71,15 @@ namespace CliqFlip.Web.Mvc.Controllers
         [HttpPost]
         public ActionResult Login(string accessToken)
         {
-            accessToken = accessToken ?? _httpContextProvider.Session[Constants.FACEBOOK_AUTH_TOKEN_SESSION_KEY] as string;
+            if (string.IsNullOrWhiteSpace(accessToken))
+            {
+                accessToken = _httpContextProvider.Session[Constants.FACEBOOK_AUTH_TOKEN_SESSION_KEY] as string;
+                Check.Require(string.IsNullOrWhiteSpace(accessToken) == false, "access token is missing");
+            }
+            else
+            {
+                _httpContextProvider.Session[Constants.FACEBOOK_AUTH_TOKEN_SESSION_KEY] = accessToken;
+            }
 
             ActionResult retVal;
 

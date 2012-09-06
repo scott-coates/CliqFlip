@@ -26,8 +26,6 @@
 </div>
 
 @{
-    var loginUrl = @Url.Action("Login");
-    
     Bundles.AddInlineScript(@"
     $(function () {
         var pusher = new Pusher('3aa270fd00dec97e5b04');
@@ -37,7 +35,7 @@
         var progBar = $('.bar');
         channel.bind('reg-examine', function(data) {
             regProgFeedback.html('<h4>Examinig Data</h4><h5>(Learning who you are)</h5>');
-            regProgBox.slideDown('slow','swing',function(){
+            regProgBox.slideDown('fast','swing',function(){
                 progBar.css('width','25%');
             });
         });
@@ -54,7 +52,11 @@
 
     function login()
     {
-        location.href = '" + loginUrl + @"';
+        var form = document.createElement('form');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', '/user/login');
+        document.body.appendChild(form);
+        form.submit();
     }
 ", "inline");
 }
