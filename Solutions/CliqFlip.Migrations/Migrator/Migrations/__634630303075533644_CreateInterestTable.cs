@@ -22,7 +22,7 @@ namespace CliqFlip.Migrations.Migrator.Migrations
                     new Column("Id", DbType.Int32, ColumnProperty.PrimaryKeyWithIdentity),
                     new Column("Name", DbType.String, ColumnProperty.NotNull),
                     new Column("Description", DbType.String, ColumnProperty.Null),
-                    new Column("Slug", DbType.String, ColumnProperty.Unique),
+                    new Column("Slug", DbType.String, ColumnProperty.Unique | ColumnProperty.NotNull),
                     new Column("ParentInterestId", DbType.Int32, ColumnProperty.Null)
                 });
 

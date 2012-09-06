@@ -17,7 +17,7 @@ namespace CliqFlip.Migrations.Migrator.Migrations
                 {
                     new Column("Id", DbType.Int32, ColumnProperty.PrimaryKeyWithIdentity),
                     new Column("Username", DbType.String, ColumnProperty.NotNull),
-                    new Column("Email", DbType.String, ColumnProperty.Unique),
+                    new Column("Email", DbType.String, ColumnProperty.Unique | ColumnProperty.NotNull),
                     new Column("Password", DbType.String, ColumnProperty.NotNull),
                     new Column("Salt", DbType.String, ColumnProperty.NotNull),
                     new Column("Bio", DbType.String, MigrationConstants.NVarCharMax, ColumnProperty.Null),
