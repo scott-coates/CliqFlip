@@ -125,42 +125,47 @@
          right: -1px;
      }
  </style>
-<aside class="sidebar">
-    <ul class="nav nav-tabs nav-stacked">
-        <li class="active">
-            <a href="index.html">
-                <div>
-                    <div class="ico">
-                        <img src="@Url.Content("~/Content/assets/images/icons/ico-home.png")">
-                    </div>
-                    <div class="title">
-                        Home
-                    </div>
-                </div>
-
-                <div class="arrow">
-                    <div class="bubble-arrow-border"></div>
-                    <div class="bubble-arrow"></div>
-                </div>
-            </a>
-        </li>
-    </ul>
-</aside>
-<div class="main-container">
-    <div class="container-fluid">
-        <section>
-            <div class="row-fluid">
-                <div class="span4">
-                    <div class="row-fluid" style="border-bottom: solid 1px #DDD">
-                        <div class="span4">
-                            <h3>:)</h3>
+<div ng-app>
+    <aside class="sidebar">
+        <ul class="nav nav-tabs nav-stacked">
+            <li class="active">
+                <a href="index.html">
+                    <div>
+                        <div class="ico">
+                            <img src="@Url.Content("~/Content/assets/images/icons/ico-home.png")">
                         </div>
-                        <div class="span4">
-                            <p>HI</p>
+                        <div class="title">Home</div>
+                    </div>
+                    <div class="arrow">
+                        <div class="bubble-arrow-border"></div>
+                        <div class="bubble-arrow"></div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </aside>
+    <div class="main-container" ng-controller="UserController">
+        <div class="container-fluid">
+            <section>
+                <ul>
+                    <li ng-repeat="user in users">
+                        {{user.name}}
+                        <p>{{user.snippet}}</p>
+                    </li>
+                </ul>
+                <div class="row-fluid">
+                    <div class="span4">
+                        <div class="row-fluid" style="border-bottom: solid 1px #DDD">
+                            <div class="span4">
+                                <h3>:)</h3>
+                            </div>
+                            <div class="span4">
+                                <p>HI</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </div>
 </div>
