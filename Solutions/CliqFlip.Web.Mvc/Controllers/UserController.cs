@@ -752,9 +752,8 @@ namespace CliqFlip.Web.Mvc.Controllers
         public ActionResult Home()
         {
             string username = _principal.Identity.Name;
-            _endpoint.Send(new UserRequestedSuggestedUsersEvent(username));
-            var user = _userTasks.GetUser(username);
-            return new JsonNetResult(new { user.Username, Interests = user.Interests.Select(y => y.Interest.Name) });
+            
+            return View();
         }
 
         [Authorize]
