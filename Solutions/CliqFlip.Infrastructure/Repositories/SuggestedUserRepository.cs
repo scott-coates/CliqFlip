@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CliqFlip.Domain.Dtos.User;
 using CliqFlip.Domain.ReadModels;
@@ -19,11 +20,13 @@ namespace CliqFlip.Infrastructure.Repositories
         {
             using (var redisUsers = _redisClient.GetTypedClient<UserSearchResultDto>())
             {
-                var set = redisUsers.SortedSets["suggested-user:" + user.Id];
+                var listId = "suggested-user:" + user.Id;
+                var set = redisUsers.SortedSets[listId];
                 foreach (var userSearchResultDto in users)
                 {
                     redisUsers.AddItemToSortedSet(set, userSearchResultDto, userSearchResultDto.Score);
                 }
+                redisUsers.ExpireEntryIn(listId, TimeSpan.FromHours(1));
             }
         }
     }
