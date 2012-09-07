@@ -2,4 +2,6 @@
 jquery.validate.js
 jquery.validate.unobtrusive.js
 underscore.js
+angular.js
+angular-scenario.js
 *
