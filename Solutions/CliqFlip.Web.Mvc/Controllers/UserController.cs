@@ -16,8 +16,10 @@ using CliqFlip.Domain.Dtos.User;
 using CliqFlip.Domain.Exceptions;
 using CliqFlip.Domain.ReadModels;
 using CliqFlip.Domain.ValueObjects;
+using CliqFlip.Infrastructure.Repositories;
 using CliqFlip.Infrastructure.Web.Interfaces;
 using CliqFlip.Messaging.Commands.User;
+using CliqFlip.Messaging.Events.User;
 using CliqFlip.Web.Mvc.Extensions.Exceptions;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.Security.Attributes;
@@ -750,7 +752,7 @@ namespace CliqFlip.Web.Mvc.Controllers
         public ActionResult Home()
         {
             string username = _principal.Identity.Name;
-
+            _endpoint.Send(new UserRequestedSuggestedUsersEvent(username));
             var user = _userTasks.GetUser(username);
             return new JsonNetResult(new { user.Username, Interests = user.Interests.Select(y => y.Interest.Name) });
         }

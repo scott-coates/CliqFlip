@@ -8,6 +8,7 @@ using CliqFlip.Domain.Common;
 using MassTransit;
 using Neo4jClient;
 using PusherRESTDotNet;
+using ServiceStack.Redis;
 using SharpArch.Web.Mvc.Castle;
 
 namespace CliqFlip.Infrastructure.CastleWindsor
@@ -48,6 +49,19 @@ namespace CliqFlip.Infrastructure.CastleWindsor
                                     ConfigurationManager.AppSettings[Constants.PUSHER_APP_ID], ConfigurationManager.AppSettings[Constants.PUSHER_APP_KEY], ConfigurationManager.AppSettings[Constants.PUSHER_APP_SECRET]);
                                 return pusher;
                             }));
+
+            container
+                .Register(
+                    Component
+                        .For<IRedisClient>()
+                        .LifeStyle.Singleton.UsingFactoryMethod(
+                            () =>
+                            {
+                                var client = new RedisClient("192.168.83.138", 6379);
+                                client.Init();
+                                return client;
+                            }));
+
         }
     }
 }

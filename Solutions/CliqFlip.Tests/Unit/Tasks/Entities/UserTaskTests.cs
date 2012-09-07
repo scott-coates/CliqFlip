@@ -24,7 +24,7 @@ namespace CliqFlip.Tests.Unit.Tasks.Entities
             _webContentService = new Mock<IWebContentService>().Object;
             _feedFinder = new Mock<IFeedFinder>().Object;
             _user = new Mock<User> { CallBase = true }.Object;
-            _userTasks = new UserTasks(null, null, null, _webContentService, _feedFinder, null, null, null, null, null, null, null, null);
+            _userTasks = new UserTasks(null, null, null, _webContentService, _feedFinder, null, null, null, null, null, null, null, null, null);
         }
 
         #region Website tests

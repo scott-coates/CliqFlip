@@ -37,6 +37,7 @@ namespace CliqFlip.Domain.Contracts.Tasks.Entities
         Message ReplyToConversation(Conversation conversation, User sender, User receiver, string messageText, string subject, string body);
 
         bool IsUsernameOrEmailAvailable(string value);
+        void SaveSuggestedUsers(User user, IList<UserSearchResultDto> users);
         // ReSharper restore ReturnTypeCanBeEnumerable.Global
     }
 }

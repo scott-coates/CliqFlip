@@ -9,22 +9,23 @@ using SharpArch.NHibernate;
 
 namespace CliqFlip.Tasks.EventsHandlers.User
 {
-    public class UserRequestedPeopleEventHandler : Consumes<UserRequestedPeopleEvent>.All
+    public class UserRequestedSuggestedUsersEventHandler : Consumes<UserRequestedSuggestedUsersEvent>.All
     {
         private readonly IUserSearchPipeline _userSearchPipeline;
         private readonly IUserTasks _userTasks;
 
-        public UserRequestedPeopleEventHandler(IUserSearchPipeline userSearchPipeline, IUserTasks userTasks)
+        public UserRequestedSuggestedUsersEventHandler(IUserSearchPipeline userSearchPipeline, IUserTasks userTasks)
         {
             _userSearchPipeline = userSearchPipeline;
             _userTasks = userTasks;
         }
 
-        public void Consume(UserRequestedPeopleEvent message)
+        public void Consume(UserRequestedSuggestedUsersEvent message)
         {
             var user = _userTasks.GetUser(message.Username);
-            var pipelineRequest = new UserSearchPipelineRequest { User = user };
+            var pipelineRequest = new UserSearchPipelineRequest { User = user, LocationData = user.Location.Data };
             var pipelineResult = _userSearchPipeline.Execute(pipelineRequest);
+            _userTasks.SaveSuggestedUsers(user, pipelineResult.Users);
         }
     }
 }

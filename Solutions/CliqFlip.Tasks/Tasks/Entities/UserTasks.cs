@@ -44,6 +44,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
         private readonly IUserRepository _userRepository;
         private readonly IUserInterestTasks _userInterestTasks;
         private readonly IServiceBus _serviceBus;
+        private readonly ISuggestedUserRepository _suggestedUserRepository;
 
         public UserTasks(
             IInterestTasks interestTasks,
@@ -56,7 +57,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
             IEmailService emailService,
             ILocationService locationService,
             IUserRepository userRepository,
-            IPageParsingService pageParsingService, IUserInterestTasks userInterestTasks, IServiceBus serviceBus)
+            IPageParsingService pageParsingService, IUserInterestTasks userInterestTasks, IServiceBus serviceBus, ISuggestedUserRepository suggestedUserRepository)
         {
             _interestTasks = interestTasks;
             _imageProcessor = imageProcessor;
@@ -71,6 +72,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
             _pageParsingService = pageParsingService;
             _userInterestTasks = userInterestTasks;
             _serviceBus = serviceBus;
+            _suggestedUserRepository = suggestedUserRepository;
         }
 
         #region IUserTasks Members
@@ -175,9 +177,9 @@ namespace CliqFlip.Tasks.Tasks.Entities
             return _userRepository.GetSuggestedUser(user);
         }
 
-        public void SaveSuggestedUsers(IList<UserSearchResultDto> users )
+        public void SaveSuggestedUsers(User user, IList<UserSearchResultDto> users)
         {
-            
+            _suggestedUserRepository.Save(user, users);
         }
 
         public void PostImage(User user, FileStreamDto interestImage, int userInterestId, string description)

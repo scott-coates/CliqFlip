@@ -5,6 +5,7 @@ namespace CliqFlip.Domain.ReadModels
 {
 	public class MajorLocation : Entity
 	{
+        //TODO Put these into event store with migration
 		public virtual string Slug { get; set; }
 		public virtual string Name { get; set; }
 		public virtual string Country { get; set; }
