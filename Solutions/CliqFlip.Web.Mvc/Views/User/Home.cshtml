@@ -1,139 +1,164 @@
 ﻿<style type="text/css">
-    body
-    {
-        background-color: #F1F1F1;
-        padding-top: 60px;
-        padding-bottom: 40px;
-    }
-    
-    .suggested-user
-    {
-        border-top: 1px solid #FCFAFA;
-        border-bottom: 1px solid #D9D4D4;
-        padding: 10px 15px;
-        background-color: #F2F0F0;
-    }
+     body
+     {
+         background-color: #F1F1F1;
+         padding-top: 60px;
+     }
+
+     .suggested-user-list
+     {
+         overflow-y: auto;
+         position: absolute;
+         top: 61px;
+         left: 130px;
+         bottom: 0;
+         width: 200px; /* or whatever */
+     }
+
+     .suggested-user-list::-webkit-scrollbar
+     {
+         height: 7px;
+         -webkit-appearance: none;
+         width: 7px;
+     }
+
+     .suggested-user-list::-webkit-scrollbar-thumb
+     {
+         background-color: #D9D4D4;
+         border-radius: 4px;
+         -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+     }
+
+     .suggested-user
+     {
+         border-top: 1px solid #FCFAFA;
+         border-bottom: 1px solid #D9D4D4;
+         padding: 10px 15px;
+         background-color: #F2F0F0;
+         position: relative;
+     }
     
     /*MAIN CONTAINER*/
-    
-    .main-container
-    {
-        background-color: white;
-        min-height: 500px;
-        margin-left: 100px;
-        border-top: 1px solid #E5E5E5;
-        border-left: 1px solid #E5E5E5;
-    }
+
+     .main-container
+     {
+         background-color: white;
+         min-height: 500px;
+         margin-left: 100px;
+         border-top: 1px solid #E5E5E5;
+         border-left: 1px solid #E5E5E5;
+     }
     /*SIDEBAR*/
-    
-    .sidebar
-    {
-        width: 100px;
-        float: left;
-        height: 100%;
-        position: fixed;
-        left: 0;
-        top: 60px;
-        background-color: #F1F1F1;
-        border-right: 1px solid #E5E5E5;
-    }
-    
-    .sidebar .nav
-    {
-        margin-bottom: 0;
-        position: relative;
-    }
-    
-    .sidebar .nav li
-    {
-        width: 100%;
-    }
-    
-    .sidebar .nav-tabs > li > a:hover, .sidebar .nav-tabs > li.active > a
-    {
-        background: none;
-        color: #08C !important;
-    }
-    
-    .sidebar .nav-tabs > li.active .arrow
-    {
-        display: block !important;
-    }
-    
-    .sidebar .nav-tabs.nav-stacked > li > a
-    {
-        position: relative;
-        border: none;
-        border-radius: none;
-        -webkit-border-radius: none;
-        -moz-border-radius: none;
-        text-align: center;
-        font-size: 11px;
-        height: 60px;
-        display: block;
-        color: #555;
-    }
-    
-    .sidebar .nav-tabs.nav-stacked > li.active img, .sidebar .nav-tabs.nav-stacked > li > a:hover img
-    {
-        opacity: 1;
-        -moz-opacity: 1;
-        filter: alpha(opacity=1);
-    }
-    
-    .sidebar .nav-tabs.nav-stacked > li > a img
-    {
-        display: inline;
-        opacity: 0.5;
-        -moz-opacity: 0.5;
-        filter: alpha(opacity=5);
-    }
-    
-    .sidebar .nav-tabs.nav-stacked > li:first-child > a
-    {
-        border-radius: 0 !important;
-        -webkit-border-radius: none !important;
-        -moz-border-radius: none !important;
-    }
-    
-    .sidebar .nav-tabs.nav-stacked > li:last-child > a
-    {
-        border-radius: 0 !important;
-        -webkit-border-radius: none !important;
-        -moz-border-radius: none !important;
-    }
+
+     .sidebar
+     {
+         width: 100px;
+         float: left;
+         height: 100%;
+         position: fixed;
+         left: 0;
+         top: 60px;
+         background-color: #F1F1F1;
+         border-right: 1px solid #E5E5E5;
+     }
+
+     .sidebar .nav
+     {
+         margin-bottom: 0;
+         position: relative;
+     }
+
+     .sidebar .nav li
+     {
+         width: 100%;
+     }
+
+     .sidebar .nav-tabs > li > a:hover, .sidebar .nav-tabs > li.active > a
+     {
+         background: none;
+         color: #08C !important;
+     }
+
+     .sidebar .nav-tabs > li.active .arrow
+     {
+         display: block !important;
+     }
+
+     .sidebar .nav-tabs.nav-stacked > li > a
+     {
+         position: relative;
+         border: none;
+         border-radius: none;
+         -webkit-border-radius: none;
+         -moz-border-radius: none;
+         text-align: center;
+         font-size: 11px;
+         height: 60px;
+         display: block;
+         color: #555;
+     }
+
+     .sidebar .nav-tabs.nav-stacked > li.active img, .sidebar .nav-tabs.nav-stacked > li > a:hover img
+     {
+         opacity: 1;
+         -moz-opacity: 1;
+         filter: alpha(opacity=1);
+     }
+
+     .sidebar .nav-tabs.nav-stacked > li > a img
+     {
+         display: inline;
+         opacity: 0.5;
+         -moz-opacity: 0.5;
+         filter: alpha(opacity=5);
+     }
+
+     .sidebar .nav-tabs.nav-stacked > li:first-child > a
+     {
+         border-radius: 0 !important;
+         -webkit-border-radius: none !important;
+         -moz-border-radius: none !important;
+     }
+
+     .sidebar .nav-tabs.nav-stacked > li:last-child > a
+     {
+         border-radius: 0 !important;
+         -webkit-border-radius: none !important;
+         -moz-border-radius: none !important;
+     }
     
     /*ARROW*/
-    
-    .arrow
-    {
-        display: none;
-    }
-    
-    .bubble-arrow-border
-    {
-        border-color: transparent #E5E5E5 transparent transparent;
-        border-style: solid;
-        border-width: 10px;
-        height: 0;
-        width: 0;
-        position: absolute;
-        top: 30px;
-        right: 0px;
-    }
-    
-    .bubble-arrow
-    {
-        border-color: transparent #FFF transparent transparent;
-        border-style: solid;
-        border-width: 10px;
-        height: 0;
-        width: 0;
-        position: absolute;
-        top: 30px;
-        right: -1px;
-    }
-</style>
+
+     .arrow
+     {
+         display: none;
+     }
+
+     .bubble-arrow-border
+     {
+         border-color: transparent #E5E5E5 transparent transparent;
+         border-style: solid;
+         border-width: 10px;
+         height: 0;
+         width: 0;
+         position: absolute;
+         top: 30px;
+         right: 0px;
+     }
+
+     .bubble-arrow
+     {
+         border-color: transparent #FFF transparent transparent;
+         border-style: solid;
+         border-width: 10px;
+         height: 0;
+         width: 0;
+         position: absolute;
+         top: 30px;
+         right: -1px;
+     }
+ </style>
+
 <div ng-app>
     <aside class="sidebar">
         <ul class="nav nav-tabs nav-stacked">
@@ -157,62 +182,53 @@
         <div class="container-fluid">
             <section>
                 <div class="row-fluid">
-                <div class="span4">
-                    <div class="row-fluid">
-                        <div class="span4">
-                            <div class="suggested-user">
+                    <div class="span2">
+                        <div class="row-fluid">
+                            <div class="span4 suggested-user-list">
+                                <div class="suggested-user">
+                                    <a href="/leonbjr/" class="ImgLink">
+                                        <img src="http://media-cache-ec5.pinterest.com/avatars/leonbjr_1343235907.jpg" class="profile user_image" alt="Profile picture of Leon Burks Jr">
+                                    </a>
+                                    <p><a href="/leonbjr/">Leon Burks Jr</a> Very nice.. every gentleman should know the difference.</p>
+                                </div><div class="suggested-user">
+                                          <a href="/leonbjr/" class="ImgLink">
+                                              <img src="http://media-cache-ec5.pinterest.com/avatars/leonbjr_1343235907.jpg" class="profile user_image" alt="Profile picture of Leon Burks Jr">
+                                          </a>
+                                          <p><a href="/leonbjr/">Leon Burks Jr</a> Very nice.. every gentleman should know the difference.</p>
+                                      </div><div class="suggested-user">
               
-                                <a href="/leonbjr/" class="ImgLink">
+                                                <a href="/leonbjr/" class="ImgLink">
   
   
-                                    <img src="http://media-cache-ec5.pinterest.com/avatars/leonbjr_1343235907.jpg" class="profile user_image" alt="Profile picture of Leon Burks Jr">
+                                                    <img src="http://media-cache-ec5.pinterest.com/avatars/leonbjr_1343235907.jpg" class="profile user_image" alt="Profile picture of Leon Burks Jr">
 
-                                </a>
+                                                </a>
 
-                                <p><a href="/leonbjr/">Leon Burks Jr</a> Very nice.. every gentleman should know the difference.</p>
-                            </div><div class="suggested-user">
+                                                <p><a href="/leonbjr/">Leon Burks Jr</a> Very nice.. every gentleman should know the difference.</p>
+                                            </div><div class="suggested-user">
               
-                                      <a href="/leonbjr/" class="ImgLink">
+                                                      <a href="/leonbjr/" class="ImgLink">
   
   
-                                          <img src="http://media-cache-ec5.pinterest.com/avatars/leonbjr_1343235907.jpg" class="profile user_image" alt="Profile picture of Leon Burks Jr">
+                                                          <img src="http://media-cache-ec5.pinterest.com/avatars/leonbjr_1343235907.jpg" class="profile user_image" alt="Profile picture of Leon Burks Jr">
 
-                                      </a>
+                                                      </a>
 
-                                      <p><a href="/leonbjr/">Leon Burks Jr</a> Very nice.. every gentleman should know the difference.</p>
-                                  </div><div class="suggested-user">
+                                                      <p><a href="/leonbjr/">Leon Burks Jr</a> Very nice.. every gentleman should know the difference.</p>
+                                                  </div><div class="suggested-user">
               
-                                            <a href="/leonbjr/" class="ImgLink">
+                                                            <a href="/leonbjr/" class="ImgLink">
   
   
-                                                <img src="http://media-cache-ec5.pinterest.com/avatars/leonbjr_1343235907.jpg" class="profile user_image" alt="Profile picture of Leon Burks Jr">
+                                                                <img src="http://media-cache-ec5.pinterest.com/avatars/leonbjr_1343235907.jpg" class="profile user_image" alt="Profile picture of Leon Burks Jr">
 
-                                            </a>
+                                                            </a>
 
-                                            <p><a href="/leonbjr/">Leon Burks Jr</a> Very nice.. every gentleman should know the difference.</p>
-                                        </div><div class="suggested-user">
-              
-                                                  <a href="/leonbjr/" class="ImgLink">
-  
-  
-                                                      <img src="http://media-cache-ec5.pinterest.com/avatars/leonbjr_1343235907.jpg" class="profile user_image" alt="Profile picture of Leon Burks Jr">
-
-                                                  </a>
-
-                                                  <p><a href="/leonbjr/">Leon Burks Jr</a> Very nice.. every gentleman should know the difference.</p>
-                                              </div><div class="suggested-user">
-              
-                                                        <a href="/leonbjr/" class="ImgLink">
-  
-  
-                                                            <img src="http://media-cache-ec5.pinterest.com/avatars/leonbjr_1343235907.jpg" class="profile user_image" alt="Profile picture of Leon Burks Jr">
-
-                                                        </a>
-
-                                                        <p><a href="/leonbjr/">Leon Burks Jr</a> Very nice.. every gentleman should know the difference.</p>
-                                                    </div>
-                            <div class="span4">
-                                <p>HI</p>
+                                                            <p><a href="/leonbjr/">Leon Burks Jr</a> Very nice.. every gentleman should know the difference.</p>
+                                                        </div>
+                                <div class="span4">
+                                    <p>HI</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -221,3 +237,13 @@
         </div>
     </div>
 </div>
+@{
+    Bundles.AddInlineScript(@"
+  $(window).resize(function () {
+debugger;
+        var height = $(this).height() - $('.navbar-fixed-top').height() - $('.navbar-fixed-bottom').height();
+        $('.main-container').height(height);
+    });
+
+    $(window).resize();", "inline");
+}
