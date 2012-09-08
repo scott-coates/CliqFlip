@@ -10,11 +10,6 @@
      .suggested-user-list
      {
          overflow-y: auto;
-         position: absolute;
-         top: 61px;
-         left: 130px;
-         bottom: 0;
-         width: 200px; /* or whatever */
      }
 
      .suggested-user-list::-webkit-scrollbar
