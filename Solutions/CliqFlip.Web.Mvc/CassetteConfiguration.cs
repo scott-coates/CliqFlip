@@ -40,7 +40,10 @@ namespace CliqFlip.Web.Mvc
             bundles.Add<HtmlTemplateBundle>("Content/assets/templates");
 
             //Pusher
-            bundles.AddUrlWithAlias("http://js.pusher.com/1.12/pusher.min.js", "Pusher");
+            bundles.AddUrlWithAlias("//js.pusher.com/1.12/pusher.min.js", "Pusher");
+            
+            //Angular
+            bundles.AddUrlWithAlias("//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js", "Angular");
         }
     }
 }
