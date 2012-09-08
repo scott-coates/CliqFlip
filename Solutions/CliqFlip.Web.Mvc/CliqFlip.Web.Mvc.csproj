@@ -555,6 +555,12 @@
     <Content Include="Content\assets\styles\jquery-ui\images\ui-icons_fcd113_256x240.png" />
     <Content Include="Content\assets\styles\jquery-ui\jquery-ui-1.8.18.custom.css" />
     <Content Include="Content\assets\styles\plugins\anythingslider-default1.css" />
+    <Content Include="Content\assets\styles\site\user\home.scss">
+      <Compile>False</Compile>
+      <Minify>True</Minify>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
     <Content Include="Content\assets\styles\site\Mixins.scss">
       <Compile>False</Compile>
       <Minify>True</Minify>
@@ -567,7 +573,7 @@
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>
-    <Content Include="Content\assets\styles\site\Landing.scss">
+    <Content Include="Content\assets\styles\site\landing\landing.scss">
       <Compile>False</Compile>
       <Minify>True</Minify>
       <CompileStyle>Nested</CompileStyle>

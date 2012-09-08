@@ -22,6 +22,7 @@ namespace CliqFlip.Web.Mvc
 
             //css, less, sass
             bundles.AddPerSubDirectory<StylesheetBundle>("Content/assets/styles", new FileSearch { Exclude = new Regex("^_.*scss") });
+            bundles.AddPerSubDirectory<StylesheetBundle>("Content/assets/styles/site", new FileSearch { Exclude = new Regex("^_.*scss") }, true);
 
             //this dir is for plugins, site js, etc...ignore cliqflip stuff tho
             bundles.AddPerSubDirectory<ScriptBundle>("Content/assets/scripts", new FileSearch { Exclude = new Regex("js\\cliqflip") });
@@ -41,7 +42,7 @@ namespace CliqFlip.Web.Mvc
 
             //Pusher
             bundles.AddUrlWithAlias("//js.pusher.com/1.12/pusher.min.js", "Pusher");
-            
+
             //Angular
             bundles.AddUrlWithAlias("//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js", "Angular");
         }
