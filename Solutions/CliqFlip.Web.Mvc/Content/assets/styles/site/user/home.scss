@@ -3,27 +3,25 @@
 */
  body
      {
-         background-color: #F1F1F1;
+         background-color: #D7D7D7;
          padding-top: 60px;
      }
 
      .suggested-user-list
      {
          overflow-y: auto;
-     }
-
-     .suggested-user-list::-webkit-scrollbar
-     {
-         height: 7px;
-         -webkit-appearance: none;
-         width: 7px;
-     }
-
-     .suggested-user-list::-webkit-scrollbar-thumb
-     {
-         background-color: #D9D4D4;
-         border-radius: 4px;
-         -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+         &::-webkit-scrollbar{
+             height: 7px;
+             -webkit-appearance: none;
+             width: 7px;
+         }
+     
+         &::-webkit-scrollbar-thumb
+         {
+             background-color: #B1B1B1;
+             border-radius: 4px;
+             -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+         }
      }
 
      .suggested-user
@@ -39,10 +37,9 @@
 
      .main-container
      {
-         background-color: white;
+         background-color: #D7D7D7;
          min-height: 500px;
          margin-left: 100px;
-         border-top: 1px solid #E5E5E5;
          border-left: 1px solid #E5E5E5;
      }
     /*SIDEBAR*/
@@ -145,7 +142,7 @@
 
      .bubble-arrow
      {
-         border-color: transparent #FFF transparent transparent;
+         border-color: transparent #D7D7D7 transparent transparent;
          border-style: solid;
          border-width: 10px;
          height: 0;
