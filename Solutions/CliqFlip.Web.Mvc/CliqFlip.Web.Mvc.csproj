@@ -480,6 +480,7 @@
     <Content Include="Content\assets\scripts\jqueryPlugins\jquery.analyticseventtracking.js" />
     <Content Include="Content\assets\scripts\jqueryPlugins\jquery-ui-1.8.11.js" />
     <Content Include="Content\assets\scripts\backbonePlugins\bundle.txt" />
+    <Content Include="Content\assets\scripts\spin\spin.js" />
     <Content Include="Content\assets\styles\img\glyphicons-halflings-white.png" />
     <Content Include="Content\assets\styles\img\glyphicons-halflings.png" />
     <Content Include="Content\assets\images\icon-close.png" />
