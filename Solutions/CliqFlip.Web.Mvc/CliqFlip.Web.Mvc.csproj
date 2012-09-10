@@ -390,6 +390,7 @@
     <Content Include="Areas\Api\ApiNotes.txt" />
     <Content Include="Content\app\app.js" />
     <Content Include="Content\app\controllers\user-controller.js" />
+    <Content Include="Content\app\partials\suggested-user-list-loading.html" />
     <Content Include="Content\app\partials\suggested-user-list.html" />
     <Content Include="Content\app\services\model-services.js" />
     <Content Include="Content\app_old\collections\feed\postOverviewUserActivityList.js" />
