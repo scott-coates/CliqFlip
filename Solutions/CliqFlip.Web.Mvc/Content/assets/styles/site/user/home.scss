@@ -40,7 +40,6 @@
          background-color: #D7D7D7;
          min-height: 500px;
          margin-left: 100px;
-         border-left: 1px solid #E5E5E5;
      }
     /*SIDEBAR*/
 
@@ -119,6 +118,9 @@
          border-radius: 0 !important;
          -webkit-border-radius: none !important;
          -moz-border-radius: none !important;
+     }
+     .loading-users{
+        position:relative;
      }
     
     /*ARROW*/
