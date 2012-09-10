@@ -45,6 +45,7 @@ namespace CliqFlip.Web.Mvc
 
             //Angular
             bundles.AddUrlWithAlias("//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js", "Angular");
+            bundles.AddUrlWithAlias("//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-resource.min.js", "Angular-Resource");
         }
     }
 }

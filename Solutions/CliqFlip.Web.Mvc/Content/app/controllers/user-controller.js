@@ -2,16 +2,7 @@
 
 /* Controllers */
 
-function UserController($scope, $http) {
-    $scope.users = [
-    { "name": "Nexus S",
-        "snippet": "Fast just got faster with Nexus S."
-    },
-    { "name": "Motorola XOOM! with Wi-Fi",
-        "snippet": "The Next, Next Generation tablet."
-    },
-    { "name": "MOTOROLA XOOM!",
-        "snippet": "The Next, Next Generation tablet."
-    }
-  ];
+function UserController($scope, $resource) {
+    $scope.SuggestedUser = $resource('/api/suggested-user/');
+    $scope.users = $scope.SuggestedUser.get();
 }
