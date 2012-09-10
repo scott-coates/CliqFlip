@@ -1,7 +1,7 @@
 ﻿@{
     Bundles.Reference("Content/assets/styles/site/user");
 }
-<div ng-app>
+<div ng-app="cliqFlipApp">
     <aside class="sidebar">
         <ul class="nav nav-tabs nav-stacked">
             <li class="active">
@@ -20,7 +20,7 @@
             </li>
         </ul>
     </aside>
-    <div class="main-container" ng-controller="UserController">
+    <div class="main-container">
         <div class="container-fluid">
             <section>
                 <div ng-view></div>
