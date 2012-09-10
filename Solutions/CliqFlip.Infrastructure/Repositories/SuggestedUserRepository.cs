@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CliqFlip.Domain.Dtos.User;
 using CliqFlip.Domain.ReadModels;
 using CliqFlip.Infrastructure.Repositories.Interfaces;
@@ -27,6 +28,16 @@ namespace CliqFlip.Infrastructure.Repositories
                     redisUsers.AddItemToSortedSet(set, userSearchResultDto, userSearchResultDto.Score);
                 }
                 redisUsers.ExpireEntryIn(listId, TimeSpan.FromHours(1));
+            }
+        }
+
+        public IQueryable<UserSearchResultDto> GetSuggestedUsers(User user)
+        {
+            using (var redisUsers = _redisClient.GetTypedClient<UserSearchResultDto>())
+            {
+                var listId = "suggested-user:" + user.Id;
+                var set = redisUsers.SortedSets[listId];
+                return redisUsers.GetAllItemsFromSortedSetDesc(set).AsQueryable();
             }
         }
     }

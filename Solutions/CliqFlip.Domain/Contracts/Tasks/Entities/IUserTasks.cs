@@ -38,6 +38,7 @@ namespace CliqFlip.Domain.Contracts.Tasks.Entities
 
         bool IsUsernameOrEmailAvailable(string value);
         void SaveSuggestedUsers(User user, IList<UserSearchResultDto> users);
+        IList<UserSearchResultDto>  GetSuggestedUsers(User user);
         // ReSharper restore ReturnTypeCanBeEnumerable.Global
     }
 }

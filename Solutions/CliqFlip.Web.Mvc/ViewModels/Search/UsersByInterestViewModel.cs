@@ -29,22 +29,22 @@ namespace CliqFlip.Web.Mvc.ViewModels.Search
 
             public IndividualResultViewModel(UserSearchResultDto user, List<string> interests)
             {
-                ResultInterestViewModels = new List<IndividualResultInterestViewModel>();
-                Headline = user.Headline;
-                Name = user.Username;
-                Bio = user.Bio;
-                ImageUrl = user.ImageUrl;
+                //ResultInterestViewModels = new List<IndividualResultInterestViewModel>();
+                //Headline = user.Headline;
+                //Name = user.Username;
+                //Bio = user.Bio;
+                //ImageUrl = user.ImageUrl;
 
-                ResultInterestViewModels = user.InterestDtos
-                    .Select(
-                        x => new IndividualResultInterestViewModel
-                        {
-                            InterestName = x.Name,
-                            //assume interests is ordered smallest to highets
-                            MatchScore = interests.IndexOf(x.Slug.ToLower()), 
-                            Passion = x.Passion,
-                            DefaultImageUrl = x.DefaultImageUrl
-                        }).OrderByDescending(x => x.MatchScore).ThenByDescending(x => x.Passion).Take(5).ToList();
+                //ResultInterestViewModels = user.InterestDtos
+                //    .Select(
+                //        x => new IndividualResultInterestViewModel
+                //        {
+                //            InterestName = x.Name,
+                //            //assume interests is ordered smallest to highets
+                //            MatchScore = interests.IndexOf(x.Slug.ToLower()), 
+                //            Passion = x.Passion,
+                //            DefaultImageUrl = x.DefaultImageUrl
+                //        }).OrderByDescending(x => x.MatchScore).ThenByDescending(x => x.Passion).Take(5).ToList();
             }
         }
 
