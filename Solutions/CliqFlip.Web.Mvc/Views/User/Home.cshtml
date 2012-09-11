@@ -1,6 +1,7 @@
 ﻿@{
     Bundles.Reference("Content/assets/styles/site/user");
 }
+@model CliqFlip.Web.Mvc.ViewModels.Home.HomeUserViewModel
 <div ng-app="cliqFlipApp">
     <aside class="sidebar">
         <ul class="nav nav-tabs nav-stacked">
@@ -29,6 +30,7 @@
     </div>
 </div>
 @{
+    Bundles.AddPageData("CliqFlip.App.UserData", Model);
     Bundles.AddInlineScript(@"
     $(function(){
         var header = $('.navbar-fixed-top');

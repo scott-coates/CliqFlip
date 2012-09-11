@@ -24,6 +24,7 @@ using CliqFlip.Web.Mvc.Extensions.Exceptions;
 using CliqFlip.Web.Mvc.Queries.Interfaces;
 using CliqFlip.Web.Mvc.Security.Attributes;
 using CliqFlip.Web.Mvc.ViewModels.Email;
+using CliqFlip.Web.Mvc.ViewModels.Home;
 using CliqFlip.Web.Mvc.ViewModels.Jeip;
 using CliqFlip.Web.Mvc.ViewModels.User;
 using CliqFlip.Web.Mvc.Views.Interfaces;
@@ -752,8 +753,8 @@ namespace CliqFlip.Web.Mvc.Controllers
         public ActionResult Home()
         {
             string username = _principal.Identity.Name;
-            
-            return View();
+            var user = _userTasks.GetUser(username);
+            return View(new HomeUserViewModel { Username = user.Username, UserId = user.Id });
         }
 
         [Authorize]

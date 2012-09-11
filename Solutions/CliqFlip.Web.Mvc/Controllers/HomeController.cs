@@ -53,13 +53,13 @@ namespace CliqFlip.Web.Mvc.Controllers
         {
             var user = _userTasks.GetUser(_principal.Identity.Name);
 
-            var viewModel = new HomeUserViewModel
+            var viewModel = new HomeUserViewModel_Old
             {
                 Username = _principal.Identity.Name,
                 ProfileImageUrl = user.ProfileImage != null ? user.ProfileImage.ImageData.MediumFileName : Constants.DEFAULT_PROFILE_IMAGE,
                 FriendCount = 0,
                 PostCount = user.Posts.Count(),
-                Interests = user.Interests.Select(x => new HomeUserViewModel.InterestViewModel { Name = x.Interest.Name, Id = x.Id })
+                Interests = user.Interests.Select(x => new HomeUserViewModel_Old.InterestViewModel { Name = x.Interest.Name, Id = x.Id })
                 .OrderBy(x => x.Name)
                 .ToList()
             };

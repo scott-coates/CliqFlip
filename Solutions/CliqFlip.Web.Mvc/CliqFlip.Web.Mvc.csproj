@@ -348,6 +348,7 @@
     <Compile Include="ViewModels\Email\ReplyToViewModel.cs" />
     <Compile Include="ViewModels\Email\NewConversationViewModel.cs" />
     <Compile Include="ViewModels\Home\HomeUserViewModel.cs" />
+    <Compile Include="ViewModels\Home\HomeUserViewModel_Old.cs" />
     <Compile Include="ViewModels\Jeip\JeipSaveResponseViewModel.cs" />
     <Compile Include="ViewModels\Jeip\JeipSaveTextViewModel.cs" />
     <Compile Include="ViewModels\Post\InterestPostViewModel.cs" />
@@ -392,7 +393,7 @@
     <Content Include="Content\app\controllers\user-controller.js" />
     <Content Include="Content\app\partials\suggested-user-list-loading.html" />
     <Content Include="Content\app\partials\suggested-user-list.html" />
-    <Content Include="Content\app\services\model-services.js" />
+    <Content Include="Content\app\services\services.js" />
     <Content Include="Content\app_old\collections\feed\postOverviewUserActivityList.js" />
     <Content Include="Content\app_old\collections\feed\feedList.js" />
     <Content Include="Content\app_old\bundle.txt" />
