@@ -75,7 +75,7 @@ namespace CliqFlip.Web.Mvc.Controllers
         {
             if (string.IsNullOrWhiteSpace(accessToken))
             {
-                accessToken = _httpContextProvider.Session[Constants.FACEBOOK_AUTH_TOKEN_SESSION_KEY] as string;
+                accessToken = _httpContextProvider.Session[Constants.FACEBOOK_AUTH_TOKEN_SESSION_KEY] as string;//TODO look into tempdata and remove these session keys on logoff
                 Check.Require(string.IsNullOrWhiteSpace(accessToken) == false, "access token is missing");
             }
             else
