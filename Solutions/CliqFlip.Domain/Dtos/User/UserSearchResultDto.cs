@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using CliqFlip.Domain.Common;
 
 namespace CliqFlip.Domain.Dtos.User
 {
@@ -23,7 +24,7 @@ namespace CliqFlip.Domain.Dtos.User
             Username = user.Username;
             FirstName = user.FirstName;
             InterestDtos = user.Interests.Select(x => new UserInterestDto(x)).ToList();
-            ImageUrl = user.ProfileImage != null ? user.ProfileImage.ImageData.ThumbFileName : null;
+            ImageUrl = user.ProfileImage != null ? user.ProfileImage.ImageData.ThumbFileName : Constants.DEFAULT_PROFILE_IMAGE;
             MajorLocationName = user.Location.MajorLocation.Name;
             Latitude = user.Location.Data.Latitude;
             Longitude = user.Location.Data.Longitude;
