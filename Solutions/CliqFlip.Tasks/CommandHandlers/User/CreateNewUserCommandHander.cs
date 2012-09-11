@@ -27,7 +27,7 @@ namespace CliqFlip.Tasks.CommandHandlers.User
         {
             var client = new FacebookClient(message.FacebookAccessToken);
 
-            dynamic result = client.Get("me", new { fields = "id,likes,location,email" });
+            dynamic result = client.Get("me", new { fields = "id,likes,location,email,first_name,last_name,picture.type(square)" });
 
             string facebookId = result.id;
 
@@ -37,6 +37,12 @@ namespace CliqFlip.Tasks.CommandHandlers.User
 
             var location = _locationService.GetLocation(locationName);
             var majorLocation = _locationService.GetNearestMajorCity(location.Latitude, location.Longitude);
+            string firstName = result.first_name;
+            string lastName = result.first_name;
+
+            dynamic largePicResult = client.Get("me", new { fields = "picture.type(large)" });
+            string squarePic = result.picture;
+            string largePic = largePicResult.picture;
 
             string email = result.email;
 
@@ -46,7 +52,7 @@ namespace CliqFlip.Tasks.CommandHandlers.User
                 .Cast<string>()
                 .Distinct();
 
-            var user = new Domain.Entities.UserRoot.User(CombGuid.Generate(), facebookId, new Location(new Guid(majorLocation.Guid), locationName, location.Latitude, location.Longitude), email, likeNames);
+            var user = new Domain.Entities.UserRoot.User(CombGuid.Generate(), facebookId, new Location(new Guid(majorLocation.Guid), locationName, location.Latitude, location.Longitude), new Name(firstName, lastName), new ProfileImage(squarePic, largePic), email, likeNames);
 
             _repository.Save(user, CombGuid.Generate());
         }

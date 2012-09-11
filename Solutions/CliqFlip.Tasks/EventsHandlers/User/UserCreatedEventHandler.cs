@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using CliqFlip.Domain.Contracts.Tasks.Entities;
+using CliqFlip.Domain.ValueObjects;
 using CliqFlip.Messaging.Commands.User;
 using CliqFlip.Messaging.Events.User;
 using Facebook;
@@ -26,7 +27,7 @@ namespace CliqFlip.Tasks.EventsHandlers.User
             {
                 tx.Begin();
 
-                _userTasks.Create(message.Username, message.LocationName, message.Email, message.Interests);
+                _userTasks.Create(message.Username, message.LocationName, message.FirstName, message.LastName, new ImageData(message.LargeImageUrl, message.SquareImageUrl, message.LargeImageUrl, message.LargeImageUrl), message.Email, message.Interests);
 
                 tx.Commit();
             }

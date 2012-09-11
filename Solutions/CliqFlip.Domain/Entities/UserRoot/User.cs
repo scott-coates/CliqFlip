@@ -9,12 +9,14 @@ namespace CliqFlip.Domain.Entities.UserRoot
     {
         public string Email { get; private set; }
         public Location Location { get; private set; }
+        public Name Name { get; private set; }
+        public ProfileImage ProfileImage { get; private set; }
         public string Username { get; private set; }
         public IEnumerable<string> Interests { get; private set; }
 
-        public User(Guid id, string username, Location location, string email, IEnumerable<string> interests)
+        public User(Guid id, string username, Location location, Name name, ProfileImage profileImage, string email, IEnumerable<string> interests)
         {
-            RaiseEvent(new UserCreatedEvent(id, username, email, interests, location.MajorLocationId, location.LocationName, location.Latitude, location.Longitude));
+            RaiseEvent(new UserCreatedEvent(id, username, email, interests, location.MajorLocationId, location.LocationName, location.Latitude, location.Longitude, name.FirstName, name.LastName, profileImage.SquareImageUrl, profileImage.LargeImageUrl));
         }
 
         private void Apply(UserCreatedEvent @event)
@@ -24,6 +26,8 @@ namespace CliqFlip.Domain.Entities.UserRoot
             Username = @event.Username;
             Interests = @event.Interests;
             Email = @event.Email;
+            Name = new Name(@event.FirstName, @event.LastName);
+            ProfileImage = new ProfileImage(@event.SquareImageUrl, @event.LargeImageUrl);
         }
     }
 }

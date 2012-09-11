@@ -8,19 +8,22 @@ namespace CliqFlip.Domain.Dtos.User
         public float Score { get; set; }
         public IList<UserInterestDto> InterestDtos { get; set; }
         public string Username { get; set; }
+        public string FirstName { get; set; }
         public string ImageUrl { get; set; }
         public string MajorLocationName { get; set; }
         public IList<InterestInCommonDto> InterestsInCommon { get; set; }
+        public int DirectInterestCount { get; set; }
+        public int IndirectInterestCount { get; set; }
         public int CommonInterestCount { get; set; }
-        public int RelatedInterestCount { get; set; }
         public float Latitude { get; set; }
         public float Longitude { get; set; }
          
         public UserSearchResultDto(ReadModels.User user)
         {
             Username = user.Username;
+            FirstName = user.FirstName;
             InterestDtos = user.Interests.Select(x => new UserInterestDto(x)).ToList();
-            ImageUrl = user.ProfileImage != null ? user.ProfileImage.ImageData.MediumFileName : null;
+            ImageUrl = user.ProfileImage != null ? user.ProfileImage.ImageData.ThumbFileName : null;
             MajorLocationName = user.Location.MajorLocation.Name;
             Latitude = user.Location.Data.Latitude;
             Longitude = user.Location.Data.Longitude;

@@ -64,6 +64,8 @@ namespace CliqFlip.Domain.ReadModels
         public virtual string Role { get; set; }
         public virtual DateTime CreateDate { get; set; }
         public virtual DateTime LastActivity { get; set; }
+        public virtual string FirstName { get; set; }
+        public virtual string LastName { get; set; }
 
         public User()
         {
@@ -141,7 +143,7 @@ namespace CliqFlip.Domain.ReadModels
         {
             if (ProfileImage == null)
             {
-                ProfileImage = new Image();
+                ProfileImage = new Image { CreateDate = DateTime.UtcNow };
             }
 
             ProfileImage.ImageData = data;
@@ -171,7 +173,7 @@ namespace CliqFlip.Domain.ReadModels
             FacebookUsername = !string.IsNullOrWhiteSpace(fbid) ? fbid.Trim() : null;
             UpdateLastActivity();
         }
-        
+
         public virtual Post GetPost(int postId)
         {
             return _posts.First(x => x.Id == postId);

@@ -13,8 +13,12 @@ namespace CliqFlip.Messaging.Events.User
         public string LocationName { get; private set; }
         public float Latitude { get; private set; }
         public float Longitude { get; private set; }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
+        public string SquareImageUrl { get; private set; }
+        public string LargeImageUrl { get; private set; }
 
-        public UserCreatedEvent(Guid id, string username, string email, IEnumerable<string> interests, Guid majorLocationId, string locationName, float latitude, float longitude)
+        public UserCreatedEvent(Guid id, string username, string email, IEnumerable<string> interests, Guid majorLocationId, string locationName, float latitude, float longitude, string firstName, string lastName, string squareImageUrl, string largeImageUrl)
         {
             Id = id;
             Username = username;
@@ -24,6 +28,10 @@ namespace CliqFlip.Messaging.Events.User
             LocationName = locationName;
             Latitude = latitude;
             Longitude = longitude;
+            FirstName = firstName;
+            LastName = lastName;
+            SquareImageUrl = squareImageUrl;
+            LargeImageUrl = largeImageUrl;
         }
     }
 }

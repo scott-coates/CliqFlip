@@ -102,14 +102,17 @@ namespace CliqFlip.Tasks.Tasks.Entities
             return user;
         }
 
-        public User Create(string username, string locationName, string email, IEnumerable<string> interestNames)
+        public User Create(string username, string locationName, string firstName, string lastName, ImageData imageData,string email, IEnumerable<string> interestNames)
         {
             var retVal = new User
             {
                 Username = username,
-                FacebookUsername = username
+                FacebookUsername = username,
+                FirstName = firstName,
+                LastName = lastName
             };
 
+            retVal.UpdateProfileImage(imageData);
             retVal.UpdateCreateDate();
             retVal.Password = PasswordHelper.GenerateSalt(32); //random password for now
             retVal.Salt = PasswordHelper.GenerateSalt(32); //random password for now
@@ -129,10 +132,10 @@ namespace CliqFlip.Tasks.Tasks.Entities
             foreach (var interestName in interestNames)
             {
                 var interest = interests.FirstOrDefault(x => FuzzySearch.LevenshteinDistance(x.Name, interestName) < 2);
-                
+
                 if (interest == null)
                 {
-                    interest =_interestTasks.Create(interestName, null);
+                    interest = _interestTasks.Create(interestName, null);
                 }
 
                 AddInterestToUser(retVal, interest.Id);

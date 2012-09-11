@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Migrator\ConditionalMigration.cs" />
     <Compile Include="Migrator\MigrationConstants.cs" />
+    <Compile Include="Migrator\Migrations\__634829643926801078_AddGuidToMajorLocation.cs" />
     <Compile Include="Migrator\Migrations\__634825305528670486_AddGuidToMajorLocation.cs" />
     <Compile Include="Migrator\Migrations\__634824517287256366_DeleteEventStore.cs" />
     <Compile Include="Migrator\Migrations\__634630300299264851_CreateUserTable.cs" />

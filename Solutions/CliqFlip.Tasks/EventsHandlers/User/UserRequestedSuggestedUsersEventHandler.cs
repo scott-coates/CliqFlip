@@ -31,8 +31,9 @@ namespace CliqFlip.Tasks.EventsHandlers.User
             foreach (var userSearchResult in pipelineResult.Users)
             {
                 var commonInterest = _userInterestTasks.GetInterestsInCommon(user, _userTasks.GetUser(userSearchResult.Username));
-                userSearchResult.CommonInterestCount = commonInterest.Count(x => x.IsExactMatch);
-                userSearchResult.RelatedInterestCount = commonInterest.Count(x => !x.IsExactMatch);
+                userSearchResult.DirectInterestCount = commonInterest.Count(x => x.IsExactMatch);
+                userSearchResult.IndirectInterestCount = commonInterest.Count(x => !x.IsExactMatch);
+                userSearchResult.CommonInterestCount = userSearchResult.DirectInterestCount + userSearchResult.IndirectInterestCount;
                 userSearchResult.InterestsInCommon = commonInterest
                     .OrderByDescending(x => x.Score)
                     .Select(

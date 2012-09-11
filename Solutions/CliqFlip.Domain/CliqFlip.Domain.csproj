@@ -148,6 +148,8 @@
     <Compile Include="Dtos\User\UserSearchResultDto.cs" />
     <Compile Include="Entities\InterestRoot\Interest.cs" />
     <Compile Include="Entities\MajorLocationRoot\MajorLocation.cs" />
+    <Compile Include="Entities\UserRoot\ProfileImage.cs" />
+    <Compile Include="Entities\UserRoot\Name.cs" />
     <Compile Include="Entities\UserRoot\Location.cs" />
     <Compile Include="Entities\UserRoot\User.cs" />
     <Compile Include="ReadModels\Conversation.cs" />
