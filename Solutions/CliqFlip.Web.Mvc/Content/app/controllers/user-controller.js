@@ -4,6 +4,5 @@
 
 function UserController($scope, $resource) {
     $scope.SuggestedUser = $resource('/api/suggesteduser/'); /*TODO Look into naming this suggested-user*/
-    $scope.users = $scope.SuggestedUser.get();
-    $scope.bb = [{},{}];
+    $scope.users = $scope.SuggestedUser.query();
 }
