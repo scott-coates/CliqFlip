@@ -57,8 +57,8 @@ namespace CliqFlip.Infrastructure.CastleWindsor
                         .LifeStyle.Singleton.UsingFactoryMethod(
                             () =>
                             {
-                                var client = new RedisClient("192.168.83.138", 6379);
-                                client.Init();
+                                var client = new RedisClient("192.168.83.140", 6379);
+                                client.DbSize.ToString();//will cause exception right here right now
                                 return client;
                             }));
 

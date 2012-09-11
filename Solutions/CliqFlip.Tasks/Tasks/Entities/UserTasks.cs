@@ -129,11 +129,13 @@ namespace CliqFlip.Tasks.Tasks.Entities
             foreach (var interestName in interestNames)
             {
                 var interest = interests.FirstOrDefault(x => FuzzySearch.LevenshteinDistance(x.Name, interestName) < 2);
+                
                 if (interest == null)
                 {
-                    var interestEntity =_interestTasks.Create(interestName, null);
-                    AddInterestToUser(retVal, interestEntity.Id);
+                    interest =_interestTasks.Create(interestName, null);
                 }
+
+                AddInterestToUser(retVal, interest.Id);
             }
 
             _serviceBus.Publish(new UserFoundInterestDataEvent(username));
