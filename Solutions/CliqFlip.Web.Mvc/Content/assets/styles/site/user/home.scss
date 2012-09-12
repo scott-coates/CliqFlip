@@ -37,9 +37,10 @@
          background-color: #F2F0F0;
          position: relative;
          cursor: pointer;
+             color: #333333;
+        
          img{max-width:50px;max-height:50px;}
          &:hover{
-             color: #333333;
               background-color: #FEFEFE;
               *background-color: #FEFEFE;
          }
