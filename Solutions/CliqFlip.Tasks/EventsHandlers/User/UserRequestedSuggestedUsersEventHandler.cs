@@ -28,28 +28,34 @@ namespace CliqFlip.Tasks.EventsHandlers.User
 
         public void Consume(UserRequestedSuggestedUsersEvent message)
         {
-            var user = _userTasks.GetUser(message.Username);
-            var pipelineRequest = new UserSearchPipelineRequest { User = user, LocationData = user.Location.Data };
-            var pipelineResult = _userSearchPipeline.Execute(pipelineRequest);
-            foreach (var userSearchResult in pipelineResult.Users)
+            using (var tx = NHibernateSession.Current.Transaction)
             {
-                var commonInterest = _userInterestTasks.GetInterestsInCommon(user, _userTasks.GetUser(userSearchResult.Username));
-                userSearchResult.DirectInterestCount = commonInterest.Count(x => x.IsExactMatch);
-                userSearchResult.IndirectInterestCount = commonInterest.Count(x => !x.IsExactMatch);
-                userSearchResult.CommonInterestCount = userSearchResult.DirectInterestCount + userSearchResult.IndirectInterestCount;
-                userSearchResult.InterestsInCommon = commonInterest
-                    .OrderByDescending(x => x.Score)
-                    .Select(
-                        x => new UserSearchResultDto.InterestInCommonDto
-                        {
-                            Name = x.Name,
-                            IsExactMatch = x.IsExactMatch
-                        })
-                    .ToList();
-            }
-            _userTasks.SaveSuggestedUsers(user, pipelineResult.Users);
+                tx.Begin();
+                var user = _userTasks.GetUser(message.Username);
+                var pipelineRequest = new UserSearchPipelineRequest { User = user, LocationData = user.Location.Data };
+                var pipelineResult = _userSearchPipeline.Execute(pipelineRequest);
+                foreach (var userSearchResult in pipelineResult.Users)
+                {
+                    var commonInterest = _userInterestTasks.GetInterestsInCommon(user, _userTasks.GetUser(userSearchResult.Username));
+                    userSearchResult.DirectInterestCount = commonInterest.Count(x => x.IsExactMatch);
+                    userSearchResult.IndirectInterestCount = commonInterest.Count(x => !x.IsExactMatch);
+                    userSearchResult.CommonInterestCount = userSearchResult.DirectInterestCount + userSearchResult.IndirectInterestCount;
+                    userSearchResult.InterestsInCommon = commonInterest
+                        .OrderByDescending(x => x.Score)
+                        .Select(
+                            x => new UserSearchResultDto.InterestInCommonDto
+                            {
+                                Name = x.Name,
+                                IsExactMatch = x.IsExactMatch
+                            })
+                        .ToList();
+                }
+                _userTasks.SaveSuggestedUsers(user, pipelineResult.Users);
 
-            _pusherProvider.Trigger(new SimplePusherRequest("suggested-user-queue-" + message.Username, "update", ""));
+                _pusherProvider.Trigger(new SimplePusherRequest("suggested-user-queue-" + message.Username, "update", ""));
+
+                tx.Commit();
+            }
         }
     }
 }
