@@ -6,6 +6,7 @@ using CliqFlip.Messaging.Commands.User;
 using CliqFlip.Messaging.Events.User;
 using Facebook;
 using MassTransit;
+using PusherRESTDotNet;
 using SharpArch.NHibernate;
 
 namespace CliqFlip.Tasks.EventsHandlers.User
@@ -15,12 +16,14 @@ namespace CliqFlip.Tasks.EventsHandlers.User
         private readonly IUserSearchPipeline _userSearchPipeline;
         private readonly IUserTasks _userTasks;
         private readonly IUserInterestTasks _userInterestTasks;
+        private readonly IPusherProvider _pusherProvider;
 
-        public UserRequestedSuggestedUsersEventHandler(IUserSearchPipeline userSearchPipeline, IUserTasks userTasks, IUserInterestTasks userInterestTasks)
+        public UserRequestedSuggestedUsersEventHandler(IUserSearchPipeline userSearchPipeline, IUserTasks userTasks, IUserInterestTasks userInterestTasks, IPusherProvider pusherProvider)
         {
             _userSearchPipeline = userSearchPipeline;
             _userTasks = userTasks;
             _userInterestTasks = userInterestTasks;
+            _pusherProvider = pusherProvider;
         }
 
         public void Consume(UserRequestedSuggestedUsersEvent message)
@@ -45,6 +48,8 @@ namespace CliqFlip.Tasks.EventsHandlers.User
                     .ToList();
             }
             _userTasks.SaveSuggestedUsers(user, pipelineResult.Users);
+
+            _pusherProvider.Trigger(new SimplePusherRequest("suggested-user-queue-" + message.Username, "update", ""));
         }
     }
 }
