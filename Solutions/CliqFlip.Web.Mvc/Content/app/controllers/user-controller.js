@@ -14,6 +14,6 @@ function UserController($scope, $resource, UserData) {
     
     function updateUsers() {
         $scope.users = $scope.SuggestedUser.query();
-        $(window).resize();
+        $(window).resize(); //TODO move this
     }
 }
