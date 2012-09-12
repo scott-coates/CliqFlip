@@ -34,7 +34,13 @@
          padding: 10px 15px;
          background-color: #F2F0F0;
          position: relative;
+         cursor: pointer;
          img{max-width:50px;max-height:50px;}
+         &:hover{
+             color: #333333;
+              background-color: #717171;
+              *background-color: #717171;
+         }
      }
     
     /*MAIN CONTAINER*/
