@@ -36,9 +36,9 @@
         var header = $('.navbar-fixed-top');
         var footer = $('.navbar-fixed-bottom');
         var mainContainer = $('.main-container');
-        var suggesterUserList = $('.suggested-user-list');
         
           $(window).resize(function () {
+            var suggesterUserList = $('.suggested-user-column');
             var height = $(this).height() - 60 - footer.height(); //padding-top is 60px       
             mainContainer.height(height);
             suggesterUserList.height(height);

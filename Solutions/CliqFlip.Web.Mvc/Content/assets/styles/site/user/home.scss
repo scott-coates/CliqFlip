@@ -6,7 +6,7 @@
          background-color: #D7D7D7;
          padding-top: 60px;
      }
-
+    
      .suggested-user-list
      {
          overflow-y: auto;
@@ -44,6 +44,10 @@
          background-color: #D7D7D7;
          min-height: 500px;
          margin-left: 100px;
+        .suggested-user-column{
+            width:16.076923%;
+            margin-left: 0.564103%;
+        }
      }
     /*SIDEBAR*/
 
