@@ -7,8 +7,10 @@
          padding-top: 60px;
      }
     
-     .suggested-user-list
+     .suggested-user-column
      {
+         width:17.076923% !important;
+            margin-left: 0.564103%;
          overflow-y: auto;
          &::-webkit-scrollbar{
              height: 7px;
@@ -38,8 +40,8 @@
          img{max-width:50px;max-height:50px;}
          &:hover{
              color: #333333;
-              background-color: #717171;
-              *background-color: #717171;
+              background-color: #FEFEFE;
+              *background-color: #FEFEFE;
          }
      }
     
@@ -50,10 +52,6 @@
          background-color: #D7D7D7;
          min-height: 500px;
          margin-left: 100px;
-        .suggested-user-column{
-            width:16.076923%;
-            margin-left: 0.564103%;
-        }
      }
     /*SIDEBAR*/
 

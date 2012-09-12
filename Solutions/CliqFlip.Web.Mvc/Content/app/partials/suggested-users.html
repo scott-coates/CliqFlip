@@ -1,13 +1,353 @@
 <div class="row-fluid">
     <div class="span3 suggested-user-column">
         <div class="row-fluid">
-            <div class="span12 suggested-user-list">
+            <div class="span12">
                 <div ng-switch on="users.length">
                     <div ng-switch-when="0" ng-include="'/Content/app/partials/suggested-user-list-loading.html'">
                     </div>
                     <div ng-switch-default>
                         <div ng-repeat="user in users">
                             <div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <a href="/leonbjr/">
+                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        </a>
+                                    </div>
+                                    <div class="span8">
+                                        <h5>
+                                            {{user.FirstName}}</h5>
+                                        <h6>
+                                            {{user.MajorLocationName}}</h6>
+                                        <h6>
+                                            <ng-pluralize count="user.CommonInterestCount" when="{'one': '1 common interest','other': '{} common interests'}"></ng-pluralize>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><div class="suggested-user">
                                 <div class="row-fluid">
                                     <div class="span4">
                                         <a href="/leonbjr/">
@@ -33,7 +373,7 @@
     </div>
     <div class="span3 suggested-user-column">
         <div class="row-fluid">
-            <div class="span12 suggested-user-list">
+            <div class="span12 ">
                 <div ng-switch on="users.length">
                     <div ng-switch-when="0" ng-include="'/Content/app/partials/suggested-user-list-loading.html'">
                     </div>
