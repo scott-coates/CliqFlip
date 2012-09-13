@@ -48,7 +48,8 @@ namespace CliqFlip.Tasks.Tasks.Entities
         {
             //TODO: this formatting logic needs to be fixed for some things like iPhone not Iphone
             //and this logic should probably reside in the Interest Class
-            string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(name.ToLower().Trim());
+            string formattedName = name.Trim();
+            //string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(name.ToLower().Trim());
             var interest = new Interest(formattedName)
             {
                 CreateDate = DateTime.UtcNow,
