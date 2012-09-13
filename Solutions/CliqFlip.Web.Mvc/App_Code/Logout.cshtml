@@ -1,0 +1,11 @@
+﻿@using System.Security.Policy
+@using System.Security.Principal
+@helper ShowLogoutIfAuthenticated(IPrincipal user)
+{
+    if (user.Identity.IsAuthenticated)
+    {
+        <ul class="nav nav-pills pull-right">
+            <li><a href="/user/logout">Logout</a></li>
+        </ul>
+    }
+}

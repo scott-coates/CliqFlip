@@ -16,7 +16,7 @@
      }
      .suggested-user-list
      {
-         width:17.076923% !important;
+         width:18.076923% !important;
     }
 
      .suggested-user-column
@@ -61,6 +61,18 @@
                  @include panel;
 
         }
+
+         .user-info-header
+     {
+        .user-info-large-image{text-align:center;}
+        @include panel;
+     }
+
+     .user-info-general
+     {
+        @include panel;
+        text-align:center;
+     }
     
     /*MAIN CONTAINER*/
 

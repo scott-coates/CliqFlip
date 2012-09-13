@@ -10,7 +10,7 @@
                             <div class="suggested-user" ng-click="selectUser(user);">
                                 <div class="row-fluid">
                                     <div class="span4">
-                                        <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        <img ng-src="{{user.ThumbImageUrl}}" alt="Profile picture of {{user.Username}}">
                                     </div>
                                     <div class="span8">
                                         <h5>
@@ -43,10 +43,26 @@
                         <div ng-repeat="interest in selectedUser.InterestsInCommon">
                             <div class="row-fluid">
                                 <div class="span12 common-interest-name">
-                                   <h6>{{interest.Name}}</h6>
+                                    <h6>
+                                        {{interest.Name}}</h6>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="span3 suggested-user-column">
+                <div class="row-fluid">
+                    <div class="span12 user-info-header">
+                        <div class="user-info-large-image">
+                            <img ng-src="{{selectedUser.FullImageUrl}}" alt="Profile picture of {{user.Username}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span12 user-info-general">
+                        <h5>{{selectedUser.FirstName}}</h5>
+                        <h5>{{selectedUser.MajorLocationName}}</h5>
                     </div>
                 </div>
             </div>

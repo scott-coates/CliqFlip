@@ -973,6 +973,7 @@
     <Content Include="Areas\Admin\Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Code\Logout.cshtml" />
     <None Include="Content\assets\images\patterns\Thumbs.db" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
