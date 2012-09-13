@@ -1,15 +1,26 @@
 ﻿/*
 @reference ../Site.scss
 */
- body
+
+    @mixin panel {
+   border-top: 1px solid #FCFAFA;
+         border-bottom: 1px solid #D9D4D4;
+         padding: 10px 15px;
+         background-color: #F2F0F0;
+             color: #333333;
+}
+    body
      {
          background-color: #D7D7D7;
          padding-top: 60px;
      }
-    
-     .suggested-user-column
+     .suggested-user-list
      {
          width:17.076923% !important;
+    }
+
+     .suggested-user-column
+     {
         margin-left: 0.564103% !important;
          overflow-y: auto;
          &::-webkit-scrollbar{
@@ -31,13 +42,8 @@
 
      .suggested-user
      {
-         border-top: 1px solid #FCFAFA;
-         border-bottom: 1px solid #D9D4D4;
-         padding: 10px 15px;
-         background-color: #F2F0F0;
-         position: relative;
+        @include panel;
          cursor: pointer;
-             color: #333333;
         
          img{max-width:50px;max-height:50px;}
          &:hover{
@@ -45,6 +51,16 @@
               *background-color: #FEFEFE;
          }
      }
+
+      .common-interest-list-header
+     {
+        @include panel;
+     }
+
+     .common-interest-name{
+                 @include panel;
+
+        }
     
     /*MAIN CONTAINER*/
 
