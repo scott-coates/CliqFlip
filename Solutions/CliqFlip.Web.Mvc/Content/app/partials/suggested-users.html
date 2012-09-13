@@ -7,10 +7,10 @@
                     </div>
                     <div ng-switch-default>
                         <div ng-repeat="user in users">
-                           <div class="suggested-user">
+                            <div class="suggested-user" ng-click="selectUser(user);">
                                 <div class="row-fluid">
                                     <div class="span4">
-                                            <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
+                                        <img ng-src="{{user.ImageUrl}}" alt="Profile picture of {{user.Username}}">
                                     </div>
                                     <div class="span8">
                                         <h5>
@@ -29,13 +29,11 @@
             </div>
         </div>
     </div>
-    <div class="span3 suggested-user-column">
-        <div class="row-fluid">
-            <div class="span12 ">
-                <div ng-switch on="users.length">
-                    <div ng-switch-when="0" ng-include="'/Content/app/partials/suggested-user-list-loading.html'">
-                    </div>
-                    <div ng-switch-default>
+    <div ng-switch on="!!selectedUser">
+        <div ng-switch-when="true">
+            <div class="span3 suggested-user-column">
+                <div class="row-fluid">
+                    <div class="span12 ">
                         <div ng-repeat="user in users" class="suggested-user">
                             <div class="row-fluid">
                                 <div class="span4">
