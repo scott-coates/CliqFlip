@@ -414,6 +414,7 @@
     <Content Include="Content\app_old\views\feed\postOverviewUserAcitivtyView.js" />
     <Content Include="Content\app_old\views\helpers.js" />
     <Content Include="Content\assets\images\icons\ico-home.png" />
+    <Content Include="Content\assets\images\icons\user.png" />
     <Content Include="Content\assets\scripts\backbonePlugins\backbone.validation.js" />
     <Content Include="Content\assets\scripts\bootstrap\bundle.txt" />
     <Content Include="Content\assets\scripts\cliqflip\view\modalRegion.js" />
