@@ -57,7 +57,7 @@ namespace CliqFlip.Infrastructure.CastleWindsor
                         .LifeStyle.Singleton.UsingFactoryMethod(
                             () =>
                             {
-                                var client = new RedisClient("ubuntu", 6379);
+                                var client = new RedisClient(new Uri(ConfigurationManager.ConnectionStrings[Constants.REDIS_CACHE_URI].ConnectionString));
                                 client.DbSize.ToString();//will cause exception right here right now
                                 return client;
                             }));
