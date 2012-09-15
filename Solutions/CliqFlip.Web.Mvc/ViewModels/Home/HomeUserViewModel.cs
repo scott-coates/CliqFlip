@@ -8,5 +8,6 @@ namespace CliqFlip.Web.Mvc.ViewModels.Home
     {
         public string Username { get; set; }
         public int UserId { get; set; }
+        public string PusherAppKey { get; set; }
     }
 }

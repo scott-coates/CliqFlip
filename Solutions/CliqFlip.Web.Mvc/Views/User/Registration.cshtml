@@ -1,6 +1,8 @@
 ﻿@{
     Bundles.Reference("Content/assets/styles/site/landing");  
 }
+@using System.Configuration
+@using CliqFlip.Common
 @model CliqFlip.Web.Mvc.ViewModels.User.RegistrationViewModel
 <div class="container-fluid">
 <div id="landing-content" class="header-region">
@@ -25,7 +27,7 @@
     //TODO Use config for key/values
     Bundles.AddInlineScript(@"
     $(function () {
-        var pusher = new Pusher('3aa270fd00dec97e5b04');
+        var pusher = new Pusher('" + ConfigurationManager.AppSettings[Constants.PUSHER_APP_KEY] + @"');
         var channel = pusher.subscribe('registration-" + @Model.Username + @"');
         var regProgBox = $('#registration-progress');
         var regProgFeedback = $('#registration-feedback');

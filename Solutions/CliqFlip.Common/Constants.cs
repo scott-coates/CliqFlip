@@ -7,6 +7,7 @@
         public const string S3_BUCKET = "S3Bucket";
         public const string SES_FROM_EMAIL = "SESFromEmail";
         public const string FACEBOOK_APPID = "FacebookAppId";
+        public const string FACEBOOK_APP_SECRET = "FacebookAppSecret";
         public const string DEFAULT_PROFILE_IMAGE = "/Content/assets/images/empty-avatar.jpg";
         public const string YAHOO_APP_ID = "YahooAppId";
         public const string LOCATION_SESSION_KEY = "LocationSessionKey";

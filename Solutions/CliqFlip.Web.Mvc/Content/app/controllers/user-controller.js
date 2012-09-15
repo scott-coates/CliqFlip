@@ -3,7 +3,7 @@
 /* Controllers */
 
 function UserController($scope, $resource, UserData) {
-    var pusher = new window.Pusher('3aa270fd00dec97e5b04');
+    var pusher = new window.Pusher(UserData.PusherAppKey);
     var channel = pusher.subscribe('suggested-user-queue-' + UserData.Username.toString());
 
     channel.bind('pusher:subscription_succeeded', function (arg) {

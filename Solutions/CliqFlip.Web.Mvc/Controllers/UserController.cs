@@ -754,7 +754,7 @@ namespace CliqFlip.Web.Mvc.Controllers
         {
             string username = _principal.Identity.Name;
             var user = _userTasks.GetUser(username);
-            return View(new HomeUserViewModel { Username = user.Username, UserId = user.Id });
+            return View(new HomeUserViewModel { Username = user.Username, UserId = user.Id, PusherAppKey = ConfigurationManager.AppSettings[Constants.PUSHER_APP_KEY] });
         }
 
         [Authorize]

@@ -1,6 +1,8 @@
-﻿@{
+﻿@using System.Configuration
+@using CliqFlip.Common
+@{
     Bundles.Reference("Content/assets/styles/site/landing");
-    Microsoft.Web.Helpers.Facebook.Initialize("195112700588724", "93c79e6ba9263c0ed59884f6aaa45195");
+    Microsoft.Web.Helpers.Facebook.Initialize(ConfigurationManager.AppSettings[Constants.FACEBOOK_APPID], ConfigurationManager.AppSettings[Constants.FACEBOOK_APP_SECRET]);
 }
 @Microsoft.Web.Helpers.Facebook.GetInitializationScripts()
 @{
