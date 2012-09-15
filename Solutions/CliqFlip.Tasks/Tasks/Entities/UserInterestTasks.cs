@@ -46,7 +46,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
             scoredInterests = _closeInterestLimiter.LimitCloseInterests(scoredInterests).Cast<ScoredInterestInCommonDto>().ToList();
 
             return scoredInterests
-                .Select(x => new InterestInCommonDto(x.Name, x.Score, x.IsExactMatch))
+                .Select(x => new InterestInCommonDto(x.Name, x.Score, x.IsExactMatch, x.Id))
                 .ToList();
         }
 

@@ -133,7 +133,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
                 var categoryInterestReadModel = _interestTasks.GetByName(interest.CategoryName);
                 if (categoryInterestReadModel == null)
                 {
-                    categoryInterestReadModel = _interestTasks.Create(interest.CategoryName, null);
+                    categoryInterestReadModel = _interestTasks.Create(interest.CategoryName, null, true);
                 }
 
                 if (interestReadModel == null)

@@ -11,6 +11,7 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
     public class TransformUserToScoredUserFilter : ITransformUserToScoredUserFilter
     {
         private readonly IUserInterestTasks _userInterestTasks;
+        private static readonly string[] _groupsToShow = new[] { "tv show", "book", "movie", "music" };
 
         public TransformUserToScoredUserFilter(IUserInterestTasks userInterestTasks)
         {
@@ -39,9 +40,19 @@ namespace CliqFlip.Tasks.Pipelines.UserSearch.Filters
                             y => new UserSearchResultDto.InterestInCommonDto
                             {
                                 Name = y.Name,
-                                IsExactMatch = y.IsExactMatch
+                                IsExactMatch = y.IsExactMatch,
+                                InterestId = y.InterestId
                             })
                         .ToList();
+
+                    var groupings = retVal.InterestDtos
+                        .Where(y => retVal.InterestsInCommon.All(z => y.InterestId != z.InterestId))
+                        .GroupBy(y => y.CategoryName)
+                        .Where(y => _groupsToShow.Any(z => y.Key.ToLower().Contains(z)))
+                        .ToList();
+
+                    retVal.InterestGroups = groupings.Select(y => new UserSearchResultDto.InterestGroup(y.Key, y.ToList())).ToList();
+                    
                     return retVal;
                 }).ToList();
         }

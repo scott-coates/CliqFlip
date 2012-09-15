@@ -8,6 +8,7 @@ namespace CliqFlip.Domain.Dtos.User
     {
         public float Score { get; set; }
         public IList<UserInterestDto> InterestDtos { get; set; }
+        public IList<InterestGroup> InterestGroups { get; set; }
         public string Username { get; set; }
         public string FirstName { get; set; }
         public string ThumbImageUrl { get; set; }
@@ -19,7 +20,7 @@ namespace CliqFlip.Domain.Dtos.User
         public int CommonInterestCount { get; set; }
         public float Latitude { get; set; }
         public float Longitude { get; set; }
-         
+
         public UserSearchResultDto(ReadModels.User user)
         {
             Username = user.Username;
@@ -36,6 +37,7 @@ namespace CliqFlip.Domain.Dtos.User
 
         public class InterestInCommonDto
         {
+            public int InterestId { get; set; }
             public string Name { get; set; }
             public bool IsExactMatch { get; set; }
         }
@@ -49,15 +51,32 @@ namespace CliqFlip.Domain.Dtos.User
             public string Name { get; set; }
             public string Slug { get; set; }
             public int InterestId { get; set; }
- 
+            public string CategoryName { get; set; }
+
             public UserInterestDto(ReadModels.UserInterest interest)
             {
                 Name = interest.Interest.Name;
                 Slug = interest.Interest.Slug;
                 InterestId = interest.Interest.Id;
+                if (interest.Interest.ParentInterest != null)
+                {
+                    CategoryName = interest.Interest.ParentInterest.Name;
+                }
             }
         }
 
         #endregion
+
+        public class InterestGroup
+        {
+            public string GroupName { get; set; }
+            public IList<UserInterestDto> Interests { get; set; }
+
+            public InterestGroup(string name, IList<UserInterestDto> interest)
+            {
+                GroupName = name;
+                Interests = interest;
+            }
+        }
     }
 }

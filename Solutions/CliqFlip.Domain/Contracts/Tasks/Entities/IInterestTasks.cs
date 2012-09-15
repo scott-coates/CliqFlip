@@ -8,7 +8,7 @@ namespace CliqFlip.Domain.Contracts.Tasks.Entities
 	public interface IInterestTasks
 	{
 		IList<InterestKeywordDto> GetMatchingKeywords(string input);
-		Interest Create(string name, int? relatedTo);
+        Interest Create(string name, int? relatedTo, bool isMainCategory = false);
 		Interest Get(int id);
 		IList<Interest> GetMainCategoryInterests();
 		IList<Interest> GetAll();

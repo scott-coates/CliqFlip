@@ -43,7 +43,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
             return retVal;
         }
 
-        public Interest Create(string name, int? relatedTo)
+        public Interest Create(string name, int? relatedTo, bool isMainCategory = false)
         {
             //TODO: this formatting logic needs to be fixed for some things like iPhone not Iphone
             //and this logic should probably reside in the Interest Class
@@ -53,7 +53,8 @@ namespace CliqFlip.Tasks.Tasks.Entities
             {
                 Name = formattedName,
                 CreateDate = DateTime.UtcNow,
-                ParentInterest = relatedTo.HasValue ? Get(relatedTo.Value) : null
+                ParentInterest = relatedTo.HasValue ? Get(relatedTo.Value) : null,
+                IsMainCategory = isMainCategory
             };
 
             interest.SetSlug();
