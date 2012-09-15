@@ -33,3 +33,4 @@ function UserController($scope, $resource, UserData) {
         $(window).resize(); //TODO move this
     }
 }
+UserController.$inject = ['$scope', '$resource', 'UserData'];

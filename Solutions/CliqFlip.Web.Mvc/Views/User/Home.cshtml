@@ -3,9 +3,9 @@
 }
 @model CliqFlip.Web.Mvc.ViewModels.Home.HomeUserViewModel
 <div ng-app="cliqFlipApp">
-    <aside class="sidebar">
+    <aside class="sidebar" ng-controller="NavController">
         <ul class="nav nav-tabs nav-stacked">
-            <li class="active">
+            <li ng-class="{active:isActive('/u')}" >
                 <a ng-href="/u" href="#">
                     <div>
                         <div class="ico">
@@ -19,7 +19,7 @@
                     </div>
                 </a>
             </li>
-                <li>
+            <li ng-class="{active:isActive('/candidates')}" >
                 <a ng-href="/candidates" href="#">
                     <div>
                         <div class="ico">

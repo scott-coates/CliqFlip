@@ -390,8 +390,11 @@
   <ItemGroup>
     <Content Include="Areas\Api\ApiNotes.txt" />
     <Content Include="Content\app\app.js" />
+    <Content Include="Content\app\controllers\home-controller.js" />
+    <Content Include="Content\app\controllers\nav-controller.js" />
     <Content Include="Content\app\controllers\user-controller.js" />
     <Content Include="Content\app\directives\directives.js" />
+    <Content Include="Content\app\partials\home.html" />
     <Content Include="Content\app\partials\suggested-user-list-loading.html" />
     <Content Include="Content\app\partials\suggested-users.html" />
     <Content Include="Content\app\services\services.js" />
