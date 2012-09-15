@@ -1070,6 +1070,7 @@
     <Content Include="Content\assets\templates\post\Video.mustache" />
     <Content Include="Content\assets\templates\post\WebPage.mustache" />
     <Content Include="Content\assets\templates\post\WebPageNoImage.mustache" />
+    <Content Include="Views\Shared\_OldLayout.cshtml" />
     <None Include="Views\User\Registration.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
