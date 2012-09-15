@@ -76,12 +76,12 @@ namespace CliqFlip.Web.Mvc.Controllers
         {
             if (string.IsNullOrWhiteSpace(accessToken))
             {
-                accessToken = _httpContextProvider.Session[Constants.FACEBOOK_AUTH_TOKEN_SESSION_KEY] as string;//TODO look into tempdata and remove these session keys on logoff
+                accessToken = TempData[Constants.FACEBOOK_AUTH_TOKEN_SESSION_KEY] as string;
                 Check.Require(string.IsNullOrWhiteSpace(accessToken) == false, "access token is missing");
             }
             else
             {
-                _httpContextProvider.Session[Constants.FACEBOOK_AUTH_TOKEN_SESSION_KEY] = accessToken;
+                TempData[Constants.FACEBOOK_AUTH_TOKEN_SESSION_KEY] = accessToken;
             }
 
             ActionResult retVal;
@@ -97,7 +97,7 @@ namespace CliqFlip.Web.Mvc.Controllers
             if (user == null)
             {
                 _endpoint.Send(new CreateNewUserCommand(accessToken));
-                _httpContextProvider.Session[Constants.USERNAME_SESSION_KEY] = id;
+                TempData[Constants.USERNAME_SESSION_KEY] = id;
                 retVal = RedirectToAction("registration");
             }
             else
@@ -112,7 +112,7 @@ namespace CliqFlip.Web.Mvc.Controllers
         [AllowAnonymous]
         public ActionResult Registration()
         {
-            var vm = new RegistrationViewModel(_httpContextProvider.Session[Constants.USERNAME_SESSION_KEY].ToString());
+            var vm = new RegistrationViewModel(TempData[Constants.USERNAME_SESSION_KEY].ToString());
             return View(vm);
         }
 
