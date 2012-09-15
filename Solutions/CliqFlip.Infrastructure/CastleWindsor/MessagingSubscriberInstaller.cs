@@ -22,7 +22,7 @@ namespace CliqFlip.Infrastructure.CastleWindsor
                             {
                                 sbc.ReceiveFrom(ConfigurationManager.ConnectionStrings[Constants.RABBIT_MQ_URI].ConnectionString);
                                 sbc.UseRabbitMqRouting();
-                                sbc.UseLog4Net("log4net.xml");
+                                sbc.UseLog4Net("Configuration\\log4net.xml");
                                 sbc.Subscribe(c => c.LoadFrom(container));
                             })).LifeStyle.Singleton);
 
