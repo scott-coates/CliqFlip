@@ -3,12 +3,6 @@
 /* Controllers */
 
 function UserController($scope, $resource, UserData) {
-    Pusher.log = function (message) {
-        if (window.console && window.console.log) {
-            window.console.log(message);
-        }
-    };
-
     var pusher = new window.Pusher('3aa270fd00dec97e5b04');
     var channel = pusher.subscribe('suggested-user-queue-' + UserData.Username.toString());
 
@@ -17,7 +11,7 @@ function UserController($scope, $resource, UserData) {
     });
 
     channel.bind('update', function (arg) {
-        if (parseInt(arg.usersCount) > 1) {
+        if (parseInt(arg.usersCount) > 0) {
             updateUsers();
         }
         else {
