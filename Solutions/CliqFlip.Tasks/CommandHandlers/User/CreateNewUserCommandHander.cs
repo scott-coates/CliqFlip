@@ -48,9 +48,7 @@ namespace CliqFlip.Tasks.CommandHandlers.User
 
             var likeNames = likes
                 .Cast<dynamic>()
-                .Select(x => x.name)
-                .Cast<string>()
-                .Distinct();
+                .Select(x => new Interest(x.name, x.category));
 
             var user = new Domain.Entities.UserRoot.User(CombGuid.Generate(), facebookId, new Location(new Guid(majorLocation.Guid), locationName, location.Latitude, location.Longitude), new Name(firstName, lastName), new ProfileImage(squarePic, largePic), email, likeNames);
 

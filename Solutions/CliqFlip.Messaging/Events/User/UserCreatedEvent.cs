@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CliqFlip.Messaging.Events.User.Dtos;
 
 namespace CliqFlip.Messaging.Events.User
 {
@@ -8,7 +9,7 @@ namespace CliqFlip.Messaging.Events.User
         public Guid Id { get; private set; }
         public string Username { get; private set; }
         public string Email { get; private set; }
-        public IEnumerable<string> Interests { get; private set; }
+        public IEnumerable<UserCreatedInterestDto> Interests { get; private set; }
         public Guid MajorLocationId { get; private set; }
         public string LocationName { get; private set; }
         public float Latitude { get; private set; }
@@ -18,7 +19,7 @@ namespace CliqFlip.Messaging.Events.User
         public string SquareImageUrl { get; private set; }
         public string LargeImageUrl { get; private set; }
 
-        public UserCreatedEvent(Guid id, string username, string email, IEnumerable<string> interests, Guid majorLocationId, string locationName, float latitude, float longitude, string firstName, string lastName, string squareImageUrl, string largeImageUrl)
+        public UserCreatedEvent(Guid id, string username, string email, IEnumerable<UserCreatedInterestDto> interests, Guid majorLocationId, string locationName, float latitude, float longitude, string firstName, string lastName, string squareImageUrl, string largeImageUrl)
         {
             Id = id;
             Username = username;

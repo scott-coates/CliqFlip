@@ -43,7 +43,6 @@ namespace CliqFlip.Tasks.Tasks.Entities
             return retVal;
         }
 
-
         public Interest Create(string name, int? relatedTo)
         {
             //TODO: this formatting logic needs to be fixed for some things like iPhone not Iphone
@@ -52,6 +51,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
             //string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(name.ToLower().Trim());
             var interest = new Interest(formattedName)
             {
+                Name = formattedName,
                 CreateDate = DateTime.UtcNow,
                 ParentInterest = relatedTo.HasValue ? Get(relatedTo.Value) : null
             };
@@ -73,6 +73,11 @@ namespace CliqFlip.Tasks.Tasks.Entities
         public IList<Interest> GetAll()
         {
             return _interestRepository.GetAll();
+        }
+
+        public Interest GetByName(string name)
+        {
+            return _interestRepository.GetByName(name);
         }
 
         public RelatedInterestListDto GetRelatedInterests(string interestSlug)
@@ -110,13 +115,13 @@ namespace CliqFlip.Tasks.Tasks.Entities
                     var interestData = csvData
                         .Rows
                         .Skip(1)
-                        .Where(x=> !string.IsNullOrWhiteSpace(x.Cells[0].Value))
+                        .Where(x => !string.IsNullOrWhiteSpace(x.Cells[0].Value))
                         .Select(
                         x =>
                         {
                             string interestName1 = x[0].Value;
-                            
-                            if (string.IsNullOrWhiteSpace(interestName1)) throw new RulesException("Interest 1","Interest cannot be missing");
+
+                            if (string.IsNullOrWhiteSpace(interestName1)) throw new RulesException("Interest 1", "Interest cannot be missing");
 
                             var interest = _interestRepository.GetByName(interestName1) ?? Create(interestName1, null);
                             var dto1 = new RelatedInterestListDto.RelatedInterestDto(interest.Id, null, interest.Name, interest.Slug);

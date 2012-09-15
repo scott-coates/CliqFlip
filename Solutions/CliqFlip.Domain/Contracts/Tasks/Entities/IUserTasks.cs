@@ -3,6 +3,7 @@ using CliqFlip.Domain.Dtos.Media;
 using CliqFlip.Domain.Dtos.User;
 using CliqFlip.Domain.ReadModels;
 using CliqFlip.Domain.ValueObjects;
+using CliqFlip.Messaging.Events.User.Dtos;
 
 namespace CliqFlip.Domain.Contracts.Tasks.Entities
 {
@@ -10,7 +11,7 @@ namespace CliqFlip.Domain.Contracts.Tasks.Entities
     {
         // ReSharper disable ReturnTypeCanBeEnumerable.Global
         User Create_Old(UserCreateDto profileToCreate, LocationData location);
-        User Create(string username, string locationName, string firstName, string lastName, ImageData imageData, string email, IEnumerable<string> interestNames);
+        User Create(string username, string locationName, string firstName, string lastName, ImageData imageData, string email, IEnumerable<UserCreatedInterestDto> interests);
 
         void Login(User user, bool stayLoggedIn);
         bool Login(string username, string password, bool stayLoggedIn);

@@ -50,9 +50,10 @@ namespace CliqFlip.Tasks.EventsHandlers.User
                             })
                         .ToList();
                 }
+
                 _userTasks.SaveSuggestedUsers(user, pipelineResult.Users);
 
-                _pusherProvider.Trigger(new SimplePusherRequest("suggested-user-queue-" + message.Username, "update", ""));
+                _pusherProvider.Trigger(new SimplePusherRequest("suggested-user-queue-" + message.Username, "update", string.Format("{{\"usersCount\": \"{0}\"}}", pipelineResult.Users.Count)));
 
                 tx.Commit();
             }

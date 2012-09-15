@@ -25,6 +25,7 @@ using CliqFlip.Infrastructure.Validation;
 using CliqFlip.Infrastructure.Web;
 using CliqFlip.Infrastructure.Web.Interfaces;
 using CliqFlip.Messaging.Events.User;
+using CliqFlip.Messaging.Events.User.Dtos;
 using MassTransit;
 
 namespace CliqFlip.Tasks.Tasks.Entities
@@ -102,7 +103,7 @@ namespace CliqFlip.Tasks.Tasks.Entities
             return user;
         }
 
-        public User Create(string username, string locationName, string firstName, string lastName, ImageData imageData,string email, IEnumerable<string> interestNames)
+        public User Create(string username, string locationName, string firstName, string lastName, ImageData imageData, string email, IEnumerable<UserCreatedInterestDto> interests)
         {
             var retVal = new User
             {
@@ -127,18 +128,21 @@ namespace CliqFlip.Tasks.Tasks.Entities
 
             _serviceBus.Publish(new UserFoundGeneralDataEvent(username));
 
-            var interests = _interestTasks.GetAll();
-
-            foreach (var interestName in interestNames)
+            foreach (var interest in interests)
             {
-                var interest = interests.FirstOrDefault(x => FuzzySearch.LevenshteinDistance(x.Name, interestName) < 2);
-
-                if (interest == null)
+                var interestReadModel = _interestTasks.GetByName(interest.InterestName);
+                var categoryInterestReadModel = _interestTasks.GetByName(interest.CategoryName);
+                if (categoryInterestReadModel == null)
                 {
-                    interest = _interestTasks.Create(interestName, null);
+                    categoryInterestReadModel = _interestTasks.Create(interest.CategoryName, null);
                 }
 
-                AddInterestToUser(retVal, interest.Id);
+                if (interestReadModel == null)
+                {
+                    interestReadModel = _interestTasks.Create(interest.InterestName, categoryInterestReadModel == null ? (int?)null : categoryInterestReadModel.Id);
+                }
+
+                AddInterestToUser(retVal, interestReadModel.Id);
             }
 
             _serviceBus.Publish(new UserFoundInterestDataEvent(username));

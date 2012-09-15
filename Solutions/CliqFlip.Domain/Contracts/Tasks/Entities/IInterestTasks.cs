@@ -12,6 +12,7 @@ namespace CliqFlip.Domain.Contracts.Tasks.Entities
 		Interest Get(int id);
 		IList<Interest> GetMainCategoryInterests();
 		IList<Interest> GetAll();
+        Interest GetByName(string name);
 		RelatedInterestListDto GetRelatedInterests(string interestSlug);
 		void CreateRelationships(RelatedInterestListDto relatedInterestListDto);
 	    int UploadInterests(FileStreamDto fileStream);
