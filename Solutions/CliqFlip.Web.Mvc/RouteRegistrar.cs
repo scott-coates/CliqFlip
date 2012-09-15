@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 
 namespace CliqFlip.Web.Mvc
 {

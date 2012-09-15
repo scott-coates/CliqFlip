@@ -1,16 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common.Extensions;
 using CliqFlip.Domain.Contracts.Pipelines.UserSearch;
-using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Dtos.Post;
 using CliqFlip.Domain.ReadModels;
 using CliqFlip.Web.Mvc.Areas.Api.Models.Feed;
 using CliqFlip.Web.Mvc.Areas.Api.Queries.Interfaces;
 using CliqFlip.Web.Mvc.Helpers.Url.Interfaces;
-using CliqFlip.Infrastructure.Extensions;
 
 namespace CliqFlip.Web.Mvc.Areas.Api.Queries
 {

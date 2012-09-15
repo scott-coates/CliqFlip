@@ -5,7 +5,7 @@ using System.IO;
 using Amazon;
 using Amazon.S3;
 using Amazon.S3.Model;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 using CliqFlip.Infrastructure.IO.Interfaces;
 
 namespace CliqFlip.Infrastructure.IO

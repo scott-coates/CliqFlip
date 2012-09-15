@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 using CliqFlip.Domain.Contracts.Pipelines.UserSearch;
 using CliqFlip.Domain.Contracts.Pipelines.UserSearch.Filters;
 

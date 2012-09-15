@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 using CliqFlip.Web.Mvc.Extensions.Request;
 using CliqFlip.Web.Mvc.ViewModels.User;
 using Microsoft.Web.Helpers;

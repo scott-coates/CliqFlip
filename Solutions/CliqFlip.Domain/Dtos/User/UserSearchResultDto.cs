@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 
 namespace CliqFlip.Domain.Dtos.User
 {

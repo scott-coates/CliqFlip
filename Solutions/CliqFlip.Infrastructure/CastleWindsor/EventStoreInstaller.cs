@@ -3,7 +3,7 @@ using Castle.Facilities.TypedFactory;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 using CliqFlip.Infrastructure.EventSourcing;
 using CommonDomain;
 using CommonDomain.Core;

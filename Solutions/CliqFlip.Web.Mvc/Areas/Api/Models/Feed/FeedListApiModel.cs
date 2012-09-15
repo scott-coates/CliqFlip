@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 using CliqFlip.Domain.Dtos.Post;
 using Newtonsoft.Json;
 

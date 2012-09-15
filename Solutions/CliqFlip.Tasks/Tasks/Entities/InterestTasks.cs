@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Dtos.Media;
@@ -49,12 +49,14 @@ namespace CliqFlip.Tasks.Tasks.Entities
             //and this logic should probably reside in the Interest Class
             string formattedName = name.Trim();
             //string formattedName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(name.ToLower().Trim());
-            var interest = new Interest(formattedName)
+            var interest = new Interest
             {
                 Name = formattedName,
                 CreateDate = DateTime.UtcNow,
                 ParentInterest = relatedTo.HasValue ? Get(relatedTo.Value) : null
             };
+
+            interest.SetSlug();
 
             _interestRepository.SaveOrUpdate(interest);
             return interest;

@@ -1,5 +1,5 @@
 using System.Linq;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.ReadModels;

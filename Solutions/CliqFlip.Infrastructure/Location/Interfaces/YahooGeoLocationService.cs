@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Net;
 using System.Web;
 using System.Xml.Linq;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 using CliqFlip.Domain.ReadModels;
 using CliqFlip.Domain.ValueObjects;
 using CliqFlip.Infrastructure.Exceptions;

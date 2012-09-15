@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Dtos.Post;
 using CliqFlip.Web.Mvc.ViewModels.Post;

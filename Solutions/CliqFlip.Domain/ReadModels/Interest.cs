@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using CliqFlip.Common.Extensions;
 using CliqFlip.Domain.Extensions;
 using SharpArch.Domain.DomainModel;
 
@@ -22,20 +23,14 @@ namespace CliqFlip.Domain.ReadModels
         public virtual bool IsMainCategory { get; set; }
         public virtual DateTime CreateDate { get; set; }
 
-        public Interest()
+        public virtual void SetSlug()
         {
-        }
+            var name = Name;
+            if(ParentInterest != null)
+            {
+                name += " " + ParentInterest.Name;
+            }
 
-        public Interest(string name)
-        {
-            Name = name;
-            Slug = name.Slugify();
-        }
-
-        public Interest(int id, string name)
-        {
-            Id = id;
-            Name = name;
             Slug = name.Slugify();
         }
     }

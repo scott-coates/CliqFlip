@@ -5,7 +5,7 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using AttributeRouting.Web.Http;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Web.Mvc.Security.Attributes;

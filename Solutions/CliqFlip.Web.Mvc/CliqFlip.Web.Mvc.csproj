@@ -834,6 +834,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CliqFlip.Common\CliqFlip.Common.csproj">
+      <Project>{64916FD2-77C8-4005-BEA3-96EDB4F488D3}</Project>
+      <Name>CliqFlip.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CliqFlip.Domain\CliqFlip.Domain.csproj">
       <Project>{8DEF56CD-601E-443C-9DCE-C4EC54C0B6A6}</Project>
       <Name>CliqFlip.Domain</Name>

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 using CliqFlip.Domain.Dtos.Post;
 
 namespace CliqFlip.Web.Mvc.Areas.Api.Models.Feed

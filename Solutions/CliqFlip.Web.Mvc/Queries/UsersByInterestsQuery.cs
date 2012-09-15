@@ -10,7 +10,7 @@ using CliqFlip.Web.Mvc.ViewModels.Search;
 using MvcContrib.Pagination;
 using System.Web.Mvc;
 using CliqFlip.Infrastructure.Web.Interfaces;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 
 namespace CliqFlip.Web.Mvc.Queries
 {

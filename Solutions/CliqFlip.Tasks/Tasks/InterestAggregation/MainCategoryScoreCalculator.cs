@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 using CliqFlip.Domain.Contracts.Tasks.InterestAggregation;
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Dtos.Interest.Interfaces;

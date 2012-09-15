@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliqFlip.Service", "CliqFli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliqFlip.Messaging", "CliqFlip.Messaging\CliqFlip.Messaging.csproj", "{D29D1692-8614-48A8-A984-CFF3844B9109}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliqFlip.Common", "CliqFlip.Common\CliqFlip.Common.csproj", "{64916FD2-77C8-4005-BEA3-96EDB4F488D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -130,6 +132,16 @@ Global
 		{D29D1692-8614-48A8-A984-CFF3844B9109}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D29D1692-8614-48A8-A984-CFF3844B9109}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D29D1692-8614-48A8-A984-CFF3844B9109}.Release|x86.ActiveCfg = Release|Any CPU
+		{64916FD2-77C8-4005-BEA3-96EDB4F488D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64916FD2-77C8-4005-BEA3-96EDB4F488D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64916FD2-77C8-4005-BEA3-96EDB4F488D3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{64916FD2-77C8-4005-BEA3-96EDB4F488D3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{64916FD2-77C8-4005-BEA3-96EDB4F488D3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{64916FD2-77C8-4005-BEA3-96EDB4F488D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64916FD2-77C8-4005-BEA3-96EDB4F488D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64916FD2-77C8-4005-BEA3-96EDB4F488D3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{64916FD2-77C8-4005-BEA3-96EDB4F488D3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{64916FD2-77C8-4005-BEA3-96EDB4F488D3}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -142,6 +154,7 @@ Global
 		{9544D94B-9B6E-4B61-8A09-88382205BF86} = {322C2632-17A0-4B1E-AD0C-BF6B44B1FECD}
 		{212C165D-297B-4263-BE08-9210B5B758CC} = {322C2632-17A0-4B1E-AD0C-BF6B44B1FECD}
 		{F37686DB-65B3-484C-A0D4-893E200C02FA} = {322C2632-17A0-4B1E-AD0C-BF6B44B1FECD}
+		{64916FD2-77C8-4005-BEA3-96EDB4F488D3} = {322C2632-17A0-4B1E-AD0C-BF6B44B1FECD}
 		{C9AAC14B-E695-4508-83B7-ACB8FC5A7284} = {0B359D18-9636-48D8-89F8-93061463E1E3}
 	EndGlobalSection
 EndGlobal

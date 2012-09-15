@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Security.Principal;
 using System.Web.Http;
 using AttributeRouting.Web.Http;
+using CliqFlip.Common.Extensions;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Domain.Dtos.Media;
@@ -11,7 +12,6 @@ using CliqFlip.Web.Mvc.Areas.Api.Models.Post;
 using CliqFlip.Web.Mvc.Areas.Api.Queries.Interfaces;
 using CliqFlip.Web.Mvc.Data.Attributes;
 using Microsoft.Practices.ServiceLocation;
-using CliqFlip.Infrastructure.Extensions;
 
 namespace CliqFlip.Web.Mvc.Areas.Api.Controllers
 {

@@ -4,7 +4,7 @@ using Castle.Facilities.TypedFactory;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 using MassTransit;
 using Neo4jClient;
 using SharpArch.Domain.Commands;

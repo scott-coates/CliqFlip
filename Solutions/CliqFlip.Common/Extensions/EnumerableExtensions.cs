@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CliqFlip.Domain.Common;
 
-namespace CliqFlip.Infrastructure.Extensions
+namespace CliqFlip.Common.Extensions
 {
     public static class EnumerableExtensions
     {

@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 using CliqFlip.Domain.Contracts.Tasks;
 using CliqFlip.Infrastructure.Web.Interfaces;
 using CliqFlip.Web.Mvc.Queries.Interfaces;

@@ -98,7 +98,6 @@
     <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Common\Constants.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\ILimitByCloseInterestFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\ICalculateMainCategoryInterestScoreFilter.cs" />
     <Compile Include="Contracts\Pipelines\UserSearch\Filters\ILimitByExplicitSearchScoreFilter.cs" />
@@ -148,6 +147,7 @@
     <Compile Include="Dtos\User\UserSearchResultDto.cs" />
     <Compile Include="Entities\InterestRoot\Interest.cs" />
     <Compile Include="Entities\MajorLocationRoot\MajorLocation.cs" />
+    <Compile Include="Entities\UserRoot\Interest.cs" />
     <Compile Include="Entities\UserRoot\ProfileImage.cs" />
     <Compile Include="Entities\UserRoot\Name.cs" />
     <Compile Include="Entities\UserRoot\Location.cs" />
@@ -167,7 +167,6 @@
     <Compile Include="Exceptions\ErrorInfo.cs" />
     <Compile Include="Exceptions\RulesException.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Contracts\Tasks\Entities\IUserTasks.cs" />
     <Compile Include="Dtos\Interest\InterestKeywordDto.cs" />
     <Compile Include="ReadModels\UserInterest.cs" />
@@ -211,6 +210,10 @@
     <Content Include="App_Readme\EventStore.license.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CliqFlip.Common\CliqFlip.Common.csproj">
+      <Project>{64916FD2-77C8-4005-BEA3-96EDB4F488D3}</Project>
+      <Name>CliqFlip.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CliqFlip.Messaging\CliqFlip.Messaging.csproj">
       <Project>{D29D1692-8614-48A8-A984-CFF3844B9109}</Project>
       <Name>CliqFlip.Messaging</Name>

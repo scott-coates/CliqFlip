@@ -3,7 +3,7 @@ using System.Configuration;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 using CliqFlip.Infrastructure.ServiceBus;
 using MassTransit;
 using MassTransit.Transports;

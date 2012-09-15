@@ -5,7 +5,7 @@ using System.Text;
 using System.Web.Configuration;
 using Amazon;
 using Amazon.SimpleEmail.Model;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 using CliqFlip.Infrastructure.Email.Interfaces;
 using CliqFlip.Infrastructure.Logging.Interfaces;
 

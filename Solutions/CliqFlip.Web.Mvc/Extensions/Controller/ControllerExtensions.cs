@@ -1,4 +1,4 @@
-﻿using CliqFlip.Domain.Common;
+﻿using CliqFlip.Common;
 
 namespace CliqFlip.Web.Mvc.Extensions.Controller
 {

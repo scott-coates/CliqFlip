@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using CliqFlip.Domain.Common;
+using CliqFlip.Common;
 
 using CliqFlip.Domain.Dtos.Interest;
 using CliqFlip.Domain.Enums;
