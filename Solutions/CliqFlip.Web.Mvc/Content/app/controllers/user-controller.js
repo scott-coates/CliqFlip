@@ -23,6 +23,7 @@ function UserController($scope, $resource, UserData) {
 
     $scope.selectUser = function (user) {
         $scope.selectedUser = user;
+        setTimeout("$(window).resize();"); //TODO move this
     };
 
     function updateUsers() {
