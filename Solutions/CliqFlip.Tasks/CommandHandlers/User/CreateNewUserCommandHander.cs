@@ -41,8 +41,8 @@ namespace CliqFlip.Tasks.CommandHandlers.User
             string lastName = result.first_name;
 
             dynamic largePicResult = client.Get("me", new { fields = "picture.type(large)" });
-            string squarePic = result.picture;
-            string largePic = largePicResult.picture;
+            string squarePic = result.picture.data.url;
+            string largePic = largePicResult.picture.data.url;
 
             string email = result.email;
 
