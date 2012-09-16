@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Threading;
 using Castle.Windsor;
-using CliqFlip.Domain.Contracts.Tasks.Entities;
 using CliqFlip.Infrastructure.CastleWindsor;
 using CliqFlip.Infrastructure.NHibernate.Maps;
-using CliqFlip.Tasks.CommandHandlers.User;
 using CommonServiceLocator.WindsorAdapter;
 using MassTransit;
 using Microsoft.Practices.ServiceLocation;
