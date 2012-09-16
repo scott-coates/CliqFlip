@@ -7,6 +7,7 @@ using CommonServiceLocator.WindsorAdapter;
 using MassTransit;
 using Microsoft.Practices.ServiceLocation;
 using SharpArch.NHibernate;
+using SharpArchContrib.Data.NHibernate;
 using Topshelf;
 using Topshelf.Logging;
 
@@ -33,7 +34,7 @@ namespace CliqFlip.Service
                 );
 
             NHibernateSession.Init(
-               new SimpleSessionStorage(),
+               new ThreadSessionStorage(),
                 new[] { "CliqFlip.Infrastructure.dll" },
                 new AutoPersistenceModelGenerator().Generate(),
                 "Configuration/NHibernate.config");

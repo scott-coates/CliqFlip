@@ -77,6 +77,12 @@
     <Reference Include="SharpArch.NHibernate, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Packages\SharpArch.NHibernate.2.0.4\lib\NET40\SharpArch.NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="SharpArchContrib.Core">
+      <HintPath>..\..\Packages\SharpArchContrib.Core.1.0.1\lib\NET40\SharpArchContrib.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpArchContrib.Data">
+      <HintPath>..\..\Packages\SharpArchContrib.Data.1.0.1\lib\NET40\SharpArchContrib.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
