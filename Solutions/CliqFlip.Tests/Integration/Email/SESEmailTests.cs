@@ -11,7 +11,8 @@ using NUnit.Framework;
 namespace CliqFlip.Tests.Integration.Email
 {
 	[TestFixture]
-	public class SESEmailTests
+    [Ignore]
+    public class SESEmailTests
 	{
 		private IEmailService _emailService;
 

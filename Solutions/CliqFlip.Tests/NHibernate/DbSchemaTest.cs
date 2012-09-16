@@ -7,7 +7,8 @@ using SharpArch.NHibernate;
 namespace CliqFlip.Tests.NHibernate
 {
 	[TestFixture]
-	public class DbSchemaTest
+    [Ignore]
+    public class DbSchemaTest
 	{
 		[Test]
 		public void GenerateSchema()

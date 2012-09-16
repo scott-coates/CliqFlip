@@ -14,7 +14,8 @@ using SharpArch.NHibernate;
 namespace CliqFlip.Tests.Integration.Location
 {
 	[TestFixture]
-	public class LocationServiceTests
+    [Ignore]
+    public class LocationServiceTests
 	{
 		private ILocationService _locationService;
 		private IRepository<MajorLocation> _majorLocationRepo;
