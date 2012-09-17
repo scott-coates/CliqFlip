@@ -28,7 +28,7 @@ function UserController($scope, $resource, UserData) {
     };
 
     function updateUsers() {
-        if (typeof UserData.suggestedUsers !== "undefined") {
+        if (UserData.suggestedUsers && UserData.suggestedUsers.length > 0) {
             $scope.users = UserData.suggestedUsers;
             $scope.$apply();
         }
