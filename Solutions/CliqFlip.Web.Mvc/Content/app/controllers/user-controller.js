@@ -4,7 +4,7 @@
 
 function UserController($scope, $resource, UserData) {
     var pusher = new window.Pusher(UserData.PusherAppKey);
-    var channel = pusher.subscribe('suggested-user-queue-' + UserData.Username.toString());
+    var channel = pusher.subscribe('suggested-user-queue-' + UserData.Username.toString()); //TODO don't re-create a pusher client everytime.
     $scope.users = [];
 
     channel.bind('pusher:subscription_succeeded', function (arg) {
