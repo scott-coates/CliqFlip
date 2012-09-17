@@ -19,10 +19,13 @@ function UserController($scope, $resource, UserData) {
             alert('no users');
         }
     });
+
     $scope.$on('$destroy', function () {
         pusher.disconnect();
         pusher = null;
+        channel = null;
     });
+
     $scope.SuggestedUser = $resource('/api/suggesteduser/'); /*TODO Look into naming this suggested-user*/
 
     $scope.selectUser = function (user) {
