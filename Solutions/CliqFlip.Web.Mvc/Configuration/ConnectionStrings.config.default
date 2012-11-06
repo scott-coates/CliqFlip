@@ -1,0 +1,4 @@
+﻿<connectionStrings>
+	<add name="default" connectionString="Data Source=.;Initial Catalog=CliqFlip;Integrated Security=true;" />
+	<add name="graph" connectionString="http://localhost:7474/db/data" />
+</connectionStrings>
