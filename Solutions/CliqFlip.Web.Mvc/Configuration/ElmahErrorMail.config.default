@@ -1,0 +1,10 @@
+﻿<errorMail
+	from="alerts@cliqflip.com"
+	 to="someguy@gmail.com"
+	 subject="Error"
+	 async="true"
+	 smtpPort="587"
+	 useSsl="true"
+	 smtpServer="smtp.gmail.com"
+	 userName="xxx"
+	 password="yyy"/>
