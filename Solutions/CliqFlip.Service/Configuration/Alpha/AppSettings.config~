@@ -1,0 +1,17 @@
+﻿<appSettings>
+	<add key="ClientValidationEnabled" value="true" />
+	<add key="UnobtrusiveJavaScriptEnabled" value="true" />
+	<add key="AWSAccessKey" value="AKIAJVRLXLRCWFQRQ4GQ"/>
+	<add key="AWSSecretKey" value="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"/>
+	<add key="S3Bucket" value="assets.alpha.cliqflip.com"/>
+	<add key="SESFromEmail" value="CliqFlip&lt;support@cliqflip.com&gt;"/>
+	<add key="FacebookAppId" value="195112700588724" />
+	<add key="FacebookAppSecret" value="93c79e6ba9263c0ed59884f6aaa45195" />
+	<add key="YahooAppId" value="kQBPGOvV34HdT2pnnxRc6rNlZ0q7__NE5vLqMjQFDoNxr61SP5BEvr_nck6SZziAF4EY" />
+    <add key="webpages:Version" value="2.0.0.0" />
+    <add key="webpages:Enabled" value="false" />
+    <add key="PreserveLoginUrl" value="true" />
+    <add key="PusherAppId" value="27097" />
+    <add key="PusherAppKey" value="3aa270fd00dec97e5b04" />
+    <add key="PusherAppSecret" value="1a22d1388d01a76b7bd4" />
+</appSettings>

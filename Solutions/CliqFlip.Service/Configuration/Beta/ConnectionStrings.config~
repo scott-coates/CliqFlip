@@ -1,0 +1,6 @@
+﻿<connectionStrings>
+	<add name="default" connectionString="Server=87344d60-f161-4af1-8da1-a046016e90d6.sqlserver.sequelizer.com;Database=db87344d60f1614af18da1a046016e90d6;User ID=bbrijuyzfnlahnzh;Password=YXbagE4ZUaWC6qRnmmqUYfdoJ2P8PEc3hBvuVyQEhXGwaC85WoVfpizSTUxoX4ko;" providerName="System.Data.SqlClient"/>
+    <add name="graph" connectionString="http://a52daeece:787882a08@5ddc6b942.hosted.neo4j.org:7178/db/data/" />
+    <add name="queue" connectionString="rabbitmq://localhost/CliqFlip.App" />
+    <add name="cache" connectionString="redis://ubuntu:6379/"/>
+</connectionStrings>

@@ -1,0 +1,6 @@
+﻿<connectionStrings>
+	<add name="default" connectionString="Data Source=.;Initial Catalog=CliqFlip;Integrated Security=true;" providerName="System.Data.SqlClient" />
+	<add name="graph" connectionString="http://localhost:7474/db/data" />
+    <add name="queue" connectionString="rabbitmq://localhost/CliqFlip.App" />
+    <add name="cache" connectionString="redis://ubuntu:6379/"/>
+</connectionStrings>
